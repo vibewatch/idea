@@ -1,0 +1,45 @@
+# Reddit communities grouped by the kind of product signal they provide.
+# Subreddit names are case-insensitive and should not include the r/ prefix.
+#
+# Each run stores a deduplicated daily snapshot at:
+# data/reddit/<name>/<YYYY-MM-DD>.json
+
+monitors:
+  - name: saas-build
+    subreddit:
+      - SaaSBuild
+      - SaaS
+      - microsaas
+      - indiehackers
+      - SideProject
+    sort: top
+    time: day
+    max_posts: 25
+    comments: 20
+    comment_percentile: 75
+
+  - name: startup-ideas
+    subreddit:
+      - Startup_Ideas
+      - SomebodyMakeThis
+      - AppIdeas
+      - startups
+      - Entrepreneur
+    sort: top
+    time: day
+    max_posts: 25
+    comments: 20
+    comment_percentile: 75
+
+  - name: customer-pain
+    subreddit:
+      - smallbusiness
+      - freelancers
+      - ecommerce
+      - sysadmin
+      - productivity
+    sort: top
+    time: day
+    max_posts: 20
+    comments: 15
+    comment_percentile: 75

@@ -1,0 +1,35 @@
+[project]
+name = "idea-scraper"
+version = "0.1.0"
+description = "A scheduled Reddit pipeline for collecting SaaS and startup ideas"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.10,<3",
+    "python-dotenv>=1.0,<2",
+    "pyyaml>=6.0,<7",
+]
+
+[project.scripts]
+scrape-reddit = "idea_scraper.reddit:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/idea_scraper"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3,<10",
+    "ruff>=0.9",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
