@@ -26,13 +26,13 @@ import yaml
 from dotenv import load_dotenv
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator, model_validator
 
-from idea_scraper import APP_ROOT, REPOSITORY_ROOT, setup_logging
+from idea_pipeline import PROJECT_ROOT, REPOSITORY_ROOT, setup_logging
 
-logger = logging.getLogger("idea_scraper.reddit")
+logger = logging.getLogger("idea_pipeline.scraper.reddit")
 
-DEFAULT_CONFIG = APP_ROOT / "config" / "reddit.yml"
+DEFAULT_CONFIG = PROJECT_ROOT / "config" / "scraper" / "reddit.yml"
 DEFAULT_DATA_DIR = REPOSITORY_ROOT / "data" / "reddit"
-DEFAULT_ENV_FILE = APP_ROOT / ".env"
+DEFAULT_ENV_FILE = PROJECT_ROOT / ".env"
 COOKIES_ENV = "REDDIT_COOKIES"
 REQUEST_DELAY = (2.0, 5.0)
 DEFAULT_COMMENT_PERCENTILE = 75.0
@@ -482,7 +482,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--config",
         type=Path,
         default=DEFAULT_CONFIG,
-        help="Config file (default: scraper/config/reddit.yml)",
+        help="Config file (default: pipeline/config/scraper/reddit.yml)",
     )
     parser.add_argument(
         "-d",

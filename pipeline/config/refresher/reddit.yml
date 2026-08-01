@@ -1,0 +1,13 @@
+# Browser session refresh settings.
+# The workflow loads REDDIT_COOKIES, visits Reddit, then replaces that same
+# GitHub Actions secret with Playwright's refreshed cookie list.
+
+sites:
+  - name: reddit
+    url: https://www.reddit.com/
+    secret_name: REDDIT_COOKIES
+    domains:
+      - https://reddit.com
+      - https://www.reddit.com
+    wait: 10
+    scroll: 500

@@ -12,8 +12,8 @@ from unittest.mock import MagicMock, call, patch
 import pytest
 from pydantic import ValidationError
 
-from idea_scraper import APP_ROOT, REPOSITORY_ROOT
-from idea_scraper.reddit import (
+from idea_pipeline import PROJECT_ROOT, REPOSITORY_ROOT
+from idea_pipeline.scraper.reddit import (
     DEFAULT_CONFIG,
     DEFAULT_DATA_DIR,
     DEFAULT_ENV_FILE,
@@ -34,13 +34,13 @@ from idea_scraper.reddit import (
 
 class TestProjectPaths:
     def test_app_and_repository_roots_match_monorepo_layout(self) -> None:
-        expected_app_root = Path(__file__).resolve().parents[1]
+        expected_project_root = Path(__file__).resolve().parents[2]
 
-        assert APP_ROOT == expected_app_root
-        assert REPOSITORY_ROOT == expected_app_root.parent
-        assert DEFAULT_CONFIG == APP_ROOT / "config" / "reddit.yml"
+        assert PROJECT_ROOT == expected_project_root
+        assert REPOSITORY_ROOT == expected_project_root.parent
+        assert DEFAULT_CONFIG == PROJECT_ROOT / "config" / "scraper" / "reddit.yml"
         assert DEFAULT_DATA_DIR == REPOSITORY_ROOT / "data" / "reddit"
-        assert DEFAULT_ENV_FILE == APP_ROOT / ".env"
+        assert DEFAULT_ENV_FILE == PROJECT_ROOT / ".env"
 
 
 class TestRedditMonitor:
@@ -258,7 +258,7 @@ class TestPostHelpers:
 
 
 class TestComments:
-    @patch("idea_scraper.reddit.subprocess.run")
+    @patch("idea_pipeline.scraper.reddit.subprocess.run")
     def test_fetches_and_filters_comments(self, mock_run: MagicMock) -> None:
         mock_run.return_value = MagicMock(
             returncode=0,
@@ -318,7 +318,7 @@ class TestComments:
             check=False,
         )
 
-    @patch("idea_scraper.reddit.subprocess.run")
+    @patch("idea_pipeline.scraper.reddit.subprocess.run")
     def test_rate_limit_is_distinct_from_other_failures(self, mock_run: MagicMock) -> None:
         mock_run.return_value = MagicMock(returncode=1, stderr="429 Too Many Requests")
         assert fetch_comments("p1", 5) is None
@@ -326,7 +326,7 @@ class TestComments:
         mock_run.return_value = MagicMock(returncode=1, stderr="server error")
         assert fetch_comments("p1", 5) == []
 
-    @patch("idea_scraper.reddit.subprocess.run")
+    @patch("idea_pipeline.scraper.reddit.subprocess.run")
     def test_timeout_and_invalid_json_return_empty(self, mock_run: MagicMock) -> None:
         mock_run.side_effect = subprocess.TimeoutExpired(cmd="rdt", timeout=60)
         assert fetch_comments("p1", 5) == []
@@ -410,9 +410,9 @@ class TestMergePosts:
 
 
 class TestRun:
-    @patch("idea_scraper.reddit._random_delay")
-    @patch("idea_scraper.reddit.fetch_comments")
-    @patch("idea_scraper.reddit.subprocess.run")
+    @patch("idea_pipeline.scraper.reddit._random_delay")
+    @patch("idea_pipeline.scraper.reddit.fetch_comments")
+    @patch("idea_pipeline.scraper.reddit.subprocess.run")
     def test_collects_deduplicates_and_enriches_discussed_posts(
         self,
         mock_run: MagicMock,
@@ -464,8 +464,8 @@ class TestRun:
         assert by_id["p2"]["num_comments"] == 12
         assert by_id["p3"]["comments_data"][0]["body"] == "pain point"
 
-    @patch("idea_scraper.reddit._random_delay")
-    @patch("idea_scraper.reddit.subprocess.run")
+    @patch("idea_pipeline.scraper.reddit._random_delay")
+    @patch("idea_pipeline.scraper.reddit.subprocess.run")
     def test_preserves_partial_results_after_rate_limit(
         self, mock_run: MagicMock, _mock_delay: MagicMock, tmp_path: Path
     ) -> None:
@@ -479,7 +479,7 @@ class TestRun:
         assert mock_run.call_count == 2
         assert len(list((tmp_path / "saas").glob("*.json"))) == 1
 
-    @patch("idea_scraper.reddit.subprocess.run")
+    @patch("idea_pipeline.scraper.reddit.subprocess.run")
     def test_rate_limit_without_results_is_nonfatal(self, mock_run: MagicMock, tmp_path: Path) -> None:
         mock_run.return_value = MagicMock(returncode=1, stderr="429")
         monitor = RedditMonitor(name="saas", subreddits=["SaaS"])
@@ -487,14 +487,14 @@ class TestRun:
         assert run(monitor, tmp_path) is True
         assert not (tmp_path / "saas").exists()
 
-    @patch("idea_scraper.reddit.subprocess.run")
+    @patch("idea_pipeline.scraper.reddit.subprocess.run")
     def test_regular_failure_without_results_fails(self, mock_run: MagicMock, tmp_path: Path) -> None:
         mock_run.return_value = MagicMock(returncode=1, stderr="not found")
         monitor = RedditMonitor(name="saas", subreddits=["SaaS"])
 
         assert run(monitor, tmp_path) is False
 
-    @patch("idea_scraper.reddit.subprocess.run", side_effect=FileNotFoundError)
+    @patch("idea_pipeline.scraper.reddit.subprocess.run", side_effect=FileNotFoundError)
     def test_missing_rdt_cli_fails_cleanly(self, _mock_run: MagicMock, tmp_path: Path) -> None:
         monitor = RedditMonitor(name="saas", subreddits=["SaaS"])
 
@@ -518,10 +518,10 @@ class TestCli:
 
         assert main(["--config", str(config), "--name", "missing"]) == 2
 
-    @patch("idea_scraper.reddit._random_delay")
-    @patch("idea_scraper.reddit.run")
-    @patch("idea_scraper.reddit.setup")
-    @patch("idea_scraper.reddit.load_dotenv")
+    @patch("idea_pipeline.scraper.reddit._random_delay")
+    @patch("idea_pipeline.scraper.reddit.run")
+    @patch("idea_pipeline.scraper.reddit.setup")
+    @patch("idea_pipeline.scraper.reddit.load_dotenv")
     def test_runs_selected_monitor(
         self,
         mock_dotenv: MagicMock,

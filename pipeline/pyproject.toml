@@ -1,24 +1,32 @@
 [project]
-name = "idea-scraper"
+name = "idea-pipeline"
 version = "0.1.0"
-description = "A scheduled Reddit pipeline for collecting SaaS and startup ideas"
+description = "Reddit collection and credential-refresh pipelines for the Idea website"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "playwright>=1.50,<2",
     "pydantic>=2.10,<3",
+    "pynacl>=1.5,<2",
+    "pyvirtualdisplay>=3,<4",
     "python-dotenv>=1.0,<2",
     "pyyaml>=6.0,<7",
+    "requests>=2.32,<3",
 ]
 
+[project.optional-dependencies]
+extract = ["browser-cookie3>=0.20,<1"]
+
 [project.scripts]
-scrape-reddit = "idea_scraper.reddit:main"
+scrape-reddit = "idea_pipeline.scraper.reddit:main"
+refresh-cookies = "idea_pipeline.refresher.__main__:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/idea_scraper"]
+packages = ["src/idea_pipeline"]
 
 [dependency-groups]
 dev = [

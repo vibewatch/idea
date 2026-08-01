@@ -1,35 +1,41 @@
 # Idea
 
-A static Astro website backed by a separate Reddit scraping pipeline.
+A root-level Astro website backed by a separate Python data pipeline.
 
 ## Repository layout
 
 ```text
 .
-├── scraper/              # Independent Python collection project
-│   ├── config/           # Reddit topic configuration
-│   ├── src/              # idea_scraper package
-│   └── tests/            # Scraper unit tests
+├── pipeline/             # One Python project and dependency environment
+│   ├── config/
+│   │   ├── scraper/      # Collection configuration
+│   │   └── refresher/    # Credential-refresh configuration
+│   ├── src/idea_pipeline/
+│   │   ├── scraper/      # Reddit data collection
+│   │   └── refresher/    # Browser-cookie renewal
+│   └── tests/            # Mirrored scraper/refresher tests
 ├── data/                 # Versioned JSON consumed by Astro at build time
 │   └── reddit/           # Daily snapshots grouped by topic
-├── .github/workflows/    # Scraper and future website automation
+├── .github/workflows/    # Pipeline and future website automation
 └── <Astro files>         # package.json, astro.config.*, src/, public/, etc.
 ```
 
-The Astro project belongs directly in the repository root. The scraper remains independently installable under `scraper/`, and `data/` is the read-only boundary between them.
+The Astro project belongs directly in the repository root. Scraping and cookie refresh are sibling subsystems in the independently installable `pipeline/` project. `data/` is the read-only boundary between Python and Astro.
 
-## Scraper quick start
+## Pipeline quick start
 
 ```bash
-uv sync --project scraper
+uv sync --project pipeline
 uv tool install rdt-cli
-uv run --project scraper scrape-reddit
+uv run --project pipeline scrape-reddit
 ```
 
-Add `REDDIT_COOKIES` to `scraper/.env` before a live collection. Keeping scraper secrets below `scraper/` prevents Astro from loading them as root website environment variables.
+Add `REDDIT_COOKIES` to `pipeline/.env` before a live collection. Keeping pipeline secrets below `pipeline/` prevents Astro from loading them as root website environment variables.
 
-See [`scraper/README.md`](scraper/README.md) for configuration, commands, output format, and tests.
+See [`pipeline/README.md`](pipeline/README.md) for scraping, refresh, configuration, and test commands.
+
+The scheduled cookie refresh pipeline is defined in `.github/workflows/refresh_reddit_cookies.yml`. It renews the browser session and replaces the `REDDIT_COOKIES` Actions secret without exposing it to the website.
 
 ## Astro website
 
-Initialize Astro directly in this root directory when ready. Website code should treat `data/` as read-only build input; only the scraper writes snapshots.
+Initialize Astro directly in this root directory when ready. Website code should treat `data/` as read-only build input; only `idea_pipeline.scraper` writes snapshots.

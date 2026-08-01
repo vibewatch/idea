@@ -24,14 +24,14 @@ jobs:
         uses: astral-sh/setup-uv@v8
         with:
           enable-cache: true
-          cache-dependency-glob: "scraper/uv.lock"
+          cache-dependency-glob: "pipeline/uv.lock"
 
       - name: Set up Python
         run: uv python install 3.12
 
-      - name: Install scraper
+      - name: Install Python pipeline
         run: uv sync --frozen
-        working-directory: scraper
+        working-directory: pipeline
 
       - name: Install Reddit CLI
         run: uv tool install rdt-cli
@@ -41,7 +41,7 @@ jobs:
           REDDIT_COOKIES: ${{ secrets.REDDIT_COOKIES }}
           PYTHONUNBUFFERED: "1"
         run: uv run --frozen scrape-reddit
-        working-directory: scraper
+        working-directory: pipeline
 
       - name: Commit snapshots
         run: |

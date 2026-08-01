@@ -1,12 +1,12 @@
-"""Shared paths and logging for the Reddit scraper application."""
+"""Shared paths and logging for the Python data pipeline."""
 
 import logging
 import sys
 from pathlib import Path
 
 PACKAGE_ROOT = Path(__file__).resolve().parent
-APP_ROOT = PACKAGE_ROOT.parents[1]
-REPOSITORY_ROOT = APP_ROOT.parent
+PROJECT_ROOT = PACKAGE_ROOT.parents[1]
+REPOSITORY_ROOT = PROJECT_ROOT.parent
 
 
 def setup_logging(level: int = logging.INFO) -> None:
