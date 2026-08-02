@@ -1,6 +1,6 @@
 # Python pipeline
 
-One Python project hosts two sibling subsystems: Reddit data collection and browser-cookie refresh. They share a lockfile, environment, path utilities, and logging without importing each other's implementation.
+One Python project hosts three sibling subsystems: Reddit data collection, report analysis, and browser-cookie refresh. They share a lockfile, environment, path utilities, and logging without importing each other's implementation.
 
 ```text
 pipeline/
@@ -8,14 +8,16 @@ pipeline/
 │   ├── scraper/reddit.yml
 │   └── refresher/reddit.yml
 ├── src/idea_pipeline/
+│   ├── analyzer/reddit.py
 │   ├── scraper/reddit.py
 │   └── refresher/{browser,config,extract,github}.py
 └── tests/
+  ├── analyzer/test_reddit.py
   ├── scraper/test_reddit.py
   └── refresher/test_refresh.py
 ```
 
-The project is isolated from the root Astro application. It owns Python code, configuration, and secrets under `pipeline/`, and writes the shared dataset under `data/reddit/`.
+The project is isolated from the root Astro application. It owns Python code, configuration, secrets, and ignored work artifacts under `pipeline/`. Collection writes the shared dataset under `data/reddit/`; analysis publishes validated Markdown under `reports/reddit/`.
 
 ## Scraping pipeline
 
@@ -32,6 +34,7 @@ The project is isolated from the root Astro application. It owns Python code, co
 - Python 3.12+
 - [`uv`](https://docs.astral.sh/uv/)
 - [`rdt-cli`](https://pypi.org/project/rdt-cli/)
+- GitHub Copilot CLI for generated reports
 - Chromium installed through Playwright for cookie refreshes
 - A Reddit session cookie exported from a browser account that may access the configured public communities
 
@@ -127,6 +130,41 @@ Snapshots are stored at `data/reddit/<topic>/<YYYY-MM-DD>.json`:
 
 Repeated runs update posts by ID while retaining previously collected comments when a refreshed post does not qualify for comment fetching.
 
+## Analysis pipeline
+
+The analyzer combines the three immutable daily JSON streams into static Markdown suitable for the future Astro site:
+
+1. Discover exact-date sets containing `customer-pain`, `startup-ideas`, and `saas-build` snapshots.
+2. Exclude today's still-changing files during automatic discovery and skip incomplete dates.
+3. Skip dates that already have a full report unless `--force` is used.
+4. Rank each stream independently by evidence richness using capped logarithmic engagement, detailed text/comments, quantified signals, concrete problems, and observed outcomes; thin viral posts receive a penalty.
+5. Write per-stream review sets, dossiers, image manifests, source hashes, and one combined metadata file under ignored `pipeline/artifacts/reddit/builder-intelligence/<date>/`.
+6. Copy the three required snapshots, their history, and the analysis skill into one isolated report sandbox.
+7. Start one Copilot CLI process per dated report with bounded worker concurrency, shell access disabled, built-in GitHub MCP disabled, and unrelated pipeline credentials removed.
+8. Generate a Builder Intelligence Report that separates lived customer pain, founder hypotheses, and shipped outcomes before mapping bounded cross-stream relationships.
+9. Validate the title, sections 1-8, public HTTPS links, local-path hygiene, cited Reddit post IDs, and at least one current citation from each stream-specific section.
+10. Atomically publish valid output to `reports/reddit/<date>.md`.
+
+Raw snapshots are never rewritten. A failed generation or validation leaves any existing published report untouched.
+
+Install and authenticate Copilot CLI locally, or set `COPILOT_GITHUB_TOKEN` in `pipeline/.env`. The GitHub workflow maps the repository secret named `COPILOT_PAT` to that environment variable.
+
+From the repository root:
+
+```bash
+uv run --project pipeline analyze-reddit --prepare-only
+uv run --project pipeline analyze-reddit
+uv run --project pipeline analyze-reddit --date 2026-08-02 --prepare-only
+uv run --project pipeline analyze-reddit --include-today --workers 1
+uv run --project pipeline analyze-reddit --date 2026-08-02 --force
+```
+
+`--date` may be repeated, but every selected date must contain all three required topic snapshots. An explicit date may select today's snapshot, while `--include-today` only changes automatic discovery. `--prepare-only` always refreshes the one combined sandbox per selected date and never invokes Copilot.
+
+Model controls default to `--model gpt-5.4 --effort xhigh`. The repository-local skill at `.agents/skills/reddit-idea-analysis/SKILL.md` applies a distinct evidence role to each stream: lived pain, founder ideas and validation gaps, and shipped builder outcomes. The final report maps convergence, partial support, contradictions, and missing links without using opportunity scores or pretending unrelated posts form a tracked funnel. Keep temporary output in `pipeline/artifacts/`; only validated reports are versioned.
+
+The workflow `.github/workflows/analyze_reddit.yml` runs daily at 02:43 UTC and supports manual date, model, effort, worker, force, include-today, and prepare-only inputs.
+
 ## Cookie refresh pipeline
 
 Reddit authentication here is browser-cookie based, so the pipeline renews the `REDDIT_COOKIES` session rather than exchanging an OAuth refresh token:
@@ -150,6 +188,7 @@ Configure these repository Actions secrets:
 |---|---|
 | `REDDIT_COOKIES` | Playwright/browser-export JSON used by both collection and refresh workflows |
 | `GH_PAT` | GitHub token permitted to update this repository's Actions secrets and create issues |
+| `COPILOT_PAT` | Copilot CLI authentication used by the daily report-analysis workflow |
 
 The built-in workflow `GITHUB_TOKEN` is not used for secret replacement. Keep `GH_PAT` narrowly scoped to this repository and rotate it according to your security policy.
 

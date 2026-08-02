@@ -1,0 +1,151 @@
+name: Build Reddit intelligence report
+
+on:
+  schedule:
+    # Analyze the previous UTC day after it has closed.
+    - cron: "43 2 * * *"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: Optional complete three-stream snapshot date (YYYY-MM-DD).
+        required: false
+        type: string
+      include_today:
+        description: Include today's in-progress snapshot during automatic discovery.
+        required: false
+        default: false
+        type: boolean
+      force:
+        description: Regenerate full reports that already exist.
+        required: false
+        default: false
+        type: boolean
+      prepare_only:
+        description: Build the combined sandbox without invoking Copilot or committing reports.
+        required: false
+        default: false
+        type: boolean
+      model:
+        description: Copilot model used for report generation.
+        required: false
+        default: gpt-5.4
+        type: choice
+        options:
+          - gpt-5.4
+          - gpt-5.5
+          - claude-sonnet-4.6
+          - claude-opus-4.6
+      effort:
+        description: Reasoning effort passed to Copilot CLI.
+        required: false
+        default: auto
+        type: choice
+        options:
+          - auto
+          - medium
+          - high
+          - xhigh
+      workers:
+        description: Maximum number of dated full reports generated concurrently.
+        required: false
+        default: "2"
+        type: choice
+        options:
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+
+concurrency:
+  group: reddit-builder-intelligence
+  cancel-in-progress: false
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: "pipeline/uv.lock"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install Python pipeline
+        run: uv sync --frozen
+        working-directory: pipeline
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Install Copilot CLI
+        run: npm install --global @github/copilot@1.0.77
+
+      - name: Build intelligence reports
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }}
+          ANALYSIS_DATE: ${{ inputs.date }}
+          INCLUDE_TODAY: ${{ inputs.include_today || false }}
+          FORCE_REPORTS: ${{ inputs.force || false }}
+          PREPARE_ONLY: ${{ inputs.prepare_only || false }}
+          COPILOT_MODEL: ${{ inputs.model || 'gpt-5.4' }}
+          COPILOT_EFFORT_INPUT: ${{ inputs.effort || 'auto' }}
+          ANALYSIS_WORKERS: ${{ inputs.workers || '2' }}
+          PYTHONUNBUFFERED: "1"
+        run: |
+          if [[ "$COPILOT_EFFORT_INPUT" == "auto" ]]; then
+            case "$COPILOT_MODEL" in
+              claude-*) COPILOT_EFFORT=high ;;
+              *) COPILOT_EFFORT=xhigh ;;
+            esac
+          else
+            COPILOT_EFFORT="$COPILOT_EFFORT_INPUT"
+          fi
+          args=(analyze-reddit --model "$COPILOT_MODEL" --effort "$COPILOT_EFFORT" --workers "$ANALYSIS_WORKERS")
+          if [[ -n "$ANALYSIS_DATE" ]]; then
+            args+=(--date "$ANALYSIS_DATE")
+          fi
+          if [[ "$INCLUDE_TODAY" == "true" ]]; then
+            args+=(--include-today)
+          fi
+          if [[ "$FORCE_REPORTS" == "true" ]]; then
+            args+=(--force)
+          fi
+          if [[ "$PREPARE_ONLY" == "true" ]]; then
+            args+=(--prepare-only)
+          fi
+          uv run --frozen "${args[@]}"
+        working-directory: pipeline
+
+      - name: Commit validated reports
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/reddit/
+          if git diff --cached --quiet; then
+            echo "No new Reddit reports to commit."
+            exit 0
+          fi
+
+          git commit -m "reddit intelligence: $(date -u +%Y-%m-%dT%H:%MZ)"
+          branch="$GITHUB_REF_NAME"
+          for attempt in 1 2 3; do
+            git fetch origin "$branch"
+            git rebase "origin/$branch"
+            if git push origin "HEAD:$branch"; then
+              exit 0
+            fi
+            echo "Push attempt $attempt failed; rebasing and retrying."
+          done
+          echo "Unable to push Reddit reports after 3 attempts."
+          exit 1

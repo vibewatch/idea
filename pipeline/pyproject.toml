@@ -1,7 +1,7 @@
 [project]
 name = "idea-pipeline"
 version = "0.1.0"
-description = "Reddit collection and credential-refresh pipelines for the Idea website"
+description = "Reddit collection, analysis, and credential-refresh pipelines for the Idea website"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -18,6 +18,7 @@ dependencies = [
 extract = ["browser-cookie3>=0.20,<1"]
 
 [project.scripts]
+analyze-reddit = "idea_pipeline.analyzer.reddit:main"
 scrape-reddit = "idea_pipeline.scraper.reddit:main"
 refresh-cookies = "idea_pipeline.refresher.__main__:main"
 
