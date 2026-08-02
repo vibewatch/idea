@@ -1,3 +1,15 @@
+@import "@fontsource-variable/mona-sans/wght.css";
+@import "@fontsource-variable/mona-sans/wght-italic.css";
+
+@font-face {
+  font-family: "Mona Sans Fallback";
+  src: local("Arial"), local("Helvetica Neue"), local("Segoe UI"), local("Liberation Sans");
+  ascent-override: 109%;
+  descent-override: 32%;
+  line-gap-override: 0%;
+  size-adjust: 100%;
+}
+
 @layer reset, tokens, base, components, pages, report, utilities;
 
 @layer reset {
@@ -81,9 +93,9 @@
     --dark-ink: #f5f0e5;
     --shadow-sm: 0 1px 0 rgb(39 35 28 / 8%), 0 8px 22px rgb(46 38 29 / 5%);
     --shadow-md: 0 24px 60px rgb(44 35 27 / 13%);
-    --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
-    --font-body: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    --font-display: "Mona Sans Variable", "Mona Sans Fallback", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    --font-body: "Mona Sans Variable", "Mona Sans Fallback", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --shell: min(1240px, calc(100vw - 3rem));
     --reading: 820px;
     --radius-sm: 5px;
@@ -130,7 +142,11 @@
     color: var(--ink);
     font-family: var(--font-body);
     font-size: 16px;
+    font-feature-settings: "cv11", "ss01", "ss03";
     line-height: 1.65;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     transition: background-color 180ms ease, color 180ms ease;
   }
 
