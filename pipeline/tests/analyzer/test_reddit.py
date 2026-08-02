@@ -601,6 +601,54 @@ class TestValidation:
 
         assert errors == []
 
+    def test_accepts_source_url_without_utm_tracking_parameters(
+        self, tmp_path: Path
+    ) -> None:
+        candidate = tmp_path / "report.md"
+        clean_url = "https://clevernote.net/en/"
+        tracked_url = (
+            "https://clevernote.net/en/?utm_source=reddit&utm_medium=organic"
+            "&utm_campaign=microsaas&utm_content=attribution-lie"
+        )
+        candidate.write_text(
+            valid_report().replace("https://example.com/product", clean_url),
+            encoding="utf-8",
+        )
+
+        errors = validate_report(
+            candidate,
+            expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+            allowed_post_ids={"pain1", "idea1", "build1"},
+            allowed_external_urls={tracked_url},
+            required_project_urls={tracked_url},
+            minimum_project_links=1,
+        )
+
+        assert errors == []
+
+    def test_preserves_functional_query_parameters_when_removing_utm(
+        self, tmp_path: Path
+    ) -> None:
+        candidate = tmp_path / "report.md"
+        candidate.write_text(
+            valid_report().replace(
+                "https://example.com/product",
+                "https://example.com/product?account=reported",
+            ),
+            encoding="utf-8",
+        )
+
+        errors = validate_report(
+            candidate,
+            expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+            allowed_post_ids={"pain1", "idea1", "build1"},
+            allowed_external_urls={
+                "https://example.com/product?account=source&utm_source=reddit"
+            },
+        )
+
+        assert any("external URLs absent" in error for error in errors)
+
     def test_rejects_missing_section_unknown_post_and_local_path(self, tmp_path: Path) -> None:
         candidate = tmp_path / "report.md"
         content = valid_report(post_ids=("unknown", "idea1", "build1"))

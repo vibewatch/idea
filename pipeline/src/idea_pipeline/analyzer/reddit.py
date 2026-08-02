@@ -502,6 +502,19 @@ def _extract_urls(value: Any) -> list[str]:
     return urls
 
 
+def _strip_utm_parameters(query: str) -> str:
+    """Remove analytics-only UTM fields without rewriting functional query data."""
+    retained: list[str] = []
+    for field in query.split("&"):
+        if not field:
+            continue
+        name = urllib.parse.unquote_plus(field.partition("=")[0]).casefold()
+        if name.startswith("utm_"):
+            continue
+        retained.append(field)
+    return "&".join(retained)
+
+
 def _canonical_url(value: Any) -> str:
     raw = re.sub(r"\\([_~])", r"\1", str(value or "").strip()).rstrip(".,;:!?")
     parsed = urllib.parse.urlsplit(raw)
@@ -512,7 +525,13 @@ def _canonical_url(value: Any) -> str:
     netloc = hostname if port is None else f"{hostname}:{port}"
     path = parsed.path.rstrip("/") or "/"
     return urllib.parse.urlunsplit(
-        (parsed.scheme.casefold(), netloc, path, parsed.query, "")
+        (
+            parsed.scheme.casefold(),
+            netloc,
+            path,
+            _strip_utm_parameters(parsed.query),
+            "",
+        )
     )
 
 
