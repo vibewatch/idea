@@ -35,6 +35,7 @@ The project is isolated from the root Astro application. It owns Python code, co
 - [`uv`](https://docs.astral.sh/uv/)
 - [`rdt-cli`](https://pypi.org/project/rdt-cli/)
 - GitHub Copilot CLI for generated reports
+- `ffmpeg` for six-frame Reddit video contact sheets
 - Chromium installed through Playwright for cookie refreshes
 - A Reddit session cookie exported from a browser account that may access the configured public communities
 
@@ -138,12 +139,13 @@ The analyzer combines the three immutable daily JSON streams into static Markdow
 2. Exclude today's still-changing files during automatic discovery and skip incomplete dates.
 3. Skip dates that already have a full report unless `--force` is used.
 4. Rank each stream independently by evidence richness using capped logarithmic engagement, detailed text/comments, quantified signals, concrete problems, and observed outcomes; thin viral posts receive a penalty.
-5. Write per-stream review sets, dossiers, image manifests, source hashes, and one combined metadata file under ignored `pipeline/artifacts/reddit/builder-intelligence/<date>/`.
-6. Copy the three required snapshots, their history, and the analysis skill into one isolated report sandbox.
-7. Start one Copilot CLI process per dated report with bounded worker concurrency, shell access disabled, built-in GitHub MCP disabled, and unrelated pipeline credentials removed.
-8. Generate a Builder Intelligence Report that separates lived customer pain, founder hypotheses, and shipped outcomes before mapping bounded cross-stream relationships.
-9. Validate the title, sections 1-8, public HTTPS links, local-path hygiene, cited Reddit post IDs, and at least one current citation from each stream-specific section.
-10. Atomically publish valid output to `reports/reddit/<date>.md`.
+5. Write per-stream review sets and dossiers plus full-corpus `external-links.json`, `media-manifest.json`, source hashes, and combined metadata under ignored `pipeline/artifacts/reddit/builder-intelligence/<date>/`.
+6. During generation only, safely download approved Reddit/Imgur images and turn accessible Reddit DASH videos into six-frame contact sheets. Galleries, external videos, failures, and skipped items retain explicit URL/status records.
+7. Attach every materialized visual to one sandboxed Copilot CLI process per date, with bounded worker concurrency, shell access disabled, built-in GitHub MCP disabled, and unrelated pipeline credentials removed.
+8. Extract concrete projects, pain points, founder ideas/validation, launches/metrics, and useful visual findings into exact Markdown tables before adding bounded cross-stream synthesis.
+9. Require `media-review.json` to account for every detected media item, distinguish inspected, non-substantive, and unavailable assets, and keep `report_included` consistent with the report.
+10. Validate exact section/table schemas, at least eight source-derived direct project links when available, public HTTPS/source URL boundaries, inspected image/video evidence, cited Reddit post IDs, and current citations from each stream-specific section.
+11. Atomically publish valid output to `reports/reddit/<date>.md`.
 
 Raw snapshots are never rewritten. A failed generation or validation leaves any existing published report untouched.
 
@@ -159,9 +161,9 @@ uv run --project pipeline analyze-reddit --include-today --workers 1
 uv run --project pipeline analyze-reddit --date 2026-08-02 --force
 ```
 
-`--date` may be repeated, but every selected date must contain all three required topic snapshots. An explicit date may select today's snapshot, while `--include-today` only changes automatic discovery. `--prepare-only` always refreshes the one combined sandbox per selected date and never invokes Copilot.
+`--date` may be repeated, but every selected date must contain all three required topic snapshots. An explicit date may select today's snapshot, while `--include-today` only changes automatic discovery. `--prepare-only` always refreshes the combined manifests and sandbox per selected date, but never downloads media or invokes Copilot.
 
-Model controls default to `--model gpt-5.4 --effort xhigh`. The repository-local skill at `.agents/skills/reddit-idea-analysis/SKILL.md` applies a distinct evidence role to each stream: lived pain, founder ideas and validation gaps, and shipped builder outcomes. The final report maps convergence, partial support, contradictions, and missing links without using opportunity scores or pretending unrelated posts form a tracked funnel. Keep temporary output in `pipeline/artifacts/`; only validated reports are versioned.
+Model controls default to `--model gpt-5.4 --effort xhigh`. The repository-local skill at `.agents/skills/reddit-idea-analysis/SKILL.md` defines what counts as a valuable project, pain point, idea/validation case, launch result, and visual finding. It requires directly openable links and exact tables rather than a thematic recap. The final report still maps convergence, partial support, contradictions, and missing links without opportunity scores or pretending unrelated posts form a tracked funnel. Keep downloaded media, contact sheets, model logs, and review ledgers in ignored `pipeline/artifacts/`; only validated reports are versioned.
 
 The workflow `.github/workflows/analyze_reddit.yml` runs daily at 02:43 UTC and supports manual date, model, effort, worker, force, include-today, and prepare-only inputs.
 

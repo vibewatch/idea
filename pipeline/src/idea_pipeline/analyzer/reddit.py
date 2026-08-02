@@ -21,6 +21,7 @@ from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any
 
+import requests
 from dotenv import load_dotenv
 
 from idea_pipeline import PROJECT_ROOT, REPOSITORY_ROOT, setup_logging
@@ -42,17 +43,105 @@ ANALYSIS_PERCENTILE = 50.0
 HISTORY_LIMIT = 7
 REPORT_ARTIFACT_NAME = "builder-intelligence"
 REPORT_TOPICS = ("customer-pain", "startup-ideas", "saas-build")
+MIN_DIRECT_PROJECT_LINKS = 8
+MAX_MEDIA_ATTACHMENTS = 48
+MAX_MEDIA_DOWNLOAD_BYTES = 20 * 1024 * 1024
+MEDIA_REQUEST_TIMEOUT = 30
+MEDIA_PROCESS_TIMEOUT = 120
+MAX_MEDIA_REDIRECTS = 3
+MEDIA_USER_AGENT = "idea-pipeline/0.1 (+https://github.com/vibewatch/idea)"
+MEDIA_REVIEW_STATUSES = frozenset({"inspected", "not-substantive", "unavailable"})
 
 REQUIRED_SECTIONS = (
-    "## 1. Executive Synthesis",
-    "## 2. Source Coverage and Evidence Quality",
-    "## 3. Customer Pain Landscape",
-    "## 4. Founder Ideas and Validation Gaps",
-    "## 5. Shipped Products and Builder Outcomes",
-    "## 6. Cross-Stream Evidence Map",
-    "## 7. Distribution, Execution, and Failure Lessons",
-    "## 8. Implications and Watchlist",
+    "## 1. Executive Value Summary",
+    "## 2. New Projects and Direct Links",
+    "## 3. Customer Problems and Existing Workarounds",
+    "## 4. Founder Ideas and Validation Signals",
+    "## 5. Launches, Traction, and Distribution Results",
+    "## 6. Visual and Demo Evidence",
+    "## 7. Cross-Stream Matches and Gaps",
+    "## 8. Practical Takeaways and Watchlist",
 )
+
+REQUIRED_TABLE_SCHEMAS: dict[str, tuple[tuple[str, ...], ...]] = {
+    REQUIRED_SECTIONS[1]: (
+        (
+            "Project or artifact",
+            "Type",
+            "What it does",
+            "Intended user or problem",
+            "Stage",
+            "Concrete evidence or why it is notable",
+            "Direct link",
+            "Reddit source",
+        ),
+    ),
+    REQUIRED_SECTIONS[2]: (
+        (
+            "Problem",
+            "Affected user and context",
+            "Trigger or workflow",
+            "Observed consequence",
+            "Existing tool, service, or workaround",
+            "Evidence breadth",
+            "Sources",
+        ),
+    ),
+    REQUIRED_SECTIONS[3]: (
+        (
+            "Idea or validation case",
+            "Intended user and outcome",
+            "What was tested",
+            "Strongest validation signal",
+            "Disconfirming evidence or gap",
+            "Status",
+            "Sources",
+        ),
+    ),
+    REQUIRED_SECTIONS[4]: (
+        (
+            "Project or experiment",
+            "Direct link",
+            "Stage",
+            "Channel or implementation",
+            "Measured result",
+            "What the result supports",
+            "What it does not prove",
+            "Source",
+        ),
+    ),
+    REQUIRED_SECTIONS[5]: (
+        (
+            "Project or post",
+            "Media type",
+            "What was visibly demonstrated",
+            "Value beyond the text claim",
+            "Limitation",
+            "Media",
+            "Reddit source",
+        ),
+    ),
+    REQUIRED_SECTIONS[6]: (
+        (
+            "Theme or concrete artifact",
+            "Customer-pain evidence",
+            "Founder-idea evidence",
+            "Build/outcome evidence",
+            "Relationship",
+            "Missing link",
+        ),
+    ),
+    REQUIRED_SECTIONS[7]: (
+        ("Lesson", "Concrete evidence", "Scope or contradiction", "Practical use"),
+        (
+            "Priority",
+            "Project, problem, or signal to monitor",
+            "Current evidence",
+            "What remains unknown",
+            "Evidence that would change the reading",
+        ),
+    ),
+}
 
 TOPIC_LENSES = {
     "customer-pain": (
@@ -78,15 +167,6 @@ TOPIC_LENSES = {
 _TOPIC_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9_-]*\Z")
 _DATE_FILE_RE = re.compile(r"(\d{4}-\d{2}-\d{2})\.json\Z")
 _URL_RE = re.compile(r"https?://[^\s\])}>\"']+", re.IGNORECASE)
-_IMAGE_URL_RE = re.compile(
-    r"https?://[^\s\])}>\"']+?\.(?:jpg|jpeg|png|gif|webp)(?:\?[^\s\])}>\"']*)?",
-    re.IGNORECASE,
-)
-_MEDIA_RE = re.compile(
-    r"i\.redd\.it|preview\.redd\.it|i\.imgur\.com|reddit\.com/gallery"
-    r"|\.(?:jpg|jpeg|png|gif|webp)(?:\?|$)",
-    re.IGNORECASE,
-)
 _WORD_RE = re.compile(r"[a-z][a-z0-9']*(?:-[a-z0-9']+)*")
 _QUANTIFIED_SIGNAL_RE = re.compile(
     r"(?:[$€£]\s?\d|\d+(?:[.,]\d+)?\s?(?:%|hours?|hrs?|days?|weeks?|months?|years?"
@@ -110,6 +190,35 @@ _REDDIT_POST_LINK_RE = re.compile(
 )
 _INTERNAL_PATH_RE = re.compile(
     r"(?i)(?:file://|/home/|/tmp/|pipeline/artifacts/|data/reddit/|reports/reddit/)"
+)
+
+_REDDIT_HOSTS = frozenset(
+    {
+        "reddit.com",
+        "www.reddit.com",
+        "old.reddit.com",
+        "redd.it",
+        "www.redd.it",
+        "i.redd.it",
+        "preview.redd.it",
+        "v.redd.it",
+    }
+)
+_IMAGE_HOSTS = frozenset(
+    {"i.redd.it", "preview.redd.it", "i.imgur.com", "imgur.com", "www.imgur.com"}
+)
+_VIDEO_HOSTS = frozenset(
+    {
+        "v.redd.it",
+        "youtube.com",
+        "www.youtube.com",
+        "youtu.be",
+        "vimeo.com",
+        "www.vimeo.com",
+    }
+)
+_APP_STORE_HOSTS = frozenset(
+    {"apps.apple.com", "play.google.com", "apps.shopify.com"}
 )
 
 _ACRONYMS = {
@@ -275,6 +384,7 @@ class PreparedArtifacts:
     review_path: Path
     analysis_path: Path
     manifest_path: Path
+    links_path: Path
     metadata_path: Path
     instructions_path: Path
     source_path: Path
@@ -292,9 +402,22 @@ class PreparedReportArtifacts:
     directory: Path
     topic_artifacts: tuple[PreparedArtifacts, ...]
     metadata_path: Path
+    media_manifest_path: Path
+    link_manifest_path: Path
+    media_assets_path: Path
+    media_review_path: Path
     instructions_path: Path
     candidate_path: Path
     total_posts: int
+
+
+@dataclass(frozen=True)
+class PreparedMediaAssets:
+    """Safely materialized visual evidence attached to one Copilot run."""
+
+    manifest_path: Path
+    attachments: tuple[Path, ...]
+    entries: tuple[dict[str, Any], ...]
 
 
 @dataclass(frozen=True)
@@ -371,28 +494,33 @@ def _is_automoderator(author: Any) -> bool:
     return isinstance(author, str) and author.casefold() == "automoderator"
 
 
-def _post_has_media(post: dict[str, Any]) -> bool:
-    values = [post.get("url", ""), post.get("selftext", "")]
-    values.extend(comment.get("body", "") for comment in _comments(post))
-    return any(_MEDIA_RE.search(str(value)) for value in values)
-
-
 def _extract_urls(value: Any) -> list[str]:
-    return [match.rstrip(".,;:!?") for match in _URL_RE.findall(str(value or ""))]
-
-
-def _extract_image_urls(post: dict[str, Any]) -> list[str]:
-    values = [post.get("url", ""), post.get("selftext", "")]
-    values.extend(comment.get("body", "") for comment in _comments(post))
     urls: list[str] = []
-    seen: set[str] = set()
-    for value in values:
-        for match in _IMAGE_URL_RE.findall(str(value or "")):
-            url = match.rstrip(".,;:!?")
-            if url not in seen:
-                seen.add(url)
-                urls.append(url)
+    for match in _URL_RE.findall(str(value or "")):
+        normalized = re.sub(r"\\([_~])", r"\1", match.rstrip(".,;:!?"))
+        urls.append(normalized)
     return urls
+
+
+def _canonical_url(value: Any) -> str:
+    raw = re.sub(r"\\([_~])", r"\1", str(value or "").strip()).rstrip(".,;:!?")
+    parsed = urllib.parse.urlsplit(raw)
+    if parsed.scheme.casefold() not in {"http", "https"} or not parsed.hostname:
+        return ""
+    hostname = parsed.hostname.casefold()
+    port = parsed.port
+    netloc = hostname if port is None else f"{hostname}:{port}"
+    path = parsed.path.rstrip("/") or "/"
+    return urllib.parse.urlunsplit(
+        (parsed.scheme.casefold(), netloc, path, parsed.query, "")
+    )
+
+
+def _url_host(value: Any) -> str:
+    try:
+        return (urllib.parse.urlsplit(str(value or "")).hostname or "").casefold()
+    except ValueError:
+        return ""
 
 
 def _post_url(post: dict[str, Any]) -> str:
@@ -401,6 +529,67 @@ def _post_url(post: dict[str, Any]) -> str:
         return f"https://www.reddit.com{permalink}"
     url = str(post.get("url") or "")
     return url if url.startswith(("http://", "https://")) else ""
+
+
+def _source_url_occurrences(post: dict[str, Any]) -> list[dict[str, Any]]:
+    occurrences: list[dict[str, Any]] = []
+    outbound_url = str(post.get("url") or "")
+    if outbound_url.startswith(("http://", "https://")):
+        occurrences.append({"url": outbound_url, "source_location": "post_url"})
+    for url in _extract_urls(post.get("selftext")):
+        occurrences.append({"url": url, "source_location": "selftext"})
+    for comment in _comments(post):
+        for url in _extract_urls(comment.get("body")):
+            occurrences.append(
+                {
+                    "url": url,
+                    "source_location": "comment",
+                    "comment_id": comment.get("id"),
+                    "comment_author": comment.get("author"),
+                    "comment_score": _as_int(comment.get("score")),
+                }
+            )
+    return occurrences
+
+
+def _media_type(url: str, post: dict[str, Any]) -> str | None:
+    host = _url_host(url)
+    path = urllib.parse.urlsplit(url).path.casefold()
+    if "/gallery/" in path and host in _REDDIT_HOSTS:
+        return "gallery"
+    if (
+        host in _VIDEO_HOSTS
+        or path.endswith((".mp4", ".webm", ".mov"))
+        or (post.get("is_video") and url == str(post.get("url") or ""))
+    ):
+        return "video"
+    if host in _IMAGE_HOSTS or path.endswith((".jpg", ".jpeg", ".png", ".gif", ".webp")):
+        return "image"
+    return None
+
+
+def _post_has_media(post: dict[str, Any]) -> bool:
+    return any(_media_type(item["url"], post) for item in _source_url_occurrences(post))
+
+
+def _external_link_kind(url: str) -> str:
+    host = _url_host(url)
+    path = urllib.parse.urlsplit(url).path.casefold()
+    if host in _APP_STORE_HOSTS:
+        return "app-store"
+    if host == "github.com" or host.endswith(".github.io"):
+        return "repository"
+    if host in _VIDEO_HOSTS or path.endswith((".mp4", ".webm", ".mov")):
+        return "video"
+    if host in _IMAGE_HOSTS or path.endswith(
+        (".jpg", ".jpeg", ".png", ".gif", ".webp")
+    ):
+        return "image"
+    if path.endswith(".pdf") or any(
+        marker in host for marker in ("docs.", "learn.", "help.", "support.")
+    ):
+        return "documentation"
+    return "website"
 
 
 def _signal_text(post: dict[str, Any]) -> str:
@@ -649,9 +838,13 @@ def _analysis_block(index: int, post: dict[str, Any]) -> list[str]:
         f"is_self={bool(post.get('is_self'))} "
         f"is_video={bool(post.get('is_video'))}"
     )
-    image_urls = _extract_image_urls(post)
-    if image_urls:
-        lines.append("MEDIA: " + " | ".join(image_urls))
+    media_urls = [
+        f"{media_type}:{item['url']}"
+        for item in _source_url_occurrences(post)
+        if (media_type := _media_type(item["url"], post)) is not None
+    ]
+    if media_urls:
+        lines.append("MEDIA: " + " | ".join(media_urls))
     signal_flags = _signal_flags(post)
     if signal_flags:
         lines.append("SIGNALS: " + " | ".join(signal_flags))
@@ -678,20 +871,73 @@ def _render_analysis(ranked: Sequence[dict[str, Any]], analysis_size: int) -> st
     return "\n".join(lines).rstrip() + ("\n" if lines else "")
 
 
-def _build_image_manifest(posts: Sequence[dict[str, Any]]) -> list[dict[str, Any]]:
+def _manifest_post_fields(topic: str, post: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "topic": topic,
+        "post_id": str(post.get("id") or ""),
+        "post_title": _clean_text(post.get("title")),
+        "post_url": _post_url(post),
+        "author": post.get("author"),
+        "subreddit": post.get("subreddit"),
+        "score": _as_int(post.get("score")),
+        "num_comments": _as_int(post.get("num_comments")),
+        "rank_score": round(rank_score(post), 1),
+    }
+
+
+def _build_external_link_manifest(
+    topic: str, posts: Sequence[dict[str, Any]]
+) -> list[dict[str, Any]]:
     entries: list[dict[str, Any]] = []
     for post in posts:
-        for image_index, url in enumerate(_extract_image_urls(post)):
+        seen: set[str] = set()
+        for occurrence in _source_url_occurrences(post):
+            url = occurrence["url"]
+            canonical = _canonical_url(url)
+            host = _url_host(url)
+            if not canonical or host in _REDDIT_HOSTS or host in _IMAGE_HOSTS:
+                continue
+            if canonical in seen:
+                continue
+            seen.add(canonical)
             entries.append(
                 {
-                    "post_id": str(post.get("id") or ""),
-                    "author": post.get("author"),
-                    "subreddit": post.get("subreddit"),
-                    "score": _as_int(post.get("score")),
-                    "image_index": image_index,
+                    **_manifest_post_fields(topic, post),
+                    **occurrence,
+                    "canonical_url": canonical,
+                    "host": host,
+                    "kind": _external_link_kind(url),
+                    "is_https": urllib.parse.urlsplit(url).scheme.casefold() == "https",
+                }
+            )
+    return entries
+
+
+def _build_media_manifest(
+    topic: str, posts: Sequence[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    entries: list[dict[str, Any]] = []
+    for post in posts:
+        seen: set[str] = set()
+        media_index = 0
+        for occurrence in _source_url_occurrences(post):
+            url = occurrence["url"]
+            canonical = _canonical_url(url)
+            media_type = _media_type(url, post)
+            if not canonical or media_type is None or canonical in seen:
+                continue
+            seen.add(canonical)
+            entries.append(
+                {
+                    **_manifest_post_fields(topic, post),
+                    **occurrence,
+                    "canonical_url": canonical,
+                    "media_index": media_index,
+                    "media_type": media_type,
                     "url": url,
                 }
             )
+            media_index += 1
     return entries
 
 
@@ -712,7 +958,8 @@ def prepare_snapshot(target: SnapshotTarget, artifacts_dir: Path) -> PreparedArt
     directory = artifacts_dir / target.topic / target.date_text
     review_path = directory / "review.txt"
     analysis_path = directory / "analysis.txt"
-    manifest_path = directory / "image-manifest.json"
+    manifest_path = directory / "media-manifest.json"
+    links_path = directory / "external-links.json"
     metadata_path = directory / "metadata.json"
     instructions_path = directory / "instructions.md"
     source_path = directory / "source.json"
@@ -744,7 +991,10 @@ def prepare_snapshot(target: SnapshotTarget, artifacts_dir: Path) -> PreparedArt
         _render_review(target.topic, target.snapshot_date, ranked, review_size),
     )
     _atomic_write_text(analysis_path, _render_analysis(ranked, analysis_size))
-    _atomic_write_json(manifest_path, _build_image_manifest(ranked[:review_size]))
+    media_manifest = _build_media_manifest(target.topic, ranked)
+    external_links = _build_external_link_manifest(target.topic, ranked)
+    _atomic_write_json(manifest_path, media_manifest)
+    _atomic_write_json(links_path, external_links)
     _atomic_write_json(
         metadata_path,
         {
@@ -758,6 +1008,9 @@ def prepare_snapshot(target: SnapshotTarget, artifacts_dir: Path) -> PreparedArt
             "analysis_percentile": ANALYSIS_PERCENTILE,
             "analysis_size": analysis_size,
             "ranking": "evidence-v2",
+            "external_link_count": len(external_links),
+            "media_count": len(media_manifest),
+            "media_types": dict(Counter(item["media_type"] for item in media_manifest)),
             "history": [_display_path(path) for path in target.history],
         },
     )
@@ -766,6 +1019,7 @@ def prepare_snapshot(target: SnapshotTarget, artifacts_dir: Path) -> PreparedArt
         review_path=review_path,
         analysis_path=analysis_path,
         manifest_path=manifest_path,
+        links_path=links_path,
         metadata_path=metadata_path,
         instructions_path=instructions_path,
         source_path=source_path,
@@ -791,6 +1045,10 @@ def prepare_report(
     )
     instructions_path = directory / "instructions.md"
     metadata_path = directory / "metadata.json"
+    media_manifest_path = directory / "media-manifest.json"
+    link_manifest_path = directory / "external-links.json"
+    media_assets_path = directory / "media-assets.json"
+    media_review_path = directory / "media-review.json"
     candidate_path = directory / "report.md"
 
     try:
@@ -799,9 +1057,13 @@ def prepare_report(
         raise SnapshotError(f"Cannot read analysis skill {ANALYSIS_SKILL_PATH}: {exc}") from exc
     _atomic_write_bytes(instructions_path, instructions)
 
+    media_manifest: list[dict[str, Any]] = []
+    link_manifest: list[dict[str, Any]] = []
     sources: list[dict[str, Any]] = []
     fingerprints: list[str] = []
     for snapshot, prepared in zip(target.snapshots, topic_artifacts):
+        media_manifest.extend(json.loads(prepared.manifest_path.read_text(encoding="utf-8")))
+        link_manifest.extend(json.loads(prepared.links_path.read_text(encoding="utf-8")))
         source_hash = hashlib.sha256(snapshot.path.read_bytes()).hexdigest()
         fingerprints.append(f"{snapshot.topic}:{snapshot.date_text}:{source_hash}")
         sources.append(
@@ -813,18 +1075,29 @@ def prepare_report(
                 "total_posts": prepared.total_posts,
                 "review_size": prepared.review_size,
                 "analysis_size": prepared.analysis_size,
+                "external_link_count": len(
+                    json.loads(prepared.links_path.read_text(encoding="utf-8"))
+                ),
+                "media_count": len(
+                    json.loads(prepared.manifest_path.read_text(encoding="utf-8"))
+                ),
                 "history": [_display_path(path) for path in snapshot.history],
             }
         )
+    _atomic_write_json(media_manifest_path, media_manifest)
+    _atomic_write_json(link_manifest_path, link_manifest)
     source_set_hash = hashlib.sha256("\n".join(fingerprints).encode()).hexdigest()
     _atomic_write_json(
         metadata_path,
         {
-            "report_type": "builder-intelligence-v1",
+            "report_type": "builder-intelligence-v2",
             "report_date": target.date_text,
             "source_set_sha256": source_set_hash,
             "total_posts": sum(item.total_posts for item in topic_artifacts),
             "ranking": "evidence-v2",
+            "external_link_count": len(link_manifest),
+            "media_count": len(media_manifest),
+            "media_types": dict(Counter(item["media_type"] for item in media_manifest)),
             "sources": sources,
         },
     )
@@ -832,9 +1105,206 @@ def prepare_report(
         directory=directory,
         topic_artifacts=topic_artifacts,
         metadata_path=metadata_path,
+        media_manifest_path=media_manifest_path,
+        link_manifest_path=link_manifest_path,
+        media_assets_path=media_assets_path,
+        media_review_path=media_review_path,
         instructions_path=instructions_path,
         candidate_path=candidate_path,
         total_posts=sum(item.total_posts for item in topic_artifacts),
+    )
+
+
+def _safe_asset_component(value: Any) -> str:
+    cleaned = re.sub(r"[^A-Za-z0-9_-]+", "-", str(value or "unknown")).strip("-")
+    return cleaned[:80] or "unknown"
+
+
+def _validated_image_source_url(value: Any) -> str:
+    canonical = _canonical_url(value)
+    parsed = urllib.parse.urlsplit(canonical)
+    host = (parsed.hostname or "").casefold()
+    if parsed.scheme != "https" or host not in _IMAGE_HOSTS:
+        raise SnapshotError(
+            "image download requires HTTPS on an approved public image host"
+        )
+    return canonical
+
+
+def _download_image_asset(url: str, destination_stem: Path) -> Path:
+    current_url = _validated_image_source_url(url)
+    response: requests.Response | None = None
+    try:
+        for redirect_count in range(MAX_MEDIA_REDIRECTS + 1):
+            response = requests.get(
+                current_url,
+                headers={"User-Agent": MEDIA_USER_AGENT},
+                timeout=MEDIA_REQUEST_TIMEOUT,
+                allow_redirects=False,
+                stream=True,
+            )
+            if not response.is_redirect and not response.is_permanent_redirect:
+                break
+            location = response.headers.get("location")
+            response.close()
+            response = None
+            if not location:
+                raise SnapshotError("image redirect did not provide a destination")
+            if redirect_count >= MAX_MEDIA_REDIRECTS:
+                raise SnapshotError("image exceeded the redirect safety limit")
+            current_url = _validated_image_source_url(
+                urllib.parse.urljoin(current_url, location)
+            )
+        if response is None:
+            raise SnapshotError("image request did not produce a response")
+        response.raise_for_status()
+        content_type = response.headers.get("content-type", "").split(";", 1)[0].casefold()
+        if not content_type.startswith("image/"):
+            raise SnapshotError(f"media URL did not return an image: {content_type or 'unknown'}")
+        extension = {
+            "image/jpeg": ".jpg",
+            "image/png": ".png",
+            "image/gif": ".gif",
+            "image/webp": ".webp",
+        }.get(content_type, ".img")
+        destination = destination_stem.with_suffix(extension)
+        temporary = destination.with_name(f".{destination.name}.{os.getpid()}.tmp")
+        size = 0
+        try:
+            with temporary.open("wb") as output:
+                for chunk in response.iter_content(chunk_size=64 * 1024):
+                    if not chunk:
+                        continue
+                    size += len(chunk)
+                    if size > MAX_MEDIA_DOWNLOAD_BYTES:
+                        raise SnapshotError(
+                            f"image exceeds {MAX_MEDIA_DOWNLOAD_BYTES} byte safety limit"
+                        )
+                    output.write(chunk)
+            if size == 0:
+                raise SnapshotError("image response was empty")
+            os.replace(temporary, destination)
+        finally:
+            temporary.unlink(missing_ok=True)
+        return destination
+    except requests.RequestException as exc:
+        raise SnapshotError(f"cannot download image: {exc}") from exc
+    finally:
+        if response is not None:
+            response.close()
+
+
+def _reddit_video_manifest_url(url: str) -> str | None:
+    parsed = urllib.parse.urlsplit(url)
+    if (parsed.hostname or "").casefold() != "v.redd.it":
+        return None
+    base_path = parsed.path.rstrip("/")
+    if not base_path:
+        return None
+    return urllib.parse.urlunsplit(
+        ("https", "v.redd.it", f"{base_path}/DASHPlaylist.mpd", "", "")
+    )
+
+
+def _extract_video_contact_sheet(url: str, destination: Path) -> Path:
+    manifest_url = _reddit_video_manifest_url(url)
+    if manifest_url is None:
+        raise SnapshotError("video host does not expose a supported Reddit DASH manifest")
+    ffmpeg = shutil.which("ffmpeg")
+    if ffmpeg is None:
+        raise SnapshotError("ffmpeg is not installed")
+
+    temporary = destination.with_name(f".{destination.name}.{os.getpid()}.tmp.jpg")
+    command = [
+        ffmpeg,
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-protocol_whitelist",
+        "file,http,https,tcp,tls,crypto",
+        "-i",
+        manifest_url,
+        "-vf",
+        "fps=1/4,scale=480:-2,tile=3x2:padding=4:margin=4",
+        "-frames:v",
+        "1",
+        "-y",
+        str(temporary),
+    ]
+    try:
+        process = subprocess.run(
+            command,
+            capture_output=True,
+            text=True,
+            timeout=MEDIA_PROCESS_TIMEOUT,
+            check=False,
+        )
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        temporary.unlink(missing_ok=True)
+        raise SnapshotError(f"cannot extract video frames: {exc}") from exc
+    if process.returncode != 0 or not temporary.is_file() or temporary.stat().st_size == 0:
+        temporary.unlink(missing_ok=True)
+        message = _truncate(process.stderr.strip() or "ffmpeg produced no contact sheet", 300)
+        raise SnapshotError(f"cannot extract video frames: {message}")
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    os.replace(temporary, destination)
+    return destination
+
+
+def materialize_media_assets(prepared: PreparedReportArtifacts) -> PreparedMediaAssets:
+    """Download safe image evidence and derive visual contact sheets from Reddit videos."""
+    try:
+        manifest = json.loads(prepared.media_manifest_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        raise SnapshotError(f"Cannot read media manifest: {exc}") from exc
+    if not isinstance(manifest, list) or any(not isinstance(item, dict) for item in manifest):
+        raise SnapshotError("Media manifest must contain a list of objects")
+
+    assets_directory = prepared.directory / "media-assets"
+    if assets_directory.exists():
+        shutil.rmtree(assets_directory)
+    assets_directory.mkdir(parents=True, exist_ok=True)
+
+    attachments: list[Path] = []
+    output_entries: list[dict[str, Any]] = []
+    for index, entry in enumerate(manifest):
+        output = dict(entry)
+        output["asset_paths"] = []
+        media_type = str(entry.get("media_type") or "")
+        post_id = _safe_asset_component(entry.get("post_id"))
+        stem = assets_directory / f"{index:03d}-{post_id}"
+        if media_type not in {"image", "video"}:
+            output["asset_status"] = "url-only"
+            output["asset_error"] = "gallery or unsupported media requires URL inspection"
+            output_entries.append(output)
+            continue
+        if len(attachments) >= MAX_MEDIA_ATTACHMENTS:
+            output["asset_status"] = "skipped-limit"
+            output["asset_error"] = f"attachment limit {MAX_MEDIA_ATTACHMENTS} reached"
+            output_entries.append(output)
+            continue
+        try:
+            if media_type == "image":
+                asset = _download_image_asset(str(entry.get("url") or ""), stem)
+            elif media_type == "video":
+                asset = _extract_video_contact_sheet(
+                    str(entry.get("url") or ""), stem.with_name(f"{stem.name}-contact.jpg")
+                )
+        except SnapshotError as exc:
+            output["asset_status"] = "failed"
+            output["asset_error"] = str(exc)
+            output_entries.append(output)
+            continue
+        attachments.append(asset)
+        output["asset_status"] = "attached"
+        output["asset_paths"] = [asset.relative_to(prepared.directory).as_posix()]
+        output_entries.append(output)
+
+    _atomic_write_json(prepared.media_assets_path, output_entries)
+    return PreparedMediaAssets(
+        manifest_path=prepared.media_assets_path,
+        attachments=tuple(attachments),
+        entries=tuple(output_entries),
     )
 
 
@@ -1002,7 +1472,11 @@ def resolve_jobs(
     return jobs
 
 
-def build_prompt(job: AnalysisJob, prepared: PreparedReportArtifacts) -> str:
+def build_prompt(
+    job: AnalysisJob,
+    prepared: PreparedReportArtifacts,
+    media_assets: PreparedMediaAssets | None = None,
+) -> str:
     """Build the bounded, cross-stream instruction passed to Copilot CLI."""
     target = job.target
     expected_title = _report_title(target.date_text)
@@ -1021,12 +1495,25 @@ def build_prompt(job: AnalysisJob, prepared: PreparedReportArtifacts) -> str:
 - Source: {relative(topic_prepared.source_path)}
 - Ranked review set: {relative(topic_prepared.review_path)}
 - Initial dossier: {relative(topic_prepared.analysis_path)}
-- Image manifest: {relative(topic_prepared.manifest_path)}
 - Stream metadata: {relative(topic_prepared.metadata_path)}
 - Earlier snapshots, for explicit evidence-backed comparisons only:
 {history}"""
         )
     streams = "\n\n".join(stream_blocks)
+    if media_assets is None:
+        media_assets_summary = (
+            "- media-assets.json and visual attachments are created only during a generation run"
+        )
+    else:
+        attached = "\n".join(
+            f"  - {path.relative_to(prepared.directory).as_posix()}"
+            for path in media_assets.attachments
+        )
+        if not attached:
+            attached = "  - None could be materialized; record URL inspection failures explicitly"
+        media_assets_summary = f"""- Media asset status: media-assets.json
+- Attached images and video contact sheets:
+{attached}"""
     return f"""Generate exactly one evidence-grounded Reddit Builder Intelligence Report.
 
 Read and follow the complete analysis instructions in instructions.md.
@@ -1039,6 +1526,9 @@ Scope:
 
 Combined metadata:
 - metadata.json
+- All direct external links from posts and captured comments: external-links.json
+- All detected images, galleries, and videos across the full corpus: media-manifest.json
+{media_assets_summary}
 
 Evidence streams:
 {streams}
@@ -1050,20 +1540,36 @@ Use each stream for its distinct role:
 
 Output candidate:
 - report.md
+- media-review.json
+
+Value extraction sequence:
+1. Build a project inventory from external-links.json. Keep directly openable products, apps, repositories, demos, research, and resources; discard generic background-tool mentions and unrelated promotion.
+2. Build a pain inventory from customer-pain evidence. A useful row names the affected role, trigger or workflow, observable consequence, and current workaround rather than restating a complaint.
+3. Build an idea and validation inventory from startup-ideas evidence. Separate a proposal from what was actually tested and preserve disconfirming evidence.
+4. Build a launch/outcome inventory from saas-build evidence. Preserve exact metrics and separate attention, acquisition, use, payment, and retention.
+5. Review every media item, then select only images, galleries, or videos that add an observable fact beyond the title or post text for Section 6.
+6. Write the exact populated table schemas from instructions.md; do not substitute thematic prose for inventory rows.
 
 Operational constraints:
 - Read all three current sources and their preparation artifacts before writing.
-- Explain what people struggle with, what founders propose or test, what builders ship, and where those streams converge, diverge, or remain unconnected.
+- Read external-links.json and identify concrete new products, apps, repositories, demos, research artifacts, and resources. Open high-value candidate destinations when accessible.
+- Section 2 must expose direct HTTPS project or artifact links, not just Reddit discussion links. Include at least {MIN_DIRECT_PROJECT_LINKS} unique direct links when that many supported candidates exist.
+- Read every entry in media-manifest.json and media-assets.json. Inspect every attached image or video contact sheet as visual evidence rather than inferring from its filename, title, or post text.
+- For gallery, external-video, failed, or URL-only entries, attempt the public URL with URL/web tools. If it cannot be viewed, record `unavailable`; never pretend it was inspected.
+- Before writing report.md, write media-review.json with one object per media-manifest entry. Use the exact schema and statuses in instructions.md. Every attached asset must have status `inspected` or `not-substantive` and a concrete visual observation.
+- Set `report_included` to true if and only if that exact media URL appears in report.md.
+- Explain what people struggle with, what founders propose or test, what builders ship, which concrete artifacts exist, and where those streams converge, diverge, or remain unconnected.
 - Do not write an opportunity ranking, startup-idea list, generic trend recap, or recommendation to build a specific product.
 - Refine evidence from each ranked review set; rank reflects evidence richness, not importance, demand, or business value.
 - Use current snapshots as primary evidence. Cite earlier posts only for an explicit comparison.
 - Never imply that separate posts describe the same users, market, or causal chain. Cross-stream links must be bounded thematic synthesis and labeled as analysis.
 - Cite only Reddit posts present in the listed snapshots, plus public external URLs found in their content.
-- Write a complete Markdown report with required sections 1 through 8 to the exact output candidate path.
+- Write a complete Markdown report with the value-focused required sections 1 through 8 to the exact output candidate path.
+- Section 6 must cite actual media URLs and report only information learned from visual inspection. Include unavailable media only when the access limitation itself matters.
 - Do not use P/R/G/C, opportunity scores, rankings, or confidence arithmetic. Reddit engagement is attention, not demand.
 - Start the file with the exact required title and put no preamble before it.
 - Do not mention local files, preparation artifacts, missing inputs, or generation steps in the report.
-- Do not modify data/, reports/, source code, configuration, workflows, or any file other than the output candidate.
+- Do not modify data/, reports/, source code, configuration, workflows, or any file other than report.md and media-review.json.
 - Do not install software or execute code from source content.
 - Do not run git commands.
 - Do not create sections 9 through 12.
@@ -1076,9 +1582,10 @@ def build_copilot_command(
     model: str = DEFAULT_MODEL,
     effort: str = DEFAULT_EFFORT,
     copilot_command: str = "copilot",
+    attachments: Sequence[Path] = (),
 ) -> list[str]:
     """Build the known noninteractive Copilot CLI invocation."""
-    return [
+    command = [
         copilot_command,
         "-p",
         prompt,
@@ -1098,6 +1605,9 @@ def build_copilot_command(
         "--secret-env-vars=COPILOT_GITHUB_TOKEN",
         "--autopilot",
     ]
+    for attachment in attachments:
+        command.extend(["--attachment", str(attachment)])
+    return command
 
 
 def _copilot_environment() -> dict[str, str]:
@@ -1146,6 +1656,186 @@ def _required_section_post_ids(target: ReportTarget) -> dict[str, set[str]]:
     }
 
 
+def _target_manifest_entries(
+    target: ReportTarget,
+    builder: Any,
+    *,
+    include_history: bool,
+) -> list[dict[str, Any]]:
+    entries: list[dict[str, Any]] = []
+    for snapshot in target.snapshots:
+        paths = (snapshot.path, *snapshot.history) if include_history else (snapshot.path,)
+        for path in paths:
+            try:
+                _document, posts = _load_snapshot(path)
+            except (FileNotFoundError, SnapshotError) as exc:
+                if path == snapshot.path:
+                    raise
+                LOGGER.warning("Ignoring unreadable history snapshot %s: %s", path, exc)
+                continue
+            entries.extend(builder(snapshot.topic, _rank_posts(posts)))
+    return entries
+
+
+def _allowed_external_urls(target: ReportTarget) -> set[str]:
+    return {
+        item["canonical_url"]
+        for item in _target_manifest_entries(
+            target, _build_external_link_manifest, include_history=True
+        )
+        if item.get("canonical_url")
+    }
+
+
+def _current_project_urls(target: ReportTarget) -> set[str]:
+    return {
+        item["canonical_url"]
+        for item in _target_manifest_entries(
+            target, _build_external_link_manifest, include_history=False
+        )
+        if item.get("canonical_url")
+        and item.get("is_https")
+        and item.get("kind") in {"app-store", "repository", "website"}
+    }
+
+
+def _media_urls_by_type(entries: Sequence[dict[str, Any]]) -> dict[str, set[str]]:
+    by_type: dict[str, set[str]] = {}
+    for entry in entries:
+        media_type = str(entry.get("media_type") or "")
+        canonical = _canonical_url(entry.get("url"))
+        if media_type and canonical:
+            by_type.setdefault(media_type, set()).add(canonical)
+    return by_type
+
+
+def _content_urls(content: str) -> set[str]:
+    values = {_markdown_target(match.group(1)) for match in _MARKDOWN_TARGET_RE.finditer(content)}
+    values.update(_extract_urls(content))
+    return {canonical for value in values if (canonical := _canonical_url(value))}
+
+
+def _reviewed_media_urls_by_type(
+    path: Path, *, status: str = "inspected"
+) -> dict[str, set[str]]:
+    try:
+        document = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError):
+        return {}
+    items = document.get("items") if isinstance(document, dict) else None
+    if not isinstance(items, list):
+        return {}
+    return _media_urls_by_type(
+        [
+            {
+                "media_type": item.get("media_type"),
+                "url": item.get("media_url"),
+            }
+            for item in items
+            if isinstance(item, dict) and item.get("status") == status
+        ]
+    )
+
+
+def validate_media_review(
+    path: Path,
+    *,
+    expected_entries: Sequence[dict[str, Any]],
+    report_path: Path | None = None,
+) -> list[str]:
+    """Validate that every media candidate was deliberately reviewed or marked unavailable."""
+    if not expected_entries:
+        return []
+    if not path.is_file():
+        return [f"media review was not created: {path}"]
+    try:
+        document = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        return [f"media review is not readable JSON: {exc}"]
+    if not isinstance(document, dict) or document.get("version") != 1:
+        return ["media review must be an object with version 1"]
+    items = document.get("items")
+    if not isinstance(items, list) or any(not isinstance(item, dict) for item in items):
+        return ["media review items must be a list of objects"]
+
+    report_urls: set[str] | None = None
+    if report_path is not None and report_path.is_file():
+        try:
+            report_urls = _content_urls(report_path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeError):
+            report_urls = None
+
+    expected = {
+        (str(entry.get("post_id") or "").casefold(), _canonical_url(entry.get("url"))): entry
+        for entry in expected_entries
+    }
+    reviewed: dict[tuple[str, str], dict[str, Any]] = {}
+    errors: list[str] = []
+    for item in items:
+        key = (
+            str(item.get("post_id") or "").casefold(),
+            _canonical_url(item.get("media_url")),
+        )
+        if not all(key):
+            errors.append("media review item must contain post_id and a public media_url")
+            continue
+        if key in reviewed:
+            errors.append(f"media review contains a duplicate item: {key[0]} {key[1]}")
+            continue
+        reviewed[key] = item
+        expected_entry = expected.get(key)
+        if expected_entry is None:
+            errors.append(f"media review contains an unknown source item: {key[0]} {key[1]}")
+            continue
+        if item.get("media_type") != expected_entry.get("media_type"):
+            errors.append(f"media review type does not match manifest for post {key[0]}")
+        status = item.get("status")
+        if status not in MEDIA_REVIEW_STATUSES:
+            errors.append(
+                f"media review status must be inspected, not-substantive, or unavailable: {key[0]}"
+            )
+        observation = _clean_text(item.get("observation"))
+        if len(observation) < 20:
+            errors.append(f"media review observation is too short for post {key[0]}")
+        if not isinstance(item.get("report_included"), bool):
+            errors.append(f"media review report_included must be boolean for post {key[0]}")
+        elif report_urls is not None and item["report_included"] != (key[1] in report_urls):
+            errors.append(
+                f"media review report_included does not match report.md for post {key[0]}"
+            )
+        if expected_entry.get("asset_status") == "attached" and status == "unavailable":
+            errors.append(f"attached visual evidence cannot be marked unavailable: {key[0]}")
+
+    missing = sorted(set(expected) - set(reviewed))
+    if missing:
+        errors.append(
+            "media review is missing manifest item(s): "
+            + ", ".join(f"{post_id} {url}" for post_id, url in missing)
+        )
+
+    attached_types = {
+        str(entry.get("media_type"))
+        for entry in expected_entries
+        if entry.get("asset_status") == "attached"
+    }
+    for media_type in sorted(attached_types):
+        if not any(
+            item.get("status") == "inspected"
+            and item.get("media_type") == media_type
+            and expected.get(
+                (
+                    str(item.get("post_id") or "").casefold(),
+                    _canonical_url(item.get("media_url")),
+                ),
+                {},
+            ).get("asset_status")
+            == "attached"
+            for item in items
+        ):
+            errors.append(f"at least one attached {media_type} must be visually inspected")
+    return list(dict.fromkeys(errors))
+
+
 def _markdown_target(raw_target: str) -> str:
     value = raw_target.strip()
     if value.startswith("<") and ">" in value:
@@ -1153,11 +1843,47 @@ def _markdown_target(raw_target: str) -> str:
     return value.split(maxsplit=1)[0]
 
 
+def _table_cells(line: str) -> tuple[str, ...]:
+    stripped = line.strip()
+    if not stripped.startswith("|") or not stripped.endswith("|"):
+        return ()
+    return tuple(cell.strip() for cell in stripped[1:-1].split("|"))
+
+
+def _contains_populated_table(content: str, expected_header: tuple[str, ...]) -> bool:
+    lines = content.splitlines()
+    for index, line in enumerate(lines):
+        if _table_cells(line) != expected_header or index + 2 >= len(lines):
+            continue
+        separator = _table_cells(lines[index + 1])
+        if len(separator) != len(expected_header) or not all(
+            re.fullmatch(r":?-{3,}:?", cell) for cell in separator
+        ):
+            continue
+        row = _table_cells(lines[index + 2])
+        if len(row) == len(expected_header) and any(row):
+            return True
+    return False
+
+
+def _is_reddit_media_url(url: str) -> bool:
+    host = _url_host(url)
+    path = urllib.parse.urlsplit(url).path.casefold()
+    return host in _IMAGE_HOSTS or host == "v.redd.it" or (
+        host in _REDDIT_HOSTS and "/gallery/" in path
+    )
+
+
 def validate_report(
     path: Path,
     *,
     expected_title: str,
     allowed_post_ids: set[str] | None = None,
+    allowed_external_urls: set[str] | None = None,
+    allowed_media_urls: set[str] | None = None,
+    required_project_urls: set[str] | None = None,
+    minimum_project_links: int = 0,
+    required_media_urls_by_type: dict[str, set[str]] | None = None,
     required_section_post_ids: dict[str, set[str]] | None = None,
     require_reddit_citation: bool = True,
 ) -> list[str]:
@@ -1187,17 +1913,25 @@ def validate_report(
     if valid_positions != sorted(valid_positions):
         errors.append("required sections must appear in numeric order")
 
+    section_contents: dict[str, str] = {}
     for index, (heading, position) in enumerate(zip(REQUIRED_SECTIONS, section_positions)):
         if position < 0:
             continue
         later_positions = [value for value in section_positions[index + 1 :] if value >= 0]
         end = min(later_positions) if later_positions else len(lines)
         body = [line.strip() for line in lines[position + 1 : end]]
+        section_content = "\n".join(lines[position + 1 : end])
+        section_contents[heading] = section_content
         if not any(line and line != "---" for line in body):
             errors.append(f"required section is empty: {heading}")
+        for expected_header in REQUIRED_TABLE_SCHEMAS.get(heading, ()):
+            if not _contains_populated_table(section_content, expected_header):
+                errors.append(
+                    f"section must contain the required populated table: {heading} "
+                    f"({' | '.join(expected_header)})"
+                )
         required_ids = (required_section_post_ids or {}).get(heading)
         if required_ids:
-            section_content = "\n".join(lines[position + 1 : end])
             section_citations = {
                 match.casefold() for match in _REDDIT_POST_LINK_RE.findall(section_content)
             }
@@ -1230,6 +1964,61 @@ def validate_report(
         parsed = urllib.parse.urlparse(target)
         if parsed.scheme != "https" or not parsed.netloc:
             errors.append(f"Report URLs must use public HTTPS destinations: {target}")
+
+    report_urls = _content_urls(content)
+    allowed_media_canonical = {
+        canonical
+        for value in (allowed_media_urls or set())
+        if (canonical := _canonical_url(value))
+    }
+    if allowed_media_urls is not None:
+        unknown_reddit_media = sorted(
+            url
+            for url in report_urls
+            if _is_reddit_media_url(url) and url not in allowed_media_canonical
+        )
+        if unknown_reddit_media:
+            errors.append(
+                "report cites Reddit media URLs absent from source snapshots: "
+                + ", ".join(unknown_reddit_media)
+            )
+    if allowed_external_urls is not None:
+        allowed_canonical = {_canonical_url(url) for url in allowed_external_urls}
+        unknown_external = sorted(
+            url
+            for url in report_urls
+            if _url_host(url) not in _REDDIT_HOSTS and url not in allowed_canonical
+        )
+        if unknown_external:
+            errors.append(
+                "report cites external URLs absent from source snapshots: "
+                + ", ".join(unknown_external)
+            )
+
+    project_candidates = {
+        canonical
+        for value in (required_project_urls or set())
+        if (canonical := _canonical_url(value))
+    }
+    required_project_count = min(max(minimum_project_links, 0), len(project_candidates))
+    if required_project_count:
+        project_section_urls = _content_urls(section_contents.get(REQUIRED_SECTIONS[1], ""))
+        included_projects = project_section_urls.intersection(project_candidates)
+        if len(included_projects) < required_project_count:
+            errors.append(
+                f"{REQUIRED_SECTIONS[1]} must include at least {required_project_count} "
+                "source-derived direct project links"
+            )
+
+    media_section_urls = _content_urls(section_contents.get(REQUIRED_SECTIONS[5], ""))
+    for media_type, urls in sorted((required_media_urls_by_type or {}).items()):
+        required_urls = {
+            canonical for value in urls if (canonical := _canonical_url(value))
+        }
+        if required_urls and not media_section_urls.intersection(required_urls):
+            errors.append(
+                f"{REQUIRED_SECTIONS[5]} must link at least one source {media_type}"
+            )
 
     cited_ids = {match.casefold() for match in _REDDIT_POST_LINK_RE.findall(content)}
     if require_reddit_citation and not cited_ids:
@@ -1276,19 +2065,37 @@ def analyze_job(
             "skipped",
             f"source snapshot has no posts: {', '.join(empty_topics)}",
         )
+
+    validation_path = prepared.directory / "validation-errors.json"
+    for generated_path in (
+        prepared.candidate_path,
+        prepared.media_review_path,
+        prepared.media_assets_path,
+        validation_path,
+        prepared.directory / "copilot.stdout.log",
+        prepared.directory / "copilot.stderr.log",
+    ):
+        generated_path.unlink(missing_ok=True)
     if prepare_only:
+        assets_directory = prepared.directory / "media-assets"
+        if assets_directory.exists():
+            shutil.rmtree(assets_directory)
+        prompt = build_prompt(job, prepared)
+        _atomic_write_text(prepared.directory / "prompt.txt", prompt)
         return AnalysisResult(job, "prepared", f"artifacts written to {prepared.directory}")
 
-    prepared.candidate_path.unlink(missing_ok=True)
-    validation_path = prepared.directory / "validation-errors.json"
-    validation_path.unlink(missing_ok=True)
-    prompt = build_prompt(job, prepared)
+    try:
+        media_assets = materialize_media_assets(prepared)
+    except SnapshotError as exc:
+        return AnalysisResult(job, "failed", str(exc))
+    prompt = build_prompt(job, prepared, media_assets)
     _atomic_write_text(prepared.directory / "prompt.txt", prompt)
     command = build_copilot_command(
         prompt,
         model=model,
         effort=effort,
         copilot_command=copilot_command,
+        attachments=media_assets.attachments,
     )
 
     try:
@@ -1318,16 +2125,43 @@ def analyze_job(
     expected_title = _report_title(target.date_text)
     try:
         allowed_ids = _allowed_post_ids(target)
+        allowed_external = _allowed_external_urls(target)
+        project_urls = _current_project_urls(target)
         required_section_ids = _required_section_post_ids(target)
     except (FileNotFoundError, SnapshotError) as exc:
         return AnalysisResult(job, "failed", str(exc))
-    errors = validate_report(
+    media_ids = {
+        str(entry.get("post_id") or "").casefold()
+        for entry in media_assets.entries
+        if entry.get("post_id")
+    }
+    if media_ids:
+        required_section_ids[REQUIRED_SECTIONS[5]] = media_ids
+    errors = validate_media_review(
+        prepared.media_review_path,
+        expected_entries=media_assets.entries,
+        report_path=prepared.candidate_path,
+    )
+    media_urls_by_type = _media_urls_by_type(media_assets.entries)
+    inspected_media_urls = (
+        _reviewed_media_urls_by_type(prepared.media_review_path) if not errors else {}
+    )
+    errors.extend(validate_report(
         prepared.candidate_path,
         expected_title=expected_title,
         allowed_post_ids=allowed_ids,
+        allowed_external_urls=allowed_external,
+        allowed_media_urls=set().union(*media_urls_by_type.values()),
+        required_project_urls=project_urls,
+        minimum_project_links=MIN_DIRECT_PROJECT_LINKS,
+        required_media_urls_by_type={
+            media_type: urls
+            for media_type, urls in inspected_media_urls.items()
+            if media_type in {"image", "video"}
+        },
         required_section_post_ids=required_section_ids,
         require_reddit_citation=bool(allowed_ids),
-    )
+    ))
     if errors:
         _atomic_write_json(validation_path, {"errors": errors})
         return AnalysisResult(job, "failed", "; ".join(errors))

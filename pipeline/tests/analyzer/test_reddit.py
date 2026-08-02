@@ -30,10 +30,12 @@ from idea_pipeline.analyzer.reddit import (
     group_snapshots,
     humanize_topic,
     main,
+    materialize_media_assets,
     prepare_report,
     prepare_snapshot,
     rank_score,
     resolve_jobs,
+    validate_media_review,
     validate_report,
 )
 
@@ -53,6 +55,8 @@ def post(
     comments: int = 0,
     title: str | None = None,
     media_url: str | None = None,
+    selftext: str | None = None,
+    is_video: bool = False,
 ) -> dict[str, object]:
     permalink = f"/r/SaaS/comments/{post_id}/{post_id}_title/"
     value: dict[str, object] = {
@@ -64,9 +68,10 @@ def post(
         "num_comments": comments,
         "permalink": permalink,
         "url": f"https://www.reddit.com{permalink}",
-        "selftext": "A concrete workflow, founder assumption, or measured builder outcome.",
+        "selftext": selftext
+        or "A concrete workflow, founder assumption, or measured builder outcome.",
         "is_self": True,
-        "is_video": False,
+        "is_video": is_video,
     }
     if media_url:
         value["url"] = media_url
@@ -83,7 +88,10 @@ def make_report_target(
     snapshots: list[SnapshotTarget] = []
     for topic, post_id in zip(REPORT_TOPICS, post_ids):
         path = root / "data" / topic / f"{snapshot_date.isoformat()}.json"
-        write_snapshot(path, [post(post_id)])
+        selftext = None
+        if topic == "saas-build":
+            selftext = "A launched workflow tool at https://example.com/product with one user."
+        write_snapshot(path, [post(post_id, selftext=selftext)])
         snapshots.append(SnapshotTarget(topic, snapshot_date, path))
     return ReportTarget(snapshot_date, tuple(snapshots))
 
@@ -92,59 +100,71 @@ def valid_report(
     report_date: str = "2026-08-02",
     *,
     post_ids: tuple[str, str, str] = ("pain1", "idea1", "build1"),
+    image_url: str | None = None,
+    video_url: str | None = None,
 ) -> str:
     pain_id, idea_id, build_id = post_ids
     pain = f"https://www.reddit.com/r/SaaS/comments/{pain_id}/{pain_id}_title/"
     idea = f"https://www.reddit.com/r/SaaS/comments/{idea_id}/{idea_id}_title/"
     build = f"https://www.reddit.com/r/SaaS/comments/{build_id}/{build_id}_title/"
+    project = "https://example.com/product"
+    image = image_url or build
+    video = video_url or build
     sections = [
         (
-            "## 1. Executive Synthesis",
-            f"The corpus contains distinct pain, hypothesis, and outcome evidence ([pain]({pain}), [idea]({idea}), [build]({build})).",
+            "## 1. Executive Value Summary",
+            f"A linked project, a concrete pain, and a visual demo are available ([pain]({pain}), [idea]({idea}), [build]({build})).",
         ),
         (
-            "## 2. Source Coverage and Evidence Quality",
-            """| Stream | Snapshot date | Posts collected | What this stream contributes | Main evidence limitations |
-|---|---|---:|---|---|
-| Customer pain | 2026-08-02 | 1 | Lived workflow | One self-reported account |
-| Founder ideas | 2026-08-02 | 1 | Founder hypothesis | No customer proof |
-| SaaS build | 2026-08-02 | 1 | Shipped outcome | Path-dependent result |""",
+            "## 2. New Projects and Direct Links",
+            f"""| Project or artifact | Type | What it does | Intended user or problem | Stage | Concrete evidence or why it is notable | Direct link | Reddit source |
+|---|---|---|---|---|---|---|---|
+| Review tool | SaaS | Routes review work | Operators | Launched | One user | [Open project]({project}) | [build]({build}) |""",
         ),
         (
-            "## 3. Customer Pain Landscape",
-            f"""| Pain cluster | Affected people and setting | Trigger or workflow | Observed consequence | Current response or workaround | Evidence breadth | Sources |
+            "## 3. Customer Problems and Existing Workarounds",
+            f"""| Problem | Affected user and context | Trigger or workflow | Observed consequence | Existing tool, service, or workaround | Evidence breadth | Sources |
 |---|---|---|---|---|---|---|
 | Manual handoff | Operator | Every review | Delay | Checklist | One account | [pain]({pain}) |""",
         ),
         (
-            "## 4. Founder Ideas and Validation Gaps",
-            f"""| Founder idea, bet, or validation case | Intended user and outcome | Key assumptions | Validation reported | Objections or gaps | Observed status | Sources |
+            "## 4. Founder Ideas and Validation Signals",
+            f"""| Idea or validation case | Intended user and outcome | What was tested | Strongest validation signal | Disconfirming evidence or gap | Status | Sources |
 |---|---|---|---|---|---|---|
-| Review helper | Operator saves time | Workflow recurs | Prototype | No usage evidence | Prototype | [idea]({idea}) |""",
+| Review helper | Operator saves time | Prototype | One interview | No usage evidence | Prototype | [idea]({idea}) |""",
         ),
         (
-            "## 5. Shipped Products and Builder Outcomes",
-            f"""| Product or experiment | Intended user | Stage | Distribution or acquisition | Measured outcome | Constraint or evidence-backed lesson | Sources |
-|---|---|---|---|---|---|---|
-| Review tool | Operator | Launched | Direct outreach | One signup | Retention unknown | [build]({build}) |""",
+            "## 5. Launches, Traction, and Distribution Results",
+            f"""| Project or experiment | Direct link | Stage | Channel or implementation | Measured result | What the result supports | What it does not prove | Source |
+|---|---|---|---|---|---|---|---|
+| Review tool | [Open]({project}) | Launched | Direct outreach | One signup | Initial acquisition | Retention | [build]({build}) |""",
         ),
         (
-            "## 6. Cross-Stream Evidence Map",
-            f"""| Theme | Customer-pain evidence | Founder-idea evidence | Build/outcome evidence | Relationship | Missing link |
+            "## 6. Visual and Demo Evidence",
+            f"""| Project or post | Media type | What was visibly demonstrated | Value beyond the text claim | Limitation | Media | Reddit source |
+|---|---|---|---|---|---|---|
+| Review tool | Image | Queue with one item | Confirms an interface exists | Static frame | [View image]({image}) | [build]({build}) |
+| Review tool demo | Video contact sheet | Review flow across sampled frames | Confirms interaction sequence | No audio | [Watch video]({video}) | [build]({build}) |""",
+        ),
+        (
+            "## 7. Cross-Stream Matches and Gaps",
+            f"""| Theme or concrete artifact | Customer-pain evidence | Founder-idea evidence | Build/outcome evidence | Relationship | Missing link |
 |---|---|---|---|---|---|
 | Review delay | [pain]({pain}) | [idea]({idea}) | [build]({build}) | Partial | Retention evidence |""",
         ),
         (
-            "## 7. Distribution, Execution, and Failure Lessons",
-            f"""| Pattern | Evidence across the corpus | Scope or contradiction | Builder implication |
+            "## 8. Practical Takeaways and Watchlist",
+            f"""### Reusable lessons
+
+| Lesson | Concrete evidence | Scope or contradiction | Practical use |
 |---|---|---|---|
-| Shipping does not establish retention | [build]({build}) | One case | Measure repeat use |""",
-        ),
-        (
-            "## 8. Implications and Watchlist",
-            f"""| Priority | Question or signal to monitor | Evidence so far | What remains unknown | Evidence that would change the reading |
+| Shipping does not establish retention | [build]({build}) | One case | Measure repeat use |
+
+### Watchlist
+
+| Priority | Project, problem, or signal to monitor | Current evidence | What remains unknown | Evidence that would change the reading |
 |---:|---|---|---|---|
-| 1 | Does review delay recur? | [pain]({pain}) | Frequency | Independent operator accounts |""",
+| 1 | Review delay | [pain]({pain}) | Frequency | Independent accounts |""",
         ),
     ]
     chunks = [f"# Reddit Builder Intelligence Report - {report_date}"]
@@ -155,9 +175,9 @@ def valid_report(
 
 def required_section_ids() -> dict[str, set[str]]:
     return {
-        "## 3. Customer Pain Landscape": {"pain1"},
-        "## 4. Founder Ideas and Validation Gaps": {"idea1"},
-        "## 5. Shipped Products and Builder Outcomes": {"build1"},
+        "## 3. Customer Problems and Existing Workarounds": {"pain1"},
+        "## 4. Founder Ideas and Validation Signals": {"idea1"},
+        "## 5. Launches, Traction, and Distribution Results": {"build1"},
     }
 
 
@@ -335,6 +355,45 @@ class TestPreparation:
         assert prepared.source_path.read_bytes() == original
         manifest = json.loads(prepared.manifest_path.read_text(encoding="utf-8"))
         assert manifest[0]["url"] == "https://i.redd.it/chart.png"
+        assert prepared.links_path.exists()
+
+    def test_manifests_cover_media_and_links_outside_ranked_review_set(
+        self, tmp_path: Path
+    ) -> None:
+        source = tmp_path / "data" / "saas-build" / "2026-08-01.json"
+        posts = [post(f"top{index}", score=100 - index) for index in range(4)]
+        posts.extend(
+            [
+                post(
+                    "visual",
+                    score=0,
+                    media_url="https://v.redd.it/demo123",
+                    is_video=True,
+                ),
+                post(
+                    "linked",
+                    score=0,
+                    selftext="The live project is https://example.com/new-project.",
+                ),
+            ]
+        )
+        write_snapshot(source, posts)
+
+        prepared = prepare_snapshot(
+            SnapshotTarget("saas-build", date(2026, 8, 1), source),
+            tmp_path / "artifacts",
+        )
+
+        assert prepared.review_size == 3
+        assert "id=visual" not in prepared.review_path.read_text()
+        media = json.loads(prepared.manifest_path.read_text())
+        links = json.loads(prepared.links_path.read_text())
+        assert any(item["post_id"] == "visual" and item["media_type"] == "video" for item in media)
+        assert any(
+            item["post_id"] == "linked"
+            and item["canonical_url"] == "https://example.com/new-project"
+            for item in links
+        )
 
     def test_prepares_one_sandbox_with_all_three_sources(self, tmp_path: Path) -> None:
         target = make_report_target(tmp_path)
@@ -347,11 +406,16 @@ class TestPreparation:
         )
         assert prepared.total_posts == 3
         assert len(prepared.topic_artifacts) == 3
-        assert "Reddit Builder Intelligence Synthesis" in prepared.instructions_path.read_text()
+        assert "Reddit Value and Builder Intelligence Extraction" in (
+            prepared.instructions_path.read_text()
+        )
         metadata = json.loads(prepared.metadata_path.read_text())
-        assert metadata["report_type"] == "builder-intelligence-v1"
+        assert metadata["report_type"] == "builder-intelligence-v2"
         assert metadata["total_posts"] == 3
+        assert metadata["external_link_count"] == 1
         assert [source["topic"] for source in metadata["sources"]] == list(REPORT_TOPICS)
+        assert prepared.link_manifest_path.exists()
+        assert prepared.media_manifest_path.exists()
         for snapshot, topic_prepared in zip(target.snapshots, prepared.topic_artifacts):
             assert snapshot.path.read_bytes() == originals[snapshot.topic]
             assert topic_prepared.source_path.read_bytes() == originals[snapshot.topic]
@@ -369,6 +433,73 @@ class TestPreparation:
             AnalysisJob(target, report)
         ]
 
+    def test_materializes_images_and_video_contact_sheets(
+        self, tmp_path: Path
+    ) -> None:
+        target = make_report_target(tmp_path)
+        write_snapshot(
+            target.snapshots[-1].path,
+            [
+                post("image", media_url="https://i.redd.it/demo.png"),
+                post(
+                    "video",
+                    media_url="https://v.redd.it/demo",
+                    is_video=True,
+                ),
+                post("gallery", media_url="https://www.reddit.com/gallery/gallery"),
+            ],
+        )
+        prepared = prepare_report(target, tmp_path / "artifacts")
+
+        def fake_image(_url: str, stem: Path) -> Path:
+            path = stem.with_suffix(".png")
+            path.write_bytes(b"image")
+            return path
+
+        def fake_video(_url: str, destination: Path) -> Path:
+            destination.write_bytes(b"contact-sheet")
+            return destination
+
+        with (
+            patch(
+                "idea_pipeline.analyzer.reddit._download_image_asset",
+                side_effect=fake_image,
+            ),
+            patch(
+                "idea_pipeline.analyzer.reddit._extract_video_contact_sheet",
+                side_effect=fake_video,
+            ),
+        ):
+            assets = materialize_media_assets(prepared)
+
+        assert len(assets.attachments) == 2
+        statuses = {
+            entry["media_type"]: entry["asset_status"] for entry in assets.entries
+        }
+        assert statuses == {
+            "gallery": "url-only",
+            "image": "attached",
+            "video": "attached",
+        }
+        assert json.loads(assets.manifest_path.read_text()) == list(assets.entries)
+
+    @patch("idea_pipeline.analyzer.reddit.requests.get")
+    def test_never_requests_an_unapproved_image_host(
+        self, mock_get: MagicMock, tmp_path: Path
+    ) -> None:
+        target = make_report_target(tmp_path)
+        write_snapshot(
+            target.snapshots[-1].path,
+            [post("private", media_url="https://127.0.0.1/private.png")],
+        )
+        prepared = prepare_report(target, tmp_path / "artifacts")
+
+        assets = materialize_media_assets(prepared)
+
+        mock_get.assert_not_called()
+        assert assets.entries[0]["asset_status"] == "failed"
+        assert "approved public image host" in assets.entries[0]["asset_error"]
+
 
 class TestPromptAndCommand:
     def test_prompt_includes_all_streams_and_bounds_output(self, tmp_path: Path) -> None:
@@ -385,7 +516,10 @@ class TestPromptAndCommand:
         assert "Treat these as founder hypotheses" in prompt
         assert "One builder's outcome is not automatically repeatable" in prompt
         assert "Do not write an opportunity ranking" in prompt
-        assert "Output candidate:\n- report.md" in prompt
+        assert "All direct external links" in prompt
+        assert "Read every entry in media-manifest.json" in prompt
+        assert "write media-review.json" in prompt
+        assert "Output candidate:\n- report.md\n- media-review.json" in prompt
         assert str(target.snapshots[0].path) not in prompt
         assert "Do not run git commands" in prompt
 
@@ -413,6 +547,13 @@ class TestPromptAndCommand:
             "--autopilot",
         ]
 
+    def test_adds_visual_attachments_to_copilot_command(self, tmp_path: Path) -> None:
+        attachment = tmp_path / "demo.jpg"
+
+        command = build_copilot_command("prompt", attachments=[attachment])
+
+        assert command[-2:] == ["--attachment", str(attachment)]
+
     def test_parser_rejects_invalid_workers_dates_and_topic_mode(self) -> None:
         parser = build_parser()
         with pytest.raises(SystemExit):
@@ -435,11 +576,36 @@ class TestValidation:
             required_section_post_ids=required_section_ids(),
         ) == []
 
+    def test_accepts_source_derived_project_and_media_links(self, tmp_path: Path) -> None:
+        candidate = tmp_path / "report.md"
+        candidate.write_text(
+            valid_report(
+                image_url="https://i.redd.it/example.png",
+                video_url="https://v.redd.it/example",
+            ),
+            encoding="utf-8",
+        )
+
+        errors = validate_report(
+            candidate,
+            expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+            allowed_post_ids={"pain1", "idea1", "build1"},
+            allowed_external_urls={"https://example.com/product"},
+            required_project_urls={"https://example.com/product"},
+            minimum_project_links=8,
+            required_media_urls_by_type={
+                "image": {"https://i.redd.it/example.png"},
+                "video": {"https://v.redd.it/example"},
+            },
+        )
+
+        assert errors == []
+
     def test_rejects_missing_section_unknown_post_and_local_path(self, tmp_path: Path) -> None:
         candidate = tmp_path / "report.md"
         content = valid_report(post_ids=("unknown", "idea1", "build1"))
         content = content.replace(
-            "## 6. Cross-Stream Evidence Map", "### 6. Cross-Stream Evidence Map"
+            "## 6. Visual and Demo Evidence", "### 6. Visual and Demo Evidence"
         )
         content += "Internal evidence: pipeline/artifacts/reddit/review.txt\n"
         candidate.write_text(content, encoding="utf-8")
@@ -457,7 +623,7 @@ class TestValidation:
     def test_rejects_relative_markdown_links(self, tmp_path: Path) -> None:
         candidate = tmp_path / "report.md"
         content = valid_report().replace(
-            "The corpus contains distinct",
+            "A linked project",
             "A [local detail](notes.md) and http://example.com show distinct",
         )
         candidate.write_text(content, encoding="utf-8")
@@ -490,7 +656,127 @@ class TestValidation:
             required_section_post_ids=required_section_ids(),
         )
 
-        assert any("## 3. Customer Pain Landscape" in error for error in errors)
+        assert any(
+            "## 3. Customer Problems and Existing Workarounds" in error
+            for error in errors
+        )
+
+    def test_rejects_unlisted_project_and_missing_image_evidence(
+        self, tmp_path: Path
+    ) -> None:
+        candidate = tmp_path / "report.md"
+        content = valid_report(
+            image_url="https://i.redd.it/example.png",
+            video_url="https://v.redd.it/example",
+        ).replace(
+            "https://example.com/product", "https://invented.example/product"
+        ).replace("https://i.redd.it/example.png", "https://v.redd.it/example")
+        candidate.write_text(content, encoding="utf-8")
+
+        errors = validate_report(
+            candidate,
+            expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+            allowed_post_ids={"pain1", "idea1", "build1"},
+            allowed_external_urls={"https://example.com/product"},
+            required_project_urls={"https://example.com/product"},
+            minimum_project_links=1,
+            required_media_urls_by_type={
+                "image": {"https://i.redd.it/example.png"},
+                "video": {"https://v.redd.it/example"},
+            },
+        )
+
+        assert any("external URLs absent" in error for error in errors)
+        assert any("direct project links" in error for error in errors)
+        assert any("source image" in error for error in errors)
+
+    def test_rejects_malformed_value_table_and_invented_reddit_media(
+        self, tmp_path: Path
+    ) -> None:
+        candidate = tmp_path / "report.md"
+        content = valid_report(
+            image_url="https://i.redd.it/invented.png",
+            video_url="https://v.redd.it/example",
+        ).replace("| What it does |", "| Vague summary |")
+        candidate.write_text(content, encoding="utf-8")
+
+        errors = validate_report(
+            candidate,
+            expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+            allowed_post_ids={"pain1", "idea1", "build1"},
+            allowed_media_urls={
+                "https://i.redd.it/source.png",
+                "https://v.redd.it/example",
+            },
+        )
+
+        assert any("required populated table" in error for error in errors)
+        assert any("Reddit media URLs absent" in error for error in errors)
+
+    def test_validates_complete_media_review(self, tmp_path: Path) -> None:
+        review = tmp_path / "media-review.json"
+        report = tmp_path / "report.md"
+        entries = [
+            {
+                "post_id": "image",
+                "url": "https://i.redd.it/demo.png",
+                "media_type": "image",
+                "asset_status": "attached",
+            },
+            {
+                "post_id": "video",
+                "url": "https://v.redd.it/demo",
+                "media_type": "video",
+                "asset_status": "attached",
+            },
+        ]
+        review.write_text(
+            json.dumps(
+                {
+                    "version": 1,
+                    "items": [
+                        {
+                            "post_id": entry["post_id"],
+                            "media_url": entry["url"],
+                            "media_type": entry["media_type"],
+                            "status": "inspected",
+                            "observation": "The attached visual was inspected and shows a concrete interface.",
+                            "report_included": True,
+                        }
+                        for entry in entries
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+        report.write_text(
+            valid_report(
+                image_url="https://i.redd.it/demo.png",
+                video_url="https://v.redd.it/demo",
+            ),
+            encoding="utf-8",
+        )
+
+        assert validate_media_review(
+            review, expected_entries=entries, report_path=report
+        ) == []
+
+        document = json.loads(review.read_text())
+        document["items"][0]["report_included"] = False
+        review.write_text(json.dumps(document), encoding="utf-8")
+        errors = validate_media_review(
+            review, expected_entries=entries, report_path=report
+        )
+        assert any("does not match report.md" in error for error in errors)
+
+        document["items"][0]["status"] = "unavailable"
+        document["items"].pop()
+        review.write_text(json.dumps(document), encoding="utf-8")
+        errors = validate_media_review(review, expected_entries=entries)
+
+        assert any("cannot be marked unavailable" in error for error in errors)
+        assert any("missing manifest item" in error for error in errors)
+        assert any("attached video" in error for error in errors)
 
 
 class TestAnalysisBoundary:
@@ -514,6 +800,9 @@ class TestAnalysisBoundary:
 
         def generate(*_args: object, **_kwargs: object) -> subprocess.CompletedProcess[str]:
             candidate.write_text(valid_report(), encoding="utf-8")
+            (candidate.parent / "media-review.json").write_text(
+                '{"version": 1, "items": []}\n', encoding="utf-8"
+            )
             return subprocess.CompletedProcess([], 0, stdout="done", stderr="")
 
         mock_run.side_effect = generate
@@ -585,4 +874,8 @@ class TestAnalysisBoundary:
         root = tmp_path / "artifacts" / REPORT_ARTIFACT_NAME / "2026-08-02"
         assert (root / "metadata.json").exists()
         assert len(list((root / "topics").glob("*/*/source.json"))) == 3
+        prompt = (root / "prompt.txt").read_text()
+        assert "Generate exactly one evidence-grounded Reddit Builder Intelligence Report" in prompt
+        assert "Do not write an opportunity ranking" in prompt
+        assert not (root / "report.md").exists()
         assert not (tmp_path / "reports" / "2026-08-02.md").exists()
