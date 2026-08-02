@@ -5,7 +5,7 @@ import { withBase } from '../lib/paths';
 
 export async function GET(context: { site?: URL }) {
   const reports = sortReports(await getCollection('reports'));
-  const site = context.site ?? new URL('https://vibewatch.github.io');
+  const site = context.site ?? new URL('https://idea.genisisiq.com');
 
   return rss({
     title: 'Idea Signal Desk',

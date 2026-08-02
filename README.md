@@ -22,7 +22,7 @@ A root-level Astro website backed by a separate Python collection and analysis p
 ├── src/                  # Astro pages, layouts, components, and report utilities
 ├── public/               # Static brand, crawler, and web-app assets
 ├── .github/workflows/    # Pipeline and GitHub Pages automation
-└── astro.config.mjs      # Static site configuration for /idea/
+└── astro.config.mjs      # Static site configuration for idea.genisisiq.com
 ```
 
 The Astro project belongs directly in the repository root. Collection, analysis, and cookie refresh are sibling subsystems in the independently installable `pipeline/` project. `data/` is immutable analysis input; `reports/` contains validated derived content. Astro may consume both as read-only build inputs.
@@ -55,7 +55,7 @@ npm install
 npm run dev
 ```
 
-The development URL includes the configured repository base: `http://localhost:4321/idea/`.
+The development URL is `http://localhost:4321/`.
 
 Production validation and build:
 
@@ -69,20 +69,20 @@ npm run preview
 
 ### Website routes
 
-- `/idea/` — latest dispatch and extracted signal board
-- `/idea/reports/` — chronological archive with metadata filtering
-- `/idea/reports/<YYYY-MM-DD>/` — source-linked Markdown report with a table of contents
-- `/idea/about/` — collection, extraction, and validation methodology
-- `/idea/rss.xml` — report feed
+- `/` — latest dispatch and extracted signal board
+- `/reports/` — chronological archive with metadata filtering
+- `/reports/<YYYY-MM-DD>/` — source-linked Markdown report with a table of contents
+- `/about/` — collection, extraction, and validation methodology
+- `/rss.xml` — report feed
 
 ### GitHub Pages
 
-`.github/workflows/deploy_site.yml` uses the official Astro Pages action and deploys to `https://vibewatch.github.io/idea/`. It runs for website/report changes and after a successful `Extract Reddit value report` workflow, including report commits made by GitHub Actions. Set **Settings → Pages → Build and deployment → Source** to **GitHub Actions** once for the repository.
+`.github/workflows/deploy_site.yml` uses the official Astro Pages action and deploys to `https://idea.genisisiq.com/`. It runs for website/report changes and after a successful `Extract Reddit value report` workflow, including report commits made by GitHub Actions. Set **Settings → Pages → Build and deployment → Source** to **GitHub Actions**, set **Custom domain** to `idea.genisisiq.com`, and enable **Enforce HTTPS**. The DNS `CNAME` for `idea.genisisiq.com` must point to `vibewatch.github.io` without the repository path.
 
-For a local root-path build, override the public URL without editing configuration:
+To test an alternate public origin or base path without editing configuration:
 
 ```bash
-ASTRO_SITE=http://localhost:4321 ASTRO_BASE=/ npm run build
+ASTRO_SITE=https://vibewatch.github.io ASTRO_BASE=/idea npm run build
 ```
 
 Website code treats `data/`, `reports/`, and `pipeline/` as read-only inputs. Only `idea_pipeline.scraper` writes snapshots, and only `idea_pipeline.analyzer` publishes reports.

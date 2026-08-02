@@ -38,6 +38,8 @@ jobs:
         uses: withastro/action@v6
         with:
           node-version: 24
+        env:
+          ASTRO_SITE: https://idea.genisisiq.com
 
   deploy:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'

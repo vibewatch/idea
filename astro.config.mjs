@@ -1,12 +1,12 @@
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 
-const site = process.env.ASTRO_SITE ?? 'https://vibewatch.github.io';
-const base = process.env.ASTRO_BASE ?? '/idea';
+const site = process.env.ASTRO_SITE ?? 'https://idea.genisisiq.com';
+const base = process.env.ASTRO_BASE;
 
 export default defineConfig({
   site,
-  base,
+  ...(base ? { base } : {}),
   output: 'static',
   trailingSlash: 'always',
   build: {
