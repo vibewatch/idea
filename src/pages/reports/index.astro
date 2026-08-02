@@ -1,0 +1,103 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ReportCard from '../../components/ReportCard.astro';
+import { getReportMeta, sortReports } from '../../lib/reports';
+
+const reports = sortReports(await getCollection('reports')).map(getReportMeta);
+const years = [...new Set(reports.map(({ year }) => year))];
+const totalSources = reports.reduce((total, { citationCount }) => total + citationCount, 0);
+---
+
+<BaseLayout
+  title="Report archive"
+  description="Browse source-linked Reddit intelligence reports covering concrete projects, customer pain, founder ideas, launch metrics, and evidence gaps."
+>
+  <header class="archive-hero">
+    <div class="shell archive-hero__grid">
+      <div>
+        <p class="eyebrow">Intelligence archive</p>
+        <h1>Every dispatch.<br /><em>Every receipt.</em></h1>
+      </div>
+      <div class="archive-hero__intro">
+        <p>Chronological field reports from builder communities, designed for scanning first and investigating deeply second.</p>
+        <dl>
+          <div><dt>Reports</dt><dd>{reports.length}</dd></div>
+          <div><dt>Direct sources</dt><dd>{totalSources}</dd></div>
+          <div><dt>Coverage</dt><dd>{years.length || 0} {years.length === 1 ? 'year' : 'years'}</dd></div>
+        </dl>
+      </div>
+    </div>
+  </header>
+
+  <section class="archive-section shell">
+    <div class="archive-toolbar" aria-label="Filter reports">
+      <label class="archive-search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+        <span class="sr-only">Filter reports</span>
+        <input type="search" placeholder="Filter by title, topic, or signal…" data-archive-query />
+      </label>
+      <label class="archive-select">
+        <span>Year</span>
+        <select data-archive-year>
+          <option value="all">All years</option>
+          {years.map((year) => <option value={year}>{year}</option>)}
+        </select>
+      </label>
+      <button class="archive-global-search" type="button" data-search-open>
+        Search full report text <kbd>⌘K</kbd>
+      </button>
+    </div>
+
+    <div class="archive-result-line">
+      <p><strong data-visible-count>{reports.length}</strong> <span data-visible-label>{reports.length === 1 ? 'dispatch' : 'dispatches'}</span></p>
+      <span>Newest first</span>
+    </div>
+
+    <div class="report-list" data-report-list>
+      {reports.map((meta, index) => <ReportCard meta={meta} featured={index === 0} />)}
+    </div>
+    <div class="archive-empty" data-archive-empty hidden>
+      <span aria-hidden="true">⌁</span>
+      <h2>No reports match that filter.</h2>
+      <p>Try a broader term or search inside the full reports.</p>
+      <button type="button" data-clear-filters>Clear filters</button>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const queryInput = document.querySelector<HTMLInputElement>('[data-archive-query]');
+  const yearSelect = document.querySelector<HTMLSelectElement>('[data-archive-year]');
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-report-card]')];
+  const count = document.querySelector<HTMLElement>('[data-visible-count]');
+  const label = document.querySelector<HTMLElement>('[data-visible-label]');
+  const empty = document.querySelector<HTMLElement>('[data-archive-empty]');
+
+  function filterReports() {
+    const query = queryInput?.value.trim().toLowerCase() ?? '';
+    const year = yearSelect?.value ?? 'all';
+    let visible = 0;
+
+    for (const card of cards) {
+      const matchesQuery = !query || card.dataset.search?.includes(query);
+      const matchesYear = year === 'all' || card.dataset.year === year;
+      const matches = Boolean(matchesQuery && matchesYear);
+      card.hidden = !matches;
+      if (matches) visible += 1;
+    }
+
+    if (count) count.textContent = String(visible);
+    if (label) label.textContent = visible === 1 ? 'dispatch' : 'dispatches';
+    if (empty) empty.hidden = visible !== 0;
+  }
+
+  queryInput?.addEventListener('input', filterReports);
+  yearSelect?.addEventListener('change', filterReports);
+  document.querySelector('[data-clear-filters]')?.addEventListener('click', () => {
+    if (queryInput) queryInput.value = '';
+    if (yearSelect) yearSelect.value = 'all';
+    filterReports();
+    queryInput?.focus();
+  });
+</script>

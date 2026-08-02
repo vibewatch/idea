@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from 'astro:content';
+import ReportLayout from '../../layouts/ReportLayout.astro';
+import { getReportMeta, sortReports, type ReportEntry } from '../../lib/reports';
+
+export async function getStaticPaths() {
+  const reports = sortReports(await getCollection('reports'));
+  return reports.map((entry, index) => {
+    const meta = getReportMeta(entry);
+    const olderEntry = reports[index + 1];
+    const newerEntry = reports[index - 1];
+    return {
+      params: { date: meta.date },
+      props: {
+        entry,
+        older: olderEntry ? getReportMeta(olderEntry) : undefined,
+        newer: newerEntry ? getReportMeta(newerEntry) : undefined,
+      },
+    };
+  });
+}
+
+interface Props {
+  entry: ReportEntry;
+  older?: ReturnType<typeof getReportMeta>;
+  newer?: ReturnType<typeof getReportMeta>;
+}
+
+const { entry, older, newer } = Astro.props;
+const meta = getReportMeta(entry);
+const { Content, headings } = await render(entry);
+---
+
+<ReportLayout meta={meta} headings={headings} older={older} newer={newer}>
+  <Content />
+</ReportLayout>

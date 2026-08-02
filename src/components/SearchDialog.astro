@@ -1,0 +1,182 @@
+---
+import { withBase } from '../lib/paths';
+
+const pagefindUrl = withBase('/pagefind/pagefind.js');
+const basePath = withBase('/');
+---
+
+<dialog
+  class="search-dialog"
+  data-search-dialog
+  data-pagefind-url={pagefindUrl}
+  data-base-path={basePath}
+  aria-labelledby="search-title"
+>
+  <div class="search-panel">
+    <div class="search-panel__topline">
+      <div>
+        <p class="eyebrow">Search the evidence</p>
+        <h2 id="search-title">Find a signal</h2>
+      </div>
+      <button class="icon-button" type="button" aria-label="Close search" data-search-close>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m6 6 12 12M18 6 6 18"></path>
+        </svg>
+      </button>
+    </div>
+
+    <label class="search-field">
+      <span class="sr-only">Search all reports</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="6.5"></circle>
+        <path d="m16 16 4 4"></path>
+      </svg>
+      <input
+        type="search"
+        inputmode="search"
+        autocomplete="off"
+        placeholder="Try “distribution”, “bookkeeping”, or a project name"
+        data-search-input
+      />
+      <kbd>Esc</kbd>
+    </label>
+
+    <p class="search-status" data-search-status aria-live="polite">
+      Search across every report, source link, project, and pain point.
+    </p>
+    <ol class="search-results" data-search-results></ol>
+
+    <footer class="search-panel__footer">
+      <span><kbd>↑</kbd><kbd>↓</kbd> browse</span>
+      <span><kbd>Enter</kbd> open</span>
+      <span class="search-brand">Indexed locally with Pagefind</span>
+    </footer>
+  </div>
+</dialog>
+
+<script is:inline>
+  const dialog = document.querySelector('[data-search-dialog]');
+  const pagefindUrl = dialog?.dataset.pagefindUrl ?? '/pagefind/pagefind.js';
+  const basePath = dialog?.dataset.basePath ?? '/';
+  const input = dialog?.querySelector('[data-search-input]');
+  const status = dialog?.querySelector('[data-search-status]');
+  const resultsElement = dialog?.querySelector('[data-search-results]');
+  const closeButton = dialog?.querySelector('[data-search-close]');
+  let pagefind;
+  let searchTimer;
+  let activeIndex = -1;
+
+  const setStatus = (message) => {
+    if (status) status.textContent = message;
+  };
+
+  const normalizeUrl = (url) => {
+    if (!url || /^https?:\/\//.test(url)) return url;
+    const normalizedBase = basePath.endsWith('/') ? basePath.slice(0, -1) : basePath;
+    if (normalizedBase && url.startsWith(`${normalizedBase}/`)) return url;
+    return `${normalizedBase}${url.startsWith('/') ? url : `/${url}`}`;
+  };
+
+  const loadPagefind = async () => {
+    if (pagefind) return pagefind;
+    try {
+      pagefind = await import(/* @vite-ignore */ pagefindUrl);
+      await pagefind.init?.();
+      return pagefind;
+    } catch (error) {
+      console.info('Pagefind is available after running the production build.', error);
+      setStatus('Search is prepared during the production build. Browse the report archive for now.');
+      return null;
+    }
+  };
+
+  const selectResult = (index) => {
+    const links = [...(resultsElement?.querySelectorAll('a') ?? [])];
+    if (!links.length) return;
+    activeIndex = (index + links.length) % links.length;
+    links.forEach((link, linkIndex) => link.toggleAttribute('data-active', linkIndex === activeIndex));
+    links[activeIndex]?.focus({ preventScroll: true });
+    links[activeIndex]?.scrollIntoView({ block: 'nearest' });
+  };
+
+  const renderResults = (items) => {
+    if (!resultsElement) return;
+    resultsElement.replaceChildren();
+    activeIndex = -1;
+
+    for (const item of items) {
+      const listItem = document.createElement('li');
+      const link = document.createElement('a');
+      const context = document.createElement('span');
+      const title = document.createElement('strong');
+      const excerpt = document.createElement('span');
+
+      link.href = normalizeUrl(item.url);
+      context.className = 'search-result__context';
+      context.textContent = item.meta?.date || item.meta?.title === 'Reports' ? 'Report intelligence' : 'Idea signal desk';
+      title.textContent = item.meta?.title || 'Untitled result';
+      excerpt.className = 'search-result__excerpt';
+      excerpt.innerHTML = item.excerpt || '';
+
+      link.append(context, title, excerpt);
+      listItem.append(link);
+      resultsElement.append(listItem);
+    }
+  };
+
+  const runSearch = async () => {
+    const query = input?.value.trim() ?? '';
+    if (query.length < 2) {
+      renderResults([]);
+      setStatus('Type at least two characters to search the report archive.');
+      return;
+    }
+
+    setStatus('Searching the evidence…');
+    const engine = await loadPagefind();
+    if (!engine) return;
+
+    const response = await engine.search(query);
+    const items = await Promise.all(response.results.slice(0, 8).map((result) => result.data()));
+    renderResults(items);
+    setStatus(items.length ? `${response.results.length} result${response.results.length === 1 ? '' : 's'} found.` : `No evidence matched “${query}”.`);
+  };
+
+  document.querySelectorAll('[data-search-open]').forEach((button) => {
+    button.addEventListener('click', () => {
+      dialog?.showModal();
+      requestAnimationFrame(() => input?.focus());
+      void loadPagefind();
+    });
+  });
+
+  closeButton?.addEventListener('click', () => dialog?.close());
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+  input?.addEventListener('input', () => {
+    window.clearTimeout(searchTimer);
+    searchTimer = window.setTimeout(runSearch, 180);
+  });
+  input?.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      selectResult(activeIndex + 1);
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      selectResult(activeIndex - 1);
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      if (dialog?.open) dialog.close();
+      else {
+        dialog?.showModal();
+        requestAnimationFrame(() => input?.focus());
+        void loadPagefind();
+      }
+    }
+  });
+</script>

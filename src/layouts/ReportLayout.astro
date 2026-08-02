@@ -1,0 +1,120 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import type { ReportMeta } from '../lib/reports';
+import { withBase } from '../lib/paths';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Neighbor {
+  date: string;
+  title: string;
+}
+
+interface Props {
+  meta: ReportMeta;
+  headings: Heading[];
+  older?: Neighbor | undefined;
+  newer?: Neighbor | undefined;
+}
+
+const { meta, headings, older, newer } = Astro.props;
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  type="article"
+  publishedTime={`${meta.date}T00:00:00Z`}
+>
+  <article class="report-page" id="report-top" data-pagefind-filter={`year:${meta.year}`}>
+    <header class="report-hero shell">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href={withBase('/')}>Signal desk</a>
+        <span aria-hidden="true">/</span>
+        <a href={withBase('/reports/')}>Reports</a>
+        <span aria-hidden="true">/</span>
+        <span>{meta.date}</span>
+      </nav>
+      <div class="report-kicker">
+        <span class="live-dot" aria-hidden="true"></span>
+        Reddit builder intelligence
+        <span>Dispatch {meta.date.replaceAll('-', '.')}</span>
+      </div>
+      <h1 data-pagefind-meta="title">{meta.title}</h1>
+      <p class="report-deck">{meta.description}</p>
+      <div class="report-meta-bar">
+        <div>
+          <span>Published</span>
+          <strong><time datetime={meta.date} data-pagefind-meta="date">{meta.displayDate}</time></strong>
+        </div>
+        {meta.postCount && <div><span>Corpus</span><strong>{meta.postCount} posts</strong></div>}
+        <div><span>Evidence</span><strong>{meta.citationCount} source links</strong></div>
+        <div><span>Depth</span><strong>{meta.readingMinutes} min read</strong></div>
+        <div class="report-actions">
+          <button type="button" data-copy-report>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 6V4.5A1.5 1.5 0 0 1 8.5 3h7A1.5 1.5 0 0 1 17 4.5v7a1.5 1.5 0 0 1-1.5 1.5H14M4.5 7h7A1.5 1.5 0 0 1 13 8.5v7a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 15.5v-7A1.5 1.5 0 0 1 4.5 7Z"></path></svg>
+            <span>Copy link</span>
+          </button>
+          <button type="button" data-print-report>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 7V3h8v4M6 14H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2M6 11h8v6H6z"></path></svg>
+            Print
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="report-grid shell">
+      <aside class="report-sidebar">
+        <TableOfContents headings={headings} />
+      </aside>
+      <div class="report-main">
+        <div class="report-prose" data-report-content>
+          <slot />
+        </div>
+        <aside class="report-note">
+          <span>How to read this</span>
+          <p>Claims stay attached to original Reddit threads. Metrics are self-reported unless the report says otherwise; absence of proof remains a gap, not a conclusion.</p>
+          <a href={withBase('/about/')}>Read the methodology →</a>
+        </aside>
+        {(older || newer) && (
+          <nav class="report-neighbors" aria-label="Adjacent reports">
+            {older ? (
+              <a href={withBase(`/reports/${older.date}/`)} rel="prev">
+                <span>← Older dispatch</span>
+                <strong>{older.date}</strong>
+              </a>
+            ) : <span></span>}
+            {newer && (
+              <a href={withBase(`/reports/${newer.date}/`)} rel="next">
+                <span>Newer dispatch →</span>
+                <strong>{newer.date}</strong>
+              </a>
+            )}
+          </nav>
+        )}
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<script>
+  const copyButton = document.querySelector<HTMLButtonElement>('[data-copy-report]');
+  copyButton?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      const label = copyButton.querySelector('span');
+      if (label) label.textContent = 'Copied';
+      window.setTimeout(() => {
+        if (label) label.textContent = 'Copy link';
+      }, 1600);
+    } catch {
+      window.prompt('Copy this report link:', window.location.href);
+    }
+  });
+  document.querySelector('[data-print-report]')?.addEventListener('click', () => window.print());
+</script>

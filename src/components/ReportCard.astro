@@ -1,0 +1,47 @@
+---
+import type { ReportMeta } from '../lib/reports';
+import { withBase } from '../lib/paths';
+
+interface Props {
+  meta: ReportMeta;
+  featured?: boolean;
+}
+
+const { meta, featured = false } = Astro.props;
+const reportUrl = withBase(`/reports/${meta.date}/`);
+const visibleSignals = meta.signals.filter(({ count }) => count > 0).slice(0, 3);
+---
+
+<article
+  class:list={['report-card', { 'report-card--featured': featured }]}
+  data-report-card
+  data-year={meta.year}
+  data-search={`${meta.title} ${meta.description} ${meta.signals.flatMap(({ items }) => items).join(' ')}`.toLowerCase()}
+>
+  <div class="report-card__rail" aria-hidden="true">
+    <span>{meta.date.slice(5, 7)}</span>
+    <strong>{meta.date.slice(8, 10)}</strong>
+    <small>{meta.year}</small>
+  </div>
+  <div class="report-card__body">
+    <div class="report-card__meta">
+      <span>Reddit intelligence</span>
+      <span>{meta.readingMinutes} min read</span>
+      {meta.postCount && <span>{meta.postCount} posts</span>}
+    </div>
+    <h2><a href={reportUrl}>{meta.title}</a></h2>
+    <p>{meta.description}</p>
+    {visibleSignals.length > 0 && (
+      <ul class="signal-pills" aria-label="Report coverage">
+        {visibleSignals.map((signal) => <li>{signal.label} · {signal.count}</li>)}
+      </ul>
+    )}
+    <div class="report-card__footer">
+      <time datetime={meta.date}>{meta.shortDate}</time>
+      <a class="text-link" href={reportUrl} aria-label={`Read ${meta.title}`}>
+        Open report
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4"></path></svg>
+      </a>
+    </div>
+  </div>
+</article>

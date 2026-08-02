@@ -1,0 +1,68 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const sections = Astro.props.headings.filter(({ depth }) => depth === 2);
+---
+
+{sections.length > 0 && (
+  <nav class="report-toc" aria-label="Report contents">
+    <p class="toc-label">In this report</p>
+    <ol>
+      {sections.map((heading, index) => (
+        <li>
+          <a href={`#${heading.slug}`} data-toc-link={heading.slug}>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            {heading.text.replace(/^\d+\.\s*/, '')}
+          </a>
+        </li>
+      ))}
+    </ol>
+    <div class="toc-progress" aria-hidden="true"><span data-reading-progress></span></div>
+    <a class="toc-back" href="#report-top">Back to top ↑</a>
+  </nav>
+)}
+
+<script>
+  const tocLinks = [...document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]')];
+  const headings = tocLinks
+    .map((link) => document.getElementById(link.dataset.tocLink ?? ''))
+    .filter((heading): heading is HTMLElement => Boolean(heading));
+  const progress = document.querySelector<HTMLElement>('[data-reading-progress]');
+
+  if (headings.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((left, right) => left.boundingClientRect.top - right.boundingClientRect.top)[0];
+        if (!visible) return;
+        tocLinks.forEach((link) => {
+          link.toggleAttribute('aria-current', link.dataset.tocLink === visible.target.id);
+        });
+      },
+      { rootMargin: '-15% 0px -75% 0px' },
+    );
+    headings.forEach((heading) => observer.observe(heading));
+  }
+
+  const updateProgress = () => {
+    if (!progress) return;
+    const article = document.querySelector<HTMLElement>('[data-report-content]');
+    if (!article) return;
+    const start = article.offsetTop;
+    const distance = Math.max(1, article.offsetHeight - window.innerHeight);
+    const percentage = Math.min(100, Math.max(0, ((window.scrollY - start) / distance) * 100));
+    progress.style.width = `${percentage}%`;
+  };
+
+  document.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+</script>

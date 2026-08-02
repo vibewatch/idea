@@ -1,0 +1,31 @@
+---
+import { withBase } from '../lib/paths';
+
+const year = new Date().getUTCFullYear();
+---
+
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div class="footer-intro">
+      <p class="footer-wordmark">IDEA <span>/</span> Signal Desk</p>
+      <p>Public builder intelligence extracted from noisy community conversations—with the receipts attached.</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <p class="footer-label">Explore</p>
+        <a href={withBase('/reports/')}>Report archive</a>
+        <a href={withBase('/about/')}>Methodology</a>
+        <a href={withBase('/rss.xml')}>RSS feed</a>
+      </div>
+      <div>
+        <p class="footer-label">Source</p>
+        <a href="https://github.com/vibewatch/idea" target="_blank" rel="noreferrer">GitHub repository</a>
+        <a href="https://www.reddit.com" target="_blank" rel="noreferrer">Reddit</a>
+      </div>
+    </div>
+  </div>
+  <div class="shell footer-bottom">
+    <p>© {year} VibeWatch. Built in the open.</p>
+    <p>Static by design · No tracking pixels</p>
+  </div>
+</footer>
