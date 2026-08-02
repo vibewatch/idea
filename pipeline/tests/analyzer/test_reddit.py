@@ -14,7 +14,9 @@ from idea_pipeline import PROJECT_ROOT, REPOSITORY_ROOT
 from idea_pipeline.analyzer.reddit import (
     DEFAULT_ARTIFACTS_DIR,
     DEFAULT_DATA_DIR,
+    DEFAULT_EFFORT,
     DEFAULT_ENV_FILE,
+    DEFAULT_MODEL,
     DEFAULT_REPORTS_DIR,
     REPORT_ARTIFACT_NAME,
     REPORT_TOPICS,
@@ -546,6 +548,16 @@ class TestPromptAndCommand:
             "--secret-env-vars=COPILOT_GITHUB_TOKEN",
             "--autopilot",
         ]
+
+    def test_defaults_to_grok_with_supported_effort(self) -> None:
+        args = build_parser().parse_args([])
+        command = build_copilot_command("prompt")
+
+        assert DEFAULT_MODEL == "grok-4.5"
+        assert DEFAULT_EFFORT == "high"
+        assert (args.model, args.effort) == (DEFAULT_MODEL, DEFAULT_EFFORT)
+        assert command[command.index("--model") + 1] == DEFAULT_MODEL
+        assert command[command.index("--effort") + 1] == DEFAULT_EFFORT
 
     def test_adds_visual_attachments_to_copilot_command(self, tmp_path: Path) -> None:
         attachment = tmp_path / "demo.jpg"
