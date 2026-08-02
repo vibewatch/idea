@@ -18,7 +18,7 @@ import shlex
 import subprocess
 import time
 from collections.abc import Mapping, Sequence
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any, Literal
 
@@ -331,7 +331,12 @@ def _read_existing_posts(daily_file: Path) -> list[dict[str, Any]]:
     return [dict(post) for post in posts]
 
 
-def merge_posts(daily_file: Path, new_posts: Sequence[Mapping[str, Any]]) -> int:
+def merge_posts(
+    daily_file: Path,
+    new_posts: Sequence[Mapping[str, Any]],
+    *,
+    fetched_on: date | None = None,
+) -> int:
     """Atomically merge posts into a daily file, deduplicating by ID."""
     existing_posts = _read_existing_posts(daily_file)
     by_id: dict[str, dict[str, Any]] = {}
@@ -349,7 +354,7 @@ def merge_posts(daily_file: Path, new_posts: Sequence[Mapping[str, Any]]) -> int
         by_id[key] = incoming
 
     output = {
-        "last_fetched": datetime.now(UTC).strftime("%Y-%m-%d"),
+        "last_fetched": (fetched_on or datetime.now(UTC).date()).isoformat(),
         "posts": list(by_id.values()),
     }
     daily_file.parent.mkdir(parents=True, exist_ok=True)
@@ -367,7 +372,8 @@ def merge_posts(daily_file: Path, new_posts: Sequence[Mapping[str, Any]]) -> int
 
 def run(monitor: RedditMonitor, data_dir: Path) -> bool:
     """Run one configured monitor and persist any collected posts."""
-    date_string = datetime.now(UTC).strftime("%Y-%m-%d")
+    fetched_on = datetime.now(UTC).date()
+    date_string = fetched_on.isoformat()
     daily_file = data_dir / monitor.name / f"{date_string}.json"
 
     all_posts: list[dict[str, Any]] = []
@@ -450,7 +456,7 @@ def run(monitor: RedditMonitor, data_dir: Path) -> bool:
 
     try:
         existing_count = len(_read_existing_posts(daily_file))
-        total = merge_posts(daily_file, new_posts)
+        total = merge_posts(daily_file, new_posts, fetched_on=fetched_on)
     except (OSError, ValueError) as exc:
         logger.error("[%s] Could not persist %s: %s", monitor.name, daily_file, exc)
         return False

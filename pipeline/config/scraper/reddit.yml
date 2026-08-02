@@ -6,42 +6,45 @@
 
 monitors:
   - name: saas-build
+    # Keep the strongest sources first so partial runs retain the best signals.
     subreddit:
-      - saasbuild
       - SaaS
       - microsaas
-      - indiehackers
       - SideProject
+      - saasbuild
+      - indiehackers
     sort: top
     time: day
     max_posts: 25
     comments: 20
-    comment_percentile: 75
+    comment_percentile: 60
 
   - name: startup-ideas
+    # Operational discussions were richer than generic idea-pitch threads.
     subreddit:
+      - EntrepreneurRideAlong
+      - AppIdeas
+      - roastmystartup
       - Startup_Ideas
       - SomebodyMakeThis
-      - EntrepreneurRideAlong
-      - roastmystartup
-      - AppIdeas
       - startups
       - Entrepreneur
     sort: top
     time: day
     max_posts: 25
     comments: 20
-    comment_percentile: 75
+    comment_percentile: 60
 
   - name: customer-pain
+    # Concrete operational pain comes before broader career/productivity chatter.
     subreddit:
       - smallbusiness
-      - freelancers
-      - ecommerce
       - sysadmin
+      - ecommerce
       - productivity
+      - freelancers
     sort: top
     time: day
     max_posts: 20
     comments: 15
-    comment_percentile: 75
+    comment_percentile: 65

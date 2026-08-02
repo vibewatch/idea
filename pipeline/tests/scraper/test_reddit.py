@@ -6,6 +6,7 @@ import json
 import stat
 import subprocess
 import textwrap
+from datetime import date
 from pathlib import Path
 from unittest.mock import MagicMock, call, patch
 
@@ -364,6 +365,14 @@ class TestMergePosts:
         assert data["last_fetched"]
         assert data["posts"] == [{"id": "p1", "title": "Idea"}]
         assert not snapshot.with_name(f".{snapshot.name}.tmp").exists()
+
+    def test_uses_collection_date_when_run_crosses_midnight(self, tmp_path: Path) -> None:
+        snapshot = tmp_path / "2026-08-01.json"
+
+        merge_posts(snapshot, [{"id": "p1"}], fetched_on=date(2026, 8, 1))
+
+        data = json.loads(snapshot.read_text(encoding="utf-8"))
+        assert data["last_fetched"] == "2026-08-01"
 
     def test_updates_posts_but_preserves_existing_comments(self, tmp_path: Path) -> None:
         snapshot = tmp_path / "snapshot.json"
