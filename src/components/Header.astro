@@ -4,35 +4,20 @@ import ThemeToggle from './ThemeToggle.astro';
 
 const pathname = Astro.url.pathname;
 const links = [
-  { href: withBase('/'), label: 'Signal desk', exact: true },
   { href: withBase('/reports/'), label: 'Reports' },
   { href: withBase('/about/'), label: 'Method' },
 ];
 
-const isActive = (href: string, exact = false) =>
-  exact ? pathname === href : pathname.startsWith(href);
+const isActive = (href: string) => pathname.startsWith(href);
 ---
 
 <header class="site-header">
   <div class="shell header-inner">
-    <a class="brand" href={withBase('/')} aria-label="Idea Signal Desk home">
-      <svg class="brand-mark" viewBox="0 0 42 42" aria-hidden="true">
-        <path d="M8 8h26v26H8z"></path>
-        <path d="M14 29V13h8.5c4.2 0 7.5 3.2 7.5 8s-3.3 8-7.5 8H14Z"></path>
-        <path d="M19 18v6h3.2c1.6 0 2.8-1.1 2.8-3s-1.2-3-2.8-3H19Z"></path>
-      </svg>
-      <span class="brand-copy">
-        <strong>IDEA</strong>
-        <small>Signal Desk</small>
-      </span>
-    </a>
+    <a class="brand" href={withBase('/')} aria-label="Idea home">Idea</a>
 
     <nav class="desktop-nav" aria-label="Primary navigation">
       {links.map((link) => (
-        <a
-          href={link.href}
-          aria-current={isActive(link.href, link.exact) ? 'page' : undefined}
-        >
+        <a href={link.href} aria-current={isActive(link.href) ? 'page' : undefined}>
           {link.label}
         </a>
       ))}
@@ -45,7 +30,6 @@ const isActive = (href: string, exact = false) =>
           <path d="m16 16 4 4"></path>
         </svg>
         <span>Search</span>
-        <kbd>⌘K</kbd>
       </button>
       <ThemeToggle />
       <details class="mobile-menu">
@@ -56,14 +40,11 @@ const isActive = (href: string, exact = false) =>
         </summary>
         <nav aria-label="Mobile navigation">
           {links.map((link) => (
-            <a
-              href={link.href}
-              aria-current={isActive(link.href, link.exact) ? 'page' : undefined}
-            >
+            <a href={link.href} aria-current={isActive(link.href) ? 'page' : undefined}>
               {link.label}
             </a>
           ))}
-          <button type="button" data-search-open>Search reports</button>
+          <button type="button" data-search-open>Search</button>
         </nav>
       </details>
     </div>

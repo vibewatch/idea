@@ -14,10 +14,7 @@ const basePath = withBase('/');
 >
   <div class="search-panel">
     <div class="search-panel__topline">
-      <div>
-        <p class="eyebrow">Search the evidence</p>
-        <h2 id="search-title">Find a signal</h2>
-      </div>
+      <h2 id="search-title">Search reports</h2>
       <button class="icon-button" type="button" aria-label="Close search" data-search-close>
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="m6 6 12 12M18 6 6 18"></path>
@@ -35,22 +32,15 @@ const basePath = withBase('/');
         type="search"
         inputmode="search"
         autocomplete="off"
-        placeholder="Try “distribution”, “bookkeeping”, or a project name"
+        placeholder="Search reports"
         data-search-input
       />
-      <kbd>Esc</kbd>
     </label>
 
     <p class="search-status" data-search-status aria-live="polite">
-      Search across every report, source link, project, and pain point.
+      Type at least two characters.
     </p>
     <ol class="search-results" data-search-results></ol>
-
-    <footer class="search-panel__footer">
-      <span><kbd>↑</kbd><kbd>↓</kbd> browse</span>
-      <span><kbd>Enter</kbd> open</span>
-      <span class="search-brand">Indexed locally with Pagefind</span>
-    </footer>
   </div>
 </dialog>
 
@@ -85,7 +75,7 @@ const basePath = withBase('/');
       return pagefind;
     } catch (error) {
       console.info('Pagefind is available after running the production build.', error);
-      setStatus('Search is prepared during the production build. Browse the report archive for now.');
+      setStatus('Search is available in the production build.');
       return null;
     }
   };
@@ -113,7 +103,7 @@ const basePath = withBase('/');
 
       link.href = normalizeUrl(item.url);
       context.className = 'search-result__context';
-      context.textContent = item.meta?.date || item.meta?.title === 'Reports' ? 'Report intelligence' : 'Idea signal desk';
+      context.textContent = item.meta?.date ?? 'Report';
       title.textContent = item.meta?.title || 'Untitled result';
       excerpt.className = 'search-result__excerpt';
       excerpt.innerHTML = item.excerpt || '';
@@ -128,18 +118,18 @@ const basePath = withBase('/');
     const query = input?.value.trim() ?? '';
     if (query.length < 2) {
       renderResults([]);
-      setStatus('Type at least two characters to search the report archive.');
+      setStatus('Type at least two characters.');
       return;
     }
 
-    setStatus('Searching the evidence…');
+    setStatus('Searching…');
     const engine = await loadPagefind();
     if (!engine) return;
 
     const response = await engine.search(query);
     const items = await Promise.all(response.results.slice(0, 8).map((result) => result.data()));
     renderResults(items);
-    setStatus(items.length ? `${response.results.length} result${response.results.length === 1 ? '' : 's'} found.` : `No evidence matched “${query}”.`);
+    setStatus(items.length ? `${response.results.length} result${response.results.length === 1 ? '' : 's'}.` : 'No results.');
   };
 
   document.querySelectorAll('[data-search-open]').forEach((button) => {

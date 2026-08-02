@@ -2,122 +2,83 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { withBase } from '../lib/paths';
 
+const steps = [
+  {
+    title: 'Collect',
+    text: 'Save daily posts, comments, links, and media references from focused builder communities.',
+  },
+  {
+    title: 'Prepare',
+    text: 'Organize sources, remove duplicates, and keep provenance visible.',
+  },
+  {
+    title: 'Extract',
+    text: 'Identify concrete projects, problems, ideas, outcomes, and useful visual evidence.',
+  },
+  {
+    title: 'Validate',
+    text: 'Check report structure, source links, and media references before publication.',
+  },
+];
+
 const principles = [
   {
-    title: 'Concrete before thematic',
-    text: 'Named projects, direct links, workflows, metrics, and inspected media come before broad market narratives.',
+    title: 'Start with specifics',
+    text: 'Named projects, direct links, workflows, and metrics come before broad themes.',
   },
   {
-    title: 'Evidence types stay distinct',
-    text: 'A complaint, founder hypothesis, launch claim, and retained customer are useful—but they are not interchangeable.',
+    title: 'Keep evidence distinct',
+    text: 'A complaint, a product idea, and a paying customer are different kinds of evidence.',
   },
   {
-    title: 'Unknown stays unknown',
-    text: 'No inferred traction, no invented demand, and no hiding contradictions. Gaps are published alongside signals.',
+    title: 'Leave gaps visible',
+    text: 'Unknown traction, conflicting claims, and missing proof remain explicit.',
   },
 ];
 ---
 
 <BaseLayout
-  title="Methodology"
-  description="How Idea Signal Desk collects Reddit builder conversations and turns them into source-linked, media-aware intelligence reports."
+  title="Method"
+  description="How Idea turns public builder conversations into concise, source-linked reports."
 >
-  <header class="method-hero">
-    <div class="shell method-hero__grid">
-      <div>
-        <p class="eyebrow">Our method</p>
-        <h1>From noisy threads to <em>auditable intelligence.</em></h1>
-      </div>
-      <div>
-        <p class="method-hero__lede">The goal is not to predict the next unicorn. It is to preserve valuable, verifiable information that builders can inspect for themselves.</p>
-        <a class="text-link" href="https://github.com/vibewatch/idea" target="_blank" rel="noreferrer">Inspect the open-source pipeline ↗</a>
-      </div>
-    </div>
+  <header class="page-header shell">
+    <h1>How reports are made</h1>
+    <p>Reports preserve useful details while keeping claims close to their sources.</p>
   </header>
 
-  <section class="method-flow section-space">
-    <div class="shell">
-      <div class="section-heading">
-        <div><p class="eyebrow">The pipeline</p><h2>Four gates, one public artifact</h2></div>
-        <p>Collection and analysis are separate systems. Reports only publish after deterministic checks pass.</p>
-      </div>
-      <ol class="flow-grid">
-        <li>
-          <span>01</span>
-          <div class="flow-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 8h22M8 5v22M24 5v22M5 24h22"></path><circle cx="16" cy="16" r="4"></circle></svg></div>
-          <h3>Collect</h3>
-          <p>Daily snapshots preserve posts, comments, scores, links, and media references across three focused streams.</p>
-          <small>Immutable JSON snapshots</small>
-        </li>
-        <li>
-          <span>02</span>
-          <div class="flow-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 9h20M6 16h14M6 23h17"></path><circle cx="25" cy="16" r="3"></circle></svg></div>
-          <h3>Prepare</h3>
-          <p>Links and media are inventoried across the full corpus, while duplicates and provenance remain visible.</p>
-          <small>Deterministic manifests</small>
-        </li>
-        <li>
-          <span>03</span>
-          <div class="flow-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 4v24M4 16h24"></path><circle cx="16" cy="16" r="9"></circle></svg></div>
-          <h3>Extract</h3>
-          <p>Analysis pulls concrete projects, pain, ideas, outcomes, and inspected visual evidence into comparable tables.</p>
-          <small>Source-grounded synthesis</small>
-        </li>
-        <li>
-          <span>04</span>
-          <div class="flow-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="m7 16 6 6L26 9"></path></svg></div>
-          <h3>Validate</h3>
-          <p>Required sections, table schemas, source URLs, media ledgers, and local-path hygiene form the publication gate.</p>
-          <small>Atomic Markdown release</small>
-        </li>
+  <div class="method-content shell">
+    <section aria-labelledby="method-steps-title">
+      <h2 id="method-steps-title">Process</h2>
+      <ol class="method-steps">
+        {steps.map((step) => (
+          <li>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </li>
+        ))}
       </ol>
-    </div>
-  </section>
+    </section>
 
-  <section class="principles-section section-space">
-    <div class="shell principles-grid">
-      <div class="principles-title">
-        <p class="eyebrow">Editorial standard</p>
-        <h2>Useful means inspectable.</h2>
-        <p>Every report is designed to let a skeptical reader retrace the reasoning without access to private tools or hidden datasets.</p>
-      </div>
+    <section aria-labelledby="principles-title">
+      <h2 id="principles-title">Editorial rules</h2>
       <div class="principle-list">
-        {principles.map((principle, index) => (
+        {principles.map((principle) => (
           <article>
-            <span>{String(index + 1).padStart(2, '0')}</span>
-            <div><h3>{principle.title}</h3><p>{principle.text}</p></div>
+            <h3>{principle.title}</h3>
+            <p>{principle.text}</p>
           </article>
         ))}
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="evidence-section section-space">
-    <div class="shell evidence-grid">
-      <div class="evidence-card evidence-card--dark">
-        <p class="eyebrow">What a report preserves</p>
-        <h2>Projects, pain, bets, results, media, and gaps.</h2>
-        <ul>
-          <li><span>↗</span> Direct project and source links</li>
-          <li><span>⌁</span> Existing workarounds and consequences</li>
-          <li><span>△</span> Validation signals and objections</li>
-          <li><span>◎</span> Launch metrics and distribution outcomes</li>
-          <li><span>□</span> Useful images, demos, and video observations</li>
-        </ul>
-      </div>
-      <div class="evidence-card">
-        <p class="eyebrow">What it does not claim</p>
-        <h2>A report is a map, not market proof.</h2>
-        <p>Reddit is self-selected, attention-weighted, moderation-shaped, and full of self-reported outcomes. Strong evidence here should guide better interviews and experiments—not replace them.</p>
-        <div class="caution-note"><strong>Rule of thumb</strong><span>A repeated pain is a lead. Paid switching and retention are proof.</span></div>
-      </div>
-    </div>
-  </section>
+    <aside class="method-note">
+      <h2>Limits</h2>
+      <p>
+        Community posts are self-selected and outcomes are often self-reported. These reports help
+        identify questions worth testing; they do not replace customer research or market proof.
+      </p>
+    </aside>
 
-  <section class="method-cta">
-    <div class="shell method-cta__inner">
-      <div><p class="eyebrow">See the output</p><h2>Read the evidence, then challenge the interpretation.</h2></div>
-      <a class="button button--primary" href={withBase('/reports/')}>Browse the reports <span>→</span></a>
-    </div>
-  </section>
+    <a class="text-link" href={withBase('/reports/')}>Browse reports</a>
+  </div>
 </BaseLayout>

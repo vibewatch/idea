@@ -5,15 +5,9 @@ import { withBase } from '../lib/paths';
 
 <BaseLayout title="Page not found" noindex>
   <section class="not-found shell">
-    <div class="not-found__code" aria-hidden="true">404</div>
-    <div class="not-found__copy">
-      <p class="eyebrow">Signal lost</p>
-      <h1>This thread went quiet.</h1>
-      <p>The page may have moved, or the evidence trail ends here.</p>
-      <div>
-        <a class="button button--primary" href={withBase('/')}>Return to the signal desk</a>
-        <a class="text-link" href={withBase('/reports/')}>Browse reports →</a>
-      </div>
-    </div>
+    <p class="eyebrow">404</p>
+    <h1>Page not found</h1>
+    <p>The requested page does not exist.</p>
+    <a class="button button--primary" href={withBase('/')}>Return home</a>
   </section>
 </BaseLayout>

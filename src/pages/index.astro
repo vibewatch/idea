@@ -8,172 +8,36 @@ import { withBase } from '../lib/paths';
 const reports = sortReports(await getCollection('reports'));
 const latest = reports[0];
 const latestMeta = latest ? getReportMeta(latest) : null;
-const recentReports = reports.slice(0, 3).map(getReportMeta);
-const activeSignals = latestMeta?.signals.filter(({ count }) => count > 0) ?? [];
-const streams = [
-  {
-    number: '01',
-    title: 'Customer pain',
-    copy: 'Repeated friction, costly workarounds, and moments when existing tools stop being enough.',
-    communities: 'Small business · Ecommerce · Sysadmin',
-  },
-  {
-    number: '02',
-    title: 'Founder ideas',
-    copy: 'Product hypotheses separated from the validation, objections, and evidence they actually earned.',
-    communities: 'Startups · Entrepreneur · RideAlong',
-  },
-  {
-    number: '03',
-    title: 'Shipped outcomes',
-    copy: 'Projects, launches, distribution experiments, traction, failures, and the lessons behind the numbers.',
-    communities: 'SaaS · SideProject · MicroSaaS',
-  },
-];
 ---
 
-<BaseLayout>
-  <section class="home-hero">
-    <div class="shell hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="live-dot"></span> Open builder intelligence</p>
-        <h1>Find what’s worth building <em>before the signal disappears.</em></h1>
-        <p class="hero-lede">
-          We turn noisy Reddit conversations into source-linked projects, painful workflows,
-          founder bets, launch results, and visual evidence.
-        </p>
-        <div class="hero-actions">
-          {latestMeta && (
-            <a class="button button--primary" href={withBase(`/reports/${latestMeta.date}/`)}>
-              Read the latest report
-              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4"></path></svg>
-            </a>
-          )}
-          <a class="button button--quiet" href={withBase('/about/')}>See how it works</a>
-        </div>
-        <div class="hero-proof" aria-label="Publication principles">
-          <span><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3 9 4 4 8-8"></path></svg>Original sources</span>
-          <span><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3 9 4 4 8-8"></path></svg>Concrete metrics</span>
-          <span><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3 9 4 4 8-8"></path></svg>No hype scoring</span>
-        </div>
-      </div>
-
-      {latestMeta ? (
-        <aside class="dispatch-cover" aria-label="Latest intelligence dispatch">
-          <div class="dispatch-cover__top">
-            <span>FIELD REPORT</span>
-            <span>REDDIT / {latestMeta.year}</span>
-          </div>
-          <div class="dispatch-orbit" aria-hidden="true">
-            <span></span><span></span><span></span><i></i>
-            <strong>IDEA</strong>
-          </div>
-          <div class="dispatch-cover__body">
-            <p>Latest dispatch</p>
-            <h2>{latestMeta.date}</h2>
-            <dl>
-              {latestMeta.postCount && <div><dt>Posts reviewed</dt><dd>{latestMeta.postCount}</dd></div>}
-              <div><dt>Source links</dt><dd>{latestMeta.citationCount}</dd></div>
-              <div><dt>Evidence tables</dt><dd>{latestMeta.tableCount}</dd></div>
-            </dl>
-          </div>
-          <a href={withBase(`/reports/${latestMeta.date}/`)}>
-            Open dispatch <span aria-hidden="true">↗</span>
-          </a>
-        </aside>
-      ) : (
-        <aside class="dispatch-cover dispatch-cover--empty">
-          <p>The first intelligence dispatch is being prepared.</p>
-        </aside>
-      )}
-    </div>
-    <div class="hero-rule shell" aria-hidden="true"><span>OBSERVE</span><i></i><span>VERIFY</span><i></i><span>CONNECT</span></div>
-  </section>
-
-  {latestMeta && activeSignals.length > 0 && (
-    <section class="signal-section section-space">
-      <div class="shell">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">From the latest corpus</p>
-            <h2>What surfaced</h2>
-          </div>
-          <p>The useful layer: named examples and observed workflows, not a cloud of abstract themes.</p>
-        </div>
-        <div class="signal-grid">
-          {activeSignals.map((signal, index) => (
-            <article class:list={['signal-card', `signal-card--${signal.key}`]}>
-              <div class="signal-card__top">
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <strong>{signal.count}</strong>
-              </div>
-              <h3>{signal.label}</h3>
-              <ul>
-                {signal.items.map((item) => <li>{item}</li>)}
-              </ul>
-              <a href={withBase(`/reports/${latestMeta.date}/`)}>Inspect the evidence <span>→</span></a>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <section class="archive-preview section-space">
-    <div class="shell">
-      <div class="section-heading section-heading--rule">
-        <div>
-          <p class="eyebrow">The archive</p>
-          <h2>Latest intelligence</h2>
-        </div>
-        <a class="text-link" href={withBase('/reports/')}>
-          Browse all reports
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4"></path></svg>
+<BaseLayout description="Concise, source-linked reports on builder problems, products, and outcomes.">
+  <header class="home-intro shell">
+    <h1>Builder intelligence, with sources.</h1>
+    <p>
+      Concise reports on real problems, products, and outcomes. Each finding stays linked to
+      its source.
+    </p>
+    <div class="home-actions">
+      {latestMeta && (
+        <a class="button button--primary" href={withBase(`/reports/${latestMeta.date}/`)}>
+          Read the latest report
         </a>
-      </div>
-      {recentReports.length ? (
-        <div class="report-list">
-          {recentReports.map((meta, index) => <ReportCard meta={meta} featured={index === 0} />)}
-        </div>
-      ) : (
-        <div class="empty-panel"><p>No reports have been published yet.</p></div>
       )}
+      <a class="text-link" href={withBase('/about/')}>How reports are made</a>
     </div>
-  </section>
+  </header>
 
-  <section class="stream-section section-space">
-    <div class="shell stream-layout">
-      <div class="stream-intro">
-        <p class="eyebrow">Three views of the market</p>
-        <h2>Follow the signal from complaint to shipped result.</h2>
-        <p>Each stream tells an incomplete story. The report becomes useful when a real workflow, a founder hypothesis, and an observed outcome can be compared without pretending they are the same kind of evidence.</p>
-        <a class="button button--quiet" href={withBase('/about/')}>Explore the method</a>
-      </div>
-      <div class="stream-list">
-        {streams.map((stream) => (
-          <article>
-            <span>{stream.number}</span>
-            <div>
-              <h3>{stream.title}</h3>
-              <p>{stream.copy}</p>
-              <small>{stream.communities}</small>
-            </div>
-          </article>
-        ))}
-      </div>
+  <section class="home-latest shell" aria-labelledby="latest-report-title">
+    <div class="section-title">
+      <h2 id="latest-report-title">Latest report</h2>
+      <a href={withBase('/reports/')}>All reports</a>
     </div>
-  </section>
-
-  <section class="closing-cta">
-    <div class="shell closing-cta__inner">
-      <div>
-        <p class="eyebrow">Stay close to the evidence</p>
-        <h2>The next useful idea may already be hiding in a workaround.</h2>
+    {latestMeta ? (
+      <div class="report-list">
+        <ReportCard meta={latestMeta} />
       </div>
-      <div class="closing-cta__actions">
-        <a class="button button--light" href={withBase('/rss.xml')}>Follow via RSS</a>
-        <a class="button button--outline-light" href="https://github.com/vibewatch/idea">View on GitHub ↗</a>
-      </div>
-    </div>
+    ) : (
+      <div class="empty-panel"><p>No reports have been published yet.</p></div>
+    )}
   </section>
 </BaseLayout>

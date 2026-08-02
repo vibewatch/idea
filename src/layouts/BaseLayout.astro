@@ -3,7 +3,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SearchDialog from '../components/SearchDialog.astro';
 import { withBase } from '../lib/paths';
-import '../styles/global.css';
+import '../styles/site.css';
 
 interface Props {
   title?: string;
@@ -16,14 +16,14 @@ interface Props {
 
 const {
   title,
-  description = 'Evidence-grounded projects, pain points, ideas, launches, and visual proof extracted from builder communities.',
+  description = 'Concise, source-linked reports on builder problems, products, and outcomes.',
   image = withBase('/og-card.svg'),
   type = 'website',
   publishedTime,
   noindex = false,
 } = Astro.props;
 const siteName = 'Idea Signal Desk';
-const pageTitle = title ? `${title} · ${siteName}` : `${siteName} — Builder intelligence with receipts`;
+const pageTitle = title ? `${title} · ${siteName}` : `${siteName} — Source-linked builder reports`;
 const origin = Astro.site ?? Astro.url.origin;
 const canonicalUrl = new URL(Astro.url.pathname, origin);
 const socialImage = new URL(image, origin);
@@ -34,10 +34,9 @@ const socialImage = new URL(image, origin);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f2efe6" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#171816" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#181917" media="(prefers-color-scheme: dark)" />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
