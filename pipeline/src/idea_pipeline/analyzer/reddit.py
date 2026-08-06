@@ -173,6 +173,19 @@ _BARE_DOMAIN_RE = re.compile(
     r"[a-z]{2,63}(?:/[^\s\])}>\"']*)?)",
     re.IGNORECASE,
 )
+_OBFUSCATED_DOMAIN_RE = re.compile(
+    r"(?<![@\w:/])"
+    r"((?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?"
+    r"\s+(?:dot|\[dot\]|\(dot\))\s+)+"
+    r"(?:[a-z]{2}|app|cloud|com|dev|info|live|net|online|org|site|software|"
+    r"store|tech|tools|xyz))"
+    r"(?![\w-])",
+    re.IGNORECASE,
+)
+_OBFUSCATED_DOT_RE = re.compile(
+    r"\s+(?:dot|\[dot\]|\(dot\))\s+",
+    re.IGNORECASE,
+)
 _WORD_RE = re.compile(r"[a-z][a-z0-9']*(?:-[a-z0-9']+)*")
 _QUANTIFIED_SIGNAL_RE = re.compile(
     r"(?:[$€£]\s?\d|\d+(?:[.,]\d+)?\s?(?:%|hours?|hrs?|days?|weeks?|months?|years?"
@@ -544,6 +557,14 @@ def _extract_source_urls(value: Any) -> list[str]:
     seen = {
         canonical for url in urls if (canonical := _canonical_url(url))
     }
+    for match in _OBFUSCATED_DOMAIN_RE.finditer(text):
+        bare = _OBFUSCATED_DOT_RE.sub(".", match.group(1))
+        url = f"https://{bare}"
+        canonical = _canonical_url(url)
+        if not canonical or canonical in seen:
+            continue
+        seen.add(canonical)
+        urls.append(url)
     for match in _BARE_DOMAIN_RE.finditer(text):
         if re.match(r"\]\(\s*https?://", text[match.end() :], re.IGNORECASE):
             continue
@@ -613,6 +634,8 @@ def _source_url_occurrences(post: dict[str, Any]) -> list[dict[str, Any]]:
     outbound_url = str(post.get("url") or "")
     if outbound_url.startswith(("http://", "https://")):
         occurrences.append({"url": outbound_url, "source_location": "post_url"})
+    for url in _extract_source_urls(post.get("title")):
+        occurrences.append({"url": url, "source_location": "title"})
     for url in _extract_source_urls(post.get("selftext")):
         occurrences.append({"url": url, "source_location": "selftext"})
     for comment in _comments(post):
@@ -900,7 +923,11 @@ def _analysis_block(index: int, post: dict[str, Any]) -> list[str]:
 
     external_urls: list[str] = []
     seen_urls: set[str] = set()
-    for value in [post.get("selftext", ""), *[c.get("body", "") for c in _comments(post)]]:
+    for value in [
+        post.get("title", ""),
+        post.get("selftext", ""),
+        *[c.get("body", "") for c in _comments(post)],
+    ]:
         for url in _extract_source_urls(value):
             if url not in seen_urls:
                 seen_urls.add(url)
@@ -1681,6 +1708,8 @@ Value extraction sequence:
 Operational constraints:
 - Read all three current sources and their preparation artifacts before writing.
 - Read external-links.json and identify concrete new products, apps, repositories, demos, research artifacts, and resources. Open high-value candidate destinations when accessible.
+- Make a destination clickable only when that exact URL appears in external-links.json or media-manifest.json; a source HTTP URL may be upgraded to the otherwise identical HTTPS URL.
+- A domain visible only inside an attachment, or a link discovered while browsing a source destination, may be described as plain text but must not become a new Markdown link.
 - Section 2 must expose direct HTTPS project or artifact links, not just Reddit discussion links. Include at least {MIN_DIRECT_PROJECT_LINKS} unique direct links when that many supported candidates exist.
 - Read every entry in media-manifest.json and media-assets.json. Inspect every attached image or video contact sheet as visual evidence rather than inferring from its filename, title, or post text.
 - Attachments derived from animated or unsupported source images contain one selected static PNG frame; do not infer the full animation from that sample.
@@ -1823,7 +1852,6 @@ def _current_project_urls(target: ReportTarget) -> set[str]:
             target, _build_external_link_manifest, include_history=False
         )
         if item.get("canonical_url")
-        and item.get("is_https")
         and item.get("kind") in {"app-store", "repository", "website"}
     }
 
@@ -1842,6 +1870,96 @@ def _content_urls(content: str) -> set[str]:
     values = {_markdown_target(match.group(1)) for match in _MARKDOWN_TARGET_RE.finditer(content)}
     values.update(_extract_urls(content))
     return {canonical for value in values if (canonical := _canonical_url(value))}
+
+
+def _allowed_external_url_variants(values: Sequence[str]) -> set[str]:
+    """Return exact source URLs plus safe HTTPS upgrades of source HTTP URLs."""
+    variants: set[str] = set()
+    for value in values:
+        canonical = _canonical_url(value)
+        if not canonical:
+            continue
+        variants.add(canonical)
+        parsed = urllib.parse.urlsplit(canonical)
+        if parsed.scheme == "http":
+            variants.add(
+                urllib.parse.urlunsplit(
+                    ("https", parsed.netloc, parsed.path, parsed.query, "")
+                )
+            )
+    return variants
+
+
+def _url_display_text(value: str) -> str:
+    canonical = _canonical_url(value)
+    if not canonical:
+        return value
+    parsed = urllib.parse.urlsplit(canonical)
+    path = "" if parsed.path == "/" else parsed.path
+    query = f"?{parsed.query}" if parsed.query else ""
+    return f"{parsed.netloc}{path}{query}"
+
+
+def normalize_report_links(
+    path: Path,
+    *,
+    allowed_external_urls: Sequence[str],
+    allowed_media_urls: Sequence[str] = (),
+) -> list[str]:
+    """Make ungrounded external destinations non-clickable without dropping report text."""
+    if not path.is_file():
+        return []
+    try:
+        content = path.read_text(encoding="utf-8")
+    except (OSError, UnicodeError):
+        return []
+
+    grounded_external = _allowed_external_url_variants(allowed_external_urls)
+    grounded_media = {
+        canonical
+        for value in allowed_media_urls
+        if (canonical := _canonical_url(value))
+    }
+    messages: list[str] = []
+
+    def ungrounded_external(value: str) -> str:
+        canonical = _canonical_url(value)
+        if not canonical or _url_host(canonical) in _REDDIT_HOSTS:
+            return ""
+        if canonical in grounded_external or canonical in grounded_media:
+            return ""
+        return canonical
+
+    def replace_markdown(match: re.Match[str]) -> str:
+        canonical = ungrounded_external(_markdown_target(match.group(1)))
+        if not canonical:
+            return match.group(0)
+        full_match = match.group(0)
+        label_start = full_match.find("[") + 1
+        label_end = full_match.find("](", label_start)
+        label = full_match[label_start:label_end].strip()
+        messages.append(f"removed ungrounded external link from report: {canonical}")
+        return label or _url_display_text(canonical)
+
+    normalized = _MARKDOWN_TARGET_RE.sub(replace_markdown, content)
+
+    def replace_bare_url(match: re.Match[str]) -> str:
+        raw = match.group(0)
+        canonical = ungrounded_external(raw)
+        if not canonical:
+            return raw
+        stripped = raw.rstrip(".,;:!?")
+        trailing = raw[len(stripped) :]
+        messages.append(f"removed ungrounded external link from report: {canonical}")
+        return _url_display_text(canonical) + trailing
+
+    normalized = _URL_RE.sub(replace_bare_url, normalized)
+    if normalized != content:
+        try:
+            _atomic_write_text(path, normalized)
+        except OSError as exc:
+            raise SnapshotError(f"Cannot normalize report links {path}: {exc}") from exc
+    return list(dict.fromkeys(messages))
 
 
 def normalize_media_review(
@@ -2219,7 +2337,7 @@ def validate_report(
                 + ", ".join(unknown_reddit_media)
             )
     if allowed_external_urls is not None:
-        allowed_canonical = {_canonical_url(url) for url in allowed_external_urls}
+        allowed_canonical = _allowed_external_url_variants(allowed_external_urls)
         unknown_external = sorted(
             url
             for url in report_urls
@@ -2239,7 +2357,13 @@ def validate_report(
     required_project_count = min(max(minimum_project_links, 0), len(project_candidates))
     if required_project_count:
         project_section_urls = _content_urls(section_contents.get(REQUIRED_SECTIONS[1], ""))
-        included_projects = project_section_urls.intersection(project_candidates)
+        included_projects = {
+            candidate
+            for candidate in project_candidates
+            if project_section_urls.intersection(
+                _allowed_external_url_variants((candidate,))
+            )
+        }
         if len(included_projects) < required_project_count:
             _record_warning(
                 warnings,
@@ -2377,11 +2501,19 @@ def analyze_job(
     }
     if media_ids:
         required_section_ids[REQUIRED_SECTIONS[5]] = media_ids
+    media_urls_by_type = _media_urls_by_type(media_assets.entries)
     try:
-        normalizations = normalize_media_review(
-            prepared.media_review_path,
-            expected_entries=media_assets.entries,
-            report_path=prepared.candidate_path,
+        normalizations = normalize_report_links(
+            prepared.candidate_path,
+            allowed_external_urls=allowed_external,
+            allowed_media_urls=set().union(*media_urls_by_type.values()),
+        )
+        normalizations.extend(
+            normalize_media_review(
+                prepared.media_review_path,
+                expected_entries=media_assets.entries,
+                report_path=prepared.candidate_path,
+            )
         )
     except SnapshotError as exc:
         return AnalysisResult(job, "failed", str(exc))
@@ -2391,7 +2523,6 @@ def analyze_job(
         expected_entries=media_assets.entries,
         report_path=prepared.candidate_path,
     )
-    media_urls_by_type = _media_urls_by_type(media_assets.entries)
     inspected_media_urls = (
         _reviewed_media_urls_by_type(prepared.media_review_path) if not errors else {}
     )

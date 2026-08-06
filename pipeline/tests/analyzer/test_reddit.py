@@ -35,6 +35,7 @@ from idea_pipeline.analyzer.reddit import (
     main,
     materialize_media_assets,
     normalize_media_review,
+    normalize_report_links,
     prepare_report,
     prepare_snapshot,
     rank_score,
@@ -406,9 +407,11 @@ class TestPreparation:
             [
                 post(
                     "bare",
+                    title="A card tracker launched at cardnDEX.com",
                     selftext=(
-                        "Try gesture.live for the demo. README.md and media-review.json "
-                        "are filenames, not websites. "
+                        "Try gesture.live for the demo and (usestyla dot com) for outfits. "
+                        "README.md and media-review.json are filenames, not websites. "
+                        "The value dot lower wording is prose, not a domain. "
                         "Use [legacy.test](http://legacy.test) for the old endpoint."
                     ),
                 )
@@ -423,11 +426,18 @@ class TestPreparation:
         links = json.loads(prepared.links_path.read_text())
         assert {item["canonical_url"] for item in links} == {
             "http://legacy.test/",
+            "https://cardndex.com/",
             "https://gesture.live/",
+            "https://usestyla.com/",
         }
         assert "https://legacy.test/" not in {
             item["canonical_url"] for item in links
         }
+        source_locations = {
+            item["canonical_url"]: item["source_location"] for item in links
+        }
+        assert source_locations["https://cardndex.com/"] == "title"
+        assert source_locations["https://usestyla.com/"] == "selftext"
 
     def test_prepares_one_sandbox_with_all_three_sources(self, tmp_path: Path) -> None:
         target = make_report_target(tmp_path)
@@ -590,6 +600,8 @@ class TestPromptAndCommand:
         assert "All direct external links" in prompt
         assert "Read every entry in media-manifest.json" in prompt
         assert "animated or unsupported source images" in prompt
+        assert "Make a destination clickable only when that exact URL appears" in prompt
+        assert "visible only inside an attachment" in prompt
         assert "write media-review.json" in prompt
         assert "Output candidate:\n- report.md\n- media-review.json" in prompt
         assert str(target.snapshots[0].path) not in prompt
@@ -796,6 +808,25 @@ class TestValidation:
             )
         ]
 
+    def test_accepts_an_https_upgrade_of_a_source_http_url(
+        self, tmp_path: Path
+    ) -> None:
+        candidate = tmp_path / "report.md"
+        candidate.write_text(
+            valid_report().replace(
+                "https://example.com/product", "https://indepai.app"
+            ),
+            encoding="utf-8",
+        )
+
+        errors = validate_report(
+            candidate,
+            expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+            allowed_external_urls={"http://indepai.app"},
+        )
+
+        assert errors == []
+
     def test_warns_when_stream_section_lacks_a_current_snapshot_citation(
         self, tmp_path: Path
     ) -> None:
@@ -941,6 +972,33 @@ class TestValidation:
         assert validate_media_review(
             review, expected_entries=entries, report_path=report
         ) == []
+
+    def test_removes_ungrounded_external_links_without_dropping_text(
+        self, tmp_path: Path
+    ) -> None:
+        report = tmp_path / "report.md"
+        report.write_text(
+            "[Source](https://example.com/product) | "
+            "[Repository](https://github.com/GyulyVGC/sniffnet) | "
+            "Visible result: https://globcall.com/path. | "
+            "[Media](https://i.redd.it/demo.png)\n",
+            encoding="utf-8",
+        )
+
+        messages = normalize_report_links(
+            report,
+            allowed_external_urls={"https://example.com/product"},
+            allowed_media_urls={"https://i.redd.it/demo.png"},
+        )
+
+        content = report.read_text()
+        assert "[Source](https://example.com/product)" in content
+        assert "[Media](https://i.redd.it/demo.png)" in content
+        assert "Repository" in content
+        assert "https://github.com/GyulyVGC/sniffnet" not in content
+        assert "Visible result: globcall.com/path." in content
+        assert "https://globcall.com/path" not in content
+        assert len(messages) == 2
 
     def test_validates_complete_media_review(self, tmp_path: Path) -> None:
         review = tmp_path / "media-review.json"
@@ -1131,6 +1189,64 @@ class TestAnalysisBoundary:
         assert any(
             "recommended schema" in warning
             for warning in warning_document["warnings"]
+        )
+
+    @patch("idea_pipeline.analyzer.reddit.subprocess.run")
+    def test_ungrounded_links_are_sanitized_before_publication(
+        self, mock_run: MagicMock, tmp_path: Path
+    ) -> None:
+        target = make_report_target(tmp_path)
+        write_snapshot(
+            target.snapshots[-1].path,
+            [
+                post(
+                    "build1",
+                    selftext=(
+                        "A launched workflow tool at http://example.com/product "
+                        "with one user."
+                    ),
+                )
+            ],
+        )
+        report = tmp_path / "reports" / "2026-08-02.md"
+        job = AnalysisJob(target, report)
+        candidate = (
+            tmp_path
+            / "artifacts"
+            / REPORT_ARTIFACT_NAME
+            / "2026-08-02"
+            / "report.md"
+        )
+
+        def generate(*_args: object, **_kwargs: object) -> subprocess.CompletedProcess[str]:
+            candidate.write_text(
+                valid_report().replace(
+                    "A linked project",
+                    "An [unverified repository](https://github.com/example/invented) "
+                    "and a linked project",
+                ),
+                encoding="utf-8",
+            )
+            (candidate.parent / "media-review.json").write_text(
+                '{"version": 1, "items": []}\n', encoding="utf-8"
+            )
+            return subprocess.CompletedProcess([], 0, stdout="done", stderr="")
+
+        mock_run.side_effect = generate
+
+        result = analyze_job(job, artifacts_dir=tmp_path / "artifacts")
+
+        assert result.status == "published"
+        published = report.read_text()
+        assert "unverified repository" in published
+        assert "https://github.com/example/invented" not in published
+        assert "https://example.com/product" in published
+        warning_document = json.loads(
+            (candidate.parent / "validation-warnings.json").read_text()
+        )
+        assert any(
+            "removed ungrounded external link" in message
+            for message in warning_document["normalizations"]
         )
 
     @patch("idea_pipeline.analyzer.reddit.subprocess.run")
