@@ -293,12 +293,16 @@ def normalize_translation(text: str) -> tuple[str, list[str]]:
 
         updated, count = re.subn(rf"(?<=[{_HAN}])(?=[A-Za-z0-9$])", " ", updated)
         spaced += count
-        updated, count = re.subn(rf"(?<=[A-Za-z0-9%）】》」])(?=[{_HAN}])", " ", updated)
+        updated, count = re.subn(rf"(?<=[A-Za-z0-9%])(?=[{_HAN}])", " ", updated)
         spaced += count
 
         updated, count = re.subn(rf"[ \t]+(?=[{_FULL_WIDTH_CLOSERS}])", "", updated)
         tightened += count
         updated, count = re.subn(rf"(?<=[{_FULL_WIDTH_OPENERS}])[ \t]+", "", updated)
+        tightened += count
+        updated, count = re.subn(
+            rf"(?<=[{_FULL_WIDTH_CLOSERS}])[ \t]+(?=[{_HAN}])", "", updated
+        )
         tightened += count
         updated, count = re.subn(r"。{2,}", "。", updated)
         tightened += count

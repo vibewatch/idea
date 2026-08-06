@@ -140,6 +140,11 @@ class TestNormalization:
 
         assert normalized == "这是结论。"
 
+    def test_keeps_full_width_punctuation_flush_against_chinese(self) -> None:
+        normalized, _messages = normalize_translation("创业想法（150）和 SaaS 构建（203）三个维度")
+
+        assert normalized == "创业想法（150）和 SaaS 构建（203）三个维度"
+
     def test_preserves_decimal_numbers_and_domains(self) -> None:
         normalized, _messages = normalize_translation("版本 1.2 部署在 printm.app 上")
 
