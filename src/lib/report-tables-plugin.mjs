@@ -1,8 +1,8 @@
 /**
- * Report tables must never scroll sideways. Wide tables are wrapped and labelled
- * so CSS can render each row as a stacked record card instead of a grid.
+ * Report tables must never scroll sideways. Tables are wrapped and every cell is
+ * labelled with its column header so narrow screens can stack rows as cards.
  */
-const RECORD_LAYOUT_MIN_COLUMNS = 4;
+const DENSE_MIN_COLUMNS = 6;
 
 function childElements(node, tagName) {
   if (!Array.isArray(node?.children)) return [];
@@ -51,7 +51,7 @@ export const reportTablesPlugin = {
         properties: {
           className: ['report-table'],
           'data-columns': String(columns),
-          'data-layout': columns >= RECORD_LAYOUT_MIN_COLUMNS ? 'records' : 'grid',
+          'data-density': columns >= DENSE_MIN_COLUMNS ? 'dense' : 'regular',
         },
         children: [],
       });

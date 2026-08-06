@@ -31,7 +31,6 @@ const { meta, headings, older, newer } = Astro.props;
   type="article"
   publishedTime={`${meta.date}T00:00:00Z`}
 >
-  <div class="read-progress" aria-hidden="true"></div>
   <article class="report-page" id="report-top" data-pagefind-filter={`year:${meta.year}`}>
     <header class="report-hero shell">
       <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -69,10 +68,7 @@ const { meta, headings, older, newer } = Astro.props;
       </ul>
     </header>
 
-    <div class="report-grid shell">
-      <aside class="report-sidebar">
-        <TableOfContents headings={headings} />
-      </aside>
+    <div class="report-body shell">
       <div class="report-main">
         <div class="report-prose" data-report-content>
           <slot />
@@ -95,5 +91,7 @@ const { meta, headings, older, newer } = Astro.props;
         )}
       </div>
     </div>
+
+    <TableOfContents headings={headings} />
   </article>
 </BaseLayout>
