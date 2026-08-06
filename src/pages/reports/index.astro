@@ -12,26 +12,29 @@ const reports = sortReports(await getCollection('reports')).map(getReportMeta);
   description="Browse concise, source-linked reports on builder problems, products, and outcomes."
 >
   <header class="page-header shell">
+    <p class="chip">Archive</p>
     <h1>Reports</h1>
-    <p>Published reports, newest first.</p>
+    <p>Published reports, newest first. Every claim links back to its source thread.</p>
   </header>
 
   <section class="archive-section shell">
-    <label class="archive-search">
-      <span class="sr-only">Filter reports</span>
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="11" cy="11" r="6.5"></circle>
-        <path d="m16 16 4 4"></path>
-      </svg>
-      <input type="search" placeholder="Filter reports" data-archive-query />
-    </label>
+    <div class="archive-toolbar">
+      <label class="archive-search">
+        <span class="sr-only">Filter reports</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="6.5"></circle>
+          <path d="m16 16 4 4"></path>
+        </svg>
+        <input type="search" placeholder="Filter reports" data-archive-query />
+      </label>
 
-    <p class="archive-result-line">
-      <strong data-visible-count>{reports.length}</strong>
-      <span data-visible-label>{reports.length === 1 ? ' report' : ' reports'}</span>
-    </p>
+      <p class="archive-result-line">
+        <strong data-visible-count>{reports.length}</strong>
+        <span data-visible-label>{reports.length === 1 ? ' report' : ' reports'}</span>
+      </p>
+    </div>
 
-    <div class="report-list" data-report-list>
+    <div class="report-list report-list--split" data-report-list>
       {reports.map((meta) => <ReportCard meta={meta} />)}
     </div>
     <div class="archive-empty" data-archive-empty hidden>

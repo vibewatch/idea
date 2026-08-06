@@ -11,9 +11,12 @@ const links = [
 const isActive = (href: string) => pathname.startsWith(href);
 ---
 
-<header class="site-header">
+<header class="site-header" data-site-header>
   <div class="shell header-inner">
-    <a class="brand" href={withBase('/')} aria-label="Idea home">Idea</a>
+    <a class="brand" href={withBase('/')} aria-label="Idea home">
+      <span class="brand-mark" aria-hidden="true">Id</span>
+      <span class="brand-text">Idea<small>Signal Desk</small></span>
+    </a>
 
     <nav class="desktop-nav" aria-label="Primary navigation">
       {links.map((link) => (
@@ -30,6 +33,7 @@ const isActive = (href: string) => pathname.startsWith(href);
           <path d="m16 16 4 4"></path>
         </svg>
         <span>Search</span>
+        <kbd aria-hidden="true" data-search-shortcut>Ctrl K</kbd>
       </button>
       <ThemeToggle />
       <details class="mobile-menu">
@@ -50,3 +54,19 @@ const isActive = (href: string) => pathname.startsWith(href);
     </div>
   </div>
 </header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+
+  const syncScrollState = () => {
+    header?.toggleAttribute('data-scrolled', window.scrollY > 8);
+  };
+
+  syncScrollState();
+  window.addEventListener('scroll', syncScrollState, { passive: true });
+
+  if (/Mac|iPhone|iPad/i.test(navigator.userAgent)) {
+    const shortcut = document.querySelector<HTMLElement>('[data-search-shortcut]');
+    if (shortcut) shortcut.textContent = '⌘ K';
+  }
+</script>

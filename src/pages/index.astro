@@ -5,39 +5,75 @@ import ReportCard from '../components/ReportCard.astro';
 import { getReportMeta, sortReports } from '../lib/reports';
 import { withBase } from '../lib/paths';
 
-const reports = sortReports(await getCollection('reports'));
-const latest = reports[0];
-const latestMeta = latest ? getReportMeta(latest) : null;
+const reports = sortReports(await getCollection('reports')).map(getReportMeta);
+const [latestMeta, ...rest] = reports;
+const recent = rest.slice(0, 4);
+const linkedSources = reports.reduce((total, meta) => total + meta.citationCount, 0);
 ---
 
 <BaseLayout description="Concise, source-linked reports on builder problems, products, and outcomes.">
-  <header class="home-intro shell">
-    <h1>Builder intelligence, with sources.</h1>
-    <p>
-      Concise reports on real problems, products, and outcomes. Each finding stays linked to
-      its source.
+  <header class="hero shell">
+    <p class="chip">Daily builder intelligence</p>
+    <h1>Builder signal, <em>with sources</em>.</h1>
+    <p class="hero-lede">
+      Concise reports on real problems, products, and outcomes — every finding stays linked to the
+      conversation it came from.
     </p>
-    <div class="home-actions">
+    <div class="hero-actions">
       {latestMeta && (
         <a class="button button--primary" href={withBase(`/reports/${latestMeta.date}/`)}>
           Read the latest report
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6"></path></svg>
         </a>
       )}
-      <a class="text-link" href={withBase('/about/')}>How reports are made</a>
+      <a class="button" href={withBase('/about/')}>How reports are made</a>
     </div>
+
+    <dl class="stat-strip">
+      <div>
+        <dt>Reports</dt>
+        <dd>{reports.length}</dd>
+      </div>
+      <div>
+        <dt>Linked sources</dt>
+        <dd>{linkedSources.toLocaleString('en-US')}</dd>
+      </div>
+      <div>
+        <dt>Latest</dt>
+        <dd>{latestMeta ? latestMeta.shortDate : '—'}</dd>
+      </div>
+    </dl>
   </header>
 
   <section class="home-latest shell" aria-labelledby="latest-report-title">
     <div class="section-title">
-      <h2 id="latest-report-title">Latest report</h2>
-      <a href={withBase('/reports/')}>All reports</a>
+      <div>
+        <p class="eyebrow">Fresh off the desk</p>
+        <h2 id="latest-report-title">Latest report</h2>
+      </div>
+      <a href={withBase('/reports/')}>All reports →</a>
     </div>
     {latestMeta ? (
       <div class="report-list">
-        <ReportCard meta={latestMeta} />
+        <ReportCard meta={latestMeta} featured />
       </div>
     ) : (
       <div class="empty-panel"><p>No reports have been published yet.</p></div>
     )}
   </section>
+
+  {recent.length > 0 && (
+    <section class="home-latest shell" aria-labelledby="earlier-reports-title">
+      <div class="section-title">
+        <div>
+          <p class="eyebrow">Archive</p>
+          <h2 id="earlier-reports-title">Earlier reports</h2>
+        </div>
+        <a href={withBase('/reports/')}>Browse all →</a>
+      </div>
+      <div class="report-list report-list--split">
+        {recent.map((meta) => <ReportCard meta={meta} />)}
+      </div>
+    </section>
+  )}
 </BaseLayout>

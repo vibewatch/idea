@@ -16,10 +16,11 @@ const sections = Astro.props.headings.filter(({ depth }) => depth === 2);
   <nav class="report-toc" aria-label="Report contents">
     <p class="toc-label">Contents</p>
     <ol>
-      {sections.map((heading) => (
+      {sections.map((heading, index) => (
         <li>
           <a href={`#${heading.slug}`} data-toc-link={heading.slug}>
-            {heading.text.replace(/^\d+\.\s*/, '')}
+            <em aria-hidden="true">{String(index + 1).padStart(2, '0')}</em>
+            <span>{heading.text.replace(/^\d+\.\s*/, '')}</span>
           </a>
         </li>
       ))}

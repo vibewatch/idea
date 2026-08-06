@@ -4,23 +4,38 @@ import { withBase } from '../lib/paths';
 
 interface Props {
   meta: ReportMeta;
+  featured?: boolean;
 }
 
-const { meta } = Astro.props;
+const { meta, featured = false } = Astro.props;
 const reportUrl = withBase(`/reports/${meta.date}/`);
+const tags = meta.signals.filter(({ count }) => count > 0).slice(0, featured ? 4 : 3);
 ---
 
 <article
-  class="report-card"
+  class:list={['report-card', featured && 'report-card--feature']}
   data-report-card
   data-year={meta.year}
   data-search={`${meta.title} ${meta.description} ${meta.signals.flatMap(({ items }) => items).join(' ')}`.toLowerCase()}
 >
   <div class="report-card__meta">
     <time datetime={meta.date}>{meta.displayDate}</time>
+    <i aria-hidden="true"></i>
     <span>{meta.readingMinutes} min read</span>
+    <i aria-hidden="true"></i>
+    <span>{meta.citationCount} linked sources</span>
   </div>
   <h2><a href={reportUrl}>{meta.title}</a></h2>
   <p>{meta.description}</p>
-  <a class="report-card__link" href={reportUrl} aria-label={`Read ${meta.title}`}>Read report</a>
+  {tags.length > 0 && (
+    <ul class="tag-row">
+      {tags.map((tag) => (
+        <li>{tag.label}<b>{tag.count}</b></li>
+      ))}
+    </ul>
+  )}
+  <span class="report-card__link">
+    Read report
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6"></path></svg>
+  </span>
 </article>

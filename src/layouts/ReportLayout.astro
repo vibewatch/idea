@@ -31,6 +31,7 @@ const { meta, headings, older, newer } = Astro.props;
   type="article"
   publishedTime={`${meta.date}T00:00:00Z`}
 >
+  <div class="read-progress" aria-hidden="true"></div>
   <article class="report-page" id="report-top" data-pagefind-filter={`year:${meta.year}`}>
     <header class="report-hero shell">
       <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -42,11 +43,30 @@ const { meta, headings, older, newer } = Astro.props;
       </nav>
       <h1 data-pagefind-meta="title">{meta.title}</h1>
       <p class="report-deck">{meta.description}</p>
-      <p class="report-meta">
-        <time datetime={meta.date} data-pagefind-meta="date">{meta.displayDate}</time>
-        <span aria-hidden="true">·</span>
-        <span>{meta.readingMinutes} min read</span>
-      </p>
+      <ul class="report-facts">
+        <li>
+          <span>Published</span>
+          <strong><time datetime={meta.date} data-pagefind-meta="date">{meta.displayDate}</time></strong>
+        </li>
+        <li>
+          <span>Reading time</span>
+          <strong>{meta.readingMinutes} min</strong>
+        </li>
+        <li>
+          <span>Sections</span>
+          <strong>{meta.sectionCount}</strong>
+        </li>
+        <li>
+          <span>Linked sources</span>
+          <strong>{meta.citationCount}</strong>
+        </li>
+        {meta.postCount !== null && (
+          <li>
+            <span>Posts reviewed</span>
+            <strong>{meta.postCount.toLocaleString('en-US')}</strong>
+          </li>
+        )}
+      </ul>
     </header>
 
     <div class="report-grid shell">
@@ -61,14 +81,14 @@ const { meta, headings, older, newer } = Astro.props;
           <nav class="report-neighbors" aria-label="Adjacent reports">
             {older ? (
               <a href={withBase(`/reports/${older.date}/`)} rel="prev">
-                <span>Older report</span>
-                <strong>{older.date}</strong>
+                <span>← Older report</span>
+                <strong>{older.title}</strong>
               </a>
             ) : <span></span>}
             {newer && (
               <a href={withBase(`/reports/${newer.date}/`)} rel="next">
-                <span>Newer report</span>
-                <strong>{newer.date}</strong>
+                <span>Newer report →</span>
+                <strong>{newer.title}</strong>
               </a>
             )}
           </nav>
