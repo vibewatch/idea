@@ -1,32 +1,38 @@
-name: Extract Reddit value report
+name: Translate reports to Chinese
 
 on:
   schedule:
-    # Analyze the previous UTC day after it has closed.
-    - cron: "43 2 * * *"
+    # Run after the daily analysis workflow has had time to publish.
+    - cron: "17 4 * * *"
   workflow_dispatch:
     inputs:
       date:
-        description: Optional complete three-stream snapshot date (YYYY-MM-DD).
+        description: Optional published report date to translate (YYYY-MM-DD).
         required: false
         type: string
-      include_today:
-        description: Include today's in-progress snapshot during automatic discovery.
+      limit:
+        description: Maximum number of overlays produced in one run.
         required: false
-        default: false
-        type: boolean
+        default: "5"
+        type: choice
+        options:
+          - "1"
+          - "2"
+          - "3"
+          - "5"
+          - "10"
       force:
-        description: Regenerate full reports that already exist.
+        description: Retranslate overlays that already match their source report.
         required: false
         default: false
         type: boolean
       prepare_only:
-        description: Build the combined sandbox without invoking Copilot or committing reports.
+        description: Build the translation sandbox without invoking Copilot or committing overlays.
         required: false
         default: false
         type: boolean
       model:
-        description: Copilot model used for report generation.
+        description: Copilot model used for translation.
         required: false
         default: grok-4.5
         type: choice
@@ -45,7 +51,7 @@ on:
           - high
           - xhigh
       workers:
-        description: Maximum number of dated full reports generated concurrently.
+        description: Maximum number of overlays generated concurrently.
         required: false
         default: "2"
         type: choice
@@ -56,11 +62,11 @@ on:
           - "4"
 
 concurrency:
-  group: reddit-builder-intelligence
+  group: reddit-translate-zh
   cancel-in-progress: false
 
 jobs:
-  analyze:
+  translate:
     runs-on: ubuntu-latest
     timeout-minutes: 360
     permissions:
@@ -83,9 +89,6 @@ jobs:
         run: uv sync --frozen
         working-directory: pipeline
 
-      - name: Install video frame extractor
-        run: sudo apt-get update && sudo apt-get install --yes ffmpeg
-
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
@@ -94,16 +97,16 @@ jobs:
       - name: Install Copilot CLI
         run: npm install --global @github/copilot@1.0.77
 
-      - name: Build intelligence reports
+      - name: Translate published reports
         env:
           COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }}
-          ANALYSIS_DATE: ${{ inputs.date }}
-          INCLUDE_TODAY: ${{ inputs.include_today || false }}
-          FORCE_REPORTS: ${{ inputs.force || false }}
+          TRANSLATION_DATE: ${{ inputs.date }}
+          TRANSLATION_LIMIT: ${{ inputs.limit || '5' }}
+          FORCE_TRANSLATIONS: ${{ inputs.force || false }}
           PREPARE_ONLY: ${{ inputs.prepare_only || false }}
           COPILOT_MODEL: ${{ inputs.model || 'grok-4.5' }}
           COPILOT_EFFORT_INPUT: ${{ inputs.effort || 'auto' }}
-          ANALYSIS_WORKERS: ${{ inputs.workers || '2' }}
+          TRANSLATION_WORKERS: ${{ inputs.workers || '2' }}
           PYTHONUNBUFFERED: "1"
         run: |
           if [[ "$COPILOT_EFFORT_INPUT" == "auto" ]]; then
@@ -114,14 +117,11 @@ jobs:
           else
             COPILOT_EFFORT="$COPILOT_EFFORT_INPUT"
           fi
-          args=(analyze-reddit --model "$COPILOT_MODEL" --effort "$COPILOT_EFFORT" --workers "$ANALYSIS_WORKERS")
-          if [[ -n "$ANALYSIS_DATE" ]]; then
-            args+=(--date "$ANALYSIS_DATE")
+          args=(translate-zh --model "$COPILOT_MODEL" --effort "$COPILOT_EFFORT" --workers "$TRANSLATION_WORKERS" --limit "$TRANSLATION_LIMIT")
+          if [[ -n "$TRANSLATION_DATE" ]]; then
+            args+=(--date "$TRANSLATION_DATE")
           fi
-          if [[ "$INCLUDE_TODAY" == "true" ]]; then
-            args+=(--include-today)
-          fi
-          if [[ "$FORCE_REPORTS" == "true" ]]; then
+          if [[ "$FORCE_TRANSLATIONS" == "true" ]]; then
             args+=(--force)
           fi
           if [[ "$PREPARE_ONLY" == "true" ]]; then
@@ -130,38 +130,35 @@ jobs:
           uv run --frozen "${args[@]}"
         working-directory: pipeline
 
-      - name: Upload failed analysis diagnostics
+      - name: Upload failed translation diagnostics
         if: ${{ failure() || cancelled() }}
         uses: actions/upload-artifact@v6
         with:
-          name: reddit-analysis-diagnostics-${{ github.run_id }}-${{ github.run_attempt }}
+          name: reddit-translation-diagnostics-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
-            pipeline/artifacts/reddit/builder-intelligence/**/report.md
-            pipeline/artifacts/reddit/builder-intelligence/**/media-review.json
-            pipeline/artifacts/reddit/builder-intelligence/**/metadata.json
-            pipeline/artifacts/reddit/builder-intelligence/**/external-links.json
-            pipeline/artifacts/reddit/builder-intelligence/**/media-manifest.json
-            pipeline/artifacts/reddit/builder-intelligence/**/media-assets.json
-            pipeline/artifacts/reddit/builder-intelligence/**/prompt.txt
-            pipeline/artifacts/reddit/builder-intelligence/**/validation-errors.json
-            pipeline/artifacts/reddit/builder-intelligence/**/validation-warnings.json
-            pipeline/artifacts/reddit/builder-intelligence/**/copilot.stdout.log
-            pipeline/artifacts/reddit/builder-intelligence/**/copilot.stderr.log
+            pipeline/artifacts/translations/zh/**/translation.md
+            pipeline/artifacts/translations/zh/**/structure.json
+            pipeline/artifacts/translations/zh/**/protected-terms.json
+            pipeline/artifacts/translations/zh/**/prompt.txt
+            pipeline/artifacts/translations/zh/**/validation-errors.json
+            pipeline/artifacts/translations/zh/**/validation-warnings.json
+            pipeline/artifacts/translations/zh/**/copilot.stdout.log
+            pipeline/artifacts/translations/zh/**/copilot.stderr.log
           if-no-files-found: ignore
           retention-days: 7
 
-      - name: Commit validated reports
-        if: ${{ always() && !cancelled() }}
+      - name: Commit validated translations
+        if: ${{ always() && !cancelled() && inputs.prepare_only != true }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports/reddit/
+          git add reports/reddit/zh/
           if git diff --cached --quiet; then
-            echo "No new Reddit reports to commit."
+            echo "No new Chinese overlays to commit."
             exit 0
           fi
 
-          git commit -m "reddit intelligence: $(date -u +%Y-%m-%dT%H:%MZ)"
+          git commit -m "reddit intelligence zh: $(date -u +%Y-%m-%dT%H:%MZ)"
           branch="$GITHUB_REF_NAME"
           for attempt in 1 2 3; do
             git fetch origin "$branch"
@@ -171,5 +168,5 @@ jobs:
             fi
             echo "Push attempt $attempt failed; rebasing and retrying."
           done
-          echo "Unable to push Reddit reports after 3 attempts."
+          echo "Unable to push Chinese overlays after 3 attempts."
           exit 1

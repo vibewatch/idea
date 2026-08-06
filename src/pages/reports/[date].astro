@@ -2,9 +2,13 @@
 import { getCollection, render } from 'astro:content';
 import ReportLayout from '../../layouts/ReportLayout.astro';
 import { getReportMeta, sortReports, type ReportEntry } from '../../lib/reports';
+import { withBase } from '../../lib/paths';
 
 export async function getStaticPaths() {
   const reports = sortReports(await getCollection('reports'));
+  const translated = new Set(
+    (await getCollection('reportsZh')).map((entry) => getReportMeta(entry).date),
+  );
   return reports.map((entry, index) => {
     const meta = getReportMeta(entry);
     const olderEntry = reports[index + 1];
@@ -15,6 +19,7 @@ export async function getStaticPaths() {
         entry,
         older: olderEntry ? getReportMeta(olderEntry) : undefined,
         newer: newerEntry ? getReportMeta(newerEntry) : undefined,
+        hasTranslation: translated.has(meta.date),
       },
     };
   });
@@ -24,13 +29,20 @@ interface Props {
   entry: ReportEntry;
   older?: ReturnType<typeof getReportMeta>;
   newer?: ReturnType<typeof getReportMeta>;
+  hasTranslation: boolean;
 }
 
-const { entry, older, newer } = Astro.props;
+const { entry, older, newer, hasTranslation } = Astro.props;
 const meta = getReportMeta(entry);
 const { Content, headings } = await render(entry);
 ---
 
-<ReportLayout meta={meta} headings={headings} older={older} newer={newer}>
+<ReportLayout
+  meta={meta}
+  headings={headings}
+  older={older}
+  newer={newer}
+  alternateHref={hasTranslation ? withBase(`/zh/reports/${meta.date}/`) : undefined}
+>
   <Content />
 </ReportLayout>

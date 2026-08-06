@@ -12,6 +12,7 @@ interface Props {
   type?: 'website' | 'article';
   publishedTime?: string;
   noindex?: boolean;
+  lang?: string;
 }
 
 const {
@@ -21,6 +22,7 @@ const {
   type = 'website',
   publishedTime,
   noindex = false,
+  lang = 'en',
 } = Astro.props;
 const siteName = 'Idea Signal Desk';
 const pageTitle = title ? `${title} · ${siteName}` : `${siteName} — Source-linked builder reports`;
@@ -30,7 +32,7 @@ const socialImage = new URL(image, origin);
 ---
 
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang={lang} data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />

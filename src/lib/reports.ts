@@ -1,6 +1,8 @@
 import type { CollectionEntry } from 'astro:content';
 
-export type ReportEntry = CollectionEntry<'reports'>;
+export type ReportEntry = CollectionEntry<'reports'> | CollectionEntry<'reportsZh'>;
+
+export type ReportLocale = 'en' | 'zh';
 
 export interface ReportSection {
   title: string;
@@ -156,11 +158,18 @@ function reportDate(entry: ReportEntry): string {
   return match[0];
 }
 
-function formatDate(date: string, options: Intl.DateTimeFormatOptions): string {
-  return new Intl.DateTimeFormat('en-US', {
+function formatDate(date: string, options: Intl.DateTimeFormatOptions, locale: ReportLocale = 'en'): string {
+  return new Intl.DateTimeFormat(locale === 'zh' ? 'zh-CN' : 'en-US', {
     timeZone: 'UTC',
     ...options,
   }).format(new Date(`${date}T00:00:00Z`));
+}
+
+// Chinese prose has no word spacing, so characters and Latin words are counted separately.
+function readingMinutes(text: string): number {
+  const hanCharacters = (text.match(/[\u3400-\u4dbf\u4e00-\u9fff]/g) ?? []).length;
+  const latinWords = (text.match(/[A-Za-z0-9][A-Za-z0-9'’-]*/g) ?? []).length;
+  return Math.max(1, Math.ceil(latinWords / 220 + hanCharacters / 400));
 }
 
 function extractPostCount(body: string): number | null {
@@ -168,11 +177,11 @@ function extractPostCount(body: string): number | null {
   return match ? Number.parseInt(match[1]?.replaceAll(',', '') ?? '', 10) : null;
 }
 
-export function getReportMeta(entry: ReportEntry): ReportMeta {
+export function getReportMeta(entry: ReportEntry, locale: ReportLocale = 'en'): ReportMeta {
   const date = reportDate(entry);
   const sections = extractSections(entry.body ?? '');
   const summary = proseFromSection(sections[0]);
-  const words = cleanInlineMarkdown(entry.body ?? '').split(/\s+/).filter(Boolean).length;
+  const cleaned = cleanInlineMarkdown(entry.body ?? '');
   const citations = new Set((entry.body ?? '').match(REDDIT_LINK_PATTERN) ?? []);
 
   return {
@@ -188,13 +197,13 @@ export function getReportMeta(entry: ReportEntry): ReportMeta {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
-    }),
+    }, locale),
     shortDate: formatDate(date, {
       month: 'short',
       day: 'numeric',
       year: 'numeric',
-    }),
-    readingMinutes: Math.max(1, Math.ceil(words / 220)),
+    }, locale),
+    readingMinutes: readingMinutes(cleaned),
     postCount: extractPostCount(entry.body ?? ''),
     sectionCount: sections.length,
     citationCount: citations.size,

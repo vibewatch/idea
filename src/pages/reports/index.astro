@@ -4,7 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ReportCard from '../../components/ReportCard.astro';
 import { getReportMeta, sortReports } from '../../lib/reports';
 
-const reports = sortReports(await getCollection('reports')).map(getReportMeta);
+const reports = sortReports(await getCollection('reports')).map((entry) => getReportMeta(entry));
 ---
 
 <BaseLayout

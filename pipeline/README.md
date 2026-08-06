@@ -1,6 +1,6 @@
 # Python pipeline
 
-One Python project hosts three sibling subsystems: Reddit data collection, report analysis, and browser-cookie refresh. They share a lockfile, environment, path utilities, and logging without importing each other's implementation.
+One Python project hosts four sibling subsystems: Reddit data collection, report analysis, Chinese translation, and browser-cookie refresh. They share a lockfile, environment, path utilities, and logging without importing each other's implementation.
 
 ```text
 pipeline/
@@ -10,14 +10,16 @@ pipeline/
 ├── src/idea_pipeline/
 │   ├── analyzer/reddit.py
 │   ├── scraper/reddit.py
+│   ├── translator/zh.py
 │   └── refresher/{browser,config,extract,github}.py
 └── tests/
   ├── analyzer/test_reddit.py
   ├── scraper/test_reddit.py
+  ├── translator/test_zh.py
   └── refresher/test_refresh.py
 ```
 
-The project is isolated from the root Astro application. It owns Python code, configuration, secrets, and ignored work artifacts under `pipeline/`. Collection writes the shared dataset under `data/reddit/`; analysis publishes validated Markdown under `reports/reddit/`.
+The project is isolated from the root Astro application. It owns Python code, configuration, secrets, and ignored work artifacts under `pipeline/`. Collection writes the shared dataset under `data/reddit/`; analysis publishes validated Markdown under `reports/reddit/`; translation publishes Chinese overlays under `reports/reddit/zh/`.
 
 ## Scraping pipeline
 
@@ -170,6 +172,32 @@ Validation is intentionally stricter than Astro's Markdown parser but no longer 
 
 The workflow `.github/workflows/analyze_reddit.yml` runs daily at 02:43 UTC and supports manual date, model, effort, worker, force, include-today, and prepare-only inputs.
 
+## Translation pipeline
+
+Each published English report gets one Simplified Chinese overlay at `reports/reddit/zh/<date>.md`.
+
+1. Discover published reports under `reports/reddit/`, newest first.
+2. Queue a date when its overlay is missing, or when the overlay's recorded `source_sha256` no longer matches the English report.
+3. Write a sandbox per date containing `source.md`, `structure.json`, `protected-terms.json`, the translation skill as `instructions.md`, and `prompt.txt`.
+4. Run one sandboxed Copilot CLI process per date with shell access disabled, built-in GitHub MCP disabled, web access withheld, and unrelated pipeline credentials removed.
+5. Normalize the candidate for Chinese typography: full-width punctuation after Chinese text, one space between Chinese and Latin/digits, and no spaces around full-width marks. Code spans, URLs, and Markdown link targets are excluded from the pass.
+6. Validate the candidate against the structural contract, then publish only on success with generated front matter recording `lang`, `source`, `source_sha256`, `model`, and `translated_at`.
+
+```bash
+uv run --project pipeline translate-zh --prepare-only
+uv run --project pipeline translate-zh
+uv run --project pipeline translate-zh --date 2026-08-05 --force
+uv run --project pipeline translate-zh --limit 2 --model claude-opus-4.6
+```
+
+Model controls default to `--model claude-sonnet-4.6 --effort high`, and `--limit` defaults to 5 overlays per run.
+
+The skill at `.agents/skills/translate-zh/SKILL.md` carries the quality bar: restructure English clause chains into short Chinese clauses, strip translationese (stray `一个`/`们`/`该`/`其`, literal `被`-passives, stacked `的`), apply a fixed builder-domain glossary, keep product names, URLs, metrics, and Reddit post titles verbatim, and preserve every hedge.
+
+Blocking validation covers heading sequence and levels, per-table column and row counts, exact link and image sets, untranslated headings or table headers, and a Chinese-character floor that catches a mostly-English candidate. Translationese signals are advisory warnings recorded in `validation-warnings.json` so a usable overlay is not discarded for style alone. Failed runs upload the candidate, contract, prompt, validation output, and Copilot logs as a seven-day diagnostics artifact.
+
+The workflow `.github/workflows/translate_zh.yml` runs daily at 04:17 UTC, after analysis, and supports manual date, limit, model, effort, worker, force, and prepare-only inputs.
+
 ## Cookie refresh pipeline
 
 Reddit authentication here is browser-cookie based, so the pipeline renews the `REDDIT_COOKIES` session rather than exchanging an OAuth refresh token:
@@ -193,7 +221,7 @@ Configure these repository Actions secrets:
 |---|---|
 | `REDDIT_COOKIES` | Playwright/browser-export JSON used by both collection and refresh workflows |
 | `GH_PAT` | GitHub token permitted to update this repository's Actions secrets and create issues |
-| `COPILOT_PAT` | Copilot CLI authentication used by the daily report-analysis workflow |
+| `COPILOT_PAT` | Copilot CLI authentication used by the daily report-analysis and translation workflows |
 
 The built-in workflow `GITHUB_TOKEN` is not used for secret replacement. Keep `GH_PAT` narrowly scoped to this repository and rotate it according to your security policy.
 

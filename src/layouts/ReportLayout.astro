@@ -1,7 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import TableOfContents from '../components/TableOfContents.astro';
-import type { ReportMeta } from '../lib/reports';
+import type { ReportLocale, ReportMeta } from '../lib/reports';
 import { withBase } from '../lib/paths';
 
 interface Heading {
@@ -20,48 +20,90 @@ interface Props {
   headings: Heading[];
   older?: Neighbor | undefined;
   newer?: Neighbor | undefined;
+  locale?: ReportLocale;
+  alternateHref?: string | undefined;
 }
 
-const { meta, headings, older, newer } = Astro.props;
+const { meta, headings, older, newer, locale = 'en', alternateHref } = Astro.props;
+
+const copy = {
+  en: {
+    home: 'Home',
+    reports: 'Reports',
+    published: 'Published',
+    reading: 'Reading time',
+    minutes: 'min',
+    sections: 'Sections',
+    sources: 'Linked sources',
+    posts: 'Posts reviewed',
+    older: '← Older report',
+    newer: 'Newer report →',
+    alternate: '中文版',
+  },
+  zh: {
+    home: '首页',
+    reports: '报告',
+    published: '发布日期',
+    reading: '阅读时长',
+    minutes: '分钟',
+    sections: '章节数',
+    sources: '引用来源',
+    posts: '分析帖子',
+    older: '← 更早的报告',
+    newer: '更新的报告 →',
+    alternate: 'English',
+  },
+}[locale];
+
+const reportBase = locale === 'zh' ? '/zh/reports' : '/reports';
 ---
 
 <BaseLayout
   title={meta.title}
   description={meta.description}
+  lang={locale === 'zh' ? 'zh-CN' : 'en'}
   type="article"
   publishedTime={`${meta.date}T00:00:00Z`}
 >
   <article class="report-page" id="report-top" data-pagefind-filter={`year:${meta.year}`}>
     <header class="report-hero shell">
       <nav class="breadcrumbs" aria-label="Breadcrumb">
-        <a href={withBase('/')}>Home</a>
+        <a href={withBase('/')}>{copy.home}</a>
         <span aria-hidden="true">/</span>
-        <a href={withBase('/reports/')}>Reports</a>
+        <a href={withBase(`${reportBase}/`)}>{copy.reports}</a>
         <span aria-hidden="true">/</span>
         <span>{meta.date}</span>
+        {alternateHref && (
+          <>
+            <span aria-hidden="true">·</span>
+            <a class="breadcrumbs__alternate" href={alternateHref} hreflang={locale === 'zh' ? 'en' : 'zh-CN'}>
+              {copy.alternate}
+            </a>
+          </>
+        )}
       </nav>
       <h1 data-pagefind-meta="title">{meta.title}</h1>
       <p class="report-deck">{meta.description}</p>
       <ul class="report-facts">
         <li>
-          <span>Published</span>
+          <span>{copy.published}</span>
           <strong><time datetime={meta.date} data-pagefind-meta="date">{meta.displayDate}</time></strong>
         </li>
         <li>
-          <span>Reading time</span>
-          <strong>{meta.readingMinutes} min</strong>
+          <span>{copy.reading}</span>
+          <strong>{meta.readingMinutes} {copy.minutes}</strong>
         </li>
         <li>
-          <span>Sections</span>
+          <span>{copy.sections}</span>
           <strong>{meta.sectionCount}</strong>
         </li>
         <li>
-          <span>Linked sources</span>
+          <span>{copy.sources}</span>
           <strong>{meta.citationCount}</strong>
         </li>
         {meta.postCount !== null && (
           <li>
-            <span>Posts reviewed</span>
+            <span>{copy.posts}</span>
             <strong>{meta.postCount.toLocaleString('en-US')}</strong>
           </li>
         )}
@@ -76,14 +118,14 @@ const { meta, headings, older, newer } = Astro.props;
         {(older || newer) && (
           <nav class="report-neighbors" aria-label="Adjacent reports">
             {older ? (
-              <a href={withBase(`/reports/${older.date}/`)} rel="prev">
-                <span>← Older report</span>
+              <a href={withBase(`${reportBase}/${older.date}/`)} rel="prev">
+                <span>{copy.older}</span>
                 <strong>{older.title}</strong>
               </a>
             ) : <span></span>}
             {newer && (
-              <a href={withBase(`/reports/${newer.date}/`)} rel="next">
-                <span>Newer report →</span>
+              <a href={withBase(`${reportBase}/${newer.date}/`)} rel="next">
+                <span>{copy.newer}</span>
                 <strong>{newer.title}</strong>
               </a>
             )}

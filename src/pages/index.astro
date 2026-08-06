@@ -5,7 +5,7 @@ import ReportCard from '../components/ReportCard.astro';
 import { getReportMeta, sortReports } from '../lib/reports';
 import { withBase } from '../lib/paths';
 
-const reports = sortReports(await getCollection('reports')).map(getReportMeta);
+const reports = sortReports(await getCollection('reports')).map((entry) => getReportMeta(entry));
 const [latestMeta, ...rest] = reports;
 const recent = rest.slice(0, 4);
 const linkedSources = reports.reduce((total, meta) => total + meta.citationCount, 0);
