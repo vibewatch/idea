@@ -23,6 +23,7 @@ from idea_pipeline.analyzer.reddit import (
     AnalysisJob,
     ReportTarget,
     SnapshotTarget,
+    _download_image_asset,
     analyze_job,
     build_copilot_command,
     build_parser,
@@ -516,6 +517,43 @@ class TestPreparation:
         }
         assert json.loads(assets.manifest_path.read_text()) == list(assets.entries)
 
+    @patch("idea_pipeline.analyzer.reddit.subprocess.run")
+    @patch("idea_pipeline.analyzer.reddit.shutil.which", return_value="/usr/bin/ffmpeg")
+    @patch("idea_pipeline.analyzer.reddit.requests.get")
+    def test_converts_gif_to_a_model_safe_static_png(
+        self,
+        mock_get: MagicMock,
+        _mock_which: MagicMock,
+        mock_run: MagicMock,
+        tmp_path: Path,
+    ) -> None:
+        response = MagicMock()
+        response.is_redirect = False
+        response.is_permanent_redirect = False
+        response.headers = {"content-type": "image/gif"}
+        response.iter_content.return_value = [b"GIF89a-source"]
+        mock_get.return_value = response
+
+        def convert(
+            command: list[str], **_kwargs: object
+        ) -> subprocess.CompletedProcess[str]:
+            Path(command[-1]).write_bytes(b"\x89PNG\r\n\x1a\nconverted")
+            return subprocess.CompletedProcess(command, 0, stdout="", stderr="")
+
+        mock_run.side_effect = convert
+
+        asset = _download_image_asset(
+            "https://i.redd.it/animated.gif", tmp_path / "asset"
+        )
+
+        assert asset == tmp_path / "asset.png"
+        assert asset.read_bytes().startswith(b"\x89PNG")
+        assert not list(tmp_path.glob("*.gif"))
+        command = mock_run.call_args.args[0]
+        assert command[0] == "/usr/bin/ffmpeg"
+        assert "thumbnail=100" in command[command.index("-vf") + 1]
+        assert command[command.index("-frames:v") + 1] == "1"
+
     @patch("idea_pipeline.analyzer.reddit.requests.get")
     def test_never_requests_an_unapproved_image_host(
         self, mock_get: MagicMock, tmp_path: Path
@@ -551,6 +589,7 @@ class TestPromptAndCommand:
         assert "Do not write an opportunity ranking" in prompt
         assert "All direct external links" in prompt
         assert "Read every entry in media-manifest.json" in prompt
+        assert "animated or unsupported source images" in prompt
         assert "write media-review.json" in prompt
         assert "Output candidate:\n- report.md\n- media-review.json" in prompt
         assert str(target.snapshots[0].path) not in prompt

@@ -1208,6 +1208,51 @@ def _validated_image_source_url(value: Any) -> str:
     return canonical
 
 
+def _convert_image_to_static_png(source: Path, destination: Path) -> Path:
+    """Convert an unsupported or animated image to one bounded, model-safe PNG frame."""
+    ffmpeg = shutil.which("ffmpeg")
+    if ffmpeg is None:
+        raise SnapshotError("ffmpeg is not installed")
+
+    temporary = destination.with_name(f".{destination.name}.{os.getpid()}.tmp.png")
+    command = [
+        ffmpeg,
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-i",
+        str(source),
+        "-vf",
+        (
+            "thumbnail=100,"
+            "scale=min(iw\\,2048):min(ih\\,2048):"
+            "force_original_aspect_ratio=decrease"
+        ),
+        "-frames:v",
+        "1",
+        "-y",
+        str(temporary),
+    ]
+    try:
+        process = subprocess.run(
+            command,
+            capture_output=True,
+            text=True,
+            timeout=MEDIA_PROCESS_TIMEOUT,
+            check=False,
+        )
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        temporary.unlink(missing_ok=True)
+        raise SnapshotError(f"cannot normalize image: {exc}") from exc
+    if process.returncode != 0 or not temporary.is_file() or temporary.stat().st_size == 0:
+        temporary.unlink(missing_ok=True)
+        message = _truncate(process.stderr.strip() or "ffmpeg produced no PNG frame", 300)
+        raise SnapshotError(f"cannot normalize image: {message}")
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    os.replace(temporary, destination)
+    return destination
+
+
 def _download_image_asset(url: str, destination_stem: Path) -> Path:
     current_url = _validated_image_source_url(url)
     response: requests.Response | None = None
@@ -1238,14 +1283,17 @@ def _download_image_asset(url: str, destination_stem: Path) -> Path:
         content_type = response.headers.get("content-type", "").split(";", 1)[0].casefold()
         if not content_type.startswith("image/"):
             raise SnapshotError(f"media URL did not return an image: {content_type or 'unknown'}")
-        extension = {
+        source_extension = {
             "image/jpeg": ".jpg",
             "image/png": ".png",
             "image/gif": ".gif",
             "image/webp": ".webp",
         }.get(content_type, ".img")
-        destination = destination_stem.with_suffix(extension)
-        temporary = destination.with_name(f".{destination.name}.{os.getpid()}.tmp")
+        model_safe = content_type in {"image/jpeg", "image/png"}
+        destination = destination_stem.with_suffix(source_extension if model_safe else ".png")
+        temporary = destination_stem.with_name(
+            f".{destination_stem.name}.{os.getpid()}.source{source_extension}"
+        )
         size = 0
         try:
             with temporary.open("wb") as output:
@@ -1260,7 +1308,10 @@ def _download_image_asset(url: str, destination_stem: Path) -> Path:
                     output.write(chunk)
             if size == 0:
                 raise SnapshotError("image response was empty")
-            os.replace(temporary, destination)
+            if model_safe:
+                os.replace(temporary, destination)
+            else:
+                _convert_image_to_static_png(temporary, destination)
         finally:
             temporary.unlink(missing_ok=True)
         return destination
@@ -1589,7 +1640,7 @@ def build_prompt(
         if not attached:
             attached = "  - None could be materialized; record URL inspection failures explicitly"
         media_assets_summary = f"""- Media asset status: media-assets.json
-- Attached images and video contact sheets:
+- Attached images and video contact sheets (JPEG/PNG only; animated or unsupported source images are represented by one selected static PNG frame):
 {attached}"""
     return f"""Generate exactly one evidence-grounded Reddit Builder Intelligence Report.
 
@@ -1632,6 +1683,7 @@ Operational constraints:
 - Read external-links.json and identify concrete new products, apps, repositories, demos, research artifacts, and resources. Open high-value candidate destinations when accessible.
 - Section 2 must expose direct HTTPS project or artifact links, not just Reddit discussion links. Include at least {MIN_DIRECT_PROJECT_LINKS} unique direct links when that many supported candidates exist.
 - Read every entry in media-manifest.json and media-assets.json. Inspect every attached image or video contact sheet as visual evidence rather than inferring from its filename, title, or post text.
+- Attachments derived from animated or unsupported source images contain one selected static PNG frame; do not infer the full animation from that sample.
 - For gallery, external-video, failed, or URL-only entries, attempt the public URL with URL/web tools. If it cannot be viewed, record `unavailable`; never pretend it was inspected.
 - Before writing report.md, write media-review.json with one object per media-manifest entry. Use the exact schema and statuses in instructions.md. Every attached asset must have status `inspected` or `not-substantive` and a concrete visual observation.
 - Set `report_included` to true if and only if that exact media URL appears in report.md.

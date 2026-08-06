@@ -132,7 +132,7 @@ jobs:
         working-directory: pipeline
 
       - name: Upload failed analysis diagnostics
-        if: failure()
+        if: ${{ failure() || cancelled() }}
         uses: actions/upload-artifact@v6
         with:
           name: reddit-analysis-diagnostics-${{ github.run_id }}-${{ github.run_attempt }}
@@ -141,6 +141,8 @@ jobs:
             pipeline/artifacts/reddit/builder-intelligence/**/media-review.json
             pipeline/artifacts/reddit/builder-intelligence/**/external-links.json
             pipeline/artifacts/reddit/builder-intelligence/**/media-manifest.json
+            pipeline/artifacts/reddit/builder-intelligence/**/media-assets.json
+            pipeline/artifacts/reddit/builder-intelligence/**/prompt.txt
             pipeline/artifacts/reddit/builder-intelligence/**/validation-errors.json
             pipeline/artifacts/reddit/builder-intelligence/**/validation-warnings.json
             pipeline/artifacts/reddit/builder-intelligence/**/copilot.stdout.log
