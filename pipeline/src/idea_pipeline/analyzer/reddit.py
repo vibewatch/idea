@@ -167,6 +167,12 @@ TOPIC_LENSES = {
 _TOPIC_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9_-]*\Z")
 _DATE_FILE_RE = re.compile(r"(\d{4}-\d{2}-\d{2})\.json\Z")
 _URL_RE = re.compile(r"https?://[^\s\])}>\"']+", re.IGNORECASE)
+_BARE_DOMAIN_RE = re.compile(
+    r"(?<![@\w:/])"
+    r"((?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+"
+    r"[a-z]{2,63}(?:/[^\s\])}>\"']*)?)",
+    re.IGNORECASE,
+)
 _WORD_RE = re.compile(r"[a-z][a-z0-9']*(?:-[a-z0-9']+)*")
 _QUANTIFIED_SIGNAL_RE = re.compile(
     r"(?:[$€£]\s?\d|\d+(?:[.,]\d+)?\s?(?:%|hours?|hrs?|days?|weeks?|months?|years?"
@@ -219,6 +225,35 @@ _VIDEO_HOSTS = frozenset(
 )
 _APP_STORE_HOSTS = frozenset(
     {"apps.apple.com", "play.google.com", "apps.shopify.com"}
+)
+_NON_DOMAIN_FILE_SUFFIXES = frozenset(
+    {
+        "css",
+        "csv",
+        "gif",
+        "html",
+        "jpeg",
+        "jpg",
+        "js",
+        "json",
+        "jsx",
+        "lock",
+        "log",
+        "md",
+        "mov",
+        "mp4",
+        "png",
+        "py",
+        "toml",
+        "ts",
+        "tsx",
+        "txt",
+        "webm",
+        "webp",
+        "xml",
+        "yaml",
+        "yml",
+    }
 )
 
 _ACRONYMS = {
@@ -502,6 +537,29 @@ def _extract_urls(value: Any) -> list[str]:
     return urls
 
 
+def _extract_source_urls(value: Any) -> list[str]:
+    """Extract explicit URLs plus unambiguous bare domains from source text."""
+    text = str(value or "")
+    urls = _extract_urls(text)
+    seen = {
+        canonical for url in urls if (canonical := _canonical_url(url))
+    }
+    for match in _BARE_DOMAIN_RE.finditer(text):
+        if re.match(r"\]\(\s*https?://", text[match.end() :], re.IGNORECASE):
+            continue
+        bare = match.group(1).rstrip(".,;:!?")
+        host = bare.partition("/")[0]
+        if host.rpartition(".")[2].casefold() in _NON_DOMAIN_FILE_SUFFIXES:
+            continue
+        url = f"https://{bare}"
+        canonical = _canonical_url(url)
+        if not canonical or canonical in seen:
+            continue
+        seen.add(canonical)
+        urls.append(url)
+    return urls
+
+
 def _strip_utm_parameters(query: str) -> str:
     """Remove analytics-only UTM fields without rewriting functional query data."""
     retained: list[str] = []
@@ -555,10 +613,10 @@ def _source_url_occurrences(post: dict[str, Any]) -> list[dict[str, Any]]:
     outbound_url = str(post.get("url") or "")
     if outbound_url.startswith(("http://", "https://")):
         occurrences.append({"url": outbound_url, "source_location": "post_url"})
-    for url in _extract_urls(post.get("selftext")):
+    for url in _extract_source_urls(post.get("selftext")):
         occurrences.append({"url": url, "source_location": "selftext"})
     for comment in _comments(post):
-        for url in _extract_urls(comment.get("body")):
+        for url in _extract_source_urls(comment.get("body")):
             occurrences.append(
                 {
                     "url": url,
@@ -843,7 +901,7 @@ def _analysis_block(index: int, post: dict[str, Any]) -> list[str]:
     external_urls: list[str] = []
     seen_urls: set[str] = set()
     for value in [post.get("selftext", ""), *[c.get("body", "") for c in _comments(post)]]:
-        for url in _extract_urls(value):
+        for url in _extract_source_urls(value):
             if url not in seen_urls:
                 seen_urls.add(url)
                 external_urls.append(url)
@@ -1734,6 +1792,72 @@ def _content_urls(content: str) -> set[str]:
     return {canonical for value in values if (canonical := _canonical_url(value))}
 
 
+def normalize_media_review(
+    path: Path,
+    *,
+    expected_entries: Sequence[dict[str, Any]],
+    report_path: Path | None = None,
+) -> list[str]:
+    """Correct media-review fields that are deterministic from manifests and report content."""
+    if not path.is_file():
+        return []
+    try:
+        document = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError):
+        return []
+    if not isinstance(document, dict) or not isinstance(document.get("items"), list):
+        return []
+
+    report_urls: set[str] | None = None
+    if report_path is not None and report_path.is_file():
+        try:
+            report_urls = _content_urls(report_path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeError):
+            report_urls = None
+
+    expected = {
+        (str(entry.get("post_id") or "").casefold(), _canonical_url(entry.get("url"))): entry
+        for entry in expected_entries
+    }
+    changed = False
+    messages: list[str] = []
+    for item in document["items"]:
+        if not isinstance(item, dict):
+            continue
+        key = (
+            str(item.get("post_id") or "").casefold(),
+            _canonical_url(item.get("media_url")),
+        )
+        expected_entry = expected.get(key)
+        if expected_entry is None:
+            continue
+
+        expected_type = expected_entry.get("media_type")
+        if expected_type and item.get("media_type") != expected_type:
+            item["media_type"] = expected_type
+            changed = True
+            messages.append(
+                f"normalized media review type to {expected_type} for post {key[0]}"
+            )
+
+        if report_urls is not None:
+            report_included = key[1] in report_urls
+            if item.get("report_included") is not report_included:
+                item["report_included"] = report_included
+                changed = True
+                messages.append(
+                    "normalized media review report_included to "
+                    f"{str(report_included).lower()} for post {key[0]}"
+                )
+
+    if changed:
+        try:
+            _atomic_write_json(path, document)
+        except OSError as exc:
+            raise SnapshotError(f"Cannot normalize media review {path}: {exc}") from exc
+    return list(dict.fromkeys(messages))
+
+
 def _reviewed_media_urls_by_type(
     path: Path, *, status: str = "inspected"
 ) -> dict[str, set[str]]:
@@ -1869,20 +1993,31 @@ def _table_cells(line: str) -> tuple[str, ...]:
     return tuple(cell.strip() for cell in stripped[1:-1].split("|"))
 
 
-def _contains_populated_table(content: str, expected_header: tuple[str, ...]) -> bool:
+def _populated_table_headers(content: str) -> list[tuple[str, ...]]:
+    headers: list[tuple[str, ...]] = []
     lines = content.splitlines()
     for index, line in enumerate(lines):
-        if _table_cells(line) != expected_header or index + 2 >= len(lines):
+        header = _table_cells(line)
+        if not header or index + 2 >= len(lines):
             continue
         separator = _table_cells(lines[index + 1])
-        if len(separator) != len(expected_header) or not all(
+        if len(separator) != len(header) or not all(
             re.fullmatch(r":?-{3,}:?", cell) for cell in separator
         ):
             continue
         row = _table_cells(lines[index + 2])
-        if len(row) == len(expected_header) and any(row):
-            return True
-    return False
+        if len(row) == len(header) and any(row):
+            headers.append(header)
+    return headers
+
+
+def _contains_populated_table(content: str, expected_header: tuple[str, ...]) -> bool:
+    return expected_header in _populated_table_headers(content)
+
+
+def _record_warning(warnings: list[str] | None, message: str) -> None:
+    if warnings is not None and message not in warnings:
+        warnings.append(message)
 
 
 def _is_reddit_media_url(url: str) -> bool:
@@ -1905,6 +2040,7 @@ def validate_report(
     required_media_urls_by_type: dict[str, set[str]] | None = None,
     required_section_post_ids: dict[str, set[str]] | None = None,
     require_reddit_citation: bool = True,
+    warnings: list[str] | None = None,
 ) -> list[str]:
     """Return deterministic report contract violations without changing the report."""
     if not path.is_file():
@@ -1943,11 +2079,19 @@ def validate_report(
         section_contents[heading] = section_content
         if not any(line and line != "---" for line in body):
             errors.append(f"required section is empty: {heading}")
-        for expected_header in REQUIRED_TABLE_SCHEMAS.get(heading, ()):
+        expected_headers = REQUIRED_TABLE_SCHEMAS.get(heading, ())
+        populated_headers = _populated_table_headers(section_content)
+        if len(populated_headers) < len(expected_headers):
+            errors.append(
+                f"section must contain {len(expected_headers)} populated Markdown "
+                f"table(s): {heading}"
+            )
+        for expected_header in expected_headers:
             if not _contains_populated_table(section_content, expected_header):
-                errors.append(
-                    f"section must contain the required populated table: {heading} "
-                    f"({' | '.join(expected_header)})"
+                _record_warning(
+                    warnings,
+                    f"section table differs from the recommended schema: {heading} "
+                    f"({' | '.join(expected_header)})",
                 )
         required_ids = (required_section_post_ids or {}).get(heading)
         if required_ids:
@@ -1957,8 +2101,9 @@ def validate_report(
             if not section_citations.intersection(
                 value.casefold() for value in required_ids
             ):
-                errors.append(
-                    f"section must cite at least one post from its current source snapshot: {heading}"
+                _record_warning(
+                    warnings,
+                    f"section does not cite a post from its current source snapshot: {heading}",
                 )
 
     numbered_sections = []
@@ -1973,15 +2118,35 @@ def validate_report(
     if _INTERNAL_PATH_RE.search(content):
         errors.append("report exposes an internal or local filesystem path")
 
+    http_image_urls: set[str] = set()
     for match in _MARKDOWN_TARGET_RE.finditer(content):
         target = _markdown_target(match.group(1))
         parsed = urllib.parse.urlparse(target)
-        if parsed.scheme != "https" or not parsed.netloc:
+        if parsed.scheme == "https" and parsed.netloc:
+            continue
+        if parsed.scheme == "http" and parsed.netloc:
+            if match.group(0).startswith("!"):
+                errors.append(f"Markdown images must use public HTTPS URLs: {target}")
+                canonical = _canonical_url(target)
+                if canonical:
+                    http_image_urls.add(canonical)
+            else:
+                _record_warning(
+                    warnings,
+                    f"Report uses an HTTP link; HTTPS is preferred when available: {target}",
+                )
+        else:
             errors.append(f"Markdown links and images must use public HTTPS URLs: {target}")
 
     for target in _extract_urls(content):
         parsed = urllib.parse.urlparse(target)
-        if parsed.scheme != "https" or not parsed.netloc:
+        if parsed.scheme == "http" and parsed.netloc:
+            if _canonical_url(target) not in http_image_urls:
+                _record_warning(
+                    warnings,
+                    f"Report uses an HTTP link; HTTPS is preferred when available: {target}",
+                )
+        elif parsed.scheme != "https" or not parsed.netloc:
             errors.append(f"Report URLs must use public HTTPS destinations: {target}")
 
     report_urls = _content_urls(content)
@@ -2024,9 +2189,10 @@ def validate_report(
         project_section_urls = _content_urls(section_contents.get(REQUIRED_SECTIONS[1], ""))
         included_projects = project_section_urls.intersection(project_candidates)
         if len(included_projects) < required_project_count:
-            errors.append(
-                f"{REQUIRED_SECTIONS[1]} must include at least {required_project_count} "
-                "source-derived direct project links"
+            _record_warning(
+                warnings,
+                f"{REQUIRED_SECTIONS[1]} includes {len(included_projects)} of "
+                f"{required_project_count} available source-derived direct project links",
             )
 
     media_section_urls = _content_urls(section_contents.get(REQUIRED_SECTIONS[5], ""))
@@ -2035,8 +2201,9 @@ def validate_report(
             canonical for value in urls if (canonical := _canonical_url(value))
         }
         if required_urls and not media_section_urls.intersection(required_urls):
-            errors.append(
-                f"{REQUIRED_SECTIONS[5]} must link at least one source {media_type}"
+            _record_warning(
+                warnings,
+                f"{REQUIRED_SECTIONS[5]} does not link an inspected source {media_type}",
             )
 
     cited_ids = {match.casefold() for match in _REDDIT_POST_LINK_RE.findall(content)}
@@ -2086,11 +2253,13 @@ def analyze_job(
         )
 
     validation_path = prepared.directory / "validation-errors.json"
+    warning_path = prepared.directory / "validation-warnings.json"
     for generated_path in (
         prepared.candidate_path,
         prepared.media_review_path,
         prepared.media_assets_path,
         validation_path,
+        warning_path,
         prepared.directory / "copilot.stdout.log",
         prepared.directory / "copilot.stderr.log",
     ):
@@ -2156,6 +2325,15 @@ def analyze_job(
     }
     if media_ids:
         required_section_ids[REQUIRED_SECTIONS[5]] = media_ids
+    try:
+        normalizations = normalize_media_review(
+            prepared.media_review_path,
+            expected_entries=media_assets.entries,
+            report_path=prepared.candidate_path,
+        )
+    except SnapshotError as exc:
+        return AnalysisResult(job, "failed", str(exc))
+    warnings: list[str] = []
     errors = validate_media_review(
         prepared.media_review_path,
         expected_entries=media_assets.entries,
@@ -2180,16 +2358,38 @@ def analyze_job(
         },
         required_section_post_ids=required_section_ids,
         require_reddit_citation=bool(allowed_ids),
+        warnings=warnings,
     ))
+    for message in normalizations:
+        LOGGER.info("%s: %s", target.date_text, message)
+    for warning in warnings:
+        LOGGER.warning("%s: %s", target.date_text, warning)
+    if normalizations or warnings:
+        _atomic_write_json(
+            warning_path,
+            {"normalizations": normalizations, "warnings": warnings},
+        )
     if errors:
-        _atomic_write_json(validation_path, {"errors": errors})
+        _atomic_write_json(
+            validation_path,
+            {
+                "errors": errors,
+                "warnings": warnings,
+                "normalizations": normalizations,
+            },
+        )
         return AnalysisResult(job, "failed", "; ".join(errors))
 
     try:
         _publish_report(prepared.candidate_path, job.report_path)
     except OSError as exc:
         return AnalysisResult(job, "failed", f"Cannot publish {job.report_path}: {exc}")
-    return AnalysisResult(job, "published", f"report written to {job.report_path}")
+    warning_suffix = f" with {len(warnings)} warning(s)" if warnings else ""
+    return AnalysisResult(
+        job,
+        "published",
+        f"report written to {job.report_path}{warning_suffix}",
+    )
 
 
 def run_jobs(

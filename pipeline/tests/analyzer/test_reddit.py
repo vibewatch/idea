@@ -33,6 +33,7 @@ from idea_pipeline.analyzer.reddit import (
     humanize_topic,
     main,
     materialize_media_assets,
+    normalize_media_review,
     prepare_report,
     prepare_snapshot,
     rank_score,
@@ -397,6 +398,36 @@ class TestPreparation:
             for item in links
         )
 
+    def test_external_link_manifest_normalizes_bare_domains(self, tmp_path: Path) -> None:
+        source = tmp_path / "data" / "saas-build" / "2026-08-01.json"
+        write_snapshot(
+            source,
+            [
+                post(
+                    "bare",
+                    selftext=(
+                        "Try gesture.live for the demo. README.md and media-review.json "
+                        "are filenames, not websites. "
+                        "Use [legacy.test](http://legacy.test) for the old endpoint."
+                    ),
+                )
+            ],
+        )
+
+        prepared = prepare_snapshot(
+            SnapshotTarget("saas-build", date(2026, 8, 1), source),
+            tmp_path / "artifacts",
+        )
+
+        links = json.loads(prepared.links_path.read_text())
+        assert {item["canonical_url"] for item in links} == {
+            "http://legacy.test/",
+            "https://gesture.live/",
+        }
+        assert "https://legacy.test/" not in {
+            item["canonical_url"] for item in links
+        }
+
     def test_prepares_one_sandbox_with_all_three_sources(self, tmp_path: Path) -> None:
         target = make_report_target(tmp_path)
         originals = {item.topic: item.path.read_bytes() for item in target.snapshots}
@@ -688,16 +719,45 @@ class TestValidation:
         )
         candidate.write_text(content, encoding="utf-8")
 
+        warnings: list[str] = []
         errors = validate_report(
             candidate,
             expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
             allowed_post_ids={"pain1", "idea1", "build1"},
+            warnings=warnings,
         )
 
         assert any("public HTTPS" in error for error in errors)
-        assert any("Report URLs" in error for error in errors)
+        assert any("HTTP link" in warning for warning in warnings)
 
-    def test_requires_native_current_citation_in_each_stream_section(
+    def test_allows_source_derived_http_links_with_a_warning(
+        self, tmp_path: Path
+    ) -> None:
+        candidate = tmp_path / "report.md"
+        candidate.write_text(
+            valid_report().replace(
+                "https://example.com/product", "http://indepai.app"
+            ),
+            encoding="utf-8",
+        )
+        warnings: list[str] = []
+
+        errors = validate_report(
+            candidate,
+            expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+            allowed_external_urls={"http://indepai.app"},
+            warnings=warnings,
+        )
+
+        assert errors == []
+        assert warnings == [
+            (
+                "Report uses an HTTP link; HTTPS is preferred when available: "
+                "http://indepai.app"
+            )
+        ]
+
+    def test_warns_when_stream_section_lacks_a_current_snapshot_citation(
         self, tmp_path: Path
     ) -> None:
         candidate = tmp_path / "report.md"
@@ -709,17 +769,17 @@ class TestValidation:
         )
         candidate.write_text(content, encoding="utf-8")
 
+        warnings: list[str] = []
         errors = validate_report(
             candidate,
             expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
             allowed_post_ids={"pain1", "idea1", "build1"},
             required_section_post_ids=required_section_ids(),
+            warnings=warnings,
         )
 
-        assert any(
-            "## 3. Customer Problems and Existing Workarounds" in error
-            for error in errors
-        )
+        assert not any("current source snapshot" in error for error in errors)
+        assert any("## 3. Customer Problems and Existing Workarounds" in warning for warning in warnings)
 
     def test_rejects_unlisted_project_and_missing_image_evidence(
         self, tmp_path: Path
@@ -733,6 +793,7 @@ class TestValidation:
         ).replace("https://i.redd.it/example.png", "https://v.redd.it/example")
         candidate.write_text(content, encoding="utf-8")
 
+        warnings: list[str] = []
         errors = validate_report(
             candidate,
             expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
@@ -744,13 +805,14 @@ class TestValidation:
                 "image": {"https://i.redd.it/example.png"},
                 "video": {"https://v.redd.it/example"},
             },
+            warnings=warnings,
         )
 
         assert any("external URLs absent" in error for error in errors)
-        assert any("direct project links" in error for error in errors)
-        assert any("source image" in error for error in errors)
+        assert any("direct project links" in warning for warning in warnings)
+        assert any("source image" in warning for warning in warnings)
 
-    def test_rejects_malformed_value_table_and_invented_reddit_media(
+    def test_warns_on_nonstandard_table_header_and_rejects_invented_media(
         self, tmp_path: Path
     ) -> None:
         candidate = tmp_path / "report.md"
@@ -760,6 +822,7 @@ class TestValidation:
         ).replace("| What it does |", "| Vague summary |")
         candidate.write_text(content, encoding="utf-8")
 
+        warnings: list[str] = []
         errors = validate_report(
             candidate,
             expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
@@ -768,10 +831,77 @@ class TestValidation:
                 "https://i.redd.it/source.png",
                 "https://v.redd.it/example",
             },
+            warnings=warnings,
         )
 
-        assert any("required populated table" in error for error in errors)
+        assert any("recommended schema" in warning for warning in warnings)
         assert any("Reddit media URLs absent" in error for error in errors)
+
+    def test_rejects_a_required_section_without_a_populated_table(
+        self, tmp_path: Path
+    ) -> None:
+        candidate = tmp_path / "report.md"
+        candidate.write_text(
+            valid_report().replace(
+                "| Review tool | SaaS | Routes review work | Operators | Launched | One user | "
+                "[Open project](https://example.com/product) | "
+                "[build](https://www.reddit.com/r/SaaS/comments/build1/build1_title/) |",
+                "Project details were not tabulated.",
+            ),
+            encoding="utf-8",
+        )
+
+        errors = validate_report(
+            candidate,
+            expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+        )
+
+        assert any("populated Markdown table" in error for error in errors)
+
+    def test_normalizes_media_type_and_report_included(self, tmp_path: Path) -> None:
+        review = tmp_path / "media-review.json"
+        report = tmp_path / "report.md"
+        entries = [
+            {
+                "post_id": "image",
+                "url": "https://i.redd.it/demo.png",
+                "media_type": "image",
+                "asset_status": "attached",
+            }
+        ]
+        review.write_text(
+            json.dumps(
+                {
+                    "version": 1,
+                    "items": [
+                        {
+                            "post_id": "image",
+                            "media_url": "https://i.redd.it/demo.png",
+                            "media_type": "video",
+                            "status": "inspected",
+                            "observation": "The attached image visibly shows a product interface.",
+                            "report_included": False,
+                        }
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+        report.write_text(
+            "[View image](https://i.redd.it/demo.png)\n", encoding="utf-8"
+        )
+
+        messages = normalize_media_review(
+            review, expected_entries=entries, report_path=report
+        )
+
+        item = json.loads(review.read_text())["items"][0]
+        assert item["media_type"] == "image"
+        assert item["report_included"] is True
+        assert len(messages) == 2
+        assert validate_media_review(
+            review, expected_entries=entries, report_path=report
+        ) == []
 
     def test_validates_complete_media_review(self, tmp_path: Path) -> None:
         review = tmp_path / "media-review.json"
@@ -879,6 +1009,90 @@ class TestAnalysisBoundary:
         assert mock_run.call_args.kwargs["check"] is False
         assert "REDDIT_COOKIES" not in mock_run.call_args.kwargs["env"]
         assert mock_run.call_args.kwargs["env"]["COPILOT_GITHUB_TOKEN"] == "copilot-token"
+
+    @patch("idea_pipeline.analyzer.reddit._download_image_asset")
+    @patch("idea_pipeline.analyzer.reddit.subprocess.run")
+    def test_quality_warnings_and_media_normalization_do_not_block_publication(
+        self,
+        mock_run: MagicMock,
+        mock_download: MagicMock,
+        tmp_path: Path,
+    ) -> None:
+        target = make_report_target(tmp_path)
+        image_url = "https://i.redd.it/demo.png"
+        write_snapshot(
+            target.snapshots[-1].path,
+            [
+                post(
+                    "build1",
+                    media_url=image_url,
+                    selftext="A launched tool at https://example.com/product with one user.",
+                )
+            ],
+        )
+        report = tmp_path / "reports" / "2026-08-02.md"
+        job = AnalysisJob(target, report)
+        candidate = (
+            tmp_path
+            / "artifacts"
+            / REPORT_ARTIFACT_NAME
+            / "2026-08-02"
+            / "report.md"
+        )
+
+        def download(_url: str, stem: Path) -> Path:
+            asset = stem.with_suffix(".png")
+            asset.write_bytes(b"image")
+            return asset
+
+        def generate(*_args: object, **_kwargs: object) -> subprocess.CompletedProcess[str]:
+            candidate.write_text(
+                valid_report(image_url=image_url).replace(
+                    "| What it does |", "| Product function |"
+                ),
+                encoding="utf-8",
+            )
+            (candidate.parent / "media-review.json").write_text(
+                json.dumps(
+                    {
+                        "version": 1,
+                        "items": [
+                            {
+                                "post_id": "build1",
+                                "media_url": image_url,
+                                "media_type": "video",
+                                "status": "inspected",
+                                "observation": (
+                                    "The attached image visibly shows a product interface."
+                                ),
+                                "report_included": False,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            return subprocess.CompletedProcess([], 0, stdout="done", stderr="")
+
+        mock_download.side_effect = download
+        mock_run.side_effect = generate
+
+        result = analyze_job(job, artifacts_dir=tmp_path / "artifacts")
+
+        assert result.status == "published"
+        assert "warning(s)" in result.message
+        assert report.is_file()
+        review = json.loads((candidate.parent / "media-review.json").read_text())
+        assert review["items"][0]["media_type"] == "image"
+        assert review["items"][0]["report_included"] is True
+        warning_document = json.loads(
+            (candidate.parent / "validation-warnings.json").read_text()
+        )
+        assert len(warning_document["normalizations"]) == 2
+        assert any(
+            "recommended schema" in warning
+            for warning in warning_document["warnings"]
+        )
 
     @patch("idea_pipeline.analyzer.reddit.subprocess.run")
     def test_invalid_candidate_never_replaces_existing_report(

@@ -131,6 +131,23 @@ jobs:
           uv run --frozen "${args[@]}"
         working-directory: pipeline
 
+      - name: Upload failed analysis diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v6
+        with:
+          name: reddit-analysis-diagnostics-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            pipeline/artifacts/reddit/builder-intelligence/**/report.md
+            pipeline/artifacts/reddit/builder-intelligence/**/media-review.json
+            pipeline/artifacts/reddit/builder-intelligence/**/external-links.json
+            pipeline/artifacts/reddit/builder-intelligence/**/media-manifest.json
+            pipeline/artifacts/reddit/builder-intelligence/**/validation-errors.json
+            pipeline/artifacts/reddit/builder-intelligence/**/validation-warnings.json
+            pipeline/artifacts/reddit/builder-intelligence/**/copilot.stdout.log
+            pipeline/artifacts/reddit/builder-intelligence/**/copilot.stderr.log
+          if-no-files-found: ignore
+          retention-days: 7
+
       - name: Commit validated reports
         run: |
           git config user.name "github-actions[bot]"

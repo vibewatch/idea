@@ -139,12 +139,12 @@ The analyzer combines the three immutable daily JSON streams into static Markdow
 2. Exclude today's still-changing files during automatic discovery and skip incomplete dates.
 3. Skip dates that already have a full report unless `--force` is used.
 4. Rank each stream independently by evidence richness using capped logarithmic engagement, detailed text/comments, quantified signals, concrete problems, and observed outcomes; thin viral posts receive a penalty.
-5. Write per-stream review sets and dossiers plus full-corpus `external-links.json`, `media-manifest.json`, source hashes, and combined metadata under ignored `pipeline/artifacts/reddit/builder-intelligence/<date>/`.
+5. Write per-stream review sets and dossiers plus full-corpus `external-links.json`, `media-manifest.json`, source hashes, and combined metadata under ignored `pipeline/artifacts/reddit/builder-intelligence/<date>/`. Unambiguous bare domains are normalized to HTTPS manifest entries; common source-code and data filenames are excluded.
 6. During generation only, safely download approved Reddit/Imgur images and turn accessible Reddit DASH videos into six-frame contact sheets. Galleries, external videos, failures, and skipped items retain explicit URL/status records.
 7. Attach every materialized visual to one sandboxed Copilot CLI process per date, with bounded worker concurrency, shell access disabled, built-in GitHub MCP disabled, and unrelated pipeline credentials removed.
 8. Extract concrete projects, pain points, founder ideas/validation, launches/metrics, and useful visual findings into exact Markdown tables before adding bounded cross-stream synthesis.
-9. Require `media-review.json` to account for every detected media item, distinguish inspected, non-substantive, and unavailable assets, and keep `report_included` consistent with the report.
-10. Validate exact section/table schemas, at least eight source-derived direct project links when available, public HTTPS/source URL boundaries, inspected image/video evidence, cited Reddit post IDs, and current citations from each stream-specific section.
+9. Require `media-review.json` to account for every detected media item and distinguish inspected, non-substantive, and unavailable assets. Deterministic `media_type` and `report_included` fields are normalized from the manifest and final report before validation.
+10. Block reports with missing core sections or populated tables, local paths, unknown source URLs, unknown Reddit IDs/media, insecure embedded images, or malformed review data. Treat exact table labels, per-section current-snapshot citation coverage, the eight-project target, inspected-media coverage, and source-derived HTTP hyperlinks as visible quality warnings rather than publication failures.
 11. Atomically publish valid output to `reports/reddit/<date>.md`.
 
 Raw snapshots are never rewritten. A failed generation or validation leaves any existing published report untouched.
@@ -164,6 +164,8 @@ uv run --project pipeline analyze-reddit --date 2026-08-02 --force
 `--date` may be repeated, but every selected date must contain all three required topic snapshots. An explicit date may select today's snapshot, while `--include-today` only changes automatic discovery. `--prepare-only` always refreshes the combined manifests and sandbox per selected date, but never downloads media or invokes Copilot.
 
 Model controls default to `--model grok-4.5 --effort high`. GPT-5.4, GPT-5.5, Claude Sonnet 4.6, and Claude Opus 4.6 remain available through explicit model selection; the workflow's `auto` effort uses `high` for Grok and Claude, and `xhigh` for GPT. The repository-local skill at `.agents/skills/reddit-idea-analysis/SKILL.md` defines what counts as a valuable project, pain point, idea/validation case, launch result, and visual finding. It requires directly openable links and exact tables rather than a thematic recap. The final report still maps convergence, partial support, contradictions, and missing links without opportunity scores or pretending unrelated posts form a tracked funnel. Keep downloaded media, contact sheets, model logs, and review ledgers in ignored `pipeline/artifacts/`; only validated reports are versioned.
+
+Validation is intentionally stricter than Astro's Markdown parser but no longer treats every quality target as fatal. The hard gates protect publishability, source provenance, and accidental data exposure; advisory warnings preserve useful partial reports while making coverage gaps visible in Actions logs and `validation-warnings.json`. Failed workflow runs upload the generated report, review ledger, manifests, validation output, and Copilot logs as a seven-day diagnostics artifact.
 
 The workflow `.github/workflows/analyze_reddit.yml` runs daily at 02:43 UTC and supports manual date, model, effort, worker, force, include-today, and prepare-only inputs.
 
