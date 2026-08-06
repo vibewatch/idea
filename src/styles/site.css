@@ -1120,13 +1120,37 @@ html[data-theme="dark"] .theme-icon--moon {
   text-decoration: underline;
 }
 
-.breadcrumbs__alternate {
-  padding: 0.1rem 0.5rem;
-  border: 1px solid var(--line);
+.language-toggle {
+  display: inline-flex;
+  height: 2rem;
+  align-items: center;
+  gap: 0.35rem;
+  padding-inline: 0.6rem;
+  border: 1px solid transparent;
   border-radius: 999px;
-  background: var(--surface);
-  color: var(--accent-ink);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
   font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.language-toggle:hover {
+  border-color: var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--text);
+}
+
+.language-toggle svg {
+  width: 0.95rem;
+  fill: none;
+  stroke: currentcolor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
 }
 
 .report-hero h1 {
@@ -1748,6 +1772,16 @@ html[data-theme="dark"] .theme-icon--moon {
   .desktop-nav,
   .search-trigger {
     display: none;
+  }
+
+  .language-toggle span {
+    display: none;
+  }
+
+  .language-toggle {
+    width: 2rem;
+    padding-inline: 0;
+    justify-content: center;
   }
 
   .mobile-menu {

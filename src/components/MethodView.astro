@@ -1,0 +1,50 @@
+---
+import type { Locale } from '../lib/i18n';
+import { localePath, useStrings } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const strings = useStrings(locale);
+---
+
+<header class="page-header shell">
+  <p class="chip">{strings.method.chip}</p>
+  <h1>{strings.method.title}</h1>
+  <p>{strings.method.lede}</p>
+</header>
+
+<div class="method-content shell">
+  <section aria-labelledby="method-steps-title">
+    <h2 id="method-steps-title">{strings.method.processTitle}</h2>
+    <ol class="method-steps">
+      {strings.method.steps.map((step) => (
+        <li>
+          <h3>{step.title}</h3>
+          <p>{step.text}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section aria-labelledby="principles-title">
+    <h2 id="principles-title">{strings.method.rulesTitle}</h2>
+    <div class="principle-list">
+      {strings.method.principles.map((principle) => (
+        <article>
+          <h3>{principle.title}</h3>
+          <p>{principle.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <aside class="method-note">
+    <h2>{strings.method.limitsTitle}</h2>
+    <p>{strings.method.limits}</p>
+  </aside>
+
+  <a class="text-link" href={localePath(locale, '/reports/')}>{strings.method.browse}</a>
+</div>

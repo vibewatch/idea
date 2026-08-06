@@ -1,75 +1,11 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ReportCard from '../../components/ReportCard.astro';
-import { getReportMeta, sortReports } from '../../lib/reports';
+import ArchiveView from '../../components/ArchiveView.astro';
+import { useStrings } from '../../lib/i18n';
 
-const reports = sortReports(await getCollection('reports')).map((entry) => getReportMeta(entry));
+const strings = useStrings('en');
 ---
 
-<BaseLayout
-  title="Reports"
-  description="Browse concise, source-linked reports on builder problems, products, and outcomes."
->
-  <header class="page-header shell">
-    <p class="chip">Archive</p>
-    <h1>Reports</h1>
-    <p>Published reports, newest first. Every claim links back to its source thread.</p>
-  </header>
-
-  <section class="archive-section shell">
-    <div class="archive-toolbar">
-      <label class="archive-search">
-        <span class="sr-only">Filter reports</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="11" cy="11" r="6.5"></circle>
-          <path d="m16 16 4 4"></path>
-        </svg>
-        <input type="search" placeholder="Filter reports" data-archive-query />
-      </label>
-
-      <p class="archive-result-line">
-        <strong data-visible-count>{reports.length}</strong>
-        <span data-visible-label>{reports.length === 1 ? ' report' : ' reports'}</span>
-      </p>
-    </div>
-
-    <div class="report-list report-list--split" data-report-list>
-      {reports.map((meta) => <ReportCard meta={meta} />)}
-    </div>
-    <div class="archive-empty" data-archive-empty hidden>
-      <h2>No matching reports</h2>
-      <button type="button" data-clear-filters>Clear filter</button>
-    </div>
-  </section>
+<BaseLayout locale="en" title={strings.archive.title} description={strings.archive.lede}>
+  <ArchiveView locale="en" />
 </BaseLayout>
-
-<script>
-  const queryInput = document.querySelector<HTMLInputElement>('[data-archive-query]');
-  const cards = [...document.querySelectorAll<HTMLElement>('[data-report-card]')];
-  const count = document.querySelector<HTMLElement>('[data-visible-count]');
-  const label = document.querySelector<HTMLElement>('[data-visible-label]');
-  const empty = document.querySelector<HTMLElement>('[data-archive-empty]');
-
-  function filterReports() {
-    const query = queryInput?.value.trim().toLowerCase() ?? '';
-    let visible = 0;
-
-    for (const card of cards) {
-      const matches = !query || card.dataset.search?.includes(query) === true;
-      card.hidden = !matches;
-      if (matches) visible += 1;
-    }
-
-    if (count) count.textContent = String(visible);
-    if (label) label.textContent = visible === 1 ? ' report' : ' reports';
-    if (empty) empty.hidden = visible !== 0;
-  }
-
-  queryInput?.addEventListener('input', filterReports);
-  document.querySelector('[data-clear-filters]')?.addEventListener('click', () => {
-    if (queryInput) queryInput.value = '';
-    filterReports();
-    queryInput?.focus();
-  });
-</script>

@@ -1,0 +1,80 @@
+---
+import ReportCard from './ReportCard.astro';
+import { loadReports } from '../lib/reports';
+import type { Locale } from '../lib/i18n';
+import { localePath, useStrings } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const strings = useStrings(locale);
+const reports = await loadReports(locale);
+const [latestMeta, ...rest] = reports;
+const recent = rest.slice(0, 4);
+const linkedSources = reports.reduce((total, meta) => total + meta.citationCount, 0);
+const numberLocale = locale === 'zh' ? 'zh-CN' : 'en-US';
+---
+
+<header class="hero shell">
+  <p class="chip">{strings.home.chip}</p>
+  <h1>{strings.home.titleLead}<em>{strings.home.titleEm}</em>{strings.home.titleTail}</h1>
+  <p class="hero-lede">{strings.home.lede}</p>
+  <div class="hero-actions">
+    {latestMeta && (
+      <a class="button button--primary" href={localePath(locale, `/reports/${latestMeta.date}/`)}>
+        {strings.home.readLatest}
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6"></path></svg>
+      </a>
+    )}
+    <a class="button" href={localePath(locale, '/about/')}>{strings.home.howItWorks}</a>
+  </div>
+
+  <dl class="stat-strip">
+    <div>
+      <dt>{strings.home.statReports}</dt>
+      <dd>{reports.length}</dd>
+    </div>
+    <div>
+      <dt>{strings.home.statSources}</dt>
+      <dd>{linkedSources.toLocaleString(numberLocale)}</dd>
+    </div>
+    <div>
+      <dt>{strings.home.statLatest}</dt>
+      <dd>{latestMeta ? latestMeta.shortDate : '—'}</dd>
+    </div>
+  </dl>
+</header>
+
+<section class="home-latest shell" aria-labelledby="latest-report-title">
+  <div class="section-title">
+    <div>
+      <p class="eyebrow">{strings.home.latestEyebrow}</p>
+      <h2 id="latest-report-title">{strings.home.latestTitle}</h2>
+    </div>
+    <a href={localePath(locale, '/reports/')}>{strings.home.allReports}</a>
+  </div>
+  {latestMeta ? (
+    <div class="report-list">
+      <ReportCard meta={latestMeta} locale={locale} featured />
+    </div>
+  ) : (
+    <div class="empty-panel"><p>{strings.home.empty}</p></div>
+  )}
+</section>
+
+{recent.length > 0 && (
+  <section class="home-latest shell" aria-labelledby="earlier-reports-title">
+    <div class="section-title">
+      <div>
+        <p class="eyebrow">{strings.home.archiveEyebrow}</p>
+        <h2 id="earlier-reports-title">{strings.home.archiveTitle}</h2>
+      </div>
+      <a href={localePath(locale, '/reports/')}>{strings.home.browseAll}</a>
+    </div>
+    <div class="report-list report-list--split">
+      {recent.map((meta) => <ReportCard meta={meta} locale={locale} />)}
+    </div>
+  </section>
+)}

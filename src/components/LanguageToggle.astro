@@ -1,0 +1,21 @@
+---
+import type { Locale } from '../lib/i18n';
+import { localeLabels, useStrings } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+  href: string;
+}
+
+const { locale, href } = Astro.props;
+const strings = useStrings(locale);
+const target: Locale = locale === 'zh' ? 'en' : 'zh';
+---
+
+<a class="language-toggle" href={href} hreflang={target === 'zh' ? 'zh-CN' : 'en'} title={strings.language.switchTo} aria-label={strings.language.switchTo}>
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="12" r="9"></circle>
+    <path d="M3 12h18M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18"></path>
+  </svg>
+  <span>{localeLabels[target]}</span>
+</a>

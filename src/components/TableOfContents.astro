@@ -1,4 +1,7 @@
 ---
+import type { Locale } from '../lib/i18n';
+import { useStrings } from '../lib/i18n';
+
 interface Heading {
   depth: number;
   slug: string;
@@ -7,15 +10,18 @@ interface Heading {
 
 interface Props {
   headings: Heading[];
+  locale?: Locale;
 }
 
+const { locale = 'en' } = Astro.props;
+const strings = useStrings(locale).report;
 const sections = Astro.props.headings.filter(({ depth }) => depth === 2);
 ---
 
 {sections.length > 0 && (
   <div class="toc-dock" data-toc-dock>
     <details>
-      <summary class="toc-fab" aria-label="Report contents" title="Report contents">
+      <summary class="toc-fab" aria-label={strings.contents} title={strings.contents}>
         <svg class="toc-icon--open" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M4 6h10M4 12h16M4 18h7"></path>
         </svg>
@@ -23,8 +29,8 @@ const sections = Astro.props.headings.filter(({ depth }) => depth === 2);
           <path d="m6 6 12 12M18 6 6 18"></path>
         </svg>
       </summary>
-      <nav class="toc-panel" aria-label="Report contents">
-        <p class="toc-label">Contents</p>
+      <nav class="toc-panel" aria-label={strings.contents}>
+        <p class="toc-label">{strings.contents}</p>
         <ol>
           {sections.map((heading, index) => (
             <li>
@@ -35,7 +41,7 @@ const sections = Astro.props.headings.filter(({ depth }) => depth === 2);
             </li>
           ))}
         </ol>
-        <a class="toc-back" href="#report-top">Back to top</a>
+        <a class="toc-back" href="#report-top">{strings.backToTop}</a>
       </nav>
     </details>
   </div>

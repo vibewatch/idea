@@ -1,0 +1,86 @@
+---
+import ReportCard from './ReportCard.astro';
+import { loadReports } from '../lib/reports';
+import type { Locale } from '../lib/i18n';
+import { useStrings } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const strings = useStrings(locale);
+const reports = await loadReports(locale);
+---
+
+<header class="page-header shell">
+  <p class="chip">{strings.archive.chip}</p>
+  <h1>{strings.archive.title}</h1>
+  <p>{strings.archive.lede}</p>
+</header>
+
+<section class="archive-section shell">
+  <div class="archive-toolbar">
+    <label class="archive-search">
+      <span class="sr-only">{strings.archive.filterLabel}</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="6.5"></circle>
+        <path d="m16 16 4 4"></path>
+      </svg>
+      <input type="search" placeholder={strings.archive.filterPlaceholder} data-archive-query />
+    </label>
+
+    <p
+      class="archive-result-line"
+      data-label-one={strings.archive.one}
+      data-label-many={strings.archive.many}
+    >
+      <strong data-visible-count>{reports.length}</strong>
+      <span data-visible-label>{reports.length === 1 ? strings.archive.one : strings.archive.many}</span>
+    </p>
+  </div>
+
+  <div class="report-list report-list--split" data-report-list>
+    {reports.map((meta) => <ReportCard meta={meta} locale={locale} />)}
+  </div>
+  <div class="archive-empty" data-archive-empty hidden>
+    <h2>{strings.archive.emptyTitle}</h2>
+    <button type="button" data-clear-filters>{strings.archive.clear}</button>
+  </div>
+</section>
+
+<script>
+  const queryInput = document.querySelector<HTMLInputElement>('[data-archive-query]');
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-report-card]')];
+  const count = document.querySelector<HTMLElement>('[data-visible-count]');
+  const label = document.querySelector<HTMLElement>('[data-visible-label]');
+  const resultLine = document.querySelector<HTMLElement>('.archive-result-line');
+  const empty = document.querySelector<HTMLElement>('[data-archive-empty]');
+
+  function filterReports() {
+    const query = queryInput?.value.trim().toLowerCase() ?? '';
+    let visible = 0;
+
+    for (const card of cards) {
+      const matches = !query || card.dataset.search?.includes(query) === true;
+      card.hidden = !matches;
+      if (matches) visible += 1;
+    }
+
+    if (count) count.textContent = String(visible);
+    if (label) {
+      label.textContent =
+        visible === 1
+          ? resultLine?.dataset.labelOne ?? ' report'
+          : resultLine?.dataset.labelMany ?? ' reports';
+    }
+    if (empty) empty.hidden = visible !== 0;
+  }
+
+  queryInput?.addEventListener('input', filterReports);
+  document.querySelector('[data-clear-filters]')?.addEventListener('click', () => {
+    if (queryInput) queryInput.value = '';
+    filterReports();
+    queryInput?.focus();
+  });
+</script>

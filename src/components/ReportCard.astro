@@ -1,14 +1,17 @@
 ---
 import type { ReportMeta } from '../lib/reports';
-import { withBase } from '../lib/paths';
+import type { Locale } from '../lib/i18n';
+import { localePath, useStrings } from '../lib/i18n';
 
 interface Props {
   meta: ReportMeta;
   featured?: boolean;
+  locale?: Locale;
 }
 
-const { meta, featured = false } = Astro.props;
-const reportUrl = withBase(`/reports/${meta.date}/`);
+const { meta, featured = false, locale = 'en' } = Astro.props;
+const strings = useStrings(locale);
+const reportUrl = localePath(locale, `/reports/${meta.date}/`);
 const tags = meta.signals.filter(({ count }) => count > 0).slice(0, featured ? 4 : 3);
 ---
 
@@ -21,9 +24,9 @@ const tags = meta.signals.filter(({ count }) => count > 0).slice(0, featured ? 4
   <div class="report-card__meta">
     <time datetime={meta.date}>{meta.displayDate}</time>
     <i aria-hidden="true"></i>
-    <span>{meta.readingMinutes} min read</span>
+    <span>{meta.readingMinutes} {strings.card.minutes}</span>
     <i aria-hidden="true"></i>
-    <span>{meta.citationCount} linked sources</span>
+    <span>{meta.citationCount} {strings.card.sources}</span>
   </div>
   <h2><a href={reportUrl}>{meta.title}</a></h2>
   <p>{meta.description}</p>
@@ -35,7 +38,7 @@ const tags = meta.signals.filter(({ count }) => count > 0).slice(0, featured ? 4
     </ul>
   )}
   <span class="report-card__link">
-    Read report
+    {strings.card.read}
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6"></path></svg>
   </span>
 </article>

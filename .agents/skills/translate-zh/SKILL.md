@@ -66,6 +66,7 @@ Use these renderings consistently. They are the ones Chinese builder media actua
 
 | English | Chinese |
 |---|---|
+| builder | 构建者 |
 | founder | 创始人 |
 | indie hacker / solo builder | 独立开发者 |
 | customer pain / pain point | 用户痛点 |

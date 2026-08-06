@@ -2,7 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import ReportLayout from '../../../layouts/ReportLayout.astro';
 import { getReportMeta, sortReports, type ReportEntry } from '../../../lib/reports';
-import { withBase } from '../../../lib/paths';
+import { localePath } from '../../../lib/i18n';
 
 export async function getStaticPaths() {
   const reports = sortReports(await getCollection('reportsZh'));
@@ -38,7 +38,7 @@ const { Content, headings } = await render(entry);
   older={older}
   newer={newer}
   locale="zh"
-  alternateHref={withBase(`/reports/${meta.date}/`)}
+  alternateHref={localePath('en', `/reports/${meta.date}/`)}
 >
   <Content />
 </ReportLayout>

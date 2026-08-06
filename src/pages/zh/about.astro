@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MethodView from '../../components/MethodView.astro';
+import { useStrings } from '../../lib/i18n';
+
+const strings = useStrings('zh');
+---
+
+<BaseLayout locale="zh" title={strings.method.chip} description={strings.method.lede}>
+  <MethodView locale="zh" />
+</BaseLayout>

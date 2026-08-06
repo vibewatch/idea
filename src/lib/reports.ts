@@ -1,4 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 
 export type ReportEntry = CollectionEntry<'reports'> | CollectionEntry<'reportsZh'>;
 
@@ -217,4 +218,9 @@ export function sortReports(entries: ReportEntry[]): ReportEntry[] {
   return [...entries].sort(
     (left, right) => getReportMeta(right).date.localeCompare(getReportMeta(left).date),
   );
+}
+
+export async function loadReports(locale: ReportLocale = 'en'): Promise<ReportMeta[]> {
+  const entries = await getCollection(locale === 'zh' ? 'reportsZh' : 'reports');
+  return sortReports(entries).map((entry) => getReportMeta(entry, locale));
 }

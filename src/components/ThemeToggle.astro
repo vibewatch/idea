@@ -1,9 +1,23 @@
+---
+import type { Locale } from '../lib/i18n';
+import { localeFromPath, useStrings } from '../lib/i18n';
+
+interface Props {
+  locale?: Locale;
+}
+
+const locale = Astro.props.locale ?? localeFromPath(Astro.url.pathname);
+const strings = useStrings(locale).theme;
+---
+
 <button
   class="icon-button theme-toggle"
   type="button"
-  aria-label="Switch color theme"
-  title="Switch color theme"
+  aria-label={strings.toDark}
+  title={strings.toDark}
   data-theme-toggle
+  data-label-light={strings.toLight}
+  data-label-dark={strings.toDark}
 >
   <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true">
     <circle cx="12" cy="12" r="3.5"></circle>
@@ -24,8 +38,10 @@
   function updateLabel() {
     if (!toggle) return;
     const next = currentTheme() === 'dark' ? 'light' : 'dark';
-    toggle.setAttribute('aria-label', `Switch to ${next} theme`);
-    toggle.setAttribute('title', `Switch to ${next} theme`);
+    const label = next === 'dark' ? toggle.dataset.labelDark : toggle.dataset.labelLight;
+    if (!label) return;
+    toggle.setAttribute('aria-label', label);
+    toggle.setAttribute('title', label);
   }
 
   toggle?.addEventListener('click', () => {

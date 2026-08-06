@@ -1,79 +1,11 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ReportCard from '../components/ReportCard.astro';
-import { getReportMeta, sortReports } from '../lib/reports';
-import { withBase } from '../lib/paths';
+import HomeView from '../components/HomeView.astro';
+import { useStrings } from '../lib/i18n';
 
-const reports = sortReports(await getCollection('reports')).map((entry) => getReportMeta(entry));
-const [latestMeta, ...rest] = reports;
-const recent = rest.slice(0, 4);
-const linkedSources = reports.reduce((total, meta) => total + meta.citationCount, 0);
+const strings = useStrings('en');
 ---
 
-<BaseLayout description="Concise, source-linked reports on builder problems, products, and outcomes.">
-  <header class="hero shell">
-    <p class="chip">Daily builder intelligence</p>
-    <h1>Builder signal, <em>with sources</em>.</h1>
-    <p class="hero-lede">
-      Concise reports on real problems, products, and outcomes — every finding stays linked to the
-      conversation it came from.
-    </p>
-    <div class="hero-actions">
-      {latestMeta && (
-        <a class="button button--primary" href={withBase(`/reports/${latestMeta.date}/`)}>
-          Read the latest report
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6"></path></svg>
-        </a>
-      )}
-      <a class="button" href={withBase('/about/')}>How reports are made</a>
-    </div>
-
-    <dl class="stat-strip">
-      <div>
-        <dt>Reports</dt>
-        <dd>{reports.length}</dd>
-      </div>
-      <div>
-        <dt>Linked sources</dt>
-        <dd>{linkedSources.toLocaleString('en-US')}</dd>
-      </div>
-      <div>
-        <dt>Latest</dt>
-        <dd>{latestMeta ? latestMeta.shortDate : '—'}</dd>
-      </div>
-    </dl>
-  </header>
-
-  <section class="home-latest shell" aria-labelledby="latest-report-title">
-    <div class="section-title">
-      <div>
-        <p class="eyebrow">Fresh off the desk</p>
-        <h2 id="latest-report-title">Latest report</h2>
-      </div>
-      <a href={withBase('/reports/')}>All reports →</a>
-    </div>
-    {latestMeta ? (
-      <div class="report-list">
-        <ReportCard meta={latestMeta} featured />
-      </div>
-    ) : (
-      <div class="empty-panel"><p>No reports have been published yet.</p></div>
-    )}
-  </section>
-
-  {recent.length > 0 && (
-    <section class="home-latest shell" aria-labelledby="earlier-reports-title">
-      <div class="section-title">
-        <div>
-          <p class="eyebrow">Archive</p>
-          <h2 id="earlier-reports-title">Earlier reports</h2>
-        </div>
-        <a href={withBase('/reports/')}>Browse all →</a>
-      </div>
-      <div class="report-list report-list--split">
-        {recent.map((meta) => <ReportCard meta={meta} />)}
-      </div>
-    </section>
-  )}
+<BaseLayout locale="en" description={strings.siteDescription}>
+  <HomeView locale="en" />
 </BaseLayout>

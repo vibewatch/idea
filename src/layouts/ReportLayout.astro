@@ -1,8 +1,9 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import TableOfContents from '../components/TableOfContents.astro';
-import type { ReportLocale, ReportMeta } from '../lib/reports';
-import { withBase } from '../lib/paths';
+import type { ReportMeta } from '../lib/reports';
+import type { Locale } from '../lib/i18n';
+import { localePath, useStrings } from '../lib/i18n';
 
 interface Heading {
   depth: number;
@@ -20,67 +21,34 @@ interface Props {
   headings: Heading[];
   older?: Neighbor | undefined;
   newer?: Neighbor | undefined;
-  locale?: ReportLocale;
+  locale?: Locale;
   alternateHref?: string | undefined;
 }
 
-const { meta, headings, older, newer, locale = 'en', alternateHref } = Astro.props;
-
-const copy = {
-  en: {
-    home: 'Home',
-    reports: 'Reports',
-    published: 'Published',
-    reading: 'Reading time',
-    minutes: 'min',
-    sections: 'Sections',
-    sources: 'Linked sources',
-    posts: 'Posts reviewed',
-    older: '← Older report',
-    newer: 'Newer report →',
-    alternate: '中文版',
-  },
-  zh: {
-    home: '首页',
-    reports: '报告',
-    published: '发布日期',
-    reading: '阅读时长',
-    minutes: '分钟',
-    sections: '章节数',
-    sources: '引用来源',
-    posts: '分析帖子',
-    older: '← 更早的报告',
-    newer: '更新的报告 →',
-    alternate: 'English',
-  },
-}[locale];
-
-const reportBase = locale === 'zh' ? '/zh/reports' : '/reports';
+const { meta, headings, older, newer, locale = 'en' } = Astro.props;
+const strings = useStrings(locale);
+const copy = strings.report;
+// Fall back to the archive so the language switch never lands on a missing overlay.
+const alternateHref =
+  Astro.props.alternateHref ?? localePath(locale === 'zh' ? 'en' : 'zh', '/reports/');
 ---
 
 <BaseLayout
   title={meta.title}
   description={meta.description}
-  lang={locale === 'zh' ? 'zh-CN' : 'en'}
+  locale={locale}
+  alternateHref={alternateHref}
   type="article"
   publishedTime={`${meta.date}T00:00:00Z`}
 >
   <article class="report-page" id="report-top" data-pagefind-filter={`year:${meta.year}`}>
     <header class="report-hero shell">
       <nav class="breadcrumbs" aria-label="Breadcrumb">
-        <a href={withBase('/')}>{copy.home}</a>
+        <a href={localePath(locale, '/')}>{copy.home}</a>
         <span aria-hidden="true">/</span>
-        <a href={withBase(`${reportBase}/`)}>{copy.reports}</a>
+        <a href={localePath(locale, '/reports/')}>{copy.reports}</a>
         <span aria-hidden="true">/</span>
         <span>{meta.date}</span>
-        {alternateHref && (
-          <>
-            <span aria-hidden="true">·</span>
-            <a class="breadcrumbs__alternate" href={alternateHref} hreflang={locale === 'zh' ? 'en' : 'zh-CN'}>
-              {copy.alternate}
-            </a>
-          </>
-        )}
       </nav>
       <h1 data-pagefind-meta="title">{meta.title}</h1>
       <p class="report-deck">{meta.description}</p>
@@ -104,7 +72,7 @@ const reportBase = locale === 'zh' ? '/zh/reports' : '/reports';
         {meta.postCount !== null && (
           <li>
             <span>{copy.posts}</span>
-            <strong>{meta.postCount.toLocaleString('en-US')}</strong>
+            <strong>{meta.postCount.toLocaleString(locale === 'zh' ? 'zh-CN' : 'en-US')}</strong>
           </li>
         )}
       </ul>
@@ -118,13 +86,13 @@ const reportBase = locale === 'zh' ? '/zh/reports' : '/reports';
         {(older || newer) && (
           <nav class="report-neighbors" aria-label="Adjacent reports">
             {older ? (
-              <a href={withBase(`${reportBase}/${older.date}/`)} rel="prev">
+              <a href={localePath(locale, `/reports/${older.date}/`)} rel="prev">
                 <span>{copy.older}</span>
                 <strong>{older.title}</strong>
               </a>
             ) : <span></span>}
             {newer && (
-              <a href={withBase(`${reportBase}/${newer.date}/`)} rel="next">
+              <a href={localePath(locale, `/reports/${newer.date}/`)} rel="next">
                 <span>{copy.newer}</span>
                 <strong>{newer.title}</strong>
               </a>
@@ -134,6 +102,6 @@ const reportBase = locale === 'zh' ? '/zh/reports' : '/reports';
       </div>
     </div>
 
-    <TableOfContents headings={headings} />
+    <TableOfContents headings={headings} locale={locale} />
   </article>
 </BaseLayout>

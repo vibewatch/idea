@@ -1,11 +1,20 @@
 ---
-import { withBase } from '../lib/paths';
 import ThemeToggle from './ThemeToggle.astro';
+import LanguageToggle from './LanguageToggle.astro';
+import type { Locale } from '../lib/i18n';
+import { localePath, useStrings } from '../lib/i18n';
 
+interface Props {
+  locale: Locale;
+  alternateHref: string;
+}
+
+const { locale, alternateHref } = Astro.props;
+const strings = useStrings(locale);
 const pathname = Astro.url.pathname;
 const links = [
-  { href: withBase('/reports/'), label: 'Reports' },
-  { href: withBase('/about/'), label: 'Method' },
+  { href: localePath(locale, '/reports/'), label: strings.nav.reports },
+  { href: localePath(locale, '/about/'), label: strings.nav.method },
 ];
 
 const isActive = (href: string) => pathname.startsWith(href);
@@ -13,9 +22,9 @@ const isActive = (href: string) => pathname.startsWith(href);
 
 <header class="site-header" data-site-header>
   <div class="shell header-inner">
-    <a class="brand" href={withBase('/')} aria-label="Idea home">
+    <a class="brand" href={localePath(locale, '/')} aria-label={strings.siteName}>
       <span class="brand-mark" aria-hidden="true">Id</span>
-      <span class="brand-text">Idea<small>Signal Desk</small></span>
+      <span class="brand-text">Idea<small>{strings.siteTagline}</small></span>
     </a>
 
     <nav class="desktop-nav" aria-label="Primary navigation">
@@ -27,15 +36,16 @@ const isActive = (href: string) => pathname.startsWith(href);
     </nav>
 
     <div class="header-actions">
-      <button class="search-trigger" type="button" data-search-open aria-label="Search reports">
+      <button class="search-trigger" type="button" data-search-open aria-label={strings.search.label}>
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <circle cx="11" cy="11" r="6.5"></circle>
           <path d="m16 16 4 4"></path>
         </svg>
-        <span>Search</span>
+        <span>{strings.search.trigger}</span>
         <kbd aria-hidden="true" data-search-shortcut>Ctrl K</kbd>
       </button>
-      <ThemeToggle />
+      <LanguageToggle locale={locale} href={alternateHref} />
+      <ThemeToggle locale={locale} />
       <details class="mobile-menu">
         <summary class="icon-button" aria-label="Open navigation">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -48,7 +58,7 @@ const isActive = (href: string) => pathname.startsWith(href);
               {link.label}
             </a>
           ))}
-          <button type="button" data-search-open>Search</button>
+          <button type="button" data-search-open>{strings.search.trigger}</button>
         </nav>
       </details>
     </div>

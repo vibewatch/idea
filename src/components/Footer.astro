@@ -1,16 +1,24 @@
 ---
+import type { Locale } from '../lib/i18n';
+import { localePath, useStrings } from '../lib/i18n';
 import { withBase } from '../lib/paths';
 
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const strings = useStrings(locale);
 const year = new Date().getUTCFullYear();
 ---
 
 <footer class="site-footer">
   <div class="shell footer-inner">
-    <p>© {year} Idea · Source-linked builder reports</p>
+    <p>© {year} Idea · {strings.footer.rights}</p>
     <nav aria-label="Footer navigation">
-      <a href={withBase('/reports/')}>Reports</a>
-      <a href={withBase('/about/')}>Method</a>
-      <a href={withBase('/rss.xml')}>RSS</a>
+      <a href={localePath(locale, '/reports/')}>{strings.nav.reports}</a>
+      <a href={localePath(locale, '/about/')}>{strings.nav.method}</a>
+      <a href={withBase('/rss.xml')}>{strings.footer.rss}</a>
     </nav>
   </div>
 </footer>
