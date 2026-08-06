@@ -1107,6 +1107,101 @@ class TestAnalysisBoundary:
         assert "REDDIT_COOKIES" not in mock_run.call_args.kwargs["env"]
         assert mock_run.call_args.kwargs["env"]["COPILOT_GITHUB_TOKEN"] == "copilot-token"
 
+    @patch("idea_pipeline.analyzer.reddit.subprocess.run")
+    def test_valid_candidate_survives_a_copilot_cli_crash(
+        self, mock_run: MagicMock, tmp_path: Path
+    ) -> None:
+        target = make_report_target(tmp_path)
+        report = tmp_path / "reports" / "2026-08-02.md"
+        job = AnalysisJob(target, report)
+        candidate = (
+            tmp_path
+            / "artifacts"
+            / REPORT_ARTIFACT_NAME
+            / "2026-08-02"
+            / "report.md"
+        )
+
+        def generate(*_args: object, **_kwargs: object) -> subprocess.CompletedProcess[str]:
+            candidate.write_text(valid_report(), encoding="utf-8")
+            (candidate.parent / "media-review.json").write_text(
+                '{"version": 1, "items": []}\n', encoding="utf-8"
+            )
+            return subprocess.CompletedProcess(
+                [],
+                1,
+                stdout="generated output",
+                stderr="native binary was terminated by signal SIGSEGV",
+            )
+
+        mock_run.side_effect = generate
+
+        result = analyze_job(job, artifacts_dir=tmp_path / "artifacts")
+
+        assert result.status == "published"
+        assert "1 warning(s)" in result.message
+        assert report.read_text(encoding="utf-8") == valid_report()
+        warning_document = json.loads(
+            (candidate.parent / "validation-warnings.json").read_text()
+        )
+        assert warning_document["warnings"] == [
+            (
+                "Copilot CLI exited with 1 after writing a candidate: "
+                "native binary was terminated by signal SIGSEGV"
+            )
+        ]
+
+    @patch("idea_pipeline.analyzer.reddit.subprocess.run")
+    def test_invalid_candidate_from_a_copilot_cli_crash_is_not_published(
+        self, mock_run: MagicMock, tmp_path: Path
+    ) -> None:
+        target = make_report_target(tmp_path)
+        report = tmp_path / "reports" / "2026-08-02.md"
+        job = AnalysisJob(target, report)
+        candidate = (
+            tmp_path
+            / "artifacts"
+            / REPORT_ARTIFACT_NAME
+            / "2026-08-02"
+            / "report.md"
+        )
+
+        def generate(*_args: object, **_kwargs: object) -> subprocess.CompletedProcess[str]:
+            candidate.write_text("# incomplete\n", encoding="utf-8")
+            return subprocess.CompletedProcess(
+                [], 139, stdout="", stderr="Segmentation fault"
+            )
+
+        mock_run.side_effect = generate
+
+        result = analyze_job(job, artifacts_dir=tmp_path / "artifacts")
+
+        assert result.status == "failed"
+        assert not report.exists()
+        validation = json.loads(
+            (candidate.parent / "validation-errors.json").read_text()
+        )
+        assert any("first line must be exactly" in error for error in validation["errors"])
+        assert (
+            "Copilot CLI exited with 139 after writing a candidate: Segmentation fault"
+            in validation["warnings"]
+        )
+
+    @patch("idea_pipeline.analyzer.reddit.subprocess.run")
+    def test_copilot_cli_crash_without_a_candidate_still_fails_immediately(
+        self, mock_run: MagicMock, tmp_path: Path
+    ) -> None:
+        target = make_report_target(tmp_path)
+        job = AnalysisJob(target, tmp_path / "reports" / "2026-08-02.md")
+        mock_run.return_value = subprocess.CompletedProcess(
+            [], 139, stdout="", stderr="Segmentation fault"
+        )
+
+        result = analyze_job(job, artifacts_dir=tmp_path / "artifacts")
+
+        assert result.status == "failed"
+        assert result.message == "Copilot CLI exited with 139: Segmentation fault"
+
     @patch("idea_pipeline.analyzer.reddit._download_image_asset")
     @patch("idea_pipeline.analyzer.reddit.subprocess.run")
     def test_quality_warnings_and_media_normalization_do_not_block_publication(

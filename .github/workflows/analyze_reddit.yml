@@ -64,6 +64,7 @@ concurrency:
 jobs:
   analyze:
     runs-on: ubuntu-latest
+    timeout-minutes: 360
     permissions:
       contents: write
 
@@ -139,6 +140,7 @@ jobs:
           path: |
             pipeline/artifacts/reddit/builder-intelligence/**/report.md
             pipeline/artifacts/reddit/builder-intelligence/**/media-review.json
+            pipeline/artifacts/reddit/builder-intelligence/**/metadata.json
             pipeline/artifacts/reddit/builder-intelligence/**/external-links.json
             pipeline/artifacts/reddit/builder-intelligence/**/media-manifest.json
             pipeline/artifacts/reddit/builder-intelligence/**/media-assets.json
@@ -151,6 +153,7 @@ jobs:
           retention-days: 7
 
       - name: Commit validated reports
+        if: ${{ always() && !cancelled() }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

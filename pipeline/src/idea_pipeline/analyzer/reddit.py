@@ -2478,12 +2478,23 @@ def analyze_job(
 
     _atomic_write_text(prepared.directory / "copilot.stdout.log", process.stdout or "")
     _atomic_write_text(prepared.directory / "copilot.stderr.log", process.stderr or "")
+    generation_warning = ""
     if process.returncode != 0:
         message = (process.stderr or process.stdout or "no output").strip()
-        return AnalysisResult(
-            job,
-            "failed",
-            f"Copilot CLI exited with {process.returncode}: {_truncate(message, 500)}",
+        generation_warning = (
+            f"Copilot CLI exited with {process.returncode} after writing a candidate: "
+            f"{_truncate(message, 500)}"
+        )
+        if not prepared.candidate_path.is_file():
+            return AnalysisResult(
+                job,
+                "failed",
+                f"Copilot CLI exited with {process.returncode}: {_truncate(message, 500)}",
+            )
+        LOGGER.warning(
+            "%s: %s; validating the candidate before deciding whether to discard it",
+            target.date_text,
+            generation_warning,
         )
 
     expected_title = _report_title(target.date_text)
@@ -2517,7 +2528,7 @@ def analyze_job(
         )
     except SnapshotError as exc:
         return AnalysisResult(job, "failed", str(exc))
-    warnings: list[str] = []
+    warnings = [generation_warning] if generation_warning else []
     errors = validate_media_review(
         prepared.media_review_path,
         expected_entries=media_assets.entries,

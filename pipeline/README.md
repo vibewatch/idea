@@ -145,7 +145,8 @@ The analyzer combines the three immutable daily JSON streams into static Markdow
 8. Extract concrete projects, pain points, founder ideas/validation, launches/metrics, and useful visual findings into exact Markdown tables before adding bounded cross-stream synthesis.
 9. Require `media-review.json` to account for every detected media item and distinguish inspected, non-substantive, and unavailable assets. Deterministic `media_type` and `report_included` fields are normalized from the manifest and final report before validation.
 10. Accept an otherwise identical HTTP-to-HTTPS source-link upgrade and make external destinations absent from the source manifests non-clickable while retaining their descriptive text and recording the repair. Then block reports with missing core sections or populated tables, local paths, remaining unknown source URLs, unknown Reddit IDs/media, insecure embedded images, or malformed review data. Treat exact table labels, per-section current-snapshot citation coverage, the eight-project target, inspected-media coverage, and source-derived HTTP hyperlinks as visible quality warnings rather than publication failures.
-11. Atomically publish valid output to `reports/reddit/<date>.md`.
+11. If Copilot exits nonzero after writing a candidate (for example, a native-binary crash), run the same strict normalization and validation before discarding it. A complete candidate is published with the CLI failure recorded as a warning; an incomplete candidate remains blocked.
+12. Atomically publish valid output to `reports/reddit/<date>.md`. The workflow commits validated reports even when a sibling date fails, then retains failed-run candidates, source-set metadata, ledgers, prompts, and logs as a seven-day diagnostics artifact.
 
 Raw snapshots are never rewritten. A failed generation or validation leaves any existing published report untouched.
 
