@@ -7,8 +7,8 @@
       "title": "I co-founded and exited a startup the old way. Building a new venture from scratch now shows me how much has changed.",
       "subreddit": "SaaS",
       "author": "gregorzehetner",
-      "score": 62,
-      "num_comments": 37,
+      "score": 73,
+      "num_comments": 43,
       "created_utc": 1788087698.0,
       "permalink": "/r/SaaS/comments/1w2ekku/i_cofounded_and_exited_a_startup_the_old_way/",
       "url": "https://www.reddit.com/r/SaaS/comments/1w2ekku/i_cofounded_and_exited_a_startup_the_old_way/",
@@ -22,7 +22,7 @@
           "id": "p6rup7y",
           "author": "HustleBerry564",
           "body": "The problem is now is about how to actually reach audience more than ever the attention are divided you gotta come up first on the ranking to actually make sure that the you get visibility as ads will stop running and moeny will stop flowing without ads.",
-          "score": 5
+          "score": 6
         },
         {
           "id": "p6rxq9d",
@@ -67,6 +67,12 @@
           "score": 2
         },
         {
+          "id": "p6xc67p",
+          "author": "Knightowle",
+          "body": "Congrats. Really interesting to see AI already becoming a meaningful acquisition channel for you. Glad you’ve found something that’s working, and thanks for sharing the experience.",
+          "score": 2
+        },
+        {
           "id": "p6schfi",
           "author": "PrizeRole8645",
           "body": "How are you tracking ChatGPT?",
@@ -77,18 +83,6 @@
           "author": "Redditor6703",
           "body": "The AI discovery channel is especially relevant to me because I run a niche healthcare pricing-data platform. Of the changes you made, such as deep landing pages, comparison pages, structured data, llms.txt, or third-party mentions, which produced the clearest measurable increase in ChatGPT or Claude recommendations? Roughly how long after publishing did you start seeing it in signup attribution?",
           "score": 1
-        },
-        {
-          "id": "p6u9y92",
-          "author": "Josephkihato95",
-          "body": ">",
-          "score": 1
-        },
-        {
-          "id": "p6uc3xg",
-          "author": "fazkan",
-          "body": "what have you observed, worked best for GEO? ",
-          "score": 1
         }
       ]
     },
@@ -98,8 +92,8 @@
       "title": "Are others centralizing LLM spend across providers?",
       "subreddit": "SaaS",
       "author": "Leading_Childhood408",
-      "score": 22,
-      "num_comments": 16,
+      "score": 28,
+      "num_comments": 23,
       "created_utc": 1788123263.0,
       "permalink": "/r/SaaS/comments/1w2t516/are_others_centralizing_llm_spend_across_providers/",
       "url": "https://www.reddit.com/r/SaaS/comments/1w2t516/are_others_centralizing_llm_spend_across_providers/",
@@ -113,7 +107,7 @@
           "id": "p6v9vw0",
           "author": "Patient_Assist7821",
           "body": "We treated it more like cloud spend than SaaS spend. Provider dashboards are okay for debugging usage but pretty bad for answering who spent what and on which workflow",
-          "score": 6
+          "score": 4
         },
         {
           "id": "p6v5d5t",
@@ -156,6 +150,36 @@
           "author": "ethanmillerxpert",
           "body": "Centralizing it seems worthwhile once you have enough providers and workflows. I'd track spend by team, model, and use case rather than just total usage. That makes it much easier to spot which workflows are actually worth the cost.",
           "score": 1
+        },
+        {
+          "id": "p6wu8d9",
+          "author": "Fazlul_Edu",
+          "body": "This is a very common pain point. Instead of building your own dashboard, look into LLM observability and gateway tools. Platforms like **Portkey**, **Helicone**, or **Langfuse** do exactly this. They act as a gateway, give you a unified dashboard for OpenAI/Anthropic, and let you tag requests by team or workflow using custom headers. Saves a ton of dev time.\n\n",
+          "score": 1
+        },
+        {
+          "id": "p6wuaig",
+          "author": "gannu1991",
+          "body": "What worked was tagging every call at the call site with a workflow id and team id before it goes out, then logging cost, tokens and latency to one place regardless of provider. It's maybe 20 lines of wrapper code around your model calls if you don't already have one. The unlock isn't visualization, it's that the tag has to happen at the request, not after the fact by trying to reconstruct which workflow a given API call belonged to from provider logs. That reconstruction is where most people give up and just eat the one big",
+          "score": 1
+        },
+        {
+          "id": "p6x8jq8",
+          "author": "xapep",
+          "body": "Contrarian take from someone who runs an API business: the cheapest fix is usually fewer providers, not a better dashboard. Most APIs these days are OpenAI-compatible, so moving a workflow between them is a base URL and key swap. Consolidate onto one or two primary providers and use separate API keys per team or workflow. One provider's usage page with a per-key breakdown answers 'cost per team or workflow' without building anything, and your volume gets cheaper on the workloads that actually matter.  \n  \nIf you genuinely need multiple providers for model-specific strengths, then yeah, you'll end up building the dashboard. But route by capability, track at the key level, and keep the provider count small. Otherwise the numbers never line up and the dashboard becomes a second job.",
+          "score": 1
+        },
+        {
+          "id": "p6xd25j",
+          "author": "Willing_Coffee1542",
+          "body": "This is definitely a real need. Provider dashboards are fine for basic billing, but they do not explain why the spend is happening.\n\nFor a team, the useful view is probably cost by workflow, feature, user, and model provider in one place. Otherwise you just get a big monthly number and still have no idea which part of the product is quietly getting expensive.",
+          "score": 1
+        },
+        {
+          "id": "p6xjznv",
+          "author": "krunal_builds",
+          "body": "we ended up centralizing routing but not billing - one gateway layer picks the model per request based on task type and cost, but we still watch spend per-provider separately because the failure modes are different (rate limits vs pricing changes vs quality drift). fully centralized billing made it harder to notice when one provider quietly got worse.",
+          "score": 1
         }
       ]
     },
@@ -165,8 +189,8 @@
       "title": "123 active users, $0 MRR. How do I actually get people to pay?",
       "subreddit": "SaaS",
       "author": "Itchy_Elderberry3822",
-      "score": 20,
-      "num_comments": 20,
+      "score": 26,
+      "num_comments": 27,
       "created_utc": 1788110342.0,
       "permalink": "/r/SaaS/comments/1w2nfv3/123_active_users_0_mrr_how_do_i_actually_get/",
       "url": "https://www.reddit.com/r/SaaS/comments/1w2nfv3/123_active_users_0_mrr_how_do_i_actually_get/",
@@ -180,13 +204,13 @@
           "id": "p6tv0d7",
           "author": "ElectionHot80",
           "body": "hey i also have 100+ active users and around 250+ total and to be honest the real breakthrough for me was changing my target market, i deepened and looked for more niche communities as niche as i possibly could and sales started happening ",
-          "score": 7
+          "score": 10
         },
         {
           "id": "p6tv5kf",
           "author": "TrafficAcademySEO",
           "body": "Talk to 10-15 of the active users before changing pricing.\n\nAsk what they use most, what they’d miss if it disappeared, and what would actually make them pay. With 123 active users, you already have the people who can tell you where the paid value is.",
-          "score": 2
+          "score": 3
         },
         {
           "id": "p6twr40",
@@ -283,12 +307,6 @@
           "author": "yzaroui",
           "body": "Before anything else, what does your dashboard mean by \"active\"? If that's monthly actives it includes people who opened it once on day 3 and never returned. Filter to users with 10+ entries across 3+ separate weeks and post that number. My guess is it's under 20, and at 20 real users zero paying customers is completely normal.\n\nThe freemium math backs that up. Consumer journaling converts around 1 to 2 percent, and that's for apps with a brand. At 123 you'd expect one or two paying. Zero is inside the noise band. You don't have a pricing problem yet, you have a sample size problem.\n\nWhere I'd push back on the thread: everyone is telling you to put the paywall behind the archive. That's the standard playbook and it's half right, but on a journaling app the archive is also your retention. Freeze someone's history and a decent share of them stop opening the app rather than pay, and you lose the user and the money.\n\nWhat I'd do instead, in order:\n\n1. Ship monthly and annual, annual at roughly 40 percent off. Journaling is a habit-reset purchase and annual is where the money in this category lives.\n2. Ask for money at the moment of pride, not the moment of loss. Streak hits 30 days, or the year-in-review screen. \"Keep this going, $3/mo\" converts better than a wall.\n3. Gate things that cost you money and that only committed users want. Unlimited photo attachments, cross-device sync, AI reflection over past entries, PDF export of a full year.\n\nThen message 10 users with 20+ entries and ask why they haven't paid. Not what would make them pay. People answer the first one honestly and the second one badly.",
           "score": 1
-        },
-        {
-          "id": "p6vmwhv",
-          "author": "Additional_Drop4874",
-          "body": "Try to get a few of them to get on a call with you. I've found the best tool to be to talk to the customer and watch them use your saas. You will silently see the breaking points and where stuff may need to be changed. Plus never ask about your saas, try to ask about the problem the website is solving to try and get the answers needed to help you.",
-          "score": 1
         }
       ]
     },
@@ -298,7 +316,7 @@
       "title": "We got our first 40 users in 2 weeks by Reddit DMs",
       "subreddit": "SaaS",
       "author": "EstablishmentFun4373",
-      "score": 15,
+      "score": 23,
       "num_comments": 10,
       "created_utc": 1788108745.0,
       "permalink": "/r/SaaS/comments/1w2mq5k/we_got_our_first_40_users_in_2_weeks_by_reddit_dms/",
@@ -438,7 +456,7 @@
       "title": "Has Google Analytics ever showed someone from Antarctica visiting your site?",
       "subreddit": "SaaS",
       "author": "Sofistikat",
-      "score": 8,
+      "score": 10,
       "num_comments": 5,
       "created_utc": 1788087254.0,
       "permalink": "/r/SaaS/comments/1w2efmo/has_google_analytics_ever_showed_someone_from/",
@@ -455,12 +473,12 @@
       "title": "Any ideas on how to get people to get people on an app? open to any idea",
       "subreddit": "SaaS",
       "author": "Remarkable-Grass-963",
-      "score": 8,
-      "num_comments": 13,
+      "score": 12,
+      "num_comments": 23,
       "created_utc": 1788079964.0,
       "permalink": "/r/SaaS/comments/1w2caxk/any_ideas_on_how_to_get_people_to_get_people_on/",
       "url": "https://www.reddit.com/r/SaaS/comments/1w2caxk/any_ideas_on_how_to_get_people_to_get_people_on/",
-      "selftext": "Ive recently launched a construction based application in australia,  \nIt relies on small buisness's and sole operators creating free accounts then coontracting them or their workers to other companies that need workers on a short notice basis.\n\nProblem is, the marketing team i have are only interested in META content and think it is supiror to all other kinds of outreach, \n\nIm not looking for an answer im just seeking advice or ideas of what other people have done to get some users on their software early stages?",
+      "selftext": "Ive recently launched a construction based application in australia,  \nIt relies on small buisness's and sole operators creating free accounts then coontracting them or their workers to other companies that need workers on a short notice basis.\n\nProblem is, we are only doing meta atm\n\nIm not looking for an answer im just seeking advice or ideas of what other people have done to get some users on their software early stages?",
       "is_self": true,
       "over_18": false,
       "is_video": false,
@@ -531,6 +549,24 @@
           "author": "4zfar",
           "body": "Meta is the worst marketing channel for this kind of business. You need business right now instead of testing it on something that will less likely to happen. You’re right. You +1. Your team -1. ",
           "score": 1
+        },
+        {
+          "id": "p6v42tt",
+          "author": "Beneficial_Radish180",
+          "body": "Meta can work, but I wouldn't bet the whole launch on it. If your users are small operators and contractors, I'd spend way more time where they're already looking for work and talking to each other. Early on, a handful of direct conversations usually beats another month of ad testing.",
+          "score": 1
+        },
+        {
+          "id": "p6xhpep",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "p6xoko0",
+          "author": "Many-Paint-3268",
+          "body": "Honestly, relying purely on Meta ads will burn your budget fast. To solve the marketplace cold-start problem, go hyper-local in one specific suburb and visit active sites or trade supply stores to manually onboard your first users. Keep sole traders from deleting the app before the jobs arrive by giving them immediate standalone value, like free quoting tools or compliance checklists. Once your supply side is seeded, shift your marketing focus toward capturing high-intent local search traffic to catch desperate companies at their exact moment of panic.",
+          "score": 1
         }
       ]
     },
@@ -540,7 +576,7 @@
       "title": "Agent workflows that work in sandbox keep breaking in prod",
       "subreddit": "SaaS",
       "author": "Common_Dream9420",
-      "score": 8,
+      "score": 7,
       "num_comments": 23,
       "created_utc": 1788100878.0,
       "permalink": "/r/SaaS/comments/1w2jd8n/agent_workflows_that_work_in_sandbox_keep/",
@@ -625,7 +661,7 @@
       "title": "Just got LinkedIn premium subscription free try for 30 days and any tips to take maximum advantage? Mainly outreach and research related.",
       "subreddit": "SaaS",
       "author": "Fantastic-Wave-9571",
-      "score": 9,
+      "score": 8,
       "num_comments": 6,
       "created_utc": 1788087622.0,
       "permalink": "/r/SaaS/comments/1w2ejmf/just_got_linkedin_premium_subscription_free_try/",
@@ -642,8 +678,8 @@
       "title": "(Cope?) I'm actually happy my SaaS is growing slowly.",
       "subreddit": "SaaS",
       "author": "musback",
-      "score": 6,
-      "num_comments": 3,
+      "score": 8,
+      "num_comments": 7,
       "created_utc": 1788118455.0,
       "permalink": "/r/SaaS/comments/1w2r19e/cope_im_actually_happy_my_saas_is_growing_slowly/",
       "url": "https://www.reddit.com/r/SaaS/comments/1w2r19e/cope_im_actually_happy_my_saas_is_growing_slowly/",
@@ -660,7 +696,7 @@
       "subreddit": "SaaS",
       "author": "lemavoos",
       "score": 7,
-      "num_comments": 4,
+      "num_comments": 6,
       "created_utc": 1788117905.0,
       "permalink": "/r/SaaS/comments/1w2qsd4/got_my_first_continuum_subscriber_after_leaving/",
       "url": "https://i.redd.it/rjuv7qrkckmh1.png",
@@ -676,8 +712,8 @@
       "title": "Weird Request, but I'll like to learn about how u guys are doing your GTM motions",
       "subreddit": "SaaS",
       "author": "Curious-Mind9401",
-      "score": 6,
-      "num_comments": 10,
+      "score": 8,
+      "num_comments": 11,
       "created_utc": 1788100831.0,
       "permalink": "/r/SaaS/comments/1w2jchj/weird_request_but_ill_like_to_learn_about_how_u/",
       "url": "https://www.reddit.com/r/SaaS/comments/1w2jchj/weird_request_but_ill_like_to_learn_about_how_u/",
@@ -697,6 +733,12 @@
           "id": "p6t5o3x",
           "author": "Glass_Rent8750",
           "body": "the jump from 0 to 100 and 100 to 1000 are almost entirely different problems. are you trying to learn about the early traction phase or the scaling phase? because the GTM motion changes pretty drastically between those two",
+          "score": 2
+        },
+        {
+          "id": "p6x55co",
+          "author": "LakeSuperiorBoats",
+          "body": "tbh, i'd love to hear how other approached this too",
           "score": 2
         },
         {
@@ -750,8 +792,8 @@
       "title": "How are you tracking API costs and Earnings per feature or user?",
       "subreddit": "SaaS",
       "author": "Conscious-Web6474",
-      "score": 4,
-      "num_comments": 8,
+      "score": 7,
+      "num_comments": 10,
       "created_utc": 1788091057.0,
       "permalink": "/r/SaaS/comments/1w2fmji/how_are_you_tracking_api_costs_and_earnings_per/",
       "url": "https://www.reddit.com/r/SaaS/comments/1w2fmji/how_are_you_tracking_api_costs_and_earnings_per/",
@@ -759,7 +801,39 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p6t7pop",
+          "author": "cozy-maple10",
+          "body": "Cost tracking is easy until you add agents, then it's basically cost archaeology after the fact",
+          "score": 1
+        },
+        {
+          "id": "p6thtr7",
+          "author": "Key-Inevitable-254",
+          "body": "are you trying to solve this for real-time alerting (like stopping a runaway agent mid-session) or more for monthly P&L reporting? those are two very different problems and the architecture looks nothing alike",
+          "score": 1
+        },
+        {
+          "id": "p6u83fb",
+          "author": "Ruca_AI",
+          "body": "yeah the provider dashboard kinda falls apart the second you have multiple agents/tools lol  \nare you mostly trying to see “where is the money going”, or more like “is this feature/user actually profitable after AI costs”?  \nthe second one is the part I’d personally want",
+          "score": 1
+        },
+        {
+          "id": "p6v86nf",
+          "author": "crt_quintessential",
+          "body": "I’ve spent most of my career in software engineering and now work a lot with production AI systems.\n\nLangfuse can work pretty well for this if you already have your LLM calls instrumented. I would tag traces with things like user, feature/workflow, model, agent, etc., then use the usage/cost data to see where spend is actually coming from.\n\nThe important part is making sure retries and failed calls are included too, otherwise the numbers can look better than reality.\n\nFor actual earnings/profitability per user or feature, I’d probably join that cost data with your billing/revenue data rather than expect the LLM observability tool to be the full P&L system.",
+          "score": 1
+        },
+        {
+          "id": "p6x5rpi",
+          "author": "gamergurrl41",
+          "body": "i'd track costs at the feature / workflow level from day one, not just per user",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1w2cj4z",
@@ -767,7 +841,7 @@
       "title": "For SaaS founders using affiliates: what commission structure actually worked for you?",
       "subreddit": "SaaS",
       "author": "Flimsy_Leg_2158",
-      "score": 5,
+      "score": 4,
       "num_comments": 0,
       "created_utc": 1788080744.0,
       "permalink": "/r/SaaS/comments/1w2cj4z/for_saas_founders_using_affiliates_what/",
@@ -784,8 +858,8 @@
       "title": "I have got founders using my product for investor meetings, client calls and product demo but getting feedback is surprisingly hard",
       "subreddit": "SaaS",
       "author": "Affectionate-Sky-74",
-      "score": 4,
-      "num_comments": 18,
+      "score": 8,
+      "num_comments": 19,
       "created_utc": 1788079804.0,
       "permalink": "/r/SaaS/comments/1w2c9au/i_have_got_founders_using_my_product_for_investor/",
       "url": "https://www.reddit.com/r/SaaS/comments/1w2c9au/i_have_got_founders_using_my_product_for_investor/",
@@ -964,8 +1038,8 @@
       "title": "How do you know that you have an idea worth spending time on actually building something for?",
       "subreddit": "SaaS",
       "author": "TheKaleKing",
-      "score": 2,
-      "num_comments": 15,
+      "score": 7,
+      "num_comments": 20,
       "created_utc": 1788127550.0,
       "permalink": "/r/SaaS/comments/1w2uwmd/how_do_you_know_that_you_have_an_idea_worth/",
       "url": "https://www.reddit.com/r/SaaS/comments/1w2uwmd/how_do_you_know_that_you_have_an_idea_worth/",
@@ -1010,6 +1084,36 @@
           "author": "yesimfarida",
           "body": "Honestly I would recommend you get feedback first, always feedback from users first. It's literally you getting advice from real people who you expected to pay for your products. Do it like this: Build the MVP, ask for feedback, track every single piece of action done on your product, improve your product if everything is going well or stop everything if it didnt work out. DONT GET EMOTIONALLY ATTACHED TO YOUR PROJECTS.",
           "score": 1
+        },
+        {
+          "id": "p6wjhkm",
+          "author": "Terrible-Access414",
+          "body": "I feel like it comes naturally when you genuinely try to look for a solution of a problem you’re currently facing. It doesnt matter if someone already has built something based off your idea, what matter is how you approach the solution yourself. \n\nA team I have been working recently with started a project that followed this ideology. Were still on the launching phase, but I find it cool that the founder built this project from his past experiences and wanted to turn this into a business. ",
+          "score": 1
+        },
+        {
+          "id": "p6wkpbv",
+          "author": "mmishra14",
+          "body": "Start with an *experiment* to validate your idea and see if there is a market with paying customers who would find *value* from your product.\n\nWould highly recommend looking into the Lean Startup by Eric Ries!",
+          "score": 1
+        },
+        {
+          "id": "p6wmhqv",
+          "author": "Intelligent_Bear_178",
+          "body": "if you saw this product somewhere else would you buy it and why",
+          "score": 1
+        },
+        {
+          "id": "p6x9dwi",
+          "author": "adeelraza86",
+          "body": "You don't know from thinking. You know when someone who already pays for a janky workaround will take a call, or better, will pay a deposit for you to fix it. A week of idea-spinning is enough; pick the one problem you heard a real person complain about twice and go ask five of them what they do today. If they won't show you the spreadsheet or the agency invoice, it isn't an idea yet.",
+          "score": 1
+        },
+        {
+          "id": "p6xou9z",
+          "author": "MGgunimi",
+          "body": "Honestly, I think you only really find out after you start building.  \nIf the problem is interesting enough that you keep thinking about it, I’d probably build a small version and put it in front of people. Their reaction will tell you more than another week of looking for ideas.",
+          "score": 1
         }
       ]
     },
@@ -1019,8 +1123,8 @@
       "title": "Engineer here, first marketing push and I don't know where to start",
       "subreddit": "SaaS",
       "author": "megabuilder_",
-      "score": 2,
-      "num_comments": 6,
+      "score": 5,
+      "num_comments": 8,
       "created_utc": 1788120813.0,
       "permalink": "/r/SaaS/comments/1w2s2o0/engineer_here_first_marketing_push_and_i_dont/",
       "url": "https://www.reddit.com/r/SaaS/comments/1w2s2o0/engineer_here_first_marketing_push_and_i_dont/",
@@ -1139,7 +1243,7 @@
       "title": "Solo pre-launch, everyone who tests my product is too polite. Where did your first real feedback come from?",
       "subreddit": "microsaas",
       "author": "seekworld",
-      "score": 5,
+      "score": 7,
       "num_comments": 11,
       "created_utc": 1788094459.0,
       "permalink": "/r/microsaas/comments/1w2gto0/solo_prelaunch_everyone_who_tests_my_product_is/",
@@ -1205,8 +1309,8 @@
       "title": "The lesson that changed my roadmap: nobody wanted a dashboard, they wanted an answer",
       "subreddit": "microsaas",
       "author": "Material-Friend7279",
-      "score": 5,
-      "num_comments": 5,
+      "score": 4,
+      "num_comments": 6,
       "created_utc": 1788094945.0,
       "permalink": "/r/microsaas/comments/1w2h05x/the_lesson_that_changed_my_roadmap_nobody_wanted/",
       "url": "https://www.reddit.com/r/microsaas/comments/1w2h05x/the_lesson_that_changed_my_roadmap_nobody_wanted/",
@@ -1223,7 +1327,7 @@
       "subreddit": "microsaas",
       "author": "Successful_Gur3546",
       "score": 3,
-      "num_comments": 5,
+      "num_comments": 6,
       "created_utc": 1788078279.0,
       "permalink": "/r/microsaas/comments/1w2btu6/how_much_of_your_saas_content_marketing_can/",
       "url": "https://www.reddit.com/r/microsaas/comments/1w2btu6/how_much_of_your_saas_content_marketing_can/",
@@ -1240,7 +1344,7 @@
       "subreddit": "microsaas",
       "author": "CareerForge_the_one",
       "score": 2,
-      "num_comments": 3,
+      "num_comments": 4,
       "created_utc": 1788123753.0,
       "permalink": "/r/microsaas/comments/1w2tco1/would_you_rather_charge_9_for_the_entry_plan_or/",
       "url": "https://www.reddit.com/r/microsaas/comments/1w2tco1/would_you_rather_charge_9_for_the_entry_plan_or/",
@@ -1256,8 +1360,8 @@
       "title": "My first paying customer used my saas for 11 hours straight and didn't use my main feature.",
       "subreddit": "microsaas",
       "author": "amorpheuse",
-      "score": 1,
-      "num_comments": 6,
+      "score": 7,
+      "num_comments": 5,
       "created_utc": 1788123603.0,
       "permalink": "/r/microsaas/comments/1w2ta69/my_first_paying_customer_used_my_saas_for_11/",
       "url": "https://www.reddit.com/r/microsaas/comments/1w2ta69/my_first_paying_customer_used_my_saas_for_11/",
@@ -1273,8 +1377,8 @@
       "title": "224 visitors in 30 days, 0 paid conversions. What am I missing?",
       "subreddit": "microsaas",
       "author": "Prestigious_Rub_2155",
-      "score": 2,
-      "num_comments": 2,
+      "score": 3,
+      "num_comments": 3,
       "created_utc": 1788115582.0,
       "permalink": "/r/microsaas/comments/1w2pr8z/224_visitors_in_30_days_0_paid_conversions_what/",
       "url": "https://www.reddit.com/r/microsaas/comments/1w2pr8z/224_visitors_in_30_days_0_paid_conversions_what/",
@@ -1291,7 +1395,7 @@
       "subreddit": "microsaas",
       "author": "ganesh9532",
       "score": 2,
-      "num_comments": 1,
+      "num_comments": 2,
       "created_utc": 1788114214.0,
       "permalink": "/r/microsaas/comments/1w2p55v/would_you_want_ai_agents_to_use_your_website_not/",
       "url": "https://www.reddit.com/r/microsaas/comments/1w2p55v/would_you_want_ai_agents_to_use_your_website_not/",
@@ -1358,7 +1462,7 @@
       "title": "Solo built a health app with SwiftUI, Cloudflare Workers, and Neon: what actually surprised me after launch",
       "subreddit": "microsaas",
       "author": "Prestigious_Day5414",
-      "score": 1,
+      "score": 2,
       "num_comments": 0,
       "created_utc": 1788121506.0,
       "permalink": "/r/microsaas/comments/1w2sdlc/solo_built_a_health_app_with_swiftui_cloudflare/",
@@ -1375,8 +1479,8 @@
       "title": "I built a free, ad-free social network with chats, reels, Looking for early testers! — would love some honest feedback",
       "subreddit": "microsaas",
       "author": "Prudent_Tie9616",
-      "score": 1,
-      "num_comments": 1,
+      "score": 2,
+      "num_comments": 3,
       "created_utc": 1788114994.0,
       "permalink": "/r/microsaas/comments/1w2phut/i_built_a_free_adfree_social_network_with_chats/",
       "url": "https://www.reddit.com/r/microsaas/comments/1w2phut/i_built_a_free_adfree_social_network_with_chats/",
@@ -1393,7 +1497,7 @@
       "subreddit": "microsaas",
       "author": "SellingN8",
       "score": 1,
-      "num_comments": 1,
+      "num_comments": 2,
       "created_utc": 1788114115.0,
       "permalink": "/r/microsaas/comments/1w2p3k0/what_company_would_you_recommend_for_building_an/",
       "url": "https://www.reddit.com/r/microsaas/comments/1w2p3k0/what_company_would_you_recommend_for_building_an/",
@@ -1562,8 +1666,8 @@
       "title": "Your AI generated SaaS is 99.9% likely a waste of your time an money. Prove me wrong.",
       "subreddit": "SideProject",
       "author": "Reasonable_Height_11",
-      "score": 85,
-      "num_comments": 154,
+      "score": 131,
+      "num_comments": 233,
       "created_utc": 1788120420.0,
       "permalink": "/r/SideProject/comments/1w2rwg0/your_ai_generated_saas_is_999_likely_a_waste_of/",
       "url": "https://www.reddit.com/r/SideProject/comments/1w2rwg0/your_ai_generated_saas_is_999_likely_a_waste_of/",
@@ -1574,28 +1678,28 @@
       "stickied": false,
       "comments_data": [
         {
-          "id": "p6uwj51",
-          "author": "Ok-Yam-1715",
-          "body": "But that 0.1% though",
-          "score": 67
-        },
-        {
           "id": "p6v0nis",
           "author": "malero",
           "body": "The exact same thing happened before AI as well. You could spend years handcrafting a site/app and would likely fail to get users without proper marketing. Marketing has always been extremely hard. I launched so many personal sites, apps and games before AI existed and a lot of them failed. Spent half a year working on an ecommerce site for a company and they only got a single order in the first 3 months. They did no marketing and were hoping to rank high on Google organically… I’m surprised they got a single order to be honest.\n\nIf your app is useful, well made and you market it well, you will get users. It doesn’t matter if you used AI or not. ",
-          "score": 60
+          "score": 106
+        },
+        {
+          "id": "p6uwj51",
+          "author": "Ok-Yam-1715",
+          "body": "But that 0.1% though",
+          "score": 87
         },
         {
           "id": "p6v167j",
           "author": "dannydek",
           "body": "Don’t use AI to churn out vibe-coded crap. Use it to engineer the best possible version of an idea worth building.  \nWhen you bring the vision, expertise, and taste, AI gives you the power to execute without a full team.",
-          "score": 31
+          "score": 47
         },
         {
           "id": "p6v1lph",
           "author": "tbw875",
           "body": "False. \n\nI already saved money on mine. \n\nI was tired of shitty ads and my inability to say “no” to an ad-free payment for a Gin Rummy app I use. So I made my own. Only for me and my partner. \n\nWe saved $5",
-          "score": 25
+          "score": 44
         },
         {
           "id": "p6uwdgt",
@@ -1604,22 +1708,34 @@
           "score": 24
         },
         {
-          "id": "p6v6aq3",
-          "author": "[deleted]",
-          "body": "[removed]",
-          "score": 13
+          "id": "p6v5hau",
+          "author": "CutBulkMaintain",
+          "body": "If you're not buying/picking ideas from some guru's ideas list and are building because you have an idea you believe in and not because there now is a tool that can build \"anything\", it's almost impossible not to break even. Just look at this sub, the 99,9% of people failing are literally just copying ideas (and are proud of it) or pushing out slop built in a weekend. Not everybody will succeed, but let's not be afraid of the failure rate when most of the failures are people who have no vision, skill, talent, etc.",
+          "score": 17
         },
         {
           "id": "p6v2nf4",
           "author": "qki_machine",
           "body": "Waste of time? Maybe.   \nWaste of money? Definitely not, can buy few ramens a months with it. \n\nBut most importantly it’s fun. And motivating ",
-          "score": 8
+          "score": 13
         },
         {
-          "id": "p6v5hau",
-          "author": "CutBulkMaintain",
-          "body": "If you're not buying/picking ideas from some guru's ideas list and are building because you have an idea you believe in and not because there now is a tool that can build \"anything\", it's almost impossible not to break even. Just look at this sub, the 99,9% of people failing are literally just copying ideas (and are proud of it) or pushing out slop built in a weekend. Not everybody will succeed, but let's not be afraid of the failure rate when most of the failures are people who have no vision, skill, talent, etc.",
-          "score": 9
+          "id": "p6v6aq3",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 11
+        },
+        {
+          "id": "p6vcdus",
+          "author": "Technical-Branch9178",
+          "body": "You're screaming into the void.\n\nAggregated data estimates show that of every 1000 people that start creating something:\n\nabout 150-200/1000 actually finish,\nabout 50-80/1000 actually launch,\nand only about 20-40 (2-4%) make it beyond 60 days or to their first sale.\n\n96% of people never make a single dollar.\n\nOf the remaining, 75% of them don't make it beyond $300 lifetime revenue, and only about 25% of them (1/1000) will make it to real, recurring revenue above $3,000/mo.\n\n1/1000.\n\nThis sub has 17,000 contributions per week.\n\nNot posts. Contributions. That includes comments.\n\nSo if you factor that in probably less than 1500-2500 active weekly users.\n\nThat means only about 3 of us here actually earn a living from a project we started, and I've yet to meet the other two.\n",
+          "score": 13
+        },
+        {
+          "id": "p6v2hbc",
+          "author": "turnnoblindeye",
+          "body": "Just have to believe in your idea enough. \n\n\\#1 thing is - do you find it genuinely useful, and did you try to find a better app and fail? If the answer is to either is no, you should stop. \n\n\\#2 thing is - even if your idea is good - can you put aside a big portion of time to try to bring it to life? Nope? Stop.\n\n\\#3 thing is - do you have a plan for distribution? It’s totally fine to try something and see if it works. But if you’re just hoping people might find it cause the idea is so good? Stop.\n\n\\#4 thing is - have you read this far and you don’t care what I say because your idea is going to change the world and you’re going to prove us all wrong? Hey buddy - good for you - go for it.",
+          "score": 8
         },
         {
           "id": "p6uyzwt",
@@ -1634,21 +1750,9 @@
           "score": 7
         },
         {
-          "id": "p6v1fy5",
-          "author": "BluePotamus",
-          "body": "0.1% chance of success is way too high",
-          "score": 4
-        },
-        {
-          "id": "p6v2hbc",
-          "author": "turnnoblindeye",
-          "body": "Just have to believe in your idea enough. \n\n\\#1 thing is - do you find it genuinely useful, and did you try to find a better app and fail? If the answer is to either is no, you should stop. \n\n\\#2 thing is - even if your idea is good - can you put aside a big portion of time to try to bring it to life? Nope? Stop.\n\n\\#3 thing is - do you have a plan for distribution? It’s totally fine to try something and see if it works. But if you’re just hoping people might find it cause the idea is so good? Stop.\n\n\\#4 thing is - have you read this far and you don’t care what I say because your idea is going to change the world and you’re going to prove us all wrong? Hey buddy - good for you - go for it.",
-          "score": 5
-        },
-        {
-          "id": "p6v3mjj",
-          "author": "borobinimbaba",
-          "body": "Dude I've spent my youth years trying to build the next big thing using first versions of asp.net.\n\nThese AI thing is like cocaine for me, do you think I'm sad wasting time and money?",
+          "id": "p6vv1wx",
+          "author": "WhereasElectrical594",
+          "body": "I agree with some of this, but I tend to look at using AI a little differently.\n\nI'm a developer, but I'm also a woodworker. I like to think of AI the same way I think about tools in my workshop.\n\nThere are craftspeople who swear a dovetail has to be cut by hand. I can absolutely appreciate the skill involved in doing that, and I think it's a skill worth learning. But during production, customers don't care whether I spent an hour cutting it by hand or used a jig and a router to get there faster. They care that the finished product is high quality at a price they can afford.\n\nI think software is heading in the same direction.\n\nIf AI lets me build something in a week that would have taken me a month before, that's not really a negative. It means I can spend more time figuring out whether I'm building the right thing, talking to users and improving the product.\n\nWhere I agree with you is that AI makes it incredibly easy to build something nobody wants. Being able to build faster doesn't mean you've found a problem worth solving.\n\nI also think having the skills to understand and support what the AI has generated is crucial to long term success. Eventually something will break, something will need to scale, or the AI will confidently give you the wrong answer. You still need to understand what you're building.\n\nAI can help me build faster. It can't tell me what my customers actually want to buy.",
           "score": 5
         }
       ]
@@ -1659,8 +1763,8 @@
       "title": "I code at 4 AM in Cuba because that's when the internet works. No Stripe, no PayPal, 0 users. Building in public anyway.",
       "subreddit": "SideProject",
       "author": "Few-Leave8917",
-      "score": 78,
-      "num_comments": 33,
+      "score": 93,
+      "num_comments": 43,
       "created_utc": 1788096031.0,
       "permalink": "/r/SideProject/comments/1w2hel8/i_code_at_4_am_in_cuba_because_thats_when_the/",
       "url": "https://www.reddit.com/r/SideProject/comments/1w2hel8/i_code_at_4_am_in_cuba_because_thats_when_the/",
@@ -1674,7 +1778,7 @@
           "id": "p6sfvcj",
           "author": "Giga14_",
           "body": "Hey man, I'm a fellow solo developer, EU based. I feel your struggle and will definitely check out your project. Keep it up 👍🏻",
-          "score": 16
+          "score": 17
         },
         {
           "id": "p6sgxuu",
@@ -1756,8 +1860,8 @@
       "title": "Started this side project in January for my own itch. Just crossed 10k revenue",
       "subreddit": "SideProject",
       "author": "Hungry_Spite3574",
-      "score": 70,
-      "num_comments": 30,
+      "score": 88,
+      "num_comments": 34,
       "created_utc": 1788095099.0,
       "permalink": "/r/SideProject/comments/1w2h26m/started_this_side_project_in_january_for_my_own/",
       "url": "https://v.redd.it/l8akqdffgimh1",
@@ -1768,15 +1872,27 @@
       "stickied": false,
       "comments_data": [
         {
-          "id": "p6sdozk",
-          "author": "[deleted]",
-          "body": "[removed]",
-          "score": 1
-        },
-        {
           "id": "p6sfx1n",
           "author": "Technical-Branch9178",
           "body": "Congrats on making it to the 1% club. You'll like it. It's nice here.",
+          "score": 3
+        },
+        {
+          "id": "p6t28x4",
+          "author": "cs_cast_away_boi",
+          "body": "interesting , macos only ?",
+          "score": 2
+        },
+        {
+          "id": "p6uwnp4",
+          "author": "podviaznikov",
+          "body": "amazing product and amazing progress with revenue too!",
+          "score": 2
+        },
+        {
+          "id": "p6sdozk",
+          "author": "[deleted]",
+          "body": "[removed]",
           "score": 1
         },
         {
@@ -1789,12 +1905,6 @@
           "id": "p6stmr4",
           "author": "bankrut",
           "body": "Congrats, and I need to say I really like this kind of desing of your site. ",
-          "score": 1
-        },
-        {
-          "id": "p6t28x4",
-          "author": "cs_cast_away_boi",
-          "body": "interesting , macos only ?",
           "score": 1
         },
         {
@@ -1828,12 +1938,6 @@
           "score": 1
         },
         {
-          "id": "p6uwnp4",
-          "author": "podviaznikov",
-          "body": "amazing product and amazing progress with revenue too!",
-          "score": 1
-        },
-        {
           "id": "p6uykmc",
           "author": "Sadek_Elf",
           "body": "I’ve been using mymind…I’m gana give a try tho! ",
@@ -1853,8 +1957,8 @@
       "title": "What’s something you’ve made that you’re genuinely proud of?",
       "subreddit": "SideProject",
       "author": "Suspicious-Issue7572",
-      "score": 50,
-      "num_comments": 102,
+      "score": 59,
+      "num_comments": 126,
       "created_utc": 1788094489.0,
       "permalink": "/r/SideProject/comments/1w2gu1z/whats_something_youve_made_that_youre_genuinely/",
       "url": "https://www.reddit.com/r/SideProject/comments/1w2gu1z/whats_something_youve_made_that_youre_genuinely/",
@@ -1874,7 +1978,25 @@
           "id": "p6t2vwy",
           "author": "RockettBits",
           "body": "For a while I worked on [BestTravelClimate.com](http://BestTravelClimate.com) to make it easier to find the best time to visit a destination without digging through dozens of different and diffuse weather websites. It brings monthly temperatures, rainfall, sea conditions, sun, and practical seasonal advice together in one place. I really like it because it makes it so much easier for me to find new destinations",
-          "score": 6
+          "score": 8
+        },
+        {
+          "id": "p6ukhmx",
+          "author": "Educational-Title158",
+          "body": "I built a web game called MAPPED: [https://flashed.world/](https://flashed.world/)\n\nIt’s a spatial memory game where you get a few seconds to memorize where the dots are, then try to place them back as accurately as possible.\n\nThere’s a daily challenge + leaderboard if you want to compare scores.",
+          "score": 5
+        },
+        {
+          "id": "p6soqww",
+          "author": "KiarashFa",
+          "body": "I made a website to just answer my curiosities, it was in the beginning only 10 small sections but then I expanded to 50 areas, now I guess I got a sense about everything in the world (well a bit, but still much better me last year!)\nHere you can check it for yourself:\n\nhttps://kiarashfa.github.io/perceptense/",
+          "score": 4
+        },
+        {
+          "id": "p6u6126",
+          "author": "freema77",
+          "body": "I made a daily geography game where you guess the location of travel photos. https://travelguessr.com",
+          "score": 4
         },
         {
           "id": "p6sdr6i",
@@ -1883,15 +2005,9 @@
           "score": 3
         },
         {
-          "id": "p6soqww",
-          "author": "KiarashFa",
-          "body": "I made a website to just answer my curiosities, it was in the beginning only 10 small sections but then I expanded to 50 areas, now I guess I got a sense about everything in the world (well a bit, but still much better me last year!)\nHere you can check it for yourself:\n\nhttps://kiarashfa.github.io/perceptense/",
-          "score": 3
-        },
-        {
-          "id": "p6u6126",
-          "author": "freema77",
-          "body": "I made a daily geography game where you guess the location of travel photos. https://travelguessr.com",
+          "id": "p6sol2d",
+          "author": "Mescallan",
+          "body": "I started learning ML over covid with online courses, I wanted to make a dataset of my own habits to play with, so I made a basic script that would use a local LLM to parse journal entries into a categorized dataset. I spent a year tinkering with it, then eventually started learning traditional NLP techniques to reduce the amount of tokens sent to the LLM. Over the course of 2025 I went from 12+ minutes and like 8 LLM calls  per entry on 4.2 gigs of VRAM,  to >200ms/sentence (multi-categorized, entity extracted and time+duration inferred) to 180mb DDR5. Completely replaced the LLLM with narrow NLP techniques.\n\nThen I spent six months porting the stack to apple's native ML libraries and a UI in swift so users can record short voice notes through out the day that are categorized in real time. The stack learns from corrections without retraining neural networks (it uses 3 50-120m parameter neural networks + other stuff).\n\n  \nIt's my baby, I'm about 3 years deep into it, just launched on the AppStore last week, had around 200 beta testers over a year or so.\n\n[tinh.io](http://tinh.io)",
           "score": 3
         },
         {
@@ -1907,34 +2023,70 @@
           "score": 2
         },
         {
-          "id": "p6sol2d",
-          "author": "Mescallan",
-          "body": "I started learning ML over covid with online courses, I wanted to make a dataset of my own habits to play with, so I made a basic script that would use a local LLM to parse journal entries into a categorized dataset. I spent a year tinkering with it, then eventually started learning traditional NLP techniques to reduce the amount of tokens sent to the LLM. Over the course of 2025 I went from 12+ minutes and like 8 LLM calls  per entry on 4.2 gigs of VRAM,  to >200ms/sentence (multi-categorized, entity extracted and time+duration inferred) to 180mb DDR5. Completely replaced the LLLM with narrow NLP techniques.\n\nThen I spent six months porting the stack to apple's native ML libraries and a UI in swift so users can record short voice notes through out the day that are categorized in real time. The stack learns from corrections without retraining neural networks (it uses 3 50-120m parameter neural networks + other stuff).\n\n  \nIt's my baby, I'm about 3 years deep into it, just launched on the AppStore last week, had around 200 beta testers over a year or so.\n\n[tinh.io](http://tinh.io)",
-          "score": 2
-        },
-        {
           "id": "p6srxvu",
           "author": "Ok_Section3142",
           "body": "www.gothicsolve.com\nIt's a helper for a recently launched game that has a difficult mechanic.\nI originally just made it for myself but saw that a lot of other gamers wanted it too so I made it look cool.",
           "score": 2
         },
         {
-          "id": "p6ukhmx",
-          "author": "Educational-Title158",
-          "body": "I built a web game called MAPPED: [https://flashed.world/](https://flashed.world/)\n\nIt’s a spatial memory game where you get a few seconds to memorize where the dots are, then try to place them back as accurately as possible.\n\nThere’s a daily challenge + leaderboard if you want to compare scores.",
+          "id": "p6t4qul",
+          "author": "Ambitious_Echo_3020",
+          "body": "A lightweight finance app designed especially for personal and micro/small businesses named Kiping, it's live on Google Play.\nhttps://play.google.com/store/apps/details?id=com.kiping.app",
           "score": 2
         },
         {
-          "id": "p6sbsp3",
-          "author": "[deleted]",
-          "body": "[removed]",
-          "score": 1
+          "id": "p6t4wtx",
+          "author": "quietbuilds10",
+          "body": "Mine's an app I built to fight my own decision fatigue — I kept infinite-scrolling through \"best hiking trails\" or \"best movies\" lists and never actually picking anything. So I made something that only ever shows 10 best options, curated, no scroll. Called it Tengoo (tengoo.app). Started it mostly to get better at using AI coding tools, honestly wasn't sure it'd end up being something real. But there's something satisfying about opening it now and see my work, even with zero users so far.",
+          "score": 2
         },
         {
-          "id": "p6scu6r",
-          "author": "Kritnc",
-          "body": "https://hanksvscruise.com/",
-          "score": 1
+          "id": "p6t60hk",
+          "author": "Hel1xr",
+          "body": "I built follow spy a free tool that lets you see easily who has unfollow you, in which account you sent follow request etc by providing only the contacts info.\n\nThe app is secure and private with 0 data collected and has organically got 10k+ users on Android.\n\nhttps://play.google.com/store/apps/details?id=com.FollowSpy",
+          "score": 2
+        },
+        {
+          "id": "p6th9xg",
+          "author": "itsjakerobb",
+          "body": "https://jakerobb.dev/#/cars/calculators/speed-and-gearing",
+          "score": 2
+        },
+        {
+          "id": "p6u55rj",
+          "author": "julesbuildstuff",
+          "body": "Honestly the thing I'm weirdly proud of isn't the flashy part. I kept rebuilding the same \"here's what this button/modal actually does\" notes for coding agents by hand. So I made a flow where you click a component and get a structured spec back. Still rough around the edges, still my own daily tool more than anything polished — but it's the first thing I've shipped that I use every single day without talking myself into it.",
+          "score": 2
+        },
+        {
+          "id": "p6u9tbq",
+          "author": "Shazmataz3",
+          "body": "Started vibe coding a few months back, then switched jobs into an industry I knew almost nothing about. To get up to speed I built myself a learning app. Started by giving it a handful of articles and white papers that I had been referred to, and it turned them into a six-week curriculum with guided notes and weekly quizzes, ordered broad → deep.\n\nWas fun to build a personal app to encourage my learning & helpful to have reading plans/confirmation I was retaining information.\n\nSince then I’ve generalized it so it works for any topic & build out a much more robust gamified app around it. You can still hand it your own sources and it’ll build around them or it’ll find sources for you and give them credibility-ratings. Planning to post it here in the near future. Happy to DM anyone an invite-only beta code to anyone who wants to try it and give feedback ",
+          "score": 2
+        },
+        {
+          "id": "p6u9tsj",
+          "author": "ocrohnahan",
+          "body": "RapidCAM.app.  2.5d parametric CAD/CAM that runs completely in your browser and respects your privacy.\n\nStarted because I wanted a way to quickly create gcode without going full 3d CAD.  Just kind of grew into this powerful system.",
+          "score": 2
+        },
+        {
+          "id": "p6ugfd8",
+          "author": "StrawberryLow5603",
+          "body": "I don't know if proud is the word yet. I'm building a coach. I used to pay a lot for the human version and wanted something I could actually talk to during the week.",
+          "score": 2
+        },
+        {
+          "id": "p6uiced",
+          "author": "RipChoice2673",
+          "body": "Created a productivity desktop companian pet which is going to gently nudge you if you get distracted and help you analyze your \"productivity\" stats to see how awesome you are during a day. Goona be launching it soon: [https://www.trixxie.app](https://www.trixxie.app)",
+          "score": 2
+        },
+        {
+          "id": "p6ulbet",
+          "author": "Krantt_",
+          "body": "For me that would be to have made something that I know have never been made before, that is a jigsaw puzzle of a million pieces in the browser, running smoothly. Yes I used AI to write the code but I still had to come up with most of the ideas myself, backed up by couple years of experience in game development.\n\nFor the curious : app.millionpiecepuzzle.com",
+          "score": 2
         }
       ]
     },
@@ -2017,8 +2169,8 @@
       "title": "Copying small files off an HDD is slow because of read order, not disk speed",
       "subreddit": "SideProject",
       "author": "krit83",
-      "score": 23,
-      "num_comments": 10,
+      "score": 24,
+      "num_comments": 13,
       "created_utc": 1788083622.0,
       "permalink": "/r/SideProject/comments/1w2dcsy/copying_small_files_off_an_hdd_is_slow_because_of/",
       "url": "https://www.reddit.com/r/SideProject/comments/1w2dcsy/copying_small_files_off_an_hdd_is_slow_because_of/",
@@ -2051,6 +2203,12 @@
           "author": "Struggle_Wise",
           "body": "It baffles me that ethernet based drives are obscure. With optimizations like yours, they could be even faster. ",
           "score": 1
+        },
+        {
+          "id": "p6x86cy",
+          "author": "sudomatrix",
+          "body": "That's pretty smart!",
+          "score": 1
         }
       ]
     },
@@ -2060,7 +2218,7 @@
       "title": "I got my first app to +5k in just 4 months, with 0 followers",
       "subreddit": "SideProject",
       "author": "BatsAapje",
-      "score": 21,
+      "score": 20,
       "num_comments": 20,
       "created_utc": 1788083267.0,
       "permalink": "/r/SideProject/comments/1w2d93g/i_got_my_first_app_to_5k_in_just_4_months_with_0/",
@@ -2109,8 +2267,8 @@
       "title": "I finally made money from my Chrome extension",
       "subreddit": "SideProject",
       "author": "abaa97",
-      "score": 13,
-      "num_comments": 9,
+      "score": 19,
+      "num_comments": 10,
       "created_utc": 1788100951.0,
       "permalink": "/r/SideProject/comments/1w2jeck/i_finally_made_money_from_my_chrome_extension/",
       "url": "https://i.imgur.com/1Eoh00N.png",
@@ -2118,7 +2276,33 @@
       "is_self": false,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p6syk60",
+          "author": "winter-m00n",
+          "body": "Item not available ",
+          "score": 3
+        },
+        {
+          "id": "p6t0bzd",
+          "author": "Professor_JSON",
+          "body": "What happened, item is not available.  \nTaken down?",
+          "score": 1
+        },
+        {
+          "id": "p6toyjc",
+          "author": "Which-Journalist-352",
+          "body": "yooo big congrats!!  your subscription plan is 12€ ??",
+          "score": 1
+        },
+        {
+          "id": "p6wkcc6",
+          "author": "Raven_Ani",
+          "body": "Congrats! Was it a certain amount of users that led to the payout?",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1w2jm09",
@@ -2126,8 +2310,8 @@
       "title": "Feedback on your landing page / website copy",
       "subreddit": "SideProject",
       "author": "bakraofwallstreet",
-      "score": 14,
-      "num_comments": 62,
+      "score": 13,
+      "num_comments": 74,
       "created_utc": 1788101464.0,
       "permalink": "/r/SideProject/comments/1w2jm09/feedback_on_your_landing_page_website_copy/",
       "url": "https://www.reddit.com/r/SideProject/comments/1w2jm09/feedback_on_your_landing_page_website_copy/",
@@ -2199,7 +2383,7 @@
       "title": "I built a website where only one person can control the page at a time",
       "subreddit": "SideProject",
       "author": "Inevitable_Name_7411",
-      "score": 9,
+      "score": 10,
       "num_comments": 24,
       "created_utc": 1788084284.0,
       "permalink": "/r/SideProject/comments/1w2djym/i_built_a_website_where_only_one_person_can/",
@@ -2214,13 +2398,13 @@
           "id": "p6rulis",
           "author": "Just_Phrase1549",
           "body": "Tutto ciò per non voler gestire accessi concorrenti e per pagare poco l’hosting? /s",
-          "score": 5
+          "score": 8
         },
         {
           "id": "p6rweur",
           "author": "gr4phic3r",
           "body": "not very user friendly on mobile",
-          "score": 4
+          "score": 6
         },
         {
           "id": "p6ro7in",
@@ -2325,8 +2509,8 @@
       "title": "I'm a nurse, not a developer. This is my first ever finished side project: a Chrome extension that blurs distractions instead of blocking them",
       "subreddit": "SideProject",
       "author": "Fernando068",
-      "score": 6,
-      "num_comments": 4,
+      "score": 8,
+      "num_comments": 5,
       "created_utc": 1788118446.0,
       "permalink": "/r/SideProject/comments/1w2r13p/im_a_nurse_not_a_developer_this_is_my_first_ever/",
       "url": "https://www.reddit.com/r/SideProject/comments/1w2r13p/im_a_nurse_not_a_developer_this_is_my_first_ever/",
@@ -2342,8 +2526,8 @@
       "title": "Drop your startup + 10 words that describe it. I’ll turn them into something.",
       "subreddit": "SideProject",
       "author": "Pleasant-Weakness959",
-      "score": 7,
-      "num_comments": 39,
+      "score": 8,
+      "num_comments": 40,
       "created_utc": 1788112445.0,
       "permalink": "/r/SideProject/comments/1w2ocwc/drop_your_startup_10_words_that_describe_it_ill/",
       "url": "https://www.reddit.com/r/SideProject/comments/1w2ocwc/drop_your_startup_10_words_that_describe_it_ill/",
@@ -2513,8 +2697,8 @@
       "title": "Finally fixed my outdoor route animation tool for mobile – don't roast me",
       "subreddit": "SideProject",
       "author": "ChemistNo7474",
-      "score": 5,
-      "num_comments": 3,
+      "score": 4,
+      "num_comments": 6,
       "created_utc": 1788106016.0,
       "permalink": "/r/SideProject/comments/1w2ljkb/finally_fixed_my_outdoor_route_animation_tool_for/",
       "url": "https://v.redd.it/y0lpsejycjmh1",
@@ -2530,8 +2714,8 @@
       "title": "Genuinely, I want to give up.",
       "subreddit": "SideProject",
       "author": "EnvironmentalView113",
-      "score": 6,
-      "num_comments": 56,
+      "score": 5,
+      "num_comments": 58,
       "created_utc": 1788102596.0,
       "permalink": "/r/SideProject/comments/1w2k3a3/genuinely_i_want_to_give_up/",
       "url": "https://www.reddit.com/r/SideProject/comments/1w2k3a3/genuinely_i_want_to_give_up/",
@@ -2551,25 +2735,25 @@
           "id": "p6t6haq",
           "author": "Jumpforittt",
           "body": "You should give up. Why would someone pay 70 a month for something they can do already with their own agent?",
-          "score": 7
+          "score": 9
         },
         {
           "id": "p6t41nc",
           "author": "amit4blogger",
           "body": "i like the landing page start but as you go down it slowly fades it charm - just saying as a dumb person first look and all. and Do not give up yet, give atleast 6-12 months. I got my first client after 74 free sigups and that too takes times many of my early users got frustrated with bugs and left but those who give feedback helps makes it better and worthy to get its first subscription.",
-          "score": 6
+          "score": 5
         },
         {
           "id": "p6t50dr",
           "author": "Snoo_70263",
           "body": "Your landing page, is not oriented correctly to the goal, sorry. you have to rethink it again. \n\nWhat is the pain point? \n\nDon't shout in the headline\n\n**Overall:** a confident, editorial-style hero that nails hierarchy and copy, but asks the visitor to take the product on faith — no output shown, no proof, no platforms named.\n\n**UX / UI**\n\nWhat works:\n\n* Hierarchy is textbook: pain-led headline → mechanism in the subhead → one primary CTA with risk reversal (\"5 replies included\") → soft secondary path (\"See how it works ↓\"). Nothing competes for attention.\n* Copy sells the outcome, not the tech. \"Stop losing customers\" is loss-aversion framing, and the subhead describes the entire workflow in one sentence (forward → get notified → copy-paste), which also quietly sets expectations that there's no integration. - BUT HOW?\n* Distinctive palette. Peach + near-black + a high-contrast Didone display face reads premium and breaks from the blue/white SaaS default. - But not good for a tech product.\n\nWhat to fix:\n\n* **No proof of the product.** For an AI writing tool the output *is* the product. One card showing a real 1-star review next to the generated reply answers \"is this any good?\" before the visitor has to trust the copy.\n* **Two labels for the same action:** nav says START FREE, hero says TRY IT FREE. Pick one.\n* **Vague scope.** Reviews from where — Google, Booking, TripAdvisor, Trustpilot? \"Reviews\" in the headline becomes \"complaints\" in the subhead. Naming platforms is cheap specificity that boosts perceived fit.\n* **Subhead is 50+ words** and the first sentence is emotional filler. Keep the two sentences that carry the mechanism.\n* **Primary CTA label is long** and set in tracked caps, which slows scanning. \"Try it free\" with \"5 replies included, no card needed\" as microcopy underneath reads faster.\n* **Headline scale on mobile.** Four lines of all-caps Didone works on this wide viewport; on a phone it becomes 7–8 lines and pushes the CTA below the fold. Use fluid type (`clamp()`) and test at 375px.\n* **No trust cue near the CTA.** Users are forwarding customer emails (with personal data) to a third party. A one-liner on data handling matters, especially for EU businesses.\n* Polish: the apostrophe in HAVEN'T is a straight tick, not a typographic ’ — noticeable in a face this fastidious.\n\n**Target audience**\n\nThe copy is talking to owner-operators of small, review-dependent businesses — cafés, restaurants, small hotels and B&Bs, salons, clinics, small e-commerce — who handle reviews personally, on their phone, between other tasks. The tells:\n\n* \"from your phone\" + \"copy-paste\" — mobile-first, no dashboard, no integrations wanted or expected.\n* \"5 replies\" as a meaningful trial — low volume, a handful of reviews a week.\n* \"polite, professional\" — the pain isn't only time, it's tone: people who get emotional about bad reviews or aren't confident writing formal replies (often non-native English speakers).\n* Telegram as a channel — a strong geographic tell (Eastern/Southern Europe, CIS, Middle East, LatAm). A US/UK audience would expect SMS or WhatsApp.\n\nThe tension: the copy is broad (\"customers\", \"reviews\") but the visual language is narrow. Peach, Didone serif, the name PASTEL — this reads boutique/lifestyle: salons, wellness, boutique hotels, fashion e-commerce. A plumber, dentist or auto-shop owner may not feel it's for them. Either own the niche and say it (\"built for hospitality and beauty businesses\"), or neutralise the aesthetic slightly.\n\n**Accessibility**\n\nFrom a screenshot only the visual layer can be judged; semantics, keyboard and screen-reader behaviour need the live page.\n\n* **Contrast — mostly strong.** Near-black on peach is roughly 12:1 (passes AAA); white on the black buttons passes easily. The exception is \"SEE HOW IT WORKS ↓\": warm gray on peach looks to be around 3:1, which fails AA (4.5:1) at that size. Darken it. LOGIN also looks lighter than the other nav items — verify.\n* **Body copy is a light weight** on a tinted background; **thin strokes hurt low-vision readers.** Use regular (400).\n* **All-caps headline:** **caps remove word shapes, which slows reading (more so for dyslexic readers), and Didone hairlines thin out at smaller sizes and lower DPI. Apply caps via CSS text-transform so the DOM text stays sentence case for screen readers, and consider dropping caps below tablet width.**\n* **Tracked small caps** (**nav, buttons, secondary link): keep ≥14px and tracking under \\~0.1em.**\n* **Tap targets:** buttons look \\~56px tall — good. Nav text links need padding to reach the 24×24 minimum (WCAG 2.5.8).\n* **Reflow (1.4.10):** long all-caps words like RESPONDED at display size risk overflow at 320px / 400% zoom — fluid type plus `overflow-wrap` solves it.\n* **Semantics to check:** `<h1>` on the headline, `<nav>` landmark, skip link, \"See how it works\" as `<a href=\"#how-it-works\">`with the arrow `aria-hidden` (otherwise it's announced as \"downwards arrow\"), a designed focus ring on the black buttons (default rings vanish on dark fills), and `lang=\"en\"` on the page.\n* Nothing relies on colour alone and there are no images needing alt text — both fine.\n\n**If you only fix five things**\n\n1. Show a real review + generated reply in the hero.\n2. Unify CTA wording and shorten the button label.\n3. Name the platforms; cut the subhead to two sentences.\n4. Darken the secondary link; use regular weight for body text.\n5. Make the headline fluid and test it at 375px.",
-          "score": 5
+          "score": 4
         },
         {
           "id": "p6t7o7s",
           "author": "monkmodeceo",
           "body": "the landing page makes me feel like I'm in a pastry store website, good job keep going ",
-          "score": 4
+          "score": 3
         },
         {
           "id": "p6tan5x",
@@ -2639,7 +2823,7 @@
       "title": "I built an app that kills me if I don't walk IRL",
       "subreddit": "SideProject",
       "author": "MartinTale",
-      "score": 5,
+      "score": 6,
       "num_comments": 12,
       "created_utc": 1788096237.0,
       "permalink": "/r/SideProject/comments/1w2hhgj/i_built_an_app_that_kills_me_if_i_dont_walk_irl/",
@@ -2654,7 +2838,7 @@
           "id": "p6stx1s",
           "author": "afarazit",
           "body": "Does it kills you IRL?",
-          "score": 4
+          "score": 3
         },
         {
           "id": "p6sw0e3",
@@ -2682,7 +2866,7 @@
       "title": "Shipped TUFF 3.0 — a Mac app that lets you run LLMs too big for your RAM",
       "subreddit": "SideProject",
       "author": "Weekly-Dentist-8302",
-      "score": 3,
+      "score": 5,
       "num_comments": 4,
       "created_utc": 1788121333.0,
       "permalink": "/r/SideProject/comments/1w2sasd/shipped_tuff_30_a_mac_app_that_lets_you_run_llms/",
@@ -2747,7 +2931,7 @@
       "title": "Hey guys, I'm starting my first idea!!",
       "subreddit": "SideProject",
       "author": "Revolutionary_Farm36",
-      "score": 4,
+      "score": 3,
       "num_comments": 6,
       "created_utc": 1788109893.0,
       "permalink": "/r/SideProject/comments/1w2n8qc/hey_guys_im_starting_my_first_idea/",
@@ -2764,7 +2948,7 @@
       "title": "I made a bank statement PDF → CSV converter that checks its own math against the statement's balances",
       "subreddit": "SideProject",
       "author": "Intelligent-Toe2962",
-      "score": 5,
+      "score": 4,
       "num_comments": 1,
       "created_utc": 1788102199.0,
       "permalink": "/r/SideProject/comments/1w2jx8q/i_made_a_bank_statement_pdf_csv_converter_that/",
@@ -2816,7 +3000,7 @@
       "subreddit": "saasbuild",
       "author": "Zealousideal-Dig4313",
       "score": 5,
-      "num_comments": 11,
+      "num_comments": 12,
       "created_utc": 1788092137.0,
       "permalink": "/r/saasbuild/comments/1w2g0ft/a_stranger_just_bought_a_featured_listing_on_my/",
       "url": "https://i.redd.it/jgztyrpx7imh1.png",
@@ -2830,13 +3014,19 @@
           "id": "p6s8koy",
           "author": "roelvroozendaal",
           "body": "https://preview.redd.it/kj6g0d27dimh1.png?width=1804&format=png&auto=webp&s=17882bac069a25eb76b2c4a87e69715342ab6560\n\nSeems the stranger had to, and i feel it as clickbate. i tried and it's a loop i tried several times, and i keep getting the same message it's full. (for any date) than when i redo the whole process. still the same.  \n",
-          "score": 2
+          "score": 3
         },
         {
           "id": "p6t57xh",
           "author": "Historical_Face_6478",
           "body": "![gif](giphy|7W2ZPm6COmRIhji8eM)",
           "score": 2
+        },
+        {
+          "id": "p6x21b1",
+          "author": "beimgoods_official",
+          "body": "congrats!",
+          "score": 1
         }
       ]
     },
@@ -2863,8 +3053,8 @@
       "title": "SaaS founders: how do you figure out what your customers are actually searching for?",
       "subreddit": "saasbuild",
       "author": "tanishqsolanky23",
-      "score": 3,
-      "num_comments": 4,
+      "score": 7,
+      "num_comments": 6,
       "created_utc": 1788116766.0,
       "permalink": "/r/saasbuild/comments/1w2qadl/saas_founders_how_do_you_figure_out_what_your/",
       "url": "https://www.reddit.com/r/saasbuild/comments/1w2qadl/saas_founders_how_do_you_figure_out_what_your/",
@@ -2970,7 +3160,7 @@
       "subreddit": "saasbuild",
       "author": "maddy30445r",
       "score": 1,
-      "num_comments": 0,
+      "num_comments": 4,
       "created_utc": 1788135013.0,
       "permalink": "/r/saasbuild/comments/1w2xs9e/built_an_appneed_ideas_on_market_distribution/",
       "url": "https://www.reddit.com/r/saasbuild/comments/1w2xs9e/built_an_appneed_ideas_on_market_distribution/",
@@ -3003,7 +3193,7 @@
       "title": "Looking to work",
       "subreddit": "saasbuild",
       "author": "coder_banuga",
-      "score": 1,
+      "score": 2,
       "num_comments": 0,
       "created_utc": 1788126174.0,
       "permalink": "/r/saasbuild/comments/1w2ucnk/looking_to_work/",
@@ -3021,7 +3211,7 @@
       "subreddit": "saasbuild",
       "author": "Sudden_Exchange_4473",
       "score": 1,
-      "num_comments": 0,
+      "num_comments": 1,
       "created_utc": 1788124370.0,
       "permalink": "/r/saasbuild/comments/1w2tm28/building_rewind_finally_youll_read_your/",
       "url": "https://www.reddit.com/r/saasbuild/comments/1w2tm28/building_rewind_finally_youll_read_your/",
@@ -3088,7 +3278,7 @@
       "title": "What would you like to see in a PM tool?",
       "subreddit": "saasbuild",
       "author": "prabhulvarma",
-      "score": 1,
+      "score": 2,
       "num_comments": 0,
       "created_utc": 1788104352.0,
       "permalink": "/r/saasbuild/comments/1w2ktsn/what_would_you_like_to_see_in_a_pm_tool/",
@@ -3241,8 +3431,8 @@
       "title": "Looking for X users to test a new project",
       "subreddit": "indiehackers",
       "author": "amacg",
-      "score": 19,
-      "num_comments": 18,
+      "score": 22,
+      "num_comments": 28,
       "created_utc": 1788084585.0,
       "permalink": "/r/indiehackers/comments/1w2dn6e/looking_for_x_users_to_test_a_new_project/",
       "url": "https://www.reddit.com/r/indiehackers/comments/1w2dn6e/looking_for_x_users_to_test_a_new_project/",
@@ -3259,21 +3449,15 @@
           "score": 4
         },
         {
-          "id": "p6rn80e",
-          "author": "ssazz1",
-          "body": "what is the project?",
-          "score": 2
+          "id": "p6rvp8u",
+          "author": "Brufacee",
+          "body": "For the beta, I would recruit both sides of the transaction and define the tasks before giving access. On the creator side: connect X, understand eligibility, set a rate, review a brief, and see exactly when payment happens. On the sponsor side: find a suitable account, understand what the metrics mean, create a compliant brief, approve the post, and handle a rejection or revision. Ask each tester to narrate where they hesitate rather than only report bugs. The highest-risk gaps are usually trust and state transitions—what data is read, whether the creator must post before payment is secured, what counts as completion, and what happens when either side disputes it.",
+          "score": 3
         },
         {
           "id": "p6rru2i",
           "author": "Which-Journalist-352",
           "body": "yeah I’m on X a lot these days, got 152 followers, count me in",
-          "score": 2
-        },
-        {
-          "id": "p6rvp8u",
-          "author": "Brufacee",
-          "body": "For the beta, I would recruit both sides of the transaction and define the tasks before giving access. On the creator side: connect X, understand eligibility, set a rate, review a brief, and see exactly when payment happens. On the sponsor side: find a suitable account, understand what the metrics mean, create a compliant brief, approve the post, and handle a rejection or revision. Ask each tester to narrate where they hesitate rather than only report bugs. The highest-risk gaps are usually trust and state transitions—what data is read, whether the creator must post before payment is secured, what counts as completion, and what happens when either side disputes it.",
           "score": 2
         },
         {
@@ -3283,39 +3467,57 @@
           "score": 2
         },
         {
+          "id": "p6tc06n",
+          "author": "Bonjour-Set-4490",
+          "body": "I'd also try sending the URL to one person without explaining anything first. Do they know what to do? I approved two people for early access and expected them to start a first session. Neither did. I built the flow, so I still dont know where they stopped.",
+          "score": 2
+        },
+        {
+          "id": "p6u4xeq",
+          "author": "Fencer-Darkwind",
+          "body": "What kind of project?",
+          "score": 2
+        },
+        {
+          "id": "p6u8a3e",
+          "author": "Majestic_Maybe6605",
+          "body": "I am very active on X, but what exactly are you trying to do?I'm always happy to help if it makes sense :)",
+          "score": 2
+        },
+        {
+          "id": "p6vyr5k",
+          "author": "Pretty-Dragonfly007",
+          "body": "bro, i'm in X everyday and you can contact me, ",
+          "score": 2
+        },
+        {
+          "id": "p6wt3lj",
+          "author": "Quiet_Page7513",
+          "body": "yes, i'm ok, i use X daily.",
+          "score": 2
+        },
+        {
+          "id": "p6wypan",
+          "author": "Due_Arm7432",
+          "body": "I’d be down to test it. Happy to go through the signup and sponsorship flows and share any feedback I notice. Sounds like an interesting project.",
+          "score": 2
+        },
+        {
+          "id": "p6rn80e",
+          "author": "ssazz1",
+          "body": "what is the project?",
+          "score": 1
+        },
+        {
           "id": "p6t54ry",
           "author": "benblackett",
           "body": "Need particulars, but I am interested. Two 50k user accounts",
           "score": 1
         },
         {
-          "id": "p6tc06n",
-          "author": "Bonjour-Set-4490",
-          "body": "I'd also try sending the URL to one person without explaining anything first. Do they know what to do? I approved two people for early access and expected them to start a first session. Neither did. I built the flow, so I still dont know where they stopped.",
-          "score": 1
-        },
-        {
-          "id": "p6u4xeq",
-          "author": "Fencer-Darkwind",
-          "body": "What kind of project?",
-          "score": 1
-        },
-        {
-          "id": "p6u8a3e",
-          "author": "Majestic_Maybe6605",
-          "body": "I am very active on X, but what exactly are you trying to do?I'm always happy to help if it makes sense :)",
-          "score": 1
-        },
-        {
           "id": "p6vgqgw",
           "author": "Onnoz",
           "body": "I could join too. DM me if you want\n\n",
-          "score": 1
-        },
-        {
-          "id": "p6vyr5k",
-          "author": "Pretty-Dragonfly007",
-          "body": "bro, i'm in X everyday and you can contact me, ",
           "score": 1
         }
       ]
@@ -3326,8 +3528,8 @@
       "title": "Two weeks ago I asked for feedback on Scinta, our screenshots-to-actions Mac app. We just launched",
       "subreddit": "indiehackers",
       "author": "holub_ua",
-      "score": 4,
-      "num_comments": 22,
+      "score": 2,
+      "num_comments": 28,
       "created_utc": 1788096716.0,
       "permalink": "/r/indiehackers/comments/1w2ho6x/two_weeks_ago_i_asked_for_feedback_on_scinta_our/",
       "url": "https://www.reddit.com/r/indiehackers/comments/1w2ho6x/two_weeks_ago_i_asked_for_feedback_on_scinta_our/",
@@ -3338,27 +3540,21 @@
       "stickied": false,
       "comments_data": [
         {
-          "id": "p6si3e3",
-          "author": "Ok_Zone_3573",
-          "body": "Congrats on the launch, getting that first stranger install must feel amazing. The one-click vs copy-pasting into ChatGPT angle is a good pitch, makes sense why you would build this even with your own AI setup\n\n  \nI like that free plan is just a normal screenshot app with no limits, that's a clever way to get people in the door. Curious what the most unexpected use case has been so far",
-          "score": 2
-        },
-        {
-          "id": "p6spvcd",
-          "author": "Quiet-Fish1618",
-          "body": "This is better idea than just a screenshot app, which I made a mistake with, as it turns screenshot into a workflow. For bug report, I guess it's probably more for 2B instead of 2C scenario.",
-          "score": 2
-        },
-        {
           "id": "p6stwdq",
           "author": "edwardtoys2",
           "body": "Congrats on the launch. I like that you used the feedback from your first post to actually shape the product instead of just collecting comments. For the first few weeks, I’d track where users are coming from, how many actually try the core feature, and what questions or objections keep coming up. That seems like it would help show whether the bigger challenge is getting traffic, converting people, or improving the product itself. Good luck with the launch!",
-          "score": 2
+          "score": 3
         },
         {
           "id": "p6u0du2",
           "author": "SmallUsefulThings",
           "body": "I would watch which actions turn into repeat behavior, not just which ones look impressive in a demo. The first completed action and the first repeat action probably tell you far more than downloads alone.",
+          "score": 3
+        },
+        {
+          "id": "p6spvcd",
+          "author": "Quiet-Fish1618",
+          "body": "This is better idea than just a screenshot app, which I made a mistake with, as it turns screenshot into a workflow. For bug report, I guess it's probably more for 2B instead of 2C scenario.",
           "score": 2
         },
         {
@@ -3378,8 +3574,472 @@
           "author": "Onnoz",
           "body": "Congratulations! Hope it gets some traction :)",
           "score": 2
+        },
+        {
+          "id": "p6si3e3",
+          "author": "Ok_Zone_3573",
+          "body": "Congrats on the launch, getting that first stranger install must feel amazing. The one-click vs copy-pasting into ChatGPT angle is a good pitch, makes sense why you would build this even with your own AI setup\n\n  \nI like that free plan is just a normal screenshot app with no limits, that's a clever way to get people in the door. Curious what the most unexpected use case has been so far",
+          "score": 1
+        },
+        {
+          "id": "p6wkkyz",
+          "author": "fatt001",
+          "body": "The \"why not just use ChatGPT?\" counter-argument is pure gold—people always underestimate how brutal 4 steps of micro-friction are until someone makes it 1-click. One thing to track closely in week 1: are users hitting the 10-action limit naturally, or do you need the free tier to showcase the speed before they even realize they need Pro?",
+          "score": 1
+        },
+        {
+          "id": "p6wt6p0",
+          "author": "Hot-Tonight-5001",
+          "body": "Congrats on the launch! 🎉 Getting that first stranger to actually install and use the product must feel pretty surreal after building it. I also like that you turned the “why not just use ChatGPT?” objection into part of the pitch. The one-click aspect makes the difference pretty clear. Good luck with the first few weeks!",
+          "score": 1
+        },
+        {
+          "id": "p6wwk9e",
+          "author": "MissionFit4238",
+          "body": "Congrats on the launch! 🎉 Getting that first stranger to actually install and use it must have been a great feeling. I also like how you turned the “why not just use ChatGPT?” question into part of the pitch the one-click workflow makes the difference pretty easy to understand. Good luck with the first few weeks!",
+          "score": 1
+        },
+        {
+          "id": "p6xktxv",
+          "author": "Capitalist2528",
+          "body": "One thing I’d definitely track closely in the first few weeks will be, which screenshots people are actually turning into actions. I’d imagine the gap between this is a cool demo and I use this every day will show up pretty clearly in those patterns.  \nAnd congrats on getting that first stranger to install and use it that moment is special. ",
+          "score": 1
+        },
+        {
+          "id": "p6xl6rb",
+          "author": "Investigator5295",
+          "body": "That first stranger using the product is such a good milestone. There’s something different about seeing someone who has zero context about the product choose to install it and actually get value from it. Congrats! ",
+          "score": 1
         }
       ]
+    },
+    {
+      "id": "1w3412p",
+      "name": "t3_1w3412p",
+      "title": "I got 37 users! Finally!",
+      "subreddit": "SaaS",
+      "author": "CourseOk9328",
+      "score": 14,
+      "num_comments": 10,
+      "created_utc": 1788152905.0,
+      "permalink": "/r/SaaS/comments/1w3412p/i_got_37_users_finally/",
+      "url": "https://i.redd.it/ekxkpdfj7nmh1.png",
+      "selftext": "I shipped everything by June 2026, but figuring out distribution was the tough part. I did outreach; it failed. IG ads failed, but Google Ads was actually what I needed; it worked, and this was the result.\n\nOptional: check it out:  apeirocraft ",
+      "is_self": false,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p6xdfwn",
+          "author": "CourseOk9328",
+          "body": "IF  anyone has idea of how i can scale this to 100 users go on! ",
+          "score": 2
+        },
+        {
+          "id": "p6xeiij",
+          "author": "terafab-ai",
+          "body": "Wohoooo. Congratulations champ 👏🏼👏🏼",
+          "score": 2
+        },
+        {
+          "id": "p6xinu6",
+          "author": "sagarsharma4244",
+          "body": "Congratulations🎉",
+          "score": 1
+        },
+        {
+          "id": "p6xkkym",
+          "author": "xp_hoarder1337",
+          "body": "Congratulations! ",
+          "score": 1
+        },
+        {
+          "id": "p6xkwpc",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1w2ojn9",
+      "name": "t3_1w2ojn9",
+      "title": "i have a day job in the exact niche my saas targets. the market there is a two vendor duopoly with 2005 era software, and after 8 months of building i think i finally understand why nobody has cracked it",
+      "subreddit": "SaaS",
+      "author": "mastafied",
+      "score": 9,
+      "num_comments": 7,
+      "created_utc": 1788112869.0,
+      "permalink": "/r/SaaS/comments/1w2ojn9/i_have_a_day_job_in_the_exact_niche_my_saas/",
+      "url": "https://www.reddit.com/r/SaaS/comments/1w2ojn9/i_have_a_day_job_in_the_exact_niche_my_saas/",
+      "selftext": "context: during the day im employed at an insulation and fire protection contractor in germany. at night im building software for exactly this trade, with a small team of ai agents doing most of the grunt work. my employer knows about it and is the first pilot. this post is not about the agents though, its about the market itself, because i went in with the usual \"legacy software, easy target\" assumption and that assumption did not survive contact with reality.\n\nthe setup: technical insulation contractors here basically choose between two vendors. both products look like 2005. per seat licenses, on prem installs, paid training courses. from the outside this screams disruption. every saas thread would tell you to go for it.\n\nwhat i learned from working inside a company that uses this stuff every day:\n\n1. the ugly ui is not the product. the product is 20 years of domain rules baked in. quoting insulation work in germany runs on measurement rules (din 18421 style stuff: which pipe diameter, which insulation thickness, which surcharges for fittings, flanges, valves) plus GAEB, the standard exchange format for tenders. the legacy tools handle hundreds of edge cases in those rules. our office guys curse the ui daily and still trust the numbers. i now think thats the correct priority.\n\n2. nobody wants to switch, everyone wants one specific task to go away. i asked colleagues what actually annoys them. not one person said \"the software is old\". they said things like \"typing the measurements into the tender takes me two evenings\". the pain is individual tasks, not the system. a full replacement pitch answers a question nobody asked.\n\n3. switching cost is the real moat. calculation history, article master data, price books maintained over a decade. even if my thing were better on day one, the first year after switching would be worse for the customer. thats an uncomfortable thing to admit about your own product, but pretending otherwise helps nobody.\n\nso i changed the plan. instead of replacing anything, the tool (i call it baukompass, not the point here) now sits next to the existing systems: measurement data and a GAEB tender go in, a quote draft comes out, and that draft gets finished and sent from whatever software the company already runs. no migration, no rip out, no data hostage situation.\n\nhonest status from the pilot at my employer: the GAEB part is harder than expected. the standard exists on paper, but in reality every tool exports slightly different files. GAEB 90 vs GAEB xml, weird encodings, custom position numbering. my parser handled the official spec fine and then choked on the third real file from an actual customer project. and right now the estimators still check every generated position by hand, which is the right call at this stage, but it means the real time saving today is maybe 30 percent, not the 80 i had in my head when i started.\n\nthe part that surprised me most: the duopoly is not lazy, its rational. the whole market is a few thousand companies. too small for big vendors to care, and the two incumbents survive because rebuilding their domain depth takes years, not a funding round. the same wall that is currently blocking me would also protect me if i ever get over it. that reframed the whole thing for me, from \"why has nobody disrupted this\" to \"oh, this is why\".\n\nquestion for people who sell into niches owned by one or two legacy vendors: did you position as a replacement or as an addon that lives next to the incumbent? and if you started as the addon, did you ever manage the jump to becoming the system of record, or is staying the sidecar forever actually fine as a business?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1w2teq3",
+      "name": "t3_1w2teq3",
+      "title": "Just launched my first app as a teenager, any suggestions on how to grow it?",
+      "subreddit": "SaaS",
+      "author": "RichSolution411",
+      "score": 8,
+      "num_comments": 7,
+      "created_utc": 1788123885.0,
+      "permalink": "/r/SaaS/comments/1w2teq3/just_launched_my_first_app_as_a_teenager_any/",
+      "url": "https://www.reddit.com/r/SaaS/comments/1w2teq3/just_launched_my_first_app_as_a_teenager_any/",
+      "selftext": "I've spent longer than I'd like to admit creating my first app and I am struggling to get people to use it. It is an app where you can track and log peaks across \"peak bagging\" lists. I am curious how those who have successful apps got to where they are, and what they would recommend I do to find my niche.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1w32tg9",
+      "name": "t3_1w32tg9",
+      "title": "Have you inherited software you were afraid to change?",
+      "subreddit": "SaaS",
+      "author": "CurvySpine420",
+      "score": 5,
+      "num_comments": 3,
+      "created_utc": 1788149147.0,
+      "permalink": "/r/SaaS/comments/1w32tg9/have_you_inherited_software_you_were_afraid_to/",
+      "url": "https://www.reddit.com/r/SaaS/comments/1w32tg9/have_you_inherited_software_you_were_afraid_to/",
+      "selftext": "I've been thinking about a problem that can appear after a software product has been built quickly, maintained mostly by one person, or created with a lot of help from AI tools.  \n  \nThe product may work, but the founder or team no longer feels confident changing it. Documentation is incomplete, important decisions live in one person's head, tests do not make it clear what must not break, or bringing in another developer feels risky.  \n  \nI'm exploring this problem and would like to learn from people who have actually dealt with it.  \n  \n\\- Have you inherited or owned software you were afraid to change?  \n\\- What made it difficult: missing documentation, unclear structure, dependence on one developer, weak tests, AI-generated code, or something else?  \n\\- What would have made the handoff or takeover safer?  \n  \nI'm interested in the situation and what you learned from it.  \n",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1w2zhgi",
+      "name": "t3_1w2zhgi",
+      "title": "I'm 15 years old, I built 3 SaaS that all failed",
+      "subreddit": "SaaS",
+      "author": "yesimfarida",
+      "score": 5,
+      "num_comments": 22,
+      "created_utc": 1788139696.0,
+      "permalink": "/r/SaaS/comments/1w2zhgi/im_15_years_old_i_built_3_saas_that_all_failed/",
+      "url": "https://www.reddit.com/r/SaaS/comments/1w2zhgi/im_15_years_old_i_built_3_saas_that_all_failed/",
+      "selftext": "For the past 2 months I've been trying to be more active online, the classic build in public and I've learnt way more than I have in the past year but I still fail to understand why my products always fail. One of my products is a productivity webapp called \"dailydice\" in which you basically get 5 productive tasks to complete per day to avoid laziness, the second one is \"studysprint\" for students with upcoming exams and need to prep, and my most recent one \"fitcheck\" for this one you upload a photo of your outfit and the AI rates it and gives you advice on what to do better (I recently got feedback for FitCheck and no one was interested at all)\n\n  \nHow do people who succeed in SaaS do it? Do yall have connections? Money? Programming skills? I need advice",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p6wjxnw",
+          "author": "peetss",
+          "body": "At the very least it should be something that you yourself will use.",
+          "score": 4
+        },
+        {
+          "id": "p6wlvzv",
+          "author": "YurthTheRhino",
+          "body": "At your age don't stop learning, but you just haven't experienced enough life to really solve people's problems. But you should not stop. Keep learning, keep meeting new people, you're young and that's okay. \n\nBut often problem solving just comes from experience.. so go seek out new experiences. And you're still a kid don't forget to have fun. Most of us are all working wishing we didn't have to be.. don't spoil your youth too much focused on the grind. It'll come, don't worry",
+          "score": 3
+        },
+        {
+          "id": "p6wnudz",
+          "author": "RingsBarber",
+          "body": "Just keep learning. Build things and give it away for free. Get users. Grow your portfolio.",
+          "score": 3
+        },
+        {
+          "id": "p6wttar",
+          "author": "Worldly_Stand_1302",
+          "body": "Validate before building anything by creating a waiting list with paid ads ",
+          "score": 2
+        },
+        {
+          "id": "p6wh7l5",
+          "author": "psycorpse",
+          "body": "You will hear a lot of advice here but I think that the main one is you need to find a need that needs to be fixed. Not just what you think will be a success. If no one needs it they won’t want it. ",
+          "score": 1
+        },
+        {
+          "id": "p6x0u69",
+          "author": "AlvinArtDream",
+          "body": "Maybe try building a community around fit check. If it’s only ai ratings, include Some sort of social connection where people can rate.  \nI think for a SaaS you need a backend product. A lever you can pull. So like - if fit Check is the front - then backend could be some sort of sales thing - eg, if someone is wearing a product -you can link to the sale of the product in some capacity.",
+          "score": 1
+        },
+        {
+          "id": "p6x5kmm",
+          "author": "OkRepresentative1851",
+          "body": "Remember that marketing is more important than building, so you need to focus on that. From the very start while you're building it. Second, fit check sounds like a fitness health app, not necessarily a fashion app. So if you call it fashion check. Maybe you might get some more traction.",
+          "score": 1
+        },
+        {
+          "id": "p6x9g79",
+          "author": "iDevelopApps17",
+          "body": "There are 2 ways for a product to work,  \nFirst, If it solves your actual problem then there are always people who face similar issues and they are your customers.  \nSecond, push heavy on marketing, I have seen products of less value doing great business because of good marketing strategies.\n\nChoose your way",
+          "score": 1
+        },
+        {
+          "id": "p6xd9jb",
+          "author": "itsvishnujith",
+          "body": "Awesome kid.\n\nYou need to build a audience based on your product and then start building the product and talk to users and improve the product. \n\nThis is how you can build a SaaS business. ",
+          "score": 1
+        },
+        {
+          "id": "p6xf31w",
+          "author": "iam-curt",
+          "body": "Good work, listen to the market and see what the gaps are\n\nA lot of free productivity/ fitness tools already exist\n\nAnd not everything needs to be”AI powered” it’s a buzz word but sometimes puts enterprises off completely ",
+          "score": 1
+        },
+        {
+          "id": "p6xh9r3",
+          "author": "NahidOFF",
+          "body": "Omg Im working on Something like your “Fitcheck” SaaS. Its literaly does what yours do but in whole different idea it has. I’ll launch it like 2-3 weeks later",
+          "score": 1
+        },
+        {
+          "id": "p6xj6s5",
+          "author": "telio-s",
+          "body": "Before build any product, instead of build in public, try talk in public first, you don’t need to think what product I should build, but you need to talk to your future customer\n\nTalk more, share what you learn more and then you will see the way that you could make money, cause you will see the problem that people actually need\n\nAlso talking in public is they way that you see your community grow, here you already have your customer ",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1w2p2hl",
+      "name": "t3_1w2p2hl",
+      "title": "I swapped my hand-built landing page for one from an AI landing page generator. Conversions dropped and it taught me something.",
+      "subreddit": "SaaS",
+      "author": "Cold_Hall_5384",
+      "score": 4,
+      "num_comments": 5,
+      "created_utc": 1788114047.0,
+      "permalink": "/r/SaaS/comments/1w2p2hl/i_swapped_my_handbuilt_landing_page_for_one_from/",
+      "url": "https://www.reddit.com/r/SaaS/comments/1w2p2hl/i_swapped_my_handbuilt_landing_page_for_one_from/",
+      "selftext": "&#x200B;\n\nBootstrapped a small B2B tool, doing a bit under $2k MRR. My landing page was hand-built and honestly ugly, so when I saw people raving about spinning up pages instantly, I ran my homepage through an AI landing page generator to get something cleaner.\n\nIt looked far more professional. Nicer hero, better spacing, real design polish. I shipped it expecting a lift.\n\nSignups dropped by roughly a fifth over the next two weeks. Same traffic, same sources.\n\nI sat with it and eventually figured out why. My ugly page said one specific thing to one specific type of person. The generated page said the kind of confident, smooth nothing that every SaaS landing page says. \"Streamline your workflow.\" \"Built for modern teams.\" It looked like a real company and communicated less than my clumsy version that named the exact problem and the exact person.\n\nI pulled most of the design in, kept the layout, and rewrote every line back to the blunt specifics. Conversions recovered and then went a little above where I started.\n\nLesson I keep relearning: the tool can make it look like a business, but it will happily make you sound like everyone else. Anyone else had a \"prettier\" page convert worse?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1w2hha1",
+      "name": "t3_1w2hha1",
+      "title": "Fashion app?",
+      "subreddit": "SaaS",
+      "author": "HotSuit8558",
+      "score": 4,
+      "num_comments": 1,
+      "created_utc": 1788096224.0,
+      "permalink": "/r/SaaS/comments/1w2hha1/fashion_app/",
+      "url": "https://www.reddit.com/r/SaaS/comments/1w2hha1/fashion_app/",
+      "selftext": "Is there any app that lets you build your wardrobe from scratch? There are a lot of apps that choose the outfit for you, but I struggle to find apps that help you to start off with building your new style, plus doing that on budget.\n\n  \nCan anyone send some recommendations?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1w32a1d",
+      "name": "t3_1w32a1d",
+      "title": "MongoDB shut down the sync service my app was built on. Lesson learned about picking dependencies.",
+      "subreddit": "microsaas",
+      "author": "No_Share2683",
+      "score": 1,
+      "num_comments": 0,
+      "created_utc": 1788147561.0,
+      "permalink": "/r/microsaas/comments/1w32a1d/mongodb_shut_down_the_sync_service_my_app_was/",
+      "url": "https://www.reddit.com/r/microsaas/comments/1w32a1d/mongodb_shut_down_the_sync_service_my_app_was/",
+      "selftext": "Backstory, then the lesson, because I think the lesson applies to anyone here running something small.\n\nI build mobile apps. For the offline-first ones I used MongoDB Realm and Atlas Device Sync. It was good. Local database on the phone, automatic sync to Atlas, worked with no signal. Saved me weeks per project.\n\nIn September 2025 MongoDB retired all of it. Realm, Device Sync, the Data API. Gone.\n\nThey gave notice and it wasn't a surprise if you were paying attention, but that didn't help much. The sync layer wasn't a library I could pin to an old version. It was a service running on their side. When it went off, apps that depended on it needed a new data layer, not a version bump.\n\nThe lesson I actually took from it:\n\nThere's a difference between a dependency you can freeze and a dependency that can evict you. A library on version 3.2 works forever, even abandoned. A hosted service that does something structural for your app can be switched off, and then you're rewriting instead of shipping. I'd used both kinds without thinking about which was which.\n\nThe test I use now: if this vendor disappeared tomorrow, is my fix a config change or a rewrite? If it's a rewrite, I want to own that piece or at least be able to run it myself.\n\nSo I wrote the sync layer as a package instead of renting one. Open sourced it as onebase, MIT.\n\nTech stack, since rule 2 asks:\n\nClient is Flutter with SQLite for the local replica. Backend is a small Node service that a CLI generates from a schema file you write, and you deploy it yourself (Docker or Vercel). Data sits in your own MongoDB, files in your own S3 bucket (R2, Backblaze, MinIO, whatever). Realtime is Mongo change streams over SSE. Offline writes queue in an outbox and sync when the network comes back.\n\nRevenue: zero. It's free and there's no paid tier planned. It exists because I needed it and rebuilding it per project was stupid.\n\nWhat it doesn't do yet: conflicts are last write wins, no merge hook. File uploads aren't offline queued. Realtime needs a container host, not short lived serverless. Flutter only on the client for now.\n\nhttps://github.com/ybenjaa-dev/onebase\n\nIf you're building anything offline-first or mobile, I'd rather hear where this breaks than that it's a nice idea.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1w312wp",
+      "name": "t3_1w312wp",
+      "title": "The quiet status screen is where people judge the product",
+      "subreddit": "microsaas",
+      "author": "Plastic_Catch1252",
+      "score": 1,
+      "num_comments": 0,
+      "created_utc": 1788144142.0,
+      "permalink": "/r/microsaas/comments/1w312wp/the_quiet_status_screen_is_where_people_judge_the/",
+      "url": "https://www.reddit.com/r/microsaas/comments/1w312wp/the_quiet_status_screen_is_where_people_judge_the/",
+      "selftext": "Last day of a small Reddit test for Pinterest for Miro, and the part I keep coming back to is not the import button. It is the screen after.\n\nIf half the pins import and half need review, a cheerful success message is probably worse than a blunt list. Imported, needs review, changed. Boring, but useful.\n\nFor micro-SaaS builders, when did a quiet status screen become the part users judge the product by?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1w2xshs",
+      "name": "t3_1w2xshs",
+      "title": "Be careful when creating Gmail accounts for your projects",
+      "subreddit": "SideProject",
+      "author": "xgme",
+      "score": 77,
+      "num_comments": 49,
+      "created_utc": 1788135032.0,
+      "permalink": "/r/SideProject/comments/1w2xshs/be_careful_when_creating_gmail_accounts_for_your/",
+      "url": "https://www.reddit.com/r/SideProject/comments/1w2xshs/be_careful_when_creating_gmail_accounts_for_your/",
+      "selftext": "I've been writing apps for a good 10 years, and I've been creating a Gmail account for each project and adding them to my Gmail app. Today, Google closed my oldest account, which was probably around 20 years old. I appealed, but I don't know how long the process will take. I came here to warn others.\n\nI have a hosting account, and I'm able to create email addresses like `contact@<mywebsite>.com`, but they didn't integrate well with email apps like Outlook. I could have made it work, but creating Gmail accounts was significantly easier.\n\nMaybe what's worse is that for each app, I was keeping its documents in the corresponding Google Drive, which was working perfectly for me. I also don't make a ton of money from my apps. Most of them are completely free anyway. I didn't have a company account with Google where I could have done things in a much more professional way.\n\nBut the main problem is that Google doesn't mention anywhere that there's some kind of limit on the number of accounts I can create. I had about 10 accounts. I created the last one last night, and my oldest account was disabled today.\n\nThis happened because I didn't know about the limit, and Google didn't warn me in any way. I'm sharing this here so others will know.\n\nJust to add some more information and make it clear that I wasn't doing anything fishy: all of those accounts have the same recovery email, which is my main personal email. I've never run spam campaigns. In fact, I may have sent a total of 10 emails over the last 10 years from those accounts. They're mostly empty Google accounts, and I'm not even using 1% of their storage.\n\nAnyway, this completely caught me off guard, and I'm pretty upset about it.\n\n**TL;DR:** Don't create too many Google accounts for your projects.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p6w9jsg",
+          "author": "owenthevirgin",
+          "body": "I have one single purelymail account I put maybe 5$ a year budget into that has like 20 different emails across 5 domains.\n\nAlso looks much better that your contact or support email is on the domain of your project than a Gmail account.\n\nTakes no time to setup, just a couple dns records and you're done.",
+          "score": 40
+        },
+        {
+          "id": "p6wcvnm",
+          "author": "diamondtoss",
+          "body": "this is good to know, I didnt know this. I'm not close to that limit but knowing about this will help for future references.\n\nbtw, I am guessing the only reason they \"know\" you have 10+ accounts owned by a single person is probably because you are logged in to them all at the same time on the same browser (as in, have the account switcher and switch between each).\n\nI would guess this is not by IP address or anything because naturally, multiple ppl living in the same household would have the same IP and have different devices logged in to each.",
+          "score": 7
+        },
+        {
+          "id": "p6xbjr1",
+          "author": "wisembrace",
+          "body": "You can use one mailbox and use aliases, for example:  \nmymail@gmail.com  \nMymail+box1@Gmail.com  \nmymail+box2@gmail.com\n\nAnd so on.",
+          "score": 4
+        },
+        {
+          "id": "p6w8xuz",
+          "author": "Express-Cartoonist39",
+          "body": "I dont get it, jus buy a domain and load a email server and have all you want, you control...",
+          "score": 4
+        },
+        {
+          "id": "p6w9dl6",
+          "author": "Forward-Outside-9911",
+          "body": "Good reason to have backups and disaster recovery plans.\n\nWhen you own your domain you can change the MX DNS records to point to any provider, Google, outlook, FastMail, zoho, etc. If Google cuts you off, within 20 minutes you can be setup on another provider receiving and sending emails again.\n\nData stored in Google drive or alternatives, whether that be financial stuff, customer data, operating data, should all be backed up in at least two locations.\n\nFor onedrive I have a local sync on my personal computer, and I have a scheduled archive sent to S3.",
+          "score": 2
+        },
+        {
+          "id": "p6x1qf0",
+          "author": "Cute-Effective9784",
+          "body": "il m'est  arrivé la même chose compte supprimé avec son lot d'applications drive google photo et 15 ans de fichiers perdus ... impossible de se plaindre ?",
+          "score": 2
+        },
+        {
+          "id": "p6xdrsw",
+          "author": "Lopsided_Arm_8825",
+          "body": "Cloudflare Email Routing saved me from this exact trap. If your domain DNS is on Cloudflare (free plan is enough), you create [contact@yourdomain.com](mailto:contact@yourdomain.com) as a routing rule that forwards to ONE personal Gmail. Takes 2 minutes per project, no hosting mailbox, no extra Google accounts. You can even add send-as in Gmail via SMTP so replies go out from the domain. One Gmail total, unlimited project addresses. Sorry about your 20 year old account, that one hurts.",
+          "score": 2
+        },
+        {
+          "id": "p6w683g",
+          "author": "general010",
+          "body": "I think the limit is 20 ? Just a guess. They stopped me from opening more",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1w33li2",
+      "name": "t3_1w33li2",
+      "title": "I got my first users!",
+      "subreddit": "SideProject",
+      "author": "Consistent_Berry_324",
+      "score": 12,
+      "num_comments": 9,
+      "created_utc": 1788151551.0,
+      "permalink": "/r/SideProject/comments/1w33li2/i_got_my_first_users/",
+      "url": "https://v.redd.it/p1uvi7az3nmh1",
+      "selftext": "I created a browser extension that warns you when you visit a scam website, and lets you leave a review about it. And finally, I've got a few users!\n\nYou can check it out or use it here.\n\n[https://chat.lasthopelabs.com/](https://chat.lasthopelabs.com/)",
+      "is_self": false,
+      "over_18": false,
+      "is_video": true,
+      "stickied": false
+    },
+    {
+      "id": "1w2tyna",
+      "name": "t3_1w2tyna",
+      "title": "For people who built a consumer app, what actually got users to come back?",
+      "subreddit": "SideProject",
+      "author": "23Windy1City33",
+      "score": 4,
+      "num_comments": 9,
+      "created_utc": 1788125223.0,
+      "permalink": "/r/SideProject/comments/1w2tyna/for_people_who_built_a_consumer_app_what_actually/",
+      "url": "https://www.reddit.com/r/SideProject/comments/1w2tyna/for_people_who_built_a_consumer_app_what_actually/",
+      "selftext": "I’m starting to realize that getting downloads and getting actual users are two completely different problems.\n\nSomeone can download an app, try it once, and never open it again, but that download still makes your acquisition numbers look better.\n\nFor those of you who have built B2C apps, what actually made a noticeable difference in retention?\n\nWas it better onboarding, push notifications, daily content, streaks, simplifying the product, changing the core experience, or something completely different?\n\nI’m especially curious if there was something you thought would improve retention that ended up doing basically nothing.\n\nI’m currently trying to figure this out with my own iOS app, The Agora: Philosophy Debates. I’ve built things like a Daily Challenge and reasoning streaks to give people a reason to return, but I’m trying to learn what actually works in practice rather than just adding features.\n\nIf anyone’s interested in seeing the app for context:\n\n[https://apps.apple.com/us/app/the-agora-philosophy-debates/id6762416967](https://apps.apple.com/us/app/the-agora-philosophy-debates/id6762416967)",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1w2tzu7",
+      "name": "t3_1w2tzu7",
+      "title": "I made my first python library (it doesn't have a ton of features but i think it can be useful for some people)",
+      "subreddit": "SideProject",
+      "author": "___Hyacinthe_",
+      "score": 5,
+      "num_comments": 4,
+      "created_utc": 1788125304.0,
+      "permalink": "/r/SideProject/comments/1w2tzu7/i_made_my_first_python_library_it_doesnt_have_a/",
+      "url": "https://www.reddit.com/r/SideProject/comments/1w2tzu7/i_made_my_first_python_library_it_doesnt_have_a/",
+      "selftext": "**Have you ever scanned a document, but you can't search any word in it(probably yes). This is the fix.**\n\nI built **ScanLayer**, a Python OCR library that adds a searchable text layer to scanned documents.\n\nYou give it a scanned image:\n\n    pip install scanlayer\n    scanlayer doc.jpg -o doc.pdf\n\nScanLayer runs Tesseract, then places the recognized text as an invisible searchable layer over the original page. The scanned image remains the visual source. You can now **search, select, and copy** the text.\n\nAnd if you don't want a PDF, you can export the OCR result as `txt`, `json`, `tsv`, or `hocr`.\n\nA few things I built around the OCR itself:\n\n* Automatic deskew for photos taken at an angle\n* Noise cleanup before OCR\n* Reading order correction for two-column documents\n* Multiple Tesseract configurations are tried and the highest-confidence result is kept\n* CLI and Python API use the **same underlying pipeline**\n\nFor example:\n\n    import scanlayer\n    \n    result = scanlayer.convert(\n        \"contract.jpg\",\n        \"contract.pdf\",\n        lang=\"eng\",\n        dpi=300\n    )\n\nEverything runs locally. The only external dependency is your own Tesseract installation.\n\nI'd especially like feedback from people who regularly OCR **multi-column documents**. That's one of the areas I spent a lot of time getting right.\n\n[Github](https://github.com/Hyacinthe-primus/scanlayer)\n\n[Documentation](https://hyacinthe-primus.github.io/scanlayer/)\n\n[PyPi](https://pypi.org/project/scanlayer/)",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1w2r5r0",
+      "name": "t3_1w2r5r0",
+      "title": "Six months in: a tool that researches competitors and search demand, then rewrites and publishes your product pages",
+      "subreddit": "SideProject",
+      "author": "yolosollo",
+      "score": 3,
+      "num_comments": 1,
+      "created_utc": 1788118741.0,
+      "permalink": "/r/SideProject/comments/1w2r5r0/six_months_in_a_tool_that_researches_competitors/",
+      "url": "https://www.reddit.com/r/SideProject/comments/1w2r5r0/six_months_in_a_tool_that_researches_competitors/",
+      "selftext": "It pulls the competitors ranking for a product, what people are actually searching around it, and keyword demand with volume and CPC. Then it scores your current page, rewrites it in full, generates the product photos, and publishes it back to your store in one click. Once it is live it tracks rankings and traffic and tells you what to fix next.\n\nSo the page is built on what the market is actually searching for, and you can run it across a whole catalogue instead of hand writing ten pages and stopping there. The same research also writes the ads, social posts and emails.\n\nWorks with Shopify and custom stores. It is live at brandybee.ai. Happy to answer anything about how the research part works.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1w3452r",
+      "name": "t3_1w3452r",
+      "title": "[ Need Advice ] In Building SASS application called brandinai.co",
+      "subreddit": "saasbuild",
+      "author": "adityakmr088",
+      "score": 3,
+      "num_comments": 2,
+      "created_utc": 1788153255.0,
+      "permalink": "/r/saasbuild/comments/1w3452r/need_advice_in_building_sass_application_called/",
+      "url": "https://www.reddit.com/r/saasbuild/comments/1w3452r/need_advice_in_building_sass_application_called/",
+      "selftext": "I have been working on a SASS application which helps brand to get visibility In AI. I have almost created the application. But just need a feedback wether this Idea will work. does it even have a market. Should I continue working on it or should I just drop the Idea. \n\nAnyone interested work on this with me ?\n\n[https://www.brandinai.co/](https://www.brandinai.co/)",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1w2yad5",
+      "name": "t3_1w2yad5",
+      "title": "I built a MacOS app for recording your iPhone + camera and mic",
+      "subreddit": "saasbuild",
+      "author": "paulmbw_",
+      "score": 1,
+      "num_comments": 0,
+      "created_utc": 1788136368.0,
+      "permalink": "/r/saasbuild/comments/1w2yad5/i_built_a_macos_app_for_recording_your_iphone/",
+      "url": "https://v.redd.it/lbqt4f1mpimh1",
+      "selftext": "",
+      "is_self": false,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
     }
   ]
 }
