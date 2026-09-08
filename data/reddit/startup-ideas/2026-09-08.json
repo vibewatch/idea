@@ -7,8 +7,8 @@
       "title": "How does Whop handle payouts and KYC for platforms with multiple users?",
       "subreddit": "EntrepreneurRideAlong",
       "author": "Muted-Ice-7442",
-      "score": 30,
-      "num_comments": 10,
+      "score": 31,
+      "num_comments": 12,
       "created_utc": 1788813111.0,
       "permalink": "/r/EntrepreneurRideAlong/comments/1wa3kt7/how_does_whop_handle_payouts_and_kyc_for/",
       "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1wa3kt7/how_does_whop_handle_payouts_and_kyc_for/",
@@ -47,6 +47,12 @@
           "author": "Shanmuga_Raj__",
           "body": "The real test is what your users see when KYC fails. If they just get “verification pending” while their money sits there, support tickets will become half the product. I’d test the failed and delayed payout flow before worrying about the happy path.",
           "score": 1
+        },
+        {
+          "id": "p8hvvq7",
+          "author": "Ilheet-Matas",
+          "body": "Whop basically treats each vendor as their own entity, so you'd need individual KYC for anyone actually receiving payouts - they're not gonna let money move without knowing who's on the other end. If you're running a marketplace where creators just post stuff, that's different from if they're actually withdrawing funds, which changes everything about how Whop structures it.",
+          "score": 1
         }
       ]
     },
@@ -56,8 +62,8 @@
       "title": "think my domain got blacklisted - how do i blacklist check and fix it?",
       "subreddit": "EntrepreneurRideAlong",
       "author": "AeroLMS",
-      "score": 19,
-      "num_comments": 8,
+      "score": 17,
+      "num_comments": 10,
       "created_utc": 1788773861.0,
       "permalink": "/r/EntrepreneurRideAlong/comments/1w9njn3/think_my_domain_got_blacklisted_how_do_i/",
       "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1w9njn3/think_my_domain_got_blacklisted_how_do_i/",
@@ -65,7 +71,57 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8c6hs3",
+          "author": "Legitimate-Let-7510",
+          "body": "Have you actually tried Prospeo yet? A friend on another SDR team started using them after they had a similar blacklisting situation and he said the verified emails basically stopped bouncing. Might be worth testing if bad data is what got you flagged.\n\nAlso for the blacklist checker side of things - MXToolbox is decent but check Spamhaus and Barracuda directly too. Those are the ones that actually matter for email deliverability. Some of the smaller blacklists nobody really cares about.",
+          "score": 2
+        },
+        {
+          "id": "p8euph5",
+          "author": "AtlasForgeX",
+          "body": "There are two problems tangled up here and swapping verifiers fixes neither.\n\nStart with the 22 to 3. On its own that is not evidence of anything. Open tracking has been junk since Apple started prefetching images, and a change in your pixel or in the mix of who you mailed that week gives you the same shape with your deliverability completely intact. Worth knowing before you spend a month fixing the wrong thing.\n\nEvidence that holds up: Google Postmaster Tools, which needs a DNS record and then shows you real spam rate and domain reputation on the gmail side. Microsoft SNDS for outlook. And a seed list of your own addresses on gmail, outlook and a workspace domain, mailed through the actual sequence, so you can see where you land instead of inferring it. Three sources rather than fifteen, and they mostly agree with each other, which is more than the free checkers manage.\n\nThe checkers disagree because most of them query forty lists and about four matter. Spamhaus SBL and DBL, the sending IP on XBL, Barracuda. The rest can be lit up like a christmas tree and no mailbox provider will care. Check the domain and the sending IP as separate things, they break for different reasons.\n\nDelisting itself is quick. Spamhaus falls off within days once the source stops. Domain reputation is the part that takes months, and getting delisted does nothing for it.\n\nThe cause is already written in your post. 2k a day off the main domain with a rough bounce rate. Bounces are the exact thing being measured, so a better verifier limits future damage and does nothing for the domain you already cooked. Take the main domain out of cold sending, put it back to human mail only, start again on separate sending domains with real warmup. Either way you are looking at months, so tell your boss today rather than in three weeks when the number still has not moved.\n\nWhile you are in the DNS anyway, check whether the main domain even has a DMARC record. More than half the domains I look at do not have one. If yours is one of them, your mail has been getting judged harder than you think for a lot longer than this week.",
+          "score": 2
+        },
+        {
+          "id": "p8d4po9",
+          "author": "ImplementMiserable74",
+          "body": "dont trust open rate right now since tracking is messy but yeah 2k a day on the main domain is asking for pain. check google postmaster and mxtoolbox and also test inboxing with a seed list. pause sends and move to new sending domains then only send to verified leads, i use socleads free verifier for a quick cleanup before any campaign.",
+          "score": 1
+        },
+        {
+          "id": "p8dmolm",
+          "author": "Top_Bodybuilder_5833",
+          "body": "That drop sounds painful. Sending cold emails straight from the main domain at 2k a day will burn you fast once bounces creep in. Since you are looking at tools to fix the verification side, I built an email finder and verifier called Sealch. It does live SMTP checks and typo fixes to catch those bad addresses before they hit your sending pool, and it is super cheap at about thirty five cents per thousand. Definitely grab some subdomains for your next setup too.",
+          "score": 1
+        },
+        {
+          "id": "p8edc3n",
+          "author": "xasdfxx",
+          "body": "> my boss is already breathing down my neck about pipeline numbers so i need to sort this out fast.\n\nStart telling him now recovery is going to take multiple months once you've trained the only 2 inboxes that matter (O365 and gsuite) that your domain is very spammy.  You can recover, but it is going to be slow.",
+          "score": 1
+        },
+        {
+          "id": "p8exm4y",
+          "author": "official_biz_doctor",
+          "body": "A fall from 22 percent to 3 percent is severe enough that I would pause outbound from the main domain while you diagnose it. At two thousand cold messages a day, the larger risk is reputation damage from complaints, invalid recipients, or weak authentication rather than one public blacklist. Check authentication alignment, bounce and complaint rates, recent list sources, sending-volume changes, and inbox placement across several providers. Separate future outbound from the domain used for customers and normal business mail, but do not rotate domains to continue the same behavior. Reduce volume, remove unengaged and unverified contacts, and restart only after the cause is clear. What changed in the seven days before the decline: list source, sending volume, copy, infrastructure, or the percentage of recipients who had never engaged?",
+          "score": 1
+        },
+        {
+          "id": "p8h0hmu",
+          "author": "Impossible-Way5740",
+          "body": "Start with MXToolbox's blacklist check - it shows which lists flag you and most have self-serve delisting once you fix the cause. The cause matters more than the delisting: if a shared IP or an old owner's spam run got you listed, delisting without changing sending behavior just gets you relisted. Also check Google Postmaster Tools - Gmail reputation is separate from the public blacklists and usually the one that actually hurts.",
+          "score": 1
+        },
+        {
+          "id": "p8hgn4l",
+          "author": "cedriclauster",
+          "body": "I'd ALWAYS use a verification tool like Million Verifier or Anymailfinder. Just Prospeo won't be enough.   \n  \nRegarding your blacklist question: \n\nI've dealt with this a few times. Two things first, because they change what you should even look for.\n\nA 22% to 3% open rate drop is almost never a public blacklist. It's your domain reputation at Gmail and Outlook, which is a completely separate system. Google has said outright it doesn't use the public lists, it uses its own placement signals. So you can be clean on every checker and still be in spam, or listed on three and land fine.\n\nAlso, open rates are a shaky metric. Open tracking injects a pixel, and that pixel is itself a spam signal on a cold domain. Turn it off and judge on replies and bounces.\n\n  \n\n\nHow to actually check, in order:\n\n1. Read your bounce messages. The 550 text in your sending tool names the real reason. \"5.7.1 blocked\" from Google, S3150 or 5.7.511 from Microsoft, or a literal Spamhaus reference with the list name. \n\n2. Google Postmaster Tools. Verify the domain with a TXT record and look at Domain reputation and Spam rate. 2k a day is plenty of volume to show data. Bad or Low reputation is your actual problem. Spam rate should sit under 0.1%, above 0.3% Google starts throttling.\n\n3. A seed placement test (GlockApps, MailReach, or whatever your sending platform has built in). Look at the Gmail column on its own, not the blended number. Outlook seeds sit near 100% on almost every fleet and hide a Gmail collapse. Seeds never mark anything as spam, so treat it as directional.\n\n4. Blacklists, last. MXToolbox on the domain and the sending IP. The checkers disagree because they query different lists and cache results. Only Spamhaus really matters (DBL for domains, ZEN for IPs), plus a few that corporate filters like Barracuda and Proofpoint read. Ignore UCEPROTECT, it lists entire ISP ranges. If you send through Google Workspace or M365, the IP belongs to them, so an IP listing isn't yours to fix and isn't your problem.\n\n",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1w9hai6",
@@ -258,8 +314,8 @@
       "title": "We were getting clicks but almost no leads. Here's what we changed.",
       "subreddit": "EntrepreneurRideAlong",
       "author": "Alive_Age_8534",
-      "score": 1,
-      "num_comments": 3,
+      "score": 3,
+      "num_comments": 5,
       "created_utc": 1788808525.0,
       "permalink": "/r/EntrepreneurRideAlong/comments/1wa1i5c/we_were_getting_clicks_but_almost_no_leads_heres/",
       "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1wa1i5c/we_were_getting_clicks_but_almost_no_leads_heres/",
@@ -275,8 +331,8 @@
       "title": "People who run multiple businesses, how do you switch",
       "subreddit": "EntrepreneurRideAlong",
       "author": "Remarkable_Junket185",
-      "score": 1,
-      "num_comments": 4,
+      "score": 3,
+      "num_comments": 12,
       "created_utc": 1788804958.0,
       "permalink": "/r/EntrepreneurRideAlong/comments/1w9zus6/people_who_run_multiple_businesses_how_do_you/",
       "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1w9zus6/people_who_run_multiple_businesses_how_do_you/",
@@ -284,7 +340,45 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8epnge",
+          "author": "ScriptureCompanionAI",
+          "body": "I block my time just like balancing personal vs business. Don't overthink it ;)",
+          "score": 2
+        },
+        {
+          "id": "p8gkw2n",
+          "author": "Amazing-Performer-43",
+          "body": "The offline business is probably the easiest of the three to step away from, and I'd bet it's because you have a team there. Other people need to know what's going on, so the state of that business is written down somewhere. The two solo ones live entirely in your head, so every time you sit down you're rebuilding the whole picture from memory before you can start. That's the switching cost. It's also why ideas about business 2 keep barging in while you're on business 1: your brain is holding 2 open because nothing else is.\n\n  \nWhat worked for me: one page per business. Not a project system, just what's in flight now, what's blocked and who I'm waiting on, the next concrete action, and a parking lot for stray ideas. When an idea about 2 shows up while I'm on 1, it goes in 2's parking lot and my head lets go of it, because now it'll actually get seen again.\n\n  \nSwitching then is: close one page, open the next, read the top few lines. Separate browser profiles and a different desk corner help on top of that, but the real unlock was getting each business out of my head onto something I can glance at.\n\n  \n(I do ops/systems work for small firms, so this is the thing I'm always on about.)",
+          "score": 2
+        },
+        {
+          "id": "p8ed2pm",
+          "author": "Prestigious_Shame644",
+          "body": "It's not 'kind of solo', just say you're working alone. Nails it better.",
+          "score": 1
+        },
+        {
+          "id": "p8edgq1",
+          "author": "Positive-Macaron3509",
+          "body": "I write everything down as soon as it pops up, then get back to what I was doing. If I don't capture it, the idea keeps circling in my head and I can't focus on the current task.\n\n  \nAlso having separate workspaces helps me, even if it's just different browser profiles or different desk corners. The physical switch makes the mental switch easier.",
+          "score": 1
+        },
+        {
+          "id": "p8hy23y",
+          "author": "Ilheet-Matas",
+          "body": "Honestly? Context switching is brutal, which is why I try to batch work by business rather than jump between them all day. Some folks swear by time-blocking, but I've found that running stuff that operates on totally different rhythms helps (like a service business and a SaaS product don't need the same daily attention).",
+          "score": 1
+        },
+        {
+          "id": "p8hypbb",
+          "author": "whitejalebi",
+          "body": "Time blocking helps. Just like you, I run two online businesses where the team is remote, and one volunteer-based community-centric business, and I always ensure that when I plan my week, I put the appropriate time blocks through the week for all three. Once planned, I don;t think about it. ",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1w9rrhi",
@@ -292,7 +386,7 @@
       "title": "Create Beautiful Animated Device Mockups in Seconds",
       "subreddit": "AppIdeas",
       "author": "world1dan",
-      "score": 6,
+      "score": 5,
       "num_comments": 0,
       "created_utc": 1788786622.0,
       "permalink": "/r/AppIdeas/comments/1w9rrhi/create_beautiful_animated_device_mockups_in/",
@@ -327,7 +421,7 @@
       "subreddit": "AppIdeas",
       "author": "dudziks",
       "score": 1,
-      "num_comments": 6,
+      "num_comments": 10,
       "created_utc": 1788806776.0,
       "permalink": "/r/AppIdeas/comments/1wa0p8x/lets_go_back_to_this_idea/",
       "url": "https://www.reddit.com/r/AppIdeas/comments/1wa0p8x/lets_go_back_to_this_idea/",
@@ -335,7 +429,33 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8fco2o",
+          "author": "karnat10",
+          "body": "Duh... every cloud drive app will do this for you, document scanning and OCR included.\n\nMost people don't even realize that they have this problem, or don't know how to fix it.",
+          "score": 3
+        },
+        {
+          "id": "p8fdsny",
+          "author": "dudziks",
+          "body": "The problem is not in scanning and OCR, but in easy way to find the particular document when needed, without physical searching in the drawer. That's the idea. Many times I had to check something in some document. And finding that particular document was a real pain in the neck. I hope the app will solve the problem.",
+          "score": 1
+        },
+        {
+          "id": "p8gc1ug",
+          "author": "Informal_Calendar687",
+          "body": "Hi there. It honestly does not sound different than taking pictures of the docs and saving the picture from your phone to a folder on Google drive or One drive. I am not sure if it will make money. Can you add features no one else has?",
+          "score": 1
+        },
+        {
+          "id": "p8hvehv",
+          "author": "No_Lawyer1947",
+          "body": "not even a little",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1wa4lti",
@@ -344,7 +464,7 @@
       "subreddit": "roastmystartup",
       "author": "sorinmx",
       "score": 1,
-      "num_comments": 1,
+      "num_comments": 2,
       "created_utc": 1788815477.0,
       "permalink": "/r/roastmystartup/comments/1wa4lti/roast_my_first_saas_im_a_marketer_who_built_a_gmb/",
       "url": "https://www.reddit.com/r/roastmystartup/comments/1wa4lti/roast_my_first_saas_im_a_marketer_who_built_a_gmb/",
@@ -445,8 +565,8 @@
       "title": "Drop your startup and be featured in this week’s newsletter!",
       "subreddit": "Startup_Ideas",
       "author": "Legitimate-Peace-583",
-      "score": 13,
-      "num_comments": 63,
+      "score": 16,
+      "num_comments": 71,
       "created_utc": 1788769856.0,
       "permalink": "/r/Startup_Ideas/comments/1w9mefe/drop_your_startup_and_be_featured_in_this_weeks/",
       "url": "https://www.reddit.com/r/Startup_Ideas/comments/1w9mefe/drop_your_startup_and_be_featured_in_this_weeks/",
@@ -460,7 +580,7 @@
           "id": "p8bqbs6",
           "author": "lyapustin",
           "body": "I’ve been building a small experiment called **Paper Reef**.  \nThe idea is simple: a kid draws a fish or sea creature on real paper, you take a photo with your phone, and a few seconds later that exact drawing comes alive and starts swimming in a shared virtual aquarium.  \nNo app to install. The aquarium can run in a browser or on a TV, while drawings are added from a phone.  \nI’m exploring whether this could become something bigger for families, schools, museums, aquariums, and brands.  \nWould love some feedback on the idea and where you think it could go.  \nTry the public reef here:  \n[https://paperreef.com/r/REEF](https://paperreef.com/r/REEF)",
-          "score": 4
+          "score": 3
         },
         {
           "id": "p8clriu",
@@ -472,6 +592,12 @@
           "id": "p8cson8",
           "author": "Fickle-Engineering21",
           "body": "https://reddit.com/link/p8cson8/video/4mklzal0v3oh1/player\n\nWe provide starlight installation on car and home ceiling \n\nInsta handles @shootingstarcustoms",
+          "score": 2
+        },
+        {
+          "id": "p8f9p70",
+          "author": "zizzle6717",
+          "body": "I'm building Friends with Habits (habits.therr.com). It's a unique habit tracker that pairs you with friend for accountability and allows optionally posting proof of checkins that are shared to a public feed. \n\nThis creates a social feed that is focused specifically around creating change and building new habits.\n\n[Friends with Habits](https://habits.therr.com)",
           "score": 2
         },
         {
@@ -497,12 +623,6 @@
           "author": "Drunktotal",
           "body": "https://littlelearninglab.in/ We've launched 4 awesome games so far for kids with speech delay and it's autism affirming. ",
           "score": 1
-        },
-        {
-          "id": "p8cadn0",
-          "author": "Rfksemperfi",
-          "body": "OurFest.CO   \nAn events co-op managed like kickstarter. \n\nWhen a project is funded, we put it on.",
-          "score": 1
         }
       ]
     },
@@ -512,8 +632,8 @@
       "title": "Security scanner tool for Vercel + Supabase",
       "subreddit": "Startup_Ideas",
       "author": "Sea-Garden7836",
-      "score": 2,
-      "num_comments": 0,
+      "score": 3,
+      "num_comments": 1,
       "created_utc": 1788812504.0,
       "permalink": "/r/Startup_Ideas/comments/1wa3b7p/security_scanner_tool_for_vercel_supabase/",
       "url": "https://www.reddit.com/r/Startup_Ideas/comments/1wa3b7p/security_scanner_tool_for_vercel_supabase/",
@@ -597,8 +717,8 @@
       "title": "App that uses ai to recommend your meal?",
       "subreddit": "Startup_Ideas",
       "author": "Secret-Classic-5644",
-      "score": 1,
-      "num_comments": 0,
+      "score": 0,
+      "num_comments": 11,
       "created_utc": 1788829336.0,
       "permalink": "/r/Startup_Ideas/comments/1waa0w3/app_that_uses_ai_to_recommend_your_meal/",
       "url": "https://www.reddit.com/r/Startup_Ideas/comments/1waa0w3/app_that_uses_ai_to_recommend_your_meal/",
@@ -606,7 +726,21 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8gm3yi",
+          "author": "medialantern",
+          "body": "You might want to check this and other subs over the past week or two. I haven't started a tracker for it but \"AI picks a meal\" apps are a hot category right now and you've probably got 10 competitors just in the past week.",
+          "score": 2
+        },
+        {
+          "id": "p8h4lq2",
+          "author": "M0torC1tyMaver1ck",
+          "body": "Are we that brain dead now that we need AI to tell us what to eat....",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1wa3yo5",
@@ -614,8 +748,8 @@
       "title": "Any good sources or ideas on how to find a Business that's for sale ?",
       "subreddit": "Startup_Ideas",
       "author": "BankSensitive2950",
-      "score": 1,
-      "num_comments": 6,
+      "score": 2,
+      "num_comments": 7,
       "created_utc": 1788813984.0,
       "permalink": "/r/Startup_Ideas/comments/1wa3yo5/any_good_sources_or_ideas_on_how_to_find_a/",
       "url": "https://www.reddit.com/r/Startup_Ideas/comments/1wa3yo5/any_good_sources_or_ideas_on_how_to_find_a/",
@@ -717,7 +851,7 @@
       "subreddit": "Startup_Ideas",
       "author": "ResponseNo1259",
       "score": 0,
-      "num_comments": 5,
+      "num_comments": 6,
       "created_utc": 1788806789.0,
       "permalink": "/r/Startup_Ideas/comments/1wa0pfs/hi_i_am_building_lovable_for_native_mobile_apps/",
       "url": "https://www.reddit.com/r/Startup_Ideas/comments/1wa0pfs/hi_i_am_building_lovable_for_native_mobile_apps/",
@@ -818,8 +952,8 @@
       "title": "Literally no reason to use Supabase in 2026. I will not promote.",
       "subreddit": "startups",
       "author": "Man-O-Light",
-      "score": 113,
-      "num_comments": 118,
+      "score": 155,
+      "num_comments": 145,
       "created_utc": 1788797085.0,
       "permalink": "/r/startups/comments/1w9w9dw/literally_no_reason_to_use_supabase_in_2026_i/",
       "url": "https://www.reddit.com/r/startups/comments/1w9w9dw/literally_no_reason_to_use_supabase_in_2026_i/",
@@ -833,61 +967,67 @@
           "id": "p8dq4la",
           "author": "TreadEasily",
           "body": "any good recommendations for a better free tier with the similar capabilities as supabase?",
-          "score": 34
+          "score": 53
         },
         {
           "id": "p8dknas",
           "author": "rakeshkanna91",
           "body": "Railway Postgres is underrated. ",
-          "score": 26
+          "score": 28
         },
         {
           "id": "p8dlnve",
           "author": "ddeeppiixx",
           "body": "Damn right.\n\nWe've made the mistake to build our product on Supabase. We were quickly knee deep in the RLS maze, and the un-debuggable triggers/functions.. We had to add a FastAPI to glue some business logic, and ended up re-routing all the DB interaction through our API (service key) and Supabase now is just a managed DB and Auth provider. Even their storage is outrageously expensive (Egress fees are a killer). We have that on R2 now..\n\nAnd they seem to be down once a week, which is honestly embarrassing for a series F startup (them not us..) \n\nNow we're stuck, we can't move our Auth without forcing a broad password reset, which is so far a big no. \n\nA Database is not a backend. ",
+          "score": 21
+        },
+        {
+          "id": "p8e453o",
+          "author": "sadferret123",
+          "body": "I think Supabase is ok if you forgo RLS and keep all logic in your server.\n\nI tried implementing RLS and defining access policies very quickly became cumbersome and in some cases impossible to define. Some of the access logic will be inherently driven by business logic, so then you end up with data access logic in two places.",
+          "score": 19
+        },
+        {
+          "id": "p8e45pi",
+          "author": "HungryLobster257",
+          "body": "Whats bad about RLS and Edge Functions? Maintenance?",
           "score": 16
         },
         {
           "id": "p8dptmi",
           "author": "CarpetNo5579",
           "body": "skill issue. all your complainst about PostgREST is easily mitigated by connecting to the DB via a backend server instead of through the frontend... which is what you already do with spring boot or .NET - which you have no business still using if you're buildling modern applications from 0-1 in 2026",
-          "score": 13
-        },
-        {
-          "id": "p8e453o",
-          "author": "sadferret123",
-          "body": "I think Supabase is ok if you forgo RLS and keep all logic in your server.\n\nI tried implementing RLS and defining access policies very quickly became cumbersome and in some cases impossible to define. Some of the access logic will be inherently driven by business logic, so then you end up with data access logic in two places.",
-          "score": 12
-        },
-        {
-          "id": "p8e45pi",
-          "author": "HungryLobster257",
-          "body": "Whats bad about RLS and Edge Functions? Maintenance?",
-          "score": 10
+          "score": 15
         },
         {
           "id": "p8e5lua",
           "author": "meatdrawer25",
           "body": "Supabase is very low cost for small startups, easy to spin up a db, and their auth generally works. It just makes infrastructure easier than using a cloud provider. They also have a nice local environment for testing and good MCP. I’m assuming you’re alluding to their whole do everything client side paradigm. I agree that it’s dumb and feels inherently insecure. \n\nAuth aside, I just treat it like a postgres db so I’m not vendor locked. Most of your concerns melt away if you just ignore the dumb features that are for vibe coders. \n\nAll that being said, it’s far from perfect, and I never use it with the long term expectation to stay there. It’s a good starting point though. ",
-          "score": 8
+          "score": 11
         },
         {
           "id": "p8eemhd",
           "author": "LoudDavid",
           "body": "Supabase is not a good stack. Just like loveable.\n\nThey make tech choices so you can quickly build anything for 50users. \n\nIn the age of AI you can build a very good starter kit in no time and host it anywhere.",
+          "score": 13
+        },
+        {
+          "id": "p8eqx6m",
+          "author": "jerramw",
+          "body": "Laravel is a monster. Anyone bagging Php in 2026 hasn't reviewed Php8, the frameworks or the ecosystem. Php bashing is really WordPress bashing, anyone lumping modern php frameworks in with that is not thinking for themselves. \n\nMoving BE logic to FE, ok fine let's make the user experience more like an app, but the serverless fiasco, and then using FE languages for a BE (promises, COUGH)  or using a db for a backend FFS - it's all either people not wanting to learn the right tool for the job or someone selling you a gimmick remember \"But Mongo is DB scale\"... It's vendor lock in all the way down.\n\nSymfony was a port of Spring, meaning it imported all of Java's worst patterns: Hibernate for ORM, datamapper, the DI, the security later, the forms debacle 😒 \n\nbut building on Laravel with a running container app out of the box, heavily lifting from Symfonys good bits. with Vue out of the box, with every integration from oauth to managed s3 backups via Packagist, and being able to take your platform from 0 to N users without hitting a technical or performance ceiling, if you are a JS fanboi and havent tried it then you just don't know. Php fucking rips, all these leftpad script kiddies and their paid stack layers should take a look around.\n\nEdit: more cynicism.",
           "score": 8
         },
         {
           "id": "p8ejjs8",
           "author": "OneoftheChosen",
           "body": "“Don’t use RLS” is next level crack smokery… Has nothing to do with Supabase…\n\nLike others have mentioned this is literally a skill issue",
-          "score": 6
+          "score": 5
         },
         {
           "id": "p8e7fnq",
           "author": "Professional_Mix_296",
           "body": "I’ve been using supabase for a long time for many freelance projects  \nOne go to strategy for me has always been use their direct integration and edge functions.  \nEventually if required on scale (for some major logic requirements) adding backend server to call supabase from there and serve frontend\n\nirrespective i feel supabase gets lot of things done for quick start and then at scale its an engineering challenge that can come in any other frameworks too but just in different forms\n\nAlso convex is a choice if looking to build any realtime apps",
-          "score": 5
+          "score": 4
         },
         {
           "id": "p8duh44",
@@ -896,21 +1036,15 @@
           "score": 4
         },
         {
-          "id": "p8eqx6m",
-          "author": "jerramw",
-          "body": "Laravel is a monster. Anyone bagging Php in 2026 hasn't reviewed Php8, the frameworks or the ecosystem. Php bashing is really WordPress bashing, anyone lumping modern php frameworks in with that is not thinking for themselves. \n\nMoving BE logic to FE, ok fine let's make the user experience more like an app, but the serverless fiasco, and then using FE languages for a BE (promises, COUGH)  or using a db for a backend FFS - it's all either people not wanting to learn the right tool for the job or someone selling you a gimmick remember \"But Mongo is DB scale\"... It's vendor lock in all the way down.\n\nSymfony was a port of Spring, meaning it imported all of Java's worst patterns: Hibernate for ORM, datamapper, the DI, the security later, the forms debacle 😒 \n\nbut building on Laravel with a running container app out of the box, heavily lifting from Symfonys good bits. with Vue out of the box, with every integration from oauth to managed s3 backups via Packagist, and being able to take your platform from 0 to N users without hitting a technical or performance ceiling, if you are a JS fanboi and havent tried it then you just don't know. Php fucking rips, all these leftpad script kiddies and their paid stack layers should take a look around.\n\nEdit: more cynicism.",
-          "score": 4
-        },
-        {
           "id": "p8e97he",
-          "author": "Grouchy-Librarian638",
-          "body": "Yea supabase is bleh. But so is vercel, and all that nextjs crap.\n\nBut I will say that the full user management, database, whatever is useful but that’s why there are 1000 managed and self hosted solution and it’s over saturated ",
+          "author": "[deleted]",
+          "body": "[removed]",
           "score": 3
         },
         {
-          "id": "p8fq9o5",
-          "author": "sintrastellar",
-          "body": "I build all my projects on rails + SQLite \n\nAre there good reasons to use something like supabase instead?\n\nKeeping in mind these are startups with only a few thousand users max.",
+          "id": "p8eh5i4",
+          "author": "Kryzpk",
+          "body": "I dont think it was every the best choice for professional applications, that are supposed to scale. It was always good enough for hobby projects or small SaaS and it still is. Especially in the days of AI.",
           "score": 3
         }
       ]
@@ -921,8 +1055,8 @@
       "title": "What do you think of Co-Founder Match on YC? I will not promote",
       "subreddit": "startups",
       "author": "EyeTechnical7643",
-      "score": 10,
-      "num_comments": 20,
+      "score": 7,
+      "num_comments": 22,
       "created_utc": 1788791821.0,
       "permalink": "/r/startups/comments/1w9txep/what_do_you_think_of_cofounder_match_on_yc_i_will/",
       "url": "https://www.reddit.com/r/startups/comments/1w9txep/what_do_you_think_of_cofounder_match_on_yc_i_will/",
@@ -936,7 +1070,7 @@
           "id": "p8d0p67",
           "author": "tynore",
           "body": "Bots. Bots everywhere.",
-          "score": 14
+          "score": 15
         },
         {
           "id": "p8d0plm",
@@ -948,13 +1082,13 @@
           "id": "p8d95y1",
           "author": "wakeupsmiling",
           "body": "Just consultants and contractors mostly. It's a worse version of Upwork without search filtering. Maybe that's being too kind.",
-          "score": 3
+          "score": 4
         },
         {
           "id": "p8dr46r",
           "author": "Kind-Pop-7205",
           "body": "I met a cofounder in there. There are legit people. No guarantee of success though.",
-          "score": 4
+          "score": 3
         },
         {
           "id": "p8d12as",
@@ -1012,8 +1146,8 @@
       "title": "Anyone using agents in Slack? 'I will not promote'",
       "subreddit": "startups",
       "author": "arthaudm",
-      "score": 5,
-      "num_comments": 13,
+      "score": 4,
+      "num_comments": 18,
       "created_utc": 1788792510.0,
       "permalink": "/r/startups/comments/1w9u7z8/anyone_using_agents_in_slack_i_will_not_promote/",
       "url": "https://www.reddit.com/r/startups/comments/1w9u7z8/anyone_using_agents_in_slack_i_will_not_promote/",
@@ -1027,7 +1161,7 @@
           "id": "p8dbak4",
           "author": "ScottPjr99",
           "body": "A few teams I know are using them for ticket triage and internal Q&A, mostly Anthropic and OpenAI's APIs wrapped into a Slackbot. Real talk though: most setups work fine for a few weeks then get ignored because they don't actually reduce friction, just add another place to check. The ones that stick are solving one narrow thing well (like auto-summarizing standup notes) rather than trying to be a general assistant. What's the actual problem you're trying to solve?",
-          "score": 1
+          "score": 3
         },
         {
           "id": "p8dpdep",
@@ -1046,6 +1180,12 @@
           "author": "BarracudaNo6709",
           "body": "[ Removed by Reddit ]",
           "score": 1
+        },
+        {
+          "id": "p8gmz4z",
+          "author": "Visible_Speed8843",
+          "body": "Hosted versus self-hosted should follow the data boundary. If the assistant can read private Slack channels, require a vendor to explain retention and training use, including where message content is processed.\n\nFor a six-person team, a hosted pilot with a narrow channel allowlist is probably the faster test. Set a short retention window and make access revocable per user. Move it in-house only when a customer requirement or your threat model gives you a concrete reason. Otherwise you inherit patching and monitoring before proving the workflow is useful.",
+          "score": 1
         }
       ]
     },
@@ -1056,7 +1196,7 @@
       "subreddit": "startups",
       "author": "Fine-Variety-9759",
       "score": 3,
-      "num_comments": 10,
+      "num_comments": 12,
       "created_utc": 1788768963.0,
       "permalink": "/r/startups/comments/1w9m5br/whats_the_one_book_youre_genuinely_glad_you_read/",
       "url": "https://www.reddit.com/r/startups/comments/1w9m5br/whats_the_one_book_youre_genuinely_glad_you_read/",
@@ -1159,8 +1299,8 @@
       "title": "(I will not promote) I’m planning on starting a coffeeshop business with family. What advice do you have for me?",
       "subreddit": "startups",
       "author": "Casanovajazz",
-      "score": 1,
-      "num_comments": 7,
+      "score": 4,
+      "num_comments": 16,
       "created_utc": 1788821194.0,
       "permalink": "/r/startups/comments/1wa6ynf/i_will_not_promote_im_planning_on_starting_a/",
       "url": "https://www.reddit.com/r/startups/comments/1wa6ynf/i_will_not_promote_im_planning_on_starting_a/",
@@ -1168,7 +1308,63 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8fykvc",
+          "author": "Successful-Title5403",
+          "body": "Have you worked at a coffee shop before? Have you ever held a manager position at a coffee shop?",
+          "score": 6
+        },
+        {
+          "id": "p8g2242",
+          "author": "sum-9",
+          "body": "If you don’t have funds now, you definitely won’t in a year or two. Source, run a cafe. ",
+          "score": 4
+        },
+        {
+          "id": "p8gq3j9",
+          "author": "Assigned_Cryptid",
+          "body": "It doesn't matter how good your relationships are with your family, don't just rely on goodwill and verbal agreements. Having clear,written contracts explaining exactly what everyone involved is responsible for and entitled to will save you so much hassle later on. This isn't to be negative, this is to protect everyone involved. \n\nMake sure you're getting proper signed contracts from suppliers etc too, and keep solid papertrails and records of important discussions and agreements. So many decent people get screwed over when other people don't act decently, and it's sad.",
+          "score": 3
+        },
+        {
+          "id": "p8gs2vm",
+          "author": "Brufacee",
+          "body": "Before taking a lease or an investor, I'd try running weekend pop-ups for a few months. You'll learn whether people actually return, what the rush hours look like, and whether the three of you enjoy working together when it's busy.\n\nAlso write down roles, pay, decision rights, and what happens if one sister wants out. Doing that while everyone is excited is much easier than after money gets involved.",
+          "score": 3
+        },
+        {
+          "id": "p8gjd2i",
+          "author": "Ferfoxfox",
+          "body": "Of you want to start a biz without a loan you have few options: first work a 9-5 and save up for something small, like real small, or mobile like a food truck, or second if you want to have 3 more in your crew then pull resources from all 4 so they also have a stake in the biz. No one cheaps out.\n\n",
+          "score": 2
+        },
+        {
+          "id": "p8h1ycl",
+          "author": "Senior-Community-767",
+          "body": "Not taking loans but considering investors is just kicking the debt can down the road. Investors will want equity and returns, which is arguably worse than a fixed loan payment. Look at BrewDog—they raised millions but diluted ownership drastically. If you’re serious about no debt, bootstrap it or rethink your approach.",
+          "score": 2
+        },
+        {
+          "id": "p8hhd45",
+          "author": "Successful_Pizza_115",
+          "body": "This isn’t a serious post. 4 of us running the business means no one takes responsibility. \n\nAlso, no one is willing to put in capital? Start another business that you can bootstrap or you’ll waste years “planning”",
+          "score": 2
+        },
+        {
+          "id": "p8fy34z",
+          "author": "[deleted]",
+          "body": "[deleted]",
+          "score": 1
+        },
+        {
+          "id": "p8gylnd",
+          "author": "dsw-001",
+          "body": "You are basically running a restaurant - one of the businesses that by year 3, over half or more go out of business and by year 5 90% are out of business.  My wife is running her cafe now and it's a labor of love - people on reddit scream you need to pay a living wage and when minimum wage here is $17+ per hour, you'll blow through more money for staff or you can work for basically for free as the owners don't get a living wage.  They don't mention that with a lot of family owned restaurants that the owners and family may be working for free.\n\nI can tell you from experience that my wife has shelled out about $85k out of pocket initially to buy and setup the business that included buying a distressed existing shop.  Monthly operations, staff, and equipment has her breaking even or slightly ahead with $0 for her own salary so she's basically losing money every month.  Depending on where are you at (if you are in CA, good luck - we are in the most inhospitable place to do business) as there are fees for everything, city permits, food licenses, and such.\n\nA coffee business requires some fairly expensive equipment as well - fridges and espresso machine and commercial bean grinders, etc.   Go online and research how much is it for a 2/3 group commercial espresso machine - it's like $6000-$10k depending on the brand - I'm guessing you weren't expecting to use a home machine.  A commercial bean grinder is about $1500 to $2000, water filters and there is the maintenance of the machine.  The machine will break down and expect a repair bill in the neighborhood of $300-$1000 for a service call.\n\nMy advise is to not get into this business - think about how many lattes you'll need to sell to turn a profit.  My wife also roasts her own beans and sells coffee related equipment (pourover sets, syphon coffee makers, etc).  She loves doing the drink aspect of the business but the paperwork, handling all of the administrative stuff, staffing, etc is just a lot of headaches.",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1w9xv3f",
@@ -1177,7 +1373,7 @@
       "subreddit": "startups",
       "author": "___Nazgul",
       "score": 1,
-      "num_comments": 2,
+      "num_comments": 5,
       "created_utc": 1788800635.0,
       "permalink": "/r/startups/comments/1w9xv3f/starting_an_2_week_pilot_with_b2b_client_for/",
       "url": "https://www.reddit.com/r/startups/comments/1w9xv3f/starting_an_2_week_pilot_with_b2b_client_for/",
@@ -1265,7 +1461,7 @@
       "subreddit": "startups",
       "author": "Ok_Bear_9606",
       "score": 0,
-      "num_comments": 14,
+      "num_comments": 18,
       "created_utc": 1788809563.0,
       "permalink": "/r/startups/comments/1wa1zkm/how_to_build_an_mvp_as_a_non_tech_i_will_not/",
       "url": "https://www.reddit.com/r/startups/comments/1wa1zkm/how_to_build_an_mvp_as_a_non_tech_i_will_not/",
@@ -1279,7 +1475,13 @@
           "id": "p8eudlw",
           "author": "b1ack1323",
           "body": "How will you know you’re picking the right tech stack? You need someone with tech experience as a founder, anything you make will have a high chance of a rip up unless you are going to own this for a while.",
-          "score": 3
+          "score": 4
+        },
+        {
+          "id": "p8fd3il",
+          "author": "Leading-Watch6040",
+          "body": "curious, how’d you get into an accelerator as a non-tech solo founder",
+          "score": 2
         },
         {
           "id": "p8ex4a3",
@@ -1294,15 +1496,27 @@
           "score": 1
         },
         {
-          "id": "p8fd3il",
-          "author": "Leading-Watch6040",
-          "body": "curious, how’d you get into an accelerator as a non-tech solo founder",
-          "score": 1
-        },
-        {
           "id": "p8fikkh",
           "author": "Similar_Confusion534",
           "body": "Try to make the MVP a test of one risky assumption, not a smaller version of the whole product. Write down the single user outcome, then pick one happy-path workflow that delivers it end to end. Before coding, have 5 to 10 target users try a clickable mockup or even a manual concierge version. Track whether they return or pay, not whether they say they like the idea. For a walking product, that might be one session plan plus a check-in, with everything else left out until users hit a real blocker.",
+          "score": 1
+        },
+        {
+          "id": "p8hm5m7",
+          "author": "G0RLAMl",
+          "body": "Have you tried Lovable? I’m not affiliated with.",
+          "score": 1
+        },
+        {
+          "id": "p8ht8n3",
+          "author": "greenpepperoni",
+          "body": "Ask Claude all these questions. It will help you narrow your scope, use Claude code to build. Your app doesnt sound complicated and you just need an MVP. Your tech stack doesnt matter. You’ll rebuild the entire app in 6 months of its viable and you bring on a cto. ",
+          "score": 1
+        },
+        {
+          "id": "p8hv22c",
+          "author": "Kind-Bathroom5159",
+          "body": "the slop feeling usually isnt the AI, its that you handed it a feature list instead of one person doing one thing. codex will happily build twelve pieces that each make sense and dont add up, because nobody told it what the product is actually for.\n\nwhat works with the founders i work with is writing one sentence about what a specific user does on the worst day they have this problem, then building only that path. no settings, no dashboard, no onboarding. if you cant say the flow out loud in thirty seconds its not ready to build.\n\nworth knowing too that chatgpt never pushes back. give it any framing and it produces a plausible product around it, so it feels like validation when its actualy just agreement. the deciding has to come from you, the tools only execute.",
           "score": 1
         }
       ]
@@ -1313,8 +1527,8 @@
       "title": "Business is failing. No idea what to do next.",
       "subreddit": "Entrepreneur",
       "author": "maljolxyd",
-      "score": 120,
-      "num_comments": 122,
+      "score": 147,
+      "num_comments": 141,
       "created_utc": 1788776027.0,
       "permalink": "/r/Entrepreneur/comments/1w9o6cq/business_is_failing_no_idea_what_to_do_next/",
       "url": "https://www.reddit.com/r/Entrepreneur/comments/1w9o6cq/business_is_failing_no_idea_what_to_do_next/",
@@ -1328,25 +1542,25 @@
           "id": "p8bztdf",
           "author": "Worldly_Table_6223",
           "body": "6 years of marketing experience doesn't go to waste just because the industry changed. Look at niches where AI still can't easily reach: trades, local services, anything where physical execution matters.",
-          "score": 60
+          "score": 81
         },
         {
           "id": "p8c2aao",
           "author": "East_Bet_7187",
           "body": "I think you’re over estimating re AI. \n\nOnly a VERY TINY number of people are using AI in any clever way. \n\nMost are running a free ChatGPT account and would have no idea where to start with making a page\n\nThey likely already have a website \n\nBut you could sell them a lead gen single page to add to their site to build a list of leads ",
-          "score": 27
+          "score": 36
         },
         {
           "id": "p8c0lzp",
           "author": "WPBase",
           "body": "I’d look at the clients you’re targeting before writing off the service. Mine could absolutely use AI, but they’re busy running a company and still want someone accountable for the strategy, build and ongoing work. \n\nThe tool has definitely changed, but I don't think we're quite there with the need to hand it over.",
-          "score": 24
+          "score": 27
         },
         {
           "id": "p8bvddn",
           "author": "SubstantialFocus8666",
           "body": "Looks like you having a tunnel vision. Look for High Ticket locak UK sectors. Like commercial cleaning, specialized trades, or property maintenance.",
-          "score": 12
+          "score": 14
         },
         {
           "id": "p8bsbut",
@@ -1370,19 +1584,19 @@
           "id": "p8bvn7t",
           "author": "sohrabvazir",
           "body": "Leverage the network you've built, that's the first tip. Many businesses are hard to launch and scale due to the lack of network..\nSecondly, since people are using AI, ask yourself what is their knowledge gap with AI? And is it something that you can potentially resolve for them? ",
-          "score": 4
+          "score": 3
         },
         {
           "id": "p8c439f",
           "author": "Kitchen_Shoulder2909",
           "body": "the skills you built are the actual asset, not the agency. before jumping into home services, talk to 10-15 business owners in different trades and just ask what their biggest headache is. dont pick an industry until you hear the same pain point repeated back to you multiple times",
-          "score": 5
+          "score": 4
         },
         {
           "id": "p8cdi57",
           "author": "mostly_bootstrapped",
           "body": "You've got 6 years of trades clients, go ask 5 of them what wastes their week. Your next business is hiding in one of those.",
-          "score": 4
+          "score": 3
         },
         {
           "id": "p8bwuc2",
@@ -1394,7 +1608,7 @@
           "id": "p8c0k57",
           "author": "BaronVonChahyll",
           "body": "I AM NOT SOLICITING\n\n  \nI am currently in need of a really high quality site for a US company that operates nationwide along with some graphic design to accompany the site build \n\nI don't want to use AI to build my site \n\nI want to pay someone a few thousand dollars or more to build me a nice site that is modern and not just AI jank with some serious SEO/AEO\n\nI can see the value in the investment but really have no idea where to start or how to determine who is a total toolbag/scammer/AI Vibe Coding mess and who is a legit company worth the value",
-          "score": 4
+          "score": 3
         },
         {
           "id": "p8c5ev3",
@@ -1569,7 +1783,7 @@
       "subreddit": "Entrepreneur",
       "author": "AutoModerator",
       "score": 6,
-      "num_comments": 22,
+      "num_comments": 23,
       "created_utc": 1788768061.0,
       "permalink": "/r/Entrepreneur/comments/1w9lvw2/monday_mentorship_ask_anything_september_07_2026/",
       "url": "https://www.reddit.com/r/Entrepreneur/comments/1w9lvw2/monday_mentorship_ask_anything_september_07_2026/",
@@ -1632,6 +1846,12 @@
           "author": "Chu-Take",
           "body": "I am building a social media app and trying to spread the words through reddit, instagram and linkedin. As we looking to launch Beta next month, I am curious what has worked for others at this stage without a big budget? ",
           "score": 1
+        },
+        {
+          "id": "p8h4lz9",
+          "author": "Azarathraven_",
+          "body": "I wanted to validate an offer but I'm not sure how to approach brand and business owners in cold outreach in a way that I will actually get some feedback. People always say \"talk to customers\", but I have a b2b service offer selling something at the intersection of architecture design and branding and these people are already being flooded with spam and people trying to sell stuff.",
+          "score": 1
         }
       ]
     },
@@ -1641,12 +1861,186 @@
       "title": "Anybody know any good streams for solo founders",
       "subreddit": "Entrepreneur",
       "author": "Username_TBD18",
-      "score": 4,
-      "num_comments": 6,
+      "score": 10,
+      "num_comments": 12,
       "created_utc": 1788811290.0,
       "permalink": "/r/Entrepreneur/comments/1wa2rsn/anybody_know_any_good_streams_for_solo_founders/",
       "url": "https://www.reddit.com/r/Entrepreneur/comments/1wa2rsn/anybody_know_any_good_streams_for_solo_founders/",
       "selftext": "As the title says - does anybody know any good youtube channels or podcasts aimed at, or about, solo founders?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8gobi3",
+          "author": "smbLabs",
+          "body": "He’s on TikTok but I liked watching Tommy Wright ceo.wright. He had bought a Subway franchise and was running it, showing all costs and how much he worked himself. Not so much a solo founder, but I enjoyed his videos cause the process is similar. ",
+          "score": 2
+        },
+        {
+          "id": "p8hbwwj",
+          "author": "Infinite_Designer770",
+          "body": "Best podcasts and YouTube channels for solo founders.\n\nPodcasts:\n\nThe Solo Founder's Podcast  \nFounders  \nAcquired  \nStartups for the Rest of Us  \nThe Bootstrapped Founder  \nIndie Bites  \nLenny's Podcast  \nWorkLife with Adam Grant  \nThe Diary Of A CEO\n\nYouTube Channels:\n\nStarter Story  \nGreg Isenberg  \nMarc Lou  \nPeter Yang  \nY Combinator",
+          "score": 2
+        },
+        {
+          "id": "p8ffnmf",
+          "author": "Thumbload",
+          "body": "I’d check out Indie Hackers and MicroConf. Both have some solid content for solo founders.",
+          "score": 1
+        },
+        {
+          "id": "p8g5hii",
+          "author": "masonosamo",
+          "body": "How I Built This podcast.  It’s been around for years and has a deep catalog of founder stories for large successful brands.  They also have a new format called advice line where entrepreneurs can call in with questions about their business.  Many are solo founders on the show.",
+          "score": 1
+        },
+        {
+          "id": "p8hgu4y",
+          "author": "Just-Statistician977",
+          "body": "For solo-founder material, I get the most value from episodes that show the actual decision process rather than only polished interviews. Look for build-in-public updates or teardown episodes in your niche, then write down one experiment to test that week. It turns a stream into a useful backlog instead of background noise.",
+          "score": 1
+        },
+        {
+          "id": "p8hthtb",
+          "author": "iloveyermum",
+          "body": "Just following",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wag76n",
+      "name": "t3_1wag76n",
+      "title": "Tailored casuals",
+      "subreddit": "roastmystartup",
+      "author": "BeautifulResolve803",
+      "score": 1,
+      "num_comments": 1,
+      "created_utc": 1788847916.0,
+      "permalink": "/r/roastmystartup/comments/1wag76n/tailored_casuals/",
+      "url": "https://www.reddit.com/r/roastmystartup/comments/1wag76n/tailored_casuals/",
+      "selftext": "Starting with t shirt and polos?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wafsj8",
+      "name": "t3_1wafsj8",
+      "title": "Conv AI builder simple enough that you don't need consultants",
+      "subreddit": "roastmystartup",
+      "author": "real_hannes_kannes",
+      "score": 1,
+      "num_comments": 2,
+      "created_utc": 1788846567.0,
+      "permalink": "/r/roastmystartup/comments/1wafsj8/conv_ai_builder_simple_enough_that_you_dont_need/",
+      "url": "https://www.reddit.com/r/roastmystartup/comments/1wafsj8/conv_ai_builder_simple_enough_that_you_dont_need/",
+      "selftext": "Two founders in Berlin would like to have honest feedback before we commit.\n\nSome context so you know where we're coming from: we've both been writing software since well before AI. One of us is at adesso, an IT consultancy; the other leads a data science team at Wolt. We're not vibe coders gluing slop together.\n\nThe idea: every enterprise conversational AI platform we've touched needs expensive consultants and months of setup before it does anything. We want to put a much simpler interface on top of voice and language models that already work, so a normal ops person can build and change the flows without calling anyone.\n\nOur main evidence: we've tried all the big ones at the consultancy (like cognigy or ElevenLabs). They're all too complex, and clients pay us 1,200 € a day to make them work / get trouble out of their head.\n\nWhy we think we're wrong:\n\n\\- the space is crowded and everyone in it is funded  \n\\- a big player could ship a nicer UI in a month  \n\\- the consulting cost might be the actual product, big companies want someone to blame when it breaks\n\nWhat are we missing?\n\nPS: That was not written by a conv AI ;)",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1waeihy",
+      "name": "t3_1waeihy",
+      "title": "Need marketing ideas for a diamond trading app",
+      "subreddit": "Startup_Ideas",
+      "author": "mrabhijain",
+      "score": 1,
+      "num_comments": 1,
+      "created_utc": 1788842439.0,
+      "permalink": "/r/Startup_Ideas/comments/1waeihy/need_marketing_ideas_for_a_diamond_trading_app/",
+      "url": "https://www.reddit.com/r/Startup_Ideas/comments/1waeihy/need_marketing_ideas_for_a_diamond_trading_app/",
+      "selftext": "I am developing an application for the diamond sector that supports **buying and selling, brokerage, and payment reminders**. Most firms I know still rely on WhatsApp, Excel, and calls. I am considering **how to secure the first 100 users**—what marketing strategy would you recommend? I would appreciate insights from anyone who has promoted a B2B app in a traditional industry. 💎",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wac5ds",
+      "name": "t3_1wac5ds",
+      "title": "Get your SaaS startup in front of thousands of potential users",
+      "subreddit": "Startup_Ideas",
+      "author": "FindingThat3387",
+      "score": 1,
+      "num_comments": 4,
+      "created_utc": 1788835285.0,
+      "permalink": "/r/Startup_Ideas/comments/1wac5ds/get_your_saas_startup_in_front_of_thousands_of/",
+      "url": "https://www.reddit.com/r/Startup_Ideas/comments/1wac5ds/get_your_saas_startup_in_front_of_thousands_of/",
+      "selftext": "As a SaaS startup owner myself (B2B specifically) my biggest struggle was to get my first couple of users and scale. When I started promoting it via influencers in the same niche I instantly gained more users that were serious and willing to pay.\n\nFast forward I've now built a network of influencers in various SaaS & AI startup niches that have high engagement rates, I'm looking for 20-30 startups that are willing to partner up with these influencers (most of them have a following from 5k to 50k, so engagement rate is very high)\n\nComment down below or shoot a dm!",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1waen70",
+      "name": "t3_1waen70",
+      "title": "Would you use a \"Fund OS\" for Indian VC/PE/AIF funds? Looking for honest validation",
+      "subreddit": "Startup_Ideas",
+      "author": "Physical-Exit-6037",
+      "score": 0,
+      "num_comments": 0,
+      "created_utc": 1788842854.0,
+      "permalink": "/r/Startup_Ideas/comments/1waen70/would_you_use_a_fund_os_for_indian_vcpeaif_funds/",
+      "url": "https://www.reddit.com/r/Startup_Ideas/comments/1waen70/would_you_use_a_fund_os_for_indian_vcpeaif_funds/",
+      "selftext": "Hey r/startup_ideas,\n\nI'm exploring a fintech/SaaS idea for the **private-markets ecosystem** and wanted to validate the problem before building anything.\n\nThe basic idea is a **\"Fund OS\" for Indian VC, PE, AIF and family-office funds.**\n\nFrom what I've seen, fund operations can involve a lot of disconnected tools and manual workflows:\n\n* LP onboarding & KYC\n* Capital-call calculations\n* Sending capital-call notices\n* Tracking LP payments\n* Bank reconciliation\n* Distribution calculations\n* Investor reporting\n* Document management\n* Portfolio/investment tracking\n\nThe vision would be to bring these workflows into one platform.\n\nFor example:\n\n**Fund manager creates a ₹5 Cr capital call**\n\n→ Platform calculates each LP's contribution  \n→ LPs receive notifications  \n→ Payment infrastructure handles the transaction through regulated partners  \n→ Payments are automatically reconciled  \n→ Fund ledger updates  \n→ LP dashboard/reporting updates\n\nEventually, this could become infrastructure for private funds rather than just another dashboard.\n\n# But here's what I'm trying to validate:\n\n**Is this actually a painful problem?**\n\nIf you're a:\n\n* VC/PE/AIF fund manager\n* Fund administrator\n* Family office\n* LP/investor\n* CA/accountant working with funds\n* Lawyer/compliance professional in this space\n\nI'd love to hear:\n\n1. **How are these processes handled today?**\n2. What's the most painful/manual part?\n3. What software do you currently use?\n4. What do you still use Excel/email/bank portals for?\n5. Would you actually pay for software that solved this?\n6. What would make you *not* trust a startup with these workflows?\n\nI'm **not building this yet**. I'm trying to determine whether there is a real problem worth solving before spending months writing code.\n\nAlso, if you're working on something similar in India, I'd be very interested in hearing about it.\n\n**Please be brutally honest  I'm looking for reasons NOT to build this as much as reasons to build it.**\n\nThanks!",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1waeig9",
+      "name": "t3_1waeig9",
+      "title": "I built BeamSonar —  AI monitoring that finds Reddit threads with buying intent",
+      "subreddit": "Startup_Ideas",
+      "author": "Complex-Ad-5916",
+      "score": 0,
+      "num_comments": 0,
+      "created_utc": 1788842435.0,
+      "permalink": "/r/Startup_Ideas/comments/1waeig9/i_built_beamsonar_ai_monitoring_that_finds_reddit/",
+      "url": "https://www.reddit.com/r/Startup_Ideas/comments/1waeig9/i_built_beamsonar_ai_monitoring_that_finds_reddit/",
+      "selftext": "I built [BeamSonar](http://beamsonar.com/) \\- AI monitoring that watches every new Reddit post and uses AI to score each one against your product — matching the problem being described instead of keywords — then emails you a daily digest of the threads with real buying intent, each caught within minutes of being posted.\n\n\n\nPaste your product URL at [beamsonar.com](http://beamsonar.com/) to get started. Free during early access — feedback welcome, especially threads it should have caught but didn't.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1waeie0",
+      "name": "t3_1waeie0",
+      "title": "Need marketing ideas for a diamond trading app",
+      "subreddit": "Startup_Ideas",
+      "author": "mrabhijain",
+      "score": 0,
+      "num_comments": 0,
+      "created_utc": 1788842430.0,
+      "permalink": "/r/Startup_Ideas/comments/1waeie0/need_marketing_ideas_for_a_diamond_trading_app/",
+      "url": "https://www.reddit.com/r/Startup_Ideas/comments/1waeie0/need_marketing_ideas_for_a_diamond_trading_app/",
+      "selftext": "I am developing an application for the diamond sector that supports **buying and selling, brokerage, and payment reminders**. Most firms I know still rely on WhatsApp, Excel, and calls. I am considering **how to secure the first 100 users**—what marketing strategy would you recommend? I would appreciate insights from anyone who has promoted a B2B app in a traditional industry. 💎",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wafwbf",
+      "name": "t3_1wafwbf",
+      "title": "Confused how to handle branding for my Corporate Retreat business. i will not promote",
+      "subreddit": "startups",
+      "author": "latte_yen",
+      "score": 1,
+      "num_comments": 1,
+      "created_utc": 1788846940.0,
+      "permalink": "/r/startups/comments/1wafwbf/confused_how_to_handle_branding_for_my_corporate/",
+      "url": "https://www.reddit.com/r/startups/comments/1wafwbf/confused_how_to_handle_branding_for_my_corporate/",
+      "selftext": "I run a hotel consulting agency in Thailand, and 12 months ago I launched a sub-brand organizing corporate retreats for international, remotely distributed tech teams hosting their offsites here.\n\nThe backend synergy is great, we can feed to our hospitality partners and can command really attractive rates for our retreats because of it. But the frontend is messy. We have separate LinkedIn and Facebook pages for both brands, but knowing how to brand between the two is confusing. Example, last week we finished a 50 pax retreat and I’m unsure whether to share this on my main business page or specifically on the corporate retreats page or both.\n\nShould I keep the socials completely separate and treat the consulting firm as a hidden engine, or is there a better way to structure two brands like this?",
       "is_self": true,
       "over_18": false,
       "is_video": false,
