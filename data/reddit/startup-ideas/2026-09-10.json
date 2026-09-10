@@ -1,0 +1,1463 @@
+{
+  "last_fetched": "2026-09-10",
+  "posts": [
+    {
+      "id": "1wbi8zs",
+      "name": "t3_1wbi8zs",
+      "title": "Ran an experiment: what if I only cold emailed people whose customers are publicly complaining about them right now? results from 100  sent emails",
+      "subreddit": "EntrepreneurRideAlong",
+      "author": "No_Cryptographer7800",
+      "score": 27,
+      "num_comments": 25,
+      "created_utc": 1788951291.0,
+      "permalink": "/r/EntrepreneurRideAlong/comments/1wbi8zs/ran_an_experiment_what_if_i_only_cold_emailed/",
+      "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1wbi8zs/ran_an_experiment_what_if_i_only_cold_emailed/",
+      "selftext": "This started as a weekend experiment because I was frustrated with the entire cold outbound playbook, i was spending $300-400/month on tools like Apollo and Instantly to email people who fit my buyer profile on paper but had absolutely no reason to care about my email\n\n\n\nThe hypothesis was simple: a 1-star Trustpilot review is a buying signal. Someone publicly said \"this company dropped the ball on the exact thing my service handles\" and they said it this week. What if I only emailed companies that had fresh complaints matching the problems I solve?\n\n\n\nBuilt a pipeline over a weekend, It scrapes 1-2 star reviews from competitor Trustpilot pages, uses a free AI model to draft three personalized email variants per lead (each citing the actual review in the prospect's own words) and stages them as Gmail drafts. (i've also added a script that sends them on schedule since gmail api doesn't allow to touch the gmail scheduling engine)\n\n\n\nThe results were better than expected:\n\n**- 100 emails sent over 3 weeks**\n\n**- 15 replies (15% vs the 1-5% industry average)**\n\n**- 2 deals closed**\n\n**Total cost: \\~$0.30 in API calls (but if you don't have your leads, add a few more bucks for sourcing)** \n\n\n\nThe quality of conversations was the real surprise, as you can imagine, when your opening line references something a prospect's own customer said about them two days ago the dynamic completely shifts.e\n\nI also built a similar scanner for Reddit that monitors subreddits for pain posts matching specific keywords. Same concept, different signal source. The whole approach is a template: point it at any public complaint channel, adjust the keywords for your industry, run the same loop. Infinite iteration for any vertical.\n\nI open-sourced the Trustpilot tool because i strongly believe that in today's world, founder led outbound shouldn't require $349/month in Clay credits:) ",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8q1ovu",
+          "author": "Maleficent-Ant-7765",
+          "body": "that trustpilot angle is clever, finding people who already know they have a problem beats spraying generic templates any day",
+          "score": 10
+        },
+        {
+          "id": "p8qf74k",
+          "author": "Educationgk",
+          "body": "The complaint-as-trigger angle is genuinely smart. The part I'd want to see before calling it a playbook: 100 emails is a small sample, and people who leave fresh 1-star reviews are self-selected switchers. The real question is whether the 15% holds at 1,000 sends, or if reply quality decays once you run out of this week's angry customers.",
+          "score": 7
+        },
+        {
+          "id": "p8qt5pi",
+          "author": "oandresimoes",
+          "body": "The number I'd watch is the 2 out of 15, because the opener does something to the reply rate that won't carry into the close. Quoting a customer's complaint back to the company gets a response from almost anyone, including people answering out of embarrassment or to ask how you found it. The 13% of replies that closed is the part saying the pipeline found real buyers, and that's the ratio to defend at the next 100.\n\nOne thing the write-up skips: what did the other 85 get? A second email citing the same review reads very differently from the first. The first is observant. The second starts to feel like you're standing outside their window. If the follow-up switched to a different signal, or just went quiet, that's worth stating, because it changes how much of the 15% came from the opener versus the sequence.\n\nOf the 15 replies, how many were some version of \"where did you see this\"?",
+          "score": 4
+        },
+        {
+          "id": "p8qv7y3",
+          "author": "SCS-AI",
+          "body": "The comments already nailed that the close is the real test, so I'll skip that and give you the part nobody's said: what to actually do with the warm reply, because the opener quietly sets a trap for the close.\n\nThe opener works because it's about their problem - their customer, their fresh complaint. But that framing is anchored on something negative and a little embarrassing to them. Keep pulling on the complaint in the follow-up and you stop being observant and start being the guy rubbing their nose in it. The move on the reply is one sentence of acknowledgment, then pivot forward - not what your customer said again, but what it'd take to make sure the next one doesn't happen. Stop relitigating the complaint the second they answer.\n\nSecond thing, and it's where a lot of that 15% leaks: the person who answers a complaint-triggered email often isn't the buyer. It's whoever watches the brand inbox, or the owner in damage-control mode. So the first reply's job isn't to pitch, it's to find out if you're even talking to the person who owns the budget for that problem. Ask one routing question a real buyer engages with and a defensive reply won't. That's how you defend the 2-of-15 someone else flagged - you stop spending the whole sequence on the 'how'd you find this' crowd who were never going to buy.\n\nLast one, on durability: the shelf life isn't running out of angry customers. It's that the same Trustpilot page is equally visible to every competitor you have. The moat was never the scraper. It's being the one who shows up with the fix instead of just the observation, and being first to that inbox.",
+          "score": 2
+        },
+        {
+          "id": "p8uc4k0",
+          "author": "cedriclauster",
+          "body": "Love this. Am doing sth similar for a client of mine by targeting dentists that have >2x less reviews than their competitor in their city.   \nSent to \\~1700 leads, booked 6 meetings for them.\n\nReally works wonders if you can point something like this out to them :)",
+          "score": 2
+        },
+        {
+          "id": "p8qsqho",
+          "author": "tmaleh",
+          "body": "Anyone can get someone to respond when you quote their own complaint back at them. Closing is the part that tells you the pain was real and worth paying to fix.",
+          "score": 1
+        },
+        {
+          "id": "p8qw559",
+          "author": "Sea_Bid_9714",
+          "body": "The constraint you'll hit isn't reply rate, it's that Trustpilot only covers companies big enough to get reviewed there, and you burn through this week's fresh complaints fast in a narrow niche. You said as much yourself. So the useful question is what other public \"we dropped the ball this week\" signals exist for your buyers.\n\nOnes that work the same way:\n\nApp store and Shopify App Store reviews. A merchant leaving a 1-star on a shipping or returns app is telling you exactly which part of their ops broke, with a date.\n\nJob postings. A company posting for a role that overlaps your service is admitting the gap and has budget attached. Slower signal than a review but higher intent.\n\nReddit and X. Search the company name plus \"support\" or \"refund.\" Founders reply to those threads themselves, so you get the decision maker's own words.\n\nTheir own status page or changelog. An incident post from last week is a complaint the company wrote about itself.\n\nWhichever source, keep a cooldown per company. Once you've emailed them off one review, don't email again off the next one for 60 to 90 days. The second observant email reads as surveillance, and the reply-out-of-embarrassment problem someone raised above gets worse, not better.\n\n",
+          "score": 1
+        },
+        {
+          "id": "p8r1b6i",
+          "author": "Ornery-Concentrate-5",
+          "body": "The part I'd want to know about is the AI drafting step, getting it to quote the customer's own words back accurately. Did you ever catch it misquoting or paraphrasing a review in a way that didn't actually match what was said? Feels like the one place this backfires hard, get the quote wrong and you've just proven you didn't read what they're mad about.",
+          "score": 1
+        },
+        {
+          "id": "p8r8tr4",
+          "author": "AChaosEngineer",
+          "body": "You get a bunch of complainer customers.",
+          "score": 1
+        },
+        {
+          "id": "p8t9obk",
+          "author": "krishh155",
+          "body": "The filter I would add is whether the company answered the review. Trustpilot shows the reply under it. A 1-star with a public response under it is a firm that has already agreed there is a problem, in writing, and has someone whose job includes watching for the next one. A 1-star left hanging is a firm that disputes it or does not care, and those are the people who write back to ask how you found it. Your two closes wanted to talk about the fix and skipped the how-did-you-find-this part. My guess is both had answered their reviewer before you ever wrote. Did they?",
+          "score": 1
+        },
+        {
+          "id": "p8trj3n",
+          "author": "inet",
+          "body": "Where to find the tool? ",
+          "score": 1
+        },
+        {
+          "id": "p8ung5z",
+          "author": "Impossible-Way5740",
+          "body": "The fresh-complaint signal works because it answers 'why now' - the part of cold email that a perfect ICP match never does. The interesting question is the ceiling: complaint-driven lists are small and self-refreshing, so this probably stays a high-converting trickle rather than a volume channel. Which might be the right shape for a service business anyway.",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wbaeut",
+      "name": "t3_1wbaeut",
+      "title": "How many ideas did you try before the one that worked?",
+      "subreddit": "EntrepreneurRideAlong",
+      "author": "Consistent-Being1593",
+      "score": 18,
+      "num_comments": 44,
+      "created_utc": 1788925210.0,
+      "permalink": "/r/EntrepreneurRideAlong/comments/1wbaeut/how_many_ideas_did_you_try_before_the_one_that/",
+      "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1wbaeut/how_many_ideas_did_you_try_before_the_one_that/",
+      "selftext": "I've been trying to figure out what to build for a while now. Tried a few things, none of them went anywhere. Really need some real inspirational stories from this group. \n\nFor entrepreneurs who have a business that's stable now, like pays your bills, being profitable, how many ideas did you try before the one that you are working on? \n\nAnd also curious how did you find the one that worked?\n\nDid you diligently research the market? or did you notice a problem in your day job? Did a customer ask for something and you said yes? Was it luck? Did you know it was different early on, or did you only realize months later?\n\nI keep reading stories where someone \"found their niche\" and it always sounds clean in hindsight. I doubt they were all that clean, would rather hear the messy version.\n\nThanks in advance!",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8ohmm2",
+          "author": "Original-Builder-140",
+          "body": "I tried 4 things before something stuck and the one that worked was basically me doing something for a friend and they insisted on paying me then their friend called and suddenly I had a business without meaning to\n\n  \nMarket research was not part of the plan at all just happened to be in right time",
+          "score": 5
+        },
+        {
+          "id": "p8oligi",
+          "author": "Legitimate-Let-7510",
+          "body": "Tried 4 - 5 ideas before one started getting real traction. The biggest difference was that the successful one solved a problem I was already running into myself, so I understood the pain without having to invent a customer persona.",
+          "score": 4
+        },
+        {
+          "id": "p8p4sa3",
+          "author": "Professional-One7842",
+          "body": "The clean narrative you hear on podcasts is almost always survivorship bias told in hindsight. Here is the messy, unglamorous version: \n\nIt took me 4 failed projects over 2.5 years before finding anything that actually had real traction. \n\nHere is what the messy reality looked like: \n\n• Idea 1: Spent 5 months building a \"cool\" productivity tool. Thought if I built great features, people would magically show up. Result: Launched on Product Hunt, got 40 upvotes, 0 recurring users, dead silence after 48 hours. \n\n• Idea 2: Asked friends and startup buddies for feedback on an idea. They all said, \"Wow, that's awesome, I'd totally buy that!\" Spent 2 months coding it. When I actually asked for their credit cards? 12 polite excuses why they couldn't buy it right now. Lesson learned the hard way: polite compliments cost people $0. \n\n• Idea 3: Solved a genuine problem, but it was a \"vitamin\" (nice to have), not a \"painkiller\" (urgent). People used it once, thought it was neat, and never returned.\n\nHow did the one that worked actually happen?\n\nIt wasn't a lightning bolt of inspiration or a 50-page market research deck. It came from utter frustration with the first 3 failures. I stopped asking \"What's a cool business I can build?\" and started paying attention to where founders and operators were visibly wasting hours of time and real money.\n\nTo answer your specific questions: \n\n1. Did I know early on? \n\nYES, but not because of some mystic gut feeling. The signal felt completely different:\n\n • With failed ideas, I was chasing people, begging for feedback, and convincing them why they needed it.\n\n• With the one that worked, people's questions changed from \"What does it do?\" to \"How soon can I use this?\" and \"Can it do X for my specific use case?\" The pull replaced the push. \n\n2. Was it luck? The timing has an element of luck, but the process isn't luck. It's a game of disqualification. In the beginning, I took 4 months to fail an idea. Now, I try to kill an idea in 4 days before writing a single line of code. \n\nMy advice to you right now: \n\nDon't fall in love with the code or the brand name. The measure of your progress isn't how long you work on an idea it's how quickly you can disqualify the bad ones so you have runway left for the one that clicks.",
+          "score": 4
+        },
+        {
+          "id": "p8p12eo",
+          "author": "dragos_apostol",
+          "body": "Still in the middle of mine, it doesn't pay the bills yet, so no victory story here. But on the second half of your question: my current idea came from a problem I stared at every day in my design work, not from researching markets for an opening. It annoyed me long before I thought of it as a product. Problem first, business case second is the only filter I trust now.\n\n  \nCurious what the stable folks here say, because I keep hearing both versions. Some found it by accident, some ground through a list. My suspicion is the common thread isn't how many tries but how close the founder was to the problem.",
+          "score": 2
+        },
+        {
+          "id": "p8pe908",
+          "author": "tunahan_faruk_s",
+          "body": "i thought about 3 ideas but i only do marketing to myy last idea and it is going pretty well",
+          "score": 2
+        },
+        {
+          "id": "p8pf0rw",
+          "author": "MattfromNEXT",
+          "body": "The number of ideas doesn't tell you much, because nobody is counting while they're still trying things. You can ask people how the idea found them: what they were doing at the time, and who asked them for it first.",
+          "score": 2
+        },
+        {
+          "id": "p8pj81b",
+          "author": "naveedurrehman",
+          "body": "32 domains...",
+          "score": 2
+        },
+        {
+          "id": "p8pjbct",
+          "author": "vreo",
+          "body": "Overnight-success takes 10 years.",
+          "score": 2
+        },
+        {
+          "id": "p8pm2zz",
+          "author": "battams-dominicki8o3",
+          "body": "Probably 3 or 4 ideas before this one. The one that worked started with a problem I kept seeing, so I just kept testing it until something clicked.",
+          "score": 2
+        },
+        {
+          "id": "p8ppe4i",
+          "author": "EducationalSafe7217",
+          "body": "The pattern that comes up over and over in these stories is the working idea usually comes from a problem they personally lived through in a day job or previous failed attempt, not from sitting down and brainstorming ideas in a vacuum",
+          "score": 2
+        },
+        {
+          "id": "p8ppeol",
+          "author": "Prestigious-Bank2145",
+          "body": "After 5 startups still trying... and maybe AI kill us before something will works 🤔 ",
+          "score": 2
+        },
+        {
+          "id": "p8q89yh",
+          "author": "Late_Bodybuilder245",
+          "body": "The messy part is that ideas usually don’t fail cleanly. They give you a few customers, teach you something and slowly reveal a better problem.\n\n\n\nI’d stop counting ideas and start counting real conversations. Look for problems people already spend time or money working around. The strongest signal is not someone saying an idea sounds good. It’s them asking how quickly you can solve it.",
+          "score": 2
+        },
+        {
+          "id": "p8pgjw2",
+          "author": "Lazy-Sherbert65",
+          "body": "did the failed ideas all stay in the same area, or was the winner a total left turn?",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wbrgx6",
+      "name": "t3_1wbrgx6",
+      "title": "How would you respectfully decline if a family member asks for one of your suppliers (that cost time you to find), without sounding like a douche?",
+      "subreddit": "EntrepreneurRideAlong",
+      "author": "TheBestRed1",
+      "score": 5,
+      "num_comments": 6,
+      "created_utc": 1788973463.0,
+      "permalink": "/r/EntrepreneurRideAlong/comments/1wbrgx6/how_would_you_respectfully_decline_if_a_family/",
+      "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1wbrgx6/how_would_you_respectfully_decline_if_a_family/",
+      "selftext": "And that family member works in your industry.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wba2u2",
+      "name": "t3_1wba2u2",
+      "title": "I'm a better ecommerce operation head when isn't my money",
+      "subreddit": "EntrepreneurRideAlong",
+      "author": "foodensproadetd7",
+      "score": 6,
+      "num_comments": 3,
+      "created_utc": 1788924241.0,
+      "permalink": "/r/EntrepreneurRideAlong/comments/1wba2u2/im_a_better_ecommerce_operation_head_when_isnt_my/",
+      "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1wba2u2/im_a_better_ecommerce_operation_head_when_isnt_my/",
+      "selftext": "I'v failed with two of my own stores, but the stores I managed for friends did much better. I think I know why now: when it was my money, I panicked every times the number changed and kept changing the strategy. When it wasn't my money, I stayed calm and followed the plan. Has anyone experienced this?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbgh61",
+      "name": "t3_1wbgh61",
+      "title": "Expanding our team overseas, starting with just one employee. EOR or contractor?",
+      "subreddit": "EntrepreneurRideAlong",
+      "author": "battams-dominicki8o3",
+      "score": 6,
+      "num_comments": 14,
+      "created_utc": 1788945357.0,
+      "permalink": "/r/EntrepreneurRideAlong/comments/1wbgh61/expanding_our_team_overseas_starting_with_just/",
+      "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1wbgh61/expanding_our_team_overseas_starting_with_just/",
+      "selftext": "We're planning to expand our team overseas, but we're starting small with just one person. For the first hire, I'm trying to decide between hiring them as a contractor or using an EOR. \n\nContractor seems simpler and cheaper, but I'm a little concerned about taxes, local regulations, and whether the role could eventually look more like a full-time employee. On the other hand, an EOR seems like the safer option for compliance and payroll, but I'm not sure if it's worth the extra cost when we're only hiring one person.\n\nIf you've been in a similar situation, how did you decide between EOR and contractor? Would you start with a contractor and switch to EOR later, or just use an EOR from the beginning?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8po15h",
+          "author": "TelephoneCute6154",
+          "body": "Hire contractor first, see how they work out. One person is not enough to justify EOR fees, those platforms charge per employee and the minimums can be brutal for a team of one.\n\n  \nWorry about compliance when you actually need to convert them to full time. By then you'll know if this person is worth the paperwork and the monthly cost.\n\n  \nJust make sure the contract is written as actual contractor work, not employee disguised. Different countries have different rules about this and you don't want to deal with misclassification later.",
+          "score": 2
+        },
+        {
+          "id": "p8pp5qu",
+          "author": "Salt_Reward3813",
+          "body": "We are a small team and started with a contractor, and it worked pretty well while we were still figuring things out. Once we knew we wanted them long term and the role was clearly full time, we switched to an EOR. If you're only starting with one person, I'd probably do the same, just make sure the contractor setup is actually compliant in that country.",
+          "score": 2
+        },
+        {
+          "id": "p8pp85n",
+          "author": "NickPilgui",
+          "body": "Start as a contractor. EOS fees make no sense for one person. I work with a partner from Africa, and as long as you keep communication clear, polite, and respectful, they'll crush their KPIs without any HR bureaucracy. Test the waters first. You can always switch to EOR later",
+          "score": 1
+        },
+        {
+          "id": "p8psmcv",
+          "author": "Guilty_Performer_497",
+          "body": "If it's basically a full-time role, EOR from the start is cleaner.",
+          "score": 1
+        },
+        {
+          "id": "p8q61ff",
+          "author": "Level-Ad-4878",
+          "body": "The answer hinges entirely on what the person actually does day to day, and you didnt say. Fixed hours, exclusive to you, using your equipment or systems, taking direction like an employee, thats misclassification risk no matter what the contract says, and several countries especially in the EU and Latin America audit this aggressively now\n\nIf the role is genuinely project based with flexible hours and they can work for others too, contractor is fine and way cheaper. If its basically a full time job you just dont want to call one, EOR from day one saves you a nasty backdated tax bill later. Retroactive misclassification penalties in some countries go back years\n\nFor one hire the EOR fee, usually 400 to 600 a month, is annoying but its insurance. Switching from contractor to EOR later is also its own paper trail that some tax authorities read as an admission you were misclassified the whole time",
+          "score": 1
+        },
+        {
+          "id": "p8q896u",
+          "author": "Late_Bodybuilder245",
+          "body": "The deciding factor isn’t really team size. It’s whether the working relationship looks like employment under that country’s rules. Fixed hours, exclusivity, close supervision and an ongoing core role can create misclassification risk even if the contract says contractor.\n\n\n\nI’d get local advice first. If the role clearly behaves like employment, the EOR cost may be cheaper than fixing it later.",
+          "score": 1
+        },
+        {
+          "id": "p8u7rsw",
+          "author": "Christine_PHOffshore",
+          "body": "If its a long-term role, then better to start with an EOR so you are compliant from the beginning. \n\nContractors are ideally for project-based or short-term roles.\n\nIf you are expanding to the Philippines, my company can help you with the EOR services. Feel free to send me a message if you have any more questions :)",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wbxgj3",
+      "name": "t3_1wbxgj3",
+      "title": "What’s a business lesson you learned much later than you should have?",
+      "subreddit": "EntrepreneurRideAlong",
+      "author": "Alive_Age_8534",
+      "score": 2,
+      "num_comments": 8,
+      "created_utc": 1788986012.0,
+      "permalink": "/r/EntrepreneurRideAlong/comments/1wbxgj3/whats_a_business_lesson_you_learned_much_later/",
+      "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1wbxgj3/whats_a_business_lesson_you_learned_much_later/",
+      "selftext": "I've been thinking about this because running a small business has a funny way of teaching you things you thought you already knew.\n\nOne of mine is that being busy and actually making progress are two very different things.\n\nEarly on, I could spend an entire day working and still not have done anything that really moved the business forward. Tweaking a proposal, checking numbers again, changing something that was already fine, planning things that didn't even need planning yet... it all feels productive while you're doing it.\n\nThen there are the things you keep putting off because they're uncomfortable. Calling someone back, following up on a deal, talking to a customer, admitting that something you tried didn't work.\n\nThose usually matter a lot more.\n\nI've gotten better at catching myself when I'm just filling the day with work, although I still do it.\n\nNow I sometimes stop and ask myself, **“If I finish this today, will anything actually be different?”**\n\nThat question has saved me from wasting quite a bit of time.\n\nCurious what other people have learned from actually running a business.\n\n**What's a lesson you wish you'd figured out much earlier?**",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8tpbi4",
+          "author": "Final_Credit2465",
+          "body": "one thing i learned late is that not every task needs to be done right away i used to spend a lot of time fixing small thongs because they were easy to work on while the harder stuff kept getting pushed back the tasks i didnt want to do were usually the ones that mattered most ",
+          "score": 2
+        },
+        {
+          "id": "p8tpqwp",
+          "author": "DigitalRevRo",
+          "body": "100% agree with this.  I just wrote a blog about the biggest problems I see with entrepreneurs and what to do instead.  Let me know if you'd like to read it. \n\nOne of my biggest lessons is, keep going! Nothing happens overnight. It's the culmination of small, daily, painstaking steps. ",
+          "score": 2
+        },
+        {
+          "id": "p8tv3gu",
+          "author": "AwakenedFilms",
+          "body": "launch and learn. dont perseverate. nothing is perfect.",
+          "score": 1
+        },
+        {
+          "id": "p8ulig4",
+          "author": "LateralCFO",
+          "body": "The key is just starting! BUT, try to start in a way that doesn't cost money or at least not a lot of money. When possible, start building your business while you have a job. I learned the latter one too late in life. ",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wbx21s",
+      "name": "t3_1wbx21s",
+      "title": "I built a product for my local government, they love it. It's been in use for a year. How do I start branching out?",
+      "subreddit": "EntrepreneurRideAlong",
+      "author": "NewLifeNewAcct",
+      "score": 1,
+      "num_comments": 8,
+      "created_utc": 1788985160.0,
+      "permalink": "/r/EntrepreneurRideAlong/comments/1wbx21s/i_built_a_product_for_my_local_government_they/",
+      "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1wbx21s/i_built_a_product_for_my_local_government_they/",
+      "selftext": "So basically, I have a friend who works for local government, and one day she was complaining about this archaic paper system they had, and how it didn't store data well, no proper workflow, etc., etc.\n\nSo, I solved her problem. I built a basic ticket system app, sent it to her, she sent it to her boss, and since then it has actually been adopted for use by the city. I've donated a license for the software to them (and also have it in writing that I'm not responsible for any problems or legal troubles etc., this is very bootstrapped) and I'm going to be treating them as a permanent loss leader.\n\nIt initially launched with a testing team of 4 people, and now it's up to 30 concurrent users multiple times a day. It doesn't sound like a lot, but it's bigger than you're thinking at this exact second.\n\nSince I created the app, its scope has expanded. By like... a lot, and it has turned into a proper case management system that covers a lot of situations and has lots of room for variables that might occur. The people who are using it have literally spent the last six months telling me how much easier it's made their jobs and how much time it has saved them, how much better it is than the old system, etc. etc. And the city contacted me to tell me that a contract of theirs for another separate system is expiring and that I should submit something via RFP (which is actually huge, because that means they literally want to pay me to expand my product).\n\nI've worked pretty closely with the actual staff to fine tune the app and they've been more or less beta testing it for me for the last year-ish (and it's been running smoothly, which is a big win). The app is in a great spot, it has iOS/Android/Web versions (web for easy administrative use), runs on old hardware very well, looks good, has a comprehensive user guide and tutorial, all that.\n\nNow that I've said all that, I can get to the point:\n\nI have no idea how to market this thing or get it in front of the right people.\n\nBasically, cities all over California are still using this paper system. Like... every city. Every single one - except for the city I'm working with. There is no unified system for this, there is no competitor, it is a legitimate hole in the market.\n\nI finished development on the single-city version of it, and have already done most of the setup and refactoring to make it usable in multiple places. The entire app is built to be modular so the city in question can have its workflow designed exactly how they want it, etc.\n\n**The biggest barrier:** this app does not directly generate revenue for the city. It does directly save an absolute ton of money, however. The biggest selling points are:\n\n* Ease of use. Literally, the entire thing is on rails. You can't mess it up. For each ticket opened, you have to go through the process the city decides on, from start to finish. Most of the people actually using it are older folks who have legitimately constantly thanked me for how easy it is to use.\n\n* A complete trail of tickets in the system from open to close. This includes photos, follow-ups, a complete internal auditing system so you can see who did what exactly when.\n\n* Easy data access. The way they used to do things, photos were taken with a duty camera and uploaded to a system that only the department doing the uploading had access to. Now there is a unified, cross-department system that can be accessed by any city entity needed.\n\n* Currently, three separate city departments now have access to COMPLETE information at the click of a button instead of playing phone tag along with all the hassle of interrupting your day to meet in person, on the spot, for prints of photos.\n\n* Documentation, documentation, documentation. Everything is documented. Every action taken on a ticket is timestamped and requires direct comments when doing anything actionable. We have established new SOPs for a pretty significant department - and I think they could very, very easily be integrated into other cities. I am essentially looking to create an industry standard here.\n\n* Users have commented that they used to spend up to 3 hours of their workday interacting with the old system in some way or another - these days it's down to minutes. That's a lot of time saved, and therefore a lot of money saved (and generated elsewhere, because the division is much more productive).\n\n* Because everything is documented exactly and there are established SOPs: the city itself is less liable to be opened up to lawsuits, etc.\n\nI was originally just going to build this as a fun side thing, and it kind of turned into something else entirely. I'm tentatively excited about it because I think it's a real opportunity, but I don't really know what steps to take next. So I'm looking for just... any kind of advice on how to move forward.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8th7c6",
+          "author": "BeautifulLeft7965",
+          "body": "this is the classic govtech trap, you've got a product people love but no clue how to sell it because the buyers aren't the users. the rfp from your current city is good, treat that like your first real case study. don't bother with ads or cold emails, nobody in local government buys software that way. find out which conferences city managers and department heads in california actually attend, get a booth if you can afford it, or just walk the floor and talk to people. bring a tablet with a demo and let your current users' quotes do the selling.",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wbw7ef",
+      "name": "t3_1wbw7ef",
+      "title": "How to scale short form content editing agency beyond $1k/MRR",
+      "subreddit": "EntrepreneurRideAlong",
+      "author": "ifeelanime",
+      "score": 1,
+      "num_comments": 1,
+      "created_utc": 1788983385.0,
+      "permalink": "/r/EntrepreneurRideAlong/comments/1wbw7ef/how_to_scale_short_form_content_editing_agency/",
+      "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1wbw7ef/how_to_scale_short_form_content_editing_agency/",
+      "selftext": "I started a short form content editing agency 5-6 months ago. Initially had few clients asking for single reel edits and later down the road I tried productising the service and offered 20 reel edits for $379 per month. \n\nComing back to present time, I have 3 clients on that plan. This is going fine but I need to scale this. \n\nI am thinking of cold emailing but not sure if it works in current times. \n\nI would appreciate any suggestions on how I can reach potential prospect clients to pitch my services to. \n\nThanks!",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbvabt",
+      "name": "t3_1wbvabt",
+      "title": "Ten days building, five days launching, $10. Then Product Hunt made more in one morning. Here are the numbers",
+      "subreddit": "EntrepreneurRideAlong",
+      "author": "noice-job",
+      "score": 0,
+      "num_comments": 5,
+      "created_utc": 1788981447.0,
+      "permalink": "/r/EntrepreneurRideAlong/comments/1wbvabt/ten_days_building_five_days_launching_10_then/",
+      "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1wbvabt/ten_days_building_five_days_launching_10_then/",
+      "selftext": "Quick ride-along on a launch that went how I knew it would, and I did it anyway.\n\n\n\nLate August, a site called \"outbid lol\" went around X. One leaderboard, pay to rank higher. Its maker says it made $220,000 in five days.\n\n\n\nI built my own version. Brands pay to put their logo on a pair of boxers, and whoever pays more takes your spot. Ten days from idea to Stripe, most of the code written by AI agents while I reviewed and merged.\n\n\n\nI launched it on X and Reddit, where I have almost nobody.\n\n\n\nFirst five days:\n\n\n\n214 visitors\n\n3 orders. Two at $5, one friend on a hidden coupon.\n\n6 people found the easter egg and played with it 173 times\n\n0 shares\n\n\n\n$10.\n\n\n\nToday I put the same site on Product Hunt. It is in the top ten as I write this, and three companies I had never heard of outbid each other for the top spot within a few hours.\n\n\n\nMore in one morning than the whole first five days. Same site. Different crowd.\n\n\n\nHere is the part that got me. I have over four thousand people on LinkedIn, mostly founders and designers. I could not send them a site with that name. I knew that on day one and built it anyway.\n\n\n\nBuilding is where I feel in control. Distribution is where I do not.\n\n\n\nThree things I am taking from it:\n\n\n\nCount who you can reach before you count features.\n\nName the product so you can show it to everyone you know.\n\nWrite the honest post afterward. It is the only part of a launch that reaches the people you actually have.\n\n\n\nI have the full write-up with screenshots. I will drop the link in a comment if anyone wants it.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wc0pxz",
+      "name": "t3_1wc0pxz",
+      "title": "1,771 people signed up last month. Every one of them cost us money before we made a cent",
+      "subreddit": "EntrepreneurRideAlong",
+      "author": "FinanceSenior9771",
+      "score": 0,
+      "num_comments": 6,
+      "created_utc": 1788993364.0,
+      "permalink": "/r/EntrepreneurRideAlong/comments/1wc0pxz/1771_people_signed_up_last_month_every_one_of/",
+      "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1wc0pxz/1771_people_signed_up_last_month_every_one_of/",
+      "selftext": "I run an SEO tool. Last month our signups went up by about 1,771. I was genuinely thrilled, it's the kind of month you screenshot and send to your cofounder at 2am.\n\nThen I went looking for an API bill I couldn't explain and found the other half of that sentence.\n\nThere was no email verification on signup. No captcha either. And signup wasnt just a row in a database, it kicked off an onboarding pipeline that goes and does real, paid work.\n\nSix stages, each with a cost per run:\n\n\\- AI visibility sample — $0.084 (LLM)\n\n\\- Ranked keywords — $0.100 (SEO data vendor)\n\n\\- Knowledge extraction — $0.016\n\n\\- Extraction — $0.015\n\n\\- Scorecard — $0.013\n\n\\- Prompt generation — $0.001\n\nSo every signup was a small purchase we made on behalf of someone who hadn't paid us anything, and in most cases never would.\n\nThe part I did not expect: they were real. I went into that list fully expecting bot traffic, some scripted garbage I could block and move on with my day. Instead it was small businesses from all over the world. One person signed up with etsy, presumably just kicking the tires. One domain ended in con, an actual typo of com. These were humans. Which honestly made it worse, because there was nothing to block.\n\nThe bill that started all this was $141.88 of LLM spend across six days. Call it $165 a week. It had been sitting there unexplained for a while and we'd sort of been ignoring it.\n\nIt didn't show up in our cost ledger at all. We built cost tracking months ago. The onboarding path just never wrote to it. So we'd routed the single most expensive thing our product does around the exact system we built to watch spending, which is, well, the kind of thing you only find when you go looking.\n\nThe AI visibility sample alone was $103.19 of that $141.88. It sits behind an env var. Flipping it off removed about $104 of spend with no deploy and no code change. That was the whole fix for the immediate bleed. Took two minutes.\n\nBut the money wasnt really the problem.\n\nWe weren't storing any usage record for the feature. So when I tried to answer the obvious next question, \"how many of these 1,771 accounts ever actually used the thing\", I couldn't. Not \"the number was disappointing\". I mean there was no way to compute it at all. The only trace was analytics pageviews, which are consent gated and had only covered that page for a few weeks.\n\nSo I added the record, waited, and looked. Usage was a lot lower than the signup graph implied. The graph had been telling me a story about growth and the ledger was telling a completely different story about cost, and there was nothing in between connecting the two.\n\nThree things I'd do differently:\n\nPut something, anything, between signup and paid work. Even just email verification. The pipeline should not fire for an address nobody has confirmed.\n\nMake the expensive paths write to the same ledger as everything else. Cost tracking that your priciest code path skips is worse than none at all, because it hands you confidence you havent earned.\n\nLog the usage row before you think you need it. We capped spend in an afternoon. Reconstructing months of \"did anyone actually use this\" was impossible, and that was the expensive part.\n\nHappy to share the cost breakdown if anyone wants to see it.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbmf7s",
+      "name": "t3_1wbmf7s",
+      "title": "What are you building that a $20 AI subscription can't just build for you?",
+      "subreddit": "EntrepreneurRideAlong",
+      "author": "recro69",
+      "score": 0,
+      "num_comments": 23,
+      "created_utc": 1788962409.0,
+      "permalink": "/r/EntrepreneurRideAlong/comments/1wbmf7s/what_are_you_building_that_a_20_ai_subscription/",
+      "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1wbmf7s/what_are_you_building_that_a_20_ai_subscription/",
+      "selftext": "I have been thinking about this after seeing a developer build a finance dashboard and a fitness tracker for himself in an afternoon.\n\nIt basically replaced two tools he was already paying for.\n\nHonestly my first reaction was: that is kind of crazy.\n\nThen I began to think about the difference, between making a tool for yourself and making a tool that other people can trust.\n\nFor him the AI only needed to get it once.\n\nHe was sitting there watching it. If something looked wrong, he could fix it. If it broke, he knew what went wrong.\n\nNow give the thing to one thousand people.\n\nNobody is watching every output anymore.\n\nA wrong number could lead to a decision. A weird edge case becomes a support problem... If the product keeps making small mistakes people just stop trusting it.\n\nSo maybe the interesting question is not really:\n\n\"What can AI build?\"\n\nIt is:\n\n\"What still needs to work when nobody is watching?\"\n\nI am curious how people building software are thinking about this. Is reliability becoming the moat or will AI eventually make that cheap too?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8r183o",
+          "author": "jeffcgroves",
+          "body": "I'll be specific on the off chance someone can build this for me: a sunrise/sunset/twilight/dawn map of the world overlaid with timezones of the world, so I can see, at a glance, the sunlight and time in a given area. The app should also have 2 sliders that lets me change time and date.\n\nAI starts out fine with this, but adding new things breaks old things. For example, when I tried to add timezones, day turned black and night turned white\n\nIf anyone does vibe code this, please let me know what magic prompts you're using :)\n",
+          "score": 3
+        },
+        {
+          "id": "p8t07x3",
+          "author": "Tall-Log-1955",
+          "body": "What food are you eating at a restaurant that you couldn’t just make yourself for $20 in groceries?",
+          "score": 3
+        },
+        {
+          "id": "p8rvx85",
+          "author": "joelmaddenwindsurf",
+          "body": "The whole SAAS thing is dying if you ask me. I'm a dev and with the tools these days I went and replaced every single tool and software my agency uses with custom apps just for our workflows... Better in every single way and saving thousands in monthly spend. I assume anyone who k ows how to code is doing this. \n\nThe only things I'm paying for now are for tools that have \"data\" I can't get... There is no more features you cannot build yourself. ",
+          "score": 2
+        },
+        {
+          "id": "p8rqrrw",
+          "author": "y3rk3",
+          "body": "the gap is all the stuff that only exists when its not you using it. today i stopped checkout trusting the email someone types, it can point at someone elses account and the paid plan lands on the wrong one.",
+          "score": 1
+        },
+        {
+          "id": "p8rwynj",
+          "author": "Inevitable-Laugh4324",
+          "body": "Reliability is the real moat. Ai can build the first version cheaply but making something people can trust consistently is a much harder problem.",
+          "score": 1
+        },
+        {
+          "id": "p8s9ou6",
+          "author": "Agile_SDM",
+          "body": "The gap is in the states the author never sees. When you build for yourself you always run the thing with your own data already in it. A thousand other people open it empty on day one, and empty is the state you never tested.\nI watched this happen on a small internal tool recently. Building it took an afternoon. Making it trustworthy took three rounds of someone else trying to break it, and nearly everything they found lived in states I had never been in. Opened with nothing in it, it showed division errors on every calculated field. One rate sat at 0% where the honest answer was blank, because zero out of zero reads as 0%, and a new user would have believed that number.\nNone of that was hard work. It is the work nobody does for their own tools, because your own tool only has to be right once, while you are sitting there watching it.",
+          "score": 1
+        },
+        {
+          "id": "p8sn6iv",
+          "author": "BonnieBuildsWithAI",
+          "body": "I think reliability is part of it, but there’s another moat that gets overlooked: understanding the customer well enough to build the *right* thing in the first place.\n\nAI making software easier to build doesn’t necessarily make it easier to figure out what people actually need, what they’ll pay for, or how the product should fit into the way they already work.\n\nSomeone can build themselves a finance dashboard in an afternoon because they already understand the customer perfectly — it’s them. 😂\n\nBuilding it for 1,000 strangers is different. Now you have different expectations, workflows, edge cases, support needs and levels of technical ability.\n\nSo I think the barrier is shifting. Building the software may become cheaper and easier, but understanding the problem deeply enough to create something people consistently choose and trust may become even more important.",
+          "score": 1
+        },
+        {
+          "id": "p8su9ka",
+          "author": "lol_no_gonna_happen",
+          "body": "Sawmill",
+          "score": 1
+        },
+        {
+          "id": "p8t4yse",
+          "author": "noahbakes4",
+          "body": "Building for an audience of one is a demo, building for strangers who'll blame you when it breaks is a business",
+          "score": 1
+        },
+        {
+          "id": "p8tr2l0",
+          "author": "Fantomas4live",
+          "body": "One thing is vibe coding stuff for yourself, and another one production ready code.\nPlaning, developing, tests, audits etc etc.\nImplementing a new future is 20%, the rest is the above.\nI am always at my token limit with my x20 sub.\n",
+          "score": 1
+        },
+        {
+          "id": "p8u7oho",
+          "author": "Beaver-Hunter-835",
+          "body": "Nothing, but I have a 6-12 month head start, and you can't one prompt them. ",
+          "score": 1
+        },
+        {
+          "id": "p8uk5ad",
+          "author": "elestud",
+          "body": "This is like level 1 of AI.\n\nLevel 2 is when you realize the following two things:\n\n1. Real apps made by real human beings break on weird edge cases all the time. I can't tell you how many bugs and glitches I've had in apps developed by expensive development teams, from prominent companies. Developing something with people is no guarantee of not having to fix errors.\n2. AI app development is an iterative process, not a one-shot. It's a conversation, back and forth. If you actually ask your agent to go through the app and identify edge cases that could come up, it will. I did this recently, and it flagged several things that I wouldn't have found on my own until they happened.\n\nThere's no perfect solution, but \"it built this and I just accept it\" is something you evolve out of either way. If you have a concern, be proactive about it with the agent. You don't have to stop prompting at the first 'successful' build",
+          "score": 1
+        },
+        {
+          "id": "p8uk7la",
+          "author": "Man-O-Light",
+          "body": "This post reeks of AI slop sorry",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wblzt8",
+      "name": "t3_1wblzt8",
+      "title": "I'm building an app for the cards you can't throw away — would love honest feedback",
+      "subreddit": "AppIdeas",
+      "author": "jonlocke5",
+      "score": 3,
+      "num_comments": 3,
+      "created_utc": 1788961411.0,
+      "permalink": "/r/AppIdeas/comments/1wblzt8/im_building_an_app_for_the_cards_you_cant_throw/",
+      "url": "https://www.reddit.com/r/AppIdeas/comments/1wblzt8/im_building_an_app_for_the_cards_you_cant_throw/",
+      "selftext": "Everyone I've talked to has one: a drawer, a shoebox, a folder they've moved four times and never opened. Full of cards. Birthday cards, cards from people who aren't big on writing, cards from someone whose handwriting you don't see anymore. Or some people just toss the cards because they dislike keeping physical things like cards.\n\nI'm building an app called CardAgain to give those cards somewhere better to be. You photograph a card, and it keeps the handwriting, who sent it, and when it arrived. Then it reads the message out loud, in a voice you know (either your own or one built from a voice recording). Birthdays and anniversaries come back on your calendar every year, with the card attached.\n\nStill early. Before I go further I wanted to get this in front of people who actually think about apps for a living.\n\nA few things I'd love feedback on:\n\n\\- Does this solve a real problem for you, or is it a \"nice idea, wouldn't use it\" thing?\n\n\\- Would you actually photograph your cards, or does that feel like a chore?\n\n\\- Any concerns about a feature like this (privacy, sentimentality, anything else)?\n\nHappy to answer anything. Not trying to sell you on it, just want honest reactions before I build more.\n\nThanks! ",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbiup7",
+      "name": "t3_1wbiup7",
+      "title": "Generated this promo video for my app using Google Veo AI. What do you think?",
+      "subreddit": "AppIdeas",
+      "author": "Afraid-Employee5548",
+      "score": 4,
+      "num_comments": 2,
+      "created_utc": 1788953096.0,
+      "permalink": "/r/AppIdeas/comments/1wbiup7/generated_this_promo_video_for_my_app_using/",
+      "url": "https://v.redd.it/840fb4dwbhoh1",
+      "selftext": "",
+      "is_self": false,
+      "over_18": false,
+      "is_video": true,
+      "stickied": false
+    },
+    {
+      "id": "1wbc48i",
+      "name": "t3_1wbc48i",
+      "title": "JLPT 5 test preparation",
+      "subreddit": "AppIdeas",
+      "author": "No-Celebration-9040",
+      "score": 2,
+      "num_comments": 0,
+      "created_utc": 1788930397.0,
+      "permalink": "/r/AppIdeas/comments/1wbc48i/jlpt_5_test_preparation/",
+      "url": "https://www.reddit.com/r/AppIdeas/comments/1wbc48i/jlpt_5_test_preparation/",
+      "selftext": "Does anyone knows if there is an app for JLPT 5 tests preparation including all the sections and possibly mock tests?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wb7mje",
+      "name": "t3_1wb7mje",
+      "title": "Somebody make an app that tracks product warranties so I stop losing money on stuff I forgot was covered",
+      "subreddit": "AppIdeas",
+      "author": "Brenters119",
+      "score": 2,
+      "num_comments": 2,
+      "created_utc": 1788917486.0,
+      "permalink": "/r/AppIdeas/comments/1wb7mje/somebody_make_an_app_that_tracks_product/",
+      "url": "https://www.reddit.com/r/AppIdeas/comments/1wb7mje/somebody_make_an_app_that_tracks_product/",
+      "selftext": "Every time something breaks in my house — a blender, headphones, whatever — I have no idea if it's still under warranty. The receipt is either lost, buried in an email somewhere, or I never wrote down how long the warranty even was in the first place.\n\nWhat I want: something where you snap a photo of a receipt or the box, and it automatically figures out the product, purchase date, and how long the warranty is — then reminds you before it runs out so you don't miss a free repair or replacement.\n\nDoes this already exist and I just don't know about it? Or is this actually a gap? Would love to know if anyone else deals with this same problem, or already has a system that works.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wc0lmv",
+      "name": "t3_1wc0lmv",
+      "title": "App Idea : Chrome plugin that puts colored highlight on anything detected as AI content",
+      "subreddit": "AppIdeas",
+      "author": "djangofan",
+      "score": 1,
+      "num_comments": 1,
+      "created_utc": 1788993074.0,
+      "permalink": "/r/AppIdeas/comments/1wc0lmv/app_idea_chrome_plugin_that_puts_colored/",
+      "url": "https://www.reddit.com/r/AppIdeas/comments/1wc0lmv/app_idea_chrome_plugin_that_puts_colored/",
+      "selftext": "App Idea : Chrome plugin that puts colored highlight on anything detected as AI content",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbxp0j",
+      "name": "t3_1wbxp0j",
+      "title": "I struggle to explain my open-source idea! Does it make sense and have value? (A no-login web page for saving/running your ai-generated apps)",
+      "subreddit": "AppIdeas",
+      "author": "etthusmedkossor",
+      "score": 1,
+      "num_comments": 0,
+      "created_utc": 1788986522.0,
+      "permalink": "/r/AppIdeas/comments/1wbxp0j/i_struggle_to_explain_my_opensource_idea_does_it/",
+      "url": "https://www.reddit.com/r/AppIdeas/comments/1wbxp0j/i_struggle_to_explain_my_opensource_idea_does_it/",
+      "selftext": "I'm building an open-source project and I myself really believe it has potential.\nI want it to be open-source so people can help improve it if people find it useful.\n\nBut please butcher my enthusiasm if I seem delusional about its value!\n\n# The idea\n\nYou can also watch the video here to get an overview.\nBut basically I made two observations lately which fed the idea:\n\n**Observation 1**: AI is really good at generating apps in single html format. But they are hidden away in some chat somewhere.\n\n**Observation 2**: Local-first paradigm (running things locally in a browser instead of relying on servers/cloud providers) is really nice!\n\n**Core-idea**: Why would we ever need another general utility app (timers, calorie counters, exercise trackers etc), when we can just ask AI to create one for us?\n\n**Product-idea**: A web page (no login) where one can add AI-generated code and then the app is functional. Local-first so that it also works offline. Opt-in user-controlled AI+storage to enable AI on the web page and possibility to share and use the apps with friends (like a Google docs).\n\n\n# \nMy questions\n\nI got it working, but now I'm trying to find good ways of making people understand that this has value. I guess I need to find people who would like to create apps like this? But I also struggle with how to present the idea. So my main question is - does it make sense at all what I'm explaining? Does it have any value?\n\nhttps://reddit.com/link/1wbxp0j/video/epylbw1b3koh1/player\n\n",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbfb6w",
+      "name": "t3_1wbfb6w",
+      "title": "Idea validation: cross-posting tool + per-platform AI growth features for influencers — does this solve a real problem?",
+      "subreddit": "AppIdeas",
+      "author": "majidskhan",
+      "score": 1,
+      "num_comments": 0,
+      "created_utc": 1788941181.0,
+      "permalink": "/r/AppIdeas/comments/1wbfb6w/idea_validation_crossposting_tool_perplatform_ai/",
+      "url": "https://www.reddit.com/r/AppIdeas/comments/1wbfb6w/idea_validation_crossposting_tool_perplatform_ai/",
+      "selftext": "I'm a full-stack/AI engineer thinking about building a tool for influencers/creators who manage content across Twitter/X, Facebook, YouTube, and TikTok. The core idea:\n\n* One place to compose and schedule posts, auto-adapted and published to each platform (similar to what Postiz does)\n* Per-platform AI assistance for growth — content suggestions, best posting times, engagement patterns — closer to what SuperX does for X specifically, but across multiple platforms\n\nI know this space isn't empty — Postiz, Buffer, Publer own cross-posting, and SuperX/Kleo own single-platform growth. I'm not expecting to displace any of them outright. I'm more interested in whether there's a real slice of the market being underserved by both approaches, and what it would take to actually earn a share of it rather than just cloning the leaders' feature lists.\n\nBefore I sink real time into this, I want to pressure-test it:\n\n1. What's actually the painful part?\n2. What does your current tool get wrong?\n3. Is there real demand for cross-posting + growth combined, or does that just do both badly?\n4. Would you pay for this, and what would make you switch?\n\nNot trying to pitch anything, genuinely want to know if this is solving a real problem or if I'd just be rebuilding two products that already exist and calling it new. Blunt feedback welcome.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbekqp",
+      "name": "t3_1wbekqp",
+      "title": "I've been the one dealing with my parents' mail since I was 9 and I keep missing deadlines, so I'm thinking about this idea.",
+      "subreddit": "AppIdeas",
+      "author": "Maleficent-Fill-9917",
+      "score": 1,
+      "num_comments": 0,
+      "created_utc": 1788938542.0,
+      "permalink": "/r/AppIdeas/comments/1wbekqp/ive_been_the_one_dealing_with_my_parents_mail/",
+      "url": "https://www.reddit.com/r/AppIdeas/comments/1wbekqp/ive_been_the_one_dealing_with_my_parents_mail/",
+      "selftext": "I've always hated paperwork. Between my own mail and helping my parents with theirs, things seem to always fall though the crack. I kept wishing there was a better way to remind them about things so I could actually be sure it all gets taken care of. So what do you guys think of this idea?\n\nYou take a photo of a letter and it tells you the deadline, the amount, what happens if you miss it, and what to do next. Your parent gets a short version in their language that you can just forward to them, via text, reminders or even in their calendar. Everyone get reminders up to 7 days in advance.\n\nI looked at what already exists and it's mostly vaults or bill-pay apps, and those are good, they're just solving a different problem. None of them explain the letter to your parent or tell you what missing the deadline actually costs.\n\nRight now it handles insurance, benefits, and utility letters, does the parent version in English, Spanish and Chinese, and sends the needed reminders.\n\nI'm curious what people think of this.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbjq83",
+      "name": "t3_1wbjq83",
+      "title": "Steam game time tracking Idea validation",
+      "subreddit": "AppIdeas",
+      "author": "rockmx509",
+      "score": 0,
+      "num_comments": 0,
+      "created_utc": 1788955620.0,
+      "permalink": "/r/AppIdeas/comments/1wbjq83/steam_game_time_tracking_idea_validation/",
+      "url": "https://www.reddit.com/r/AppIdeas/comments/1wbjq83/steam_game_time_tracking_idea_validation/",
+      "selftext": "I made an app for steam to control my play time. It send me reminder to drink water, eat, take break when I am playing more than 1 hour. Do you guys think people will use it ? I would like to put it on play-store with a bit more polishing.\n\nApp is a prototype at this stage. I haven’t figured out the complete user journey yet. But this would be is user flow at the core - login with steam account in app and set your time limits and thats it. Now user can start playing the game and based on the game’s current session time app will send reminders. This could also be useful for parent who want to have watch on their child’s play time.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbnm78",
+      "name": "t3_1wbnm78",
+      "title": "Vibecoded my way to 75k",
+      "subreddit": "AppIdeas",
+      "author": "omitousi",
+      "score": 0,
+      "num_comments": 0,
+      "created_utc": 1788965149.0,
+      "permalink": "/r/AppIdeas/comments/1wbnm78/vibecoded_my_way_to_75k/",
+      "url": "http://hoops-gm.com",
+      "selftext": "I started this project with minor expectations and it became this enormous success.\n\nAll i can say is that i am really grateful for it.\n\nBut i must say redditors hate when you promote a game.\n\nEven when it succeeds people here still try to hold on the hate, i dont really care but i find it very surprising.\n\nMost people are good though and are really contributing to the community i created.",
+      "is_self": false,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbxmm3",
+      "name": "t3_1wbxmm3",
+      "title": "Ayuda sobre feedback de app anti-dopamina (PROYECTO)",
+      "subreddit": "roastmystartup",
+      "author": "xRoMeOo",
+      "score": 3,
+      "num_comments": 7,
+      "created_utc": 1788986378.0,
+      "permalink": "/r/roastmystartup/comments/1wbxmm3/ayuda_sobre_feedback_de_app_antidopamina_proyecto/",
+      "url": "https://www.reddit.com/r/roastmystartup/comments/1wbxmm3/ayuda_sobre_feedback_de_app_antidopamina_proyecto/",
+      "selftext": "Buenas! Soy un estudiante de Ingeniería de Computadores todavía en plena carrera pero me han aceptado en un programa de emprendimiento. Todavía estoy empezando y me gustaría aprender de gente con experiencia, estoy dispuesto a fallar y aprender de los errores. La app que intentaré desarrollar estará enfocada en estudiantes que admiten activamente adicción al móvil y por tanto sienten que las redes consumen su vida y su ámbito académico.   \n  \nAhí es donde entraría \"Re-Connect\", aplicando bloqueos y restricciones tediosas de eliminar, aumentando la fricción a estas aplicaciones que consumen nuestro tiempo y lo convierten en tiempo vacío y aislante de la sociedad. Planeo aplicar varios modos de sesiones de estudio, uno para el uso diario y otro \"Focus\" para el momento de estudiar activamente sin distracciones.   \n  \nAntes de poder avanzar en el proyecto, necesito feedback sobre el uso del móvil de las personas, el público objetivo son estudiantes pero realmente cualquier persona es de ayuda. He creado un cuestionario conectado a un Excel para manejar la información de una manera más precisa y controlada. Sería de gran ayuda recibir nuevas respuestas, gracias a todos de antemano!  \n  \n [https://forms.gle/NPy5j5hbwhTvUe4R6](https://forms.gle/NPy5j5hbwhTvUe4R6)",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbjloo",
+      "name": "t3_1wbjloo",
+      "title": "My employees could hear my emails. Naturally, I responded by building an entire SaaS.",
+      "subreddit": "roastmystartup",
+      "author": "Vast_Idea_7528",
+      "score": 1,
+      "num_comments": 16,
+      "created_utc": 1788955285.0,
+      "permalink": "/r/roastmystartup/comments/1wbjloo/my_employees_could_hear_my_emails_naturally_i/",
+      "url": "https://www.reddit.com/r/roastmystartup/comments/1wbjloo/my_employees_could_hear_my_emails_naturally_i/",
+      "selftext": "I'm Italian, living in Poland. I think in Italian, work mostly in English or Polish, and my employees sit in the office next door.\n\nI wanted to dictate emails and prompts. I didn't particularly want to launch an internal podcast.\n\nSo I wanted something specific: speak Italian and have English text appear directly in the email I was writing.\n\nThat became Typeglot, a Windows app that lets you speak one language and get written text in another, directly where you're working. It also does ordinary same-language dictation, for days when one language is enough admin.\n\nThe intended customers are people who think in one language and spend their working day writing in another. It costs $7.90/month or $69.90/year, with a free trial and a limited free plan.\n\nDictation and translation already exist. My bet is that combining them into a straightforward everyday workflow is worth paying for.\n\nMy other bet was that posting about it on Reddit, Facebook and LinkedIn would generate interest. That bet is currently receiving a thorough education.\n\nEarly recruitment got very little response. I built something to help me communicate, then discovered I wasn't particularly good at communicating why anyone else should care.\n\n\n\nWebsite: [https://typeglot.com/](https://typeglot.com/)\n\n\n\nRoast the premise, the positioning, the price, the website.\n\nIs this a problem people would pay to solve, or have I mistaken my office layout for a target market?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8rznsa",
+          "author": "Sir-douche-a-lot",
+          "body": "No, I'd use any of the million other services. Just text talk to an LLM and ask it to translate afterwards. I'm not paying $70/year to not type \"translate to english\" lmao",
+          "score": 1
+        },
+        {
+          "id": "p8s1fdu",
+          "author": "StoneCypher",
+          "body": "so you invented google translate?",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wbwqay",
+      "name": "t3_1wbwqay",
+      "title": "I built a browser extension that auto-declines cookie pop-ups. Roast it.",
+      "subreddit": "roastmystartup",
+      "author": "Significant-Load-415",
+      "score": 1,
+      "num_comments": 2,
+      "created_utc": 1788984474.0,
+      "permalink": "/r/roastmystartup/comments/1wbwqay/i_built_a_browser_extension_that_autodeclines/",
+      "url": "https://www.reddit.com/r/roastmystartup/comments/1wbwqay/i_built_a_browser_extension_that_autodeclines/",
+      "selftext": "I created a free browser extension to automatically decline the very annoying cookie pop-ups that virtually every site now has. I wanted to take it a step further with actually declining the requests versus just hiding the pop-ups as some other tools already do. It collects no data from you other then the website address so the extension can decline the request. Thus far for most sites this results in you not even seeing the cookie pop-up or possibly seeing it for about a second before it automatically disappears.\n\nI officially launched it today so just trying to get the word out that this now exists, so hopefully more people can get rid of a very annoying aspect of internet browsing and get some control back of their own data. Currently it's live on Chrome (Desktop) and Safari (IOS & Desktop) and will be live on Firefox (Android & Desktop) once the review process is complete. As I have already been asked for it, Google does not allow mobile extensions so for the time being there is no way for me have it work on Chrome mobile.\n\nYou can read more about it if you like here [https://www.producthunt.com/products/data-privacy-agent](https://www.producthunt.com/products/data-privacy-agent) \n\nApple Store: [https://apps.apple.com/app/id6791409542](https://apps.apple.com/app/id6791409542)\n\nChrome Webstore: [https://chromewebstore.google.com/detail/okkaojifmfiedafnmfppooonambeamgb](https://chromewebstore.google.com/detail/okkaojifmfiedafnmfppooonambeamgb)\n\nFor transparency I used Claude paired with VS Code to standup the backend of this project. Thanks in advance for roasting me!",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbemd4",
+      "name": "t3_1wbemd4",
+      "title": "Roast my live experiment: a one-slot forex broker homepage auction",
+      "subreddit": "roastmystartup",
+      "author": "JimmyKur128",
+      "score": 1,
+      "num_comments": 2,
+      "created_utc": 1788938702.0,
+      "permalink": "/r/roastmystartup/comments/1wbemd4/roast_my_live_experiment_a_oneslot_forex_broker/",
+      "url": "https://www.reddit.com/r/roastmystartup/comments/1wbemd4/roast_my_live_experiment_a_oneslot_forex_broker/",
+      "selftext": "I built worldsbestbroker.com as a small, public experiment: a “Million Dollar Homepage” concept for forex brokers, with one scarce homepage banner auctioned at a time. SpreadEX Trading currently holds the throne after reclaiming it.\n\nThere are no promised returns or trading signals here—just a finite attention slot and a live auction. I’m trying to learn whether the scarcity is compelling or gimmicky, and whether the pitch is clear to brokers.\n\nWhat would you roast first: the positioning, the auction mechanic, or the landing page? Link: https://www.worldsbestbroker.com",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbbgg2",
+      "name": "t3_1wbbgg2",
+      "title": "I built an AI study workspace because I was tired of forgetting everything after watching hours of lectures",
+      "subreddit": "roastmystartup",
+      "author": "scritur",
+      "score": 1,
+      "num_comments": 0,
+      "created_utc": 1788928322.0,
+      "permalink": "/r/roastmystartup/comments/1wbbgg2/i_built_an_ai_study_workspace_because_i_was_tired/",
+      "url": "https://www.reddit.com/r/roastmystartup/comments/1wbbgg2/i_built_an_ai_study_workspace_because_i_was_tired/",
+      "selftext": "I've been working on this for a while and finally got it to a point where I want other people to actually try it.\n\nThe idea came from a pretty simple problem:\n\nI could spend 2 hours watching a lecture, read through a PDF, take notes, and still forget most of it a few days later.\n\nMost AI tools I tried were good at answering questions, but I wanted something more focused on actually studying the material.\n\nSo I built **Scritur**.\n\nYou can bring in YouTube videos, PDFs, websites, GitHub repos or your own notes, and turn them into a study workspace.\n\nFrom there you can:\n\n* ask questions about the material\n* get summaries\n* generate flashcards\n* take quizzes\n* revise what you've learned\n* track your learning progress\n\nI'm still very much building it, so I'm not looking for compliments here. I'd genuinely like to know what feels useful, what feels unnecessary, and what's missing.\n\nIf anyone wants to try it, it's here:\n\n[**https://www.scritur.space/**](https://www.scritur.space/)\n\nIf you do try it, tell me **what you studied with it and what you would change**. That's probably more useful to me right now than anything else.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbr513",
+      "name": "t3_1wbr513",
+      "title": "I sell nothing for $100–$10,000. Roast it before I find out the hard way.",
+      "subreddit": "roastmystartup",
+      "author": "amarfarkhadi",
+      "score": 0,
+      "num_comments": 2,
+      "created_utc": 1788972770.0,
+      "permalink": "/r/roastmystartup/comments/1wbr513/i_sell_nothing_for_10010000_roast_it_before_i/",
+      "url": "https://www.reddit.com/r/roastmystartup/comments/1wbr513/i_sell_nothing_for_10010000_roast_it_before_i/",
+      "selftext": "What it is: nothings.wtf. Four tiers, $100 to $10,000. You pay, you get literally nothing - no product, no service, no file. Your name and a number go on a public wall, permanently. 20% of every sale is paid out to children's surgery, in $10,000 chunks, hospital invoice published each time.\n\n\n\nWhy I think anyone buys it: the joke is the product - a receipt for paying real money for nothing, permanent and public. The charity is what keeps it from being pure cynicism.\n\n\n\nWhere I already think it's weak, so you don't have to find these yourselves:\n\n\n\n\\- Pro is $500 for a wider tile and 80 characters. Two people I trust told me that's thin for a 5x jump over the base tier, and I think they're right - I haven't fixed it.\n\n\\- Right now there's one name on the wall. Mine. That's either \"early\" or \"nobody's buying,\" and I can't prove which from the inside.\n\n\\- Platinum is $10,000 for one block, permanently, at the top of the page. My best argument for the price is \"there's only one.\" I'm not sure that's enough at that number.\n\n\\- The whole thing lives or dies on whether the joke lands before \"wait, is this a scam\" does. I think the published charity receipts solve that. I might be wrong, and I'd rather hear it here than find out from a chargeback.\n\n\n\nWhat I'm not asking for: \"cute idea, good luck\" does nothing for me. Tell me the specific line on the page that made you close the tab, or the specific thing that would stop you from paying the $100.\n\n\n\n[nothings.wtf](http://nothings.wtf)\n\n",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbxhs3",
+      "name": "t3_1wbxhs3",
+      "title": "Over 55 billion sticky notes 🗒️ sold annually yet only mine let you set alarms ⏰ and reminders 🚨",
+      "subreddit": "Startup_Ideas",
+      "author": "Early_Key_823",
+      "score": 3,
+      "num_comments": 2,
+      "created_utc": 1788986089.0,
+      "permalink": "/r/Startup_Ideas/comments/1wbxhs3/over_55_billion_sticky_notes_sold_annually_yet/",
+      "url": "https://www.reddit.com/r/Startup_Ideas/comments/1wbxhs3/over_55_billion_sticky_notes_sold_annually_yet/",
+      "selftext": "[https://www.taskloco.com](https://www.taskloco.com/) \\- The Sticky Note GOAT",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbae32",
+      "name": "t3_1wbae32",
+      "title": "Please can anyone one or everyone help with my website/app im making its really good and thoughtout?",
+      "subreddit": "Startup_Ideas",
+      "author": "Lost-Tutor-6832",
+      "score": 3,
+      "num_comments": 1,
+      "created_utc": 1788925149.0,
+      "permalink": "/r/Startup_Ideas/comments/1wbae32/please_can_anyone_one_or_everyone_help_with_my/",
+      "url": "/r/careerguidance/comments/1wb8nwc/please_can_anyone_one_or_everyone_help_with_my/",
+      "selftext": "I am making a app with my sister where we give you a test and it checks your personality, your likes, and dislikes, your hobbies, things you are really good at, and things you really enjoy the most and truly can do all say without feeling like a job. I want to put all this together and find you the perfect job with no money cap. Your only limit is yourself. We have multiple tiers including how many jobs we find for you, we have tiers that will find you grants and loans, jobs in your area, and schools that offer the best degree for your passion depending on if school is a match for your personality. We offer the basics or we can literally walk you through everything cause everyone's different and your life shouldn't have to wait because of that. Anyway obviously we are looking for investors but we are looking for features you think we should include as well as questions you would like us to ask and include and any hints and ideas I want this to be the best. I also want to start off active in the community so I can build the best app and hopefully generate support and users when we launch in the next couple months? We are partners with a psychologist and social therapist and looking for maybe a life coach to partner with as well for the perfect combination if anyone knows any, I will gladly work out the details with them?",
+      "is_self": false,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbyen1",
+      "name": "t3_1wbyen1",
+      "title": "Share What You’re Building",
+      "subreddit": "Startup_Ideas",
+      "author": "IntelligentTone5404",
+      "score": 2,
+      "num_comments": 2,
+      "created_utc": 1788988103.0,
+      "permalink": "/r/Startup_Ideas/comments/1wbyen1/share_what_youre_building/",
+      "url": "/r/indie_startups/comments/1wbya3s/share_what_youre_building/",
+      "selftext": "",
+      "is_self": false,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wblj4g",
+      "name": "t3_1wblj4g",
+      "title": "Starting a meet-up for founders",
+      "subreddit": "Startup_Ideas",
+      "author": "mickypaigejohnson",
+      "score": 1,
+      "num_comments": 0,
+      "created_utc": 1788960312.0,
+      "permalink": "/r/Startup_Ideas/comments/1wblj4g/starting_a_meetup_for_founders/",
+      "url": "https://www.reddit.com/r/Startup_Ideas/comments/1wblj4g/starting_a_meetup_for_founders/",
+      "selftext": "I live in Frisco TX and am starting a meet-up group for founders and co founders to meet monthly for networking, accountability, and bashing each other's stuff. Let's share demos and talk shop, maybe your co-founder will be there too and you can meet. \n\nI am looking for a technical co-founder and hope doing something like this will stimulate that.\n\nThere are lots of curated startup events, but I'm hoping this will be more casual and more direct, for founders and potential co-founders only. \n\nCheers. DM for an invite, tomorrow will be my first meet-up. ",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbkaxu",
+      "name": "t3_1wbkaxu",
+      "title": "Small Business Owners: What If You Could Hire a Small Team of 2 instead of an agency?",
+      "subreddit": "Startup_Ideas",
+      "author": "ProgramExpress2918",
+      "score": 1,
+      "num_comments": 3,
+      "created_utc": 1788957195.0,
+      "permalink": "/r/Startup_Ideas/comments/1wbkaxu/small_business_owners_what_if_you_could_hire_a/",
+      "url": "https://www.reddit.com/r/Startup_Ideas/comments/1wbkaxu/small_business_owners_what_if_you_could_hire_a/",
+      "selftext": "Between the two of us, we can cover:\n\nGraphic & Brand Design - logos, branding, social media graphics, marketing materials\n\nDigital Marketing - social media content, campaigns, online presence & general marketing support\n\nWeb Design & Development - new websites, updates and improvements\n\nWebsite Maintenance - keeping your site updated, maintained and running smoothly\n\nAutomation - helping automate repetitive tasks, workflows and business processes to save you time\n\nInstead of hiring a separate designer, marketer and web person, you get two freelancers working together as one small creative team.\n\nWe're especially interested in helping small businesses, startups and entrepreneurs who need ongoing creative and digital support but don't necessarily have the budget for a full agency.\n\nWe're flexible with the setup and happy to discuss a monthly package, project-based work, or ongoing support depending on what you actually need.\n\nIf you're a small business owner who could use an extra pair (or two 😄) of hands, comment below or send me a DM and tell us a little about your business and what you're looking for.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbfcsw",
+      "name": "t3_1wbfcsw",
+      "title": "Validating an idea: an AI that runs the boring part of a business’s WhatsApp by learning the business on its own. Owners, would you use it?",
+      "subreddit": "Startup_Ideas",
+      "author": "flavia-f",
+      "score": 1,
+      "num_comments": 8,
+      "created_utc": 1788941345.0,
+      "permalink": "/r/Startup_Ideas/comments/1wbfcsw/validating_an_idea_an_ai_that_runs_the_boring/",
+      "url": "https://www.reddit.com/r/Startup_Ideas/comments/1wbfcsw/validating_an_idea_an_ai_that_runs_the_boring/",
+      "selftext": "Quick context: I’m looking at whether this is worth building, so I’d rather hear “no, because…” than “cool”.\n\nThe idea is not a chatbot you configure. You connect your WhatsApp number, it reads your past conversations and your website, and it comes back with “here’s what I understood about your business”. From there it remembers every customer, prepares your replies (you approve with one tap; it only sends on its own the kinds of questions it has proven it gets right), keeps the inbox tagged and prioritised, and asks you when it doubts. You set the limits: hours, things it must never say, a spending cap.\n\nWhat I’d love to know from people who actually run customer conversations on WhatsApp:\n\n1. Which part of that is the real pain for you today?\n2. What would make you not trust it? Be brutal.\n3. What tools do you use now, and what do you pay?\n4. Would “it never sends anything you didn’t approve until it has earned it” be enough for you to try it?\n\nNo link, nothing exists yet.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8phqco",
+          "author": "otxfrank",
+          "body": "Only pasted conversation seems not enough, you can try build comprehensive hole pictures in this client/customer, and LLM( maybe you pre-train module) will know on your client. But idk about WhatsApp(does permits you query conversations logs?)\n\nSo summarize, the hardest part not coding ,it’s data collection and “marketing” .\n\nGood luck",
+          "score": 1
+        },
+        {
+          "id": "p8pp64p",
+          "author": "Username_TBD18",
+          "body": "Sounds a bit like this: https://buyertofounder.substack.com/p/my-honest-opinion-of-symphony-by?r=8zbq8k&utm\\_medium=ios",
+          "score": 1
+        },
+        {
+          "id": "p8q4t75",
+          "author": "betweenthedrafts",
+          "body": "I wouldn’t trust anything that prepares replies on my behalf when it doesn’t know what I want to say. I think the last part of a business that should be outsourced is speaking to customers. I’m happy to automate many other areas of business but I dislike businesses that don’t offer personalised, genuine communication.",
+          "score": 1
+        },
+        {
+          "id": "p8s0q6a",
+          "author": "stuih404",
+          "body": "I hate having to communicate with chatbots instead of humans. Not sure if premade answers make this a better experience",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wbqfkr",
+      "name": "t3_1wbqfkr",
+      "title": "LinkedIn bulk connection removal / unfollow",
+      "subreddit": "SomebodyMakeThis",
+      "author": "jzap456",
+      "score": 3,
+      "num_comments": 4,
+      "created_utc": 1788971250.0,
+      "permalink": "/r/SomebodyMakeThis/comments/1wbqfkr/linkedin_bulk_connection_removal_unfollow/",
+      "url": "https://www.reddit.com/r/SomebodyMakeThis/comments/1wbqfkr/linkedin_bulk_connection_removal_unfollow/",
+      "selftext": "I'd genuinely pay money if someone made this. \n\nI run a lot of automated sales outreach on LinkedIn as a part of my job. As a result, my feed is a total mix of shit posts and cringe activity from all the people that I've added over the years, who I don't know but at some point reached out to. I know this is something I caused partially myself, but I think say it's extremely common given how central LinkedIn is to sales today. \n\nIf you save my feet from being totally obliterated by this, I'll pay you right away. Probably a one-off fee, but still, there are probably thousands, if not millions, of people suffering from this. \n\nIt needs to be private, so ideally run in my browser. I don't want to send the data anywhere. But I'd consider anything to save me from this!!!",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbdkko",
+      "name": "t3_1wbdkko",
+      "title": "Instead of \"Make a Wish\": Make An Excuse",
+      "subreddit": "SomebodyMakeThis",
+      "author": "TheFutureIsAFriend",
+      "score": 2,
+      "num_comments": 0,
+      "created_utc": 1788935124.0,
+      "permalink": "/r/SomebodyMakeThis/comments/1wbdkko/instead_of_make_a_wish_make_an_excuse/",
+      "url": "/r/CrazyIdeas/comments/1wbdk0b/instead_of_make_a_wish_make_an_excuse/",
+      "selftext": "",
+      "is_self": false,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbwk4t",
+      "name": "t3_1wbwk4t",
+      "title": "We're all going to need this - a source checker/verification check for AI summaries",
+      "subreddit": "SomebodyMakeThis",
+      "author": "GoBoldr",
+      "score": 1,
+      "num_comments": 0,
+      "created_utc": 1788984117.0,
+      "permalink": "/r/SomebodyMakeThis/comments/1wbwk4t/were_all_going_to_need_this_a_source/",
+      "url": "https://www.reddit.com/r/SomebodyMakeThis/comments/1wbwk4t/were_all_going_to_need_this_a_source/",
+      "selftext": "Oh, here's one.\n\nI just heard a wild story about a journalist's experiment to make a brand-new fake product get referenced by AI product recommendations. And it worked.  \n  \n[https://www.inc.com/jelinda-montes/a-marketer-built-a-fake-deodorant-brand-weeks-later-it-was-being-recommended-over-real-products/91385991](https://www.inc.com/jelinda-montes/a-marketer-built-a-fake-deodorant-brand-weeks-later-it-was-being-recommended-over-real-products/91385991)\n\nSo there are two lessons there. First, a productive one, that brands can take some very basic steps to get featured in these search recommendations, without too much work no less.\n\nThe second lesson is a darker one. That (surprise!) AI summaries will repeat whatever is put in to them, including presenting made up things as absolute fact.\n\nThere's a lot of news around this and other similar issues, making it a really good time to get attention for a product whose focus is to double-check AI summaries for accuracy. A desktop app, a browser extension, both could be small products that are close at hand when searches are made, and help flag if (for example) something is highly recommended based on an article that's written purely by AI.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbp41b",
+      "name": "t3_1wbp41b",
+      "title": "Job Search - by location",
+      "subreddit": "SomebodyMakeThis",
+      "author": "OwnChance5513",
+      "score": 1,
+      "num_comments": 3,
+      "created_utc": 1788968421.0,
+      "permalink": "/r/SomebodyMakeThis/comments/1wbp41b/job_search_by_location/",
+      "url": "https://www.reddit.com/r/SomebodyMakeThis/comments/1wbp41b/job_search_by_location/",
+      "selftext": "in my job search, there are several cities and areas I would consider moving to. I would love a website or app that allows me to look at a map, decide a circumference around a city or area that I’d like to live/work in, set a salary range for that area (ie NY is more expensive than GA), and then have the option to set up job alerts with filters based on each location. it would be great to have a map visual element. is that a tall order to build? \\*thanks\\* ",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbc3kh",
+      "name": "t3_1wbc3kh",
+      "title": "JLPT 5 test preparation",
+      "subreddit": "SomebodyMakeThis",
+      "author": "No-Celebration-9040",
+      "score": 1,
+      "num_comments": 0,
+      "created_utc": 1788930337.0,
+      "permalink": "/r/SomebodyMakeThis/comments/1wbc3kh/jlpt_5_test_preparation/",
+      "url": "https://www.reddit.com/r/SomebodyMakeThis/comments/1wbc3kh/jlpt_5_test_preparation/",
+      "selftext": "Does anyone knows if there is an app for JLPT 5 tests preparation including all the sections and possibly mock tests?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbyv9b",
+      "name": "t3_1wbyv9b",
+      "title": "Can we standardize websites/games wishing you a happy birthday on the bday you put on sign up?",
+      "subreddit": "SomebodyMakeThis",
+      "author": "ThePopless",
+      "score": 0,
+      "num_comments": 0,
+      "created_utc": 1788989123.0,
+      "permalink": "/r/SomebodyMakeThis/comments/1wbyv9b/can_we_standardize_websitesgames_wishing_you_a/",
+      "url": "https://www.reddit.com/r/SomebodyMakeThis/comments/1wbyv9b/can_we_standardize_websitesgames_wishing_you_a/",
+      "selftext": "i know social media does this like twitter with the balloons and maybe instagram(?), but i mean ANY website that needs you to put your birthday when you sign up. why can’t for example, just any google product do that??  \nwhen I was little i fully expected video games that had my bday linked to my account to just throw confetti everywhere and i remember thinking “that wouldn’t be hard to implement what’s stopping them??”\n\nso can this happen more???",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbfez9",
+      "name": "t3_1wbfez9",
+      "title": "What am i missing out on *I will not promote*",
+      "subreddit": "startups",
+      "author": "ExpensiveAd3565",
+      "score": 20,
+      "num_comments": 12,
+      "created_utc": 1788941557.0,
+      "permalink": "/r/startups/comments/1wbfez9/what_am_i_missing_out_on_i_will_not_promote/",
+      "url": "https://www.reddit.com/r/startups/comments/1wbfez9/what_am_i_missing_out_on_i_will_not_promote/",
+      "selftext": "What resources am I not taking advantage of?\n\nMy cofounder and I started \\~3 weeks ago. Our expenses are starting to stack up (Claude API, tickets to events, hotels for events, everyday business stuff like domains/desk/monitors/chairs/incorporation/website-builders/etc.....)\n\n\n\nWe applied to Claude's '$100,000 in tokens for startups' thing. But outside of that and trying to raise, I haven't really done anything else.\n\nWhat am I missing out on? What other resources should I be pursuing?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8s4bn7",
+          "author": "Last_Weeks_Socks",
+          "body": "You're doing an awful lot for only starting 3 weeks ago. Domains are dirty cheap, incorporation not bad. Maybe skip on events and getting new office equipment.\n\nAs for resources, AWS, OpenAI, lots of other companies do similar startup credit grants you could look into. Depending on the state, some will waive incorporation fees for the first so many years if you are below a certain revenue threshold.",
+          "score": 8
+        },
+        {
+          "id": "p8pja6x",
+          "author": "tonytidbit",
+          "body": "Should I just assume that you're in Elbonia building a TaaS service, Tractor as a Subscription?\n\nEdit: Judging by my charming personality I haven't had enough coffee today. But I'll leave my comment as-is, as I found myself to be quite hilarious. 😆\n\nFact remains that what's available depends a lot on where you are, what you're doing, your background, and, frankly, how competently you've put together the project that you're working on. But don't waste precious time chasing \"free\" things online when you should be building and raising to get properly established; as well as should be out networking in your local startup community.",
+          "score": 4
+        },
+        {
+          "id": "p8s9ip0",
+          "author": "PluckyPlankton",
+          "body": "Apply for grants! Depending on where you are there may be local grants for starting a business. Depending on your industry there may be industry or government grants. But keep in mind, applying for grants is tedious and can be a job in and of itself. \n\nAlso ditch the office, unless you have absolutely no place to work at home. Some office buildings offer free coworking space that you can use",
+          "score": 4
+        },
+        {
+          "id": "p8r0pbv",
+          "author": "Ornery-Concentrate-5",
+          "body": "Nobody mentions the boring recurring stuff until it bites you. Registered agent fees, franchise tax if you're incorporated in Delaware but operating somewhere else, SaaS subscriptions from a free trial you forgot to cancel. Those creep up faster than the flashy tooling costs.",
+          "score": 3
+        },
+        {
+          "id": "p8po6h8",
+          "author": "Traditional_Key8982",
+          "body": "I think you're probably missing one big thing: **you don't need to pay for every startup expense yourself yet.** Since you're only 3 weeks in, I'd focus on reducing burn before trying to raise money.\n\nA few areas I'd look into:\n\n* Startup credit programs beyond Claude - cloud, hosting, developer tools, analytics, email, etc.\n* Accelerator and incubator programs, even if you don't necessarily need funding immediately. Some provide credits, mentorship and useful introductions.\n* Founder communities and local startup programs.\n* Free or early-stage plans for software before committing to paid tools.\n* Partner programs through VCs, accelerators and startup communities.\n\nBut I'd also challenge your current spending a little. Things like events, hotels, office equipment and multiple software subscriptions can add up very quickly before you've even validated whether people will pay for the product. At this stage, I'd ask about every expense: **Does spending this money help us build, validate, or acquire a customer in the next 30–60 days?**\n\nIf not, I'd probably delay it.\n\nStartup credits are great, but the biggest resource you can protect right now is your runway. I'd personally spend some time building a simple list of every recurring expense and actively look for a free, cheaper, or credit-covered alternative before raising more capital.\n\nThis is a good reply because it gives **real value, asks them to think strategically, and doesn't promote anything**. Current founder resource directories and startup programs also show that there are many credit, perk, and support programs beyond a single AI provider.",
+          "score": 2
+        },
+        {
+          "id": "p8rntif",
+          "author": "beambot",
+          "body": "Events...?",
+          "score": 1
+        },
+        {
+          "id": "p8tac74",
+          "author": "powleads",
+          "body": "it’s easy to get caught up in all the startup costs, but it sounds like you’re doing a lot right already. I found that manually filling directory forms and creating content for a launch took almost a week, which really added to the initial overhead. focus on getting those first users, the rest will follow. what’s your biggest challenge with getting early users?",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wbhxxg",
+      "name": "t3_1wbhxxg",
+      "title": "Our Tribal Knowledge Is Getting Away “i will not promote”",
+      "subreddit": "startups",
+      "author": "QuestusRain1994",
+      "score": 11,
+      "num_comments": 22,
+      "created_utc": 1788950278.0,
+      "permalink": "/r/startups/comments/1wbhxxg/our_tribal_knowledge_is_getting_away_i_will_not/",
+      "url": "https://www.reddit.com/r/startups/comments/1wbhxxg/our_tribal_knowledge_is_getting_away_i_will_not/",
+      "selftext": "Is anyone else dealing with this?  \nEmployee churn can feel like hitting the reset button on your company. Someone leaves, and suddenly years of tribal knowledge walk out the door with them.  \nAnd then there’s the other side of it: having employees you probably wouldn’t keep if they weren’t carrying so much of the knowledge required to keep things running.  \nI’m curious how other founders are dealing with this.  \nHow do you preserve the knowledge your people accumulate before they leave? And have you ever found yourself keeping someone around primarily because losing their knowledge would hurt too much?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8q4alf",
+          "author": "tonytidbit",
+          "body": "Oh dear, I so very very deeply hate all these catchphrases that's become the norm nowadays. Like \"tribal knowledge\", and how MVP suddenly has a handful of variations like MLP just because people couldn't understand what Viable actually means in practice (hint: it's not a technical term only, it also applies to the business being viable with it). Then these phrases at some point hit one YouTuber or something, and suddenly everyone is in r/Startups either proclaiming or asking things about it, often completely disconnected from any greater context or understanding.\n\nOh well, old man rant over, let's get down to business:\n\nIt's up to the C-levels to make sure that everything that happens below them, within their area of responsibility, can survive the [bus factor](https://en.wikipedia.org/wiki/Bus_factor).\n\nThat's sort of where it in everyday practice both starts and sort of where it ends, with the people ultimately in charge making sure that they talk with their team about contingencies. Backups, documentation, training second-in-commands that has enough knowledge to step in when someone's away, and so on. It's no different than planning the next feature, campaign, or round.\n\nAnd the founder and/or board need to ask about this. \"What/who's our weak link if we suddenly lose them to a pandemic/bus, how long could we survive without them, what have we done to mitigate this, and what can we do better to mitigate this?\" Same as how they should ask them same about getting hacked; how to avoid, prepare, mitigate, recover, and so on.\n\nSimply asking questions will reveal the weak spots, and simply knowing about the weak spots you'll plan/risk-assess with them in mind. So it's an integral part of everything else building and doing business.",
+          "score": 6
+        },
+        {
+          "id": "p8q0ccw",
+          "author": "QuestusRain1994",
+          "body": "We had an employee point out last February, but we continued to employ this person until very recently simply because they were the only employee left who had been with us from the start and who housed an abundance of operational knowledge. After they had already pointed out, there were still call outs and covered up no call no shows.",
+          "score": 1
+        },
+        {
+          "id": "p8q0iak",
+          "author": "tangawusi_dev",
+          "body": "You might need a technical writer to document the tribal knowledge. Documentation is key.",
+          "score": 1
+        },
+        {
+          "id": "p8r0e4y",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "p8rhhqt",
+          "author": "BarracudaMean9308",
+          "body": "i swear we all keep at least one person around just because they hold the keys to a cursed google sheet that secretly runs the whole company. you basically end up paying a salary for a hostage situation.",
+          "score": 1
+        },
+        {
+          "id": "p8sv9n2",
+          "author": "Svardskampe",
+          "body": "Introduce an ISO:9001 certification project, hire a PM/consultant for it and make it a start on documenting it and get to an extensive business process modelling sheet to overlay how the FTE's are filled.",
+          "score": 1
+        },
+        {
+          "id": "p8uxwqs",
+          "author": "erratic_parser",
+          "body": "So these are just market research bots asking stupid questions for their shitty product huh?",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wbpthn",
+      "name": "t3_1wbpthn",
+      "title": "I will not promote but My internship contract is expiring tomorrow so can I just say I will no longer work until no new contract is drawn up ? Or will this cause more issues ?",
+      "subreddit": "startups",
+      "author": "AdFar9929",
+      "score": 3,
+      "num_comments": 8,
+      "created_utc": 1788969956.0,
+      "permalink": "/r/startups/comments/1wbpthn/i_will_not_promote_but_my_internship_contract_is/",
+      "url": "https://www.reddit.com/r/startups/comments/1wbpthn/i_will_not_promote_but_my_internship_contract_is/",
+      "selftext": "I have been in talks with the founder for the position of founding engineer. I have been working in the company for over 6 months and I was said when I joined as an intern that I would be part of the founding team. But now it is expiring. If I continue working after tomorrow what kind of liability would I be under? Also won’t this cause more sourness with the founder. Help me\n\nIm in India",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8rrst4",
+          "author": "rascalmonster",
+          "body": "If your contact is over then you're done working. If they tell you to work more you tell them you need a new contract. Now's your time to negotiate and if they want to keep you, you show them what your worth and ask to lock in a longer term or more formal or higher pay",
+          "score": 7
+        },
+        {
+          "id": "p8rw4mb",
+          "author": "gofaaast",
+          "body": "You should let them know you have other commitments you're talking with. Contracts ending are a clear time you should explore other options. They know what you bring but should not be the only place you could work when the contract is done.",
+          "score": 4
+        },
+        {
+          "id": "p8t3076",
+          "author": "Oldberry86",
+          "body": "I don't think you have as much leverage as you think you do. I'd keep working to show your dedication. \n\nIf the paychecks stop then you need to have a conversation. You probably should have had brought this up more than the day before, they probably forgot as there are likely many things going on. \n\nSay something like 'sorry to mention this last minute but my contract officially ends tomorrow. Are there still plans to bring me on full time a founding engineer like we discussed?'",
+          "score": 2
+        }
+      ]
+    },
+    {
+      "id": "1wbnvcj",
+      "name": "t3_1wbnvcj",
+      "title": "\"Talk to your users\" got a lot easier. And a lot harder. (i will not promote)",
+      "subreddit": "startups",
+      "author": "AGI-Core",
+      "score": 6,
+      "num_comments": 2,
+      "created_utc": 1788965725.0,
+      "permalink": "/r/startups/comments/1wbnvcj/talk_to_your_users_got_a_lot_easier_and_a_lot/",
+      "url": "https://www.reddit.com/r/startups/comments/1wbnvcj/talk_to_your_users_got_a_lot_easier_and_a_lot/",
+      "selftext": "At my first startup we made a product for kids and I used to drive to schools throughout the Bay Area to talk to teachers and watch kids use it. A dedicated hour in a classroom, watching kids play, get stuck, walk away, then another kid coming over and doing something completely different. Then talking to the teachers about what they'd want. I learned so much in an hour.\n\nIt was slow and expensive. I'm not naturally the person who goes and talks to users, but the product was physical so there wasn't much choice. \n\nTen years later, almost none of how we learn from users looks like that.\n\nMy second startup is purely digital, and Covid moved everything remote. All our user conversations became Zoom calls. Screen share, an hour, no driving. Cheaper, so we did many more of these. But it started to feel tiring in a way the in-person visits never did. It worked though.\n\nThe next evolution came when we instrumented the product so users could write to us in context. We went from talking to 5 to 10 users a week to thousands telling us what was good or bad without anyone scheduling anything. As an introverted founder, this felt natural. Feedback could come at any time, and I could read it at any time.\n\nNow we've taken it one step further. Our second product is an agent, so users talk directly to the product. They type what they want in their own words, and when the agent can't do it, we know exactly what they were trying to do.\n\nNobody is filling out a survey. They just asked the product for something, didn’t get it, and we know about it.\n\nAt every step, talking to users got easier. But something broke along the way.\n\nI felt like I knew our users really well when I was talking to them in person. And the reason isn't what you might think. It's not that users were telling me more. I was just fully present enough to absorb it. All the context. I was building insights as I went.\n\nNow we get far more feedback, but our bandwidth to actually think about it hasn't grown much. We have a lot of “what” and not as much “why.” \n\nThe tech is great: agents, LLM analysis, in-context feedback. What I don't think we've solved is deciding what matters most, when to trust aggregate summaries, and when to have a deeper conversation with a single user.\n\nEvery one of these evolutions solved access. But none of them has solved clarity. I'd love to hear from founders who feel like they've figured out how to really understand users at scale.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbh876",
+      "name": "t3_1wbh876",
+      "title": "I will not promote but I’m confused what my founder wants from me(founding engineers help)",
+      "subreddit": "startups",
+      "author": "AdFar9929",
+      "score": 7,
+      "num_comments": 33,
+      "created_utc": 1788947928.0,
+      "permalink": "/r/startups/comments/1wbh876/i_will_not_promote_but_im_confused_what_my/",
+      "url": "https://www.reddit.com/r/startups/comments/1wbh876/i_will_not_promote_but_im_confused_what_my/",
+      "selftext": "So i joined as intern in an early stage startup right now it’s just me and my founder and rest of the people are stakeholders. When i was about to join he told me about me getting chance to become founding engineer and getting esops. Now it’s been 6 months and he wants me to have more clarity. He asked me a question what would you do if i disappeared and you have to handle everything. He said because i do not have the clarity for things im not founding engineer material even though he has talked with the board about it and they do not have confidence on me even when i have delivered everything. Im just confused as a founding engineer what should be the clarity that this founder is looking for. Help me guys really need it",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8qgzmc",
+          "author": "SeanyDay",
+          "body": "LOL i know a kid just like this I had as a junior dev who didn't understand anything about running a company with 60+ ppl.\n\nHis entire world is his personal workflow pipeline.\n\nHe ended up consistently causing issues that critically damaged the company over time by trying to do things he shouldn't without knowing how.\n\nTo be a founder/leader, you need to understand hiring, firing, social dynamics, economics, long term and short term goals, the market/competition, internal stressors, and so much more AND be top shelf at your specialized role or lane. Often more than one role.\n\nI'm a CTO who does CMO work and can hire, train, and run a sales team. \n\nIf I was just good at one of those things I would be more of a manager than C-suite",
+          "score": 4
+        },
+        {
+          "id": "p8q0czy",
+          "author": "garma87",
+          "body": "Look - you’re probably young and I don’t know you. But I know what he’s talking about. These are soft skills. The ability to manage your own productivity. To make the right call when something breaks. To take initiative. To be able to give and take hard feedback\n\nRight now he’s not seeing it. That’s not to say you can’t learn those things but those do take experience\n\nI’ve had interns that had it and interns that really didn’t. Especially the autistic types had a REALLY hard time grasping what it meant. I don’t know if that’s you. \n\nBut it s very intangible. Not something on a checklist that you can do and then say I’m done. The point is - what if there is no checklist. Do you know what to do then ",
+          "score": 3
+        },
+        {
+          "id": "p8pur0y",
+          "author": "tonytidbit",
+          "body": "I know the point that he's making, but he should also be able to explain it to you for your potential partnership to work.\n\nIf he can't explain it so that you understand it, without assigning \"blame\" to either side, you two are not a good match for you to step into that role that you are going for. And then you need to define what other role it is that you'll have, and what your compensation is meant to be. Because one way or another you need an understanding about what your role is, and you need that to be in a contract that also states what your compensation is.",
+          "score": 2
+        },
+        {
+          "id": "p8puri9",
+          "author": "jmking",
+          "body": "What are the implications in being given that title? Does it come with equity? A raise or something?\n\nThe title is usually meaningless - just what people call themselves who are within the first couple of engineering hires. It doesn't mean you're a \"founder\", just that you were there when in the early days basically.",
+          "score": 2
+        },
+        {
+          "id": "p8q3fv8",
+          "author": "Huge_Statement1748",
+          "body": "How “expert” is this founder? It sounds a bit naive. It’s not a red flag per se, just to understand",
+          "score": 2
+        },
+        {
+          "id": "p8pxx9y",
+          "author": "myfourthquarter",
+          "body": "You are intern. Are you paid or unpaid? Why tf is the board even involved? How old is your boss? Is this his first rodeo? How is the companu funded?\n\nAnswers to those questions will get you the answers to his behavior. Note that I didn't ask anything about what you were doing.",
+          "score": 1
+        },
+        {
+          "id": "p8r6ezy",
+          "author": "Wild_Agency609",
+          "body": "What the founder is asking is how much ownership can you realistically take, how much are you willing to take, and quite literally if the founder disappeared would stakeholders be confident in your ability to proactively develop and continue the vision laid out by the founder with zero instruction or oversight. \n\nIf they aren’t confident, ask directly what the vision is, understand the business objectives, and proactively head off problems and clearly explain why your solution heads off those problems.\n\nPart of a founding engineers role is not only to deliver engineering deliverables but communicate those deliverables and translate their explanations to stake holders and the founder for the business implications. ",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wbbwob",
+      "name": "t3_1wbbwob",
+      "title": "I’ve validated the product, but I’m stuck on what to do next “i will not promote”",
+      "subreddit": "startups",
+      "author": "BeginningRelative811",
+      "score": 6,
+      "num_comments": 22,
+      "created_utc": 1788929750.0,
+      "permalink": "/r/startups/comments/1wbbwob/ive_validated_the_product_but_im_stuck_on_what_to/",
+      "url": "https://www.reddit.com/r/startups/comments/1wbbwob/ive_validated_the_product_but_im_stuck_on_what_to/",
+      "selftext": "I’ll be vague about what I’m building because I don’t want this to come across as promotion, but I need to give some context.\n\nI’m building a startup in an extremely crowded industry. The six major players in this space have collectively raised over **$1.3B**, despite competing for the same market for over 10 years, and none of them has the majority market share. At the same time, there is a new startup entering this industry almost every week. The reason there is so much competition is that there are still very obvious gaps, and the users openly talk about the problems they have with the existing platforms.\n\nI didn’t want to build another company offering a slightly better version of what already exists. I spent over two years learning the industry, talking to the people actually working in it, understanding their problems, and figuring out what genuinely needed to be built.  \nDespite my users being some of the busiest people I’ve ever worked with. Their income depends on them working every day, yet many of them still gave me their time to help validate what I was building because they are frustrated with the existing options.\n\nI validated the product through a web app. There were multiple rounds of iteration, building, rebuilding, and testing, and eventually we validated the product. By the time we got there, I was literally out of my resources. For the first year, I was building part-time because I needed to understand the industry properly, and in the second year, I went full-time and focused entirely on building the company. By the end of the validation process, I had exhausted my resources, so that’s when we started raising money. At that point, we felt confident that we had validated the product, understood the market, knew what we needed to build, and had distribution channels, industry connections, and the relationships needed to actually take it forward.\n\nAnother important part of the context is that my startup is in the U.S., but I have been building everything while being in Canada. I cannot travel to the U.S. because I don’t have a U.S. visa, and that is one of the reasons it took me longer than it probably would have taken someone based in the U.S. to understand the industry, build relationships, and establish everything I needed. When I started raising, I had to do cold outreach because I didn’t have any prior network or connections within the U.S. startup ecosystem. I couldn’t even get a single meeting. Most of the time, I wouldn’t get a response, and when I did, I was usually rejected over email. A lot of the responses were simply that the company wasn’t within their investment thesis.\n\nI was also raising at a time when almost everyone was pitching AI startups, while my product doesn’t use AI at all. We will eventually use AI to enhance the product, but right now, this industry doesn’t need AI for the problems we are solving, and I don’t want to add AI just to say that we are an AI company. After seeing how difficult it was to get even a single investor meeting through cold outreach, I decided that maybe the better approach was to start building the community within the industry itself and let the traction, the users, and the response to the product speak for us. Then, hopefully, investors can discover us through what we are actually building rather than me trying to convince them through cold emails.\n\nI started planning the community building and marketing push, and the execution began this Sunday. So far, we’ve gotten a pretty good response. I’m getting a lot of messages, and there is more planned. I’m talking to publishers about getting featured in industry publications, there are more podcast appearances coming up, and since I’m not good at content creation myself, I’m also depending on people within the industry to help push the message. Some of them will also be creating videos for us that we can share on our own channels. So this is only the first week, but things are going well.\n\nThe problem is that within just a few days, I started getting a lot of messages asking, **“When are you launching?”** People entering the industry and people with decades of experience are reaching out, sharing their experiences, telling me they love what we are building, and asking when they can use it. That’s when I started feeling stuck.\n\nThe more I do the community building and marketing push, the more I have to talk openly about what I’ve learned over the last two years and what we are actually trying to build. Obviously, I have certain relationships, distribution channels, and networks that are exclusive to me, but I also have to reveal enough about the product for people to understand it. The response is making people curious and excited, but at the same time, I’m showing them something they want without being able to tell them when they can actually have it.\n\nThe reason I can’t give them a date is simple: right now, I have one technical person, my CTO, building the product natively. He also has a full-time job, so he is doing this part-time. That was the main reason we started raising in the first place: we need to speed up development and actually build the infrastructure properly.\n\nAnd I’m realizing that the longer I continue with the community building and marketing push, the more people I’m reaching, but I still don’t know when we will be able to build at the speed we need because I don’t know when we will be able to raise.\n\nThat’s where the dilemma is. **Community building has actually been fun.** I’m getting support, people are engaging, and I can see that there is a real need. Fundraising has been the opposite. It feels like I’m talking to a wall, and because I don’t have a network, I don’t even know who I can reach out to who would at least take a call and understand what we are building.\n\nTo build this properly, we need at least **$1.5M** because we are building native infrastructure for a multi-layered marketplace. To be comfortable and build everything properly, I would want around **$3M**. The market is huge, around a $100B market, and I’m ambitious about what this can become, but I also don’t know what valuation I could realistically raise at or how long fundraising will take.\n\nSo I’m genuinely stuck on what the next step should be. **Do I focus on raising now which I don’t know who to even reach out? Do I keep building the community and let the traction develop? Or do I try to do both at the same time?**\n\nBecause the more I build the community, the more validation and awareness I get, but I’m also opening up more of what I’ve spent two years learning. And while I do have certain relationships and distribution channels that are exclusive to me, I’m still trying to figure out how to balance building that momentum with actually getting the resources to deliver the product people are now asking me for.\n\nI’d definitely love to hear a different perspective on this. My background is primarily in sales and operations, and the last two years have been spent deeply understanding this industry and building within it. This is the first startup I’ve taken this far, so I know there are probably things I’m looking at from my own limited perspective.\n\nI’d appreciate any advice or thoughts on what you think the right next step would be. Thanks for taking the time to read this.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8ots1d",
+          "author": "dragi19",
+          "body": "Do you have an MVP or a Minimum Lovable Product (is the web app such)? If yes, I think you should launch with it. \nIf you need $1.5-3M just for the first version... sounds too much for me, but maybe I underestimate something technical. ",
+          "score": 5
+        },
+        {
+          "id": "p8p27g6",
+          "author": "Deistermind",
+          "body": "I think there’s a question underneath “fundraising vs. community building” that may be more important:\n\n**What exactly does the next $1.5M buy you?**\n\nNot in terms of developers, legal, infrastructure etc., but in terms of **de-risking the company**.\n\nI would turn the $1.5–3M estimate into a milestone-based capital plan:\n\n**Capital → milestone → evidence created → next financing position**\n\nFor example:\n\n* $X gets the core infrastructure to production quality\n* $Y gets the compliance/legal layer completed\n* $Z gets the first specific segment live\n* that should produce N active users / customers / transactions / revenue or whatever the relevant proof is\n\nThen ask whether you actually need the full $3M before any of those milestones can be demonstrated.\n\nMaybe you do. But “$1.5M minimum, $3M comfortably” is very different from being able to tell an investor:\n\n**“This round gets us from validated problem to this specific commercial milestone with 18 months of runway.”**\n\nI would also keep building the community, but change what you’re trying to get from it.\n\nRight now “people are excited and asking when you launch” is encouraging, but investors will value stronger evidence much more:\n\n* qualified users willing to become design partners\n* LOIs or other credible commitment\n* willingness-to-pay data\n* distribution/provider commitments\n* measurable usage/results from the validation product\n\nIn other words, use the community to turn qualitative validation into **investable evidence**.\n\nI wouldn’t worry too much about exposing the broad idea. If the real moat is the relationships, distribution, execution and industry knowledge you described, those are harder to copy than the concept itself.\n\nAnd I wouldn’t wait for investors to “discover” you through community traction. I’d probably run both tracks in parallel, but make them reinforce each other:\n\n**community → stronger evidence → better fundraising story → capital → faster delivery.**\n\nOne thing I would challenge before raising, though, is the $100B market framing. For the first round I’d care much more about the narrow initial wedge you can realistically win and the economics of that wedge than the total industry size.\n\nIf you can clearly show what the first $1.5M unlocks, what measurable milestone it creates and why that materially reduces the next investor’s risk, fundraising becomes a much more concrete conversation.",
+          "score": 2
+        },
+        {
+          "id": "p8p9fvc",
+          "author": "Ancient-Day-6682",
+          "body": "two years of research and $1.3B of competitors who still can't take majority share is the same fact twice, and it points at something you're reading backwards.\n\nsix funded players fighting for ten years without one of them consolidating usually doesn't mean there's a gap they all missed. it means the market resists winner-take-all, which is a structural thing, not an execution thing. fragmented markets stay fragmented. that's survivable as a business and brutal as a venture story, and it changes who you should be raising from.\n\non the $1.5-3M for v1: name the smallest piece of the product that a user would pay for on its own. if there isn't one, that's the actual finding from your two years, and it's worth knowing now.\n\nthe trap: treating \"i understand this industry better than incumbents\" as an advantage. it's table stakes. the incumbents understand it too and still can't win. what do you have that they'd struggle to copy inside twelve months?",
+          "score": 1
+        },
+        {
+          "id": "p8pntp4",
+          "author": "yogthinks",
+          "body": "Ten years and $1.3B with nobody holding a majority is telling you this market doesn't consolidate. That's an argument against raising to outspend them, not for it.",
+          "score": 1
+        },
+        {
+          "id": "p8po2ie",
+          "author": "Traditional_Key8982",
+          "body": "You may be closer to the answer than you think. I wouldn't stop building the community, but I also wouldn't keep expanding awareness without creating a way to capture and measure that demand. If people are repeatedly asking, \"When can I use it?\", try turning that interest into something tangible: a waitlist, design partners, beta commitments, LOIs, pre-launch interviews, or even a smaller paid version of the product if possible. The key question for me would be: **Can you demonstrate that people don't just like the idea, but are willing to commit time, money, or access to use it?** That kind of traction could also make fundraising easier. \"We have validated the idea\" is less compelling than being able to say, \"We have X people on the waitlist, Y active design partners, and Z customers/users ready to onboard when we launch.\" I also wouldn't feel pressured to reveal every insight you've learned. Sharing the problem and your perspective can build a community without giving away the entire execution strategy. Execution, relationships, and distribution are usually much harder to copy than an idea anyway. Personally, I'd focus on both, but with fundraising becoming a result of traction rather than a completely separate activity. Build the community, capture the demand, create measurable milestones, and use those milestones to make investor conversations easier. Also, before assuming you need $1.5M–$3M upfront, I'd seriously ask whether there is a narrower version of the marketplace or infrastructure you can launch first. The faster you can get something into users' hands, the more leverage you'll have with both customers and investors. It sounds like your biggest problem right now isn't lack of validation. It's turning that validation into a repeatable path to launch.",
+          "score": 1
+        },
+        {
+          "id": "p8pu6a0",
+          "author": "ceyhunkarslan",
+          "body": "Validation tells you the problem is real, not that the buying path is repeatable. Pick one narrow user group and sell the same outcome manually until three people pay without a custom explanation.",
+          "score": 1
+        },
+        {
+          "id": "p8qtk6k",
+          "author": "Norsu_Media_UK",
+          "body": "I think I'd add one more thing before deciding how hard to push the fundraising: pressure-test the $1.5M number with the technical plan.\n\nSit down with your CTO and break the build into actual engineering milestones, infrastructure costs and the point where each piece becomes usable. That may show you that some of the capital is genuinely required upfront, but it might also reveal parts you can defer until you have more usage data.\n\nYou don't necessarily need to reduce the ambition of the product. You just want to know which costs are unavoidable to launch and which are costs you're choosing because they'd make the eventual product better or easier to scale.\n\nThat would also give you a much stronger answer when someone asks, “Why do you need $1.5M?” because you can explain the technical requirement rather than just the size of the team or the amount of runway you want.",
+          "score": 1
+        },
+        {
+          "id": "p8saqie",
+          "author": "Apprehensive_Use7047",
+          "body": "Can you simplify the first build? Cut scope and launch now even if it's not perfect. \nCan you provide value to those asking for the launch date before the product is there? Keeping them engage and starting to help with their problems now. \nSeems like you have done a great job on the validation, but need to cut the noise and reduce scope for your initial launch. ",
+          "score": 1
+        },
+        {
+          "id": "p8tb9yg",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "p8um6f3",
+          "author": "Square-Chance5900",
+          "body": "Hi, this might not be useful, but I do want to share. You're talking about raising 1-3M USD having spent 2 years to learn the industry.\n\nOn the other hand I know examples where a random academic person doing quantum schmantum (which as most community agrees is unlikely to produce anything useful over the next 10-20 years) got that kind of money for some toy experiments.\n\nJust recently a startup from Poland got 75M USD to develop an agent who will replace all office work, because it can connect to slack and email. I mean this is like the first thing that people tried to do with LLMs and so far success has been extremely limited.\n\nSo my question is: how does it happen that some people manage to raise lots even though the idea is well-known and there is no extra technical expertise? While some people struggle to raise even though they seem to know the industry and have traction? It just seems to make no sense",
+          "score": 1
+        },
+        {
+          "id": "p8uvswc",
+          "author": "dreambridge_app",
+          "body": "I hit the same stall after polite yeses. I built the capture step first because the rest of the product never survived the morning. How are you measuring whether people come back on day 2, not just that they said they would use it?",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wbh5hr",
+      "name": "t3_1wbh5hr",
+      "title": "I will not promote but im confused what my founder wants from me",
+      "subreddit": "startups",
+      "author": "AdFar9929",
+      "score": 0,
+      "num_comments": 3,
+      "created_utc": 1788947668.0,
+      "permalink": "/r/startups/comments/1wbh5hr/i_will_not_promote_but_im_confused_what_my/",
+      "url": "https://www.reddit.com/r/startups/comments/1wbh5hr/i_will_not_promote_but_im_confused_what_my/",
+      "selftext": "So i joined as intern in an early stage startup right now it’s just me and my founder and rest of the people are stakeholders. When i was about to join he told me about me getting chance to become founding engineer and getting esops. Now it’s been 6 months and he wants me to have more clarity. He asked me a question what would you do if i disappeared and you have to handle everything. He said because i do not have the clarity for things im not founding engineer material even though he has talked with the board about it and they do not have confidence on me even when i have delivered everything. Im just confused as a founding engineer what should be the clarity that this founder is looking for. Help me guys really need it",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbll4b",
+      "name": "t3_1wbll4b",
+      "title": "Founder meetup in TX",
+      "subreddit": "Entrepreneur",
+      "author": "mickypaigejohnson",
+      "score": 10,
+      "num_comments": 16,
+      "created_utc": 1788960449.0,
+      "permalink": "/r/Entrepreneur/comments/1wbll4b/founder_meetup_in_tx/",
+      "url": "https://www.reddit.com/r/Entrepreneur/comments/1wbll4b/founder_meetup_in_tx/",
+      "selftext": "I live in Frisco TX and am starting a meet-up group for founders and co founders to meet monthly for networking, accountability, and bashing each other's stuff. Let's share demos and talk shop, maybe your co-founder will be there too and you can meet. \n\nI am looking for a technical co-founder and hope doing something like this will stimulate that.\n\nThere are lots of curated startup events, but I'm hoping this will be more casual and more direct, for founders and potential co-founders only. \n\nCheers. DM for an invite, tomorrow will be my first meet-up. ",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8qz7cj",
+          "author": "Sea_Cry_1508",
+          "body": "nice, frisco area is growing fast for this kind of thing. are you filtering for people who already have something in progress or is it open to idea stage folks too?",
+          "score": 2
+        },
+        {
+          "id": "p8r72gm",
+          "author": "Explorer_963_",
+          "body": "I intend to transform the university education system into an innovative, digital experience focused on practical application and hands-on training rather than theoretical courses. Is there anyone out there who supports this idea?",
+          "score": 1
+        },
+        {
+          "id": "p8rbdcm",
+          "author": "kangaroo0013",
+          "body": "this sounds awesome! it's a shame that i'm not from there, but i'd like to keep you guys in mind, maybe we could do a city collaboration if things get traction! i'd love to connect",
+          "score": 1
+        },
+        {
+          "id": "p8sthd7",
+          "author": "nerdynmaddy",
+          "body": "U got sum in AZ I recently moved here !!",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wbw462",
+      "name": "t3_1wbw462",
+      "title": "How to scale short form content editing agency beyond $1k/MRR",
+      "subreddit": "Entrepreneur",
+      "author": "ifeelanime",
+      "score": 9,
+      "num_comments": 13,
+      "created_utc": 1788983192.0,
+      "permalink": "/r/Entrepreneur/comments/1wbw462/how_to_scale_short_form_content_editing_agency/",
+      "url": "https://www.reddit.com/r/Entrepreneur/comments/1wbw462/how_to_scale_short_form_content_editing_agency/",
+      "selftext": "I started a short form content editing agency 5-6 months ago. Initially had few clients asking for single reel edits and later down the road I tried productising the service and offered 20 reel edits for $379 per month. \n\nComing back to present time, I have 3 clients on that plan. This is going fine but I need to scale this. \n\nI am thinking of cold emailing but not sure if it works in current times. \n\nI would appreciate any suggestions on how I can reach potential prospect clients to pitch my services to. \n\nThanks!",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8tan8h",
+          "author": "Perllitte",
+          "body": "I'd pick a niche and prospect within strict guardrails. It's trite advice, I know, but it works. \n\nIf you can make high-quality, converting content for Jim Bob Cement Repair, you can leverage that when selling to Joe Bill Cement Renovations with real-world numbers and visuals. It's also easier to find people in a niche at conferences, meetups, etc, and you can make specific claims in their lingo. \n\nIf your three clients are in disparate niches, just build the same kind of campaign for each, look for similar people/companies and see which one resonates best and focus. \n\nBut if you want to stay business agnostic, get your best converting videos on your phone and go to some networking events. I haven't looked lately, but one of the top things business owners say they struggle to find time for is marketing. Say you can walk them through the basics of one 15-minute shoot with an output of two videos for free and I'd bet if you're good and your process is seamless, you convert a lot of folks. \n\n",
+          "score": 4
+        },
+        {
+          "id": "p8teqmj",
+          "author": "Oxxypoxi",
+          "body": "As said above  \nSpecific niche  \nUse cases for them  \nPromotion in the related  \nCommunities ",
+          "score": 2
+        },
+        {
+          "id": "p8tzqgu",
+          "author": "Dry-Local-4335",
+          "body": "$379 for 20 reels? That's like $19 per edit, way too low for professional editing unless you're adding zero value. Either charge more or scale way, way up.",
+          "score": 1
+        },
+        {
+          "id": "p8udxw5",
+          "author": "seth_bingo",
+          "body": "If you're gonna cold e-mail, look for creators or businesses that are similar to those you're already doing and offer examples of your work. \n\nAlso you might need to start thinking about revising your prices, $379 is really undervalued for that much content even if you add nothing. ",
+          "score": 1
+        },
+        {
+          "id": "p8uea1m",
+          "author": "Less-Permission-9529",
+          "body": "379 for 20 reels? that's slave labour mate.",
+          "score": 1
+        },
+        {
+          "id": "p8umpym",
+          "author": "Impossible-Way5740",
+          "body": "At three clients the fastest path is usually the portfolio doing the pitching: ask current clients for referrals into their founder circles, since short-form buyers cluster. Cold email can still work for agencies, but the reply rates live and die on showing a before/after in the first line - the work itself is the subject line.",
+          "score": 1
+        },
+        {
+          "id": "p8uv8i0",
+          "author": "Smooth-Vehicle547",
+          "body": "Cold emailing can still work, but have you considered running targeted ads? It's easier to measure ROI and scale faster.",
+          "score": 1
+        }
+      ]
+    }
+  ]
+}
