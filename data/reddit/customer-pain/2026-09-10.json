@@ -522,7 +522,7 @@
       "title": "Avoid LegalZoom for your LLC",
       "subreddit": "smallbusiness",
       "author": "bobscofan",
-      "score": 11,
+      "score": 9,
       "num_comments": 6,
       "created_utc": 1788992079.0,
       "permalink": "/r/smallbusiness/comments/1wc06cf/avoid_legalzoom_for_your_llc/",
@@ -539,7 +539,7 @@
       "title": "What's the worst marketing expense you've made for your business?",
       "subreddit": "smallbusiness",
       "author": "anshhh_0",
-      "score": 12,
+      "score": 14,
       "num_comments": 29,
       "created_utc": 1788983326.0,
       "permalink": "/r/smallbusiness/comments/1wbw6g2/whats_the_worst_marketing_expense_youve_made_for/",
@@ -554,7 +554,7 @@
           "id": "p8tc67o",
           "author": "TheUglyWeb",
           "body": "I spent $4,000 to promote a banner ad in a popular forum for a SaaS business and have gotten absolutely zero signups. Looking back, I would do what I'm doing now, which is having a telemarketer spend that same amount of money to actually reach out personally to several thousand people, and I'm starting to get more traction as a result. ",
-          "score": 13
+          "score": 14
         },
         {
           "id": "p8tc2x7",
@@ -572,7 +572,7 @@
           "id": "p8tlh2i",
           "author": "Fortestingporpoises",
           "body": "When I started a dog walking company I'd just worked for another company and my previous boss was very helpful in many ways. More than she needed to be.  One of the pieces of advice she gave me that didn't pan out was to do yelp ads. I did it at the lowest cost for a year but man it didn't pay off.   And they've been hounding me ever since. For 12 years hahah.  Every fucking time a new yelp ad person takes over this area I get calls and emails telling me how they can help me.",
-          "score": 5
+          "score": 6
         },
         {
           "id": "p8ueij8",
@@ -1113,12 +1113,12 @@
       "title": "Server hard-resets every 728.4 minutes ±1 min, 12 times running. No bugcheck, no iDRAC SEL entry, timer survives reboots. I'm out of ideas.",
       "subreddit": "sysadmin",
       "author": "raobjcovtn",
-      "score": 385,
-      "num_comments": 402,
+      "score": 421,
+      "num_comments": 423,
       "created_utc": 1788985521.0,
       "permalink": "/r/sysadmin/comments/1wbx86x/server_hardresets_every_7284_minutes_1_min_12/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1wbx86x/server_hardresets_every_7284_minutes_1_min_12/",
-      "selftext": "UPDATE 1 (3 hours later): Wow this was a lot more comments than I was expecting to get. Its hard to answer everyone but I appreciate everyone commenting and providing feedback. For now what I have done is updated IDRAC and BIOS to the latest version and will monitor if this fixes the issue. If it does not I will try ruling out the UPS. Thanks again!\n\n===========\n\nDell PowerEdge T340, Windows Server 2016. Started 8/28. I've spent two weeks on this and ruled out most of the obvious stuff, so I'm posting the data rather than the symptoms.\n\n## The signature\n\nEvery event is **Kernel-Power 41 with `BugcheckCode: 0`** and all bugcheck parameters `0x0`. No BSOD, no minidump, no MEMORY.DMP, ever. Paired with Event 6008 confirming unexpected shutdown.\n\n## The interval — this is the actual mystery\n\nPulled the true shutdown timestamps out of the Event 6008 message text (not the Event 41 log time, which is written on the *following* boot):\n\n\n8/28 11:03:24 AM -> 8/28 11:12:23 PM  =   729.0 min\n\n9/01 10:10:22 AM -> 9/01 10:18:37 PM  =   728.3 min\n\n9/01 10:18:37 PM -> 9/02 10:26:49 AM  =   728.2 min\n\n9/02 10:26:49 AM -> 9/02 10:35:13 PM  =   728.4 min\n\n9/02 10:35:13 PM -> 9/03 10:43:33 AM  =   728.3 min\n\n9/03 10:43:33 AM -> 9/03 10:52:09 PM  =   728.6 min\n\n9/03 10:52:09 PM -> 9/04 11:00:20 AM  =   728.2 min\n\n9/04 11:00:20 AM -> 9/04 11:08:49 PM  =   728.5 min\n\n9/04 11:08:49 PM -> 9/07 11:50:29 AM  = 3,641.7 min   <-- exactly 5 x 728.34\n\n9/07 11:50:29 AM -> 9/07 11:59:49 PM  =   729.3 min\n\n9/07 11:59:49 PM -> 9/08 12:07:56 PM  =   728.1 min\n\n9/08 12:07:56 PM -> 9/09 12:16:26 AM  =   728.5 min\n\n9/09 12:16:26 AM -> 9/09 12:24:36 PM  =   728.2 min\n\n\nMean **728.47 min** (12h 08m 28s). Total spread across twelve occurrences: **1.2 minutes.**\n\n**The 3,641.7 minute gap is exactly five periods.** The server was up continuously across that weekend. The timer ticked five times, did nothing on four of them, then killed the box on the fifth. So it's free-running — it does **not** reset on reboot, and it doesn't require a crash to keep counting.\n\nThat single fact kills every \"scheduled task\" theory: a clock-based task can't skip four consecutive firings and then work again.\n\n## It dies instantly — no degradation whatsoever\n\nI wrote a heartbeat logger that writes one line every 5s with a forced flush so the last line survives a hard reset. Final 42 samples before death:\n\n- Free RAM: **56,630–56,745 MB**, dead flat. No drift, no staircase, no leak. 56 GB free at the moment of death.\n- Nonpaged pool: **346–352 MB**, flat\n- Disk queue: **0**\n- Handles ~76,000, threads ~190, both steady\n- CPU spiky but low\n\nLast heartbeat 12:25:02. Kernel-General 12 (OS start) at 12:28:23. That 3m21s is just POST + boot on a T340 — if it had hung for 3 minutes first, the OS wouldn't have returned until ~12:31.\n\n**So there is no hang window.** The box is perfectly healthy and then simply ceases to exist mid-second. Which also means NMI crash dumps are useless here and no dump will ever be written.\n\n## Ruled out (with evidence, please don't re-suggest these)\n\n- **PSUs** — both `Present`/`Healthy` in iDRAC, matched 594W in / 495W rated+actual, same firmware\n- **Thermal** — HWiNFO max CPU package 63°C (TjMax ~100°C). Every throttle flag reads No / 0%\n- **iDRAC SEL** — **completely silent** across all 15 crashes. Not one entry. This same board *did* log real \"power input for PSU 1 is lost / redundancy lost\" events six times in 2024, so it demonstrably captures genuine power events. Nothing this time.\n- **iDRAC watchdog / ASR** — Basic Management license, feature not present\n- **Dell OMSA** — `Action on Hung OS Detection: None`, thermal shutdown Disabled, all alert actions Off, `omsad` service Stopped + Disabled\n- **Windows Update** — pulled full resolved WindowsUpdate.log (11,871 lines), programmatically checked ±15 min around every crash. **Zero WU activity before any of them.** All nearby entries are the WU service *starting* 30–60s after the reboot.\n- **CrowdStrike Falcon** (installed 8/26, two days before onset) — vendor pulled detection history, found nothing. Timing was coincidence.\n- **`Secure-Boot-Update` scheduled task** — looked extremely promising (12h repetition, hangs, TPM handler, and this box has **no TPM installed** — `Get-Tpm` fails with TBS_E_SERVICE_NOT_RUNNING, no TBS service, no SecurityDevices PnP class, iDRAC confirms \"TPM not present\"). Disabled it. **Crashes continued at the identical interval.** Ruled out.\n- **All 12-hour scheduled tasks** — enumerated every task with `PT12H` repetition. Exactly two exist, both now Disabled.\n- **VSS / ShadowCopyVolume task** — fires 12:00 PM and 10:00 PM. That's 10h then 14h alternating, which cannot produce a constant 728.4 min spacing. Also the midnight crashes have no trigger anywhere near them.\n- **MySQL / memory exhaustion** — flatly contradicted by the flat memory trace above\n- **NIC** — Broadcom BCM5720. The flapping port is physically disconnected (`NIC2`, Status: Disconnected). Flapping predates crashes by 12+ days and occurs on no-crash days. Active port is stable at 1 Gbps.\n- **CMOS battery** — did fail, but only logged 9/7, weeks after onset, nothing near the crash dates. Replacing anyway.\n- **BSOD** — no Event 1001, no dumps, `BugcheckCode: 0` on all 15\n\n## Environment\n\n- PowerEdge T340, Service Tag FXR6B03, BIOS **2.3.5**, iDRAC9 fw **4.22.00.53** (both several revisions behind — not yet updated)\n- Xeon E-2146G, 64 GB RAM, dual PSU\n- Windows Server 2016 Standard, build 14393.9339\n- Workload: Open Dental + MySQL, Vatech EzDent-i imaging, IDrive backup, Google Drive\n- Power: APC Back-UPS XS 1500M via USB. Current-state readings all healthy (97% charge, 120V steady, 15% load, `AC Power: Yes`, `Discharging: No`). **I have never gotten historical transfer data out of it** — PowerChute wasn't installed at the time, `Win32_Battery` returns current state only, and I skipped an apcupsd install on a production box.\n- Internet is AT&T 5G fixed wireless behind CGNAT (irrelevant, but people ask)\n\n## What I think is left\n\nSomething below the OS holding a clock that survives reboots and continuous uptime alike. Candidates I can't distinguish between:\n\n1. **UPS self-test** — APC units run internal self-tests on their own stored schedule, indifferent to the host. A transfer on a degraded battery could sag enough to drop the PSUs. Would explain instant death, no OS warning, no SEL entry, and a clock that ignores reboots. **Next test: move the server to a plain wall outlet for 24h.**\n2. **PSU or BMC firmware timer** — would explain everything except why iDRAC logged nothing\n3. Something on the same electrical circuit cycling on a timer — though 1.2 min spread over 12 occurrences seems too tight for HVAC or similar\n\n## What I'm asking\n\n- **What produces a free-running 728.4-minute (12h 08m 28s) period?** Not 12h. Not 12h30m. Consistently ~8.5 minutes over twelve hours, held to ±1 min across twelve occurrences and five uninterrupted ticks. What re-arms on completion of ~8 minutes of work?\n- Has anyone seen an APC Back-UPS self-test schedule that lands near this?\n- Anything else that hard-resets a PowerEdge with **zero bugcheck, zero SEL entry, and healthy PSUs**?\n- Am I wrong to trust the iDRAC SEL silence as evidence against a power event?\n\nNext predicted failures: **9/10 12:33 AM** and **9/10 12:41 PM**. Happy to run anything and report back — I have remote access and a heartbeat recorder in place.",
+      "selftext": "UPDATE 2 (18 hours later): Welp, it rebooted again on 9/10 12:32:53am.. which is 12h 08m 17s since the last reboot. The timing still held even after I rebooted from installing the BIOS and IDRAC. I will try to rule out the UPS next.\n\nUPDATE 1 (3 hours later): Wow this was a lot more comments than I was expecting to get. Its hard to answer everyone but I appreciate everyone commenting and providing feedback. For now what I have done is updated IDRAC and BIOS to the latest version and will monitor if this fixes the issue. If it does not I will try ruling out the UPS. Thanks again!\n\n===========\n\nDell PowerEdge T340, Windows Server 2016. Started 8/28. I've spent two weeks on this and ruled out most of the obvious stuff, so I'm posting the data rather than the symptoms.\n\n## The signature\n\nEvery event is **Kernel-Power 41 with `BugcheckCode: 0`** and all bugcheck parameters `0x0`. No BSOD, no minidump, no MEMORY.DMP, ever. Paired with Event 6008 confirming unexpected shutdown.\n\n## The interval — this is the actual mystery\n\nPulled the true shutdown timestamps out of the Event 6008 message text (not the Event 41 log time, which is written on the *following* boot):\n\n\n8/28 11:03:24 AM -> 8/28 11:12:23 PM  =   729.0 min\n\n9/01 10:10:22 AM -> 9/01 10:18:37 PM  =   728.3 min\n\n9/01 10:18:37 PM -> 9/02 10:26:49 AM  =   728.2 min\n\n9/02 10:26:49 AM -> 9/02 10:35:13 PM  =   728.4 min\n\n9/02 10:35:13 PM -> 9/03 10:43:33 AM  =   728.3 min\n\n9/03 10:43:33 AM -> 9/03 10:52:09 PM  =   728.6 min\n\n9/03 10:52:09 PM -> 9/04 11:00:20 AM  =   728.2 min\n\n9/04 11:00:20 AM -> 9/04 11:08:49 PM  =   728.5 min\n\n9/04 11:08:49 PM -> 9/07 11:50:29 AM  = 3,641.7 min   <-- exactly 5 x 728.34\n\n9/07 11:50:29 AM -> 9/07 11:59:49 PM  =   729.3 min\n\n9/07 11:59:49 PM -> 9/08 12:07:56 PM  =   728.1 min\n\n9/08 12:07:56 PM -> 9/09 12:16:26 AM  =   728.5 min\n\n9/09 12:16:26 AM -> 9/09 12:24:36 PM  =   728.2 min\n\n\nMean **728.47 min** (12h 08m 28s). Total spread across twelve occurrences: **1.2 minutes.**\n\n**The 3,641.7 minute gap is exactly five periods.** The server was up continuously across that weekend. The timer ticked five times, did nothing on four of them, then killed the box on the fifth. So it's free-running — it does **not** reset on reboot, and it doesn't require a crash to keep counting.\n\nThat single fact kills every \"scheduled task\" theory: a clock-based task can't skip four consecutive firings and then work again.\n\n## It dies instantly — no degradation whatsoever\n\nI wrote a heartbeat logger that writes one line every 5s with a forced flush so the last line survives a hard reset. Final 42 samples before death:\n\n- Free RAM: **56,630–56,745 MB**, dead flat. No drift, no staircase, no leak. 56 GB free at the moment of death.\n- Nonpaged pool: **346–352 MB**, flat\n- Disk queue: **0**\n- Handles ~76,000, threads ~190, both steady\n- CPU spiky but low\n\nLast heartbeat 12:25:02. Kernel-General 12 (OS start) at 12:28:23. That 3m21s is just POST + boot on a T340 — if it had hung for 3 minutes first, the OS wouldn't have returned until ~12:31.\n\n**So there is no hang window.** The box is perfectly healthy and then simply ceases to exist mid-second. Which also means NMI crash dumps are useless here and no dump will ever be written.\n\n## Ruled out (with evidence, please don't re-suggest these)\n\n- **PSUs** — both `Present`/`Healthy` in iDRAC, matched 594W in / 495W rated+actual, same firmware\n- **Thermal** — HWiNFO max CPU package 63°C (TjMax ~100°C). Every throttle flag reads No / 0%\n- **iDRAC SEL** — **completely silent** across all 15 crashes. Not one entry. This same board *did* log real \"power input for PSU 1 is lost / redundancy lost\" events six times in 2024, so it demonstrably captures genuine power events. Nothing this time.\n- **iDRAC watchdog / ASR** — Basic Management license, feature not present\n- **Dell OMSA** — `Action on Hung OS Detection: None`, thermal shutdown Disabled, all alert actions Off, `omsad` service Stopped + Disabled\n- **Windows Update** — pulled full resolved WindowsUpdate.log (11,871 lines), programmatically checked ±15 min around every crash. **Zero WU activity before any of them.** All nearby entries are the WU service *starting* 30–60s after the reboot.\n- **CrowdStrike Falcon** (installed 8/26, two days before onset) — vendor pulled detection history, found nothing. Timing was coincidence.\n- **`Secure-Boot-Update` scheduled task** — looked extremely promising (12h repetition, hangs, TPM handler, and this box has **no TPM installed** — `Get-Tpm` fails with TBS_E_SERVICE_NOT_RUNNING, no TBS service, no SecurityDevices PnP class, iDRAC confirms \"TPM not present\"). Disabled it. **Crashes continued at the identical interval.** Ruled out.\n- **All 12-hour scheduled tasks** — enumerated every task with `PT12H` repetition. Exactly two exist, both now Disabled.\n- **VSS / ShadowCopyVolume task** — fires 12:00 PM and 10:00 PM. That's 10h then 14h alternating, which cannot produce a constant 728.4 min spacing. Also the midnight crashes have no trigger anywhere near them.\n- **MySQL / memory exhaustion** — flatly contradicted by the flat memory trace above\n- **NIC** — Broadcom BCM5720. The flapping port is physically disconnected (`NIC2`, Status: Disconnected). Flapping predates crashes by 12+ days and occurs on no-crash days. Active port is stable at 1 Gbps.\n- **CMOS battery** — did fail, but only logged 9/7, weeks after onset, nothing near the crash dates. Replacing anyway.\n- **BSOD** — no Event 1001, no dumps, `BugcheckCode: 0` on all 15\n\n## Environment\n\n- PowerEdge T340, Service Tag FXR6B03, BIOS **2.3.5**, iDRAC9 fw **4.22.00.53** (both several revisions behind — not yet updated)\n- Xeon E-2146G, 64 GB RAM, dual PSU\n- Windows Server 2016 Standard, build 14393.9339\n- Workload: Open Dental + MySQL, Vatech EzDent-i imaging, IDrive backup, Google Drive\n- Power: APC Back-UPS XS 1500M via USB. Current-state readings all healthy (97% charge, 120V steady, 15% load, `AC Power: Yes`, `Discharging: No`). **I have never gotten historical transfer data out of it** — PowerChute wasn't installed at the time, `Win32_Battery` returns current state only, and I skipped an apcupsd install on a production box.\n- Internet is AT&T 5G fixed wireless behind CGNAT (irrelevant, but people ask)\n\n## What I think is left\n\nSomething below the OS holding a clock that survives reboots and continuous uptime alike. Candidates I can't distinguish between:\n\n1. **UPS self-test** — APC units run internal self-tests on their own stored schedule, indifferent to the host. A transfer on a degraded battery could sag enough to drop the PSUs. Would explain instant death, no OS warning, no SEL entry, and a clock that ignores reboots. **Next test: move the server to a plain wall outlet for 24h.**\n2. **PSU or BMC firmware timer** — would explain everything except why iDRAC logged nothing\n3. Something on the same electrical circuit cycling on a timer — though 1.2 min spread over 12 occurrences seems too tight for HVAC or similar\n\n## What I'm asking\n\n- **What produces a free-running 728.4-minute (12h 08m 28s) period?** Not 12h. Not 12h30m. Consistently ~8.5 minutes over twelve hours, held to ±1 min across twelve occurrences and five uninterrupted ticks. What re-arms on completion of ~8 minutes of work?\n- Has anyone seen an APC Back-UPS self-test schedule that lands near this?\n- Anything else that hard-resets a PowerEdge with **zero bugcheck, zero SEL entry, and healthy PSUs**?\n- Am I wrong to trust the iDRAC SEL silence as evidence against a power event?\n\nNext predicted failures: **9/10 12:33 AM** and **9/10 12:41 PM**. Happy to run anything and report back — I have remote access and a heartbeat recorder in place.",
       "is_self": true,
       "over_18": false,
       "is_video": false,
@@ -1259,8 +1259,8 @@
       "title": "I'm 1 1/2 years into IT and drowning",
       "subreddit": "sysadmin",
       "author": "PrezOompaLoompa",
-      "score": 91,
-      "num_comments": 64,
+      "score": 98,
+      "num_comments": 73,
       "created_utc": 1788987015.0,
       "permalink": "/r/sysadmin/comments/1wbxx1b/im_1_12_years_into_it_and_drowning/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1wbxx1b/im_1_12_years_into_it_and_drowning/",
@@ -1563,7 +1563,7 @@
       "subreddit": "sysadmin",
       "author": "scottyd990",
       "score": 32,
-      "num_comments": 38,
+      "num_comments": 41,
       "created_utc": 1788982541.0,
       "permalink": "/r/sysadmin/comments/1wbvt6j/microsoft_publisher_eol/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1wbvt6j/microsoft_publisher_eol/",
@@ -2404,8 +2404,8 @@
       "title": "I got scammed by Ray (Rayinthedarkk on Whop and ig)",
       "subreddit": "ecommerce",
       "author": "paovillegas5",
-      "score": 9,
-      "num_comments": 12,
+      "score": 12,
+      "num_comments": 18,
       "created_utc": 1788996828.0,
       "permalink": "/r/ecommerce/comments/1wc25cf/i_got_scammed_by_ray_rayinthedarkk_on_whop_and_ig/",
       "url": "https://www.reddit.com/r/ecommerce/comments/1wc25cf/i_got_scammed_by_ray_rayinthedarkk_on_whop_and_ig/",
@@ -2413,7 +2413,51 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8v9ggp",
+          "author": "Leviathant",
+          "body": "I know this has downvotes, but I'm going to leave it up because apparently people are still getting jammed up in this kind of BS. ",
+          "score": 1
+        },
+        {
+          "id": "p8unp0e",
+          "author": "WhisperSafe",
+          "body": "I dont understand how people fall for shit like this\n\nIF SOMEONE WAS ABLE TO DO SOEMTHING THEY WOULD DO IT THEMSELVES\n\nNo \"guru\" or get rich quick asshole is here to help you. YOURE their product.\n\nEveryone take this story to heart. \n\nIf someone operates solely on ig and discord DO NOT GIVE THEM YOUR MONEY. DO NOT GIVE \"HUSTLERS\" YOUR MONEY!!!!\n\nThere is a huge difference between giving advertising/marketing firms your money and listening to social media gurus. ",
+          "score": 28
+        },
+        {
+          "id": "p8ulos4",
+          "author": "Relevant_Aside1518",
+          "body": "if a \"universal debt collection team\" actually existed it'd be the first thing to show up on google and they'd have a proper name not some vague threat. that's just a dude in his room trying to panic you into dropping it\n\n  \nchargeback with your bank and let them handle it, whop clearly doesn't give a damn after the sale",
+          "score": 8
+        },
+        {
+          "id": "p8z7yzx",
+          "author": "Signalbridgedata",
+          "body": "That sounds rough, especially the part where the promised outcome seems to have been very different from what was actually delivered. I'd save everything now, screenshots of the original promises, invoices, payment records, Discord messages and the refund conversation, rather than relying on the platform's copy of the chat. For anyone hiring an ecommerce service, I think the useful lesson is to get the exact deliverables, timeline, refund terms and what \"guaranteed\" actually means in writing before paying. Revenue guarantees are particularly worth treating skeptically unless the conditions are extremely clear.\n\n**Questions:**  \nWere the $10k-$15k claims actually written down before you paid, or were they only said in calls/DMs? Did the agreement spell out exactly what work you were supposed to receive?",
+          "score": 2
+        },
+        {
+          "id": "p8y9a46",
+          "author": "VillageHomeF",
+          "body": "if you have the notion to pay a dime to someone on instagram you should consult with an adult first.  every single one is a scam.  why don't you know that?",
+          "score": 1
+        },
+        {
+          "id": "p8z508a",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "p902fxr",
+          "author": "Crustypooprat",
+          "body": "Do a chargeback with your bank and show all these statements, I got scammed once and did this and got my money back ",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1wbkrja",
@@ -2715,8 +2759,8 @@
       "title": "Help , I'm always sleepy and can't study all day,",
       "subreddit": "productivity",
       "author": "Interesting-Bank-618",
-      "score": 15,
-      "num_comments": 23,
+      "score": 17,
+      "num_comments": 24,
       "created_utc": 1788994349.0,
       "permalink": "/r/productivity/comments/1wc153x/help_im_always_sleepy_and_cant_study_all_day/",
       "url": "https://www.reddit.com/r/productivity/comments/1wc153x/help_im_always_sleepy_and_cant_study_all_day/",
@@ -2730,19 +2774,19 @@
           "id": "p8ugr4d",
           "author": "YukariYakum0",
           "body": "Let's start with going to bed 1-2 hours earlier and see what happens.",
-          "score": 15
+          "score": 18
         },
         {
           "id": "p8uplil",
           "author": "deeptravel2",
           "body": "You need to go to bed earlier. Stop caffeine earlier. Your personal circadian rhythm seems to be more early-bird. \n\nYou might also investigate sleep apnea, which is common. ",
-          "score": 8
+          "score": 9
         },
         {
           "id": "p8uh38g",
           "author": "shinykaci",
           "body": "i'm always tired no matter how much sleep I get. i've heard it could be sleep apnea but haven't gotten tested for it yet. ",
-          "score": 3
+          "score": 4
         },
         {
           "id": "p8ulcm8",
@@ -2886,8 +2930,8 @@
       "title": "Looking for an screen time app that will let me exclude apps",
       "subreddit": "productivity",
       "author": "justkwjjwnssnnssn",
-      "score": 3,
-      "num_comments": 13,
+      "score": 5,
+      "num_comments": 15,
       "created_utc": 1788991049.0,
       "permalink": "/r/productivity/comments/1wbzq0u/looking_for_an_screen_time_app_that_will_let_me/",
       "url": "https://www.reddit.com/r/productivity/comments/1wbzq0u/looking_for_an_screen_time_app_that_will_let_me/",
@@ -2983,7 +3027,7 @@
       "subreddit": "productivity",
       "author": "Hefty-While-9995",
       "score": 1,
-      "num_comments": 12,
+      "num_comments": 16,
       "created_utc": 1788985063.0,
       "permalink": "/r/productivity/comments/1wbx0df/do_you_use_your_project_management_tool_for/",
       "url": "https://www.reddit.com/r/productivity/comments/1wbx0df/do_you_use_your_project_management_tool_for/",
@@ -3067,7 +3111,7 @@
       "title": "Can I Start a Freelancing Career? What tech stack to build?",
       "subreddit": "Freelancers",
       "author": "RelationshipSad4168",
-      "score": 4,
+      "score": 3,
       "num_comments": 5,
       "created_utc": 1788987206.0,
       "permalink": "/r/Freelancers/comments/1wby05r/can_i_start_a_freelancing_career_what_tech_stack/",
@@ -3288,8 +3332,8 @@
       "title": "Bookstore: why even bother to open one if owner compensation is just about ~4%",
       "subreddit": "smallbusiness",
       "author": "IllBreakfast619",
-      "score": 47,
-      "num_comments": 93,
+      "score": 58,
+      "num_comments": 104,
       "created_utc": 1789002783.0,
       "permalink": "/r/smallbusiness/comments/1wc4gr9/bookstore_why_even_bother_to_open_one_if_owner/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1wc4gr9/bookstore_why_even_bother_to_open_one_if_owner/",
@@ -3303,43 +3347,55 @@
           "id": "p8v34sw",
           "author": "C0mpL1c1t",
           "body": "Some people wish to be their own boss running a small business in their community, selling something they love.  Not all small business owners are doing it to “get rich”. ",
-          "score": 297
-        },
-        {
-          "id": "p8v317b",
-          "author": "General_Exception",
-          "body": "High volume, low margin.\n\nUltimately it depends on a number of factors, such as total gross volume of sales.",
-          "score": 26
+          "score": 375
         },
         {
           "id": "p8v3t74",
           "author": "zirconst",
           "body": "I would imagine most bookstore owners own & run one because they love books, not as a vehicle to making money fast. There are more efficient ways to do that! It just so happens that opening a bookstore is a *relatively* easy thing to do, and there are a lot of folks passionate about books.\n\nThink about why the barrier to entry is so low here, too. You don't need to worry about liquor licenses or food inspectors. You don't need to learn a trade or have an advanced degree. You don't need complex software systems, CRMs, or sales teams. Your products are all completely non-perishable. You can buy inventory extraordinarily cheap or even find it for free. ",
-          "score": 23
+          "score": 30
+        },
+        {
+          "id": "p8v317b",
+          "author": "General_Exception",
+          "body": "High volume, low margin.\n\nUltimately it depends on a number of factors, such as total gross volume of sales.",
+          "score": 28
         },
         {
           "id": "p8v5ikt",
           "author": "Cool_Log_4514",
           "body": "After \\~6 years I started making enough to live on, but I’m never going to be anywhere close to rich. Do not open a bookstore if you want to make a lot of money. ",
+          "score": 21
+        },
+        {
+          "id": "p8v8eiq",
+          "author": "newbblock",
+          "body": "It may surprise you to learn that some people would rather makes less money but do something that fulfills them. \n\nI was working in corporate America with an income that put me in the top 5% or earners in the country but I was MISERABLE. Now run a small business making less than half what I used to but I’m so much happier. Saved my life.",
           "score": 15
         },
         {
           "id": "p8v7qi2",
           "author": "3pinripper",
           "body": "Independent bookstores seem to only exist as:  \n1. a post-retirement thing to do   \n2. something for doctor’s/lawyer’s/financial advisor’s wife to own   \n3. it’s actually a real estate investment   \n4. some combo of the 3",
-          "score": 13
-        },
-        {
-          "id": "p8v8eiq",
-          "author": "newbblock",
-          "body": "It may surprise you to learn that some people would rather makes less money but do something that fulfills them. \n\nI was working in corporate America with an income that put me in the top 5% or earners in the country but I was MISERABLE. Now run a small business making less than half what I used to but I’m so much happier. Saved my life.",
-          "score": 11
+          "score": 14
         },
         {
           "id": "p8v5b8n",
           "author": "CricktyDickty",
           "body": "People don’t open book stores to make money.",
           "score": 9
+        },
+        {
+          "id": "p8v7ez9",
+          "author": "the-BBC-news",
+          "body": "Opening any small brick & mortar business is riskier than the stock market — by a long shot. You’re guaranteeing your lease and any loans with your own personal assets and it can trigger a business and personal bankruptcy if profit and sales don’t build and sustain.\n\nBookstores making a lot of money are working every angle: there’s a coffee shop or bar inside, hosting ticketed events, etc.\n\nMany “main street” shops are really hobbies for people with wealthy spouses. The owner gets a passion project and the spouse gets a tax loss write down for at least 3 years before the IRS reclassifies the biz.\n\nI assume 4% would be net profit and the owner would be taking a salary as part of the $480k in annual expenses? But then you’re paying yourself because you have a full time job and work 6-7 days a week at your bookshop.",
+          "score": 7
+        },
+        {
+          "id": "p8v8otr",
+          "author": "bro69",
+          "body": "Some people love books ",
+          "score": 6
         }
       ]
     },
@@ -3349,8 +3405,8 @@
       "title": "Having ethics and running a business",
       "subreddit": "smallbusiness",
       "author": "dariashotpants",
-      "score": 20,
-      "num_comments": 34,
+      "score": 38,
+      "num_comments": 51,
       "created_utc": 1789010683.0,
       "permalink": "/r/smallbusiness/comments/1wc7eim/having_ethics_and_running_a_business/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1wc7eim/having_ethics_and_running_a_business/",
@@ -3364,42 +3420,66 @@
           "id": "p8vrwev",
           "author": "PalpitationKind8854",
           "body": "I feel like you just need to balance how many people you can help directly as you scale / grow.\n\nBeautiful question to ask tho, cause I feel not many business owners genuinely care about this topic and have an ego / arrogant for some reason.",
-          "score": 19
+          "score": 38
         },
         {
           "id": "p8vs7oc",
           "author": "Kamikazepyro9",
           "body": "I put my money where my ethics are. \n\nAdvertising is unfortunately what it is,\n\nBut I don't purchase through Amazon except for 1 vendor of mine who uses Amazon exclusively as a distributor. \n\nAll my other distributors and vendors I order from directly. \n\nI research the ownership of every company I rep and carry, and I sell products I believe in - not promises. ",
-          "score": 14
+          "score": 27
         },
         {
           "id": "p8vtrbe",
           "author": "ConsiderationOld1211",
           "body": "i get it, but ethics in business can’t mean achieving total purity, it’s more about deciding what you refuse to compromise on and not letting the rest eat you alive over every dollar spent л",
-          "score": 6
+          "score": 11
         },
         {
           "id": "p8vtwo0",
           "author": "SweatyAd8914",
           "body": "You’re feeding the beast, yes, but you’re also feeding yourself. Small business thrive in the niches the big guys can’t. Nobody can start a business by standing up their own IT, sales, and management platforms without some form of blood money /s\n\nIf you can find a network of likeminded and wholesome owners, by all means do so. This country lacks that small business unity. I’d love to see more ethical businesses supporting each other. \n\nUnfortunately though, the easy path typically takes you down the road to using corporate slop.",
-          "score": 4
+          "score": 9
         },
         {
           "id": "p8vv2rw",
           "author": "MrMoose_69",
           "body": "The more important thing is whether or not you engage in worker exploitation. \n\nWe can't control that we live in Amazon's world. But we CAN choose whether or not we behave like Amazon ",
-          "score": 3
+          "score": 8
         },
         {
           "id": "p8vul8n",
           "author": "No-Weight1118",
           "body": "the split that helped me is whether the money buys something that stays. ad spend is rented, turn it off and next week is empty, so you pay forever no matter who takes the cut. a direct supplier or a list you own keeps working after you stop paying.\n\nso i only put my foot down where the alternative actually exists, and treat the rest as plain distribution cost. pick two things you refuse to compromise on, let the other ten go, otherwise you pay twice, in cash and then in guilt.",
-          "score": 2
+          "score": 4
         },
         {
           "id": "p8vwn22",
           "author": "stonedandredditing",
           "body": "I am unconventional in that I will pay more, accept a little more inconvenience, and sometimes sacrifice a bit of efficiency, all to avoid feeding the beast where I’m able. I still have to make the occasional Amazon purchase, but I am spending WAY less than I used to (I also got rid of prime, and I rarely shop at Whole Foods.) I do run a few more errands in my attempt to shop locally as much as possible. I have been shifting back to more analog methods of doing things to avoid a lot of subscriptions (I’m in a design field). \n\nDon’t break the bank, but there are absolutely small concessions that are worth making to wean ourselves off of their systems and still run successful businesses. \nI actually believe that it is in all of our collective best interest to at least try, too. It makes me sad when I think about how quickly we could change the system if we collectively shifted our behaviors in the business world. People WANT to see businesses that care again. They want to see businesses that are invested the community, who provide quality products and services, instead of this focus on continuous growth and profits at any and all cost. They also want their favorite businesses to thrive and be around for a long time. It feels like common sense to me. ",
+          "score": 5
+        },
+        {
+          "id": "p8wcdm8",
+          "author": "OldEquation",
+          "body": "Instead of trying to fix the whole world, focus on fixing your part of it. Make sure your own business deals with others in a straightforward and honest manner, don’t screw over your customers, suppliers and staff. ",
+          "score": 4
+        },
+        {
+          "id": "p8wtjmn",
+          "author": "Maximum-Journalist74",
+          "body": "Maybe getting by without paying for ads isn't possible, but surely ditching Amazon would be?",
+          "score": 4
+        },
+        {
+          "id": "p8vu7u9",
+          "author": "Frequent_Pizza_9299",
+          "body": "Take it slow. Idk the necessary evil is more like accessibility and convenience  but if we want to see change we need to stop supporting it. Slowly ween yourself off of it. \nWhatever supplies you're getting off Amazon could be found somewhere else and maybe instead of purchasing through Amazon go with the direct vendor listed, they might have their own site and then they won't have to pay Amazon fees. \nIdk about the meta and google ads. Sorta tough if you feel like you really really need them. Maybe try like local advertisement or sponsorship? Sorry not sure what your selling. ",
+          "score": 2
+        },
+        {
+          "id": "p8vuzrw",
+          "author": "Hannanahbread89",
+          "body": "As someone else mentioned, it's important to figure out how you can balance it out. I also suggest figuring out what your non-negotiables are now rather than waiting until you become more successful. I'm still in the early stages with my business, but I created a document that lists all of the my non-negotiables and things I want to keep in mind as I grow, so that I stay aligned with my values. ",
           "score": 2
         },
         {
@@ -3407,30 +3487,6 @@
           "author": "MossySignal",
           "body": "I think the hardest part is realizing you can’t avoid every compromise, so you have to decide which ones you can actually live with. For me, it’s more about being intentional with where the money goes.",
           "score": 2
-        },
-        {
-          "id": "p8w2q0j",
-          "author": "waverunnersvho",
-          "body": "Necessary evil. I run my business very ethically, but I can’t control anybody else’s. ",
-          "score": 2
-        },
-        {
-          "id": "p8wcdm8",
-          "author": "OldEquation",
-          "body": "Instead of trying to fix the whole world, focus on fixing your part of it. Make sure your own business deals with others in a straightforward and honest manner, don’t screw over your customers, suppliers and staff. ",
-          "score": 2
-        },
-        {
-          "id": "p8wtjmn",
-          "author": "Maximum-Journalist74",
-          "body": "Maybe getting by without paying for ads isn't possible, but surely ditching Amazon would be?",
-          "score": 2
-        },
-        {
-          "id": "p8vu7u9",
-          "author": "Frequent_Pizza_9299",
-          "body": "Take it slow. Idk the necessary evil is more like accessibility and convenience  but if we want to see change we need to stop supporting it. Slowly ween yourself off of it. \nWhatever supplies you're getting off Amazon could be found somewhere else and maybe instead of purchasing through Amazon go with the direct vendor listed, they might have their own site and then they won't have to pay Amazon fees. \nIdk about the meta and google ads. Sorta tough if you feel like you really really need them. Maybe try like local advertisement or sponsorship? Sorry not sure what your selling. ",
-          "score": 1
         }
       ]
     },
@@ -3440,8 +3496,8 @@
       "title": "I took out a $275k EIDL loan in 2020/2021 and I still haven't made a dent in it.",
       "subreddit": "smallbusiness",
       "author": "Adventurous_Egg_9500",
-      "score": 20,
-      "num_comments": 9,
+      "score": 27,
+      "num_comments": 11,
       "created_utc": 1789016756.0,
       "permalink": "/r/smallbusiness/comments/1wc9hcd/i_took_out_a_275k_eidl_loan_in_20202021_and_i/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1wc9hcd/i_took_out_a_275k_eidl_loan_in_20202021_and_i/",
@@ -3457,8 +3513,8 @@
       "title": "To those who powered thru burnout, how did you do it?",
       "subreddit": "smallbusiness",
       "author": "SoupCareful6301",
-      "score": 11,
-      "num_comments": 23,
+      "score": 17,
+      "num_comments": 36,
       "created_utc": 1789017746.0,
       "permalink": "/r/smallbusiness/comments/1wc9t3i/to_those_who_powered_thru_burnout_how_did_you_do/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1wc9t3i/to_those_who_powered_thru_burnout_how_did_you_do/",
@@ -3472,12 +3528,18 @@
           "id": "p8w9rdu",
           "author": "tyler_the_programmer",
           "body": "Delegate. Hire slow, fire fast.",
-          "score": 6
+          "score": 8
         },
         {
           "id": "p8wp6yb",
           "author": "jungleliving",
           "body": "I went through something similar multiple times. 2 years ago I sold my business that I had for 9 years and moved to another country. A month ago i hit a wall on a project I was working on (scaling business for someone else). This time I just needed a 2 week break, rested, figured out and resolved internal resistances, arrived at a point of clarity, and decided that I am open to continuing this project, but in a different configuration. I had to pivot and make big life decisions so many times that I feel like i am getting better and faster at it. I think the most important part is to find your deeper truth and stick with it, sometimes it can be even contrary to what the logic says, but deep inside you know what is true. Therapy is good but it’s kind of a slow method. There are faster methods. If you are willing to go more hardcore, I would suggest a silent meditation retreat (10 days vipassana or something similar). Feel free to DM me if you like, maybe i can offer some pointers.",
+          "score": 3
+        },
+        {
+          "id": "p8wt4uj",
+          "author": "Shiribazu",
+          "body": "i think the biggest thing is to stop treating recovery like another project you need to optimize. if you can, reduce your workload for a while, delegate more, and give yourself permission to do less without immediately deciding whether to sell everything. burnout is often tied to prolonged workload and lack of control, so changing the way you work matters just as much as trying to rest more",
           "score": 3
         },
         {
@@ -3487,9 +3549,15 @@
           "score": 3
         },
         {
-          "id": "p8wt4uj",
-          "author": "Shiribazu",
-          "body": "i think the biggest thing is to stop treating recovery like another project you need to optimize. if you can, reduce your workload for a while, delegate more, and give yourself permission to do less without immediately deciding whether to sell everything. burnout is often tied to prolonged workload and lack of control, so changing the way you work matters just as much as trying to rest more",
+          "id": "p8xlxvn",
+          "author": "Long-Ad3383",
+          "body": "I listen to my body more. I understand the warning signs and close my computer and something else. I know I can’t work through every problem myself and ask for help everyday. \n\nLittle lessons that stack up day by day. ",
+          "score": 2
+        },
+        {
+          "id": "p8xv60y",
+          "author": "GGDATLAW",
+          "body": "I’ve got a different perspective here. My sense is that you have been burned out for a long time. But now you have allowed yourself to feel it. I was in the same place but powered through because I was desperate. I had a family to feed and could not afford the luxury of burnout.\n\nThings are much different for me now. I found what gives me joy in my work and I do as much of that as I can. Stuff I don’t like that I can delegate, I do. But some of it, you can’t give to someone else.\n\nI have come to a place where I love my life. My work is not perfect but it is something I built and I’m proud of that. I still have crap I don’t like but I focus on what I love and hold my nose when I do the stuff that stinks. The shift in perspective changed it all for me.",
           "score": 2
         },
         {
@@ -3499,21 +3567,9 @@
           "score": 1
         },
         {
-          "id": "p8wd54o",
-          "author": "platistocrates",
-          "body": "6 month break and dove into spirituality",
-          "score": 1
-        },
-        {
           "id": "p8wfc17",
           "author": "fishy_4444",
           "body": "Well I powered through then I got serious sick for two years. 🤣 ",
-          "score": 1
-        },
-        {
-          "id": "p8x0wie",
-          "author": "SRiaz14",
-          "body": "Hire someone   \nSell it   \nIf you can’t do both automate the business as much as you can so that you can run it simultaneously",
           "score": 1
         }
       ]
@@ -3524,8 +3580,8 @@
       "title": "Small Business Loans/Financing - BEWARE \"Quantum Lending Solutions\"",
       "subreddit": "smallbusiness",
       "author": "Equivalent-Poetry878",
-      "score": 5,
-      "num_comments": 7,
+      "score": 9,
+      "num_comments": 10,
       "created_utc": 1789002120.0,
       "permalink": "/r/smallbusiness/comments/1wc47x8/small_business_loansfinancing_beware_quantum/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1wc47x8/small_business_loansfinancing_beware_quantum/",
@@ -3541,8 +3597,8 @@
       "title": "After 5 years, I’m considering selling my business. How do you know when it’s time to let go?”",
       "subreddit": "smallbusiness",
       "author": "Purple_Durian8057",
-      "score": 6,
-      "num_comments": 9,
+      "score": 7,
+      "num_comments": 12,
       "created_utc": 1789013762.0,
       "permalink": "/r/smallbusiness/comments/1wc8hjh/after_5_years_im_considering_selling_my_business/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1wc8hjh/after_5_years_im_considering_selling_my_business/",
@@ -3558,8 +3614,8 @@
       "title": "I am lost and need help. I don't know enough and I can't find an environment that fosters growth.",
       "subreddit": "sysadmin",
       "author": "SleepyReepies",
-      "score": 41,
-      "num_comments": 24,
+      "score": 51,
+      "num_comments": 26,
       "created_utc": 1789010114.0,
       "permalink": "/r/sysadmin/comments/1wc77jd/i_am_lost_and_need_help_i_dont_know_enough_and_i/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1wc77jd/i_am_lost_and_need_help_i_dont_know_enough_and_i/",
@@ -3588,12 +3644,6 @@
           "score": 1
         },
         {
-          "id": "p8vrmn1",
-          "author": "dsp457",
-          "body": "\\> I don't have experience with terraform outside of labbing.\n\nAlthough not quite the same, lab experience is experience.\n\nI can only infer so much from one post, but I’d imagine you have more experience and knowledge than you’re giving yourself credit for.\n\nMake sure that homelab experience is on your resume. Many hiring managers are actively seeking stuff like that out over (or in addition to) certs these days.\n\nSorry if this isn’t the most helpful comment, but keep your head up and stubbornly keep applying. Also, apply directly on company sites, many times indeed and LinkedIn can just be a black hole (but can be a good place to look for open positions). When I was searching, I’d find a position on LinkedIn, indeed, Glassdoor and then look up the company and apply on their site directly. I got maybe 4 interviews for every 600 applications. One of them hired me.",
-          "score": 1
-        },
-        {
           "id": "p8vy6t9",
           "author": "itishowitisanditbad",
           "body": ">Every job seems to want someone with extremely strong skills across so many different domains\n\nYeah and I want a million dollars a year.\n\nWe're both going to compromise during the interview. Well *they* are at a minimum but I probably will too.",
@@ -3606,15 +3656,21 @@
           "score": 1
         },
         {
-          "id": "p8vv23p",
-          "author": "Mammoth_Loan_984",
-          "body": "What’s your current work tech stack look like? On-prem, cloud, hybrid? What are you responsible for - do you provision new machines & applications? Does your workplace use any virtualization? What apps do you use or support? How are you configuring everything? What happens if everything gets nuked - where do you record state for the various machines and services you maintain?\n\nYou’re a sysadmin, so can’t you find ways to implement things like IaC, config management, etc? ",
+          "id": "p8vrmn1",
+          "author": "dsp457",
+          "body": "\\> I don't have experience with terraform outside of labbing.\n\nAlthough not quite the same, lab experience is experience.\n\nI can only infer so much from one post, but I’d imagine you have more experience and knowledge than you’re giving yourself credit for.\n\nMake sure that homelab experience is on your resume. Many hiring managers are actively seeking stuff like that out over (or in addition to) certs these days.\n\nSorry if this isn’t the most helpful comment, but keep your head up and stubbornly keep applying. Also, apply directly on company sites, many times indeed and LinkedIn can just be a black hole (but can be a good place to look for open positions). When I was searching, I’d find a position on LinkedIn, indeed, Glassdoor and then look up the company and apply on their site directly. I got maybe 4 interviews for every 600 applications. One of them hired me.",
           "score": 1
         },
         {
-          "id": "p8w1fph",
-          "author": "Dolapevich",
-          "body": "Welcome to my boat. I've been kicking keyboards since '85.",
+          "id": "p8y5rey",
+          "author": "SifferBTW",
+          "body": "Five years and cissp is more than enough to land a job. Just click the apply now button on every posting. For every one the calls back, check glassdoor for interview process and questions to prepare a bit.",
+          "score": 1
+        },
+        {
+          "id": "p8vv23p",
+          "author": "Mammoth_Loan_984",
+          "body": "What’s your current work tech stack look like? On-prem, cloud, hybrid? What are you responsible for - do you provision new machines & applications? Does your workplace use any virtualization? What apps do you use or support? How are you configuring everything? What happens if everything gets nuked - where do you record state for the various machines and services you maintain?\n\nYou’re a sysadmin, so can’t you find ways to implement things like IaC, config management, etc? ",
           "score": 1
         }
       ]
@@ -3625,8 +3681,8 @@
       "title": "Anyone seeing RDS session hosts hang (RDP stuck at \"Connecting\", logoffs stall) after the September 2026 cumulative updates? (Server 2022 + 2025)",
       "subreddit": "sysadmin",
       "author": "Masterchief1307",
-      "score": 32,
-      "num_comments": 23,
+      "score": 53,
+      "num_comments": 31,
       "created_utc": 1789006838.0,
       "permalink": "/r/sysadmin/comments/1wc60m1/anyone_seeing_rds_session_hosts_hang_rdp_stuck_at/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1wc60m1/anyone_seeing_rds_session_hosts_hang_rdp_stuck_at/",
@@ -3637,27 +3693,9 @@
       "stickied": false,
       "comments_data": [
         {
-          "id": "p8vum4p",
-          "author": "jcartredsox",
-          "body": "I removed KB5123099 and rebooted and it fixed the issue on my 2016 RDS servers. KB5122871 and KB5122882 seem to have the same RDS audio redirection “fix” as 5123099 so removing them is probably worth a shot. ",
-          "score": 1
-        },
-        {
-          "id": "p8w7crl",
-          "author": "hlava81",
-          "body": "Same issue on Windows Server 2022 RDS. Task manager not working, query user not working, even shutdown the server not working. New connections aren't possible and stuck at Connecting state. Rollback fix the issue.\n\nWhen it starts, these two critical events appear in system log. It happens randomly but frequently.\n\nA problem has occurred with one or more user-mode drivers and the hosting process has been terminated.  This may temporarily interrupt your ability to access the devices.\n\nThe device Microsoft Remote Display Adapter (location (unknown)) is offline due to a user-mode driver crash.  Windows will attempt to restart the device 5 more times.  Please contact the device manufacturer for more information about this problem.",
-          "score": 1
-        },
-        {
           "id": "p8ws3vd",
           "author": "Bourome",
           "body": "Hi, i confirm same issue on different RDS. 2019 / 2022. Unable to find any solution at this moment. Reset the server is the only way to regain access to the user for some hours... ",
-          "score": 1
-        },
-        {
-          "id": "p8vhrni",
-          "author": "nzulu9er",
-          "body": "Are you using Fslogix profile management? If yes. Take a look at 26.08 fixes",
           "score": 1
         },
         {
@@ -3673,15 +3711,51 @@
           "score": 1
         },
         {
-          "id": "p8wxivz",
-          "author": "Bldzd",
-          "body": "Similar issue - when attempting to RDP to machines, got stuck at \"Loading the virutal machine\", reboot* fixed it (for now)\n\n* - Attempting to reboot the machine fails with Remote Desktop Services (TermService) stuck at STOP_PENDING state, and not rebooting, Fix is taskkill PID of TermService\n\nWindows Server 2019",
+          "id": "p8vhrni",
+          "author": "nzulu9er",
+          "body": "Are you using Fslogix profile management? If yes. Take a look at 26.08 fixes",
+          "score": 1
+        },
+        {
+          "id": "p8vum4p",
+          "author": "jcartredsox",
+          "body": "I removed KB5123099 and rebooted and it fixed the issue on my 2016 RDS servers. KB5122871 and KB5122882 seem to have the same RDS audio redirection “fix” as 5123099 so removing them is probably worth a shot. ",
+          "score": 1
+        },
+        {
+          "id": "p8w7crl",
+          "author": "hlava81",
+          "body": "Same issue on Windows Server 2022 RDS. Task manager not working, query user not working, even shutdown the server not working. New connections aren't possible and stuck at Connecting state. Rollback fix the issue.\n\nWhen it starts, these two critical events appear in system log. It happens randomly but frequently.\n\nA problem has occurred with one or more user-mode drivers and the hosting process has been terminated.  This may temporarily interrupt your ability to access the devices.\n\nThe device Microsoft Remote Display Adapter (location (unknown)) is offline due to a user-mode driver crash.  Windows will attempt to restart the device 5 more times.  Please contact the device manufacturer for more information about this problem.",
+          "score": 1
+        },
+        {
+          "id": "p8xv4fd",
+          "author": "PrettyFlyForITguy",
+          "body": "I had this happen on a Windows 11 host this morning... I don't think its purely an RDS issue, but probably more like a general RDP issue (which obviously would effect RDS servers the most).",
           "score": 1
         },
         {
           "id": "p8vu8u5",
           "author": "blud_13",
           "body": "No known issue posted for either KB yet. The only thing MS lists on KB5122871 is the WSUS sync error detail that got pulled for the CVE-2025-59287 fix, nothing RDS. So you are ahead of them.\n\nOn the rollback, watch the packaging. Both of those ship as a combined SSU plus LCU, so wusa /uninstall on the KB number just fails. Run dism /online /get-packages, find the LCU package name, then dism /online /remove-package /packagename: that name. The SSU half stays no matter what, thats expected, not a failed rollback. Its in the how to get this update section here [https://support.microsoft.com/en-us/servicing/os/windows-server/2026/09/kb5122871-windows-server-2025-security-update](https://support.microsoft.com/en-us/servicing/os/windows-server/2026/09/kb5122871-windows-server-2025-security-update)\n\nu/nzulu9er is right to ask about FSLogix. A container that never attaches looks exactly like this, one session wedges and everything behind it queues on LSM. Pull C:\\\\ProgramData\\\\FSLogix\\\\Logs\\\\Profile off a host while its hung and see whether the mount ever completed before you blame the CU.\n\nCurious what the control host does.",
+          "score": 1
+        },
+        {
+          "id": "p8wxivz",
+          "author": "Bldzd",
+          "body": "Similar issue - when attempting to RDP to machines, got stuck at \"Loading the virutal machine\", reboot* fixed it (for now)\n\n* - Attempting to reboot the machine fails with Remote Desktop Services (TermService) stuck at STOP_PENDING state, and not rebooting, Fix is taskkill PID of TermService\n\nWindows Server 2019",
+          "score": 1
+        },
+        {
+          "id": "p8xuzz7",
+          "author": "wiztits",
+          "body": "YES! \n\nSo far I had 3 VM's (WS2019 and 2022) that got a stuck User Access Logging Service (UALSVC) according to eventvwr. Couldn't even login through console. Had to disconnect the NIC, reset the VM, then I could login and then I disabled that service, reconnected the nic and problem solved.\n\nBut also had more machines where users suddenly get this pop-up:\nNetworks Do you want to allow your PC to be discoverable by other PCs and devices on this network.... etc.\n\n--> If users click no, the network gets classified as a private network and the Windows Firewall get's enabled (even though WFW was disabled on all 3 connection profiles private/public/domain).",
+          "score": 1
+        },
+        {
+          "id": "p8yesx8",
+          "author": "Aggressive-Raccoon36",
+          "body": "I see a lot of people/companies with problems on their RDS Environment. Strangely (and luckily) we don't have any issues and all our 2022 RDS-Servers are updated with KB5122882.\n\nDo you all have audio (forwarding) enabled on the RDS-Servers? (because we have not and don't have any problems)",
           "score": 1
         },
         {
@@ -3694,18 +3768,6 @@
           "id": "p8wgooh",
           "author": "baldaussie",
           "body": "Happened to me on my Rds 2016 this morning. I'll look to remove those updates. ",
-          "score": 1
-        },
-        {
-          "id": "p8wj217",
-          "author": "allw",
-          "body": "Not just RDS in general we are seeing longer login times due to things like group policy preferences just not loading ",
-          "score": 1
-        },
-        {
-          "id": "p8wphu3",
-          "author": "greenstarthree",
-          "body": "Following and cautiously pausing updates on RDS servers….",
           "score": 1
         }
       ]
@@ -3734,7 +3796,7 @@
       "subreddit": "ecommerce",
       "author": "DirtyHoosier",
       "score": 3,
-      "num_comments": 12,
+      "num_comments": 15,
       "created_utc": 1789006261.0,
       "permalink": "/r/ecommerce/comments/1wc5slj/international_payments_gateway_suggestions/",
       "url": "https://www.reddit.com/r/ecommerce/comments/1wc5slj/international_payments_gateway_suggestions/",
@@ -3751,7 +3813,7 @@
       "subreddit": "ecommerce",
       "author": "walakangbitawpar",
       "score": 0,
-      "num_comments": 10,
+      "num_comments": 14,
       "created_utc": 1789006032.0,
       "permalink": "/r/ecommerce/comments/1wc5pfl/whats_the_best_way_to_turn_a_shopify_store_into_a/",
       "url": "https://www.reddit.com/r/ecommerce/comments/1wc5pfl/whats_the_best_way_to_turn_a_shopify_store_into_a/",
@@ -3784,8 +3846,8 @@
       "title": "Did I ruin my life by focusing too much on my studies?",
       "subreddit": "productivity",
       "author": "hanson-anims",
-      "score": 5,
-      "num_comments": 12,
+      "score": 10,
+      "num_comments": 13,
       "created_utc": 1789009257.0,
       "permalink": "/r/productivity/comments/1wc6wlc/did_i_ruin_my_life_by_focusing_too_much_on_my/",
       "url": "https://www.reddit.com/r/productivity/comments/1wc6wlc/did_i_ruin_my_life_by_focusing_too_much_on_my/",
@@ -3802,7 +3864,7 @@
       "subreddit": "productivity",
       "author": "Reasonable_Bag_118",
       "score": 2,
-      "num_comments": 5,
+      "num_comments": 6,
       "created_utc": 1789015759.0,
       "permalink": "/r/productivity/comments/1wc95c0/one_line_before_a_break_saved_more_time_than_i/",
       "url": "https://www.reddit.com/r/productivity/comments/1wc95c0/one_line_before_a_break_saved_more_time_than_i/",
@@ -3869,8 +3931,8 @@
       "title": "How do you handle email marketing for a small business solo?",
       "subreddit": "smallbusiness",
       "author": "Aero_N_autical",
-      "score": 16,
-      "num_comments": 25,
+      "score": 33,
+      "num_comments": 45,
       "created_utc": 1789029542.0,
       "permalink": "/r/smallbusiness/comments/1wcdbr1/how_do_you_handle_email_marketing_for_a_small/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1wcdbr1/how_do_you_handle_email_marketing_for_a_small/",
@@ -3884,19 +3946,37 @@
           "id": "p8wys9z",
           "author": "blu3rr",
           "body": "Create 2 blog posts per month with educational content around your core service/ product(helps with SEO too). Every month do an email newsletter with a description of each blog and links to view the rest.\n\nHave a contact CTA at the bottom with an offer for that month.\n\nReally should be like 3hrs of your time each month including the blog posts. Will get faster after since you've setup an email template",
-          "score": 4
+          "score": 7
         },
         {
           "id": "p8x235d",
           "author": "avatar0027",
           "body": "yeah i batch it once a week: one useful email, one promo max.\nthen i keep a note of repeat customer questions for future sends. anything that needs daily babysitting isn't worth it for a one-person shop.",
-          "score": 3
+          "score": 4
         },
         {
           "id": "p8x345c",
           "author": "missuncleben",
           "body": "solo tip that stuck: lock brand once (fonts, colors, header/footer) and keep a tiny module library. hero, product row, cta. write copy in a doc, drop into templates later. batching beats redesigning every send. what are you building in?",
-          "score": 1
+          "score": 4
+        },
+        {
+          "id": "p8xn43z",
+          "author": "No-Weight1118",
+          "body": "the email that earns usually isnt the newsletter. its the one tied to something that already happened, like a reorder nudge timed to when that customer actually rebuys. for a one person shop thats one recurring campaign off a spreadsheet, not a content calendar.\n\nalso prune hard. if only a few hundred of your list actually open, the dead addresses are just dragging your deliverability down for the people who would read it. one trigger that fits the product beats a monthly send to everyone.",
+          "score": 3
+        },
+        {
+          "id": "p8xof54",
+          "author": "Ok_One5265",
+          "body": "Batch it in advance. Also make sure you have automations set up. What have you already got in place? Which platform are you using?",
+          "score": 2
+        },
+        {
+          "id": "p8yb8tl",
+          "author": "DeviantHistorian",
+          "body": "I use substack and just do one monthly newsletter that works fine for me and my business no on going cost paid $50 once to setup a custom sub domain so it's on blog.domain.com",
+          "score": 2
         }
       ]
     },
@@ -3906,8 +3986,8 @@
       "title": "Just hit my first 50k month, what now?",
       "subreddit": "smallbusiness",
       "author": "Helsawe",
-      "score": 16,
-      "num_comments": 20,
+      "score": 20,
+      "num_comments": 28,
       "created_utc": 1789021947.0,
       "permalink": "/r/smallbusiness/comments/1wcb48r/just_hit_my_first_50k_month_what_now/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1wcb48r/just_hit_my_first_50k_month_what_now/",
@@ -3921,48 +4001,54 @@
           "id": "p8wjppf",
           "author": "BiscottiGeneral",
           "body": "Stack cash reserves for a few months then go all in. You literally live one time. You might as well go big. Never look back.",
-          "score": 15
+          "score": 25
         },
         {
           "id": "p8wnxkb",
           "author": "pxldev",
           "body": "50k profit next",
+          "score": 8
+        },
+        {
+          "id": "p8wrse7",
+          "author": "Tangentkoala",
+          "body": "This sounds more like a personal issue. \n\nTake a step back and evaluate what truly is important to you. Do you prefer to optimize and try to cut hours while employing more? \n\nOr do you think that isnt enough money for your future self. And you should scale it more. \n\nIts a you question you should take time to think about. \n",
           "score": 5
         },
         {
           "id": "p8wr5f0",
           "author": "Shiribazu",
           "body": "lean toward the 3PM, but i wouldnt make the jump based on revenue alone. i'd first calculate exactly how much each order would cost through the 3pm and see how much margin youd have left at your current volume. if the numbers still work, getting your home and your time back seems like a pretty good reason to do it, especially since your biggest problem right now isnt demand, its that you've become the bottleneck",
-          "score": 2
+          "score": 3
         },
         {
           "id": "p8wu7yf",
           "author": "HoneyedVices",
           "body": "3PL isn't quite zero fixed overhead, most of them have a monthly minimum and they'll surcharge anything sitting past 90 days. cheaper way in is sending just your top movers over and keeping the slow stuff at home, gets you most of your time without committing the whole catalog.",
-          "score": 2
-        },
-        {
-          "id": "p8wrse7",
-          "author": "Tangentkoala",
-          "body": "This sounds more like a personal issue. \n\nTake a step back and evaluate what truly is important to you. Do you prefer to optimize and try to cut hours while employing more? \n\nOr do you think that isnt enough money for your future self. And you should scale it more. \n\nIts a you question you should take time to think about. \n",
-          "score": 1
+          "score": 3
         },
         {
           "id": "p8x28au",
           "author": "WhatMattersHere",
           "body": "I don’t think the choice has to be “stay exactly this size forever” or “move everything to a 3PL and then race to grow fast enough to pay for it.”\n\nThe $50k month shows that demand exists, but revenue alone doesn’t tell you whether outsourcing works. I’d take your last 90 days of orders to several 3PLs and request an all in quote covering receiving, storage, pick and pack, packaging, postage, returns, minimums, account fees and any peak or inventory aging charges. Then compare the total cost per order with what you currently spend on shipping and materials, your contribution margin per order and the number of your own hours it would actually remove.\n\nI also wouldn’t make the decision depend on immediate growth. Ideally, the 3PL should leave you with an acceptable profit at your normal current volume. Any growth created by the freed capacity should improve the economics rather than rescue them.\n\nIf possible, test the arrangement for 60-90 days with one suitable product line or a defined portion of orders. Track fulfillment cost, delivery time, errors, returns, inventory accuracy and hours freed. Then deliberately use those hours on one growth activity and see whether the additional contribution margin justifies expanding the relationship.\n\nEven if you ultimately decide not to grow much larger, removing the requirement that you personally pack every order still has value because it gives the business continuity and gives you the ability to take time off. A part time fulfillment person could also be a middle option if a 3PL’s minimums or handling requirements don’t fit.\n\nHave you received an all in 3PL quote based on your actual order history, or are the costs worrying you based mainly on advertised rates and estimates? That is the next useful fork.",
-          "score": 1
+          "score": 2
         },
         {
           "id": "p8xpg6a",
           "author": "Technical-Proof4605",
           "body": "What type of business?",
-          "score": 1
+          "score": 2
         },
         {
           "id": "p8xq7e1",
           "author": "IOUZIP79",
           "body": "Before you pick, price the 3PL against what you're actually paying now. Take your last month of orders and get real quotes on receiving, storage, pick and pack, and outbound. Then put your own number next to it. Six years of picking and packing 40 hours a week is a wage you already pay yourself; you just pay it in time, not dollars. If the 3PL comes in near that, this stops being a leap and starts being a swap. And you can test it with one SKU line before you move everything.",
+          "score": 1
+        },
+        {
+          "id": "p8y08of",
+          "author": "Silent_Shower_1718",
+          "body": "Wait for the high volume to level out, ecommerce tends to be seasonal and you def don't want a lease if you just have one month a year like this. You could also hire somebody on a contract basis to help you with packing and stuff",
           "score": 1
         }
       ]
@@ -3990,8 +4076,8 @@
       "title": "How likely are you to pass on hiring a business if they use an odd name?",
       "subreddit": "smallbusiness",
       "author": "Teppiest",
-      "score": 3,
-      "num_comments": 19,
+      "score": 4,
+      "num_comments": 21,
       "created_utc": 1788999289.0,
       "permalink": "/r/smallbusiness/comments/1wc34p2/how_likely_are_you_to_pass_on_hiring_a_business/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1wc34p2/how_likely_are_you_to_pass_on_hiring_a_business/",
@@ -4005,7 +4091,7 @@
           "id": "p8uu8ya",
           "author": "UnreasonableEconomy",
           "body": "if it sounds unprofessional, I tend to stay away and look for something else.\n\nbut if you sell to a clientele that itself is wallowing in quirk, being too serious might itself be a con.\n\nthat said, at the end of the day there's nothing stopping you from running two different brands or DBAs under your company to serve different strokes.",
-          "score": 19
+          "score": 20
         },
         {
           "id": "p8usps4",
@@ -4023,12 +4109,18 @@
           "id": "p8v2xih",
           "author": "Ieatclowns",
           "body": "A lot of people are sensitive to words and how they make them feel. I recently hired a website consultant over others simply because for me, the name of her business appealed so much. It was light hearted but fresh and sounded like she was intelligent. I definitely wouldn’t hire any business that sounded macabre… unless it was to decorate my Halloween party.",
-          "score": 3
+          "score": 4
         },
         {
           "id": "p8w7eoc",
           "author": "MacintoshEddie",
           "body": "That's the thing about marketing, some people will love it and some will hate it and you have to do the work to find out if one side outweighs the other.\n\n  \nYour market is critical, because a law firm and a donut shop have different markets and thus different expectations.\n\nIt's generally really hard to pull off a marketing subversion, like \"Manly & Sons Slaw Firm\" and sell artisinal coleslaw, or \"My Cabbages!\" and practice law.",
+          "score": 2
+        },
+        {
+          "id": "p8xxjnk",
+          "author": "dawhim1",
+          "body": "it could raise an eyebrow if it is a place called Quality Learing Center",
           "score": 2
         },
         {
@@ -4051,8 +4143,8 @@
       "title": "KB5122882 installed - DNS/AD issues Windows Server 2022",
       "subreddit": "sysadmin",
       "author": "Neverbethesky",
-      "score": 50,
-      "num_comments": 13,
+      "score": 114,
+      "num_comments": 28,
       "created_utc": 1789031766.0,
       "permalink": "/r/sysadmin/comments/1wcdyxp/kb5122882_installed_dnsad_issues_windows_server/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1wcdyxp/kb5122882_installed_dnsad_issues_windows_server/",
@@ -4060,7 +4152,63 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8x3pzl",
+          "author": "derfmcdoogal",
+          "body": "Be sure to report it in the patch Tuesday thread for visibility.  ",
+          "score": 1
+        },
+        {
+          "id": "p8x2nzc",
+          "author": "convexoz",
+          "body": "We had a 2019 server completely unable to start Active Directory Domain Services this morning",
+          "score": 1
+        },
+        {
+          "id": "p8x43es",
+          "author": "MeetJoan",
+          "body": "Grab the DNS and security event logs before the rollback finishes if you haven't already, that's your evidence for the case and it's gone once you've reverted.\n\nAccess Denied on the console while resolution still works points at ACLs or the service account rather than DNS itself.",
+          "score": 1
+        },
+        {
+          "id": "p8xrf76",
+          "author": "Godcry55",
+          "body": "Holding off on DC updates until next week at this point. ",
+          "score": 1
+        },
+        {
+          "id": "p8xq3kc",
+          "author": "TheFumingatzor",
+          "body": "So I'm not imagining this. Fuck me, same problem here. But all creds are working after entering them again.",
+          "score": 1
+        },
+        {
+          "id": "p8xrlmk",
+          "author": "andyr354",
+          "body": "~~I just noticed the same issue.  Well, there goes my morning.~~  Reboot of DFS server and the AD servers seems to have cleared it up?  Or just time.  Still keeping an eye on it.\n\nEdit 2:  It's intermittent.  Will work one minute and not the next.",
+          "score": 1
+        },
+        {
+          "id": "p8y2l8s",
+          "author": "andyr354",
+          "body": "What steps did you take to reset the secure channel?  I'm seeing that  the test fails on one of my three DCs. \n\n    Test-ComputerSecureChannel -Verbose",
+          "score": 1
+        },
+        {
+          "id": "p8xo0wq",
+          "author": "Callewalle",
+          "body": "thanks for reporting, hopefully this is fixed by next week.",
+          "score": 1
+        },
+        {
+          "id": "p8yih2i",
+          "author": "JE53119",
+          "body": "Anyone having this issue with 2025 DCs? \n\nAnd is this only occuring if the DC is patched with Tuesday's update? (I know the client needs to be patched to trigger)",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1wcdyuw",
@@ -4068,8 +4216,8 @@
       "title": "Feeling Nostalgic and sad when i see old sun hardware and systems.",
       "subreddit": "sysadmin",
       "author": "Exact_Sample4086",
-      "score": 28,
-      "num_comments": 16,
+      "score": 55,
+      "num_comments": 36,
       "created_utc": 1789031760.0,
       "permalink": "/r/sysadmin/comments/1wcdyuw/feeling_nostalgic_and_sad_when_i_see_old_sun/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1wcdyuw/feeling_nostalgic_and_sad_when_i_see_old_sun/",
@@ -4086,9 +4234,9 @@
           "score": 1
         },
         {
-          "id": "p8x3ick",
-          "author": "hamstercaster",
-          "body": "Seems normal to me. Way back, mid ‘90s, I supported a customer that had a Sun Netra. To this day, it remains the only Sun device I ran across. I remember hearing Sun’s startup audio for the first time - the Sun Internet server is now being configured. Felt like science fiction. ",
+          "id": "p8x774c",
+          "author": "Recent_Carpenter8644",
+          "body": "Why not? I still have the CPU from the first server I worked on.",
           "score": 1
         },
         {
@@ -4098,21 +4246,9 @@
           "score": 1
         },
         {
-          "id": "p8x774c",
-          "author": "Recent_Carpenter8644",
-          "body": "Why not? I still have the CPU from the first server I worked on.",
-          "score": 1
-        },
-        {
-          "id": "p8xawvf",
-          "author": "unixuser011",
-          "body": "I worked in a data centre where clients were still using Itanium hardware running VMS, some older SGI systems too. Before that I did some time at a nuclear power station and they were still using VAX stations running VMS and Alpha servers runningTru64 in production (granted this was in 2011)",
-          "score": 1
-        },
-        {
-          "id": "p8x8spn",
-          "author": "Flaky-Gear-1370",
-          "body": "you feel old when you remember advocating for something, implementing it, then eventually listening to everyone dunk on it then decomission it",
+          "id": "p8x3ick",
+          "author": "hamstercaster",
+          "body": "Seems normal to me. Way back, mid ‘90s, I supported a customer that had a Sun Netra. To this day, it remains the only Sun device I ran across. I remember hearing Sun’s startup audio for the first time - the Sun Internet server is now being configured. Felt like science fiction. ",
           "score": 1
         },
         {
@@ -4122,15 +4258,27 @@
           "score": 1
         },
         {
+          "id": "p8xawvf",
+          "author": "unixuser011",
+          "body": "I worked in a data centre where clients were still using Itanium hardware running VMS, some older SGI systems too. Before that I did some time at a nuclear power station and they were still using VAX stations running VMS and Alpha servers runningTru64 in production (granted this was in 2011)",
+          "score": 1
+        },
+        {
           "id": "p8xhaat",
           "author": "jfoust2",
           "body": "Hopefully you don't have an excess of storage space and become a \"classic computer collector.\"",
           "score": 1
         },
         {
-          "id": "p8xj7lm",
-          "author": "ConfidentlyLearning",
-          "body": "I know some of those old Sun servers better than I know the people I worked with, and trusted them more too.  They were my friends.  It's sad to see them go.",
+          "id": "p8y6sqm",
+          "author": "emptyDir",
+          "body": "Supermicro boxes take me back to my first sysadmin job in college managing the physics department's compute cluster.",
+          "score": 1
+        },
+        {
+          "id": "p8x8spn",
+          "author": "Flaky-Gear-1370",
+          "body": "you feel old when you remember advocating for something, implementing it, then eventually listening to everyone dunk on it then decomission it",
           "score": 1
         },
         {
@@ -4140,15 +4288,9 @@
           "score": 1
         },
         {
-          "id": "p8xn06y",
-          "author": "stephenspann27",
-          "body": "I get the same intense sadness when decomming old gear, especially if I’m the one who set it up. It makes me feel better that other people have the same feeling. ",
-          "score": 1
-        },
-        {
-          "id": "p8xn14h",
-          "author": "Dolapevich",
-          "body": "Absolutely.",
+          "id": "p8ycm8y",
+          "author": "msalerno1965",
+          "body": "When I see a DEC PDP-10 or VAX, I might as well get some tissues.\n\nSuns, too... I spent a lot of time (and made a lot of money) consulting during the .com boom. And then when the boom went bust, I made a lot of money filling in for the people they laid off. \n\nI am still working for a Fortune 100 that needed help during that time with HP/UX and a few K570's with an N4000 sprinkled in. AutoRaid FOR THE WIN (not).\n\nI have a Sun M4000 mainboard with two CPUs (heat sinks removed) screwed to my office wall. \n\nOn the Windows side, the Windows 95 startup sound always gets me... lol.",
           "score": 1
         }
       ]
@@ -4159,8 +4301,8 @@
       "title": "Multiple 365 Services Down in UK",
       "subreddit": "sysadmin",
       "author": "Brand0nny",
-      "score": 9,
-      "num_comments": 3,
+      "score": 23,
+      "num_comments": 16,
       "created_utc": 1789041478.0,
       "permalink": "/r/sysadmin/comments/1wch3fj/multiple_365_services_down_in_uk/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1wch3fj/multiple_365_services_down_in_uk/",
@@ -4176,8 +4318,8 @@
       "title": "Duo Security and Microsoft 365/Entra",
       "subreddit": "sysadmin",
       "author": "3G_Lighting",
-      "score": 7,
-      "num_comments": 10,
+      "score": 13,
+      "num_comments": 31,
       "created_utc": 1789043009.0,
       "permalink": "/r/sysadmin/comments/1wchoki/duo_security_and_microsoft_365entra/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1wchoki/duo_security_and_microsoft_365entra/",
@@ -4185,7 +4327,63 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8xt2wr",
+          "author": "B0ndzai",
+          "body": "We use it in our hybrid environment, so yes it can. I didn’t set it up though so that’s all I got.",
+          "score": 1
+        },
+        {
+          "id": "p8y1ovs",
+          "author": "FearlessFloyd91",
+          "body": "We have our domain federated with Duo and use it in our hybrid environment. It has worked fine for us for a few years now. You just set up a Duo auth proxy that sits on prem and it communicates with your AD to sync users and match them to their Entra users at sign in. We also use it for SSO to all of our cloud apps to authenticate against our AD accounts using the same process. ",
+          "score": 1
+        },
+        {
+          "id": "p8xv2xd",
+          "author": "Myungji83",
+          "body": "Yeah. The last time I checked which was maybe a year ago you’d have to use External Authentication method (EAM). \n\nI won’t go further into it since my knowledge may be out of date but it is possible to use Duo in some capacity. ",
+          "score": 1
+        },
+        {
+          "id": "p8xt5ua",
+          "author": "RedditDon3",
+          "body": "use duo for mfa?  why not ms for mfa and push to Authenticator?",
+          "score": 1
+        },
+        {
+          "id": "p8xth4c",
+          "author": "GardenWeasel67",
+          "body": "I'm not the SME, but we use have been using Duo in a hybrid environment for years",
+          "score": 1
+        },
+        {
+          "id": "p8y0n45",
+          "author": "D1TAC",
+          "body": "DUO is one of the best in terms of documentation, take some time on their documentation pages. But yes, we have DUO merged with Entra/365. ",
+          "score": 1
+        },
+        {
+          "id": "p8xtzwq",
+          "author": "lowlybananas",
+          "body": "Works fine",
+          "score": 1
+        },
+        {
+          "id": "p8xudqv",
+          "author": "IndicanBlazinz",
+          "body": "What you’re looking for is authentication with a third party iDP. And to answer your question, yes you can authenticate ms365 with Duo. We do it at $DayJob",
+          "score": 1
+        },
+        {
+          "id": "p8xxky8",
+          "author": "Kyky_Geek",
+          "body": "We have both duo and ms authenticator available but duo works for everything and is what most ppl use depending on where they are authenticating. \n\nOn the endpoints, they have to MFA to log in to the OS and we use Duo Desktop for that. The VPN has separate MFA requirements and is also Duo. The users have either the phone app or a physical token issued, depending on where they need to authenticate. \n\nIf you do the desktop MFA, make sure to configure whether it “fails open” or “fails closed” depending on your requirements or service availability. I think it somewhat recently changed the default to fail closed meaning it won’t let them login without MFA under any circumstances and may require admin assistance. ",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1wc9tz1",
@@ -4193,8 +4391,8 @@
       "title": "Shared mailbox folder tree truncates at ~1000 folders in cached mode — started this week. Anyone else?",
       "subreddit": "sysadmin",
       "author": "Purple_Cut_8467",
-      "score": 8,
-      "num_comments": 18,
+      "score": 12,
+      "num_comments": 20,
       "created_utc": 1789017818.0,
       "permalink": "/r/sysadmin/comments/1wc9tz1/shared_mailbox_folder_tree_truncates_at_1000/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1wc9tz1/shared_mailbox_folder_tree_truncates_at_1000/",
@@ -4239,6 +4437,12 @@
           "author": "saltyslugga",
           "body": "New Outlook has no direct equivalent to classic’s “Download shared folders” switch. Opening the mailbox separately in OWA is your confirmed workaround for now.\n\nI’d escalate the matching OWA truncation as a possible shared-mailbox hierarchy retrieval regression, with your Graph enumeration and reproduction steps. The ~1,000 cutoff doesn’t establish an enforced folder limit, and the classic cached-folder limits don’t explain the OWA behavior.",
           "score": 1
+        },
+        {
+          "id": "p8y14rn",
+          "author": "blud_13",
+          "body": "u/sorry_for_the_reply has the right end of it, and there is a documented number for the reason.\n\nCached shared folders start having sync and performance problems past 500 folders per mailbox, and even after the sync rework Outlook is only expected to handle around 5,000. Its documented here [https://learn.microsoft.com/en-us/troubleshoot/outlook/performance/performance-synchronization-problems-when-work-with-folders-secondary-mailbox](https://learn.microsoft.com/en-us/troubleshoot/outlook/performance/performance-synchronization-problems-when-work-with-folders-secondary-mailbox)\n\nYou are at 12,394. So the tree stopping around 976 in cached and rendering complete in online mode is not corruption, thats the cache giving up. Nothing you do to permissions or automapping moves it, which is why none of your tests changed anything.\n\nTwo things do. Unchecking Download Shared Folders on that mailbox, which you already found works and is honestly the supported answer at that folder count. Or getting the count down, and the PowerShell empty folder sweep is the fastest cut since a per year tree usually has thousands of dead ones.\n\nReminder, archiving moves items and leaves the folders behind, so it will never help here. You already said that yourself.",
+          "score": 1
         }
       ]
     },
@@ -4248,8 +4452,8 @@
       "title": "Is embedded checkout actually worth switching to?",
       "subreddit": "ecommerce",
       "author": "Current_Reception483",
-      "score": 10,
-      "num_comments": 9,
+      "score": 33,
+      "num_comments": 30,
       "created_utc": 1789041784.0,
       "permalink": "/r/ecommerce/comments/1wch88x/is_embedded_checkout_actually_worth_switching_to/",
       "url": "https://www.reddit.com/r/ecommerce/comments/1wch88x/is_embedded_checkout_actually_worth_switching_to/",
@@ -4257,7 +4461,99 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8y0czw",
+          "author": "GSkylineR34",
+          "body": "I've had this doubt for quite some time, thinking that an embedded or a fully custom checkout flow would be better.\nNot necessarily. When users see your website, they expect it to be different from others, but when it's time to pay, having standard components that they have used on other websites before makes them more conformable.\nWhen a user goes through the usual Stripe checkout page (an example), there is a certain confidence at proceeding because the brain doesn't spend time trying to figure out what you're asking. They've already been there and had a good experience before.",
+          "score": 8
+        },
+        {
+          "id": "p8xsdlb",
+          "author": "Opening-Broccoli5099",
+          "body": "Look for something that lets you keep checkout inside the experience but also gives you room to add subscriptions and payouts later. Switching the payment setup twice is probably worse than doing it properly once.",
+          "score": 2
+        },
+        {
+          "id": "p8xxfui",
+          "author": "Irythros",
+          "body": "Something to keep in mind is PCI compliance.  The more control you have over the process the more compliance you have to deal with.  You also have to deal with more of the design problems across multiple devices on some things you potentially cannot control.",
+          "score": 2
+        },
+        {
+          "id": "p8yew18",
+          "author": "Mysterious-Photo-132",
+          "body": "Whop could be worth checking out for what you’re after the bigger benefit imo isn’t just keeping checkout closer to the site, its having something you can grow into without changing your whole payment setup again later.",
+          "score": 2
+        },
+        {
+          "id": "p8xpz0s",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "p8xqwvg",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "p8xro9p",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "p8xs3fb",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "p8xsuzg",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "p8xtapz",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "p8xtw8w",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "p8yadi3",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "p8yawe1",
+          "author": "Round-Patience3193",
+          "body": "Test it before. If the current flow sends customers to a noticeably different-looking page or domain, that extra friction can definitely hurt conversions. An embedded checkout can make the experience feel much more seamless, but I wouldn’t assume it will automatically increase sales",
+          "score": 1
+        },
+        {
+          "id": "p8ypo6p",
+          "author": "Shiribazu",
+          "body": "i woulndt switch just because the checkout looks disconnected. first check where people are actually dropping off, because the problem could be shipping costs, payment options, or the number of fields rather than the redirect itself. if the data shows people are leaving at that handoff, then embedded checkout is worth testing, but i'd test it against your current flow before rebuilding everything",
+          "score": 1
+        },
+        {
+          "id": "p8z0m78",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1wcgcoy",
@@ -4265,8 +4561,8 @@
       "title": "Which high-end fashion websites actually work well?",
       "subreddit": "ecommerce",
       "author": "FamawaLakbira41",
-      "score": 5,
-      "num_comments": 2,
+      "score": 13,
+      "num_comments": 9,
       "created_utc": 1789039313.0,
       "permalink": "/r/ecommerce/comments/1wcgcoy/which_highend_fashion_websites_actually_work_well/",
       "url": "https://www.reddit.com/r/ecommerce/comments/1wcgcoy/which_highend_fashion_websites_actually_work_well/",
@@ -4283,7 +4579,7 @@
       "subreddit": "ecommerce",
       "author": "Intiat1ve",
       "score": 1,
-      "num_comments": 8,
+      "num_comments": 17,
       "created_utc": 1789039099.0,
       "permalink": "/r/ecommerce/comments/1wcga1u/high_impressionsconversions_from_tiktok_ads_but_0/",
       "url": "https://www.reddit.com/r/ecommerce/comments/1wcga1u/high_impressionsconversions_from_tiktok_ads_but_0/",
@@ -4300,7 +4596,7 @@
       "subreddit": "ecommerce",
       "author": "OwlZealousideal4779",
       "score": 0,
-      "num_comments": 4,
+      "num_comments": 14,
       "created_utc": 1789040352.0,
       "permalink": "/r/ecommerce/comments/1wcgpbe/how_do_you_keep_your_ecommerce_operations_simple/",
       "url": "https://www.reddit.com/r/ecommerce/comments/1wcgpbe/how_do_you_keep_your_ecommerce_operations_simple/",
@@ -4334,7 +4630,7 @@
       "subreddit": "productivity",
       "author": "Enliven_journey",
       "score": 6,
-      "num_comments": 11,
+      "num_comments": 17,
       "created_utc": 1789029599.0,
       "permalink": "/r/productivity/comments/1wcdcce/what_are_your_best_reset_tricks/",
       "url": "https://www.reddit.com/r/productivity/comments/1wcdcce/what_are_your_best_reset_tricks/",
@@ -4350,8 +4646,8 @@
       "title": "How to stop feeling like I'm stupid, how to add depth to my character",
       "subreddit": "productivity",
       "author": "New_Pianist5671",
-      "score": 3,
-      "num_comments": 4,
+      "score": 5,
+      "num_comments": 9,
       "created_utc": 1789041279.0,
       "permalink": "/r/productivity/comments/1wch0ul/how_to_stop_feeling_like_im_stupid_how_to_add/",
       "url": "https://www.reddit.com/r/productivity/comments/1wch0ul/how_to_stop_feeling_like_im_stupid_how_to_add/",
@@ -4368,7 +4664,7 @@
       "subreddit": "productivity",
       "author": "zjace",
       "score": 1,
-      "num_comments": 4,
+      "num_comments": 6,
       "created_utc": 1789024930.0,
       "permalink": "/r/productivity/comments/1wcc0e7/app_that_does_week_view_with_drag_and_drop_from/",
       "url": "https://www.reddit.com/r/productivity/comments/1wcc0e7/app_that_does_week_view_with_drag_and_drop_from/",
@@ -4390,6 +4686,1007 @@
       "permalink": "/r/Freelancers/comments/1wca7jo/fiverr_beginner/",
       "url": "https://www.reddit.com/r/Freelancers/comments/1wca7jo/fiverr_beginner/",
       "selftext": "I’m a beginner on Fiverr and a recent Software Engineering graduate. I have skills in web development and would really appreciate some guidance on how to get my first projects on Fiverr. Can anyone share some tips or advice on how to get started and attract clients?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wclm2j",
+      "name": "t3_1wclm2j",
+      "title": "Is a digital business card actually worth the cost?",
+      "subreddit": "smallbusiness",
+      "author": "_beanzzz",
+      "score": 14,
+      "num_comments": 23,
+      "created_utc": 1789052328.0,
+      "permalink": "/r/smallbusiness/comments/1wclm2j/is_a_digital_business_card_actually_worth_the_cost/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1wclm2j/is_a_digital_business_card_actually_worth_the_cost/",
+      "selftext": "Running a small landscaping company, just me and two other guys. Someone told me I should get a digital business card to look more professional at estimates and local events. But honestly I'm watching every dollar right now. Are these things worth paying for or is it mostly fluff? What do people actually get out of them day to day?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8yq7v1",
+          "author": "NuncProFunc",
+          "body": "No, but you should probably have a website and a professional email address. Wix or Squarespace or something like that is a \"good enough\" solution that doesn't require you to learn how to be a web developer.",
+          "score": 29
+        },
+        {
+          "id": "p8ys0k5",
+          "author": "hestoelena",
+          "body": "If by digital business card you mean QR code then do not pay for one. You can make them for free because QR codes are just binary encoded data. \n\nUse this site and select the vcard option. You can then print out your QR code and use it wherever the heck you want. If you lose it, you can just make a new one.\n\nhttps://www.qrcode-monkey.com/#about",
+          "score": 19
+        },
+        {
+          "id": "p8yqjms",
+          "author": "alvivanco1",
+          "body": "you don’t even need to pay for one , i can literally spin you one for free ",
+          "score": 4
+        },
+        {
+          "id": "p8yrxj7",
+          "author": "DaRandoMan",
+          "body": "Just print some paper business cards. They're cheaper and can still help you look more professional at events, if that's what you're going for. ",
+          "score": 3
+        },
+        {
+          "id": "p8yrold",
+          "author": "Hannanahbread89",
+          "body": "HiHello is free. I have my actual business cards, but I also use the app when people don't want to take a physical card or I forget to bring them with me. ",
+          "score": 1
+        },
+        {
+          "id": "p8ytgwv",
+          "author": "onlinedotjobs",
+          "body": "You can just make one on Canva. Why pay someone else to do it? ",
+          "score": 1
+        },
+        {
+          "id": "p8yv0kx",
+          "author": "aylam_ao",
+          "body": "I'd never pay for a digital business card - too many free tools that do the same. I  put my digital business card in a QR code on my printed card. Assuming you have one - they're next to free. I have whoever to scan the code on the card to save my details in their phone, then leave the card with them as a visual reminder.",
+          "score": 1
+        },
+        {
+          "id": "p8z1hjj",
+          "author": "0RGASMIK",
+          "body": "It’s easy and cheap to make a QR code that goes to your website that you can carry around for people to scan. Even one that just gives people your contact. It’s best if you convert them right then and there. \n\nI did an event where I gave out stickers with my info on them, they were really cool stickers and people loved them, not a single person has reached out from the sticker. Even people who were very interested in my service and took a sticker forgot. \n\nOn the other hand the people who I made scan it right then and there had a higher hit rate. ",
+          "score": 1
+        },
+        {
+          "id": "p8z62vd",
+          "author": "BestLawnCanada",
+          "body": "That depends on how you want to market, but aside from a Google business profile, a website is more or less, just a signal to anybody. Curious that you are a legitimate company. It's also a handy place to mention any awards, accreditations certifications etc.  I'm not sure about a digital business card, these kinds of things are kind of old school back when you would have business card details in your phone as opposed to just to contact with more elaborate details in it. \nIf you are intending to use it as a marketing tool, you would be better off just making a QR code on print media that people can scan directly to a specific landing page on your website, for example a quote page. \nNot sure what you have for a setup, but I do know that yardbook has a free account where you can also have a free website launch page which directs them to a quote page, and they give you a free estimate request page to direct customers to. It is a long and serial number looking URL so it is not very attractive but it is useful even in the free version. You just need to make sure that you enable or disable the right services that match your catalog.  I'm sure that there are other softwares out there that do the same or similar. \nBut really a digital business card isn't typically used, while it probably works with most phones. Nowadays it is kind of old school",
+          "score": 1
+        },
+        {
+          "id": "p8z8owf",
+          "author": "asyouwish",
+          "body": "Why would that cost you money? I must not be understanding what you mean.",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wci7uv",
+      "name": "t3_1wci7uv",
+      "title": "why do so many marketing agencies refuse to share actual numbers?",
+      "subreddit": "smallbusiness",
+      "author": "Longjumping_Start209",
+      "score": 7,
+      "num_comments": 16,
+      "created_utc": 1789044398.0,
+      "permalink": "/r/smallbusiness/comments/1wci7uv/why_do_so_many_marketing_agencies_refuse_to_share/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1wci7uv/why_do_so_many_marketing_agencies_refuse_to_share/",
+      "selftext": "I understand that results vary from business to business, but why are agencies often hesitant to share even general numbers around conversion rates, costs, or typical results?\n\nWhat numbers do you usually ask an agency for before deciding to work with them?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wcnzn8",
+      "name": "t3_1wcnzn8",
+      "title": "Is GEO replacing SEO?",
+      "subreddit": "smallbusiness",
+      "author": "Free-Seaworthiness81",
+      "score": 8,
+      "num_comments": 18,
+      "created_utc": 1789057517.0,
+      "permalink": "/r/smallbusiness/comments/1wcnzn8/is_geo_replacing_seo/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1wcnzn8/is_geo_replacing_seo/",
+      "selftext": "anyone else getting pitched \"generative engine optimization\" like SEO is done?\n\nwe still need the site to rank and convert. what changed for us is writing pages that answer the question cleanly so AI answers and google both can use them, not just stuffing keywords.\n\ncurious what other owners are actually doing for AI search vs normal SEO right now?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8zatlv",
+          "author": "i4mt3hwin",
+          "body": "No -  agencies need to sell the next snake oil voodoo for your site. GEO and SEO are basically the same - optimizing SEO automatically helps GEO. There is no GEO only optimization. This is directly from google fwiw. \n\n",
+          "score": 12
+        },
+        {
+          "id": "p8ziles",
+          "author": "TheCryptoBillionaire",
+          "body": "i’m in the “both” camp too. We still do classic SEO for clients (technical, links, pages that convert), but we’re now mapping “answer hubs” around the exact questions people ask ChatGPT/Perplexity and writing super direct, source-worthy pages for those.  \n\nTo see if it’s working, I use seoforgpt to track where clients get cited in AI answers and which prompts send traffic to competitors, then we fill those gaps with new content.",
+          "score": 2
+        },
+        {
+          "id": "p8ziqv7",
+          "author": "EducationalOrange543",
+          "body": "SEO isn’t dead. I’d keep the technical/local basics and add a few customer-question pages that convert, then watch qualified calls/forms, not just AI mentions. Which questions currently bring people to you?",
+          "score": 1
+        },
+        {
+          "id": "p8zkeot",
+          "author": "Centrez",
+          "body": "No",
+          "score": 1
+        },
+        {
+          "id": "p8zkow4",
+          "author": "ohwhereareyoufrom",
+          "body": "I keep asking this question everywhere and people say you still need both, but the main difference is now you want as much written about you on 3rd party as possible. So if you're idk pest control in NYC, but everyone else only has a website, but you have comments on Reddit mentioning you with all the keywords, articles in 3rd party blogs, etc - AI will recommend you first. Because you're more active and more social. That's what I hear though, I myself don't know ",
+          "score": 1
+        },
+        {
+          "id": "p8zqf4x",
+          "author": "manujam",
+          "body": "it is not replacing, it is layering. the foundation is the same, pages that answer the question cleanly with real structure. that serves classic rankings and ai citations at the same time. what changed is the measurement, track which of your pages get cited in ai answers separately from rank positions, they move on different timelines. and the pages that get cited tend to have one thing in common, a direct answer in the first hundred words followed by depth. keyword stuffing never worked for either game, clear answers work for both",
+          "score": 1
+        },
+        {
+          "id": "p8zrqrj",
+          "author": "who_me_said_i",
+          "body": "it's still the Wild West, but ultimately focus on SEO and that will translate to GEO",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wckng9",
+      "name": "t3_1wckng9",
+      "title": "Hot take: I WANT people to cancel projects with me",
+      "subreddit": "smallbusiness",
+      "author": "CatMom2828",
+      "score": 3,
+      "num_comments": 12,
+      "created_utc": 1789050163.0,
+      "permalink": "/r/smallbusiness/comments/1wckng9/hot_take_i_want_people_to_cancel_projects_with_me/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1wckng9/hot_take_i_want_people_to_cancel_projects_with_me/",
+      "selftext": "I'm a graphic designer/muralist and this year has been *ripe* for practicing how to not take things personally in business. That said, one thing that's really been standing out to me is how many people will ghost me instead of just saying they're not interested or that they've changed their mind for any reason.\n\nI would **rather** everyone cancel/withdraw interest on every project we start than just *stop responding altogether.* \n\nI've had this happen at all phases of the game: after asking clarifying questions so I could research products or create an initial sketch, after doing research but before pricing, before & after giving cost estimates, you name it. \n\nThis seems to happen at a way higher rate with friends/acquaintances who've approached me and asked me to do work for them - which I find categorically worse and more confusing than if a stranger/random inquiry does it. \n\nI thought that as friends or acquaintances we could trust each-other to communicate honestly; I'm not going to push a sale - I just want to know if you're moving forward or not so I can re-open my calendar and not be in limbo forever. \n\nMaybe people don't want to go through the awkwardness of saying \"no thanks\" but I find ghosting way more disrespectful of my time/livlihood, and if these people ever circle back (as potential clients or as friends I'll inevitably see socially) then that's way more uncomfortable and I'd be hesitant to even consider trying again given they've proved the inability to communicate at a basic level. \n\nAll of this being said - **how do you (other entrepreneurs and small businesses) handle these situations?** Do you push for a no? Assume it's a no and don't mentally block off your calendar until a contract's in place? Avoid taking on work from people in your network? ",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wc225i",
+      "name": "t3_1wc225i",
+      "title": "Looking for software recommendations",
+      "subreddit": "smallbusiness",
+      "author": "Maeghs017",
+      "score": 4,
+      "num_comments": 18,
+      "created_utc": 1788996610.0,
+      "permalink": "/r/smallbusiness/comments/1wc225i/looking_for_software_recommendations/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1wc225i/looking_for_software_recommendations/",
+      "selftext": "We have a business with only a couple of employees. It's a compliance business, we audit logistics companies. Generally jobs take a full day, or a few days. So we don't need to be scheduling multiple jobs a day like lots of the tradie software is catering to. I've used ServiceM8 previously but it's better for when you have to schedule lots of jobs over multiple tradies. \n\nI'm more interested in the client tracking. I want to track jobs, but also have a system that reminds me when a client is due for an annual job. Currently just using Outlook calendar to track all work, which works fine for that purpose, but has no way of tracking clients. ",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8wgldo",
+          "author": "kaancata",
+          "body": "You do not need to buy or adopt a new software platform for this. When you are a two-person team, adopting dedicated software just forces you to manage another login and re-enter data you already have in Outlook. Keep the business running where it already lives and connect AI directly to your existing systems.\n\nAll your audit bookings, client emails, and completion dates already sit inside Outlook. An AI integration can read that history directly, watch your calendar, log each client audit in the background, and draft the reminder when the annual renewal window opens. You never have to leave your daily inbox or manually maintain a separate customer portal. You tell the system how you want the rule to work, let AI handle the data checks across your tools, and review the notification before it goes out.",
+          "score": 2
+        },
+        {
+          "id": "p8v0m5w",
+          "author": "blud_13",
+          "body": "You are already paying for the fix. If that Outlook calendar sits on a Microsoft 365 business plan, Lists and Power Automate come with it, and this is a two hour build.\n\nOne list, one row per client, columns for last audit date, next due date and status. Then a scheduled flow that runs weekly, finds the rows where next due is 30 days out, and emails you. Scheduled flows and the Lists and Outlook connectors are all standard tier, so no add-on license and no per-user upgrade. Its in the licensing FAQ here https://learn.microsoft.com/en-us/power-platform/admin/power-automate-licensing/faqs\n\nServiceM8 and the rest of the field service apps are built around dispatching a crew to five jobs a day. You do not have that problem, so you would be paying monthly to fight the software.\n\nIf you ever outgrow the list, the next step is a CRM with renewal dates, not scheduling software. I would run the list for a year first and see whether you hit the wall at all.\n\nCan go deeper on the flow if you want the specifics.",
+          "score": 1
+        },
+        {
+          "id": "p8w1j50",
+          "author": "Prestigious_Classic2",
+          "body": "Your core workflow sounds less like field-service scheduling and more like recurring account management: client, locations or entities being audited, last audit date, next due date, job status, documents, and one owner.\n\nI would test a lightweight CRM before another trades platform. Load ten real clients and make sure you can answer three questions quickly: who is due in the next 90 days, which audits are currently active, and which completed jobs are still missing a report or invoice. The annual reminder should create a task before the due date, not just send a calendar alert.\n\nAlso decide whether the audit belongs to the client record or whether each audit needs its own job record. If clients can have multiple locations or audit types, separate job records will save you trouble later. The right system is the simplest one that gives you a reliable renewal list without making a two-person team maintain fields it never uses.",
+          "score": 1
+        },
+        {
+          "id": "p8wlv0x",
+          "author": "Pebb_io",
+          "body": "For day-or-multi-day audit jobs, the sweet spot is usually lighter than full tradie dispatch software. A lot of small compliance teams end up with a shared calendar + spreadsheet + email chase, then wonder why status is always fuzzy.\n\nUseful filter: can the tool show who is on which job, capture a short handoff note, and keep client files in one room without forcing 12 bookings a day? If ServiceM8 felt too \"many short jobs,\" look for something built around longer engagements instead of dense daily routing.\n\nPebb sits in that lighter zone for small teams (chat + Spaces + simple scheduling/ops, Basic $2.50 / Premium $4, trial no card). Happy to answer what it does/doesn't cover if useful. What is the ugliest part of your current stack... scheduling, notes, or client follow-up?",
+          "score": 1
+        },
+        {
+          "id": "p8y4sjy",
+          "author": "3dhexafab",
+          "body": "Excel, access or SQL, outlook and pdf (for forms) and little bit of programming and you can automate your processes and get notified.  If you have some forms, don't mind showing you a small demo ",
+          "score": 1
+        },
+        {
+          "id": "p8ygszs",
+          "author": "Ok-Chain-4358",
+          "body": "We have received a similar request from our client, we are working on a custom AI powered solution to address this. Interested to learn , please message or DM me.",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wcpsz2",
+      "name": "t3_1wcpsz2",
+      "title": "i would appreciate ypur opinion",
+      "subreddit": "smallbusiness",
+      "author": "Terrible-Till-2107",
+      "score": 3,
+      "num_comments": 2,
+      "created_utc": 1789061394.0,
+      "permalink": "/r/smallbusiness/comments/1wcpsz2/i_would_appreciate_ypur_opinion/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1wcpsz2/i_would_appreciate_ypur_opinion/",
+      "selftext": "i need your help ,I'm a developer, not a support person, so I'd rather ask than assume.\n\nI keep hearing that a big chunk of ticket volume is the same handful\n\nof questions over and over. I'm trying to understand whether that's\n\nactually true in practice, and why the existing automation options\n\nhaven't solved it.\n\nThree questions for anyone willing:\n\n1. Roughly what % of your monthly tickets are questions you've already answered many times before?\n2. Have you tried any AI/deflection tool (Zendesk Advanced AI, Intercom Fin, anything else)? What made you keep it or drop it?\n3. Where does automation break for you specifically — wrong answers, missing context about your product, tone, handoff to a human, pricing?\n\nNot selling anything and I don't have a product to pitch. Just trying to\n\nlearn before I build the wrong thing. Happy to share back what I learn\n\nfrom the responses.\n\nThanks 🙏",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wcgi1s",
+      "name": "t3_1wcgi1s",
+      "title": "Mollie closed our business account and almost €30k is still unpaid — what should we do next?",
+      "subreddit": "smallbusiness",
+      "author": "IvankaBest",
+      "score": 3,
+      "num_comments": 7,
+      "created_utc": 1789039756.0,
+      "permalink": "/r/smallbusiness/comments/1wcgi1s/mollie_closed_our_business_account_and_almost_30k/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1wcgi1s/mollie_closed_our_business_account_and_almost_30k/",
+      "selftext": "We’ve run into a pretty serious issue with Mollie and I’m hoping someone here has dealt with something similar.  \nOur company account was closed after an internal review. Mollie told us they considered the transactions unlawful. We disagree with that assessment, asked for more detail, and were told the closure decision was final.\n\nWe’re not trying to get the account reopened anymore. The problem is the remaining balance.\n\nAlmost €30,000 of our company’s funds are still with Mollie and we still haven’t been given a specific payout date.\n\nWe’ve asked whether the funds are being held temporarily, whether there’s anything we need to provide before they can be released, and how long the process is expected to take. So far we haven’t received a clear answer. This is obviously a big issue for a small business. Having that amount of money tied up with no timeline makes planning cash flow extremely difficult.\n\nHas anyone here gone through something similar with Mollie or another payment processor? What actually helped you get a clear payout timeline or escalate the case?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wbxyrj",
+      "name": "t3_1wbxyrj",
+      "title": "Hiring platforms? Do you use indeed?",
+      "subreddit": "smallbusiness",
+      "author": "swimming16",
+      "score": 3,
+      "num_comments": 8,
+      "created_utc": 1788987125.0,
+      "permalink": "/r/smallbusiness/comments/1wbxyrj/hiring_platforms_do_you_use_indeed/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1wbxyrj/hiring_platforms_do_you_use_indeed/",
+      "selftext": "What do you use for hiring platform? I have always used indeed, now they charge and I feel like i get less quality applicants than when it was free. What is the best one that you use? I don't mind paying, I understand but when I'm paying like $10 a day for months id expect a bigger turnout. Thank you!!",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wcqyvu",
+      "name": "t3_1wcqyvu",
+      "title": "BUSINESS IN LOSS LOOKING FOR ADVICE",
+      "subreddit": "smallbusiness",
+      "author": "Zeedee29",
+      "score": 2,
+      "num_comments": 5,
+      "created_utc": 1789063830.0,
+      "permalink": "/r/smallbusiness/comments/1wcqyvu/business_in_loss_looking_for_advice/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1wcqyvu/business_in_loss_looking_for_advice/",
+      "selftext": "I'm currently working in my family owned fashion business where we do expensive handmade abayas (traditional arabic dresses) for occasions for women.   \n  \nBusiness is only doing break even every year, and this year we are at loss due to war and bad situations in the country.   \n  \nI've tried searching for consignment deals with Ecommerce platform, did with one for a while but they kept returning the unsold pieces back to us which created a lot of inventory, so we stopped with them. Though, being with them did bring our name up.   \n  \nAfterwards, our point of sale was only our own shopify store, whatsapp, and a consignment deal with a physical store. Sales are near 0 in the months from june to august, picks up from september, highest peak and most of our sales are in Ramadan/Eid.\n\nI've tried searching for more consignment deals with physical stores but havent found any suitable ones, tried searching more ecom platforms but the products in the platforms are mixed with cheaper items and im guessing theyre going to have the same requirements as the one we worked with. Tried searching for wholesale opportunities, havent found one. We use to go to lots of exhibitions but they are very costly and end up not covering the cost from the sales. The abaya made by my family is very unique and is a niche product as its not designed as a typical abaya, the designs are not found anywhere, we also import the fabrics. Our main customers are mostly above 40.\n\nIm looking for any new advice to make this business work, hoping to find something i havent tried.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wckydm",
+      "name": "t3_1wckydm",
+      "title": "Job posts are ridiculous.",
+      "subreddit": "sysadmin",
+      "author": "SamOakTree",
+      "score": 185,
+      "num_comments": 66,
+      "created_utc": 1789050849.0,
+      "permalink": "/r/sysadmin/comments/1wckydm/job_posts_are_ridiculous/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1wckydm/job_posts_are_ridiculous/",
+      "selftext": "It's been this way for a decade I know but it's just getting worse and worse. I don't think it's ever been this unreasonable or this dishonest.\n\nI was looking at job posts and I saw a job for a help desk tier 2. And I was curious what they considered tier 2. I'm well beyond help desk at this point in my career but I was curious so I looked at it. \n\nThey weren't looking for a tier to help desk person. They were looking for a Senior Systems administrator but labeling it as a Help Desk position so they could lowball whoever applied for it.\n\nThey were looking for someone to be the owner of several major business systems including 365. They wanted them to administer AWS and Azure. They wanted five certificates including CCNA. They wanted someone who could manage firewalls. \n\nThe post was just so far beyond help desk at all that it was just gross. They were clearly just trying to get someone they could convince those are just basic help desk exoectations so they can pay them little money.\n\nThey were basically looking for an all-in-one senior sys admin who could do operations and frontline support on top of everything else.\n\n",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8ykmls",
+          "author": "hijinks",
+          "body": "ya but the smart person who has a little experience in those gets the job.. then just puts senior sys admin on their resume for the next job and gets a sys admin job and out of help desk. \n\n",
+          "score": 1
+        },
+        {
+          "id": "p8yr1lq",
+          "author": "whatdoido8383",
+          "body": "I've been in IT \\~22 years now and have just kind of given up on the field to be honest.\n\nIf I ever lose my current role,  I'm not wading through all this BS anymore (No idea what I'd do TBH). Companies have become ridiculous in their demands. My last 2 roles have turned into doing the job of 3 people with unpaid on call too...  IMO, this career field sucks now.\n\nFinding a company that doesn't want to run you ragged is near impossible. They don't give a shit anymore. Hire the cheapest guy that can kinda get the job of 3 people done, burn him out so he leaves and hire the next sucker in line.\n\nI'm so jaded at what IT has become, LOL.",
+          "score": 1
+        },
+        {
+          "id": "p8ylvfz",
+          "author": "bedel99",
+          "body": "The person adverting the role it is the Senior Vice President of technology, with high school diploma and 6 months of experiance, but its the owners son.",
+          "score": 1
+        },
+        {
+          "id": "p8ykyy1",
+          "author": "Dolapevich",
+          "body": "I sometimes take the time to tell them they are looking for a team, not a person.\n\nSometimes HR has no clue what they are told to look for.",
+          "score": 1
+        },
+        {
+          "id": "p8yl02z",
+          "author": "usernamedottxt",
+          "body": "It's been about a year now, but TI, the calculator company, posted for a cybersecurity manager that would be \"hands on\" in patching, vulnerability scans, incident management, SOC analysis, threat intelligence, systems administration, help desk ticket management, cross team collaboration, working with vmware, installing end user software, and it went on. Pay was like 70k in Dallas. Benefits were listed as \"Paid holidays\".\n\nI've worked places that responsibility list was well over 100 people. And didn't even include the help desk crap.",
+          "score": 1
+        },
+        {
+          "id": "p8ymdnm",
+          "author": "kerosene31",
+          "body": "My guess?  They had 2 or 3 people, splitting the sysadmin and helpdesk role.  They all leave, so the company posts 1 job that is really 2, at the lower pay.  Happens all the time.  ",
+          "score": 1
+        },
+        {
+          "id": "p8yky01",
+          "author": "buy_chocolate_bars",
+          "body": "They have always been like this in the last 15 years: I don't see any change. I don't apply to jobs, but no new technology scares me anymore: I'll just learn the parts of whatever technology that will allow me to do 90% of the job in days/weeks (if I have the time). I have AI to help me with the difficult stuff. ",
+          "score": 1
+        },
+        {
+          "id": "p8ylqrc",
+          "author": "-GenlyAI-",
+          "body": "I would have taken this job early on in my sysadmin career for sure.  ",
+          "score": 1
+        },
+        {
+          "id": "p8z52hj",
+          "author": "Li_liminal_spaces",
+          "body": "They want a H-1B visa holder I assume, but they have to advertise the job and then pretend to be perplexed when no US citizens apply. This way they can not give them raises and have their residency tied to employment for all types of other abusive manipulation.",
+          "score": 1
+        },
+        {
+          "id": "p8yxca1",
+          "author": "StabMyEyes",
+          "body": "When HR writes a job description. Companies ask for the moon, but they rarely get what they ask for. They want unicorns, buy will hire a solid mule. ",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wcmm23",
+      "name": "t3_1wcmm23",
+      "title": "So do you think Apple new Watches Be Added to the Banned-Device List After Yesterday’s Announcement?",
+      "subreddit": "sysadmin",
+      "author": "fatso486",
+      "score": 130,
+      "num_comments": 107,
+      "created_utc": 1789054531.0,
+      "permalink": "/r/sysadmin/comments/1wcmm23/so_do_you_think_apple_new_watches_be_added_to_the/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1wcmm23/so_do_you_think_apple_new_watches_be_added_to_the/",
+      "selftext": "&#x200B;\n\nAfter yesterday’s creepy live rewind/siri recap announcement, I’m honestly surprised this hasn’t sparked more discussions and backslash \n\nAs I understand it, Apple is adding ambient conversation features to the Apple Watch that can listen to, process, and summarize what’s being said. Apple says the processing happens locally and is privacy-preserving, but I’m not sure that fully answers the security question:\n\nWhat happens when the person sitting across from you is wearing one?\n\nWe already discourge employees to bring phones or recordung devices into very sensitive meetings. Are organizations now supposed to treat Apple Watches the same way? What a mess.\n\n\nMaybe I’m overthinking it, and I’m still trying to work through the implications, but this seems like a pretty big unnessisary expansion of what an ordinary-looking wearable can do. I also think some of these features are a little silly anyway—as if the poor battery life weren’t enough—especially when Apple keeps adding capabilities without much obvious practical value. To me, this sounds way more significant than almost anything else announced this week, including the LG TVs story. That’s why I’m surprised it hasn’t gotten more attention and backlash.\n\nI’d be interested to hear how others are thinking about this.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8yyoco",
+          "author": "mixduptransistor",
+          "body": "If you were banning phones, you should've already been banning watches. They've had microphones since they were released and could have been recording surreptitiously the whole time. Just because Apple added this one weird feature doesn't mean it's suddenly a new risk. Been a risk the whole time",
+          "score": 1
+        },
+        {
+          "id": "p8z0sr8",
+          "author": "TheShootDawg",
+          "body": "meanwhile, the room’s display device is a LG smart TV…….  ",
+          "score": 1
+        },
+        {
+          "id": "p8yz5k2",
+          "author": "fafarex",
+          "body": ">We already tell employees not to bring phones or recording devices into sensitive meetings. Are organizations now supposed to treat Apple Watches the same way?\n\nif you have already banned phone why are smartwatch not banned at the same time? they always add the capacity to record ... they are just smaller smartphone in most aspect ...",
+          "score": 1
+        },
+        {
+          "id": "p8yz520",
+          "author": "amw3000",
+          "body": "What is the reason behind banning phones? If it’s the microphone, that same logic should apply for all devices with a microphone. ",
+          "score": 1
+        },
+        {
+          "id": "p8yzmgx",
+          "author": "Coldwarjarhead",
+          "body": "Existing watches can already use the voice memo app to record. If you are banning phones so they can't record, you should have already banned watches.",
+          "score": 1
+        },
+        {
+          "id": "p8yyyir",
+          "author": "In_Gen",
+          "body": "I’m waiting for a wearable privacy bubble that blocks all these listening devices myself. ",
+          "score": 1
+        },
+        {
+          "id": "p8z3cy0",
+          "author": "theweidy",
+          "body": "I dont think its that big of a deal, some brief notes below from Apples website: [https://support.apple.com/en-us/148354](https://support.apple.com/en-us/148354)\n\n* Raw audio is never accessible\n* Audio is not recorded or stored\n* Siri Recap doesn't produce a transcript. It generates a brief, high-level summary\n* Audible and visible signals for Live Rewind",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wclnh5",
+      "name": "t3_1wclnh5",
+      "title": "How can I recover from a ransomware attack?",
+      "subreddit": "sysadmin",
+      "author": "RJ2_D2_",
+      "score": 79,
+      "num_comments": 160,
+      "created_utc": 1789052412.0,
+      "permalink": "/r/sysadmin/comments/1wclnh5/how_can_i_recover_from_a_ransomware_attack/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1wclnh5/how_can_i_recover_from_a_ransomware_attack/",
+      "selftext": "So, the unthinkable happened to my workplace - we have become the victims of a ransomware attack. We came into work the other day and found computers with encrypted files and notes on the desktops demanding we send them a ransom to a secure address in the tor browser. They took out our entire network. \n\nAs of now, we are trying to utilize backups and scrub the network clean as we bring devices back up in an offline state. \n\nUnfortunately one of our backup devices was also infiltrated. It's a Synology backup device and they where able to encrypt its files as well. This means we have about 5 devices with no backups available. \n\nIt's probably a vain hope but, is there any way I could possibly restore or decrypt these backups? Is there any service out there that would be capable of making our files useable? If anyone knows about Synology, do they keep offline or cloud backups I maybe don't know about? I'm just looking for anything that might make things easier for us. Any advice is appreciated. ",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8yqc47",
+          "author": "Qel_Hoth",
+          "body": "If a ransomware attack is \"unthinkable\" to you, then good luck recovering.\n\nRecovering from ransomware, or any compromise for that matter, relies on proper planning. ",
+          "score": 1
+        },
+        {
+          "id": "p8yqfkk",
+          "author": "lundrog",
+          "body": "Start the insurance claim process assuming your covered and call a team of experts. I can recommend articwolf ",
+          "score": 1
+        },
+        {
+          "id": "p8yq9fl",
+          "author": "NuAngelDOTnet",
+          "body": "If you haven't been thinking about this for the last five years, nobody on reddit is going to be able to help you right now.",
+          "score": 1
+        },
+        {
+          "id": "p8yqmez",
+          "author": "StatementNext682",
+          "body": "You're supposed to use 3-2-1 as in 3 data sources. 2 different media types. 1 offsite copy. If you did this, you can restore from offsite. Also you need to make sure your backup is airgapped. ",
+          "score": 1
+        },
+        {
+          "id": "p8yqnww",
+          "author": "lundrog",
+          "body": "I personally would unplug the network. Bring in new devices and have forensics review the old gear.",
+          "score": 1
+        },
+        {
+          "id": "p8yqerd",
+          "author": "CPAtech",
+          "body": "Activate your Incident Response and your cyber security provider has resources to guide you.",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wcm64j",
+      "name": "t3_1wcm64j",
+      "title": "I've seen some laughably bad job listings, but things like this are why it's so hard to find the right fit.",
+      "subreddit": "sysadmin",
+      "author": "Fathoms_0",
+      "score": 22,
+      "num_comments": 16,
+      "created_utc": 1789053546.0,
+      "permalink": "/r/sysadmin/comments/1wcm64j/ive_seen_some_laughably_bad_job_listings_but/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1wcm64j/ive_seen_some_laughably_bad_job_listings_but/",
+      "selftext": "I've been looking for a new role for almost 2 years now, most of the positions I've applied for have ended up being filled internally, which makes me ask why it was posted externally in the first place. On the other hand I've came across several listings that are just heinous for what is asked of you versus the pay. In this case, the listing was for our city hospital (healthcare IT, I know, bleh) which was recently acquired by an organization. They canned the entire IT staff including the managerial suite upon the buyout. This listing popped up today in my Indeed feed. \"Sole on-site IT professional responsible for the day-to-day health, security, and uptime of all technology at a critical access hospital. Acts as the facility's eyes and ears, provides hands-on support for end users and clinical operations, and coordinates with Corporate IT for changes, projects, and escalations. After-hours and on-call work required to support a 24x7 care environment.\"\n\n\n\nAm I wrong for thinking this is insane? An entire hospital and associated clinics solo? Just gotta laugh and keep going.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wcq504",
+      "name": "t3_1wcq504",
+      "title": "Lansweeper Rant",
+      "subreddit": "sysadmin",
+      "author": "So_Saint",
+      "score": 19,
+      "num_comments": 16,
+      "created_utc": 1789062104.0,
+      "permalink": "/r/sysadmin/comments/1wcq504/lansweeper_rant/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1wcq504/lansweeper_rant/",
+      "selftext": "I've used Lansweeper on-prem since 2014 for just a couple of purposes:  Tracking approximately 150 MS Windows assets on the network and all associated software licenses.  That's it.  Nothing else.  It's nice being able to see other types of devices that are connected (surveillance cameras, wireless AP's, switches, etc.) but I don't need that from this product.\n\nTheir pricing has gone up consistently over the past several years while, at the same time, they've been pushing their customers to their cloud service.   I think I was paying about $600 annually in the beginning but over the last several years, they've been quoting me over $2K annually.  Recently,  I received an auto-renewal email... it is now $3,000!\n\nKeep in mind that Lansweeper for 100 assets is FREE.  I have 150 Windows assets and not all of those are in use at one time.   In order to get coverage of all 150 assets, I have to subscribe to their \"2000 Asset\" plan.  So $3K is too steep for what I need. \n\nI responded to the rep, stating that $3K is out of my budget and I don't want to auto-renew but couldn't find anyway to disable or \"turn off\" auto-renewal.\n\n  \n***Her reply:***   *\"I’ve reviewed your account and noticed that your cancellation request was received after the 30-day notice period required prior to renewal (as outlined in Clause 17.3 of our Terms of Use and in our renewal reminder emails).  While we are contractually required to honor the renewed term, we want to approach this constructively and help you get maximum value within your budget.\"*\n\n\\*SIGH\\*\n\nAfter this reply, I'm done with them.  The card they have on file for auto-renewal is no longer valid anyway.\n\nIt's time to find an alternative.  I'm presently using LogMeIn Central for RMM purposes.  Is Ninja One decent at Windows/Software Asset Tracking?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wckjh0",
+      "name": "t3_1wckjh0",
+      "title": "Windows Server patching concerns",
+      "subreddit": "sysadmin",
+      "author": "h9xq",
+      "score": 17,
+      "num_comments": 51,
+      "created_utc": 1789049917.0,
+      "permalink": "/r/sysadmin/comments/1wckjh0/windows_server_patching_concerns/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1wckjh0/windows_server_patching_concerns/",
+      "selftext": "So in my org we are very keen on avoiding patching and rebooting servers at all costs. So much to the point that we patch once a month and have exclusions for around 60 percent of our servers to not get automatically patched. (Meaning we have a chunk of servers not getting patched at all)\n\nNow I have gotten my hand slapped for attempting to patch or even bringing it up and I am looking for guidance on this. Now I understand availability and the consequences of failing patches. But there are active 9+ rated CVEs sittings on dozens of servers. For patching vulnerabilities do I really need to get a change request to handle this?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8yh6gi",
+          "author": "Simmery",
+          "body": "This isn't a technical problem. You're asking a political question no one can answer about your organization. If they don't want to patch despite knowing the risks, get it in writing and move forward with your career, here or elsewhere.",
+          "score": 1
+        },
+        {
+          "id": "p8yh8nd",
+          "author": "Dizzy_Bridge_794",
+          "body": "Patch or have giants risks of being hacked.   You should absolutely follow a formal process.   We snapshot and backup prior (virtual servers).   On mission critical stuff we test in DR prior.   Patches can and do mess with systems and cause them to not work. ",
+          "score": 1
+        },
+        {
+          "id": "p8yjy5c",
+          "author": "AppIdentityGuy",
+          "body": "The rule is simple:\"If.you will not patch systems for the fear of downtime at somepoint a bad actor is going to sxhedule the downtime for you at their convenience.\" . ",
+          "score": 1
+        },
+        {
+          "id": "p8yhuxy",
+          "author": "Temporary-Library597",
+          "body": "If your org can't afford downtime for patch reboots they should afford redundant hardware to keep services running.\n\nYour org is doing it wrong. They are part of the problem.",
+          "score": 1
+        },
+        {
+          "id": "p8yiffd",
+          "author": "SysZeron",
+          "body": "It's all fun and games until you get ransomwared.\n\nPut it in writing that the absence of patching puts the business and customers at risk, if management want to take responsibility for the associated risk then they can own the consequences. All you need to be armed with is an effective patching strategy for when they ask \"so, what do we do?\".\n\nOne thing you may want to highlight, if the company has Cyber Insurance, and an incident does prevail, the insurer may deem the company's inaction to be gross negligence and withhold or reduce a payout.",
+          "score": 1
+        },
+        {
+          "id": "p8ylg9w",
+          "author": "drdrew16",
+          "body": "May also be worth figuring out if your company has cyber insurance. It's usually a requirement to be up to date on patches to maintain coverage.",
+          "score": 1
+        },
+        {
+          "id": "p8yh5f2",
+          "author": "Wilfred_Fizzle_Bang",
+          "body": "You need to show them the cost to the business if anyone or the servers is affected by a cyber attack.",
+          "score": 1
+        },
+        {
+          "id": "p8yhtc5",
+          "author": "TopherBlake",
+          "body": "Assuming you are not management, make sure to keep a record of whoever is telling you not to patch, especially if you are in an industry that gets audited because you'll want that when the blame game happens. Edit: I just saw the solo sysAdmin tag, make sure you are explaining clearly to the business side what consequences could and will be for not patching.",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wcnj60",
+      "name": "t3_1wcnj60",
+      "title": "Windows IT Pro: Retiring NTLM: Frequently asked questions",
+      "subreddit": "sysadmin",
+      "author": "Borgquite",
+      "score": 12,
+      "num_comments": 7,
+      "created_utc": 1789056532.0,
+      "permalink": "/r/sysadmin/comments/1wcnj60/windows_it_pro_retiring_ntlm_frequently_asked/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1wcnj60/windows_it_pro_retiring_ntlm_frequently_asked/",
+      "selftext": "From Microsoft: 'This FAQ collects the questions we hear most often from customers, partners, and the community as we move Windows to a Kerberos-first, NTLM-optional (and eventually NTLM-free) future. If you've emailed us, cornered us at a conference, or filed a support case that started with \"so, about this weird auth thing…\", chances are that your question is answered here.\n\nIf your question isn't answered here, please reach out to [ntlm@microsoft.com](mailto:ntlm@microsoft.com) or work with your Microsoft account team, Customer Success Account Manager, or Microsoft Support to route feedback to the product group.'\n\n[https://techcommunity.microsoft.com/blog/windows-itpro-blog/retiring-ntlm-frequently-asked-questions/4550522](https://techcommunity.microsoft.com/blog/windows-itpro-blog/retiring-ntlm-frequently-asked-questions/4550522)",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wchi9n",
+      "name": "t3_1wchi9n",
+      "title": "Novell NSS partition recovery",
+      "subreddit": "sysadmin",
+      "author": "Looney95",
+      "score": 8,
+      "num_comments": 30,
+      "created_utc": 1789042537.0,
+      "permalink": "/r/sysadmin/comments/1wchi9n/novell_nss_partition_recovery/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1wchi9n/novell_nss_partition_recovery/",
+      "selftext": "We have an old Novell server with hdd that failed due to power shortage.\n\nWe want to recover as many data as possible. Has anyone worked with this filesystem? It looks like a nichè, and we're trying to figure out which  tool use to data recovery.\n\nAny suggestions?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8xsqdz",
+          "author": "Advanced_Vehicle_636",
+          "body": "The 90s called: They want their Novell server back.\n\nTruth be told, I have no suggestions for you. Novell is defunt. Without some specialized tools and services (or backups...) you're probably SOL.",
+          "score": 1
+        },
+        {
+          "id": "p8xt0at",
+          "author": "Mutsy007",
+          "body": "Did you not have a backup? Novell NSS is a proprietary technology, it has been a very long time since touching Novell, I come from the 2.x/3.x days, but I seem to recall there may be internal console command like salvage, verify/rebuild.\n\nGood luck with your recovery.",
+          "score": 1
+        },
+        {
+          "id": "p8xystc",
+          "author": "SpudzzSomchai",
+          "body": "Let me dust off my CNE! ",
+          "score": 1
+        },
+        {
+          "id": "p8xu50a",
+          "author": "BuffaloRedshark",
+          "body": "I miss Novell, there were aspects of their file share system that were better than NTFS.\n\nBut even when I was supporting it, it wasn't at the level of knowledge to be able to do something like a partition recovery. Sorry I can't be of more use.",
+          "score": 1
+        },
+        {
+          "id": "p8xzdwh",
+          "author": "rswwalker",
+          "body": "Create a virtual Novell server and restore from backup. You do have backups, right? Right?",
+          "score": 1
+        },
+        {
+          "id": "p8xysoi",
+          "author": "adamr001",
+          "body": "What OS was the server running?  In any case, [Open Enterprise Server](https://www.opentext.com/products/enterprise-server) (i.e. SuSE Linux Enterprise Server + Novell bits) should be able to mount it I would think.",
+          "score": 1
+        },
+        {
+          "id": "p8y9a4m",
+          "author": "KStieers",
+          "body": "Kroll Ontrack... they got started in data recovery doing Novell servers, had a tool to do volume recovery... they probably still have the tools available to do things in house.",
+          "score": 1
+        },
+        {
+          "id": "p8xyaul",
+          "author": "Admin_Stuff",
+          "body": "Novell was the company.  If it is a NetWare server, it is way out of support.  But you could still head over to OpenText and try posting in the Open Enterprise Server forums.  Someone may have some suggestions.  NSS is still a supported file system, but OES is now SLES based, not Netware.",
+          "score": 1
+        },
+        {
+          "id": "p8y35zy",
+          "author": "One-Suggestion-7906",
+          "body": "First of all I would make a disk to image backup using ddrescue, booting from something as SystemRescueCD. Later, I would use the Novell NSS tools or some paid repair tool",
+          "score": 1
+        },
+        {
+          "id": "p8xsxuy",
+          "author": "KB4MTO",
+          "body": "Man, I haven't touched Novell since 5.0. I love hearing it's still in use.",
+          "score": 1
+        },
+        {
+          "id": "p8y6jn9",
+          "author": "Ams197624",
+          "body": "Phew... That's been a while!\n\nYou could try a read-only verification first, if the thing still boots... Can't remember the exact commands tho.  \n\n\nWhat I do remember: Deactivate the damaged NSS pool and put it into maintenance mode using the console utility:  \n`nss /pooldeactivate=POOLNAME` followed by `nss /poolmaintenance=POOLNAME.` (I think)\n\nfull rebuild:  \n`nss /poolrebuild=POOLNAME`\n\nThen try to bring it back online. You might loose (some) data.",
+          "score": 1
+        },
+        {
+          "id": "p8y6tys",
+          "author": "Brainrants",
+          "body": "Obviously go to your backups first, but The Google gave me this on Novell's website: \"*Use REBUILD to recover corrupted Novell Storage Services (NSS) pools. The REBUILD utility salvages the data it finds on your corrupted NSS pool and recovers it.\"*\n\n[https://www.novell.com/documentation/nw65/stor\\_nss\\_lx\\_nw/data/rebuild.html](https://www.novell.com/documentation/nw65/stor_nss_lx_nw/data/rebuild.html)\n\nGood luck.",
+          "score": 1
+        },
+        {
+          "id": "p8yegvk",
+          "author": "PeilAyr",
+          "body": "NetWare eh\n\n![gif](giphy|VMgcrwq9imGHu)",
+          "score": 1
+        },
+        {
+          "id": "p8yy6r0",
+          "author": "Sinister_Crayon",
+          "body": "Take an image of the disk and from that image you should be able to mount the partition with any modern Linux. The filesystem is \"nssvol\" so a mount -t nssvol /dev/xxx /mnt should do the trick.\n\nObviously there's a hardware question here as to what sort of disk it is (SCSI, IDE or early SATA or some other format) and how to connect it to Linux but that's the easy part LOL\n\nOnce mounted up, copying the data off should be easy.",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wcqn58",
+      "name": "t3_1wcqn58",
+      "title": "Bringing Linux devices into management",
+      "subreddit": "sysadmin",
+      "author": "Funny744",
+      "score": 6,
+      "num_comments": 6,
+      "created_utc": 1789063149.0,
+      "permalink": "/r/sysadmin/comments/1wcqn58/bringing_linux_devices_into_management/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1wcqn58/bringing_linux_devices_into_management/",
+      "selftext": "After a lot of restructuring at our university the past couple years, there are quite a few Linux devices (primarily desktops, I believe around 70-ish) that are currently in the wild unmanaged in use by academics primarily within the Engineering and Science departments that would've been maintained by per-institute IT departments that no longer exist, and as such the current patching and functionality state of these machines is completely unknown (since any remaining colleagues now no longer have physical access to most of the rooms where these machines are).\n\n  \nSince we already manage research compute I've been given the green light by my manager to look into options to bring these academic's desktops into a managed state with a cobbled together proof of concept, since our existing central endpoint guys won't touch anything \\*NIX related with a 10ft pole. We know they're all some form of Ubuntu LTS (20.04 and 22.04 mostly) which makes things easier, so I'm thinking of doing Landscape for setup and patching + Intune for compliance + Puppet/Ansible for config management.\n\n  \nIs this in the right direction or are there better / more cost efficient ways of doing this?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wcjjww",
+      "name": "t3_1wcjjww",
+      "title": "Lenovo Smart dock 5500",
+      "subreddit": "sysadmin",
+      "author": "orion3311",
+      "score": 7,
+      "num_comments": 2,
+      "created_utc": 1789047658.0,
+      "permalink": "/r/sysadmin/comments/1wcjjww/lenovo_smart_dock_5500/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1wcjjww/lenovo_smart_dock_5500/",
+      "selftext": "Has anybody deployed these need to get some new docks for an expansion? We previously had good luck with the Lenovo Hybrid USB-C Docks (40AF).",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wcl1m1",
+      "name": "t3_1wcl1m1",
+      "title": "Music / beat store",
+      "subreddit": "ecommerce",
+      "author": "Interesting_Run_7725",
+      "score": 1,
+      "num_comments": 1,
+      "created_utc": 1789051057.0,
+      "permalink": "/r/ecommerce/comments/1wcl1m1/music_beat_store/",
+      "url": "https://www.reddit.com/r/ecommerce/comments/1wcl1m1/music_beat_store/",
+      "selftext": "I‘m a music producer selling beat licenses online and decided to build my own store instead of relying on marketplaces. I feel like it’s not perfect at all but it’s still digital products that rely on personal taste rather than objective arguments. So I kept it simple. \n\nI appreciate your feedback!\n\nhttps://sleaper.net",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wcjbps",
+      "name": "t3_1wcjbps",
+      "title": "my brain is completely rotted and fried",
+      "subreddit": "productivity",
+      "author": "Neither_Ship_3042",
+      "score": 128,
+      "num_comments": 26,
+      "created_utc": 1789047117.0,
+      "permalink": "/r/productivity/comments/1wcjbps/my_brain_is_completely_rotted_and_fried/",
+      "url": "https://www.reddit.com/r/productivity/comments/1wcjbps/my_brain_is_completely_rotted_and_fried/",
+      "selftext": "MY BRAIN IS DEAD. 2 years ago I could study for 8 hours a day and feel fulfilled, motivated and happy. Now I can't even study for 15 mins without feeling bored, sleepy, restless and wanting to stop. \n\nI wake up early and REALLY WANNA GET BACK INTO THE ENTIRE WINTER ARC THING because i used to be that an year ago. I workout and everything but by noon and evening I feel so horribly tired and exhausting to the point I can't do anything EVEN IF I WANT TO. as soon as class endss i go back to my room and do nothing but watch dumb shows on netflix and scroll reels while eating ramen. \n\nI am desperate for such a productive and 'hustle culture' life but I also wanna move at my own comfortable pace. I know this makes no sense. I would be really grateful if someone could please give me some advice : )",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p8ybwx8",
+          "author": "Ok_Order7571",
+          "body": "Stop all the short-form content, and watch your motivation and attention span return to normal\n\n",
+          "score": 67
+        },
+        {
+          "id": "p8y9vhl",
+          "author": "bug292630124",
+          "body": "Delete Instagram. Reels are killing your brain. This was happening to me and I have ig deleted 98% of the time now and have replaced shows with reading books and listening to audiobooks. Start with fun easy reads (my biggest recommendation is dungeon crawler Carl).",
+          "score": 33
+        },
+        {
+          "id": "p8yd5y2",
+          "author": "ParanoidBrokkoli",
+          "body": "Don’t watch shorts of any kind on doom scrolling mode anymore   \nDo some Breathwork & meditation ",
+          "score": 16
+        },
+        {
+          "id": "p8yk4yi",
+          "author": "crush_on_me",
+          "body": "All of the tips here are excellent, but it’s also worth being said that not everything is just totally on you and an issue of discipline. Something medical could be going on. Maybe you need more support or resources. I realize it’s hard to access care if you are in a western country a lot of the time, but it’s also worth checking your vitamin levels, thyroid, etc. And even depression  (just repeated videos on your phone could be triggering this) and ADHD are things that could be overwhelming you. A lot of the hook of hustle culture is “you’re just not working hard enough” and I think there’s a lot of resources those folks have that are missing from that picture to help them fulfill that that we just don’t see. Seek your support and see if that can help you fulfill your goals and widen your reach. Best to you. ",
+          "score": 10
+        },
+        {
+          "id": "p8yhvjo",
+          "author": "pilotfly31",
+          "body": "You can try following things?\n1. Wake up early morning. Walk around the neighborhood and get sunlight. No mobile. At least 4-5 days a week.\n2. Meditation in the evening. At least 5 days a week.\n3. Use time blocks for studying. At first start with 15 minutes, then increase your time. It really depends on the topics you're studying.  \nBut eventually you will get this. It worked for me.\n\nBest of luck.",
+          "score": 10
+        },
+        {
+          "id": "p8ycw6i",
+          "author": "Ordinary_Count_203",
+          "body": "You're frying your dopamine receptors by using social media (dopamine receptor downregulation). Exposing yourself to supranormal and dopaminergic stimuli will reduce you to passivity. You have to avoid it. That's why other tasks feel heavy and less interesting...and you don't feel like doing anything. Dopamine plays a big part in motivation and attention.",
+          "score": 5
+        },
+        {
+          "id": "p8ygrxi",
+          "author": "VolumeMobile7410",
+          "body": "Sounds like you know what you need to do. You need to want to change yourself and your habits. Find what motivates you to make change",
+          "score": 3
+        },
+        {
+          "id": "p8yqitc",
+          "author": "gentian_red",
+          "body": "Stop scrolling reels and any gacha-type short-form scrolling content.\n\nGo outside and walk at least 30 mins a day.\n\nMeditate on nothing (let go of thoughts) for 10 minutes a day. Can start less and build yourself up. Yes, you will be bored. Get used to tolerating it. \n\nPut away ALL devices around an hour before bed. Read a book before sleeping.\n\nMake sure you are getting a balanced, healthy diet and 8hrs sleep.\n\nDo these and you will be cured.",
+          "score": 3
+        }
+      ]
+    },
+    {
+      "id": "1wcmx8h",
+      "name": "t3_1wcmx8h",
+      "title": "Formerly lazy people who are now workaholics, what's your relationship with work?",
+      "subreddit": "productivity",
+      "author": "Afraid_Cress208",
+      "score": 11,
+      "num_comments": 14,
+      "created_utc": 1789055221.0,
+      "permalink": "/r/productivity/comments/1wcmx8h/formerly_lazy_people_who_are_now_workaholics/",
+      "url": "https://www.reddit.com/r/productivity/comments/1wcmx8h/formerly_lazy_people_who_are_now_workaholics/",
+      "selftext": "I feel like this is important to ask. Thanks!",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wcir6l",
+      "name": "t3_1wcir6l",
+      "title": "If humans never procrastinated, how would the world look like? [Flair: Hypothetical Question out of curiosity]",
+      "subreddit": "productivity",
+      "author": "Narrow_Essay_7532",
+      "score": 9,
+      "num_comments": 1,
+      "created_utc": 1789045732.0,
+      "permalink": "/r/productivity/comments/1wcir6l/if_humans_never_procrastinated_how_would_the/",
+      "url": "https://www.reddit.com/r/productivity/comments/1wcir6l/if_humans_never_procrastinated_how_would_the/",
+      "selftext": "Two scenarios:   \n  \n\\- If Humans evolutionarily never procrastinated then how would the world look?  \n\\- And if humans stopped procrastinating from this exact moment then what would happen in the future. Say, how would the next 5 years look, then 10 years then 20, 50, 100, a millenium etc.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wclq77",
+      "name": "t3_1wclq77",
+      "title": "Why is my productivity so good at work and non-existent at home?",
+      "subreddit": "productivity",
+      "author": "DoorSubject374",
+      "score": 3,
+      "num_comments": 8,
+      "created_utc": 1789052567.0,
+      "permalink": "/r/productivity/comments/1wclq77/why_is_my_productivity_so_good_at_work_and/",
+      "url": "https://www.reddit.com/r/productivity/comments/1wclq77/why_is_my_productivity_so_good_at_work_and/",
+      "selftext": "FYI I am in the process of obtaining an ADHD diagnosis which I'm sure contributes. \n\nI am known at work for having a very strong work ethic, and I find it enjoyable even- but the tasks I do are very similar to the ones I hate/cant seem to get done at home, and this confuses me. \n\nI work in a cleanroom manufacturing setting, so a LOT of it is cleaning, after manufacture it's just odd jobs like filling in paperwork, sorting out the store cupboard (which is often a pain but I love reorganising everything in date order), more cleaning and reading dry documents about legislation. We finish work pretty early so I have a great work life balance. \n\nI get home and even though im not tired I become a different person. Cleaning is what I struggle with most (and ALWAYS struggled with, to the point where when I got my job my parents laughed and said there's no way I'll like a job cleaning when I've always had a messy room), my room often looks like a bomb has gone off and there's always something I discover in the kitchen that has gone mouldy. It makes me depressed but I just feel like there is a wall that I just can't cross. I put this down to ADHD but then don't understand why I can cross it at work.\n\nI also bombed my degree due to the complete lack of discipline I had (managed to get my shit together enough to not fail after 3 resits of the final year but even then had 2 extensions on my diss) \n\nWhy the hell am I able to work independently, without anyone watching me, and also without much time pressure (aside from production in the mornings), nothing feels like a difficult task and I am able to think \"I want to do X task because it will make life easier for myself and my coworkers\", doing the dishes will also make my life easier but I can still never keep on top of them! \n\nI don't have a stressful job, or kids at home or even pets, it should be easy for me to get home and keep organised. At the very least on the weekends. But no.\n\n  \nWhat is this sorcery? Is there a fix?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wcj1ut",
+      "name": "t3_1wcj1ut",
+      "title": "How do you stay productive after work?",
+      "subreddit": "productivity",
+      "author": "Interesting_Cycle809",
+      "score": 2,
+      "num_comments": 6,
+      "created_utc": 1789046469.0,
+      "permalink": "/r/productivity/comments/1wcj1ut/how_do_you_stay_productive_after_work/",
+      "url": "https://www.reddit.com/r/productivity/comments/1wcj1ut/how_do_you_stay_productive_after_work/",
+      "selftext": "Every morning I think that today I will learn something new or do something productive. But once I get to the office, I just don’t have the energy to do anything else. I get so exhausted that all I want to do is rest, lie down, and sleep.\n\nThen the next morning, I regret it and think, “Why could not i do it?”\n\nThe same cycle keeps repeating. I really want to change this, but I honestly don’t know how. Even if I manage to do something productive one day, I can’t maintain the consistency. The next day, I am already tired again and don’t feel like doing anything.\n\nI am honestly tired of being stuck in this cycle and really want to figure out how to break it.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wcom3u",
+      "name": "t3_1wcom3u",
+      "title": "Help me to stop just scrolling",
+      "subreddit": "productivity",
+      "author": "Interesting-Mess1837",
+      "score": 1,
+      "num_comments": 3,
+      "created_utc": 1789058879.0,
+      "permalink": "/r/productivity/comments/1wcom3u/help_me_to_stop_just_scrolling/",
+      "url": "https://www.reddit.com/r/productivity/comments/1wcom3u/help_me_to_stop_just_scrolling/",
+      "selftext": "Hi, I need some help. Basically, I’m working on a few projects, and when I get home from school, instead of doing anything productive, I just sit down with my phone and stay on it until evening, and then I go to sleep. Any advice on how to stop doing this? I’ve tried some tricks like changing the phone’s colors so I wouldn’t feel like using it as much, etc., but nothing works.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wcl23v",
+      "name": "t3_1wcl23v",
+      "title": "What to do on my screens during my free time?",
+      "subreddit": "productivity",
+      "author": "Sp1rshi",
+      "score": 1,
+      "num_comments": 0,
+      "created_utc": 1789051089.0,
+      "permalink": "/r/productivity/comments/1wcl23v/what_to_do_on_my_screens_during_my_free_time/",
+      "url": "https://www.reddit.com/r/productivity/comments/1wcl23v/what_to_do_on_my_screens_during_my_free_time/",
+      "selftext": "See , I get a lot of free time between me going home from my coaching and just generally lots of free time\n\nWanna utilizer it by reading some good media or just listening to good media (u can suggest niche things too) on my phone instead of scrolling reels\n\nWhat to do",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wchzus",
+      "name": "t3_1wchzus",
+      "title": "Has a new phone ever actually improved your productivity?",
+      "subreddit": "productivity",
+      "author": "Disastrous_Brief_161",
+      "score": 0,
+      "num_comments": 0,
+      "created_utc": 1789043831.0,
+      "permalink": "/r/productivity/comments/1wchzus/has_a_new_phone_ever_actually_improved_your/",
+      "url": "https://www.reddit.com/r/productivity/comments/1wchzus/has_a_new_phone_ever_actually_improved_your/",
+      "selftext": "I’m curious whether upgrading your phone has genuinely made you more productive, or if most of us just end up using the same apps and habits anyway. What’s been your experience?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wciqqt",
+      "name": "t3_1wciqqt",
+      "title": "My biggest problem isn’t too much work. It’s API",
+      "subreddit": "productivity",
+      "author": "Comfortable-Life8418",
+      "score": 0,
+      "num_comments": 0,
+      "created_utc": 1789045701.0,
+      "permalink": "/r/productivity/comments/1wciqqt/my_biggest_problem_isnt_too_much_work_its_api/",
+      "url": "https://www.reddit.com/r/productivity/comments/1wciqqt/my_biggest_problem_isnt_too_much_work_its_api/",
+      "selftext": "Tuesday was one of those days where I felt busy from the second I opened my inbox, but by the end of it I couldn’t point to one meaningful thing I’d actually finished.\n\nIt started with a customer email in Gmail asking about pricing. That made me open Google Sheets to check numbers. Then I went into Analytics because I wanted to see how campaign was doing before replying. While I was there, someone messaged me on Slack asking if we’d updated a landing page. So I opened Notion to check the latest copy. Then I realized I needed a screenshot from a competitor’s site, because we’d talked about changing our messaging last week. And somewhere in the middle of  that, I forgot why I’d opened Analytics in the first place.\n\nWhich made me think: how much of my day is just being the connection between apps instead of actually running the business?\n\nI’ve been messing around with AI a lot lately, and the biggest improvement didn’t come from asking it to write better emails or come up with more ideas. It came from getting it to handle the “glue work” — the boring, repetitive stuff of gathering context before I can even start thinking.\n\nOnce I stopped treating AI like a chatbot and started treating it like someone whose job is just to prepare information for me, everything felt different.\n\nSo I keep wondering if we’re thinking about the next few years wrong. I keep seeing people ask which SaaS products AI will replace, but I’m starting to think I won’t have fewer apps at all. Gmail, Slack, Notion, Sheets, and Analytics aren’t going anywhere. What might disappear is me manually moving between all of them. Maybe the real shift isn’t building bigger software stacks. Maybe it’s each of us getting a small team of AI workers quietly doing research, analysis, coordination, and first drafts in the background, so we can focus on the decisions that actually need a human.\n\nMaybe that’s too optimistic. But after catching myself spending half a day as middleware between five apps, it doesn’t feel as far-fetched as it did a year ago.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wciivg",
+      "name": "t3_1wciivg",
+      "title": "I am 19 and i don’t know what am i made for and what my passion is",
+      "subreddit": "productivity",
+      "author": "Classic-Smoke-9009",
+      "score": 0,
+      "num_comments": 8,
+      "created_utc": 1789045176.0,
+      "permalink": "/r/productivity/comments/1wciivg/i_am_19_and_i_dont_know_what_am_i_made_for_and/",
+      "url": "https://www.reddit.com/r/productivity/comments/1wciivg/i_am_19_and_i_dont_know_what_am_i_made_for_and/",
+      "selftext": "Since I was 15, I spent the summers working. In 2024 I spent the summer reading books rather than working which made summer enjoyable so to say. In 2025 I worked again in the biggest sunglasses retailer in my country. I just wanted to fulfil my time rather than rotting the whole summer doing nothing. Now in 2026 I spent most of my summer going to the gym and hiding from the heat. I spent all those summers working and trying to educate myself and I still don't know I am made for. I am trying to learn some valuable information but the internet is full of misinformation and ads. Everyone says that this the golden generation where the information is free and you have everything available , but I don't agree because like I said everything I try to learn from the internet is just superficial. During the years I tried to learn coding , but this didn't work out too. I thought that AI would help me more but that didn't work out too. Now I am starting university after a month and I hope something inspires me and make me more intrigued and passionate where even if I do it 24 hours a day I won't feel the time is passing. I just want to fulfil my potential. I am tired of of doing some basic things which don't benefit me so much. I want my brain to be tired.\n\nIf you can give me some advice , from where I can start I would be grateful.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wcloq9",
+      "name": "t3_1wcloq9",
+      "title": "How much time of your week is actually unpaid?",
+      "subreddit": "Freelancers",
+      "author": "ClockworkFinance",
+      "score": 1,
+      "num_comments": 5,
+      "created_utc": 1789052479.0,
+      "permalink": "/r/Freelancers/comments/1wcloq9/how_much_time_of_your_week_is_actually_unpaid/",
+      "url": "https://www.reddit.com/r/Freelancers/comments/1wcloq9/how_much_time_of_your_week_is_actually_unpaid/",
+      "selftext": "Genuine question for other freelancers — roughly what % of your working week goes to stuff you don't bill for? Admin, unpaid pitches/proposals, revisions, client calls, marketing, etc.    \nI did a rough estimate for myself recently and the number was way higher than I expected, which made me realize my \"hourly rate\" on paper isn't close to what I actually earn per hour worked.    \nDoes this match your experience, or do you already track this closely?",
       "is_self": true,
       "over_18": false,
       "is_video": false,
