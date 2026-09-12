@@ -116,7 +116,7 @@
       "title": "The AI part of a website builder barely matters, it's the controls afterward that decide your SEO",
       "subreddit": "EntrepreneurRideAlong",
       "author": "Alex_SQSP",
-      "score": 3,
+      "score": 5,
       "num_comments": 3,
       "created_utc": 1789157689.0,
       "permalink": "/r/EntrepreneurRideAlong/comments/1wdrf1o/the_ai_part_of_a_website_builder_barely_matters/",
@@ -133,8 +133,8 @@
       "title": "How you get feedback from users?",
       "subreddit": "EntrepreneurRideAlong",
       "author": "sumizeit",
-      "score": 3,
-      "num_comments": 6,
+      "score": 4,
+      "num_comments": 10,
       "created_utc": 1789151064.0,
       "permalink": "/r/EntrepreneurRideAlong/comments/1wdoc5n/how_you_get_feedback_from_users/",
       "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1wdoc5n/how_you_get_feedback_from_users/",
@@ -167,6 +167,18 @@
           "author": "tibbersthecat",
           "body": "Ask at the moment of friction, not days later. A one-click prompt like “What stopped you here?” with three reasons plus Other will usually teach you more than a general feedback email.",
           "score": 1
+        },
+        {
+          "id": "p99ve09",
+          "author": "morableai",
+          "body": "For non-converters, I honestly wouldn’t expect an email template to fix it. They already decided not to buy, so there’s basically no upside for them in spending time helping you. If I really needed qualitative feedback from that group, I’d pay for it ;even something small like €10–20 for 10 minutes with people who dropped at a specific step. Otherwise I’d use their behavior as the feedback and save the direct questions for users who actually got some value from the product. The mistake is treating both groups like they have the same motivation to answer.",
+          "score": 1
+        },
+        {
+          "id": "p9a11vh",
+          "author": "fabstonesolutions",
+          "body": "When you find out lmk 😩",
+          "score": 1
         }
       ]
     },
@@ -176,8 +188,8 @@
       "title": "Is this just the beginning or all this idea was good for?",
       "subreddit": "EntrepreneurRideAlong",
       "author": "Personal-Garbage3462",
-      "score": 2,
-      "num_comments": 4,
+      "score": 3,
+      "num_comments": 5,
       "created_utc": 1789143875.0,
       "permalink": "/r/EntrepreneurRideAlong/comments/1wdl02u/is_this_just_the_beginning_or_all_this_idea_was/",
       "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1wdl02u/is_this_just_the_beginning_or_all_this_idea_was/",
@@ -296,6 +308,18 @@
           "score": 4
         },
         {
+          "id": "p96z7r8",
+          "author": "Foul0ne",
+          "body": "I think for non-technical founders, yes. At least, for me, I have always built our infrastructure on safe and reliable practices from the beginning.\n\nI will say, however, that our clients are in the insurance industry (some health) so it has been a primary focus of mine in dealing with potential PHI/PII.\n\nI’ve always geared toward using software and ecosystems that are locked down though. As much as possible, obviously.\n\nWe’re not HIPAA compliant only because a couple of our layers just simply can’t be. But we’re SOC2 and all that jazz.",
+          "score": 2
+        },
+        {
+          "id": "p99htgf",
+          "author": "Kyle772",
+          "body": "For “founders” and “startups” yes. For companies with actual business goals and a competent tech team security is the first and primary consideration.",
+          "score": 2
+        },
+        {
           "id": "p94z4ua",
           "author": "Character_Data8211",
           "body": "'After we ship' is just startup-speak for 'let's pretend this problem doesn't exist.' Security isn't a thing you 'do later,' it's part of the damn product. But sure, let's wait for the breach to wake everyone up.",
@@ -332,27 +356,9 @@
           "score": 1
         },
         {
-          "id": "p96z7r8",
-          "author": "Foul0ne",
-          "body": "I think for non-technical founders, yes. At least, for me, I have always built our infrastructure on safe and reliable practices from the beginning.\n\nI will say, however, that our clients are in the insurance industry (some health) so it has been a primary focus of mine in dealing with potential PHI/PII.\n\nI’ve always geared toward using software and ecosystems that are locked down though. As much as possible, obviously.\n\nWe’re not HIPAA compliant only because a couple of our layers just simply can’t be. But we’re SOC2 and all that jazz.",
-          "score": 1
-        },
-        {
-          "id": "p972dmf",
-          "author": "SCS-AI",
-          "body": "Security loses every one of those fights for a boring reason: it's the only thing on the list with no deadline attached. Product has a ship date. Sales has a quota. Hiring has a start date. Security has \"someday.\" So it's not that founders are dumb about it, it's that nothing forces the calendar until an outside party does it for you: the enterprise SOC2 ask, the breach, investor diligence, the lawsuit.\n\nSo the move is to pick your own forcing function before one gets picked for you. The cleanest trigger I use: the day you start storing customer data that isn't yours to lose, an email list, card info, anything PII or health-related, that's the line. Not \"when we're bigger.\"\n\nAnd the day-to-day stuff that actually holds up is the boring set-once kind, not the willpower kind:\n\n- Get secrets out of plaintext. No passwords or API keys in spreadsheets, Slack, or the repo. Password manager, done. (Someone in here already described the plaintext-password spreadsheet, that's the exact thing that bites.)\n- Don't roll your own auth. Most early messes I've seen are homemade login or client-side auth leaking keys and webhooks straight into the browser. Use a real identity provider and move on.\n- Force 2FA on anything that touches customer data. One toggle, permanent.\n- Least privilege. The new intern doesn't need prod database access. Default to no, add back only what someone actually needs.\n\nYou don't need SOC2 at 3 customers. You need to not be the company with the plaintext spreadsheet. SOC2 is a sales unlock you buy later, that baseline is what keeps one dumb mistake from ending you now.",
-          "score": 1
-        },
-        {
           "id": "p978owf",
           "author": "HPCBusinessManager",
           "body": "Certain basic securities should be implemented along the way.  Simple xss protections if needed.   \nUser data access protections. \n\nSome geos require specific controls and data protections before doing business with them. ",
-          "score": 1
-        },
-        {
-          "id": "p99htgf",
-          "author": "Kyle772",
-          "body": "For “founders” and “startups” yes. For companies with actual business goals and a competent tech team security is the first and primary consideration.",
           "score": 1
         }
       ]
@@ -363,7 +369,7 @@
       "title": "Copy/paste across devices",
       "subreddit": "AppIdeas",
       "author": "i-am_i-said",
-      "score": 7,
+      "score": 5,
       "num_comments": 13,
       "created_utc": 1789143212.0,
       "permalink": "/r/AppIdeas/comments/1wdkp32/copypaste_across_devices/",
@@ -378,7 +384,7 @@
           "id": "p96pu2h",
           "author": "adjustafresh",
           "body": "Apple products do this natively if you're signed into the same Apple id (e.g., copy text on my iPhone, paste text into an app on my MacBook).",
-          "score": 3
+          "score": 4
         },
         {
           "id": "p96l3i5",
@@ -632,7 +638,7 @@
       "subreddit": "roastmystartup",
       "author": "ib_bunny",
       "score": 3,
-      "num_comments": 1,
+      "num_comments": 5,
       "created_utc": 1789152847.0,
       "permalink": "/r/roastmystartup/comments/1wdp77s/a_lcd_display_that_shows_your_goals_app_with/",
       "url": "https://www.reddit.com/r/roastmystartup/comments/1wdp77s/a_lcd_display_that_shows_your_goals_app_with/",
@@ -648,8 +654,8 @@
       "title": "Vent: a voice app for people in therapy. Landing page only. Roast the idea and the page.",
       "subreddit": "roastmystartup",
       "author": "Livid_Debate_591",
-      "score": 1,
-      "num_comments": 5,
+      "score": 2,
+      "num_comments": 7,
       "created_utc": 1789166412.0,
       "permalink": "/r/roastmystartup/comments/1wdv4wl/vent_a_voice_app_for_people_in_therapy_landing/",
       "url": "https://www.reddit.com/r/roastmystartup/comments/1wdv4wl/vent_a_voice_app_for_people_in_therapy_landing/",
@@ -657,7 +663,39 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p991w36",
+          "author": "Consistent-Oil-4058",
+          "body": "voice memos already exist bro, your landing page is a glorified todo list",
+          "score": 3
+        },
+        {
+          "id": "p98yq5a",
+          "author": "theneedlesspottery",
+          "body": "The landing page has three whole paragraphs before I even know what it does. Nobody’s reading that much text on a phone while they’re about to lose it in a bathroom stall at work.\n\n  \nThe fake phone call thing is clever but feels like the one standout feature buried under a mountain of “AI best friend” framing that makes me a little queasy. “For people in therapy” isn’t too narrow, it’s actually the most honest part. The rest of the page tries so hard to be warm and approachable it circles around to feeling like a wellness app that’s gonna sell my emotional breakdowns to an ad network.\n\n  \nI’d pay for the scheduled escape call. I would not pay for an AI that paraphrases my week back to me before my therapist does the real work.",
+          "score": 1
+        },
+        {
+          "id": "p99ksyl",
+          "author": "Thin-Simple-298",
+          "body": "A fake phone call? Bro, if I need therapy, I'm not gonna pull off some sitcom-level escape just to vent. Feels like a cheap hook.",
+          "score": 1
+        },
+        {
+          "id": "p99vr40",
+          "author": "MotherGur9617",
+          "body": "a fake phone call to vent? cringe af.",
+          "score": 1
+        },
+        {
+          "id": "p9at0de",
+          "author": "Maleficent-Fill-9917",
+          "body": "I’d use this",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1wdt8eo",
@@ -665,12 +703,12 @@
       "title": "Roast my app",
       "subreddit": "roastmystartup",
       "author": "Lotek-machine",
-      "score": 1,
-      "num_comments": 0,
+      "score": 0,
+      "num_comments": 1,
       "created_utc": 1789161801.0,
       "permalink": "/r/roastmystartup/comments/1wdt8eo/roast_my_app/",
       "url": "https://www.reddit.com/r/roastmystartup/comments/1wdt8eo/roast_my_app/",
-      "selftext": "A group friendly enough to share a meal but not friends enough to split a clearly unequal bill evenly? \n\nCreated this “app” ( currently a website)  as a hobby because every time my son would go to a soccer team diner it would be a mess splitting the bill then I noticed this was a problem that happened more often than I realized -\n\nRoast it \n\nhttps://willowepay.com",
+      "selftext": "A group friendly enough to share a meal but not friends enough to split a clearly unequal bill evenly?\n\nCreated this “app” ( currently a website)  as a hobby because every time my son would go to a soccer team diner it would be a mess splitting the bill then I noticed this was a problem that happened more often than I realized -\n\nRoast it\n\n[https://willowepay.com](https://willowepay.com)",
       "is_self": true,
       "over_18": false,
       "is_video": false,
@@ -920,8 +958,8 @@
       "title": "Looking for teens to collaborate with",
       "subreddit": "Startup_Ideas",
       "author": "Every_Drop_6749",
-      "score": 3,
-      "num_comments": 6,
+      "score": 2,
+      "num_comments": 7,
       "created_utc": 1789141120.0,
       "permalink": "/r/Startup_Ideas/comments/1wdjqrn/looking_for_teens_to_collaborate_with/",
       "url": "https://www.reddit.com/r/Startup_Ideas/comments/1wdjqrn/looking_for_teens_to_collaborate_with/",
@@ -945,8 +983,8 @@
       "title": "Voice-first development - hype or real opportunity?",
       "subreddit": "Startup_Ideas",
       "author": "andrewkass",
-      "score": 1,
-      "num_comments": 1,
+      "score": 2,
+      "num_comments": 2,
       "created_utc": 1789160463.0,
       "permalink": "/r/Startup_Ideas/comments/1wdsnk6/voicefirst_development_hype_or_real_opportunity/",
       "url": "https://www.reddit.com/r/Startup_Ideas/comments/1wdsnk6/voicefirst_development_hype_or_real_opportunity/",
@@ -1082,7 +1120,7 @@
       "subreddit": "SomebodyMakeThis",
       "author": "Alek_Enev",
       "score": 0,
-      "num_comments": 12,
+      "num_comments": 13,
       "created_utc": 1789121464.0,
       "permalink": "/r/SomebodyMakeThis/comments/1wdc22g/i_want_to_build_a_tool_that_actually_solves_a/",
       "url": "https://www.reddit.com/r/SomebodyMakeThis/comments/1wdc22g/i_want_to_build_a_tool_that_actually_solves_a/",
@@ -1300,8 +1338,8 @@
       "title": "How do you turn early B2B client work into consistent international sales? I will not promote",
       "subreddit": "startups",
       "author": "Manuliyan",
-      "score": 9,
-      "num_comments": 10,
+      "score": 5,
+      "num_comments": 11,
       "created_utc": 1789134902.0,
       "permalink": "/r/startups/comments/1wdgzy8/how_do_you_turn_early_b2b_client_work_into/",
       "url": "https://www.reddit.com/r/startups/comments/1wdgzy8/how_do_you_turn_early_b2b_client_work_into/",
@@ -1349,8 +1387,8 @@
       "title": "Should you charge your first customers before the product is finished? I will not promote",
       "subreddit": "startups",
       "author": "mello_dev",
-      "score": 7,
-      "num_comments": 13,
+      "score": 9,
+      "num_comments": 27,
       "created_utc": 1789156963.0,
       "permalink": "/r/startups/comments/1wdr3gz/should_you_charge_your_first_customers_before_the/",
       "url": "https://www.reddit.com/r/startups/comments/1wdr3gz/should_you_charge_your_first_customers_before_the/",
@@ -1373,15 +1411,21 @@
           "score": 2
         },
         {
-          "id": "p981zi9",
-          "author": "Mission_Pirate_4150",
-          "body": "In for free until the product works properly, then you can start charging them.  You can start at a low amount and grow it from there.\n\nI hate the concept of free forever.",
-          "score": 1
-        },
-        {
           "id": "p98zi5q",
           "author": "batjko8",
           "body": "It's a good question. In my case, we're currently not charging anything for our thing, because the main users are not going to be the source of income.\n\nIt's not that complicated for most product companies though: if you give people a service they can use, and you want to charge them for it eventually, do it from day one.\n\nIf you give them a service they will never need to pay for, but you're building premium features that they will eventually use, charge them only when they can actually use them.",
+          "score": 2
+        },
+        {
+          "id": "p99gewr",
+          "author": "81_Passenger",
+          "body": "10users x $99 = $990. If you compare them with the potential revenue your company will make over the next 24 months, how important are they then now?\n\nThe feedback you can get from engaged and committed beta-users might help you discover bugs that would have lost 10-25% of new users.\n\nIf they pay and you don’t deliver what they believe they paid for, you get angry customers giving bad reviews, very hurtful.\n\nIf I was you, I would reach out directly to them over e-mail offering them and encouraging them to become a part of your “User Experience Panel”.   \nAs a member of the user panel you get 1 year free subscription, and in return participate in user/customer test and survey feedback.\n\n\\- Make UX test på entire solution and key features.  \n\\- Use them to test marketing and branding strategy.",
+          "score": 2
+        },
+        {
+          "id": "p981zi9",
+          "author": "Mission_Pirate_4150",
+          "body": "In for free until the product works properly, then you can start charging them.  You can start at a low amount and grow it from there.\n\nI hate the concept of free forever.",
           "score": 1
         },
         {
@@ -1403,15 +1447,33 @@
           "score": 1
         },
         {
-          "id": "p99gewr",
-          "author": "81_Passenger",
-          "body": "10users x $99 = $990. If you compare them with the potential revenue your company will make over the next 24 months, how important are they then now?\n\nThe feedback you can get from engaged and committed beta-users might help you discover bugs that would have lost 10-25% of new users.\n\nIf they pay and you don’t deliver what they believe they paid for, you get angry customers giving bad reviews, very hurtful.\n\nIf I was you, I would reach out directly to them over e-mail offering them and encouraging them to become a part of your “User Experience Panel”.   \nAs a member of the user panel you get 1 year free subscription, and in return participate in user/customer test and survey feedback.\n\n\\- Make UX test på entire solution and key features.  \n\\- Use them to test marketing and branding strategy.",
-          "score": 1
-        },
-        {
           "id": "p99j6ta",
           "author": "tibbersthecat",
           "body": "I’d charge once the core workflow creates real value, but make the founding discount time-limited rather than lifetime. Put the unfinished pieces and feedback expectations in writing so the lower price feels like a fair trade, not a vague promise.",
+          "score": 1
+        },
+        {
+          "id": "p99pviv",
+          "author": "Morning_Gecko24",
+          "body": "i lean toward charging something once theyre getting a real outcome, even if the roadmap is still messy. a paid pilot seems useful here since it tests willingness to pay without pretending the product is finished. free users can give good feedback but they also optimize for free lol. have you tried a small deposit or paid design-partner spot?",
+          "score": 1
+        },
+        {
+          "id": "p9akf5v",
+          "author": "Agitated_Celery_729",
+          "body": "Get them to pay anything. It’s much, much better proof than people using for free, especially in B2B. Customers who really have the pain will pay even if you can only solve 1 sliver of the problem to start with",
+          "score": 1
+        },
+        {
+          "id": "p9aqyxs",
+          "author": "akashabnoq",
+          "body": "No, for the product validation you should avoid this.",
+          "score": 1
+        },
+        {
+          "id": "p9ayd8q",
+          "author": "Beginning-Raccoon151",
+          "body": "Charge, but make the uncertainty explicit. The first customers aren't paying for a finished roadmap. They're paying for the core outcome plus unusually close access to the founder.I'd avoid a lifetime discount. A 40-50% founding price for 6-12 months gives them a real reason to start now without permanently anchoring the product too low. Put the current scope, missing pieces and review date in writing. If the core value isn't strong enough to charge for today, use a short design-partner phase with a deposit or paid onboarding. Free users can help with usability, but they won't answer the pricing question.Charge, but make the uncertainty explicit. The first customers aren't paying for",
           "score": 1
         }
       ]
@@ -1466,7 +1528,7 @@
       "subreddit": "Entrepreneur",
       "author": "ZealousidealBank8484",
       "score": 22,
-      "num_comments": 37,
+      "num_comments": 38,
       "created_utc": 1789122761.0,
       "permalink": "/r/Entrepreneur/comments/1wdcgmw/which_is_better/",
       "url": "https://www.reddit.com/r/Entrepreneur/comments/1wdcgmw/which_is_better/",
@@ -1550,8 +1612,8 @@
       "title": "How do you handle follow-ups when a prospect goes silent after you've done a lot of work for them?",
       "subreddit": "Entrepreneur",
       "author": "tudorwhiteley",
-      "score": 19,
-      "num_comments": 30,
+      "score": 26,
+      "num_comments": 40,
       "created_utc": 1789145008.0,
       "permalink": "/r/Entrepreneur/comments/1wdliyd/how_do_you_handle_followups_when_a_prospect_goes/",
       "url": "https://www.reddit.com/r/Entrepreneur/comments/1wdliyd/how_do_you_handle_followups_when_a_prospect_goes/",
@@ -1565,13 +1627,25 @@
           "id": "p972n31",
           "author": "PilotFeisty2324",
           "body": "This is why consultancies like McKinsey charge upfront retainer fees tbh. You're doing free scoping work and they're treating it like it's nothing. Charge $500 for a consultation or draft report before you even send it. If they're serious, they'll pay. If not, you've filtered out the time-wasters. Simple as that.",
-          "score": 24
+          "score": 35
         },
         {
           "id": "p96t6p0",
           "author": "CatMom2828",
           "body": "I just posted a similar gripe yesterday, but a piece of advice I've heard I can share for you is to absolutely NOT do this much work for a client until you either have a signed contract in hand or a deposit in your bank account (ideally both tbh). \n\nI'm in the graphic design/mural industry and it's becoming common knowledge to not waste time creating mockups for clients until we have an agreement/down payment because - worst case scenario - they could just take that draft you made for them and have AI (or some Fiverr freelancer) use that as a jumping off point and do the job on the cheap \n\ntl;dr don't give your IP away for free ",
-          "score": 8
+          "score": 12
+        },
+        {
+          "id": "p97dvhz",
+          "author": "FirstLightStudios",
+          "body": "I’d probably stop doing the 10-14 page docs for free. A short scope is enough to see if theres real interest, anything beyond that I’d charge for and credit it back if they move forward. At least then if they disappear you didnt spend hours doing free work.",
+          "score": 5
+        },
+        {
+          "id": "p97fa0r",
+          "author": "PineappleRecent9486",
+          "body": "The \"should I close this out?\" email is the best thing I've done for this. Something like \"doing my quarterly planning, want to clear my pipeline. If this is dead, no hard feelings, just tell me so I stop bugging you.\" I get replies on a lot of those, and plenty are \"no, still alive, just slow.\" I also set the expectation early now, tell them I'll check in every few weeks and if it goes quiet I'll assume it's parked.\n\nOn charging for scoping, yes, even a small fee. Free 10-page docs attract tire-kickers. A small scoping credit that rolls into the project if they sign filters the unserious out and gives you a real reason to follow up later. I mark it dead after two silent follow-ups and a close-out email, then keep the doc and the relationship and stop carrying it in my head",
+          "score": 5
         },
         {
           "id": "p97cxmm",
@@ -1580,15 +1654,39 @@
           "score": 3
         },
         {
-          "id": "p97dvhz",
-          "author": "FirstLightStudios",
-          "body": "I’d probably stop doing the 10-14 page docs for free. A short scope is enough to see if theres real interest, anything beyond that I’d charge for and credit it back if they move forward. At least then if they disappear you didnt spend hours doing free work.",
-          "score": 3
-        },
-        {
           "id": "p978zs7",
           "author": "First_Leg_313",
           "body": "I agree with a lot of the comments below. Charge a fee for scoping or RFI. It doesn't have to be a lot, just enough to make it worth your time. It's also something I'd credit toward the main project should they decide to work with you moving forward.\n\nIf they have no skin in the game, then they won't necessarily take things seriously. Typically, that's not even the issue. Everyone is busy, you send the 10-14 page report, they think I'll get to that later and they never do. But if they've put some cash down, they are much more likely to respond. Just my thoughts.",
+          "score": 2
+        },
+        {
+          "id": "p98law7",
+          "author": "Kiwired1962",
+          "body": "I charge a fee at the start.\n\nI used to run a CAD / 3D company and I found that the more effort clients expected me to put into a presentation, the less likely I was to get paid. I worked out that many firms were simply putting together proposals and wanted something to present in their proposal. If they could get us to do this for free, this was great for them for very speculative bids, but most never came to anything.  \nIt was difficult because we loved getting into a new, exciting project.\n\n1. let clients know that you charge for all of your work. That way you can say that no client ends up paying for last months losses, just their own work.\n2. have a well structured form outlining this and practice explaining this to clients so you convey that this is standard practice.\n3. Let the prospects who reject this waste the time of your competitors.",
+          "score": 2
+        },
+        {
+          "id": "p98v1uq",
+          "author": "Safe_Station6501",
+          "body": "Do you have any evidence that those 10 to 14 page documents actually add value? Seems like a lot of work without knowing if it's getting you anywhere. Maybe try charging for the scoping phase to see if they're serious.",
+          "score": 2
+        },
+        {
+          "id": "p991e1r",
+          "author": "LogisticsPro2012",
+          "body": "Three follow ups and then done. first one a week later. second one two weeks after that. third one a month after that with the \"should I close this out\" line. if they dont reply after that I mark it dead and move on. no more headspace. I used to keep deals open for six months hoping they would come back. they almost never did. the ones that did came back on their own without me chasing.\n\nBut the other thing that helped was setting expectations early. when you send that 10 page doc say something like \"happy to help with this. if things change or it goes in a different direction just let me know so I am not holding space for it.\" most people appreciate the directness. they have been on the other side of the silence too. also the \"should I close this out\" email works more often than you would think. I have gotten replies from people who were embarrassed they ghosted and ended up reengaging. so the system handles the follow up and the expectation setting prevents some of the ghosting in the first place",
+          "score": 2
+        },
+        {
+          "id": "p9a0ovn",
+          "author": "JazzlikeDiscount7233",
+          "body": "Ghosting is just bad business etiquette, period. If they can't bother to email 'no thanks,' they're not worth your time anyway. I'd close it out after 2 follow-ups max.",
+          "score": 2
+        },
+        {
+          "id": "p9a1ose",
+          "author": "Nalds80",
+          "body": "Everyone here is saying charge for scoping and they're right, but that fixes the next deal, not this one.\n\nWhat cut this for me was asking two blunt questions before writing anything. Last October I had a two and a half hour call with a prospect and near the end I asked him straight out whether he could actually pay for this, and what his objections were. Felt rude. On the call it was completely fine.\n\nHe answered both, and his wife turned up on the next call and was blunter than I was, which told me where the real decision sat.\n\nBefore that I'd been writing documents for people nobody had ever asked about money. The silence afterwards was them not wanting to say no.\n\nSo I'd put those two questions in the call that comes before your 14 pages.",
           "score": 2
         },
         {
@@ -1614,18 +1712,6 @@
           "author": "Strange-Yard-5129",
           "body": "Give them a short 1 page scope document and charge them for the longer one. Ask them upfront when they plan to close, offer the charge for scoping document as a discount later if they sign the whole project. So they don't feel like a waste but also respect your time. For competition you will have to keep a 1 page score free for them to compare. But if they don't come back within 14 days I would mark it closed and put them in a regular update marketing loop where you continue to share case studies or your other work glimpses with them to show them what they are missing and down the line if they activate the project or do another one they come back to you. That would be my advise",
           "score": 1
-        },
-        {
-          "id": "p97fa0r",
-          "author": "PineappleRecent9486",
-          "body": "The \"should I close this out?\" email is the best thing I've done for this. Something like \"doing my quarterly planning, want to clear my pipeline. If this is dead, no hard feelings, just tell me so I stop bugging you.\" I get replies on a lot of those, and plenty are \"no, still alive, just slow.\" I also set the expectation early now, tell them I'll check in every few weeks and if it goes quiet I'll assume it's parked.\n\nOn charging for scoping, yes, even a small fee. Free 10-page docs attract tire-kickers. A small scoping credit that rolls into the project if they sign filters the unserious out and gives you a real reason to follow up later. I mark it dead after two silent follow-ups and a close-out email, then keep the doc and the relationship and stop carrying it in my head",
-          "score": 1
-        },
-        {
-          "id": "p984iqq",
-          "author": "peach-talk",
-          "body": "I’d set the expectation before doing the deep work: confirm the decision timeline, what “ready to proceed” means, and what happens if priorities change. After delivering the work, I’d send one concise recap with a clear yes/no question and a reasonable follow-up window. If there’s still no response, close the loop politely and leave the door open rather than adding more nudges. It protects your time and makes future re-engagement less awkward.",
-          "score": 1
         }
       ]
     },
@@ -1635,8 +1721,8 @@
       "title": "Feedback Friday: Rate My Ideas | September 11, 2026",
       "subreddit": "Entrepreneur",
       "author": "AutoModerator",
-      "score": 11,
-      "num_comments": 31,
+      "score": 13,
+      "num_comments": 32,
       "created_utc": 1789113656.0,
       "permalink": "/r/Entrepreneur/comments/1wd9soo/feedback_friday_rate_my_ideas_september_11_2026/",
       "url": "https://www.reddit.com/r/Entrepreneur/comments/1wd9soo/feedback_friday_rate_my_ideas_september_11_2026/",
@@ -1725,6 +1811,251 @@
           "score": 1
         }
       ]
+    },
+    {
+      "id": "1we0ukm",
+      "name": "t3_1we0ukm",
+      "title": "Moved the button to the end of a client's emails and revenue went up",
+      "subreddit": "EntrepreneurRideAlong",
+      "author": "Ok-Masterpiece-7614",
+      "score": 2,
+      "num_comments": 1,
+      "created_utc": 1789182043.0,
+      "permalink": "/r/EntrepreneurRideAlong/comments/1we0ukm/moved_the_button_to_the_end_of_a_clients_emails/",
+      "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1we0ukm/moved_the_button_to_the_end_of_a_clients_emails/",
+      "selftext": "Been pulling the actual rules behind good client marketing emails instead of guessing at best practices. Read through 402 issues of one marketing educator's newsletter to find what actually holds up. One rule stood out: one call to action, placed near the end, never stacked at the top and repeated down the page.\n\nFeels backwards. Fewer buttons should mean fewer clicks, and it does, clicks drop. Revenue goes up anyway. The people who do click already read the case for buying by the time they get there, instead of jumping to a product page before you gave them a reason to.\n\nThis is the opposite of what a lot of small business emails do. The button sits at the top because that's where a website's navigation goes, not because that's where the reader is ready to act.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1we01yy",
+      "name": "t3_1we01yy",
+      "title": "Give me a real problem. I want to see whether AI should actually be used to solve it.",
+      "subreddit": "EntrepreneurRideAlong",
+      "author": "Independent-Diver929",
+      "score": 0,
+      "num_comments": 10,
+      "created_utc": 1789179712.0,
+      "permalink": "/r/EntrepreneurRideAlong/comments/1we01yy/give_me_a_real_problem_i_want_to_see_whether_ai/",
+      "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1we01yy/give_me_a_real_problem_i_want_to_see_whether_ai/",
+      "selftext": "I’m trying an experiment and I need real problems instead of ones I invent myself.\n\nGive me something you’re actually dealing with.  \nIt could be a business problem, a process that keeps breaking, a decision you’re stuck on, messy information, something you’re trying to build, or something completely different.\n\nThe goal isn’t to force AI into the answer. I want to see whether I can first determine if AI can actually help, what the simplest useful approach would be, what still requires human judgment, and when AI is simply the wrong tool.\n\nIf the problem looks workable, I’m willing to take it further and see how much of it we can actually solve.  \nPost the problem in the comments. If it involves details you’d rather not share publicly, feel free to DM me instead.\n\nAnd since I know this will come up: yes, I use AI as part of this process, including helping me tighten what I write. I’m not trying to hide that. The experiment is whether we can use it to solve real problems effectively, including recognizing when we shouldn’t use it at all.\n\nNo pitch. No link. I just want some real problems to throw at this.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p9a0ukx",
+          "author": "zorkempire",
+          "body": "The problem of people on Reddit constantly searching for business ideas under various guises.  ",
+          "score": 7
+        },
+        {
+          "id": "p9ae1kq",
+          "author": "bigbleau",
+          "body": "My wife likes sleeping with other men and I have an internal conflict because I both hate and love it. It hurts me more than anything I’ve ever experienced but turns me on more than anything",
+          "score": 3
+        },
+        {
+          "id": "p9adx2t",
+          "author": "JoshsBuilding",
+          "body": "I have a problem in my own app. Basically it simply analyses users habit data and compares that to their sleep metrics from their wearable. \n\nBut this gives very simple (but cheap to compute) linear relationships. \n\nBut I think AI might do a better job at analysing what is quite complex relationships with many confounding factors and relationships that aren’t linear. And on top of this the data is limited because a user only creates one data point each night.",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1wdyiok",
+      "name": "t3_1wdyiok",
+      "title": "I found a real app opportunity in 10 minutes using ASO data alone (I know nothing about fish)",
+      "subreddit": "AppIdeas",
+      "author": "Confused_Dad_2023",
+      "score": 4,
+      "num_comments": 1,
+      "created_utc": 1789175382.0,
+      "permalink": "/r/AppIdeas/comments/1wdyiok/i_found_a_real_app_opportunity_in_10_minutes/",
+      "url": "https://www.reddit.com/r/AppIdeas/comments/1wdyiok/i_found_a_real_app_opportunity_in_10_minutes/",
+      "selftext": "Found what might be a legit app opportunity in 10 minutes, sharing the process instead of building it\n\nWanted to see how far I could get validating an app idea using nothing but ASO tools, no industry knowledge going in at all (I don't know anything about fish keeping).\n\nRan a batch of aquarium-related keywords through ***Keyword Scout***'s bulk search. Found a cluster that all scored well together, \"tank log\" (Opp 76), \"fish tank tracker\" (Opp 76), \"planted tank tracker\" (Opp 43, difficulty of just 20), \"reef tank scheduler\" (Opp 40, basically zero saturation). Having multiple related terms score well together is a stronger signal than any single keyword, means real distributed demand, not a fluke.\n\nThen pulled a review analysis across the top 5 competing apps (326 reviews total). Every single one has the same complaints: data loss on crashes/updates, bait-and-switch pricing (free until you hit a low usage cap, then subscription), and multi-tank users having to re-enter the same equipment/food for every tank separately. One competitor apparently hasn't meaningfully updated in over a year despite people paying for it.\n\nThen checked one specific competitor's full keyword profile and found 12 \"stealable\" keywords, terms they already rank for but don't have in their title, which is basically free real estate for a new well-titled competitor.\n\nWhole process took maybe 10-15 minutes total. Not building this myself (zero fish knowledge, and I think that matters more than people admit for niches like this), but the data made a genuinely convincing case that there's room here for someone who knows the space.\n\nHappy to share the actual keyword list/scores if anyone's actually into aquariums and wants to run with it.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1we1atk",
+      "name": "t3_1we1atk",
+      "title": "PodSubs.com was never supposed to be a public product",
+      "subreddit": "AppIdeas",
+      "author": "MindFru",
+      "score": 0,
+      "num_comments": 0,
+      "created_utc": 1789183373.0,
+      "permalink": "/r/AppIdeas/comments/1we1atk/podsubscom_was_never_supposed_to_be_a_public/",
+      "url": "https://www.reddit.com/r/AppIdeas/comments/1we1atk/podsubscom_was_never_supposed_to_be_a_public/",
+      "selftext": "PodSubs.com was never supposed to be a public product.\n\nWe built it for ourselves.\n\nWe were already making podcasts, and we kept running into the same problem. People were listening, but after the episode ended, most of them were gone. We could see the numbers, but we didn’t really know the people behind them.\n\nWe wanted a simple way to stay in touch with the listeners who actually wanted to hear from us again.\n\nSo we built PodSubs.com and started telling people on our shows, “Go to PodSubs.com and subscribe to our podcast.”\n\nThey searched for the show, added their name and email, and that was it.\n\nWe finally had a way to send them the things we talked about on the podcast.\n\nFor a while, we just used it ourselves.\n\nThen we started wondering why we were keeping it to ourselves.\n\nThat is really how PodSubs.com became public.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1we447w",
+      "name": "t3_1we447w",
+      "title": "App Tester Tool/Service That Has Real Users (NO AI)",
+      "subreddit": "roastmystartup",
+      "author": "Aggressive-Peach-969",
+      "score": 1,
+      "num_comments": 2,
+      "created_utc": 1789192069.0,
+      "permalink": "/r/roastmystartup/comments/1we447w/app_tester_toolservice_that_has_real_users_no_ai/",
+      "url": "https://www.reddit.com/r/roastmystartup/comments/1we447w/app_tester_toolservice_that_has_real_users_no_ai/",
+      "selftext": "AI this AI that, AI AI AI. We now have so many apps and tools built entirely with AI, but they are rarely well-tested and often have hidden bugs and quirks that impact service and are not easy to spot, and cause untracked and unaccounted for user loss.\n\nFor a fee of $10, we will do a single comprehensive test of your service with a final rating score. Beyond simple bugs and technical issues, we will tell you what we find unintuitive, confusing, or frustrating, so that you don't risk losing real users.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1we3qxg",
+      "name": "t3_1we3qxg",
+      "title": "I’m building a “student living super-app”",
+      "subreddit": "roastmystartup",
+      "author": "Conscious-Art-3334",
+      "score": 1,
+      "num_comments": 4,
+      "created_utc": 1789190884.0,
+      "permalink": "/r/roastmystartup/comments/1we3qxg/im_building_a_student_living_superapp/",
+      "url": "https://www.reddit.com/r/roastmystartup/comments/1we3qxg/im_building_a_student_living_superapp/",
+      "selftext": "Hey everyone, I’m building RoomBro, a platform to make settling into a new city easier.\n\nThe problem: finding a room, incompatible roommate, food, and local services often means jumping between brokers, WhatsApp groups, random listings, and word of mouth.\n\nRoomBro brings it together:\n\n1.  Rooms, PGs & Hostels\n\n2. Roommate matching\n\n3. Local Tiffin Services\n\n4. Local Marketplace\n\n5. City Buzz for events, recommendations and community\n\nWe’re starting with students but not limiting it to students. Young professionals and anyone moving to a new city can use it too. We’re taking a city-first approach, rather than building around individual colleges.\n\nI’ve already built the product and I’m preparing for launch.\n\nNow roast it.\n\nWhat would you remove? What should I focus on first? Which feature has the most potential? Is this solving a real enough problem?\n\nBe brutal. I’d rather hear why it might fail now than find out after months of building.\n\nThe product is ready and live at roombro.info but i don't know how to enter the market and position it",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1we0dak",
+      "name": "t3_1we0dak",
+      "title": "I’m putting together a small “Entrepreneur Avengers” group. Looking for 10–15 people with different skill sets",
+      "subreddit": "Startup_Ideas",
+      "author": "Bullfrog_Kind",
+      "score": 3,
+      "num_comments": 11,
+      "created_utc": 1789180622.0,
+      "permalink": "/r/Startup_Ideas/comments/1we0dak/im_putting_together_a_small_entrepreneur_avengers/",
+      "url": "https://www.reddit.com/r/Startup_Ideas/comments/1we0dak/im_putting_together_a_small_entrepreneur_avengers/",
+      "selftext": "I’m not trying to build another giant Discord where 2,000 people dump links and nobody knows each other.  \nI want a small group of builders, business owners, and specialists who actually bring something different to the table.  \nThink:  \nDeveloper  \nDesigner  \nSales  \nMarketing  \nSEO  \nAI / automation  \nFinance  \nOperations  \nAnalytics  \nContent / copywriting  \nEcommerce  \nIndustry specialists  \nThe goal is to have a private group where someone can bring an idea, problem, launch, or opportunity to the table and there are actually people in the room who know how to help.  \nI’m a developer and business owner, so I’m especially interested in people with strengths outside my own.  \nI’d rather have 12 useful, active people than 1,200 members.  \nIf you’re interested, comment with:  \n**1. What you do**  \n**2. Your strongest skill**  \n**3. What you’d want help with from the group**  \nIf there’s a good mix of people, I’ll put the first group together.  \nBasically: assemble the business Avengers. 🧠⚙️🚀",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "p9a9bz8",
+          "author": "Big_Many_258",
+          "body": "This sounds very progressive. I hope you are open to people joining from across the world. I am a coffee producer based in Malawi, and happy to connect with other producers, and exporters/importers. We are also considering going into eucalyptus oil, tea tree oil and other essential oils. I think this platform would help us connect with experienced producers and potential buyers. We obviously would also benefit from seasoned players in manufacturing, branding, marketing and logistics.",
+          "score": 2
+        },
+        {
+          "id": "p9afvb2",
+          "author": "No-Move1702",
+          "body": "Hey, I am digitalisation engineer where i help in making manufacturing industry go digital by leveraging industry 4.0, my strongest skillset would be that i have both tech and sales skills and knowledge of lean manufacturing as for help i am still thinking ",
+          "score": 1
+        },
+        {
+          "id": "p9am28l",
+          "author": "Gasple1",
+          "body": "Hey, I’m COO at a small development agency, I own a tattoo shop, and I’m always building side projects, mostly web tools, directories, data products and automations.\n\nMy strongest skill is probably spotting an opportunity and turning it into something useful and shippable.\n\nI’d like to meet people who are stronger in sales and distribution. I can help with product, ops, UX, SEO, automation and building systems.",
+          "score": 1
+        },
+        {
+          "id": "p9amdr5",
+          "author": "lalithjain",
+          "body": "CA & Fractional CFO working with startups and SMEs on finance, financial modelling, strategy, and operations. \n\nWould love to connect with strong builders in product, tech, sales and marketing and contribute wherever finance can help.\n",
+          "score": 1
+        },
+        {
+          "id": "p9asxc4",
+          "author": "Samathura",
+          "body": "I work in strategic alliances/partnerships. I am deeply technical and both use and build AI tools. I also manage consultants and offerings. \n\nI would look for marketing and sales experience because talent in those spaces is rare. Lots can do it but few are able to create for entirely new products and I find those skill really neat.",
+          "score": 1
+        },
+        {
+          "id": "p9avitn",
+          "author": "PNW_Uncle_Iroh",
+          "body": "1. Software product manager with corporate and startup experience, currently building AI marketing/ advertising automation software at a privately owned startup. One successful exit. \n\n2. Strongest skills are fundraising and GTM.  \n\n3. I can help with product management, fundraising, and GTM. ",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1we1sdh",
+      "name": "t3_1we1sdh",
+      "title": "We just ran 10 builds through OpenAI, Claude, and RESORSA simultaneously, and the results took me by surprise.",
+      "subreddit": "Startup_Ideas",
+      "author": "KicksStandLabs",
+      "score": 2,
+      "num_comments": 0,
+      "created_utc": 1789184810.0,
+      "permalink": "/r/Startup_Ideas/comments/1we1sdh/we_just_ran_10_builds_through_openai_claude_and/",
+      "url": "/r/Businessideas/comments/1we1rqz/we_just_ran_10_builds_through_openai_claude_and/",
+      "selftext": "",
+      "is_self": false,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1we3zd8",
+      "name": "t3_1we3zd8",
+      "title": "When you get chatGPT to evaluate your startup",
+      "subreddit": "Startup_Ideas",
+      "author": "wzr_1337",
+      "score": 1,
+      "num_comments": 2,
+      "created_utc": 1789191635.0,
+      "permalink": "/r/Startup_Ideas/comments/1we3zd8/when_you_get_chatgpt_to_evaluate_your_startup/",
+      "url": "https://www.reddit.com/r/Startup_Ideas/comments/1we3zd8/when_you_get_chatgpt_to_evaluate_your_startup/",
+      "selftext": "I just ran a query against a blog we wrote and I am pretty impressed how much chatGPT found around the actual article… but maybe it’s just SEO 🤔\n\nhttps://chatgpt.com/share/6aa4e448-8e8c-83ed-a8b7-497536d4c447\n\nQuery: \n\nRead and understand [https://wyzer.it/blog/three-kinds-of-contradiction-manual-review](https://wyzer.it/blog/three-kinds-of-contradiction-manual-review)  explain why I should read it in no more than 5 sentences\n\nAnd of course it ignored the 5 sentences limit 🤦🏻‍♂️",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1we0gnw",
+      "name": "t3_1we0gnw",
+      "title": "How to should I fill out my tcg marketplace. I will not promote",
+      "subreddit": "startups",
+      "author": "BeginningOpposite754",
+      "score": 0,
+      "num_comments": 4,
+      "created_utc": 1789180891.0,
+      "permalink": "/r/startups/comments/1we0gnw/how_to_should_i_fill_out_my_tcg_marketplace_i/",
+      "url": "https://www.reddit.com/r/startups/comments/1we0gnw/how_to_should_i_fill_out_my_tcg_marketplace_i/",
+      "selftext": "I have a marketplace startup for Trading Card Games that I have built and is solid in terms of its function. I've just recently started marketing, and have just a few real users.\n\nI feel that my crux at the moment is getting some good listings to fill out the site and make it look legit for new users.\n\nI was thinking of reaching out to vendors on Instagram and offering some sort of deal, like $25 if you list 5 cards on my site. Looking for advice on how to best reach out to people, or more generally fill out listings.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1wdzx1j",
+      "name": "t3_1wdzx1j",
+      "title": "I'm considering a pivot for my finance startup, looking for honest feedback from founders (I will not promote)",
+      "subreddit": "startups",
+      "author": "azhtom",
+      "score": 0,
+      "num_comments": 2,
+      "created_utc": 1789179331.0,
+      "permalink": "/r/startups/comments/1wdzx1j/im_considering_a_pivot_for_my_finance_startup/",
+      "url": "https://www.reddit.com/r/startups/comments/1wdzx1j/im_considering_a_pivot_for_my_finance_startup/",
+      "selftext": "Hey everyone!\n\nI'm currently evaluating a possible pivot for my startup, Jacko.\n\nWe've been building an AI-powered personal finance product, but I'm exploring whether the same technology could be more valuable for early-stage startups and founders.\n\nThe idea is an AI finance agent that helps founders understand their startup's financial health without constantly maintaining spreadsheets.\n\nIt could help track:  \n\\- Cash position  \n\\- Revenue and expenses  \n\\- Burn rate  \n\\- Runway  \n\\- Recurring expenses  \n\\- Weekly financial insights\n\nI'm not building this yet. I'm trying to validate whether this is actually a painful problem before investing time in an MVP.\n\nIf you're a founder, I'd really appreciate your feedback:\n\n\\- How do you currently track your startup's finances?  \n\\- Do you regularly track burn and runway?  \n\\- What's the most frustrating part of managing your finances?  \n\\- Would an AI tool that automated this be useful for you?  \n\\- Would you pay for something like this?\n\nI'm especially interested in honest criticism and reasons why you wouldn't use something like this.\n\nThanks!",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
     }
   ]
 }
