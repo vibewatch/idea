@@ -249,6 +249,7 @@ class TestPathsAndHelpers:
     def test_malformed_ipv6_like_url_is_ignored(self) -> None:
         malformed = "https://[broken"
         evidence = post("broken-url")
+        evidence["url"] = malformed
         evidence["comments_data"] = [
             {
                 "id": "c1",

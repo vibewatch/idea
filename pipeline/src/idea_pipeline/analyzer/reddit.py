@@ -630,7 +630,10 @@ def _source_url_occurrences(post: dict[str, Any]) -> list[dict[str, Any]]:
 
 def _media_type(url: str, post: dict[str, Any]) -> str | None:
     host = _url_host(url)
-    path = urllib.parse.urlsplit(url).path.casefold()
+    try:
+        path = urllib.parse.urlsplit(url).path.casefold()
+    except ValueError:
+        return None
     if "/gallery/" in path and host in _REDDIT_HOSTS:
         return "gallery"
     if (
