@@ -88,7 +88,7 @@ Use these renderings consistently. They are the ones Chinese builder media actua
 | claim | 说法 |
 | launch | 发布 |
 | ship | 上线 |
-| stage: Prototype / Launched / Usage / Revenue | 阶段：原型 / 已发布 / 有使用 / 有营收 |
+| stage: Prototype / Launched / Usage / Revenue | 阶段：原型 / 已发布 / 已有实际使用 / 已有营收 |
 | what it does not prove | 无法证明的部分 |
 | contact sheet | 帧图拼版 |
 | open source | 开源 |
@@ -107,13 +107,57 @@ Translate a term the same way everywhere in one report.
 
 `structure.json` records the exact shape the overlay must keep. Any mismatch fails validation.
 
-- Identical heading sequence and levels. Translate the heading text, keep the leading number: `## 2. New Projects and Direct Links` → `## 2. 新项目与直达链接`.
+- Identical heading sequence and levels. Translate the heading text, keep the leading number: `## 2. Evidence Ledger` → `## 2. 证据台账`.
 - Identical table count, column count, and row count. Translate header cells and body prose; keep every row in the same order.
 - Identical set of URLs. Do not add, drop, merge, or rewrite a single link target. Translate only the visible link label when it is prose; keep it as-is when it is a project name, domain, or post title.
 - Keep bold, italic, inline code, blockquotes, lists, and horizontal rules where the source has them.
 - Keep `**bold**` on the same facts the source emphasizes — usually the metrics.
+- `protected-terms.json` is a hard contract, not a glossary suggestion. Preserve every listed metric, identifier, inline-code span, subreddit handle, and project name byte-for-byte.
 
-Reddit post titles used as link labels stay in English. They are quoted evidence, not prose.
+Reddit post titles used as link labels stay byte-identical to the source, including capitalization, punctuation, truncation, and ellipses. They are quoted evidence, not prose. Never expand a shortened title.
+
+The validator also checks that every occurrence of uncertainty survives. 作者自述、声称、据报道、约、至少、估计等限定词不能丢，也不能被改写成更确定的事实。同一说法在多张表中重复出现时，每一处都要保留限定词。
+
+Use these report headings exactly when they appear:
+
+| English heading | Chinese heading |
+|---|---|
+| 1. Executive Brief | 1. 核心简报 |
+| 2. Evidence Ledger | 2. 证据台账 |
+| 3. Customer Problems and Existing Workarounds | 3. 用户痛点与现有变通做法 |
+| 4. Patterns, Contradictions, and Gaps | 4. 模式、矛盾与证据缺口 |
+| 5. Decisions and Watchlist | 5. 行动建议与观察清单 |
+| Key Highlights | 重点信号 |
+| Coverage and Caveats | 覆盖范围与局限 |
+| Practical Moves | 可执行动作 |
+| Watchlist | 观察清单 |
+
+For legacy eight-section source reports, keep the established translations:
+
+| English heading | Chinese heading |
+|---|---|
+| 1. Executive Value Summary | 1. 核心价值摘要 |
+| 2. New Projects and Direct Links | 2. 新项目与直达链接 |
+| 4. Founder Ideas and Validation Signals | 4. 创始人想法与验证信号 |
+| 5. Launches, Traction, and Distribution Results | 5. 发布、增长势头与分发结果 |
+| 6. Visual and Demo Evidence | 6. 视觉与 Demo 证据 |
+| 7. Cross-Stream Matches and Gaps | 7. 跨来源匹配与证据缺口 |
+| 8. Practical Takeaways and Watchlist | 8. 实用结论与观察清单 |
+| Reusable lessons | 可复用经验 |
+
+Translate the executive-highlight labels exactly:
+
+- `**Best new artifacts:**` → `**重点新项目：**`
+- `**Strongest traction:**` → `**最强增长信号：**`
+- `**Sharpest user pain:**` → `**最明确的用户痛点：**`
+- `**Most useful visual:**` → `**最有价值的视觉证据：**`
+- `**Biggest evidence gap:**` → `**最大证据缺口：**`
+
+Translate each repeated synthesis label exactly:
+
+- `**Evidence:**` → `**证据：**`
+- `**Interpretation:**` → `**解读：**`
+- `**Missing proof:**` → `**缺失证据：**`
 
 ## Register
 
@@ -122,7 +166,8 @@ Write like an industry briefing: 冷静、克制、信息密度高. State findin
 - No marketing adjectives that the source does not support — 强大、革命性、惊艳 are out.
 - No 小编、我们来看看、话不多说 or other content-farm filler.
 - Keep the source's hedging exactly: "author-reported" → 作者自述, "claims" → 声称, "not proven" → 未获证实. Never upgrade a claim into a fact.
-- Section 1 is a dense summary paragraph, not a bulleted teaser.
+- Preserve Section 1's short bottom line, five highlighted bullets, and coverage paragraph. Keep each bullet concrete and compact rather than turning it into promotional teaser copy.
+- High-confidence translationese is blocking: 对于……而言、通过……来、在……的过程中、被设计为、被要求、被认为是、正在……中、做出决定、进行尝试、产生影响、实现增长. Rewrite the whole sentence instead of swapping one phrase.
 
 ## Safety boundary
 

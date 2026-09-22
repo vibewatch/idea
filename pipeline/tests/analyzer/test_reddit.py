@@ -16,6 +16,7 @@ from idea_pipeline.analyzer.reddit import (
     DEFAULT_DATA_DIR,
     DEFAULT_EFFORT,
     DEFAULT_ENV_FILE,
+    DEFAULT_LIMIT,
     DEFAULT_MODEL,
     DEFAULT_REPORTS_DIR,
     REPORT_ARTIFACT_NAME,
@@ -23,6 +24,7 @@ from idea_pipeline.analyzer.reddit import (
     AnalysisJob,
     ReportTarget,
     SnapshotTarget,
+    _canonical_url,
     _download_image_asset,
     analyze_job,
     build_copilot_command,
@@ -35,6 +37,7 @@ from idea_pipeline.analyzer.reddit import (
     main,
     materialize_media_assets,
     normalize_media_review,
+    normalize_reddit_citations,
     normalize_report_links,
     prepare_report,
     prepare_snapshot,
@@ -117,59 +120,72 @@ def valid_report(
     video = video_url or build
     sections = [
         (
-            "## 1. Executive Value Summary",
-            f"A linked project, a concrete pain, and a visual demo are available ([pain]({pain}), [idea]({idea}), [build]({build})).",
+            "## 1. Executive Brief",
+            f"""A linked project, a concrete pain, and a visual demo are available ([pain]({pain}), [idea]({idea}), [build]({build})).
+
+### Key Highlights
+
+- **Best new artifacts:** Review tool routes operator work.
+- **Strongest traction:** One signup is reported.
+- **Sharpest user pain:** Manual handoffs delay review work.
+- **Most useful visual:** The queue visibly contains one item.
+- **Biggest evidence gap:** Retention is unknown.
+
+### Coverage and Caveats
+
+Three current streams are represented; the evidence is limited to one account per stream.""",
         ),
         (
-            "## 2. New Projects and Direct Links",
-            f"""| Project or artifact | Type | What it does | Intended user or problem | Stage | Concrete evidence or why it is notable | Direct link | Reddit source |
-|---|---|---|---|---|---|---|---|
-| Review tool | SaaS | Routes review work | Operators | Launched | One user | [Open project]({project}) | [build]({build}) |""",
+            "## 2. Evidence Ledger",
+            f"""| Case and primary link | User or problem | Build, test, or event | Evidence and stage | Visual proof | Limitation or next proof | Reddit source |
+|---|---|---|---|---|---|---|
+| Review tool — [Open project]({project}) | Operators handling review queues | Prototype tested, then launched through direct outreach | `Launched` — one signup is author-reported | [Image]({image}) shows one queued item; [video]({video}) shows the sampled review flow | Retention and repeat use are unknown | [idea]({idea}) · [build]({build}) |""",
         ),
         (
             "## 3. Customer Problems and Existing Workarounds",
-            f"""| Problem | Affected user and context | Trigger or workflow | Observed consequence | Existing tool, service, or workaround | Evidence breadth | Sources |
-|---|---|---|---|---|---|---|
-| Manual handoff | Operator | Every review | Delay | Checklist | One account | [pain]({pain}) |""",
-        ),
-        (
-            "## 4. Founder Ideas and Validation Signals",
-            f"""| Idea or validation case | Intended user and outcome | What was tested | Strongest validation signal | Disconfirming evidence or gap | Status | Sources |
-|---|---|---|---|---|---|---|
-| Review helper | Operator saves time | Prototype | One interview | No usage evidence | Prototype | [idea]({idea}) |""",
-        ),
-        (
-            "## 5. Launches, Traction, and Distribution Results",
-            f"""| Project or experiment | Direct link | Stage | Channel or implementation | Measured result | What the result supports | What it does not prove | Source |
-|---|---|---|---|---|---|---|---|
-| Review tool | [Open]({project}) | Launched | Direct outreach | One signup | Initial acquisition | Retention | [build]({build}) |""",
-        ),
-        (
-            "## 6. Visual and Demo Evidence",
-            f"""| Project or post | Media type | What was visibly demonstrated | Value beyond the text claim | Limitation | Media | Reddit source |
-|---|---|---|---|---|---|---|
-| Review tool | Image | Queue with one item | Confirms an interface exists | Static frame | [View image]({image}) | [build]({build}) |
-| Review tool demo | Video contact sheet | Review flow across sampled frames | Confirms interaction sequence | No audio | [Watch video]({video}) | [build]({build}) |""",
-        ),
-        (
-            "## 7. Cross-Stream Matches and Gaps",
-            f"""| Theme or concrete artifact | Customer-pain evidence | Founder-idea evidence | Build/outcome evidence | Relationship | Missing link |
+            f"""| Problem | Affected user and context | Trigger and consequence | Current workaround | Evidence breadth | Sources |
 |---|---|---|---|---|---|
-| Review delay | [pain]({pain}) | [idea]({idea}) | [build]({build}) | Partial | Retention evidence |""",
+| Manual handoff | Operator managing reviews | Every review creates a delayed handoff | Checklist | One account | [pain]({pain}) |""",
         ),
         (
-            "## 8. Practical Takeaways and Watchlist",
-            f"""### Reusable lessons
+            "## 4. Patterns, Contradictions, and Gaps",
+            f"""### Workflow pain can motivate a build without proving retention
 
-| Lesson | Concrete evidence | Scope or contradiction | Practical use |
-|---|---|---|---|
-| Shipping does not establish retention | [build]({build}) | One case | Measure repeat use |
+**Evidence:** The manual handoff appears in [pain]({pain}), while the tool test appears in [idea]({idea}) and [build]({build}).
+
+**Interpretation:** This is a `Partial` match between a narrow workflow problem and one builder response.
+
+**Missing proof:** Repeat use by independent operators.
+
+### Shipping creates a measurable baseline, not product-market fit
+
+**Evidence:** The builder reports one signup in [build]({build}).
+
+**Interpretation:** The launch establishes initial acquisition only.
+
+**Missing proof:** Activation, retention, and payment.
+
+### Visual proof confirms an interface, not the outcome
+
+**Evidence:** The [image]({image}) and [video]({video}) show the queue and sampled flow.
+
+**Interpretation:** The media corroborates implementation but not user value.
+
+**Missing proof:** Observed time saved during real review work.""",
+        ),
+        (
+            "## 5. Decisions and Watchlist",
+            f"""### Practical Moves
+
+- Measure repeat review completion before adding features.
+- Preserve the manual checklist as a baseline for time-saved comparisons.
+- Treat the first signup as acquisition evidence, not retention.
 
 ### Watchlist
 
-| Priority | Project, problem, or signal to monitor | Current evidence | What remains unknown | Evidence that would change the reading |
+| Priority | Case or signal | Current baseline | Trigger to revisit | Why it matters |
 |---:|---|---|---|---|
-| 1 | Review delay | [pain]({pain}) | Frequency | Independent accounts |""",
+| 1 | Review tool retention | One author-reported signup in [build]({build}) | A second-week retained user or payment | Distinguishes launch attention from durable use |""",
         ),
     ]
     chunks = [f"# Reddit Builder Intelligence Report - {report_date}"]
@@ -181,8 +197,7 @@ def valid_report(
 def required_section_ids() -> dict[str, set[str]]:
     return {
         "## 3. Customer Problems and Existing Workarounds": {"pain1"},
-        "## 4. Founder Ideas and Validation Signals": {"idea1"},
-        "## 5. Launches, Traction, and Distribution Results": {"build1"},
+        "## 2. Evidence Ledger": {"idea1", "build1"},
     }
 
 
@@ -208,9 +223,7 @@ class TestPathsAndHelpers:
     def test_rank_score_rewards_discussion_and_evidence(self) -> None:
         plain = post("plain", score=10, comments=0)
         rich = post("rich", score=10, comments=8)
-        rich["comments_data"] = [
-            {"id": "c1", "author": "user", "body": "detail", "score": 2}
-        ]
+        rich["comments_data"] = [{"id": "c1", "author": "user", "body": "detail", "score": 2}]
 
         assert rank_score(rich) > rank_score(plain)
 
@@ -232,6 +245,21 @@ class TestPathsAndHelpers:
         ]
 
         assert rank_score(detailed) > rank_score(viral)
+
+    def test_malformed_ipv6_like_url_is_ignored(self) -> None:
+        malformed = "https://[broken"
+        evidence = post("broken-url")
+        evidence["comments_data"] = [
+            {
+                "id": "c1",
+                "author": "operator",
+                "body": f"This workflow fails near {malformed} and needs manual repair.",
+                "score": 3,
+            }
+        ]
+
+        assert _canonical_url(malformed) == ""
+        assert isinstance(rank_score(evidence), float)
 
 
 class TestDiscovery:
@@ -314,9 +342,7 @@ class TestDiscovery:
         assert [report.date_text for report in reports] == ["2026-08-01"]
         assert [item.topic for item in reports[0].snapshots] == list(REPORT_TOPICS)
 
-    def test_discover_reports_requires_every_stream_for_explicit_date(
-        self, tmp_path: Path
-    ) -> None:
+    def test_discover_reports_requires_every_stream_for_explicit_date(self, tmp_path: Path) -> None:
         for topic in REPORT_TOPICS[:2]:
             write_snapshot(tmp_path / topic / "2026-08-02.json", [post(f"{topic}1")])
         (tmp_path / REPORT_TOPICS[2]).mkdir(parents=True)
@@ -430,12 +456,8 @@ class TestPreparation:
             "https://gesture.live/",
             "https://usestyla.com/",
         }
-        assert "https://legacy.test/" not in {
-            item["canonical_url"] for item in links
-        }
-        source_locations = {
-            item["canonical_url"]: item["source_location"] for item in links
-        }
+        assert "https://legacy.test/" not in {item["canonical_url"] for item in links}
+        source_locations = {item["canonical_url"]: item["source_location"] for item in links}
         assert source_locations["https://cardndex.com/"] == "title"
         assert source_locations["https://usestyla.com/"] == "selftext"
 
@@ -445,9 +467,7 @@ class TestPreparation:
 
         prepared = prepare_report(target, tmp_path / "artifacts")
 
-        assert prepared.directory == (
-            tmp_path / "artifacts" / REPORT_ARTIFACT_NAME / "2026-08-02"
-        )
+        assert prepared.directory == (tmp_path / "artifacts" / REPORT_ARTIFACT_NAME / "2026-08-02")
         assert prepared.total_posts == 3
         assert len(prepared.topic_artifacts) == 3
         assert "Reddit Value and Builder Intelligence Extraction" in (
@@ -464,9 +484,41 @@ class TestPreparation:
             assert snapshot.path.read_bytes() == originals[snapshot.topic]
             assert topic_prepared.source_path.read_bytes() == originals[snapshot.topic]
 
-    def test_resolve_jobs_skips_existing_full_report_unless_forced(
-        self, tmp_path: Path
-    ) -> None:
+    def test_compacts_history_instead_of_copying_full_snapshots(self, tmp_path: Path) -> None:
+        target = make_report_target(tmp_path, date(2026, 8, 9))
+        snapshot = target.snapshots[0]
+        history_paths: list[Path] = []
+        for day in range(2, 9):
+            path = snapshot.path.parent / f"2026-08-{day:02d}.json"
+            write_snapshot(
+                path,
+                [
+                    post(
+                        f"history-{day}-{index}",
+                        score=20 - index,
+                        selftext=("Detailed historical workflow evidence. " * 30),
+                    )
+                    for index in range(12)
+                ],
+            )
+            history_paths.append(path)
+        compact_target = SnapshotTarget(
+            snapshot.topic,
+            snapshot.snapshot_date,
+            snapshot.path,
+            tuple(history_paths),
+        )
+
+        prepared = prepare_snapshot(compact_target, tmp_path / "artifacts")
+
+        assert [path.name for path in prepared.history_paths] == ["summary.json"]
+        summary = json.loads(prepared.history_paths[0].read_text())
+        assert len(summary["snapshots"]) == 7
+        assert all(len(item["top_evidence"]) == 6 for item in summary["snapshots"])
+        metadata = json.loads(prepared.metadata_path.read_text())
+        assert metadata["history_summary_bytes"] < metadata["history_source_bytes"]
+
+    def test_resolve_jobs_skips_existing_full_report_unless_forced(self, tmp_path: Path) -> None:
         target = make_report_target(tmp_path)
         report = tmp_path / "reports" / "2026-08-02.md"
         report.parent.mkdir(parents=True)
@@ -477,9 +529,17 @@ class TestPreparation:
             AnalysisJob(target, report)
         ]
 
-    def test_materializes_images_and_video_contact_sheets(
-        self, tmp_path: Path
-    ) -> None:
+    def test_resolve_jobs_prioritizes_newest_missing_reports(self, tmp_path: Path) -> None:
+        targets = [
+            make_report_target(tmp_path / f"day-{day}", date(2026, 8, day))
+            for day in (2, 3, 4)
+        ]
+
+        jobs = resolve_jobs(targets, tmp_path / "reports", limit=2)
+
+        assert [job.target.date_text for job in jobs] == ["2026-08-04", "2026-08-03"]
+
+    def test_materializes_images_and_video_contact_sheets(self, tmp_path: Path) -> None:
         target = make_report_target(tmp_path)
         write_snapshot(
             target.snapshots[-1].path,
@@ -517,9 +577,7 @@ class TestPreparation:
             assets = materialize_media_assets(prepared)
 
         assert len(assets.attachments) == 2
-        statuses = {
-            entry["media_type"]: entry["asset_status"] for entry in assets.entries
-        }
+        statuses = {entry["media_type"]: entry["asset_status"] for entry in assets.entries}
         assert statuses == {
             "gallery": "url-only",
             "image": "attached",
@@ -544,17 +602,13 @@ class TestPreparation:
         response.iter_content.return_value = [b"GIF89a-source"]
         mock_get.return_value = response
 
-        def convert(
-            command: list[str], **_kwargs: object
-        ) -> subprocess.CompletedProcess[str]:
+        def convert(command: list[str], **_kwargs: object) -> subprocess.CompletedProcess[str]:
             Path(command[-1]).write_bytes(b"\x89PNG\r\n\x1a\nconverted")
             return subprocess.CompletedProcess(command, 0, stdout="", stderr="")
 
         mock_run.side_effect = convert
 
-        asset = _download_image_asset(
-            "https://i.redd.it/animated.gif", tmp_path / "asset"
-        )
+        asset = _download_image_asset("https://i.redd.it/animated.gif", tmp_path / "asset")
 
         assert asset == tmp_path / "asset.png"
         assert asset.read_bytes().startswith(b"\x89PNG")
@@ -616,7 +670,7 @@ class TestPromptAndCommand:
             "prompt",
             "--model",
             "gpt-5.4",
-            "--effort",
+            "--reasoning-effort",
             "xhigh",
             "--allow-all-tools",
             "--allow-all-urls",
@@ -631,15 +685,16 @@ class TestPromptAndCommand:
             "--autopilot",
         ]
 
-    def test_defaults_to_grok_with_supported_effort(self) -> None:
+    def test_defaults_to_low_cost_synthesis_model(self) -> None:
         args = build_parser().parse_args([])
         command = build_copilot_command("prompt")
 
-        assert DEFAULT_MODEL == "grok-4.5"
-        assert DEFAULT_EFFORT == "high"
+        assert DEFAULT_MODEL == "gpt-5.4-mini"
+        assert DEFAULT_EFFORT == "medium"
         assert (args.model, args.effort) == (DEFAULT_MODEL, DEFAULT_EFFORT)
         assert command[command.index("--model") + 1] == DEFAULT_MODEL
-        assert command[command.index("--effort") + 1] == DEFAULT_EFFORT
+        assert command[command.index("--reasoning-effort") + 1] == DEFAULT_EFFORT
+        assert args.limit == DEFAULT_LIMIT == 1
 
     def test_adds_visual_attachments_to_copilot_command(self, tmp_path: Path) -> None:
         attachment = tmp_path / "demo.jpg"
@@ -663,12 +718,61 @@ class TestValidation:
         candidate = tmp_path / "report.md"
         candidate.write_text(valid_report(), encoding="utf-8")
 
-        assert validate_report(
+        assert (
+            validate_report(
+                candidate,
+                expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+                allowed_post_ids={"pain1", "idea1", "build1"},
+                required_section_post_ids=required_section_ids(),
+            )
+            == []
+        )
+
+    def test_rejects_report_without_executive_highlights(self, tmp_path: Path) -> None:
+        candidate = tmp_path / "report.md"
+        candidate.write_text(
+            valid_report().replace(
+                """### Key Highlights
+
+- **Best new artifacts:** Review tool routes operator work.
+- **Strongest traction:** One signup is reported.
+- **Sharpest user pain:** Manual handoffs delay review work.
+- **Most useful visual:** The queue visibly contains one item.
+- **Biggest evidence gap:** Retention is unknown.
+
+### Coverage and Caveats
+
+Three current streams are represented; the evidence is limited to one account per stream.
+
+""",
+                "",
+            ),
+            encoding="utf-8",
+        )
+
+        errors = validate_report(
             candidate,
             expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
-            allowed_post_ids={"pain1", "idea1", "build1"},
-            required_section_post_ids=required_section_ids(),
-        ) == []
+        )
+
+        assert any("required highlight heading" in error for error in errors)
+        assert any("required highlight label" in error for error in errors)
+
+    def test_rejects_incomplete_synthesis_and_extra_numbered_section(
+        self, tmp_path: Path
+    ) -> None:
+        candidate = tmp_path / "report.md"
+        content = valid_report().replace("**Missing proof:**", "**Open question:**", 1)
+        content += "\n## 6. Duplicate Inventory\n\nThis section should not exist.\n"
+        candidate.write_text(content, encoding="utf-8")
+
+        errors = validate_report(
+            candidate,
+            expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+        )
+
+        assert any("each synthesis theme" in error for error in errors)
+        assert any("unexpected numbered report section" in error for error in errors)
 
     def test_accepts_source_derived_project_and_media_links(self, tmp_path: Path) -> None:
         candidate = tmp_path / "report.md"
@@ -695,9 +799,7 @@ class TestValidation:
 
         assert errors == []
 
-    def test_accepts_source_url_without_utm_tracking_parameters(
-        self, tmp_path: Path
-    ) -> None:
+    def test_accepts_source_url_without_utm_tracking_parameters(self, tmp_path: Path) -> None:
         candidate = tmp_path / "report.md"
         clean_url = "https://clevernote.net/en/"
         tracked_url = (
@@ -720,9 +822,7 @@ class TestValidation:
 
         assert errors == []
 
-    def test_preserves_functional_query_parameters_when_removing_utm(
-        self, tmp_path: Path
-    ) -> None:
+    def test_preserves_functional_query_parameters_when_removing_utm(self, tmp_path: Path) -> None:
         candidate = tmp_path / "report.md"
         candidate.write_text(
             valid_report().replace(
@@ -736,9 +836,7 @@ class TestValidation:
             candidate,
             expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
             allowed_post_ids={"pain1", "idea1", "build1"},
-            allowed_external_urls={
-                "https://example.com/product?account=source&utm_source=reddit"
-            },
+            allowed_external_urls={"https://example.com/product?account=source&utm_source=reddit"},
         )
 
         assert any("external URLs absent" in error for error in errors)
@@ -747,7 +845,8 @@ class TestValidation:
         candidate = tmp_path / "report.md"
         content = valid_report(post_ids=("unknown", "idea1", "build1"))
         content = content.replace(
-            "## 6. Visual and Demo Evidence", "### 6. Visual and Demo Evidence"
+            "## 4. Patterns, Contradictions, and Gaps",
+            "### 4. Patterns, Contradictions, and Gaps",
         )
         content += "Internal evidence: pipeline/artifacts/reddit/review.txt\n"
         candidate.write_text(content, encoding="utf-8")
@@ -781,14 +880,10 @@ class TestValidation:
         assert any("public HTTPS" in error for error in errors)
         assert any("HTTP link" in warning for warning in warnings)
 
-    def test_allows_source_derived_http_links_with_a_warning(
-        self, tmp_path: Path
-    ) -> None:
+    def test_allows_source_derived_http_links_with_a_warning(self, tmp_path: Path) -> None:
         candidate = tmp_path / "report.md"
         candidate.write_text(
-            valid_report().replace(
-                "https://example.com/product", "http://indepai.app"
-            ),
+            valid_report().replace("https://example.com/product", "http://indepai.app"),
             encoding="utf-8",
         )
         warnings: list[str] = []
@@ -802,20 +897,13 @@ class TestValidation:
 
         assert errors == []
         assert warnings == [
-            (
-                "Report uses an HTTP link; HTTPS is preferred when available: "
-                "http://indepai.app"
-            )
+            ("Report uses an HTTP link; HTTPS is preferred when available: http://indepai.app")
         ]
 
-    def test_accepts_an_https_upgrade_of_a_source_http_url(
-        self, tmp_path: Path
-    ) -> None:
+    def test_accepts_an_https_upgrade_of_a_source_http_url(self, tmp_path: Path) -> None:
         candidate = tmp_path / "report.md"
         candidate.write_text(
-            valid_report().replace(
-                "https://example.com/product", "https://indepai.app"
-            ),
+            valid_report().replace("https://example.com/product", "https://indepai.app"),
             encoding="utf-8",
         )
 
@@ -834,8 +922,8 @@ class TestValidation:
         pain_url = "https://www.reddit.com/r/SaaS/comments/pain1/pain1_title/"
         idea_url = "https://www.reddit.com/r/SaaS/comments/idea1/idea1_title/"
         content = valid_report().replace(
-            f"| Manual handoff | Operator | Every review | Delay | Checklist | One account | [pain]({pain_url}) |",
-            f"| Manual handoff | Operator | Every review | Delay | Checklist | One account | [idea]({idea_url}) |",
+            f"| Manual handoff | Operator managing reviews | Every review creates a delayed handoff | Checklist | One account | [pain]({pain_url}) |",
+            f"| Manual handoff | Operator managing reviews | Every review creates a delayed handoff | Checklist | One account | [idea]({idea_url}) |",
         )
         candidate.write_text(content, encoding="utf-8")
 
@@ -849,18 +937,20 @@ class TestValidation:
         )
 
         assert not any("current source snapshot" in error for error in errors)
-        assert any("## 3. Customer Problems and Existing Workarounds" in warning for warning in warnings)
+        assert any(
+            "## 3. Customer Problems and Existing Workarounds" in warning for warning in warnings
+        )
 
-    def test_rejects_unlisted_project_and_missing_image_evidence(
-        self, tmp_path: Path
-    ) -> None:
+    def test_rejects_unlisted_project_and_missing_image_evidence(self, tmp_path: Path) -> None:
         candidate = tmp_path / "report.md"
-        content = valid_report(
-            image_url="https://i.redd.it/example.png",
-            video_url="https://v.redd.it/example",
-        ).replace(
-            "https://example.com/product", "https://invented.example/product"
-        ).replace("https://i.redd.it/example.png", "https://v.redd.it/example")
+        content = (
+            valid_report(
+                image_url="https://i.redd.it/example.png",
+                video_url="https://v.redd.it/example",
+            )
+            .replace("https://example.com/product", "https://invented.example/product")
+            .replace("https://i.redd.it/example.png", "https://v.redd.it/example")
+        )
         candidate.write_text(content, encoding="utf-8")
 
         warnings: list[str] = []
@@ -889,7 +979,7 @@ class TestValidation:
         content = valid_report(
             image_url="https://i.redd.it/invented.png",
             video_url="https://v.redd.it/example",
-        ).replace("| What it does |", "| Vague summary |")
+        ).replace("| Build, test, or event |", "| Vague summary |")
         candidate.write_text(content, encoding="utf-8")
 
         warnings: list[str] = []
@@ -907,15 +997,18 @@ class TestValidation:
         assert any("recommended schema" in warning for warning in warnings)
         assert any("Reddit media URLs absent" in error for error in errors)
 
-    def test_rejects_a_required_section_without_a_populated_table(
-        self, tmp_path: Path
-    ) -> None:
+    def test_rejects_a_required_section_without_a_populated_table(self, tmp_path: Path) -> None:
         candidate = tmp_path / "report.md"
         candidate.write_text(
             valid_report().replace(
-                "| Review tool | SaaS | Routes review work | Operators | Launched | One user | "
-                "[Open project](https://example.com/product) | "
-                "[build](https://www.reddit.com/r/SaaS/comments/build1/build1_title/) |",
+                "| Review tool — [Open project](https://example.com/product) | "
+                "Operators handling review queues | Prototype tested, then launched through "
+                "direct outreach | `Launched` — one signup is author-reported | "
+                "[Image](https://www.reddit.com/r/SaaS/comments/build1/build1_title/) shows "
+                "one queued item; [video](https://www.reddit.com/r/SaaS/comments/build1/"
+                "build1_title/) shows the sampled review flow | Retention and repeat use are "
+                "unknown | [idea](https://www.reddit.com/r/SaaS/comments/idea1/idea1_title/) "
+                "· [build](https://www.reddit.com/r/SaaS/comments/build1/build1_title/) |",
                 "Project details were not tabulated.",
             ),
             encoding="utf-8",
@@ -927,6 +1020,61 @@ class TestValidation:
         )
 
         assert any("populated Markdown table" in error for error in errors)
+
+    def test_rejects_an_oversized_project_inventory(self, tmp_path: Path) -> None:
+        candidate = tmp_path / "report.md"
+        row = (
+            "| Review tool — [Open project](https://example.com/product) | Operators | "
+            "Prototype launch | `Launched` — one signup | None | Retention unknown | "
+            "[build](https://www.reddit.com/r/SaaS/comments/build1/build1_title/) |"
+        )
+        original_row = next(
+            line
+            for line in valid_report().splitlines()
+            if line.startswith("| Review tool — ")
+        )
+        content = valid_report().replace(original_row, "\n".join([row] * 25))
+        candidate.write_text(content, encoding="utf-8")
+
+        errors = validate_report(
+            candidate,
+            expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+        )
+
+        assert any("exceeds the 24-row" in error for error in errors)
+
+    def test_allows_decision_useful_case_without_primary_artifact_link(
+        self, tmp_path: Path
+    ) -> None:
+        candidate = tmp_path / "report.md"
+        content = valid_report().replace(
+            "Review tool — [Open project](https://example.com/product)",
+            "Review tool — Not provided",
+            1,
+        )
+        candidate.write_text(content, encoding="utf-8")
+
+        errors = validate_report(
+            candidate,
+            expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+        )
+
+        assert errors == []
+
+    def test_normalizes_reddit_citation_engagement(self, tmp_path: Path) -> None:
+        report = tmp_path / "report.md"
+        report.write_text(
+            "[Source](https://www.reddit.com/r/SaaS/comments/build1/build1_title/)\n",
+            encoding="utf-8",
+        )
+
+        messages = normalize_reddit_citations(
+            report,
+            engagement={"build1": (42, 7)},
+        )
+
+        assert "(42 points, 7 comments)" in report.read_text()
+        assert messages == ["added engagement metadata after 1 Reddit citation(s)"]
 
     def test_normalizes_media_type_and_report_included(self, tmp_path: Path) -> None:
         review = tmp_path / "media-review.json"
@@ -957,25 +1105,17 @@ class TestValidation:
             ),
             encoding="utf-8",
         )
-        report.write_text(
-            "[View image](https://i.redd.it/demo.png)\n", encoding="utf-8"
-        )
+        report.write_text("[View image](https://i.redd.it/demo.png)\n", encoding="utf-8")
 
-        messages = normalize_media_review(
-            review, expected_entries=entries, report_path=report
-        )
+        messages = normalize_media_review(review, expected_entries=entries, report_path=report)
 
         item = json.loads(review.read_text())["items"][0]
         assert item["media_type"] == "image"
         assert item["report_included"] is True
         assert len(messages) == 2
-        assert validate_media_review(
-            review, expected_entries=entries, report_path=report
-        ) == []
+        assert validate_media_review(review, expected_entries=entries, report_path=report) == []
 
-    def test_removes_ungrounded_external_links_without_dropping_text(
-        self, tmp_path: Path
-    ) -> None:
+    def test_removes_ungrounded_external_links_without_dropping_text(self, tmp_path: Path) -> None:
         report = tmp_path / "report.md"
         report.write_text(
             "[Source](https://example.com/product) | "
@@ -1044,16 +1184,12 @@ class TestValidation:
             encoding="utf-8",
         )
 
-        assert validate_media_review(
-            review, expected_entries=entries, report_path=report
-        ) == []
+        assert validate_media_review(review, expected_entries=entries, report_path=report) == []
 
         document = json.loads(review.read_text())
         document["items"][0]["report_included"] = False
         review.write_text(json.dumps(document), encoding="utf-8")
-        errors = validate_media_review(
-            review, expected_entries=entries, report_path=report
-        )
+        errors = validate_media_review(review, expected_entries=entries, report_path=report)
         assert any("does not match report.md" in error for error in errors)
 
         document["items"][0]["status"] = "unavailable"
@@ -1077,13 +1213,7 @@ class TestAnalysisBoundary:
         target = make_report_target(tmp_path)
         report = tmp_path / "reports" / "2026-08-02.md"
         job = AnalysisJob(target, report)
-        candidate = (
-            tmp_path
-            / "artifacts"
-            / REPORT_ARTIFACT_NAME
-            / "2026-08-02"
-            / "report.md"
-        )
+        candidate = tmp_path / "artifacts" / REPORT_ARTIFACT_NAME / "2026-08-02" / "report.md"
 
         def generate(*_args: object, **_kwargs: object) -> subprocess.CompletedProcess[str]:
             candidate.write_text(valid_report(), encoding="utf-8")
@@ -1100,7 +1230,7 @@ class TestAnalysisBoundary:
         result = analyze_job(job, artifacts_dir=tmp_path / "artifacts")
 
         assert result.status == "published"
-        assert report.read_text(encoding="utf-8") == valid_report()
+        assert "(1 points, 0 comments)" in report.read_text(encoding="utf-8")
         assert all(path.read_bytes() == content for path, content in originals.items())
         assert mock_run.call_args.kwargs["cwd"] == candidate.parent
         assert mock_run.call_args.kwargs["check"] is False
@@ -1114,13 +1244,7 @@ class TestAnalysisBoundary:
         target = make_report_target(tmp_path)
         report = tmp_path / "reports" / "2026-08-02.md"
         job = AnalysisJob(target, report)
-        candidate = (
-            tmp_path
-            / "artifacts"
-            / REPORT_ARTIFACT_NAME
-            / "2026-08-02"
-            / "report.md"
-        )
+        candidate = tmp_path / "artifacts" / REPORT_ARTIFACT_NAME / "2026-08-02" / "report.md"
 
         def generate(*_args: object, **_kwargs: object) -> subprocess.CompletedProcess[str]:
             candidate.write_text(valid_report(), encoding="utf-8")
@@ -1140,10 +1264,8 @@ class TestAnalysisBoundary:
 
         assert result.status == "published"
         assert "1 warning(s)" in result.message
-        assert report.read_text(encoding="utf-8") == valid_report()
-        warning_document = json.loads(
-            (candidate.parent / "validation-warnings.json").read_text()
-        )
+        assert "(1 points, 0 comments)" in report.read_text(encoding="utf-8")
+        warning_document = json.loads((candidate.parent / "validation-warnings.json").read_text())
         assert warning_document["warnings"] == [
             (
                 "Copilot CLI exited with 1 after writing a candidate: "
@@ -1158,19 +1280,11 @@ class TestAnalysisBoundary:
         target = make_report_target(tmp_path)
         report = tmp_path / "reports" / "2026-08-02.md"
         job = AnalysisJob(target, report)
-        candidate = (
-            tmp_path
-            / "artifacts"
-            / REPORT_ARTIFACT_NAME
-            / "2026-08-02"
-            / "report.md"
-        )
+        candidate = tmp_path / "artifacts" / REPORT_ARTIFACT_NAME / "2026-08-02" / "report.md"
 
         def generate(*_args: object, **_kwargs: object) -> subprocess.CompletedProcess[str]:
             candidate.write_text("# incomplete\n", encoding="utf-8")
-            return subprocess.CompletedProcess(
-                [], 139, stdout="", stderr="Segmentation fault"
-            )
+            return subprocess.CompletedProcess([], 139, stdout="", stderr="Segmentation fault")
 
         mock_run.side_effect = generate
 
@@ -1178,9 +1292,7 @@ class TestAnalysisBoundary:
 
         assert result.status == "failed"
         assert not report.exists()
-        validation = json.loads(
-            (candidate.parent / "validation-errors.json").read_text()
-        )
+        validation = json.loads((candidate.parent / "validation-errors.json").read_text())
         assert any("first line must be exactly" in error for error in validation["errors"])
         assert (
             "Copilot CLI exited with 139 after writing a candidate: Segmentation fault"
@@ -1224,13 +1336,7 @@ class TestAnalysisBoundary:
         )
         report = tmp_path / "reports" / "2026-08-02.md"
         job = AnalysisJob(target, report)
-        candidate = (
-            tmp_path
-            / "artifacts"
-            / REPORT_ARTIFACT_NAME
-            / "2026-08-02"
-            / "report.md"
-        )
+        candidate = tmp_path / "artifacts" / REPORT_ARTIFACT_NAME / "2026-08-02" / "report.md"
 
         def download(_url: str, stem: Path) -> Path:
             asset = stem.with_suffix(".png")
@@ -1240,7 +1346,7 @@ class TestAnalysisBoundary:
         def generate(*_args: object, **_kwargs: object) -> subprocess.CompletedProcess[str]:
             candidate.write_text(
                 valid_report(image_url=image_url).replace(
-                    "| What it does |", "| Product function |"
+                    "| Build, test, or event |", "| Product function |"
                 ),
                 encoding="utf-8",
             )
@@ -1277,14 +1383,9 @@ class TestAnalysisBoundary:
         review = json.loads((candidate.parent / "media-review.json").read_text())
         assert review["items"][0]["media_type"] == "image"
         assert review["items"][0]["report_included"] is True
-        warning_document = json.loads(
-            (candidate.parent / "validation-warnings.json").read_text()
-        )
-        assert len(warning_document["normalizations"]) == 2
-        assert any(
-            "recommended schema" in warning
-            for warning in warning_document["warnings"]
-        )
+        warning_document = json.loads((candidate.parent / "validation-warnings.json").read_text())
+        assert len(warning_document["normalizations"]) == 3
+        assert any("recommended schema" in warning for warning in warning_document["warnings"])
 
     @patch("idea_pipeline.analyzer.reddit.subprocess.run")
     def test_ungrounded_links_are_sanitized_before_publication(
@@ -1297,21 +1398,14 @@ class TestAnalysisBoundary:
                 post(
                     "build1",
                     selftext=(
-                        "A launched workflow tool at http://example.com/product "
-                        "with one user."
+                        "A launched workflow tool at http://example.com/product with one user."
                     ),
                 )
             ],
         )
         report = tmp_path / "reports" / "2026-08-02.md"
         job = AnalysisJob(target, report)
-        candidate = (
-            tmp_path
-            / "artifacts"
-            / REPORT_ARTIFACT_NAME
-            / "2026-08-02"
-            / "report.md"
-        )
+        candidate = tmp_path / "artifacts" / REPORT_ARTIFACT_NAME / "2026-08-02" / "report.md"
 
         def generate(*_args: object, **_kwargs: object) -> subprocess.CompletedProcess[str]:
             candidate.write_text(
@@ -1336,9 +1430,7 @@ class TestAnalysisBoundary:
         assert "unverified repository" in published
         assert "https://github.com/example/invented" not in published
         assert "https://example.com/product" in published
-        warning_document = json.loads(
-            (candidate.parent / "validation-warnings.json").read_text()
-        )
+        warning_document = json.loads((candidate.parent / "validation-warnings.json").read_text())
         assert any(
             "removed ungrounded external link" in message
             for message in warning_document["normalizations"]
@@ -1353,13 +1445,7 @@ class TestAnalysisBoundary:
         report.parent.mkdir(parents=True)
         report.write_text("known-good report\n", encoding="utf-8")
         job = AnalysisJob(target, report)
-        candidate = (
-            tmp_path
-            / "artifacts"
-            / REPORT_ARTIFACT_NAME
-            / "2026-08-02"
-            / "report.md"
-        )
+        candidate = tmp_path / "artifacts" / REPORT_ARTIFACT_NAME / "2026-08-02" / "report.md"
 
         def generate(*_args: object, **_kwargs: object) -> subprocess.CompletedProcess[str]:
             candidate.write_text("# incomplete\n", encoding="utf-8")

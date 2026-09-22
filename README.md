@@ -40,7 +40,7 @@ Add `REDDIT_COOKIES` to `pipeline/.env` before a live collection. Keeping pipeli
 
 See [`pipeline/README.md`](pipeline/README.md) for scraping, refresh, configuration, and test commands.
 
-The daily analysis workflow is defined in `.github/workflows/analyze_reddit.yml`. It analyzes completed snapshots into source-linked project, pain-point, idea/validation, launch-result, and inspected-media tables; validates staged Markdown and its media-review ledger; then commits `reports/reddit/`. Configure the `COPILOT_PAT` Actions secret before enabling it.
+The daily analysis workflow is defined in `.github/workflows/analyze_reddit.yml`. It analyzes completed snapshots into a unified source-linked evidence ledger, a customer-problem inventory, concise cross-stream synthesis, and an action/watchlist section; validates staged Markdown and its media-review ledger; then commits `reports/reddit/`. It uses a low-cost synthesis model first and escalates only failed validation. Configure the `COPILOT_PAT` Actions secret before enabling it.
 
 The scheduled cookie refresh pipeline is defined in `.github/workflows/refresh_reddit_cookies.yml`. It renews the browser session and replaces the `REDDIT_COOKIES` Actions secret without exposing it to the website.
 

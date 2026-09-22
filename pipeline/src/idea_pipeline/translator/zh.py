@@ -9,6 +9,8 @@ import logging
 import os
 import re
 import subprocess
+import time
+from collections import defaultdict, deque
 from collections.abc import Iterable, Sequence
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
@@ -27,10 +29,11 @@ DEFAULT_ARTIFACTS_DIR = PROJECT_ROOT / "artifacts" / "translations" / "zh"
 DEFAULT_ENV_FILE = PROJECT_ROOT / ".env"
 TRANSLATION_SKILL_PATH = REPOSITORY_ROOT / ".agents" / "skills" / "translate-zh" / "SKILL.md"
 
-DEFAULT_MODEL = "claude-sonnet-4.6"
-DEFAULT_EFFORT = "high"
-DEFAULT_WORKERS = 2
+DEFAULT_MODEL = "gemini-3.8-flash"
+DEFAULT_EFFORT = "medium"
+DEFAULT_WORKERS = 1
 DEFAULT_LIMIT = 5
+TRANSLATION_QUALITY_VERSION = "3"
 TARGET_LANGUAGE = "zh-CN"
 
 # A faithful overlay of these reports keeps many Latin product names, so the floor is
@@ -46,6 +49,7 @@ _HEADING_RE = re.compile(r"^(#{1,6})\s+(.*?)\s*#*\s*$")
 _TABLE_DELIMITER_RE = re.compile(r"\A\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)*\|?\Z")
 _URL_RE = re.compile(r"https?://[^\s\])}>\"'`]+")
 _IMAGE_RE = re.compile(r"!\[[^\]]*\]\(([^)\s]+)")
+_MARKDOWN_LINK_RE = re.compile(r"(?<!!)\[([^\]]+)\]\((https?://[^)\s]+)\)")
 _HAN_RE = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff]")
 _LATIN_RE = re.compile(r"[A-Za-z]")
 _HAN = r"\u3400-\u4dbf\u4e00-\u9fff"
@@ -63,6 +67,93 @@ _PROTECTED_RE = re.compile(
 )
 
 _ASCII_TO_FULL_WIDTH = {",": "，", ":": "：", ";": "；", "!": "！", "?": "？"}
+_PROTECTED_METRIC_RE = re.compile(
+    r"\b(?:19|20)\d{2}-\d{2}-\d{2}\b"
+    r"|[$€£¥]\s?\d[\d,.]*(?:\s?(?:MRR|ARR|[kKmMbB])(?![A-Za-z]))?"
+    r"|\b\d[\d,.]*\s?(?:%|MRR|ARR|GMV|CTR|CAC|LTV|MAU|DAU)\b"
+    r"|\b(?:19|20)\d{2}\b"
+    r"|\b\d[\d,.]*(?:\+)?\b"
+)
+_PROTECTED_IDENTIFIER_RE = re.compile(r"\b[A-Z][A-Z0-9_-]*\d[A-Z0-9_-]*\b")
+_HEDGE_RULES = (
+    (
+        re.compile(r"\bauthor-reported\b", re.IGNORECASE),
+        re.compile(r"作者自述|author-reported", re.IGNORECASE),
+        "author-reported",
+    ),
+    (
+        re.compile(r"\b(?:claims?|claimed)\b", re.IGNORECASE),
+        re.compile(r"声称|称|claims?|claimed", re.IGNORECASE),
+        "claim",
+    ),
+    (
+        re.compile(r"\b(?:reportedly|according to reports)\b", re.IGNORECASE),
+        re.compile(r"据报道|据报|据称|报道称|reportedly|according to reports", re.IGNORECASE),
+        "reportedly",
+    ),
+    (
+        re.compile(r"\b(?:approximately|roughly)\b", re.IGNORECASE),
+        re.compile(r"约|大约|大致|approximately|roughly", re.IGNORECASE),
+        "approximately",
+    ),
+    (
+        re.compile(r"\bat least\b", re.IGNORECASE),
+        re.compile(r"至少|at least", re.IGNORECASE),
+        "at least",
+    ),
+    (
+        re.compile(r"\bestimat(?:e|ed|es|ing)\b", re.IGNORECASE),
+        re.compile(r"估计|估算|预计|测算|estimat(?:e|ed|es|ing)", re.IGNORECASE),
+        "estimate",
+    ),
+)
+_HARD_STYLE_PATTERNS = (
+    (re.compile(r"对于[^。！？；]{1,24}而言"), "对于……而言"),
+    (re.compile(r"通过[^。！？；]{1,24}来"), "通过……来"),
+    (re.compile(r"在[^。！？；]{1,24}的过程中"), "在……的过程中"),
+    (re.compile(r"被设计为"), "被设计为"),
+    (re.compile(r"被要求"), "被要求"),
+    (re.compile(r"被认为是"), "被认为是"),
+    (re.compile(r"正在[^。！？；]{1,16}中"), "正在……中"),
+    (re.compile(r"做出决定"), "做出决定"),
+    (re.compile(r"进行尝试"), "进行尝试"),
+    (re.compile(r"产生影响"), "产生影响"),
+    (re.compile(r"实现增长"), "实现增长"),
+    (re.compile(r"本窗口"), "本窗口"),
+    (re.compile(r"落地的具体产物"), "落地的具体产物"),
+    (re.compile(r"(?:阶段[：:]\s*有使用(?:[，。；\n]|$)|\|\s*有使用\s*\|)"), "有使用"),
+)
+_REQUIRED_HEADING_TRANSLATIONS = {
+    "1. Executive Brief": "1. 核心简报",
+    "2. Evidence Ledger": "2. 证据台账",
+    "4. Patterns, Contradictions, and Gaps": "4. 模式、矛盾与证据缺口",
+    "5. Decisions and Watchlist": "5. 行动建议与观察清单",
+    "Practical Moves": "可执行动作",
+    "1. Executive Value Summary": "1. 核心价值摘要",
+    "2. New Projects and Direct Links": "2. 新项目与直达链接",
+    "3. Customer Problems and Existing Workarounds": "3. 用户痛点与现有变通做法",
+    "4. Founder Ideas and Validation Signals": "4. 创始人想法与验证信号",
+    "5. Launches, Traction, and Distribution Results": "5. 发布、增长势头与分发结果",
+    "6. Visual and Demo Evidence": "6. 视觉与 Demo 证据",
+    "7. Cross-Stream Matches and Gaps": "7. 跨来源匹配与证据缺口",
+    "8. Practical Takeaways and Watchlist": "8. 实用结论与观察清单",
+    "Key Highlights": "重点信号",
+    "Coverage and Caveats": "覆盖范围与局限",
+    "Reusable lessons": "可复用经验",
+    "Watchlist": "观察清单",
+}
+_REQUIRED_HIGHLIGHT_TRANSLATIONS = {
+    "**Best new artifacts:**": "**重点新项目：**",
+    "**Strongest traction:**": "**最强增长信号：**",
+    "**Sharpest user pain:**": "**最明确的用户痛点：**",
+    "**Most useful visual:**": "**最有价值的视觉证据：**",
+    "**Biggest evidence gap:**": "**最大证据缺口：**",
+}
+_REQUIRED_SYNTHESIS_LABEL_TRANSLATIONS = {
+    "**Evidence:**": "**证据：**",
+    "**Interpretation:**": "**解读：**",
+    "**Missing proof:**": "**缺失证据：**",
+}
 
 
 class TranslationError(ValueError):
@@ -117,6 +208,8 @@ class PreparedTranslation:
     candidate_path: Path
     structure: DocumentStructure
     source_digest: str
+    source_text: str
+    protected: dict[str, list[str]]
 
 
 @dataclass(frozen=True)
@@ -249,21 +342,61 @@ def protected_terms(text: str) -> dict[str, list[str]]:
     _front_matter, body = strip_front_matter(text)
     urls = list(dict.fromkeys(_URL_RE.findall(body)))
     code = list(dict.fromkeys(match.strip("`") for match in re.findall(r"`[^`\n]+`", body)))
-    metrics = list(
-        dict.fromkeys(
-            re.findall(
-                r"[$€£]\s?[\d,.]+[kKmM]?|\b\d[\d,.]*\s?(?:%|MRR|ARR|k|K)\b",
-                body,
-            )
-        )
-    )
+    metrics = list(dict.fromkeys(_PROTECTED_METRIC_RE.findall(body)))
     subreddits = list(dict.fromkeys(re.findall(r"\br/[A-Za-z0-9_]+", body)))
+    identifiers = list(dict.fromkeys(_PROTECTED_IDENTIFIER_RE.findall(body)))
+    names = _protected_project_names(body)
     return {
         "urls": urls,
         "inline_code": code,
         "metrics": metrics,
         "subreddits": subreddits,
+        "identifiers": identifiers,
+        "project_names": names,
     }
+
+
+def _protected_project_names(body: str) -> list[str]:
+    """Extract likely proper project names from the first project table."""
+    lines = body.splitlines()
+    for index, raw_line in enumerate(lines):
+        header = _split_cells(raw_line) if raw_line.strip().startswith("|") else []
+        if not header:
+            continue
+        first_header = header[0].casefold()
+        is_legacy_project_table = first_header.startswith("project")
+        is_evidence_ledger = first_header == "case and primary link"
+        if not (is_legacy_project_table or is_evidence_ledger):
+            continue
+        following = lines[index + 1].strip() if index + 1 < len(lines) else ""
+        if not _TABLE_DELIMITER_RE.match(following):
+            continue
+        names: list[str] = []
+        for row in lines[index + 2 :]:
+            if not row.strip().startswith("|"):
+                break
+            cells = _split_cells(row)
+            if not cells:
+                continue
+            value = re.sub(r"[*_`]", "", cells[0]).strip()
+            value = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", value).strip()
+            if is_evidence_ledger:
+                value = value.split(" — ", 1)[0].strip()
+            words = re.findall(r"[A-Za-z0-9][A-Za-z0-9.+_-]*", value)
+            looks_named = (
+                "." in value
+                or any(re.search(r"[a-z][A-Z]|[A-Z][a-z]+[A-Z]", word) for word in words)
+                or (
+                    bool(words)
+                    and all(
+                        word[0].isupper() or word.isupper() or word[0].isdigit() for word in words
+                    )
+                )
+            )
+            if looks_named and value:
+                names.append(value)
+        return list(dict.fromkeys(names))
+    return []
 
 
 def normalize_translation(text: str) -> tuple[str, list[str]]:
@@ -300,9 +433,7 @@ def normalize_translation(text: str) -> tuple[str, list[str]]:
         tightened += count
         updated, count = re.subn(rf"(?<=[{_FULL_WIDTH_OPENERS}])[ \t]+", "", updated)
         tightened += count
-        updated, count = re.subn(
-            rf"(?<=[{_FULL_WIDTH_CLOSERS}])[ \t]+(?=[{_HAN}])", "", updated
-        )
+        updated, count = re.subn(rf"(?<=[{_FULL_WIDTH_CLOSERS}])[ \t]+(?=[{_HAN}])", "", updated)
         tightened += count
         updated, count = re.subn(r"。{2,}", "。", updated)
         tightened += count
@@ -339,10 +470,43 @@ def _prose_text(body: str) -> str:
     return re.sub(r"`[^`\n]*`", " ", without_urls)
 
 
+def normalize_reddit_link_labels(source_text: str, candidate: str) -> tuple[str, int]:
+    """Restore quoted Reddit link labels from the source in occurrence order."""
+    expected: dict[str, deque[str]] = defaultdict(deque)
+    for label, url in _MARKDOWN_LINK_RE.findall(source_text):
+        if "reddit.com/" in url.casefold():
+            expected[url].append(label)
+
+    restored = 0
+
+    def replace(match: re.Match[str]) -> str:
+        nonlocal restored
+        label, url = match.groups()
+        labels = expected.get(url)
+        if not labels:
+            return match.group(0)
+        source_label = labels.popleft()
+        if label == source_label:
+            return match.group(0)
+        restored += 1
+        return f"[{source_label}]({url})"
+
+    return _MARKDOWN_LINK_RE.sub(replace, candidate), restored
+
+
+def _required_heading_translation(source_heading: str) -> str | None:
+    prefix = "Reddit Builder Intelligence Report - "
+    if source_heading.startswith(prefix):
+        return "Reddit 构建者情报报告 - " + source_heading.removeprefix(prefix)
+    return _REQUIRED_HEADING_TRANSLATIONS.get(source_heading)
+
+
 def validate_translation(
     candidate_path: Path,
     *,
     structure: DocumentStructure,
+    source_text: str | None = None,
+    protected: dict[str, list[str]] | None = None,
     warnings: list[str] | None = None,
 ) -> list[str]:
     """Return blocking problems that must keep an overlay from being published."""
@@ -374,6 +538,13 @@ def validate_translation(
                 errors.append(
                     f"heading {position} level differs: expected h{expected[0]}, found h{found[0]}"
                 )
+                continue
+            required_translation = _required_heading_translation(expected[1])
+            if required_translation and found[1] != required_translation:
+                errors.append(
+                    f"heading {position} must use the standard translation "
+                    f"'{required_translation}', found '{found[1]}'"
+                )
             elif expected[1] == found[1] and not _HAN_RE.search(found[1]):
                 errors.append(f"heading {position} was not translated: {_truncate(found[1], 80)}")
 
@@ -396,13 +567,74 @@ def validate_translation(
 
     missing_urls = [url for url in structure.urls if url not in candidate.urls]
     if missing_urls:
-        errors.append(f"translation drops {len(missing_urls)} source link(s): {', '.join(missing_urls[:5])}")
+        errors.append(
+            f"translation drops {len(missing_urls)} source link(s): {', '.join(missing_urls[:5])}"
+        )
     extra_urls = [url for url in candidate.urls if url not in structure.urls]
     if extra_urls:
-        errors.append(f"translation adds link(s) absent from the source: {', '.join(extra_urls[:5])}")
+        errors.append(
+            f"translation adds link(s) absent from the source: {', '.join(extra_urls[:5])}"
+        )
     missing_images = [url for url in structure.image_urls if url not in candidate.image_urls]
     if missing_images:
         errors.append(f"translation drops {len(missing_images)} source image(s)")
+
+    if protected:
+        for category in (
+            "inline_code",
+            "metrics",
+            "subreddits",
+            "identifiers",
+            "project_names",
+        ):
+            missing = [
+                value for value in protected.get(category, []) if value and value not in body
+            ]
+            if missing:
+                errors.append(
+                    f"translation changes or drops protected {category}: " + ", ".join(missing[:5])
+                )
+
+    if source_text is not None:
+        for source_label, translated_label in _REQUIRED_HIGHLIGHT_TRANSLATIONS.items():
+            if source_label in source_text and translated_label not in body:
+                errors.append(
+                    "translation is missing the standard executive highlight label: "
+                    f"{translated_label}"
+                )
+        for source_label, translated_label in _REQUIRED_SYNTHESIS_LABEL_TRANSLATIONS.items():
+            source_count = source_text.count(source_label)
+            if source_count and body.count(translated_label) < source_count:
+                errors.append(
+                    "translation is missing the standard synthesis label: "
+                    f"{translated_label}"
+                )
+        source_reddit_labels = {
+            url: label
+            for label, url in _MARKDOWN_LINK_RE.findall(source_text)
+            if "reddit.com/" in url.casefold()
+        }
+        candidate_reddit_labels = {url: label for label, url in _MARKDOWN_LINK_RE.findall(body)}
+        changed_labels = [
+            label
+            for url, label in source_reddit_labels.items()
+            if candidate_reddit_labels.get(url) != label
+        ]
+        if changed_labels:
+            errors.append(
+                f"translation changes {len(changed_labels)} Reddit post title label(s): "
+                + ", ".join(changed_labels[:3])
+            )
+        source_prose = _prose_text(source_text)
+        candidate_prose = _prose_text(body)
+        for source_pattern, target_pattern, label in _HEDGE_RULES:
+            source_count = len(source_pattern.findall(source_prose))
+            target_count = len(target_pattern.findall(candidate_prose))
+            if target_count < source_count:
+                errors.append(
+                    f"translation drops {source_count - target_count} "
+                    f"'{label}' uncertainty qualifier(s)"
+                )
 
     prose = _prose_text(body)
     han_characters = len(_HAN_RE.findall(prose))
@@ -424,6 +656,13 @@ def validate_translation(
             f"{len(untranslated_headers)} table header row(s) were not translated: "
             f"{_truncate(' | '.join(untranslated_headers[0]), 100)}"
         )
+
+    for pattern, label in _HARD_STYLE_PATTERNS:
+        count = len(pattern.findall(prose))
+        if count:
+            errors.append(
+                f"translation contains {count} high-confidence translationese pattern(s): {label}"
+            )
 
     for message in _style_warnings(body):
         _record_warning(warnings, message)
@@ -452,7 +691,7 @@ def _style_warnings(body: str) -> list[str]:
     leftover = len(re.findall(rf"(?<=[{_HAN}])[,;:!?]", prose))
     if leftover:
         warnings.append(f"{leftover} ASCII punctuation mark(s) still follow Chinese text")
-    passives = len(re.findall(r"被(?:认为|使用|发现|构建|创建|提供)", prose))
+    passives = len(re.findall(r"被(?:使用|发现|构建|创建|提供)", prose))
     if passives:
         warnings.append(f"{passives} literal 被-passive construction(s) read as translationese")
     stacked = len(re.findall(r"的[^\n。？！]{0,8}的[^\n。？！]{0,8}的", prose))
@@ -460,7 +699,9 @@ def _style_warnings(body: str) -> list[str]:
         warnings.append(f"{stacked} clause(s) stack three or more 的 and should be simplified")
     counters = len(re.findall(r"一个[^\n]{0,4}的", prose))
     if counters > 12:
-        warnings.append(f"{counters} 「一个……的」 patterns suggest literal English article carry-over")
+        warnings.append(
+            f"{counters} 「一个……的」 patterns suggest literal English article carry-over"
+        )
     return warnings
 
 
@@ -521,17 +762,13 @@ def resolve_jobs(
     return jobs
 
 
-def _translation_reason(
-    target: TranslationTarget, translation_path: Path, *, force: bool
-) -> str:
+def _translation_reason(target: TranslationTarget, translation_path: Path, *, force: bool) -> str:
     if force:
         return "forced regeneration"
     if not translation_path.is_file():
         return "missing overlay"
     try:
-        front_matter, _body = strip_front_matter(
-            translation_path.read_text(encoding="utf-8")
-        )
+        front_matter, _body = strip_front_matter(translation_path.read_text(encoding="utf-8"))
         source_digest = _digest(target.report_path.read_text(encoding="utf-8"))
     except OSError as exc:
         LOGGER.warning("Cannot compare %s: %s", translation_path, exc)
@@ -541,6 +778,8 @@ def _translation_reason(
         return "overlay has no recorded source digest"
     if recorded != source_digest:
         return "source report changed since the overlay was written"
+    if front_matter.get("quality_version") != TRANSLATION_QUALITY_VERSION:
+        return f"overlay predates translation quality contract v{TRANSLATION_QUALITY_VERSION}"
     return ""
 
 
@@ -553,11 +792,12 @@ def prepare_translation(
 
     source_text = target.report_path.read_text(encoding="utf-8")
     structure = extract_structure(source_text)
+    protected = protected_terms(source_text)
 
     source_path = directory / "source.md"
     _atomic_write_text(source_path, source_text)
     _atomic_write_json(directory / "structure.json", structure.as_json())
-    _atomic_write_json(directory / "protected-terms.json", protected_terms(source_text))
+    _atomic_write_json(directory / "protected-terms.json", protected)
     if TRANSLATION_SKILL_PATH.is_file():
         _atomic_write_text(
             directory / "instructions.md",
@@ -572,6 +812,8 @@ def prepare_translation(
         candidate_path=directory / "translation.md",
         structure=structure,
         source_digest=_digest(source_text),
+        source_text=source_text,
+        protected=protected,
     )
 
 
@@ -606,7 +848,9 @@ Quality bar:
 - Remove translationese: unnecessary 一个 / 们 / 该 / 其, literal 被-passives, stacked 的, and connectives Chinese does not need.
 - Use full-width punctuation inside Chinese sentences, and one space between Chinese characters and adjacent Latin letters or digits.
 - Apply the domain glossary in instructions.md consistently across the whole report.
-- Preserve every hedge exactly; never turn an author-reported claim into a fact.
+- Use the standard Chinese headings and executive-highlight labels defined in instructions.md.
+- Keep every Reddit post-title link label byte-identical to source.md, including punctuation, truncation, and ellipses; never expand a shortened title.
+- Preserve every occurrence of every hedge; repeated table mentions each need their own qualifier. Never turn an author-reported claim into a fact.
 
 Operational constraints:
 - Write only translation.md in this directory.
@@ -634,7 +878,7 @@ def build_copilot_command(
         prompt,
         "--model",
         model,
-        "--effort",
+        "--reasoning-effort",
         effort,
         "--allow-all-tools",
         "--deny-tool=shell",
@@ -656,17 +900,14 @@ def _copilot_environment() -> dict[str, str]:
     return environment
 
 
-def _publish_translation(
-    prepared: PreparedTranslation, job: TranslationJob, *, model: str
-) -> None:
-    _front_matter, body = strip_front_matter(
-        prepared.candidate_path.read_text(encoding="utf-8")
-    )
+def _publish_translation(prepared: PreparedTranslation, job: TranslationJob, *, model: str) -> None:
+    _front_matter, body = strip_front_matter(prepared.candidate_path.read_text(encoding="utf-8"))
     front_matter = _render_front_matter(
         {
             "lang": TARGET_LANGUAGE,
             "source": f"{job.target.date_text}.md",
             "source_sha256": prepared.source_digest,
+            "quality_version": TRANSLATION_QUALITY_VERSION,
             "model": model,
             "translated_at": datetime.now(UTC).replace(microsecond=0).isoformat(),
         }
@@ -693,10 +934,12 @@ def translate_job(
 
     validation_path = prepared.directory / "validation-errors.json"
     warning_path = prepared.directory / "validation-warnings.json"
+    generation_path = prepared.directory / "generation-metadata.json"
     for generated_path in (
         prepared.candidate_path,
         validation_path,
         warning_path,
+        generation_path,
         prepared.directory / "copilot.stdout.log",
         prepared.directory / "copilot.stderr.log",
     ):
@@ -710,6 +953,8 @@ def translate_job(
     command = build_copilot_command(
         prompt, model=model, effort=effort, copilot_command=copilot_command
     )
+    started_at = datetime.now(UTC)
+    started_clock = time.monotonic()
     try:
         process = subprocess.run(
             command,
@@ -724,6 +969,20 @@ def translate_job(
     except OSError as exc:
         return TranslationResult(job, "failed", f"Cannot start Copilot CLI: {exc}")
 
+    completed_at = datetime.now(UTC)
+    _atomic_write_json(
+        generation_path,
+        {
+            "model": model,
+            "effort": effort,
+            "started_at": started_at.replace(microsecond=0).isoformat(),
+            "completed_at": completed_at.replace(microsecond=0).isoformat(),
+            "duration_seconds": round(time.monotonic() - started_clock, 3),
+            "returncode": process.returncode,
+            "source_bytes": prepared.source_path.stat().st_size,
+            "prompt_bytes": (prepared.directory / "prompt.txt").stat().st_size,
+        },
+    )
     _atomic_write_text(prepared.directory / "copilot.stdout.log", process.stdout or "")
     _atomic_write_text(prepared.directory / "copilot.stderr.log", process.stderr or "")
 
@@ -752,20 +1011,27 @@ def translate_job(
     except OSError as exc:
         return TranslationResult(job, "failed", f"Cannot read translation candidate: {exc}")
     normalized, normalizations = normalize_translation(candidate)
+    normalized, restored_labels = normalize_reddit_link_labels(prepared.source_text, normalized)
+    if restored_labels:
+        normalizations.append(
+            f"restored {restored_labels} Reddit post title label(s) from the source"
+        )
     if normalized != candidate:
         _atomic_write_text(prepared.candidate_path, normalized)
 
     errors = validate_translation(
-        prepared.candidate_path, structure=prepared.structure, warnings=warnings
+        prepared.candidate_path,
+        structure=prepared.structure,
+        source_text=prepared.source_text,
+        protected=prepared.protected,
+        warnings=warnings,
     )
     for message in normalizations:
         LOGGER.info("%s: %s", target.date_text, message)
     for warning in warnings:
         LOGGER.warning("%s: %s", target.date_text, warning)
     if normalizations or warnings:
-        _atomic_write_json(
-            warning_path, {"normalizations": normalizations, "warnings": warnings}
-        )
+        _atomic_write_json(warning_path, {"normalizations": normalizations, "warnings": warnings})
     if errors:
         _atomic_write_json(
             validation_path,
@@ -776,9 +1042,7 @@ def translate_job(
     try:
         _publish_translation(prepared, job, model=model)
     except OSError as exc:
-        return TranslationResult(
-            job, "failed", f"Cannot publish {job.translation_path}: {exc}"
-        )
+        return TranslationResult(job, "failed", f"Cannot publish {job.translation_path}: {exc}")
     warning_suffix = f" with {len(warnings)} warning(s)" if warnings else ""
     return TranslationResult(
         job, "published", f"overlay written to {job.translation_path}{warning_suffix}"

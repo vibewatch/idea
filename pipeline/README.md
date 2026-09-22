@@ -86,6 +86,9 @@ monitors:
     sort: top
     time: day
     max_posts: 25
+    max_posts_by_subreddit:
+      microsaas: 12
+      selfhosted: 12
     comments: 20
     comment_percentile: 75
 ```
@@ -97,8 +100,11 @@ monitors:
 | `sort` | no | `hot`, `new`, `top`, `rising`, `controversial`, or `best`; default `hot` |
 | `time` | no | `hour`, `day`, `week`, `month`, `year`, or `all`; used by `top`/`controversial` |
 | `max_posts` | no | Posts requested per subreddit, 1-100; default 25 |
+| `max_posts_by_subreddit` | no | Per-community overrides for `max_posts`; every key must name a configured subreddit and every value must be 1-100 |
 | `comments` | no | Top comments requested per qualifying post, 0-100; default 0 |
 | `comment_percentile` | no | Discussion percentile used to select posts for comments; default 75 |
+
+Source selection is based on downstream report citation yield rather than raw post volume. The current mix retains consistently productive communities such as `SideProject`, `SaaS`, `sysadmin`, `smallbusiness`, `indiehackers`, and `Entrepreneur`; removes low-yield `freelancers`, `productivity`, and `SomebodyMakeThis`; and trials practitioner-heavy `selfhosted`, `alphaandbetausers`, `shopify`, and `msp` at reduced quotas. The result covers 18 communities instead of 17 while reducing the configured per-run request ceiling from 400 to 274 posts (31.5%). Per-community caps keep the added coverage from expanding the corpus and Copilot context as if every source had equal demonstrated value.
 
 A failed community does not discard successful results from others. A Reddit rate limit stops remaining requests and preserves the partial batch.
 
@@ -141,14 +147,14 @@ The analyzer combines the three immutable daily JSON streams into static Markdow
 2. Exclude today's still-changing files during automatic discovery and skip incomplete dates.
 3. Skip dates that already have a full report unless `--force` is used.
 4. Rank each stream independently by evidence richness using capped logarithmic engagement, detailed text/comments, quantified signals, concrete problems, and observed outcomes; thin viral posts receive a penalty.
-5. Write per-stream review sets and dossiers plus full-corpus `external-links.json`, `media-manifest.json`, source hashes, and combined metadata under ignored `pipeline/artifacts/reddit/builder-intelligence/<date>/`. Unambiguous domains in titles/text—including common `domain dot tld` spellings—are normalized to HTTPS manifest entries; common source-code and data filenames are excluded.
+5. Write per-stream review sets and dossiers plus full-corpus `external-links.json`, `media-manifest.json`, source hashes, and combined metadata under ignored `pipeline/artifacts/reddit/builder-intelligence/<date>/`. Up to seven earlier snapshots are represented by compact summaries of their six strongest evidence items rather than copied in full. Unambiguous domains in titles/text—including common `domain dot tld` spellings—are normalized to HTTPS manifest entries; common source-code and data filenames are excluded.
 6. During generation only, safely download approved Reddit/Imgur images, normalize animated GIF/WebP and other unsupported image formats to one representative static PNG frame, and turn accessible Reddit DASH videos into six-frame contact sheets. Copilot receives only JPEG/PNG attachments; galleries, external videos, failures, and skipped items retain explicit URL/status records.
 7. Attach every materialized visual to one sandboxed Copilot CLI process per date, with bounded worker concurrency, shell access disabled, built-in GitHub MCP disabled, and unrelated pipeline credentials removed.
-8. Extract concrete projects, pain points, founder ideas/validation, launches/metrics, and useful visual findings into exact Markdown tables before adding bounded cross-stream synthesis.
+8. Merge projects, founder validation, launches/metrics, failures, and useful visual findings into one case-level evidence ledger so each project or experiment has one primary home. Keep customer problems separate, then add short pattern synthesis and an action/watchlist section.
 9. Require `media-review.json` to account for every detected media item and distinguish inspected, non-substantive, and unavailable assets. Deterministic `media_type` and `report_included` fields are normalized from the manifest and final report before validation.
 10. Accept an otherwise identical HTTP-to-HTTPS source-link upgrade and make external destinations absent from the source manifests non-clickable while retaining their descriptive text and recording the repair. Then block reports with missing core sections or populated tables, local paths, remaining unknown source URLs, unknown Reddit IDs/media, insecure embedded images, or malformed review data. Treat exact table labels, per-section current-snapshot citation coverage, the eight-project target, inspected-media coverage, and source-derived HTTP hyperlinks as visible quality warnings rather than publication failures.
 11. If Copilot exits nonzero after writing a candidate (for example, a native-binary crash), run the same strict normalization and validation before discarding it. A complete candidate is published with the CLI failure recorded as a warning; an incomplete candidate remains blocked.
-12. Atomically publish valid output to `reports/reddit/<date>.md`. The workflow commits validated reports even when a sibling date fails, then retains failed-run candidates, source-set metadata, ledgers, prompts, and logs as a seven-day diagnostics artifact.
+12. Atomically publish valid output to `reports/reddit/<date>.md`. Each sandbox records `generation-metadata.json` with the selected model, effort, elapsed time, exit status, context size, attachments, and post count. The workflow commits validated reports even when a sibling date fails, then retains failed-run candidates, source-set metadata, ledgers, prompts, metadata, and logs as a seven-day diagnostics artifact.
 
 Raw snapshots are never rewritten. A failed generation or validation leaves any existing published report untouched.
 
@@ -161,27 +167,30 @@ uv run --project pipeline analyze-reddit --prepare-only
 uv run --project pipeline analyze-reddit
 uv run --project pipeline analyze-reddit --date 2026-08-02 --prepare-only
 uv run --project pipeline analyze-reddit --include-today --workers 1
+uv run --project pipeline analyze-reddit --limit 2
 uv run --project pipeline analyze-reddit --date 2026-08-02 --force
 ```
 
-`--date` may be repeated, but every selected date must contain all three required topic snapshots. An explicit date may select today's snapshot, while `--include-today` only changes automatic discovery. `--prepare-only` always refreshes the combined manifests and sandbox per selected date, but never downloads media or invokes Copilot.
+`--date` may be repeated, but every selected date must contain all three required topic snapshots. Explicit dates are never capped. Automatic discovery processes the newest missing report first and defaults to `--limit 1`, preventing an old backlog from repeatedly consuming every scheduled run. An explicit date may select today's snapshot, while `--include-today` only changes automatic discovery. `--prepare-only` always refreshes the combined manifests and sandbox per selected date, but never downloads media or invokes Copilot.
 
-Model controls default to `--model grok-4.5 --effort high`. GPT-5.4, GPT-5.5, Claude Sonnet 4.6, and Claude Opus 4.6 remain available through explicit model selection; the workflow's `auto` effort uses `high` for Grok and Claude, and `xhigh` for GPT. The repository-local skill at `.agents/skills/reddit-idea-analysis/SKILL.md` defines what counts as a valuable project, pain point, idea/validation case, launch result, and visual finding. It requires directly openable links and exact tables rather than a thematic recap. The final report still maps convergence, partial support, contradictions, and missing links without opportunity scores or pretending unrelated posts form a tracked funnel. Keep downloaded media, contact sheets, model logs, and review ledgers in ignored `pipeline/artifacts/`; only validated reports are versioned.
+Model controls default to `--model gpt-5.4-mini --effort medium`. At the published rates used for this optimization, GPT-5.4 mini costs $0.75/M input tokens and $4.50/M output tokens versus Grok 4.5 at $2/M input and $6/M output, so it is approximately 62.5% cheaper on input and 25% cheaper on output. The Actions workflow retries a failed low-cost generation once with `grok-4.5` at high effort; valid first-pass reports are never regenerated by the fallback. Higher-cost models remain available through explicit model selection. Check current Copilot model pricing before revising this routing policy.
 
-Validation is intentionally stricter than Astro's Markdown parser but no longer treats every quality target as fatal. The hard gates protect publishability, source provenance, and accidental data exposure; advisory warnings preserve useful partial reports while making coverage gaps visible in Actions logs and `validation-warnings.json`. Failed workflow runs upload the generated report, review ledger, manifests, validation output, and Copilot logs as a seven-day diagnostics artifact.
+The repository-local skill at `.agents/skills/reddit-idea-analysis/SKILL.md` defines what counts as a valuable project, pain point, validation case, launch result, and visual finding. Its five-section report starts with a short bottom line, five highlighted signals, and explicit coverage caveats; consolidates projects, experiments, outcomes, failures, and inspected media into one evidence ledger; keeps customer problems separate; and reserves the final sections for non-repetitive pattern synthesis, practical moves, and watch triggers. The report still maps convergence, partial support, contradictions, and missing links without opportunity scores or pretending unrelated posts form a tracked funnel. Keep downloaded media, contact sheets, model logs, metadata, and review ledgers in ignored `pipeline/artifacts/`; only validated reports are versioned.
 
-The workflow `.github/workflows/analyze_reddit.yml` runs daily at 02:43 UTC and supports manual date, model, effort, worker, force, include-today, and prepare-only inputs.
+Validation is intentionally stricter than Astro's Markdown parser but no longer treats every quality target as fatal. The hard gates protect publishability, source provenance, and accidental data exposure; advisory warnings preserve useful partial reports while making coverage gaps visible in Actions logs and `validation-warnings.json`. Every workflow run retains context-size and generation telemetry for 30 days; failed runs additionally upload the generated report, review ledger, manifests, validation output, and Copilot logs as a seven-day diagnostics artifact.
+
+The workflow `.github/workflows/analyze_reddit.yml` runs daily at 02:43 UTC, processes only the newest missing report by default, and supports manual date, limit, model, effort, worker, force, include-today, and prepare-only inputs.
 
 ## Translation pipeline
 
 Each published English report gets one Simplified Chinese overlay at `reports/reddit/zh/<date>.md`.
 
 1. Discover published reports under `reports/reddit/`, newest first.
-2. Queue a date when its overlay is missing, or when the overlay's recorded `source_sha256` no longer matches the English report.
+2. Queue a date when its overlay is missing, when the overlay's recorded `source_sha256` no longer matches the English report, or when it predates the current translation quality contract. This lets scheduled runs upgrade older overlays gradually instead of leaving historical website content on a weaker prompt forever.
 3. Write a sandbox per date containing `source.md`, `structure.json`, `protected-terms.json`, the translation skill as `instructions.md`, and `prompt.txt`.
 4. Run one sandboxed Copilot CLI process per date with shell access disabled, built-in GitHub MCP disabled, web access withheld, and unrelated pipeline credentials removed.
 5. Normalize the candidate for Chinese typography: full-width punctuation after Chinese text, one space between Chinese and Latin/digits, and no spaces around full-width marks. Code spans, URLs, and Markdown link targets are excluded from the pass.
-6. Validate the candidate against the structural contract, then publish only on success with generated front matter recording `lang`, `source`, `source_sha256`, `model`, and `translated_at`.
+6. Validate the candidate against the structural and native-language contract, then publish only on success with generated front matter recording `lang`, `source`, `source_sha256`, `quality_version`, `model`, and `translated_at`. Each attempt also records model, effort, duration, exit status, and source/prompt sizes in `generation-metadata.json`.
 
 ```bash
 uv run --project pipeline translate-zh --prepare-only
@@ -190,13 +199,13 @@ uv run --project pipeline translate-zh --date 2026-08-05 --force
 uv run --project pipeline translate-zh --limit 2 --model claude-opus-4.6
 ```
 
-Model controls default to `--model claude-sonnet-4.6 --effort high`, and `--limit` defaults to 5 overlays per run.
+Model controls default to `--model gemini-3.8-flash --effort medium`, `--workers 1`, and `--limit 5`. Sequential generation avoids competing long-context translation sessions and makes per-report failures and telemetry easier to attribute. Gemini is the quality-first translation route; at the published promotional rates used for this optimization, it costs $0.75/M input tokens and $3.75/M output tokens through December 2026, approximately 62.5% and 37.5% less respectively than Grok 4.5. One local run experienced provider latency and produced no candidate within 18 minutes, so the Actions workflow retries failed or invalid output once with `gpt-5.4-mini` at high effort. Deterministic normalization and validation still enforce exact structure, protected evidence, native headings, and Reddit title labels regardless of model.
 
 The skill at `.agents/skills/translate-zh/SKILL.md` carries the quality bar: restructure English clause chains into short Chinese clauses, strip translationese (stray `一个`/`们`/`该`/`其`, literal `被`-passives, stacked `的`), apply a fixed builder-domain glossary, keep product names, URLs, metrics, and Reddit post titles verbatim, and preserve every hedge.
 
-Blocking validation covers heading sequence and levels, per-table column and row counts, exact link and image sets, untranslated headings or table headers, and a Chinese-character floor that catches a mostly-English candidate. Translationese signals are advisory warnings recorded in `validation-warnings.json` so a usable overlay is not discarded for style alone. Failed runs upload the candidate, contract, prompt, validation output, and Copilot logs as a seven-day diagnostics artifact.
+Blocking validation covers heading sequence and levels, standard native-Chinese report headings and executive-highlight labels, per-table column and row counts, exact link and image sets, protected metrics/code/subreddits/project names, Reddit title labels, uncertainty qualifiers, untranslated table headers, high-confidence translationese, and a Chinese-character floor that catches a mostly-English candidate. Softer style signals remain advisory warnings in `validation-warnings.json`. Every workflow run retains generation telemetry for 30 days; failed runs additionally upload the candidate, contract, prompt, validation output, and Copilot logs as a seven-day diagnostics artifact.
 
-The workflow `.github/workflows/translate_zh.yml` runs daily at 04:17 UTC, after analysis, and supports manual date, limit, model, effort, worker, force, and prepare-only inputs.
+The workflow `.github/workflows/translate_zh.yml` starts when `Extract Reddit value report` completes, avoiding the former fixed-time race with long analysis runs. A 06:17 UTC recovery schedule handles missed or delayed completion events. Manual runs support date, limit, model, effort, worker, force, and prepare-only inputs.
 
 ## Cookie refresh pipeline
 

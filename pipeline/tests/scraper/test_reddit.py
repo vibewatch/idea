@@ -52,6 +52,7 @@ class TestRedditMonitor:
         assert monitor.sort == "hot"
         assert monitor.time == "day"
         assert monitor.max_posts == 25
+        assert monitor.max_posts_by_subreddit == {}
         assert monitor.comments == 0
         assert monitor.comment_percentile == 75
 
@@ -70,6 +71,8 @@ class TestRedditMonitor:
             ("comments", -1),
             ("comment_percentile", 101),
             ("subreddits", ["r/not-valid!"]),
+            ("max_posts_by_subreddit", {"SaaS": 101}),
+            ("max_posts_by_subreddit", {"missing": 10}),
         ],
     )
     def test_rejects_invalid_values(self, field: str, value: object) -> None:
@@ -102,6 +105,8 @@ class TestLoadConfig:
                     sort: top
                     time: week
                     max_posts: 50
+                    max_posts_by_subreddit:
+                      R/entrepreneur: 12
                     comments: 10
                     comment_percentile: 60
                 """
@@ -115,6 +120,7 @@ class TestLoadConfig:
         assert monitors[0].subreddits == ["SaaS"]
         assert monitors[1].subreddits == ["startups", "Entrepreneur"]
         assert monitors[1].comment_percentile == 60
+        assert monitors[1].max_posts_by_subreddit == {"Entrepreneur": 12}
 
     def test_empty_document_is_empty_config(self, tmp_path: Path) -> None:
         config = tmp_path / "reddit.yml"
@@ -221,6 +227,17 @@ class TestPostHelpers:
         monitor = RedditMonitor(name="ideas", subreddits=["SaaS"], sort="new")
 
         assert "-t" not in build_command("SaaS", monitor)
+
+    def test_build_command_uses_per_subreddit_post_limit(self) -> None:
+        monitor = RedditMonitor(
+            name="ideas",
+            subreddits=["SaaS", "microsaas"],
+            max_posts=25,
+            max_posts_by_subreddit={"microsaas": 10},
+        )
+
+        assert build_command("SaaS", monitor)[6] == "25"
+        assert build_command("microsaas", monitor)[6] == "10"
 
     def test_extracts_nested_listing(self) -> None:
         raw = {

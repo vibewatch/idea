@@ -59,6 +59,7 @@ class RedditMonitor(BaseModel):
     sort: Literal["hot", "new", "top", "rising", "controversial", "best"] = "hot"
     time: Literal["hour", "day", "week", "month", "year", "all"] = "day"
     max_posts: int = Field(default=25, ge=1, le=100)
+    max_posts_by_subreddit: dict[str, int] = Field(default_factory=dict)
     comments: int = Field(default=0, ge=0, le=100)
     comment_percentile: float = Field(default=DEFAULT_COMMENT_PERCENTILE, ge=0, le=100)
 
@@ -93,6 +94,29 @@ class RedditMonitor(BaseModel):
                 normalized.append(subreddit)
                 seen.add(key)
         return normalized
+
+    @model_validator(mode="after")
+    def _validate_subreddit_post_limits(self) -> RedditMonitor:
+        canonical_names = {name.casefold(): name for name in self.subreddits}
+        normalized: dict[str, int] = {}
+        for raw_name, limit in self.max_posts_by_subreddit.items():
+            name = raw_name.strip()
+            if name.lower().startswith("r/"):
+                name = name[2:]
+            canonical = canonical_names.get(name.casefold())
+            if canonical is None:
+                raise ValueError(
+                    f"max_posts_by_subreddit references unconfigured subreddit '{raw_name}'"
+                )
+            if not 1 <= limit <= 100:
+                raise ValueError("max_posts_by_subreddit values must be between 1 and 100")
+            normalized[canonical] = limit
+        object.__setattr__(self, "max_posts_by_subreddit", normalized)
+        return self
+
+    def post_limit(self, subreddit: str) -> int:
+        """Return the per-community request cap or the monitor default."""
+        return self.max_posts_by_subreddit.get(subreddit, self.max_posts)
 
 
 def load_config(config_path: str | Path = DEFAULT_CONFIG) -> list[RedditMonitor]:
@@ -200,7 +224,7 @@ def build_command(subreddit: str, monitor: RedditMonitor) -> list[str]:
         "-s",
         monitor.sort,
         "-n",
-        str(monitor.max_posts),
+        str(monitor.post_limit(subreddit)),
         "--json",
         "--compact",
     ]

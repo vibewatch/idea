@@ -14,6 +14,7 @@ from idea_pipeline.translator.zh import (
     DEFAULT_EFFORT,
     DEFAULT_MODEL,
     TARGET_LANGUAGE,
+    TRANSLATION_QUALITY_VERSION,
     TranslationJob,
     TranslationTarget,
     build_copilot_command,
@@ -22,6 +23,7 @@ from idea_pipeline.translator.zh import (
     discover_reports,
     extract_structure,
     main,
+    normalize_reddit_link_labels,
     normalize_translation,
     prepare_translation,
     protected_terms,
@@ -33,11 +35,11 @@ from idea_pipeline.translator.zh import (
 
 SOURCE_REPORT = """# Reddit Builder Intelligence Report - 2026-08-05
 
-## 1. Executive Value Summary
+## 1. Executive Brief
 
-Open-source **OpenValve** shipped a $50 MRR tool. See [Open project](https://open-valve.com/).
+Open-source **OpenValve** reportedly shipped at least a $50 MRR tool. See [Open project](https://open-valve.com/).
 
-## 2. New Projects and Direct Links
+## 2. Evidence Ledger
 
 | Project | Type | Stage |
 |---|---|---|
@@ -47,13 +49,13 @@ Open-source **OpenValve** shipped a $50 MRR tool. See [Open project](https://ope
 ![Chart](https://i.redd.it/example.png)
 """
 
-TRANSLATED_BODY = """# Reddit 建造者情报报告 - 2026-08-05
+TRANSLATED_BODY = """# Reddit 构建者情报报告 - 2026-08-05
 
-## 1. 执行摘要
+## 1. 核心简报
 
-开源项目 **OpenValve** 做出了月收入 50 美元的工具。参见 [Open project](https://open-valve.com/)。
+据报道，开源项目 **OpenValve** 做出的工具至少达到 $50 MRR。参见 [Open project](https://open-valve.com/)。
 
-## 2. 新项目与直达链接
+## 2. 证据台账
 
 | 项目 | 类型 | 阶段 |
 |---|---|---|
@@ -87,8 +89,8 @@ class TestStructure:
 
         assert structure.headings == (
             (1, "Reddit Builder Intelligence Report - 2026-08-05"),
-            (2, "1. Executive Value Summary"),
-            (2, "2. New Projects and Direct Links"),
+            (2, "1. Executive Brief"),
+            (2, "2. Evidence Ledger"),
         )
         assert structure.tables == ((3, 2),)
         assert structure.urls == ("https://open-valve.com/", "https://i.redd.it/example.png")
@@ -113,9 +115,34 @@ class TestStructure:
         assert "https://a.example/" in terms["urls"]
         assert "npm ci" in terms["inline_code"]
         assert "r/SaaS" in terms["subreddits"]
+        assert "$50 MRR" in protected_terms("Revenue reached $50 MRR.")["metrics"]
+        assert "AADSTS5000224" in protected_terms("Error AADSTS5000224.")["identifiers"]
+        assert protected_terms("$2,250 best week; $290.25 balance.")["metrics"] == [
+            "$2,250",
+            "$290.25",
+        ]
+        ledger = """| Case and primary link | User or problem |
+|---|---|
+| OpenValve — [Open project](https://open-valve.com/) | Operators |"""
+        assert protected_terms(ledger)["project_names"] == ["OpenValve"]
 
 
 class TestNormalization:
+    def test_restores_reddit_title_labels_in_occurrence_order(self) -> None:
+        source = (
+            "[First title…](https://www.reddit.com/r/SaaS/comments/abc/post/) "
+            "[Short label](https://www.reddit.com/r/SaaS/comments/abc/post/)"
+        )
+        candidate = (
+            "[Expanded first title](https://www.reddit.com/r/SaaS/comments/abc/post/) "
+            "[Translated label](https://www.reddit.com/r/SaaS/comments/abc/post/)"
+        )
+
+        normalized, restored = normalize_reddit_link_labels(source, candidate)
+
+        assert normalized == source
+        assert restored == 2
+
     def test_converts_ascii_punctuation_after_chinese_text(self) -> None:
         normalized, messages = normalize_translation("作者自述, 增长停滞; 原因不明.")
 
@@ -198,7 +225,117 @@ class TestValidation:
 
         errors = validate_translation(candidate, structure=extract_structure(SOURCE_REPORT))
 
-        assert any("was not translated" in error for error in errors)
+        assert any("standard translation" in error for error in errors)
+
+    def test_requires_standard_report_headings_and_highlight_labels(
+        self, tmp_path: Path
+    ) -> None:
+        source = SOURCE_REPORT.replace(
+            "## 2. Evidence Ledger",
+            """### Key Highlights
+
+- **Best new artifacts:** OpenValve.
+- **Strongest traction:** $50 MRR.
+- **Sharpest user pain:** Manual work.
+- **Most useful visual:** A chart.
+- **Biggest evidence gap:** Retention.
+
+### Coverage and Caveats
+
+One source is represented.
+
+## 2. Evidence Ledger""",
+        )
+        translated = TRANSLATED_BODY.replace(
+            "## 2. 证据台账",
+            """### 重点信号
+
+- **重点新项目：** OpenValve。
+- **最强增长信号：** $50 MRR。
+- **最明确的用户痛点：** 手工流程。
+- **最有价值的视觉证据：** 图表。
+- **最大证据缺口：** 留存。
+
+### 覆盖范围与局限
+
+目前只有一个来源。
+
+## 2. 证据台账""",
+        )
+        candidate = tmp_path / "translation.md"
+        candidate.write_text(padded(translated), encoding="utf-8")
+
+        assert (
+            validate_translation(
+                candidate,
+                structure=extract_structure(source),
+                source_text=source,
+                protected=protected_terms(source),
+            )
+            == []
+        )
+
+        candidate.write_text(
+            padded(translated.replace("### 重点信号", "### 主要亮点")),
+            encoding="utf-8",
+        )
+        errors = validate_translation(
+            candidate,
+            structure=extract_structure(source),
+            source_text=source,
+            protected=protected_terms(source),
+        )
+
+        assert any("standard translation" in error for error in errors)
+
+    def test_requires_standard_synthesis_labels(self, tmp_path: Path) -> None:
+        source = SOURCE_REPORT + """
+## 4. Patterns, Contradictions, and Gaps
+
+### Narrow pattern
+
+**Evidence:** One case.
+
+**Interpretation:** Partial.
+
+**Missing proof:** Retention.
+"""
+        translated = TRANSLATED_BODY + """
+## 4. 模式、矛盾与证据缺口
+
+### 狭窄模式
+
+**证据：** 一个案例。
+
+**解读：** 部分匹配。
+
+**缺失证据：** 留存。
+"""
+        candidate = tmp_path / "translation.md"
+        candidate.write_text(padded(translated), encoding="utf-8")
+
+        assert (
+            validate_translation(
+                candidate,
+                structure=extract_structure(source),
+                source_text=source,
+                protected=protected_terms(source),
+            )
+            == []
+        )
+
+        candidate.write_text(
+            padded(translated.replace("**缺失证据：**", "**待验证：**")),
+            encoding="utf-8",
+        )
+        errors = validate_translation(
+            candidate,
+            structure=extract_structure(source),
+            source_text=source,
+            protected=protected_terms(source),
+        )
+
+        assert any("standard synthesis label" in error for error in errors)
 
     def test_rejects_untranslated_table_header(self, tmp_path: Path) -> None:
         candidate = tmp_path / "translation.md"
@@ -211,10 +348,10 @@ class TestValidation:
 
         assert any("table header row(s) were not translated" in error for error in errors)
 
-    def test_reports_translationese_as_warnings_only(self, tmp_path: Path) -> None:
+    def test_rejects_high_confidence_translationese(self, tmp_path: Path) -> None:
         candidate = tmp_path / "translation.md"
         candidate.write_text(
-            padded(TRANSLATED_BODY + "\n这个工具被认为是一个非常好的用于开发者的产品的方案。\n"),
+            padded(TRANSLATED_BODY + "\n这个工具被认为是开发者需要的方案。\n"),
             encoding="utf-8",
         )
         warnings: list[str] = []
@@ -223,8 +360,43 @@ class TestValidation:
             candidate, structure=extract_structure(SOURCE_REPORT), warnings=warnings
         )
 
-        assert errors == []
-        assert any("被-passive" in warning for warning in warnings)
+        assert any("high-confidence translationese" in error for error in errors)
+
+    def test_rejects_changed_metric_and_project_name(self, tmp_path: Path) -> None:
+        candidate = tmp_path / "translation.md"
+        candidate.write_text(
+            padded(
+                TRANSLATED_BODY.replace("$50 MRR", "50 美元 MRR").replace("OpenValve", "开放阀")
+            ),
+            encoding="utf-8",
+        )
+
+        errors = validate_translation(
+            candidate,
+            structure=extract_structure(SOURCE_REPORT),
+            source_text=SOURCE_REPORT,
+            protected=protected_terms(SOURCE_REPORT),
+        )
+
+        assert any("protected metrics" in error for error in errors)
+        assert any("protected project_names" in error for error in errors)
+
+    def test_rejects_dropped_uncertainty_qualifier(self, tmp_path: Path) -> None:
+        candidate = tmp_path / "translation.md"
+        candidate.write_text(
+            padded(TRANSLATED_BODY.replace("据报道，", "").replace("至少", "")),
+            encoding="utf-8",
+        )
+
+        errors = validate_translation(
+            candidate,
+            structure=extract_structure(SOURCE_REPORT),
+            source_text=SOURCE_REPORT,
+            protected=protected_terms(SOURCE_REPORT),
+        )
+
+        assert any("'reportedly'" in error for error in errors)
+        assert any("'at least'" in error for error in errors)
 
     def test_rejects_mostly_english_candidate(self, tmp_path: Path) -> None:
         candidate = tmp_path / "translation.md"
@@ -287,7 +459,26 @@ class TestJobSelection:
         report_path.write_text(SOURCE_REPORT + "\nNew evidence line.\n", encoding="utf-8")
         stale = resolve_jobs([target_for(report_path)], translations)
 
-        assert [job.reason for job in stale] == ["source report changed since the overlay was written"]
+        assert [job.reason for job in stale] == [
+            "source report changed since the overlay was written"
+        ]
+
+    def test_overlay_from_older_quality_contract_is_queued(self, tmp_path: Path) -> None:
+        reports = tmp_path / "reports"
+        translations = tmp_path / "zh"
+        report_path = write_report(reports, "2026-08-05")
+        prepared = prepare_translation(target_for(report_path), tmp_path / "artifacts")
+        translations.mkdir()
+        (translations / report_path.name).write_text(
+            f'---\nsource_sha256: "{prepared.source_digest}"\n---\n\n{TRANSLATED_BODY}',
+            encoding="utf-8",
+        )
+
+        jobs = resolve_jobs([target_for(report_path)], translations)
+
+        assert [job.reason for job in jobs] == [
+            f"overlay predates translation quality contract v{TRANSLATION_QUALITY_VERSION}"
+        ]
 
 
 class TestPromptAndCommand:
@@ -300,7 +491,7 @@ class TestPromptAndCommand:
             "prompt",
             "--model",
             "gpt-5.4",
-            "--effort",
+            "--reasoning-effort",
             "xhigh",
         ]
         assert "--deny-tool=shell" in command
@@ -311,7 +502,7 @@ class TestPromptAndCommand:
         command = build_copilot_command("prompt")
 
         assert command[command.index("--model") + 1] == DEFAULT_MODEL
-        assert command[command.index("--effort") + 1] == DEFAULT_EFFORT
+        assert command[command.index("--reasoning-effort") + 1] == DEFAULT_EFFORT
 
     def test_prompt_states_the_structural_contract(self, tmp_path: Path) -> None:
         report_path = write_report(tmp_path / "reports", "2026-08-05")
@@ -342,9 +533,7 @@ class TestTranslationBoundary:
         )
 
         with patch("idea_pipeline.translator.zh.subprocess.run") as mock_run:
-            result = translate_job(
-                job, artifacts_dir=tmp_path / "artifacts", prepare_only=True
-            )
+            result = translate_job(job, artifacts_dir=tmp_path / "artifacts", prepare_only=True)
 
         mock_run.assert_not_called()
         assert result.status == "prepared"
@@ -382,8 +571,18 @@ class TestTranslationBoundary:
         assert front_matter["lang"] == TARGET_LANGUAGE
         assert front_matter["source"] == "2026-08-05.md"
         assert len(front_matter["source_sha256"]) == 64
-        assert body.lstrip().startswith("# Reddit 建造者情报报告")
-        assert "50 美元" in body
+        assert front_matter["quality_version"] == TRANSLATION_QUALITY_VERSION
+        assert body.lstrip().startswith("# Reddit 构建者情报报告")
+        assert "$50 MRR" in body
+        metadata = json.loads(
+            (
+                tmp_path / "artifacts" / "2026-08-05" / "generation-metadata.json"
+            ).read_text(encoding="utf-8")
+        )
+        assert metadata["model"] == DEFAULT_MODEL
+        assert metadata["effort"] == DEFAULT_EFFORT
+        assert metadata["returncode"] == 0
+        assert metadata["duration_seconds"] >= 0
 
     def test_invalid_candidate_is_not_published(self, tmp_path: Path) -> None:
         report_path = write_report(tmp_path / "reports", "2026-08-05")
@@ -407,7 +606,7 @@ class TestTranslationBoundary:
         errors = json.loads(
             (tmp_path / "artifacts" / "2026-08-05" / "validation-errors.json").read_text()
         )["errors"]
-        assert any("was not translated" in error for error in errors)
+        assert any("standard translation" in error for error in errors)
 
     def test_valid_candidate_survives_a_copilot_cli_crash(self, tmp_path: Path) -> None:
         report_path = write_report(tmp_path / "reports", "2026-08-05")
@@ -438,7 +637,9 @@ class TestTranslationBoundary:
         )
 
         with patch("idea_pipeline.translator.zh.subprocess.run") as mock_run:
-            mock_run.return_value = MagicMock(returncode=139, stdout="", stderr="Segmentation fault")
+            mock_run.return_value = MagicMock(
+                returncode=139, stdout="", stderr="Segmentation fault"
+            )
             result = translate_job(job, artifacts_dir=tmp_path / "artifacts")
 
         assert result.status == "failed"
@@ -472,9 +673,7 @@ class TestTranslationBoundary:
             reason="missing overlay",
         )
 
-        with patch(
-            "idea_pipeline.translator.zh.subprocess.run", side_effect=FileNotFoundError
-        ):
+        with patch("idea_pipeline.translator.zh.subprocess.run", side_effect=FileNotFoundError):
             result = translate_job(job, artifacts_dir=tmp_path / "artifacts")
 
         assert result.status == "failed"
@@ -530,11 +729,7 @@ def test_module_entry_point_is_registered() -> None:
 
 def test_subprocess_is_never_invoked_with_shell() -> None:
     source = (
-        Path(__file__).resolve().parents[2]
-        / "src"
-        / "idea_pipeline"
-        / "translator"
-        / "zh.py"
+        Path(__file__).resolve().parents[2] / "src" / "idea_pipeline" / "translator" / "zh.py"
     ).read_text()
 
     assert "shell=True" not in source

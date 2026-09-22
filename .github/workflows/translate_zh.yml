@@ -1,9 +1,14 @@
 name: Translate reports to Chinese
 
 on:
+  workflow_run:
+    workflows:
+      - Extract Reddit value report
+    types:
+      - completed
   schedule:
-    # Run after the daily analysis workflow has had time to publish.
-    - cron: "17 4 * * *"
+    # Recovery run in case the analysis completion trigger was delayed or skipped.
+    - cron: "17 6 * * *"
   workflow_dispatch:
     inputs:
       date:
@@ -34,9 +39,11 @@ on:
       model:
         description: Copilot model used for translation.
         required: false
-        default: grok-4.5
+        default: gemini-3.8-flash
         type: choice
         options:
+          - gemini-3.8-flash
+          - gpt-5.4-mini
           - grok-4.5
           - claude-sonnet-5
           - gpt-5.6-terra
@@ -53,7 +60,7 @@ on:
       workers:
         description: Maximum number of overlays generated concurrently.
         required: false
-        default: "2"
+        default: "1"
         type: choice
         options:
           - "1"
@@ -95,7 +102,7 @@ jobs:
           node-version: "24"
 
       - name: Install Copilot CLI
-        run: npm install --global @github/copilot@1.0.77
+        run: npm install --global @github/copilot@1.0.88
 
       - name: Translate published reports
         env:
@@ -104,15 +111,16 @@ jobs:
           TRANSLATION_LIMIT: ${{ inputs.limit || '5' }}
           FORCE_TRANSLATIONS: ${{ inputs.force || false }}
           PREPARE_ONLY: ${{ inputs.prepare_only || false }}
-          COPILOT_MODEL: ${{ inputs.model || 'grok-4.5' }}
+          COPILOT_MODEL: ${{ inputs.model || 'gemini-3.8-flash' }}
           COPILOT_EFFORT_INPUT: ${{ inputs.effort || 'auto' }}
-          TRANSLATION_WORKERS: ${{ inputs.workers || '2' }}
+          TRANSLATION_WORKERS: ${{ inputs.workers || '1' }}
           PYTHONUNBUFFERED: "1"
         run: |
           if [[ "$COPILOT_EFFORT_INPUT" == "auto" ]]; then
             case "$COPILOT_MODEL" in
+              gemini-*|gpt-5.4-mini) COPILOT_EFFORT=medium ;;
               grok-*|claude-*) COPILOT_EFFORT=high ;;
-              *) COPILOT_EFFORT=xhigh ;;
+              *) COPILOT_EFFORT=high ;;
             esac
           else
             COPILOT_EFFORT="$COPILOT_EFFORT_INPUT"
@@ -127,7 +135,16 @@ jobs:
           if [[ "$PREPARE_ONLY" == "true" ]]; then
             args+=(--prepare-only)
           fi
-          uv run --frozen "${args[@]}"
+          if ! uv run --frozen "${args[@]}"; then
+            if [[ "$COPILOT_MODEL" == "gpt-5.4-mini" || "$PREPARE_ONLY" == "true" ]]; then
+              exit 1
+            fi
+            echo "::warning::Quality-first translation failed validation; retrying with gpt-5.4-mini/high."
+            fallback=(translate-zh --model gpt-5.4-mini --effort high --workers "$TRANSLATION_WORKERS" --limit "$TRANSLATION_LIMIT")
+            if [[ -n "$TRANSLATION_DATE" ]]; then fallback+=(--date "$TRANSLATION_DATE"); fi
+            if [[ "$FORCE_TRANSLATIONS" == "true" ]]; then fallback+=(--force); fi
+            uv run --frozen "${fallback[@]}"
+          fi
         working-directory: pipeline
 
       - name: Upload failed translation diagnostics
@@ -142,10 +159,22 @@ jobs:
             pipeline/artifacts/translations/zh/**/prompt.txt
             pipeline/artifacts/translations/zh/**/validation-errors.json
             pipeline/artifacts/translations/zh/**/validation-warnings.json
+            pipeline/artifacts/translations/zh/**/generation-metadata.json
             pipeline/artifacts/translations/zh/**/copilot.stdout.log
             pipeline/artifacts/translations/zh/**/copilot.stderr.log
           if-no-files-found: ignore
           retention-days: 7
+
+      - name: Upload translation telemetry
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: reddit-translation-telemetry-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            pipeline/artifacts/translations/zh/**/generation-metadata.json
+            pipeline/artifacts/translations/zh/**/validation-warnings.json
+          if-no-files-found: ignore
+          retention-days: 30
 
       - name: Commit validated translations
         if: ${{ always() && !cancelled() && inputs.prepare_only != true }}

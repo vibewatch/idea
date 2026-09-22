@@ -6,45 +6,63 @@
 
 monitors:
   - name: saas-build
-    # Keep the strongest sources first so partial runs retain the best signals.
+    # Keep evidence-rich launch/build sources first; selfhosted adds usage-led
+    # projects that are underrepresented in founder-only communities.
     subreddit:
       - SaaS
       - microsaas
       - SideProject
       - saasbuild
       - indiehackers
+      - selfhosted
     sort: top
     time: day
     max_posts: 25
+    max_posts_by_subreddit:
+      microsaas: 12
+      saasbuild: 10
+      indiehackers: 15
+      selfhosted: 12
     comments: 20
     comment_percentile: 60
 
   - name: startup-ideas
-    # Operational discussions were richer than generic idea-pitch threads.
+    # Operational and validation discussions outrank generic idea-request threads.
     subreddit:
       - EntrepreneurRideAlong
       - AppIdeas
       - roastmystartup
       - Startup_Ideas
-      - SomebodyMakeThis
+      - alphaandbetausers
       - startups
       - Entrepreneur
     sort: top
     time: day
-    max_posts: 25
+    max_posts: 20
+    max_posts_by_subreddit:
+      AppIdeas: 8
+      roastmystartup: 10
+      Startup_Ideas: 10
+      alphaandbetausers: 10
     comments: 20
     comment_percentile: 60
 
   - name: customer-pain
-    # Concrete operational pain comes before broader career/productivity chatter.
+    # Citation-yield review removed r/Freelancers and r/productivity. Shopify and
+    # MSP add concrete merchant and managed-IT workflows beyond the two dominant
+    # small-business/sysadmin communities.
     subreddit:
       - smallbusiness
       - sysadmin
       - ecommerce
-      - productivity
-      - freelancers
+      - shopify
+      - msp
     sort: top
     time: day
     max_posts: 20
+    max_posts_by_subreddit:
+      ecommerce: 12
+      shopify: 10
+      msp: 15
     comments: 15
     comment_percentile: 65

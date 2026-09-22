@@ -10,6 +10,16 @@ on:
         description: Optional complete three-stream snapshot date (YYYY-MM-DD).
         required: false
         type: string
+      limit:
+        description: Maximum newest missing reports processed by an automatic run.
+        required: false
+        default: "1"
+        type: choice
+        options:
+          - "1"
+          - "2"
+          - "3"
+          - "5"
       include_today:
         description: Include today's in-progress snapshot during automatic discovery.
         required: false
@@ -28,9 +38,10 @@ on:
       model:
         description: Copilot model used for report generation.
         required: false
-        default: grok-4.5
+        default: gpt-5.4-mini
         type: choice
         options:
+          - gpt-5.4-mini
           - grok-4.5
           - claude-sonnet-5
           - gpt-5.6-terra
@@ -92,7 +103,7 @@ jobs:
           node-version: "24"
 
       - name: Install Copilot CLI
-        run: npm install --global @github/copilot@1.0.77
+        run: npm install --global @github/copilot@1.0.88
 
       - name: Build intelligence reports
         env:
@@ -101,20 +112,22 @@ jobs:
           INCLUDE_TODAY: ${{ inputs.include_today || false }}
           FORCE_REPORTS: ${{ inputs.force || false }}
           PREPARE_ONLY: ${{ inputs.prepare_only || false }}
-          COPILOT_MODEL: ${{ inputs.model || 'grok-4.5' }}
+          COPILOT_MODEL: ${{ inputs.model || 'gpt-5.4-mini' }}
           COPILOT_EFFORT_INPUT: ${{ inputs.effort || 'auto' }}
           ANALYSIS_WORKERS: ${{ inputs.workers || '2' }}
+          ANALYSIS_LIMIT: ${{ inputs.limit || '1' }}
           PYTHONUNBUFFERED: "1"
         run: |
           if [[ "$COPILOT_EFFORT_INPUT" == "auto" ]]; then
             case "$COPILOT_MODEL" in
+              gpt-5.4-mini) COPILOT_EFFORT=medium ;;
               grok-*|claude-*) COPILOT_EFFORT=high ;;
-              *) COPILOT_EFFORT=xhigh ;;
+              *) COPILOT_EFFORT=high ;;
             esac
           else
             COPILOT_EFFORT="$COPILOT_EFFORT_INPUT"
           fi
-          args=(analyze-reddit --model "$COPILOT_MODEL" --effort "$COPILOT_EFFORT" --workers "$ANALYSIS_WORKERS")
+          args=(analyze-reddit --model "$COPILOT_MODEL" --effort "$COPILOT_EFFORT" --workers "$ANALYSIS_WORKERS" --limit "$ANALYSIS_LIMIT")
           if [[ -n "$ANALYSIS_DATE" ]]; then
             args+=(--date "$ANALYSIS_DATE")
           fi
@@ -127,7 +140,17 @@ jobs:
           if [[ "$PREPARE_ONLY" == "true" ]]; then
             args+=(--prepare-only)
           fi
-          uv run --frozen "${args[@]}"
+          if ! uv run --frozen "${args[@]}"; then
+            if [[ "$COPILOT_MODEL" == "grok-4.5" || "$PREPARE_ONLY" == "true" ]]; then
+              exit 1
+            fi
+            echo "::warning::Low-cost analysis failed validation; retrying with grok-4.5/high."
+            fallback=(analyze-reddit --model grok-4.5 --effort high --workers "$ANALYSIS_WORKERS" --limit "$ANALYSIS_LIMIT")
+            if [[ -n "$ANALYSIS_DATE" ]]; then fallback+=(--date "$ANALYSIS_DATE"); fi
+            if [[ "$INCLUDE_TODAY" == "true" ]]; then fallback+=(--include-today); fi
+            if [[ "$FORCE_REPORTS" == "true" ]]; then fallback+=(--force); fi
+            uv run --frozen "${fallback[@]}"
+          fi
         working-directory: pipeline
 
       - name: Upload failed analysis diagnostics
@@ -145,10 +168,23 @@ jobs:
             pipeline/artifacts/reddit/builder-intelligence/**/prompt.txt
             pipeline/artifacts/reddit/builder-intelligence/**/validation-errors.json
             pipeline/artifacts/reddit/builder-intelligence/**/validation-warnings.json
+            pipeline/artifacts/reddit/builder-intelligence/**/generation-metadata.json
             pipeline/artifacts/reddit/builder-intelligence/**/copilot.stdout.log
             pipeline/artifacts/reddit/builder-intelligence/**/copilot.stderr.log
           if-no-files-found: ignore
           retention-days: 7
+
+      - name: Upload analysis telemetry
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: reddit-analysis-telemetry-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            pipeline/artifacts/reddit/builder-intelligence/**/metadata.json
+            pipeline/artifacts/reddit/builder-intelligence/**/generation-metadata.json
+            pipeline/artifacts/reddit/builder-intelligence/**/validation-warnings.json
+          if-no-files-found: ignore
+          retention-days: 30
 
       - name: Commit validated reports
         if: ${{ always() && !cancelled() }}
