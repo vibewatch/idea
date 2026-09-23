@@ -191,13 +191,13 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports/reddit/zh/
+          git add reports/builder/zh/
           if git diff --cached --quiet; then
             echo "No new Chinese overlays to commit."
             exit 0
           fi
 
-          git commit -m "reddit intelligence zh: $(date -u +%Y-%m-%dT%H:%MZ)"
+          git commit -m "builder intelligence zh: $(date -u +%Y-%m-%dT%H:%MZ)"
           branch="$GITHUB_REF_NAME"
           for attempt in 1 2 3; do
             git fetch origin "$branch"

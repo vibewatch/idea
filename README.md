@@ -43,10 +43,10 @@ flowchart LR
   Media[Link and media processing]
   Analyst[Copilot analysis agent]
   ValidateEN[English report validator]
-  Reports[(reports/reddit English Markdown)]
+  Reports[(reports/builder English Markdown)]
   Translator[Copilot translator and editor]
   ValidateZH[Chinese translation validator]
-  Overlays[(reports/reddit/zh Markdown)]
+  Overlays[(reports/builder/zh Markdown)]
   Astro[Astro static site]
   Search[Pagefind search, RSS, sitemap]
   Pages[GitHub Pages]
@@ -80,13 +80,18 @@ flowchart LR
 |---|---|---|---|
 | Reddit collector | `pipeline/src/idea_pipeline/scraper/` | Fetch posts and selected comments, deduplicate, and merge partial results safely | `data/reddit/<topic>/<date>.json` |
 | Hacker News collector | `pipeline/src/idea_pipeline/scraper/hackernews.py` | Fetch Show HN and Ask HN through the official Firebase API, use Algolia for explicit historical dates, and capture bounded direct comments | `data/hackernews/<stream>/<date>.json` |
-| Evidence analyzer | `pipeline/src/idea_pipeline/analyzer/` | Rank evidence, build dossiers/manifests, materialize supported media, invoke Copilot, normalize, and validate | `reports/reddit/<date>.md` |
-| Analysis specification | `.agents/skills/reddit-idea-analysis/SKILL.md` | Define the report contract, evidence bar, media handling, and safety boundary | Included in each analysis sandbox |
-| Chinese translator | `pipeline/src/idea_pipeline/translator/` | Translate, source-edit, repair, validate, and publish Chinese overlays | `reports/reddit/zh/<date>.md` |
+| Evidence analyzer | `pipeline/src/idea_pipeline/analyzer/` | Rank evidence, build dossiers/manifests, materialize supported media, invoke Copilot, normalize, and validate | `reports/builder/<date>.md` |
+| Analysis specification | `.agents/skills/builder-intelligence-analysis/SKILL.md` | Define the report contract, evidence bar, media handling, and safety boundary | Included in each analysis sandbox |
+| Chinese translator | `pipeline/src/idea_pipeline/translator/` | Translate, source-edit, repair, validate, and publish Chinese overlays | `reports/builder/zh/<date>.md` |
 | Translation specification | `.agents/skills/translate-zh/SKILL.md` | Define native-Chinese writing rules, protected facts, terminology, structure, and self-review | Included in each translation sandbox |
 | Cookie refresher | `pipeline/src/idea_pipeline/refresher/` | Renew the browser session and replace the encrypted Actions secret | `REDDIT_COOKIES` repository secret |
 | Website | `src/`, `astro.config.mjs` | Load versioned Markdown directly, render reports, derive metadata, and build bilingual routes | Static files under `dist/` |
 | Automation | `.github/workflows/` | Schedule collection, analysis, translation, refresh, and deployment | Commits, artifacts, telemetry, and Pages deployments |
+
+Collectors own source-specific access and normalize evidence into the shared
+post-shaped contract. The builder analyzer owns a registry of optional source
+families, so a future source can be added without renaming the report,
+publication directory, analysis skill, or site content collection again.
 
 ## Data ownership and invariants
 
@@ -94,8 +99,8 @@ flowchart LR
 |---|---|---|
 | `data/reddit/` | Collector | Immutable analysis input. Collection merges snapshots, but analysis and Astro never rewrite them. |
 | `data/hackernews/` | HN collector | Optional immutable enrichment. Missing HN snapshots never block a report whose three Reddit streams are complete. |
-| `reports/reddit/*.md` | Analyzer | Derived English output. Only a normalized, validated candidate is published. |
-| `reports/reddit/zh/*.md` | Translator | Source-linked overlay. Its recorded source digest and quality version must match the English report. |
+| `reports/builder/*.md` | Analyzer | Derived English output. Only a normalized, validated candidate is published. |
+| `reports/builder/zh/*.md` | Translator | Source-linked overlay. Its recorded source digest and quality version must match the English report. |
 | `pipeline/artifacts/` | Pipeline stages | Ignored working state: prompts, manifests, media, candidates, logs, validation results, and telemetry. |
 | `src/` and `public/` | Astro application | Read reports and data at build time; never mutate pipeline-owned content. |
 | `dist/` | Astro/Pagefind build | Disposable static deployment output. |
@@ -186,7 +191,7 @@ historical HN file cannot block the core Reddit publication.
 
 ### 3. English analysis
 
-`.github/workflows/analyze_reddit.yml` runs daily at 02:43 UTC and defaults to
+`.github/workflows/analyze_builder.yml` runs daily at 02:43 UTC and defaults to
 the newest missing completed date:
 
 1. Rank each stream independently by evidence richness rather than raw
@@ -247,8 +252,8 @@ shape remain exact.
 
 ### 5. Static publishing
 
-Astro content collections load `reports/reddit/*.md` and
-`reports/reddit/zh/*.md` directly. The site derives report titles, dates,
+Astro content collections load `reports/builder/*.md` and
+`reports/builder/zh/*.md` directly. The site derives report titles, dates,
 summaries, reading time, citation counts, archive cards, and signal groups
 without duplicating report content under `src/`.
 
@@ -393,8 +398,8 @@ the preserved raw snapshots rather than maintaining legacy rendered formats.
 |---|---|---|
 | `scrape_reddit.yml` | `17 */6 * * *` and manual | `data/reddit/` |
 | `scrape_hackernews.yml` | `27 */6 * * *` and manual | `data/hackernews/` |
-| `analyze_reddit.yml` | `43 2 * * *` and manual | `reports/reddit/*.md` |
-| `translate_zh.yml` | Analysis completion, `17 6 * * *`, and manual | `reports/reddit/zh/*.md` |
+| `analyze_builder.yml` | `43 2 * * *` and manual | `reports/builder/*.md` |
+| `translate_zh.yml` | Analysis completion, `17 6 * * *`, and manual | `reports/builder/zh/*.md` |
 | `refresh_reddit_cookies.yml` | `23 1 */3 * *` and manual | `REDDIT_COOKIES`; failure issue only |
 | `deploy_site.yml` | Relevant push, successful analysis completion, and manual | GitHub Pages |
 
@@ -420,7 +425,7 @@ model, effort, and worker controls for targeted recovery and benchmarking.
 │   │   └── refresher/
 │   ├── tests/
 │   └── README.md                   # Detailed pipeline reference
-├── reports/reddit/                 # Validated English reports
+├── reports/builder/                 # Validated English reports
 │   └── zh/                         # Validated Chinese overlays
 ├── src/                            # Astro pages, layouts, components, plugins
 ├── public/                         # Static website assets
@@ -479,9 +484,9 @@ uv run --project pipeline scrape-hackernews --date 2026-09-23
 ### Prepare or generate English reports
 
 ```bash
-uv run --project pipeline analyze-reddit --prepare-only
-uv run --project pipeline analyze-reddit
-uv run --project pipeline analyze-reddit --date 2026-09-23 --force
+uv run --project pipeline analyze-builder --prepare-only
+uv run --project pipeline analyze-builder
+uv run --project pipeline analyze-builder --date 2026-09-23 --force
 ```
 
 ### Prepare or generate Chinese overlays

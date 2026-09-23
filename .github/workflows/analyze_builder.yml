@@ -1,0 +1,211 @@
+name: Build intelligence report
+
+on:
+  schedule:
+    # Analyze the previous UTC day after it has closed.
+    - cron: "43 2 * * *"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: Optional complete three-Reddit-stream snapshot date (YYYY-MM-DD).
+        required: false
+        type: string
+      limit:
+        description: Maximum newest missing reports processed by an automatic run.
+        required: false
+        default: "1"
+        type: choice
+        options:
+          - "1"
+          - "2"
+          - "3"
+          - "5"
+      include_today:
+        description: Include today's in-progress snapshot during automatic discovery.
+        required: false
+        default: false
+        type: boolean
+      force:
+        description: Regenerate full reports that already exist.
+        required: false
+        default: false
+        type: boolean
+      prepare_only:
+        description: Build the combined sandbox without invoking Copilot or committing reports.
+        required: false
+        default: false
+        type: boolean
+      model:
+        description: Copilot model used for report generation.
+        required: false
+        default: gpt-5.4-mini
+        type: choice
+        options:
+          - gpt-5.4-mini
+          - grok-4.5
+          - claude-sonnet-5
+          - gpt-5.6-terra
+      effort:
+        description: Reasoning effort passed to Copilot CLI; auto uses a model-compatible default.
+        required: false
+        default: auto
+        type: choice
+        options:
+          - auto
+          - medium
+          - high
+          - xhigh
+      workers:
+        description: Maximum number of dated full reports generated concurrently.
+        required: false
+        default: "2"
+        type: choice
+        options:
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+
+concurrency:
+  group: builder-intelligence
+  cancel-in-progress: false
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: "pipeline/uv.lock"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install Python pipeline
+        run: uv sync --frozen
+        working-directory: pipeline
+
+      - name: Install video frame extractor
+        run: sudo apt-get update && sudo apt-get install --yes ffmpeg
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Install Copilot CLI
+        run: npm install --global @github/copilot@1.0.88
+
+      - name: Build intelligence reports
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }}
+          ANALYSIS_DATE: ${{ inputs.date }}
+          INCLUDE_TODAY: ${{ inputs.include_today || false }}
+          FORCE_REPORTS: ${{ inputs.force || false }}
+          PREPARE_ONLY: ${{ inputs.prepare_only || false }}
+          COPILOT_MODEL: ${{ inputs.model || 'gpt-5.4-mini' }}
+          COPILOT_EFFORT_INPUT: ${{ inputs.effort || 'auto' }}
+          ANALYSIS_WORKERS: ${{ inputs.workers || '2' }}
+          ANALYSIS_LIMIT: ${{ inputs.limit || '1' }}
+          PYTHONUNBUFFERED: "1"
+        run: |
+          if [[ "$COPILOT_EFFORT_INPUT" == "auto" ]]; then
+            case "$COPILOT_MODEL" in
+              gpt-5.4-mini) COPILOT_EFFORT=medium ;;
+              grok-*|claude-*) COPILOT_EFFORT=high ;;
+              *) COPILOT_EFFORT=high ;;
+            esac
+          else
+            COPILOT_EFFORT="$COPILOT_EFFORT_INPUT"
+          fi
+          args=(analyze-builder --model "$COPILOT_MODEL" --effort "$COPILOT_EFFORT" --workers "$ANALYSIS_WORKERS" --limit "$ANALYSIS_LIMIT")
+          if [[ -n "$ANALYSIS_DATE" ]]; then
+            args+=(--date "$ANALYSIS_DATE")
+          fi
+          if [[ "$INCLUDE_TODAY" == "true" ]]; then
+            args+=(--include-today)
+          fi
+          if [[ "$FORCE_REPORTS" == "true" ]]; then
+            args+=(--force)
+          fi
+          if [[ "$PREPARE_ONLY" == "true" ]]; then
+            args+=(--prepare-only)
+          fi
+          if ! uv run --frozen "${args[@]}"; then
+            if [[ "$COPILOT_MODEL" == "grok-4.5" || "$PREPARE_ONLY" == "true" ]]; then
+              exit 1
+            fi
+            echo "::warning::Low-cost analysis failed validation; retrying with grok-4.5/high."
+            fallback=(analyze-builder --model grok-4.5 --effort high --workers "$ANALYSIS_WORKERS" --limit "$ANALYSIS_LIMIT")
+            if [[ -n "$ANALYSIS_DATE" ]]; then fallback+=(--date "$ANALYSIS_DATE"); fi
+            if [[ "$INCLUDE_TODAY" == "true" ]]; then fallback+=(--include-today); fi
+            if [[ "$FORCE_REPORTS" == "true" ]]; then fallback+=(--force); fi
+            uv run --frozen "${fallback[@]}"
+          fi
+        working-directory: pipeline
+
+      - name: Upload failed analysis diagnostics
+        if: ${{ failure() || cancelled() }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: analysis-diagnostics-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            pipeline/artifacts/builder/builder-intelligence/**/report.md
+            pipeline/artifacts/builder/builder-intelligence/**/media-review.json
+            pipeline/artifacts/builder/builder-intelligence/**/metadata.json
+            pipeline/artifacts/builder/builder-intelligence/**/external-links.json
+            pipeline/artifacts/builder/builder-intelligence/**/media-manifest.json
+            pipeline/artifacts/builder/builder-intelligence/**/media-assets.json
+            pipeline/artifacts/builder/builder-intelligence/**/prompt.txt
+            pipeline/artifacts/builder/builder-intelligence/**/validation-errors.json
+            pipeline/artifacts/builder/builder-intelligence/**/validation-warnings.json
+            pipeline/artifacts/builder/builder-intelligence/**/generation-metadata.json
+            pipeline/artifacts/builder/builder-intelligence/**/copilot.stdout.log
+            pipeline/artifacts/builder/builder-intelligence/**/copilot.stderr.log
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Upload analysis telemetry
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: analysis-telemetry-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            pipeline/artifacts/builder/builder-intelligence/**/metadata.json
+            pipeline/artifacts/builder/builder-intelligence/**/generation-metadata.json
+            pipeline/artifacts/builder/builder-intelligence/**/validation-warnings.json
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Commit validated reports
+        if: ${{ always() && !cancelled() }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/builder/
+          if git diff --cached --quiet; then
+            echo "No new intelligence reports to commit."
+            exit 0
+          fi
+
+          git commit -m "builder intelligence: $(date -u +%Y-%m-%dT%H:%MZ)"
+          branch="$GITHUB_REF_NAME"
+          for attempt in 1 2 3; do
+            git fetch origin "$branch"
+            git rebase "origin/$branch"
+            if git push origin "HEAD:$branch"; then
+              exit 0
+            fi
+            echo "Push attempt $attempt failed; rebasing and retrying."
+          done
+          echo "Unable to push intelligence reports after 3 attempts."
+          exit 1

@@ -38,7 +38,7 @@ from idea_pipeline.translator.zh import (
     validate_translation,
 )
 
-SOURCE_REPORT = """# Reddit Builder Intelligence Report - 2026-08-05
+SOURCE_REPORT = """# Builder Intelligence Report - 2026-08-05
 
 ## 1. Executive Brief
 
@@ -89,7 +89,7 @@ Open-source **OpenValve** reportedly shipped at least a $50 MRR tool. See [Open 
 | Slow reviews | Operators | Manual checklist |
 """
 
-TRANSLATED_BODY = """# Reddit 构建者情报报告 - 2026-08-05
+TRANSLATED_BODY = """# 构建者情报报告 - 2026-08-05
 
 ## 1. 核心简报
 
@@ -163,7 +163,7 @@ class TestStructure:
         structure = extract_structure(SOURCE_REPORT)
 
         assert structure.headings == (
-            (1, "Reddit Builder Intelligence Report - 2026-08-05"),
+            (1, "Builder Intelligence Report - 2026-08-05"),
             (2, "1. Executive Brief"),
             (2, "2. Evidence Ledger"),
             (3, "OpenValve"),
@@ -312,11 +312,11 @@ class TestNormalization:
 
     def test_restores_exact_reddit_target_and_standard_heading(self) -> None:
         source = (
-            "# Reddit Builder Intelligence Report - 2026-08-05\n\n"
+            "# Builder Intelligence Report - 2026-08-05\n\n"
             "[CISO title](https://www.reddit.com/r/sysadmin/comments/abc/ciso_title/)\n"
         )
         candidate = (
-            "# Reddit Builder Intelligence Report - 2026-08-05\n\n"
+            "# Builder Intelligence Report - 2026-08-05\n\n"
             "[Translated](https://www.reddit.com/r/sysadmin/comments/abc/cISO_title/)\n"
         )
 
@@ -324,7 +324,7 @@ class TestNormalization:
         normalized, link_count = normalize_reddit_link_labels(source, normalized)
 
         assert normalized == (
-            "# Reddit 构建者情报报告 - 2026-08-05\n\n"
+            "# 构建者情报报告 - 2026-08-05\n\n"
             "[CISO title](https://www.reddit.com/r/sysadmin/comments/abc/ciso_title/)\n"
         )
         assert heading_count == 1
@@ -873,7 +873,7 @@ class TestTranslationBoundary:
         assert len(front_matter["source_sha256"]) == 64
         assert front_matter["quality_version"] == TRANSLATION_QUALITY_VERSION
         assert front_matter["editor_model"] == "gpt-6-luna"
-        assert body.lstrip().startswith("# Reddit 构建者情报报告")
+        assert body.lstrip().startswith("# 构建者情报报告")
         assert "$50 MRR" in body
         metadata = json.loads(
             (tmp_path / "artifacts" / "2026-08-05" / "generation-metadata.json").read_text(
@@ -963,7 +963,7 @@ class TestTranslationBoundary:
         assert result.status == "published"
         front_matter, body = strip_front_matter(job.translation_path.read_text(encoding="utf-8"))
         assert "editor_model" not in front_matter
-        assert body.lstrip().startswith("# Reddit 构建者情报报告")
+        assert body.lstrip().startswith("# 构建者情报报告")
         assert "restored the validated draft" in (
             tmp_path / "artifacts" / "2026-08-05" / "validation-warnings.json"
         ).read_text(encoding="utf-8")
@@ -999,7 +999,7 @@ class TestTranslationBoundary:
         assert result.status == "published"
         front_matter, body = strip_front_matter(job.translation_path.read_text(encoding="utf-8"))
         assert "editor_model" not in front_matter
-        assert body.lstrip().startswith("# Reddit 构建者情报报告")
+        assert body.lstrip().startswith("# 构建者情报报告")
         warnings = (
             tmp_path / "artifacts" / "2026-08-05" / "validation-warnings.json"
         ).read_text(encoding="utf-8")

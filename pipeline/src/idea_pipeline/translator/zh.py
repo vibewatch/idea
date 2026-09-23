@@ -23,7 +23,7 @@ from idea_pipeline import PROJECT_ROOT, REPOSITORY_ROOT, setup_logging
 
 LOGGER = logging.getLogger(__name__)
 
-DEFAULT_REPORTS_DIR = REPOSITORY_ROOT / "reports" / "reddit"
+DEFAULT_REPORTS_DIR = REPOSITORY_ROOT / "reports" / "builder"
 DEFAULT_TRANSLATIONS_DIR = DEFAULT_REPORTS_DIR / "zh"
 DEFAULT_ARTIFACTS_DIR = PROJECT_ROOT / "artifacts" / "translations" / "zh"
 DEFAULT_ENV_FILE = PROJECT_ROOT / ".env"
@@ -795,9 +795,9 @@ def normalize_structural_literals(source_text: str, candidate: str) -> tuple[str
 
 
 def _required_heading_translation(source_heading: str) -> str | None:
-    prefix = "Reddit Builder Intelligence Report - "
+    prefix = "Builder Intelligence Report - "
     if source_heading.startswith(prefix):
-        return "Reddit 构建者情报报告 - " + source_heading.removeprefix(prefix)
+        return "构建者情报报告 - " + source_heading.removeprefix(prefix)
     return _REQUIRED_HEADING_TRANSLATIONS.get(source_heading)
 
 
