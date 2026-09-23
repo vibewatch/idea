@@ -136,7 +136,7 @@ def _start_virtual_display(headless: bool, log_fn: Callable[[str], None]) -> Any
 
 
 def run_refresh(*, config_path: Path, artifact_dir: Path, headless: bool) -> int:
-    """Run all configured cookie refreshes and publish a GitHub issue report."""
+    """Run configured cookie refreshes and publish a GitHub issue on failure."""
     github_token = os.environ.get("GH_TOKEN")
     github_repo = os.environ.get("GITHUB_REPOSITORY")
     if not github_token:
@@ -182,22 +182,26 @@ def run_refresh(*, config_path: Path, artifact_dir: Path, headless: bool) -> int
                 display.stop()
                 log("Virtual display stopped")
 
-    from idea_pipeline.refresher.github import create_issue
+    succeeded = all(results.values())
+    if succeeded:
+        log("Cookie refresh succeeded; no GitHub issue created")
+    else:
+        from idea_pipeline.refresher.github import create_issue
 
-    title, body = build_report(results, log.lines, artifact_dir)
-    try:
-        issue_url = create_issue(
-            github_repo,
-            github_token,
-            title,
-            body,
-            labels=["cookie-refresh"],
-        )
-        log(f"Created report: {issue_url}")
-    except Exception as exc:  # noqa: BLE001 - report failure must not hide secret update result
-        print(f"WARNING: failed to create refresh report: {exc}", file=sys.stderr)
+        title, body = build_report(results, log.lines, artifact_dir)
+        try:
+            issue_url = create_issue(
+                github_repo,
+                github_token,
+                title,
+                body,
+                labels=["cookie-refresh"],
+            )
+            log(f"Created failure report: {issue_url}")
+        except Exception as exc:  # noqa: BLE001 - report failure must not hide refresh result
+            print(f"WARNING: failed to create refresh failure report: {exc}", file=sys.stderr)
 
-    return 0 if all(results.values()) else 1
+    return 0 if succeeded else 1
 
 
 def build_parser() -> argparse.ArgumentParser:

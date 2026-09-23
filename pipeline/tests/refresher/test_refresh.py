@@ -576,7 +576,7 @@ class TestRefreshOrchestration:
     @patch("idea_pipeline.refresher.__main__.process_site", return_value=True)
     @patch("idea_pipeline.refresher.__main__._start_virtual_display", return_value=None)
     @patch("idea_pipeline.refresher.github.create_issue")
-    def test_run_refresh_reports_success(
+    def test_run_refresh_does_not_report_success(
         self,
         mock_issue: MagicMock,
         _mock_display: MagicMock,
@@ -601,7 +601,7 @@ class TestRefreshOrchestration:
 
         assert exit_code == 0
         mock_process.assert_called_once()
-        mock_issue.assert_called_once()
+        mock_issue.assert_not_called()
 
     @patch("idea_pipeline.refresher.__main__._start_virtual_display")
     @patch("idea_pipeline.refresher.github.create_issue")

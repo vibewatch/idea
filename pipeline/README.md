@@ -225,7 +225,7 @@ Reddit authentication here is browser-cookie based, so the pipeline renews the `
 5. Refuse to continue if Chromium returns no cookies.
 6. Encrypt the new JSON with GitHub's repository public key.
 7. Replace `REDDIT_COOKIES` through the GitHub Actions Secrets API.
-8. Create a GitHub issue containing the status/log report; screenshots are retained as workflow artifacts for seven days.
+8. If the refresh fails, create a GitHub issue containing the status/log report. Successful runs remain in Actions only; screenshots are retained as workflow artifacts for seven days.
 
 Refresh settings live in `pipeline/config/refresher/reddit.yml`. The scheduled workflow at `.github/workflows/refresh_reddit_cookies.yml` runs at 01:23 UTC every third day and also supports manual dispatch.
 
@@ -236,7 +236,7 @@ Configure these repository Actions secrets:
 | Secret | Purpose |
 |---|---|
 | `REDDIT_COOKIES` | Playwright/browser-export JSON used by both collection and refresh workflows |
-| `GH_PAT` | GitHub token permitted to update this repository's Actions secrets and create issues |
+| `GH_PAT` | GitHub token permitted to update this repository's Actions secrets and create failure issues |
 | `COPILOT_PAT` | Copilot CLI authentication used by the daily report-analysis and translation workflows |
 
 The built-in workflow `GITHUB_TOKEN` is not used for secret replacement. Keep `GH_PAT` narrowly scoped to this repository and rotate it according to your security policy.
