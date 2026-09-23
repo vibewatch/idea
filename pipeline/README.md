@@ -177,6 +177,8 @@ Model controls default to `--model gpt-5.4-mini --effort medium`. At the publish
 
 The repository-local skill at `.agents/skills/reddit-idea-analysis/SKILL.md` defines what counts as a valuable project, pain point, validation case, launch result, and visual finding. Its five-section report starts with a short bottom line, five highlighted signals, and explicit coverage caveats; consolidates projects, experiments, outcomes, failures, and inspected media into one evidence ledger; keeps customer problems separate; and reserves the final sections for non-repetitive pattern synthesis, practical moves, and watch triggers. The report still maps convergence, partial support, contradictions, and missing links without opportunity scores or pretending unrelated posts form a tracked funnel. Keep downloaded media, contact sheets, model logs, metadata, and review ledgers in ignored `pipeline/artifacts/`; only validated reports are versioned.
 
+Report schema migrations do not preserve legacy rendered formats. Delete outdated reports and overlays, then regenerate them locally from the collected raw snapshots under the current contract before publishing.
+
 Validation is intentionally stricter than Astro's Markdown parser but no longer treats every quality target as fatal. The hard gates protect publishability, source provenance, and accidental data exposure; advisory warnings preserve useful partial reports while making coverage gaps visible in Actions logs and `validation-warnings.json`. Every workflow run retains context-size and generation telemetry for 30 days; failed runs additionally upload the generated report, review ledger, manifests, validation output, and Copilot logs as a seven-day diagnostics artifact.
 
 The workflow `.github/workflows/analyze_reddit.yml` runs daily at 02:43 UTC, processes only the newest missing report by default, and supports manual date, limit, model, effort, worker, force, include-today, and prepare-only inputs.
@@ -187,7 +189,9 @@ Each published English report gets one Simplified Chinese overlay at `reports/re
 
 1. Discover published reports under `reports/reddit/`, newest first.
 2. Queue a date when its overlay is missing, when the overlay's recorded `source_sha256` no longer matches the English report, or when it predates the current translation quality contract. This lets scheduled runs upgrade older overlays gradually instead of leaving historical website content on a weaker prompt forever.
-3. Write a sandbox per date containing `source.md`, `structure.json`, `protected-terms.json`, the translation skill as `instructions.md`, and `prompt.txt`.
+3. Write a sandbox per date containing the exact `source.md`, a hedge-tokenized
+   `translation-source.md`, `hedge-placeholders.json`, `structure.json`,
+   `protected-terms.json`, the translation skill as `instructions.md`, and `prompt.txt`.
 4. Run one sandboxed Copilot CLI process per date with shell access disabled, built-in GitHub MCP disabled, web access withheld, and unrelated pipeline credentials removed.
 5. Normalize the candidate for Chinese typography: full-width punctuation after Chinese text, one space between Chinese and Latin/digits, and no spaces around full-width marks. Code spans, URLs, and Markdown link targets are excluded from the pass.
 6. Validate the candidate against the structural and native-language contract, then publish only on success with generated front matter recording `lang`, `source`, `source_sha256`, `quality_version`, `model`, and `translated_at`. Each attempt also records model, effort, duration, exit status, and source/prompt sizes in `generation-metadata.json`.

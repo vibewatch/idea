@@ -7,7 +7,10 @@ description: "Use when: translating a published English builder intelligence rep
 
 Rewrite one English report as a Simplified Chinese report. The output must read as if a Chinese technology journalist wrote it directly in Chinese from the same evidence — not as a translation of English sentences.
 
-Read `source.md`, `structure.json`, and `protected-terms.json` from the supplied sandbox, then write `translation.md`.
+Read `source.md`, `translation-source.md` when present, `structure.json`,
+`protected-terms.json`, and `hedge-placeholders.json` when present, then write
+`translation.md`. Use `translation-source.md` as the fixed Markdown input when it exists;
+`source.md` remains the exact original reference.
 
 ## The bar
 
@@ -118,6 +121,11 @@ Reddit post titles used as link labels stay byte-identical to the source, includ
 
 The validator also checks that every occurrence of uncertainty survives. 作者自述、声称、据报道、约、至少、估计等限定词不能丢，也不能被改写成更确定的事实。同一说法在多张表中重复出现时，每一处都要保留限定词。
 
+When `translation-source.md` contains inline-code tokens beginning with
+`__ZH_HEDGE_`, copy every token byte-for-byte into the corresponding translated
+sentence. Do not translate, remove, duplicate, or move these tokens to another row or
+paragraph. The pipeline restores them to standard Chinese qualifiers after generation.
+
 Use these report headings exactly when they appear:
 
 | English heading | Chinese heading |
@@ -131,19 +139,6 @@ Use these report headings exactly when they appear:
 | Coverage and Caveats | 覆盖范围与局限 |
 | Practical Moves | 可执行动作 |
 | Watchlist | 观察清单 |
-
-For legacy eight-section source reports, keep the established translations:
-
-| English heading | Chinese heading |
-|---|---|
-| 1. Executive Value Summary | 1. 核心价值摘要 |
-| 2. New Projects and Direct Links | 2. 新项目与直达链接 |
-| 4. Founder Ideas and Validation Signals | 4. 创始人想法与验证信号 |
-| 5. Launches, Traction, and Distribution Results | 5. 发布、增长势头与分发结果 |
-| 6. Visual and Demo Evidence | 6. 视觉与 Demo 证据 |
-| 7. Cross-Stream Matches and Gaps | 7. 跨来源匹配与证据缺口 |
-| 8. Practical Takeaways and Watchlist | 8. 实用结论与观察清单 |
-| Reusable lessons | 可复用经验 |
 
 Translate the executive-highlight labels exactly:
 

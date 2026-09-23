@@ -1192,6 +1192,92 @@ Three current streams are represented; the evidence is limited to one account pe
         ]
         assert messages == ["added unavailable media review for non-attached post image"]
 
+    def test_wraps_bare_media_review_item_list(self, tmp_path: Path) -> None:
+        review = tmp_path / "media-review.json"
+        review.write_text(
+            json.dumps(
+                [
+                    {
+                        "post_id": "image",
+                        "media_url": "https://i.redd.it/image.png",
+                        "media_type": "image",
+                        "status": "inspected",
+                        "observation": "The image visibly shows a complete product interface.",
+                        "report_included": False,
+                    }
+                ]
+            ),
+            encoding="utf-8",
+        )
+        entries = [
+            {
+                "post_id": "image",
+                "url": "https://i.redd.it/image.png",
+                "media_type": "image",
+                "asset_status": "attached",
+            }
+        ]
+
+        messages = normalize_media_review(review, expected_entries=entries)
+
+        document = json.loads(review.read_text(encoding="utf-8"))
+        assert document["version"] == 1
+        assert len(document["items"]) == 1
+        assert messages == ["wrapped bare media review items in the version 1 document schema"]
+
+    def test_cleans_unknown_duplicate_and_non_attached_statuses(self, tmp_path: Path) -> None:
+        review = tmp_path / "media-review.json"
+        review.write_text(
+            json.dumps(
+                {
+                    "version": 1,
+                    "items": [
+                        {
+                            "post_id": "known",
+                            "media_url": "https://i.redd.it/known.png",
+                            "media_type": "image",
+                            "status": "skipped-limit",
+                            "observation": "The attachment limit prevented visual inspection.",
+                            "report_included": False,
+                        },
+                        {
+                            "post_id": "known",
+                            "media_url": "https://i.redd.it/known.png",
+                            "media_type": "image",
+                            "status": "unavailable",
+                            "observation": "The public image URL was not available for inspection.",
+                            "report_included": False,
+                        },
+                        {
+                            "post_id": "unknown",
+                            "media_url": "https://i.redd.it/unknown.png",
+                            "media_type": "image",
+                            "status": "unavailable",
+                            "observation": "This item is not present in the source manifest.",
+                            "report_included": False,
+                        },
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+        entries = [
+            {
+                "post_id": "known",
+                "url": "https://i.redd.it/known.png",
+                "media_type": "image",
+                "asset_status": "skipped-limit",
+            }
+        ]
+
+        messages = normalize_media_review(review, expected_entries=entries)
+
+        items = json.loads(review.read_text(encoding="utf-8"))["items"]
+        assert len(items) == 1
+        assert items[0]["status"] == "unavailable"
+        assert any("duplicate" in message for message in messages)
+        assert any("unknown" in message for message in messages)
+
     def test_identifies_only_missing_or_invalid_attached_media_for_repair(
         self, tmp_path: Path
     ) -> None:
@@ -1277,6 +1363,27 @@ Three current streams are represented; the evidence is limited to one account pe
         assert "Visible result: globcall.com/path." in content
         assert "https://globcall.com/path" not in content
         assert len(messages) == 2
+
+    def test_removes_ungrounded_reddit_media_but_preserves_post_links(self, tmp_path: Path) -> None:
+        report = tmp_path / "report.md"
+        report.write_text(
+            "[Post](https://www.reddit.com/r/SaaS/comments/build1/title/) | "
+            "[Invented image](https://i.redd.it/invented.png)\n",
+            encoding="utf-8",
+        )
+
+        messages = normalize_report_links(
+            report,
+            allowed_external_urls=(),
+            allowed_media_urls=(),
+        )
+
+        content = report.read_text(encoding="utf-8")
+        assert "[Post](https://www.reddit.com/r/SaaS/comments/build1/title/)" in content
+        assert "https://i.redd.it/invented.png" not in content
+        assert messages == [
+            "removed ungrounded external link from report: https://i.redd.it/invented.png"
+        ]
 
     def test_validates_complete_media_review(self, tmp_path: Path) -> None:
         review = tmp_path / "media-review.json"

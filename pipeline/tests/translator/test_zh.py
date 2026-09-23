@@ -24,10 +24,13 @@ from idea_pipeline.translator.zh import (
     extract_structure,
     main,
     normalize_reddit_link_labels,
+    normalize_required_headings,
     normalize_translation,
     prepare_translation,
+    protect_translation_source,
     protected_terms,
     resolve_jobs,
+    restore_hedge_placeholders,
     strip_front_matter,
     translate_job,
     validate_translation,
@@ -41,10 +44,10 @@ Open-source **OpenValve** reportedly shipped at least a $50 MRR tool. See [Open 
 
 ## 2. Evidence Ledger
 
-| Project | Type | Stage |
+| Case and primary link | User or problem | Stage |
 |---|---|---|
-| OpenValve | Repository | Prototype |
-| PrintMap | SaaS | Launched |
+| OpenValve — [Open project](https://open-valve.com/) | Operators | Prototype |
+| PrintMap | Designers | Launched |
 
 ![Chart](https://i.redd.it/example.png)
 """
@@ -57,10 +60,10 @@ TRANSLATED_BODY = """# Reddit 构建者情报报告 - 2026-08-05
 
 ## 2. 证据台账
 
-| 项目 | 类型 | 阶段 |
+| 案例与主要链接 | 用户或问题 | 阶段 |
 |---|---|---|
-| OpenValve | 代码仓库 | 原型 |
-| PrintMap | SaaS | 已发布 |
+| OpenValve — [Open project](https://open-valve.com/) | 运维人员 | 原型 |
+| PrintMap | 设计师 | 已发布 |
 
 ![图表](https://i.redd.it/example.png)
 """
@@ -121,13 +124,55 @@ class TestStructure:
             "$2,250",
             "$290.25",
         ]
+        assert protected_terms("$10.62, then £5,913.60.")["metrics"] == [
+            "$10.62",
+            "£5,913.60",
+        ]
         ledger = """| Case and primary link | User or problem |
 |---|---|
 | OpenValve — [Open project](https://open-valve.com/) | Operators |"""
         assert protected_terms(ledger)["project_names"] == ["OpenValve"]
+        descriptive = """| Case and primary link | User or problem |
+|---|---|
+| DistribBuddy / internal-tool validation with primary link | Operators |
+| ClipKaboom SFX library | Editors |
+| Not provided | Unknown |"""
+        assert protected_terms(descriptive)["project_names"] == [
+            "DistribBuddy",
+            "ClipKaboom",
+        ]
 
 
 class TestNormalization:
+    def test_round_trips_immutable_hedge_placeholders(self) -> None:
+        source = (
+            "The founder reportedly claims at least $50 MRR. "
+            "[Claims in a title](https://example.com/) stay unchanged."
+        )
+
+        protected_source, placeholders = protect_translation_source(source)
+
+        assert "reportedly claims at least" not in protected_source
+        assert len(placeholders) == 3
+        assert "[Claims in a title](https://example.com/)" in protected_source
+        restored, messages = restore_hedge_placeholders(protected_source, placeholders)
+        assert "据报道 声称 至少 $50 MRR" in restored
+        assert messages == ["restored 3 immutable uncertainty qualifier token(s)"]
+
+    def test_preserves_and_repairs_markdown_image_markers(self) -> None:
+        normalized, messages = normalize_translation(
+            "图一和！[图二](https://i.redd.it/example.png)，都需要保留。"
+        )
+
+        assert "和![图二](https://i.redd.it/example.png)" in normalized
+        assert messages == ["restored 1 Markdown image marker(s)"]
+
+        preserved, _messages = normalize_translation(
+            "图一和 ![图二](https://i.redd.it/example.png)，都需要保留。"
+        )
+
+        assert "和 ![图二](https://i.redd.it/example.png)" in preserved
+
     def test_restores_reddit_title_labels_in_occurrence_order(self) -> None:
         source = (
             "[First title…](https://www.reddit.com/r/SaaS/comments/abc/post/) "
@@ -142,6 +187,26 @@ class TestNormalization:
 
         assert normalized == source
         assert restored == 2
+
+    def test_restores_exact_reddit_target_and_standard_heading(self) -> None:
+        source = (
+            "# Reddit Builder Intelligence Report - 2026-08-05\n\n"
+            "[CISO title](https://www.reddit.com/r/sysadmin/comments/abc/ciso_title/)\n"
+        )
+        candidate = (
+            "# Reddit Builder Intelligence Report - 2026-08-05\n\n"
+            "[Translated](https://www.reddit.com/r/sysadmin/comments/abc/cISO_title/)\n"
+        )
+
+        normalized, heading_count = normalize_required_headings(source, candidate)
+        normalized, link_count = normalize_reddit_link_labels(source, normalized)
+
+        assert normalized == (
+            "# Reddit 构建者情报报告 - 2026-08-05\n\n"
+            "[CISO title](https://www.reddit.com/r/sysadmin/comments/abc/ciso_title/)\n"
+        )
+        assert heading_count == 1
+        assert link_count == 1
 
     def test_converts_ascii_punctuation_after_chinese_text(self) -> None:
         normalized, messages = normalize_translation("作者自述, 增长停滞; 原因不明.")
@@ -211,7 +276,7 @@ class TestValidation:
     def test_rejects_changed_table_shape(self, tmp_path: Path) -> None:
         candidate = tmp_path / "translation.md"
         candidate.write_text(
-            padded(TRANSLATED_BODY.replace("| PrintMap | SaaS | 已发布 |\n", "")),
+            padded(TRANSLATED_BODY.replace("| PrintMap | 设计师 | 已发布 |\n", "")),
             encoding="utf-8",
         )
 
@@ -227,9 +292,7 @@ class TestValidation:
 
         assert any("standard translation" in error for error in errors)
 
-    def test_requires_standard_report_headings_and_highlight_labels(
-        self, tmp_path: Path
-    ) -> None:
+    def test_requires_standard_report_headings_and_highlight_labels(self, tmp_path: Path) -> None:
         source = SOURCE_REPORT.replace(
             "## 2. Evidence Ledger",
             """### Key Highlights
@@ -289,7 +352,9 @@ One source is represented.
         assert any("standard translation" in error for error in errors)
 
     def test_requires_standard_synthesis_labels(self, tmp_path: Path) -> None:
-        source = SOURCE_REPORT + """
+        source = (
+            SOURCE_REPORT
+            + """
 ## 4. Patterns, Contradictions, and Gaps
 
 ### Narrow pattern
@@ -300,7 +365,10 @@ One source is represented.
 
 **Missing proof:** Retention.
 """
-        translated = TRANSLATED_BODY + """
+        )
+        translated = (
+            TRANSLATED_BODY
+            + """
 ## 4. 模式、矛盾与证据缺口
 
 ### 狭窄模式
@@ -311,6 +379,7 @@ One source is represented.
 
 **缺失证据：** 留存。
 """
+        )
         candidate = tmp_path / "translation.md"
         candidate.write_text(padded(translated), encoding="utf-8")
 
@@ -340,7 +409,12 @@ One source is represented.
     def test_rejects_untranslated_table_header(self, tmp_path: Path) -> None:
         candidate = tmp_path / "translation.md"
         candidate.write_text(
-            padded(TRANSLATED_BODY.replace("| 项目 | 类型 | 阶段 |", "| Project | Type | Stage |")),
+            padded(
+                TRANSLATED_BODY.replace(
+                    "| 案例与主要链接 | 用户或问题 | 阶段 |",
+                    "| Case and primary link | User or problem | Stage |",
+                )
+            ),
             encoding="utf-8",
         )
 
@@ -520,6 +594,14 @@ class TestPromptAndCommand:
         assert "#1: 3x2" in prompt
         assert "2 distinct link targets" in prompt
         assert TARGET_LANGUAGE in prompt
+        assert "source line 5: reportedly=1, at least=1" in prompt
+        assert "Translation input: translation-source.md" in prompt
+        assert "preserve all 2 inline-code tokens byte-identically" in prompt
+        assert "Immutable Markdown image targets:" in prompt
+        assert "`https://i.redd.it/example.png`" in prompt
+        assert "Blocked translationese patterns (zero occurrences allowed)" in prompt
+        assert "`通过……来`" in prompt
+        assert "Use translation-source.md as a fixed Markdown scaffold" in prompt
         assert "Do not run git commands." in prompt
 
 
@@ -542,6 +624,9 @@ class TestTranslationBoundary:
             {"columns": 3, "rows": 2}
         ]
         assert (sandbox / "instructions.md").is_file()
+        assert (sandbox / "translation-source.md").is_file()
+        placeholders = json.loads((sandbox / "hedge-placeholders.json").read_text())
+        assert [item["replacement"] for item in placeholders] == ["据报道", "至少"]
         assert (sandbox / "prompt.txt").is_file()
         assert not job.translation_path.exists()
 
@@ -575,9 +660,9 @@ class TestTranslationBoundary:
         assert body.lstrip().startswith("# Reddit 构建者情报报告")
         assert "$50 MRR" in body
         metadata = json.loads(
-            (
-                tmp_path / "artifacts" / "2026-08-05" / "generation-metadata.json"
-            ).read_text(encoding="utf-8")
+            (tmp_path / "artifacts" / "2026-08-05" / "generation-metadata.json").read_text(
+                encoding="utf-8"
+            )
         )
         assert metadata["model"] == DEFAULT_MODEL
         assert metadata["effort"] == DEFAULT_EFFORT
@@ -606,7 +691,9 @@ class TestTranslationBoundary:
         errors = json.loads(
             (tmp_path / "artifacts" / "2026-08-05" / "validation-errors.json").read_text()
         )["errors"]
-        assert any("standard translation" in error for error in errors)
+        assert any(
+            "still largely English" in error or "table header" in error for error in errors
+        )
 
     def test_valid_candidate_survives_a_copilot_cli_crash(self, tmp_path: Path) -> None:
         report_path = write_report(tmp_path / "reports", "2026-08-05")

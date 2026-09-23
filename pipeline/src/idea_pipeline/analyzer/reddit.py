@@ -957,11 +957,7 @@ def _history_post_summary(post: dict[str, Any]) -> dict[str, Any]:
     for value in (post.get("url"), post.get("title"), post.get("selftext")):
         for url in _extract_source_urls(value):
             canonical = _canonical_url(url)
-            if (
-                not canonical
-                or _url_host(canonical) in _REDDIT_HOSTS
-                or canonical in seen_urls
-            ):
+            if not canonical or _url_host(canonical) in _REDDIT_HOSTS or canonical in seen_urls:
                 continue
             seen_urls.add(canonical)
             external_urls.append(url)
@@ -1951,9 +1947,13 @@ def normalize_report_links(
 
     def ungrounded_external(value: str) -> str:
         canonical = _canonical_url(value)
-        if not canonical or _url_host(canonical) in _REDDIT_HOSTS:
+        if not canonical:
             return ""
         if canonical in grounded_external or canonical in grounded_media:
+            return ""
+        if _is_reddit_media_url(canonical):
+            return canonical
+        if _url_host(canonical) in _REDDIT_HOSTS:
             return ""
         return canonical
 
@@ -2009,14 +2009,14 @@ def _post_engagement(target: ReportTarget) -> dict[str, tuple[int, int]]:
     return engagement
 
 
-def normalize_reddit_citations(
-    path: Path, *, engagement: dict[str, tuple[int, int]]
-) -> list[str]:
+def normalize_reddit_citations(path: Path, *, engagement: dict[str, tuple[int, int]]) -> list[str]:
     """Append source engagement after Reddit links when the model omitted it."""
     try:
         content = path.read_text(encoding="utf-8")
     except (OSError, UnicodeError) as exc:
-        raise SnapshotError(f"Cannot read candidate report for citation normalization: {exc}") from exc
+        raise SnapshotError(
+            f"Cannot read candidate report for citation normalization: {exc}"
+        ) from exc
 
     additions = 0
 
@@ -2053,6 +2053,10 @@ def normalize_media_review(
         document = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, UnicodeError, json.JSONDecodeError):
         return []
+    wrapped_items = False
+    if isinstance(document, list) and all(isinstance(item, dict) for item in document):
+        document = {"version": 1, "items": document}
+        wrapped_items = True
     if not isinstance(document, dict) or not isinstance(document.get("items"), list):
         return []
 
@@ -2067,18 +2071,43 @@ def normalize_media_review(
         (str(entry.get("post_id") or "").casefold(), _canonical_url(entry.get("url"))): entry
         for entry in expected_entries
     }
-    changed = False
-    messages: list[str] = []
+    changed = wrapped_items
+    messages: list[str] = (
+        ["wrapped bare media review items in the version 1 document schema"]
+        if wrapped_items
+        else []
+    )
+    selected: dict[tuple[str, str], dict[str, Any]] = {}
+    ordered_keys: list[tuple[str, str]] = []
+    status_rank = {"inspected": 2, "not-substantive": 2, "unavailable": 1}
     for item in document["items"]:
         if not isinstance(item, dict):
+            changed = True
             continue
         key = (
             str(item.get("post_id") or "").casefold(),
             _canonical_url(item.get("media_url")),
         )
-        expected_entry = expected.get(key)
-        if expected_entry is None:
+        if key not in expected:
+            messages.append(f"removed unknown media review item for post {key[0] or 'unknown'}")
+            changed = True
             continue
+        previous = selected.get(key)
+        if previous is not None:
+            messages.append(f"removed duplicate media review item for post {key[0]}")
+            changed = True
+            if status_rank.get(str(item.get("status")), 0) > status_rank.get(
+                str(previous.get("status")), 0
+            ):
+                selected[key] = item
+            continue
+        selected[key] = item
+        ordered_keys.append(key)
+
+    document["items"] = [selected[key] for key in ordered_keys]
+    for key in ordered_keys:
+        item = selected[key]
+        expected_entry = expected[key]
 
         expected_type = expected_entry.get("media_type")
         if expected_type and item.get("media_type") != expected_type:
@@ -2095,6 +2124,14 @@ def normalize_media_review(
                     "normalized media review report_included to "
                     f"{str(report_included).lower()} for post {key[0]}"
                 )
+
+        if (
+            item.get("status") not in MEDIA_REVIEW_STATUSES
+            and expected_entry.get("asset_status") != "attached"
+        ):
+            item["status"] = "unavailable"
+            changed = True
+            messages.append(f"normalized media review status to unavailable for post {key[0]}")
 
     reviewed_keys = {
         (
@@ -2595,9 +2632,7 @@ def validate_report(
             errors.append(f"executive summary is missing required highlight label: {label}")
 
     synthesis_content = section_contents.get(REQUIRED_SECTIONS[3], "")
-    synthesis_themes = [
-        line for line in synthesis_content.splitlines() if line.startswith("### ")
-    ]
+    synthesis_themes = [line for line in synthesis_content.splitlines() if line.startswith("### ")]
     if not 3 <= len(synthesis_themes) <= 6:
         errors.append("synthesis must contain 3-6 concise thematic subsections")
     for label in SYNTHESIS_LABELS:
@@ -2805,9 +2840,7 @@ def analyze_job(
     started_at = datetime.now(UTC)
     started_clock = time.monotonic()
     sandbox_bytes = sum(
-        path.stat().st_size
-        for path in prepared.directory.rglob("*")
-        if path.is_file()
+        path.stat().st_size for path in prepared.directory.rglob("*") if path.is_file()
     )
     try:
         process = subprocess.run(
