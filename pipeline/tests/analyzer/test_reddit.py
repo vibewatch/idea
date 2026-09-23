@@ -16,6 +16,7 @@ from idea_pipeline.analyzer.reddit import (
     DEFAULT_DATA_DIR,
     DEFAULT_EFFORT,
     DEFAULT_ENV_FILE,
+    DEFAULT_HACKERNEWS_DATA_DIR,
     DEFAULT_LIMIT,
     DEFAULT_MODEL,
     DEFAULT_REPORTS_DIR,
@@ -40,6 +41,7 @@ from idea_pipeline.analyzer.reddit import (
     humanize_topic,
     main,
     materialize_media_assets,
+    normalize_hackernews_citations,
     normalize_media_review,
     normalize_reddit_citations,
     normalize_report_links,
@@ -91,6 +93,31 @@ def post(
         value["url"] = media_url
         value["is_self"] = False
     return value
+
+
+def hackernews_post(
+    post_id: str,
+    *,
+    stream: str = "show-hn",
+    score: int = 10,
+    comments: int = 4,
+) -> dict[str, object]:
+    return {
+        "source": "hackernews",
+        "stream": stream,
+        "id": post_id,
+        "title": f"Show HN: Project {post_id}",
+        "subreddit": stream,
+        "author": f"hn_{post_id}",
+        "score": score,
+        "num_comments": comments,
+        "permalink": f"https://news.ycombinator.com/item?id={post_id}",
+        "url": f"https://example.com/{post_id}",
+        "selftext": "A technical launch with implementation details and measured usage.",
+        "is_self": False,
+        "is_video": False,
+        "time": 1_775_260_800,
+    }
 
 
 def make_report_target(
@@ -233,6 +260,7 @@ def required_section_ids() -> dict[str, set[str]]:
 class TestPathsAndHelpers:
     def test_default_paths_follow_repository_layout(self) -> None:
         assert DEFAULT_DATA_DIR == REPOSITORY_ROOT / "data" / "reddit"
+        assert DEFAULT_HACKERNEWS_DATA_DIR == REPOSITORY_ROOT / "data" / "hackernews"
         assert DEFAULT_REPORTS_DIR == REPOSITORY_ROOT / "reports" / "reddit"
         assert DEFAULT_ARTIFACTS_DIR == PROJECT_ROOT / "artifacts" / "reddit"
         assert DEFAULT_ENV_FILE == PROJECT_ROOT / ".env"
@@ -394,6 +422,46 @@ class TestDiscovery:
         assert len(reports) == 1
         assert [item.path for item in reports[0].snapshots] == [item.path for item in expected]
 
+    def test_missing_optional_hackernews_directory_does_not_block_report(
+        self, tmp_path: Path
+    ) -> None:
+        expected = make_report_target(tmp_path).snapshots
+
+        reports = discover_reports(
+            tmp_path / "data",
+            hackernews_data_dir=tmp_path / "missing-hackernews",
+            dates=[date(2026, 8, 2)],
+        )
+
+        assert len(reports) == 1
+        assert reports[0].is_multi_source is False
+        assert [item.path for item in reports[0].snapshots] == [
+            item.path for item in expected
+        ]
+
+    def test_discover_reports_appends_optional_hackernews_streams(self, tmp_path: Path) -> None:
+        snapshot_date = date(2026, 8, 2)
+        expected = make_report_target(tmp_path, snapshot_date).snapshots
+        hn_dir = tmp_path / "hackernews"
+        write_snapshot(
+            hn_dir / "show-hn" / f"{snapshot_date.isoformat()}.json",
+            [hackernews_post("123")],
+        )
+
+        reports = discover_reports(
+            tmp_path / "data",
+            hackernews_data_dir=hn_dir,
+            dates=[snapshot_date],
+        )
+
+        assert len(reports) == 1
+        assert [item.path for item in reports[0].snapshots[:3]] == [
+            item.path for item in expected
+        ]
+        assert reports[0].snapshots[-1].topic == "show-hn"
+        assert reports[0].snapshots[-1].source == "hackernews"
+        assert reports[0].is_multi_source is True
+
 
 class TestPreparation:
     def test_writes_ranked_artifacts_without_mutating_source(self, tmp_path: Path) -> None:
@@ -494,6 +562,29 @@ class TestPreparation:
         assert source_locations["https://cardndex.com/"] == "title"
         assert source_locations["https://usestyla.com/"] == "selftext"
 
+    def test_hackernews_discussion_is_not_a_project_candidate(self, tmp_path: Path) -> None:
+        source = tmp_path / "hackernews" / "show-hn" / "2026-08-01.json"
+        write_snapshot(source, [hackernews_post("123")])
+
+        prepared = prepare_snapshot(
+            SnapshotTarget(
+                "show-hn",
+                date(2026, 8, 1),
+                source,
+                source="hackernews",
+            ),
+            tmp_path / "artifacts",
+        )
+
+        links = json.loads(prepared.links_path.read_text())
+        assert {
+            (item["canonical_url"], item["kind"])
+            for item in links
+        } == {
+            ("https://example.com/123", "website"),
+            ("https://news.ycombinator.com/item?id=123", "discussion"),
+        }
+
     def test_prepares_one_sandbox_with_all_three_sources(self, tmp_path: Path) -> None:
         target = make_report_target(tmp_path)
         originals = {item.topic: item.path.read_bytes() for item in target.snapshots}
@@ -503,7 +594,7 @@ class TestPreparation:
         assert prepared.directory == (tmp_path / "artifacts" / REPORT_ARTIFACT_NAME / "2026-08-02")
         assert prepared.total_posts == 3
         assert len(prepared.topic_artifacts) == 3
-        assert "Reddit Value and Builder Intelligence Extraction" in (
+        assert "Multi-source Builder Intelligence Extraction" in (
             prepared.instructions_path.read_text()
         )
         metadata = json.loads(prepared.metadata_path.read_text())
@@ -695,6 +786,26 @@ class TestPromptAndCommand:
         assert str(target.snapshots[0].path) not in prompt
         assert "Do not run git commands" in prompt
 
+    def test_prompt_includes_optional_hackernews_source(self, tmp_path: Path) -> None:
+        target = make_report_target(tmp_path)
+        hn_path = tmp_path / "hackernews" / "show-hn" / "2026-08-02.json"
+        write_snapshot(hn_path, [hackernews_post("123")])
+        target = ReportTarget(
+            target.report_date,
+            (*target.snapshots, SnapshotTarget("show-hn", target.report_date, hn_path, source="hackernews")),
+        )
+        job = AnalysisJob(target, tmp_path / "reports" / "2026-08-02.md")
+        prepared = prepare_report(target, tmp_path / "artifacts")
+
+        prompt = build_prompt(job, prepared)
+
+        assert "# Builder Intelligence Report - 2026-08-02" in prompt
+        assert "show-hn (hackernews)" in prompt
+        assert "technical launches, linked artifacts" in prompt
+        assert "Reddit or Hacker News discussions" in prompt
+        metadata = json.loads(prepared.metadata_path.read_text())
+        assert metadata["sources"][-1]["platform"] == "hackernews"
+
     def test_builds_noninteractive_copilot_command(self) -> None:
         assert build_copilot_command(
             "prompt", model="gpt-5.4", effort="xhigh", copilot_command="copilot-test"
@@ -761,6 +872,54 @@ class TestValidation:
             )
             == []
         )
+
+    def test_accepts_generic_source_case_labels(self, tmp_path: Path) -> None:
+        candidate = tmp_path / "report.md"
+        candidate.write_text(
+            valid_report().replace("**Reddit source:**", "**Source:**"),
+            encoding="utf-8",
+        )
+
+        assert (
+            validate_report(
+                candidate,
+                expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+                allowed_post_ids={"pain1", "idea1", "build1"},
+                required_section_post_ids=required_section_ids(),
+            )
+            == []
+        )
+
+    def test_requires_current_hackernews_citation_when_source_is_supplied(
+        self, tmp_path: Path
+    ) -> None:
+        candidate = tmp_path / "report.md"
+        hackernews_url = "https://news.ycombinator.com/item?id=123"
+        candidate.write_text(valid_report(), encoding="utf-8")
+
+        errors = validate_report(
+            candidate,
+            expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+            required_hackernews_urls={hackernews_url},
+        )
+
+        assert any("Hacker News source" in error for error in errors)
+
+        candidate.write_text(
+            valid_report().replace(
+                "Three current streams are represented;",
+                f"Three current streams and [one HN discussion]({hackernews_url}) "
+                "are represented;",
+            ),
+            encoding="utf-8",
+        )
+        errors = validate_report(
+            candidate,
+            expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+            required_hackernews_urls={hackernews_url},
+        )
+
+        assert not any("Hacker News source" in error for error in errors)
 
     def test_rejects_report_without_executive_highlights(self, tmp_path: Path) -> None:
         candidate = tmp_path / "report.md"
@@ -1344,6 +1503,19 @@ Three current streams are represented; the evidence is limited to one account pe
 
         assert "(42 points, 7 comments)" in report.read_text()
         assert messages == ["added engagement metadata after 1 Reddit citation(s)"]
+
+    def test_normalizes_hackernews_citation_engagement(self, tmp_path: Path) -> None:
+        report = tmp_path / "report.md"
+        source = "https://news.ycombinator.com/item?id=123"
+        report.write_text(f"[Source]({source})\n", encoding="utf-8")
+
+        messages = normalize_hackernews_citations(
+            report,
+            engagement={"123": (42, 7)},
+        )
+
+        assert "(42 points, 7 comments)" in report.read_text()
+        assert messages == ["added engagement metadata after 1 Hacker News citation(s)"]
 
     def test_normalizes_media_type_and_report_included(self, tmp_path: Path) -> None:
         review = tmp_path / "media-review.json"

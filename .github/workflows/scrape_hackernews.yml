@@ -1,0 +1,62 @@
+name: Collect Hacker News signals
+
+on:
+  schedule:
+    # Every six hours, after the Reddit collector and before daily analysis.
+    - cron: "27 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: Optional UTC date to collect through the Algolia HN index (YYYY-MM-DD).
+        required: false
+        type: string
+
+concurrency:
+  group: hackernews-signal-collector
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: "pipeline/uv.lock"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install Python pipeline
+        run: uv sync --frozen
+        working-directory: pipeline
+
+      - name: Collect Show HN and Ask HN
+        env:
+          COLLECTION_DATE: ${{ inputs.date }}
+          PYTHONUNBUFFERED: "1"
+        run: |
+          args=(scrape-hackernews)
+          if [[ -n "$COLLECTION_DATE" ]]; then
+            args+=(--date "$COLLECTION_DATE")
+          fi
+          uv run --frozen "${args[@]}"
+        working-directory: pipeline
+
+      - name: Commit snapshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/hackernews/
+          if ! git diff --cached --quiet; then
+            git commit -m "hackernews signals: $(date -u +%Y-%m-%dT%H:%MZ)"
+            git pull --rebase --autostash
+            git push
+          fi

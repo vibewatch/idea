@@ -178,6 +178,7 @@ _REQUIRED_CASE_LABEL_TRANSLATIONS = {
     "**Evidence:**": "**证据：**",
     "**Visual proof:**": "**视觉证据：**",
     "**Limitation or next proof:**": "**局限或下一步证据：**",
+    "**Source:**": "**来源：**",
     "**Reddit source:**": "**Reddit 来源：**",
 }
 _STRUCTURAL_STAGE_TRANSLATIONS = {

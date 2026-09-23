@@ -1,25 +1,28 @@
 # Idea
 
-Source-linked Reddit builder intelligence, generated as validated English and
-Simplified Chinese reports and published as a static Astro website.
+Source-linked builder intelligence from Reddit and Hacker News, generated as
+validated English and Simplified Chinese reports and published as a static
+Astro website.
 
 Live site: [idea.genisisiq.com](https://idea.genisisiq.com/)
 
 ## What the system does
 
-The repository turns public Reddit discussions into daily, evidence-grounded
-builder reports:
+The repository turns public Reddit discussions plus optional Show HN and Ask HN
+signals into daily, evidence-grounded builder reports:
 
-1. Collect posts and selected comments from configured communities.
-2. Preserve the daily snapshots as immutable JSON inputs.
-3. Rank evidence, resolve external links, and inspect useful media.
-4. Generate one structured English report for each complete UTC day.
-5. Validate structure, provenance, links, metrics, media coverage, and safety.
-6. Translate valid reports into native Simplified Chinese with a source-anchored
+1. Collect Reddit posts and selected comments from configured communities.
+2. Collect Show HN and Ask HN stories plus bounded direct comments without
+   authentication.
+3. Preserve the daily snapshots as immutable JSON inputs.
+4. Rank evidence, resolve external links, and inspect useful media.
+5. Generate one structured English report for each complete UTC day.
+6. Validate structure, provenance, links, metrics, media coverage, and safety.
+7. Translate valid reports into native Simplified Chinese with a source-anchored
    editing pass and a second validation gate.
-7. Build a bilingual static site, RSS feed, sitemap, and browser-side search
+8. Build a bilingual static site, RSS feed, sitemap, and browser-side search
    index.
-8. Deploy the result to GitHub Pages.
+9. Deploy the result to GitHub Pages.
 
 The design deliberately separates probabilistic model work from deterministic
 publication rules. Models propose reports and translations; code decides
@@ -30,9 +33,12 @@ whether they are safe and complete enough to publish.
 ```mermaid
 flowchart LR
   Reddit[Public Reddit communities]
+  HN[Show HN and Ask HN]
   Cookie[Cookie refresher]
-  Collector[Reddit collector]
-  Raw[(data/reddit daily JSON)]
+  RedditCollector[Reddit collector]
+  HNCollector[Hacker News collector]
+  RedditRaw[(data/reddit daily JSON)]
+  HNRaw[(data/hackernews daily JSON)]
   Prepare[Evidence ranking and preparation]
   Media[Link and media processing]
   Analyst[Copilot analysis agent]
@@ -46,10 +52,13 @@ flowchart LR
   Pages[GitHub Pages]
   Diagnostics[(ignored artifacts and telemetry)]
 
-  Cookie -. refreshes REDDIT_COOKIES .-> Collector
-  Reddit --> Collector
-  Collector --> Raw
-  Raw --> Prepare
+  Cookie -. refreshes REDDIT_COOKIES .-> RedditCollector
+  Reddit --> RedditCollector
+  HN --> HNCollector
+  RedditCollector --> RedditRaw
+  HNCollector --> HNRaw
+  RedditRaw --> Prepare
+  HNRaw -. optional same-date enrichment .-> Prepare
   Prepare --> Media
   Media --> Analyst
   Analyst --> ValidateEN
@@ -70,6 +79,7 @@ flowchart LR
 | Component | Main location | Responsibility | Persistent output |
 |---|---|---|---|
 | Reddit collector | `pipeline/src/idea_pipeline/scraper/` | Fetch posts and selected comments, deduplicate, and merge partial results safely | `data/reddit/<topic>/<date>.json` |
+| Hacker News collector | `pipeline/src/idea_pipeline/scraper/hackernews.py` | Fetch Show HN and Ask HN through the official Firebase API, use Algolia for explicit historical dates, and capture bounded direct comments | `data/hackernews/<stream>/<date>.json` |
 | Evidence analyzer | `pipeline/src/idea_pipeline/analyzer/` | Rank evidence, build dossiers/manifests, materialize supported media, invoke Copilot, normalize, and validate | `reports/reddit/<date>.md` |
 | Analysis specification | `.agents/skills/reddit-idea-analysis/SKILL.md` | Define the report contract, evidence bar, media handling, and safety boundary | Included in each analysis sandbox |
 | Chinese translator | `pipeline/src/idea_pipeline/translator/` | Translate, source-edit, repair, validate, and publish Chinese overlays | `reports/reddit/zh/<date>.md` |
@@ -83,6 +93,7 @@ flowchart LR
 | Data | Owner | Rule |
 |---|---|---|
 | `data/reddit/` | Collector | Immutable analysis input. Collection merges snapshots, but analysis and Astro never rewrite them. |
+| `data/hackernews/` | HN collector | Optional immutable enrichment. Missing HN snapshots never block a report whose three Reddit streams are complete. |
 | `reports/reddit/*.md` | Analyzer | Derived English output. Only a normalized, validated candidate is published. |
 | `reports/reddit/zh/*.md` | Translator | Source-linked overlay. Its recorded source digest and quality version must match the English report. |
 | `pipeline/artifacts/` | Pipeline stages | Ignored working state: prompts, manifests, media, candidates, logs, validation results, and telemetry. |
@@ -98,16 +109,21 @@ secret-management tokens.
 ```mermaid
 sequenceDiagram
   actor Scheduler as GitHub scheduler
-  participant Scraper as Collect Reddit ideas
+  participant RedditScraper as Collect Reddit ideas
+  participant HNScraper as Collect Hacker News signals
   participant Git as Repository
-  participant Analyzer as Extract Reddit value report
+  participant Analyzer as Build intelligence report
   participant Copilot as GitHub Copilot CLI
   participant Translator as Translate reports to Chinese
   participant Deploy as Deploy Astro site
 
-  Scheduler->>Scraper: Every 6 hours
-  Scraper->>Scraper: Fetch, deduplicate, merge
-  Scraper->>Git: Commit changed JSON snapshots
+  Scheduler->>RedditScraper: Every 6 hours at minute 17
+  RedditScraper->>RedditScraper: Fetch, deduplicate, merge
+  RedditScraper->>Git: Commit changed Reddit snapshots
+
+  Scheduler->>HNScraper: Every 6 hours at minute 27
+  HNScraper->>HNScraper: Fetch official items and direct comments
+  HNScraper->>Git: Commit changed HN snapshots
 
   Scheduler->>Analyzer: Daily at 02:43 UTC
   Analyzer->>Analyzer: Prepare evidence and media manifests
@@ -153,6 +169,21 @@ The current three streams are `customer-pain`, `startup-ideas`, and
 `saas-build`. A date becomes eligible for analysis only when all required
 streams exist.
 
+`.github/workflows/scrape_hackernews.yml` runs ten minutes later:
+
+- collect up to 30 current stories from each official `showstories` and
+  `askstories` feed;
+- fetch full item bodies from the official Firebase API;
+- capture up to 12 direct comments for each of the 12 most-discussed stories;
+- retain a two-day UTC lookback so late score/comment updates merge safely;
+- use Algolia only to discover IDs for an explicit historical `--date`, then
+  fetch authoritative item bodies from Firebase;
+- commit changed files under `data/hackernews/`.
+
+Hacker News requires no secret. Its `show-hn` and `ask-hn` streams enrich the
+same-date report when present, but remain optional so an API outage or missing
+historical HN file cannot block the core Reddit publication.
+
 ### 3. English analysis
 
 `.github/workflows/analyze_reddit.yml` runs daily at 02:43 UTC and defaults to
@@ -170,6 +201,12 @@ the newest missing completed date:
 5. Normalize safe mechanical drift and validate the candidate.
 6. Publish valid Markdown atomically and leave existing reports untouched when
    generation or validation fails.
+
+The three Reddit streams remain the completeness gate. Same-date HN snapshots
+are appended when available, and the validator then requires at least one
+current HN discussion citation. Reddit scores and HN points are normalized as
+source-native engagement metadata and are never treated as equivalent demand
+signals.
 
 The report contract has five sections:
 
@@ -272,18 +309,19 @@ guarantee.
 ### Source fidelity
 
 - Raw snapshots are retained and never rewritten by downstream stages.
-- Reports cite Reddit posts and external artifacts rather than presenting model
-  memory as evidence.
+- Reports cite Reddit or Hacker News discussions and external artifacts rather
+  than presenting model memory as evidence.
 - Unknown or ungrounded destinations are not allowed to become clickable
   sources.
-- Metrics, identifiers, project names, Reddit titles, URLs, and uncertainty
-  qualifiers are protected during translation.
+- Metrics, identifiers, project names, quoted source titles, URLs, and
+  uncertainty qualifiers are protected during translation.
 
 ### Deterministic publication gates
 
 English validation checks core sections, case shape, required tables, source
-coverage, links, Reddit IDs, media accounting, inspected-image inclusion,
-insecure embeds, local paths, and malformed review data.
+coverage, links, Reddit IDs, current HN citations when HN is supplied, media
+accounting, inspected-image inclusion, insecure embeds, local paths, and
+malformed review data.
 
 Chinese validation checks source digests, heading order, case order, all eight
 case fields, table dimensions, URL and image sets, protected terms, metrics,
@@ -323,13 +361,14 @@ rather than disappearing silently.
 ## Processing time, throughput, and cost
 
 Recent successful GitHub-hosted runs provide the following operational
-expectations. They are examples, not SLAs; Reddit latency, media volume, model
-queues, cache behavior, and fallback work can change them.
+expectations. They are examples, not SLAs; source API latency, media volume,
+model queues, cache behavior, and fallback work can change them.
 
 | Stage | Schedule/default scope | Representative time | Guardrail |
 |---|---|---:|---|
 | Cookie refresh | Every third day | About 1 minute | Failure creates an issue; screenshot retained 7 days |
-| Collection | Every 6 hours, all configured streams | About 6-7 minutes | Partial successful batches are preserved |
+| Reddit collection | Every 6 hours, three configured streams | About 6-7 minutes | Partial successful batches are preserved |
+| Hacker News collection | Every 6 hours, Show HN and Ask HN | Usually under 1-3 minutes | HN is optional for analysis; source-native retries are bounded |
 | English analysis | Daily, newest one missing date, 2 workers available | About 30 minutes for a recent successful report | 6-hour workflow timeout; expensive fallback only after failure |
 | Chinese translation | After analysis, up to 5 overlays, 1 worker | Under 1 minute for a no-op; about 9 minutes for a recent work-bearing run | 20-minute timeout per generation/edit/repair stage; 6-hour workflow timeout |
 | Astro/Pagefind deploy | On relevant pushes | About 40-90 seconds | Previous deployment remains live if build fails |
@@ -353,6 +392,7 @@ the preserved raw snapshots rather than maintaining legacy rendered formats.
 | Workflow | Trigger | Writes |
 |---|---|---|
 | `scrape_reddit.yml` | `17 */6 * * *` and manual | `data/reddit/` |
+| `scrape_hackernews.yml` | `27 */6 * * *` and manual | `data/hackernews/` |
 | `analyze_reddit.yml` | `43 2 * * *` and manual | `reports/reddit/*.md` |
 | `translate_zh.yml` | Analysis completion, `17 6 * * *`, and manual | `reports/reddit/zh/*.md` |
 | `refresh_reddit_cookies.yml` | `23 1 */3 * *` and manual | `REDDIT_COOKIES`; failure issue only |
@@ -367,10 +407,11 @@ model, effort, and worker controls for targeted recovery and benchmarking.
 .
 ├── .agents/skills/                 # Analysis and translation contracts
 ├── .github/workflows/              # Collection, generation, refresh, deployment
+├── data/hackernews/                # Optional Show HN and Ask HN snapshots
 ├── data/reddit/                    # Versioned immutable daily snapshots
 ├── pipeline/
 │   ├── config/
-│   │   ├── scraper/reddit.yml
+│   │   ├── scraper/{hackernews,reddit}.yml
 │   │   └── refresher/reddit.yml
 │   ├── src/idea_pipeline/
 │   │   ├── analyzer/
@@ -430,6 +471,9 @@ Never commit this file.
 ```bash
 uv run --project pipeline scrape-reddit
 uv run --project pipeline scrape-reddit --name saas-build
+uv run --project pipeline scrape-hackernews
+uv run --project pipeline scrape-hackernews --name show-hn
+uv run --project pipeline scrape-hackernews --date 2026-09-23
 ```
 
 ### Prepare or generate English reports

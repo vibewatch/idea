@@ -187,6 +187,7 @@ Translate each Section 2 case label exactly:
 - `**Evidence:**` → `**证据：**`
 - `**Visual proof:**` → `**视觉证据：**`
 - `**Limitation or next proof:**` → `**局限或下一步证据：**`
+- `**Source:**` → `**来源：**`
 - `**Reddit source:**` → `**Reddit 来源：**`
 
 ## Register

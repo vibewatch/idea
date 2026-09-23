@@ -1,27 +1,31 @@
 # Python pipeline
 
-One Python project hosts four sibling subsystems: Reddit data collection, report analysis, Chinese translation, and browser-cookie refresh. They share a lockfile, environment, path utilities, and logging without importing each other's implementation.
+One Python project hosts five sibling subsystems: Reddit collection, Hacker News collection, report analysis, Chinese translation, and browser-cookie refresh. They share a lockfile, environment, path utilities, and logging without importing each other's implementation.
 
 ```text
 pipeline/
 ├── config/
-│   ├── scraper/reddit.yml
+│   ├── scraper/{hackernews,reddit}.yml
 │   └── refresher/reddit.yml
 ├── src/idea_pipeline/
 │   ├── analyzer/reddit.py
+│   ├── scraper/hackernews.py
 │   ├── scraper/reddit.py
 │   ├── translator/zh.py
 │   └── refresher/{browser,config,extract,github}.py
 └── tests/
   ├── analyzer/test_reddit.py
+  ├── scraper/test_hackernews.py
   ├── scraper/test_reddit.py
   ├── translator/test_zh.py
   └── refresher/test_refresh.py
 ```
 
-The project is isolated from the root Astro application. It owns Python code, configuration, secrets, and ignored work artifacts under `pipeline/`. Collection writes the shared dataset under `data/reddit/`; analysis publishes validated Markdown under `reports/reddit/`; translation publishes Chinese overlays under `reports/reddit/zh/`.
+The project is isolated from the root Astro application. It owns Python code, configuration, secrets, and ignored work artifacts under `pipeline/`. Collection writes the shared datasets under `data/reddit/` and `data/hackernews/`; analysis publishes validated Markdown under `reports/reddit/`; translation publishes Chinese overlays under `reports/reddit/zh/`.
 
-## Scraping pipeline
+## Collection pipelines
+
+### Reddit
 
 1. Load validated topic groups from `pipeline/config/scraper/reddit.yml`.
 2. Install browser-exported cookies for `rdt-cli`.
@@ -30,6 +34,22 @@ The project is isolated from the root Astro application. It owns Python code, co
 5. Fetch top comments for the most-discussed posts in each batch.
 6. Atomically merge results into root-level daily JSON snapshots.
 7. Run every six hours in GitHub Actions and commit changed snapshots.
+
+### Hacker News
+
+1. Load `show-hn` and `ask-hn` stream limits from
+   `pipeline/config/scraper/hackernews.yml`.
+2. Discover current stories through the official `showstories` and
+   `askstories` Firebase feeds.
+3. Fetch authoritative story bodies and direct comments from the official item
+   API.
+4. Normalize HN HTML into plain text while retaining outbound link
+   destinations.
+5. Fetch up to 12 direct comments for the 12 most-discussed stories per stream.
+6. Atomically merge a two-day UTC lookback into `data/hackernews/`.
+7. For explicit historical dates, use Algolia only to discover IDs, then fetch
+   the items from Firebase.
+8. Run every six hours, ten minutes after Reddit collection.
 
 ## Requirements
 
@@ -40,6 +60,8 @@ The project is isolated from the root Astro application. It owns Python code, co
 - `ffmpeg` for six-frame Reddit video contact sheets
 - Chromium installed through Playwright for cookie refreshes
 - A Reddit session cookie exported from a browser account that may access the configured public communities
+
+Hacker News collection uses public APIs and requires no secret.
 
 Use collection responsibly: review Reddit's current terms, respect community rules, avoid private/restricted content, and keep request volume conservative.
 
@@ -63,13 +85,17 @@ REDDIT_COOKIES='[{"name":"reddit_session","value":"replace-with-your-value"}]'
 
 ## Run
 
-From the repository root, run the scraper with the following commands. Its config, data, and environment defaults are anchored to the repository layout rather than the current working directory:
+From the repository root, run either collector. Config, data, and environment defaults are anchored to the repository layout rather than the current working directory:
 
 ```bash
 uv run --project pipeline scrape-reddit
 uv run --project pipeline scrape-reddit --name saas-build
 uv run --project pipeline scrape-reddit --data-dir /tmp/reddit-ideas
 uv run --project pipeline scrape-reddit --comments 0
+uv run --project pipeline scrape-hackernews
+uv run --project pipeline scrape-hackernews --name show-hn
+uv run --project pipeline scrape-hackernews --date 2026-09-23
+uv run --project pipeline scrape-hackernews --data-dir /tmp/hackernews
 ```
 
 ## Configuration
@@ -108,6 +134,27 @@ Source selection is based on downstream report citation yield rather than raw po
 
 A failed community does not discard successful results from others. A Reddit rate limit stops remaining requests and preserves the partial batch.
 
+Hacker News stream settings are intentionally small:
+
+```yaml
+streams:
+  - name: show-hn
+    feed: showstories
+    search_tag: show_hn
+    max_items: 30
+    comments: 12
+    comment_story_limit: 12
+```
+
+| Field | Required | Description |
+|---|---:|---|
+| `name` | yes | Safe unique output-folder name |
+| `feed` | yes | Official current feed: `showstories` or `askstories` |
+| `search_tag` | yes | Matching Algolia historical tag: `show_hn` or `ask_hn` |
+| `max_items` | no | Maximum stories discovered per run, 1-100; default 30 |
+| `comments` | no | Maximum direct comments fetched per selected story, 0-50; default 12 |
+| `comment_story_limit` | no | Most-discussed stories eligible for comment fetching, 0-50; default 12 |
+
 ## Output
 
 Snapshots are stored at `data/reddit/<topic>/<YYYY-MM-DD>.json`:
@@ -139,20 +186,56 @@ Snapshots are stored at `data/reddit/<topic>/<YYYY-MM-DD>.json`:
 
 Repeated runs update posts by ID while retaining previously collected comments when a refreshed post does not qualify for comment fetching.
 
+HN snapshots are stored at `data/hackernews/<stream>/<YYYY-MM-DD>.json`.
+They use the same post-shaped fields consumed by the analyzer plus explicit
+`source`, `stream`, `time`, and `created_at` provenance:
+
+```json
+{
+  "source": "hackernews",
+  "stream": "show-hn",
+  "last_fetched": "2026-09-23T20:25:10+00:00",
+  "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49816840",
+      "title": "Show HN: Example",
+      "score": 42,
+      "num_comments": 6,
+      "permalink": "https://news.ycombinator.com/item?id=49816840",
+      "url": "https://example.com",
+      "comments_data": [
+        {
+          "id": "49816841",
+          "author": "reader",
+          "body": "Direct comment text",
+          "score": 0
+        }
+      ]
+    }
+  ]
+}
+```
+
+HN exposes story points but no public per-comment score, so normalized HN
+comments use score `0`. The pilot captures direct comments only; nested threads
+are intentionally excluded to bound requests, context, and cost.
+
 ## Analysis pipeline
 
-The analyzer combines the three immutable daily JSON streams into static Markdown suitable for the future Astro site:
+The analyzer combines three required Reddit streams with any same-date optional HN streams into static Markdown:
 
-1. Discover exact-date sets containing `customer-pain`, `startup-ideas`, and `saas-build` snapshots.
+1. Discover exact-date sets containing `customer-pain`, `startup-ideas`, and `saas-build`, then append available `show-hn` and `ask-hn` snapshots.
 2. Exclude today's still-changing files during automatic discovery and skip incomplete dates.
 3. Skip dates that already have a full report unless `--force` is used.
 4. Rank each stream independently by evidence richness using capped logarithmic engagement, detailed text/comments, quantified signals, concrete problems, and observed outcomes; thin viral posts receive a penalty.
-5. Write per-stream review sets and dossiers plus full-corpus `external-links.json`, `media-manifest.json`, source hashes, and combined metadata under ignored `pipeline/artifacts/reddit/builder-intelligence/<date>/`. Up to seven earlier snapshots are represented by compact summaries of their six strongest evidence items rather than copied in full. Unambiguous domains in titles/text—including common `domain dot tld` spellings—are normalized to HTTPS manifest entries; common source-code and data filenames are excluded.
+5. Write per-stream review sets and dossiers plus full-corpus `external-links.json`, `media-manifest.json`, source hashes, and combined metadata under ignored `pipeline/artifacts/reddit/builder-intelligence/<date>/`. Metadata records each stream's platform. Up to seven earlier snapshots are represented by compact summaries of their six strongest evidence items rather than copied in full. Unambiguous domains in titles/text—including common `domain dot tld` spellings—are normalized to HTTPS manifest entries; common source-code and data filenames are excluded. HN discussion permalinks are classified as provenance rather than direct project candidates.
 6. During generation only, safely download approved Reddit/Imgur images, normalize animated GIF/WebP and other unsupported image formats to one representative static PNG frame, and turn accessible Reddit DASH videos into six-frame contact sheets. Copilot receives only JPEG/PNG attachments; galleries, external videos, failures, and skipped items retain explicit URL/status records.
 7. Attach every materialized visual to one sandboxed Copilot CLI process per date, with bounded worker concurrency, shell access disabled, built-in GitHub MCP disabled, and unrelated pipeline credentials removed.
 8. Merge projects, founder validation, launches/metrics, failures, and useful visual findings into one case-level evidence ledger so each project or experiment has one primary home. Section 2 uses one structured `###` subsection per case rather than a wide table; direct images appear as linked Markdown images inside the matching case. Keep customer problems separate, then add short pattern synthesis and an action/watchlist section.
 9. Require `media-review.json` to account for every detected media item and distinguish inspected, non-substantive, and unavailable assets. Deterministic `media_type` and `report_included` fields are normalized from the manifest and final report before validation. Focused attachment-repair batches are merged into the existing ledger so a model response containing only the current batch cannot discard previously reviewed media, and omitted batch items receive one focused retry.
-10. Normalize common heading, field-label, stage, whitespace, and grounded schemeless-URL drift before validation. Accept an otherwise identical HTTP-to-HTTPS source-link upgrade, convert grounded inline-code media URLs into links, and turn direct image links in `Visual proof` fields into clickable image embeds. External destinations absent from the source manifests become non-clickable while retaining their descriptive text. Then block reports with missing core sections, incomplete or oversized case subsections, missing required tables, local paths, remaining unknown source URLs, unknown Reddit IDs/media, missing inspected-image embeds, insecure embedded images, or malformed review data. Treat exact table labels, per-section current-snapshot citation coverage, the eight-project target, inspected-video coverage, and source-derived HTTP hyperlinks as visible quality warnings rather than publication failures.
+10. Normalize common heading, field-label, stage, whitespace, and grounded schemeless-URL drift before validation. Accept an otherwise identical HTTP-to-HTTPS source-link upgrade, convert grounded inline-code media URLs into links, and turn direct image links in `Visual proof` fields into clickable image embeds. External destinations absent from the source manifests become non-clickable while retaining their descriptive text. Then block reports with missing core sections, incomplete or oversized case subsections, missing required tables, local paths, remaining unknown source URLs, unknown Reddit IDs/media, missing a current HN citation when HN was supplied, missing inspected-image embeds, insecure embedded images, or malformed review data. Treat exact table labels, per-section current-snapshot citation coverage, the eight-project target, inspected-video coverage, and source-derived HTTP hyperlinks as visible quality warnings rather than publication failures.
 11. If Copilot exits nonzero after writing a candidate (for example, a native-binary crash), run the same strict normalization and validation before discarding it. A complete candidate is published with the CLI failure recorded as a warning; an incomplete candidate remains blocked.
 12. Atomically publish valid output to `reports/reddit/<date>.md`. Each sandbox records `generation-metadata.json` with the selected model, effort, elapsed time, exit status, context size, attachments, and post count. The workflow commits validated reports even when a sibling date fails, then retains failed-run candidates, source-set metadata, ledgers, prompts, metadata, and logs as a seven-day diagnostics artifact.
 
@@ -171,17 +254,17 @@ uv run --project pipeline analyze-reddit --limit 2
 uv run --project pipeline analyze-reddit --date 2026-08-02 --force
 ```
 
-`--date` may be repeated, but every selected date must contain all three required topic snapshots. Explicit dates are never capped. Automatic discovery processes the newest missing report first and defaults to `--limit 1`, preventing an old backlog from repeatedly consuming every scheduled run. An explicit date may select today's snapshot, while `--include-today` only changes automatic discovery. `--prepare-only` always refreshes the combined manifests and sandbox per selected date, but never downloads media or invokes Copilot.
+`--date` may be repeated, but every selected date must contain all three required Reddit topic snapshots. HN remains optional. Explicit dates are never capped. Automatic discovery processes the newest missing report first and defaults to `--limit 1`, preventing an old backlog from repeatedly consuming every scheduled run. An explicit date may select today's snapshot, while `--include-today` only changes automatic discovery. `--prepare-only` always refreshes the combined manifests and sandbox per selected date, but never downloads media or invokes Copilot.
 
 Model controls default to `--model gpt-5.4-mini --effort medium`. At the published rates used for this optimization, GPT-5.4 mini costs $0.75/M input tokens and $4.50/M output tokens versus Grok 4.5 at $2/M input and $6/M output, so it is approximately 62.5% cheaper on input and 25% cheaper on output. The Actions workflow retries a failed low-cost generation once with `grok-4.5` at high effort; valid first-pass reports are never regenerated by the fallback. Higher-cost models remain available through explicit model selection. Check current Copilot model pricing before revising this routing policy.
 
-The repository-local skill at `.agents/skills/reddit-idea-analysis/SKILL.md` defines what counts as a valuable project, pain point, validation case, launch result, and visual finding. Its five-section report starts with a short bottom line, five highlighted signals, and explicit coverage caveats; consolidates projects, experiments, outcomes, failures, and inspected media into one evidence ledger made of readable case subsections; keeps customer problems in a compact comparison table; and reserves the final sections for non-repetitive pattern synthesis, practical moves, and watch triggers. The report still maps convergence, partial support, contradictions, and missing links without opportunity scores or pretending unrelated posts form a tracked funnel. Keep downloaded media, contact sheets, model logs, metadata, and review ledgers in ignored `pipeline/artifacts/`; only validated reports are versioned.
+The repository-local skill at `.agents/skills/reddit-idea-analysis/SKILL.md` defines what counts as a valuable project, pain point, validation case, launch result, and visual finding across Reddit and Hacker News. Its five-section report starts with a short bottom line, five highlighted signals, and explicit coverage caveats; consolidates projects, experiments, outcomes, failures, and inspected media into one evidence ledger made of readable case subsections; keeps customer problems in a compact comparison table; and reserves the final sections for non-repetitive pattern synthesis, practical moves, and watch triggers. The report still maps convergence, partial support, contradictions, and missing links without opportunity scores or pretending unrelated posts form a tracked funnel. Keep downloaded media, contact sheets, model logs, metadata, and review ledgers in ignored `pipeline/artifacts/`; only validated reports are versioned.
 
 Report schema migrations do not preserve legacy rendered formats. Delete outdated reports and overlays, then regenerate them locally from the collected raw snapshots under the current contract before publishing.
 
 Validation is intentionally stricter than Astro's Markdown parser but no longer treats every quality target as fatal. The hard gates protect publishability, source provenance, and accidental data exposure; advisory warnings preserve useful partial reports while making coverage gaps visible in Actions logs and `validation-warnings.json`. Every workflow run retains context-size and generation telemetry for 30 days; failed runs additionally upload the generated report, review ledger, manifests, validation output, and Copilot logs as a seven-day diagnostics artifact.
 
-The workflow `.github/workflows/analyze_reddit.yml` runs daily at 02:43 UTC, processes only the newest missing report by default, and supports manual date, limit, model, effort, worker, force, include-today, and prepare-only inputs.
+The HN workflow runs at minute 27 every six hours, after Reddit's minute-17 collection and before the 02:43 UTC analyzer. `.github/workflows/analyze_reddit.yml` processes only the newest missing report by default and supports manual date, limit, model, effort, worker, force, include-today, and prepare-only inputs.
 
 ## Translation pipeline
 
@@ -212,7 +295,7 @@ The skill at `.agents/skills/translate-zh/SKILL.md` carries the quality bar: rec
 
 Blocking validation covers heading sequence and levels, the exact Section 2 case sequence and standard field labels, standard native-Chinese report headings and executive-highlight labels, per-table column and row counts, exact link and linked-image sets, protected metrics/code/subreddits/project names, Reddit title labels, uncertainty qualifiers, untranslated table headers, high-confidence translationese, and a Chinese-character floor that catches a mostly-English candidate. Softer style signals remain advisory warnings in `validation-warnings.json`. Every workflow run retains generation telemetry for 30 days; failed runs additionally upload the candidate, contract, prompt, validation output, and Copilot logs as a seven-day diagnostics artifact.
 
-The workflow `.github/workflows/translate_zh.yml` starts when `Extract Reddit value report` completes, avoiding the former fixed-time race with long analysis runs. A 06:17 UTC recovery schedule handles missed or delayed completion events. Manual runs support date, limit, model, effort, worker, force, and prepare-only inputs.
+The workflow `.github/workflows/translate_zh.yml` starts when `Build intelligence report` completes, avoiding the former fixed-time race with long analysis runs. A 06:17 UTC recovery schedule handles missed or delayed completion events. Manual runs support date, limit, model, effort, worker, force, and prepare-only inputs.
 
 ## Cookie refresh pipeline
 

@@ -1,4 +1,4 @@
-name: Extract Reddit value report
+name: Build intelligence report
 
 on:
   schedule:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       date:
-        description: Optional complete three-stream snapshot date (YYYY-MM-DD).
+        description: Optional complete three-Reddit-stream snapshot date (YYYY-MM-DD).
         required: false
         type: string
       limit:
@@ -67,7 +67,7 @@ on:
           - "4"
 
 concurrency:
-  group: reddit-builder-intelligence
+  group: builder-intelligence
   cancel-in-progress: false
 
 jobs:
@@ -157,7 +157,7 @@ jobs:
         if: ${{ failure() || cancelled() }}
         uses: actions/upload-artifact@v6
         with:
-          name: reddit-analysis-diagnostics-${{ github.run_id }}-${{ github.run_attempt }}
+          name: analysis-diagnostics-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             pipeline/artifacts/reddit/builder-intelligence/**/report.md
             pipeline/artifacts/reddit/builder-intelligence/**/media-review.json
@@ -178,7 +178,7 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v6
         with:
-          name: reddit-analysis-telemetry-${{ github.run_id }}-${{ github.run_attempt }}
+          name: analysis-telemetry-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             pipeline/artifacts/reddit/builder-intelligence/**/metadata.json
             pipeline/artifacts/reddit/builder-intelligence/**/generation-metadata.json
@@ -193,11 +193,11 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add reports/reddit/
           if git diff --cached --quiet; then
-            echo "No new Reddit reports to commit."
+            echo "No new intelligence reports to commit."
             exit 0
           fi
 
-          git commit -m "reddit intelligence: $(date -u +%Y-%m-%dT%H:%MZ)"
+          git commit -m "builder intelligence: $(date -u +%Y-%m-%dT%H:%MZ)"
           branch="$GITHUB_REF_NAME"
           for attempt in 1 2 3; do
             git fetch origin "$branch"
@@ -207,5 +207,5 @@ jobs:
             fi
             echo "Push attempt $attempt failed; rebasing and retrying."
           done
-          echo "Unable to push Reddit reports after 3 attempts."
+          echo "Unable to push intelligence reports after 3 attempts."
           exit 1
