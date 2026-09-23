@@ -1,0 +1,527 @@
+{
+  "source": "hackernews",
+  "stream": "show-hn",
+  "last_fetched": "2026-09-23T20:29:32.618722+00:00",
+  "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49804217",
+      "title": "Show HN: graf (1000x faster graphify in Rust)",
+      "subreddit": "show-hn",
+      "author": "ripped_britches",
+      "score": 12,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=49804217",
+      "url": "https://github.com/ctxrs/graf",
+      "selftext": "I liked the idea of graphify, but for large repos the search queries were visibly very slow.\nI dug into it and saw an opportunity to make it better.\nIt is rewritten in rust and uses sqlite instead of NetworkX.\nThere is a command to migrate from graphify or set up from scratch.\nLet me know what you think!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790095591,
+      "created_at": "2026-09-22T16:46:31+00:00",
+      "comments_data": [
+        {
+          "id": "49811507",
+          "author": "rg1992",
+          "body": "Hey I tried this. With traditional graphify, it took 15-20 min to map out my 15 repos, here i was able to map in approx 5 min. Still will have to use with agents to see the results for a full comparison.",
+          "score": 0,
+          "time": 1790136352,
+          "parent": "49804217"
+        },
+        {
+          "id": "49805931",
+          "author": "katrielmoses",
+          "body": "Didnt know i needed this, really useful toolm definitely gonna use this from now on.",
+          "score": 0,
+          "time": 1790101637,
+          "parent": "49804217"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49803683",
+      "title": "Show HN: AI·rete·RAG – a Rete rule engine decides, RAG explains why",
+      "subreddit": "show-hn",
+      "author": "ZaharaHussain",
+      "score": 41,
+      "num_comments": 7,
+      "permalink": "https://news.ycombinator.com/item?id=49803683",
+      "url": "https://ai-rete-rag.com/",
+      "selftext": "Hi HN, I built ai·rete·rag because I kept seeing teams put an LLM in charge of decisions that need to be auditable (lending, fraud, clinical triage), then bolt on \"guardrails\" after the fact.\nIt runs the two in series instead:\n1. A pure-Python Rete engine evaluates YAML rules against your facts. The verdict comes only from here. Same facts, same verdict, every time, with salience-based conflict resolution.\n2. RAG retrieves passages from your own policy documents, and an LLM writes a plain-English explanation of the decision that was already made, citing those passages. It can't change the verdict.\nA few things that went further than I expected:\n- Rules are a graph, not flat lists: nested all/any/not, and rules can assert facts that other rules consume (forward chaining). The decision trace shows the causal chain.\n- Audit mode records every rule evaluated, including the ones that didn't fire, condition by condition, with a snapshot of the rule set for replay.\n- Rules can steer retrieval (a fired rule narrows which documents get searched), and retrieved text can be turned into facts for the engine.\n- Non-technical authors can build rules in a visual editor, or paste a policy document and get LLM-drafted rules with citations. Drafts are never saved without review. YAML is still there for engineers.\nThe landing page has a live demo with no signup (8 demo domains: loan, fraud, clinical, insurance, legal, ops, e-commerce, blockchain). There's also an MCP server, so Claude and other agents can call /decide as a tool: `uvx ai-rete-rag-mcp`.\nTo be upfront: it's a hosted product with a free tier. The MCP client is open source (MIT, github.com/zaharajabeen13-create/ai-rete-rag-mcp); the engine and platform are not open source right now.\nI'd especially like to hear from anyone who has had to explain an automated decision to a regulator or an auditor: what did they actually ask for?",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790093706,
+      "created_at": "2026-09-22T16:15:06+00:00",
+      "comments_data": [
+        {
+          "id": "49811819",
+          "author": "lunatuna",
+          "body": "I've used rete based CEP tool in the past for utility operations event management. We could tag the rule used to the event or event aggregate, but it was on a single node basis and a basic aggregate. If there was more coverage in understanding it would be a big help to operators. Based on say a set of outage events, can it further understand if it weather event, equipment failure, scheduled maintenance, etc. Linking it to possible operating procedures based on a broader understanding of the state would be very useful.",
+          "score": 0,
+          "time": 1790139467,
+          "parent": "49803683"
+        },
+        {
+          "id": "49818067",
+          "author": "awfm9",
+          "body": "This is a really interesting concept. Could be quite useful for agents. I worked on something similar, but more abstract; you managed to take it to the practical level.",
+          "score": 0,
+          "time": 1790179088,
+          "parent": "49803683"
+        },
+        {
+          "id": "49816208",
+          "author": "jimmySixDOF",
+          "body": "I was expecting to see some Jev based influence on RETE/CEP rule handling ... the Typesafe.ai team have a lot more in the pipeline this use case is just getting started",
+          "score": 0,
+          "time": 1790171561,
+          "parent": "49803683"
+        },
+        {
+          "id": "49806185",
+          "author": "chews",
+          "body": "It's been a while since I used a Rete rule engine, back in my days as math nerd at a mortgage bank (ooof we survived the 08 meltdown by the skin of our teeth) we used an internal fork of Drools and paired it with a merkle tree datasctructure to store lending decisions.... I knew blockchain was gonna be a thing when the genesis block referenced the bailout... I kick myself daily cause should've bought more bitcoin.",
+          "score": 0,
+          "time": 1790102751,
+          "parent": "49803683"
+        },
+        {
+          "id": "49806638",
+          "author": "nickphx",
+          "body": "I don't understand. If you're already building the rules, why have a clanker summarize and guess why the result happened when you can display the rules that passed/failed?",
+          "score": 0,
+          "time": 1790104516,
+          "parent": "49803683"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49802789",
+      "title": "Show HN: InstinctFlash – High-Performance Serving Runtime for Robotics Models",
+      "subreddit": "show-hn",
+      "author": "guanming0717",
+      "score": 24,
+      "num_comments": 4,
+      "permalink": "https://news.ycombinator.com/item?id=49802789",
+      "url": "https://github.com/General-Instinct/InstinctFlash",
+      "selftext": "Hey HN, Guanming here, cofounder of General Instinct. We just released InstinctFlash, a high-performance serving framework for robotics models. It’s licensed under AGPL-3.0.\nOn Jetson Thor, we see speedups about 1.2x to 7.9x from runtime optimizations alone and up to 33.78x for LingBot-VA when we combine those runtime optimizations with a distilled few-step diffusion scheduler, going from the original 25 visual / 50 action steps to 2 / 4 steps. Across 50 Robotwin2.0 tasks, we evaluated 1,153 episodes per configuration, LingBot-VA with InstinctFlash at 2 visual / 4 action steps achieved a 90.5% success rate, compared with 92.1% for the baseline at 25 visual / 50 action steps.\nHere’s an optimized 5B world action model, running in real time on a Jetson Thor:\nhttps://youtu.be/nku65iyL5Fw (https://youtu.be/nku65iyL5Fw)\nInstinctFlash currently supports 8 VLA / world-action model families, including pi0.5 and NVIDIA Cosmos Policy, across RTX 4090 / 5090 and Jetson Thor.\nJust give it your fine-tuned checkpoint and InstinctFlash handles the rest, exposing the accelerated model through a Python runtime or an OpenPI-compatible WebSocket server.\nWe started working on this because we kept running into the same problem while deploying robot policies, the models were getting much better, but inference was often way too slow for the control loop we actually wanted.\nFor pi0.5, mixed-precision GEMMs and CUDA graphs speed up computation and reduce launch overhead. For Cosmos, caching avoids redundant computation across diffusion steps. World-action models’ diffusion denoising step depends on the previous one which motivated our work on few-step distillation.\nRight now, InstinctFlash contains 6 aspects of optimization.\n- Graph: CUDA graph capture, memory planning and separating prefill from repeated execution.\n- Cache: Reusing KV and conditioning state across diffusion steps and prediction calls.\n- Attention: Specialized attention paths for different model architectures.\n- Kernels: Fused operations and kernels tailored to specific backends and tensor layouts.\n- Precision: FP8 and mixed-precision execution.\n- Model: Few-step distillation for diffusion and action generation.\nTeams at Samsung, Siemens, and other robotics startups have used InstinctFlash for model acceleration on VLAs, WAMs, and diffusion-based world models. Now we are opening up access to you.\nFeel free to try it here:\nhttps://github.com/General-Instinct/InstinctFlash (https://github.com/General-Instinct/InstinctFlash)\nMore implementation details and benchmarks:\nhttps://general-instinct.com/blog/instinctflash-edge-inferen... (https://general-instinct.com/blog/instinctflash-edge-inference)\nWould love to hear your feedback!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790090406,
+      "created_at": "2026-09-22T15:20:06+00:00",
+      "comments_data": [
+        {
+          "id": "49812340",
+          "author": "adityamishra241",
+          "body": "Really impressive speedups. Curious how much of the gain comes from the runtime optimizations vs the few-step distillation in real-world robotics workloads.",
+          "score": 0,
+          "time": 1790144300,
+          "parent": "49802789"
+        },
+        {
+          "id": "49806509",
+          "author": "internetguy",
+          "body": "ayy cool! i spoke to you at yc sus this year :)",
+          "score": 0,
+          "time": 1790104049,
+          "parent": "49802789"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49802776",
+      "title": "Show HN: OpenMCP – An open, code-first fork of the Model Context Protocol",
+      "subreddit": "show-hn",
+      "author": "enclawed",
+      "score": 8,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=49802776",
+      "url": "https://github.com/enclawed/omcp",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790090366,
+      "created_at": "2026-09-22T15:19:26+00:00",
+      "comments_data": [
+        {
+          "id": "49812464",
+          "author": "blazarquasar",
+          "body": "Slopforking an already open, established, governed project to slap your name and fake trademark on it while making zero actual changes/improvements apart from renaming things and adding a Gandhi quote is definitely something. I hope that no one wastes their time on contributing here…",
+          "score": 0,
+          "time": 1790145452,
+          "parent": "49802776"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49801329",
+      "title": "Show HN: Drop – A rootless Linux sandbox with gVisor support",
+      "subreddit": "show-hn",
+      "author": "mixedbit",
+      "score": 185,
+      "num_comments": 61,
+      "permalink": "https://news.ycombinator.com/item?id=49801329",
+      "url": "https://droprun.sh/",
+      "selftext": "I created Drop because I always felt uneasy installing and running third-party programs using my main user account. A single compromised dependency means a full compromise of the system. What is even worse, because I ship software from my computer, a single compromised dependency can lead to compromise of all the users of my software.\nContainers and VMs are one solution, but for local work, they are often detrimental to productivity. It takes effort to configure a machine with all the tools and configs needed for productive work, but a container or a VM will be stripped of all these tools. This is great for production deployments, where the aim is a reproducible system with minimal dependencies, but can get in the way of productive local work.\nDrop is language independent, but the workflow is inspired by Python's virtualenv. With virtualenv the environment isolation is only a convention that relies on installed dependencies being good citizens. With Drop the isolation is enforced.\nEach Drop environment gets its own writable and easily disposable home dir, with only selected config files and dirs from the original home mounted, mostly read-only.\nDrop uses Linux namespaces for isolation (user, mount, network, PID, IPC, cgroup), doesn't require root and, as an option, uses gVisor user-space kernel, which adds protection against exploiting host kernel vulnerabilities to escape the sandbox.\nI don't want to make the introductory post too lengthy, but I'm here to answer any questions and give any additional technical details.\nNote: This is my 3rd submission of the project, the first two did not draw attention. Since then I have added support for gVisor and created a project website to better explain the concept and organize documentation.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790085167,
+      "created_at": "2026-09-22T13:52:47+00:00",
+      "comments_data": [
+        {
+          "id": "49802414",
+          "author": "refibrillator",
+          "body": "Hi OP, funny enough I’m working on something very similar. Lots of us are I guess! Take that as validation of your thinking.\nI like that your readme has a couple paragraphs comparing to popular tools in this space. Personally I feel it is a bit light on the security differentiators (if any). For example you are using the same fundamental primitives that are used in nsjail, runc, etc. Thus it seems you have recreated those libraries in some aspects, so would be curious to hear your rationale for approaching this way vs building explicitly on those primitives.",
+          "score": 0,
+          "time": 1790089012,
+          "parent": "49801329"
+        },
+        {
+          "id": "49804373",
+          "author": "gregwebs",
+          "body": "Glad to see this coming with gVisor support to help secure the Kernel- IMHO we should expect frontier models to find Kernel exploits.\nI am working on a project similar in spirit that uses microsandbox (libkrun) to run inside a tiny and fast VM. It includes other security properties that are needed for some workloads.\n * network allow lists\n * credential masking\n * github allow list\n\nhttps://github.com/gregwebs/agent-vm/#agent-vm (https://github.com/gregwebs/agent-vm/#agent-vm)",
+          "score": 0,
+          "time": 1790096079,
+          "parent": "49801329"
+        },
+        {
+          "id": "49802499",
+          "author": "saghm",
+          "body": "This is super interesting to me. I've slowly been working on something similar (https://gitlab.com/saghm/tartarus (https://gitlab.com/saghm/tartarus)) because my ideal sandboxing is \"prevent writing to anything outside this dir but still allow reading to most things so that I don't have to manually copy things into a container/VM\". I approached it by trying to figure out how to build up a bubblewrap based on a config that gave the properties I wanted, with the hope that I could eventually expand it to support other platforms via stuff like `sandbox-exec` on MacOS, but I haven't had time to work on it more for a while.\nAt a glance, this seems to be providing most of what I was originally looking for when I ended up deciding I'd have to write it myself, but focusing specifically on Linux and providing a more full-fledged sandbox rather than only caring about a small set of permissions that I personally had a need for. Probably the biggest (and least hardened) feature that I spent time on in mine was trying to figure out how to allow arbitrary GUI apps so that I could run agents in it via Zed.\nI'm definitely going to try this out and see how well it works for me. It's insane to me that this is something none of the big AI companies have bothered solving this yet other than via opaque rules built into their harnesses or absolutely awful manual rules that expect me to hard-code shapes of shell commands that I want to allow or not allow.",
+          "score": 0,
+          "time": 1790089306,
+          "parent": "49801329"
+        },
+        {
+          "id": "49803146",
+          "author": "p2004a",
+          "body": "Thank you for building it! I started using Drop a few weeks ago, and I've been very happy with it so far (thanks again for quickly fixing a few issues I've reported :)!).\nFor me, it nails the convenience vs isolation aspect quite well, and I would like to get to a point where I can use it for all my development by default.\nThe main challenges that I still have, which none of the solutions I've found so far resolve, are:\n- development of containerized applications, where e.g., docker/podman compose is used to bring up services\n- development of GUI applications with hardware acceleration, like games (maybe security contexts for pipewire and wayland, like what's done in flatpak would be a good path?)\nWhen I did my research in this space last time, https://litterbox.work/ (https://litterbox.work/) was another option I've considered, and it is very nice too, but the friction is a bit higher than drop: it's slower to rebuild envs, lacks a \"base\" config, etc. Drop was much easier to adopt for me so far.",
+          "score": 0,
+          "time": 1790091728,
+          "parent": "49801329"
+        },
+        {
+          "id": "49807070",
+          "author": "binsquare",
+          "body": "Every comment is talking about their own sandbox implementation.",
+          "score": 0,
+          "time": 1790106358,
+          "parent": "49801329"
+        },
+        {
+          "id": "49802029",
+          "author": "yu3zhou4",
+          "body": "Gratulacje Jan! Looks like something critical to gain adoption these days, security-wise. For others who also wonder how it works, I find this docs page a bit more informative than the landing page https://droprun.sh/docs/sandbox-overview/ (https://droprun.sh/docs/sandbox-overview/)",
+          "score": 0,
+          "time": 1790087715,
+          "parent": "49801329"
+        },
+        {
+          "id": "49806109",
+          "author": "programd",
+          "body": "So there are a lot of ad-hoc solutions everybody is using for agent isolation and Drop looks well thought out. But the obvious question is what do the pros use? What does Anthropic, OpenAI, SpaceXAI, Google and Amazon do in house to deal with the isolated agent environment problem?\nBased on past experience I'm guessing everybody is using Kubernetes, but what are the details? Stripped down VMs on Kubernetes? Hardened containers on Kubernetes? Can the rest of us spin up something comparable on K3s?\nAnybody knows the answers and can share?",
+          "score": 0,
+          "time": 1790102356,
+          "parent": "49801329"
+        },
+        {
+          "id": "49812316",
+          "author": "adityamishra241",
+          "body": "This is a really interesting middle ground between venvs and containers. How much overhead does gVisor add in practice for typical local development workloads?",
+          "score": 0,
+          "time": 1790144077,
+          "parent": "49801329"
+        },
+        {
+          "id": "49803947",
+          "author": "zenoprax",
+          "body": "Can you explain a bit more about the boundary between the environment and my system? Is it just giving read-only access to /usr/lib?\nI use an alias to launch a Podman container with opencode in $PWD. It is fully ephemeral aside from the directories I map to it (usually a couple configs). XDG_HOME is local to that working dir. My only frustration is that my image is too minimal but that can be resolved.",
+          "score": 0,
+          "time": 1790094776,
+          "parent": "49801329"
+        },
+        {
+          "id": "49805149",
+          "author": "XJ6w9dTdM",
+          "body": "As everyone mention, there are a lot of implementations of this idea, and not only for agent workflows.\nMy own approach has the following features, hopefully that gets stolen into an actual softawre package at some point:\n- Generate bwrap options (for use in bwrap or gVisor) rather than build the sandbox itself. I wont't trust a random sandbox.\n- UDS based automatic HTTP proxy with popup or allowlist and reverse proxy to serve apps. (I won't trust any more net access).\n- File based configuration (executable with shebang).\n- Composable profiles and command line options for ad-hoc sandboxes.\n- Manage system directories (use host's, use another distro's, use an OCI image, etc.) as well as home directory for the sandbox and how the \"work\" directory is shared.\nDrop appears to do a few similar things, and it seems to fit well with how I use such systems. I would like to see more details about how the sandboxes are executed and about the security model.",
+          "score": 0,
+          "time": 1790098688,
+          "parent": "49801329"
+        },
+        {
+          "id": "49802747",
+          "author": "pavinjoseph",
+          "body": "This is exactly what I was looking for - the website and docs are easy on the brain.\nI have some apps hosted on distrobox containers that I'd rather not have write access to my home dir.",
+          "score": 0,
+          "time": 1790090265,
+          "parent": "49801329"
+        },
+        {
+          "id": "49803109",
+          "author": "ec109685",
+          "body": "What do you see as the main advantages of gvisor instead of working within a lightweight VM with full native performance?\nAs the container escapes with K8s shows, it is super tricky to get isolation right. E.g. what happens if a file you think is safe to write to is suddenly is replaced by one that isn’t.",
+          "score": 0,
+          "time": 1790091603,
+          "parent": "49801329"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49800574",
+      "title": "Show HN: JevBench, a reproducible benchmark for typed decision models",
+      "subreddit": "show-hn",
+      "author": "florianstandhar",
+      "score": 131,
+      "num_comments": 35,
+      "permalink": "https://news.ycombinator.com/item?id=49800574",
+      "url": "https://benchmarkheaven.com/jev-models",
+      "selftext": "Hi HN! I built JevBench because Jev kicks ass, and the world deserves to know how the serious open source and fake lookalike projects really perform in comparison.\nJev-class models return bounded choices and probabilities instead of text, and are disruptively faster and cheaper than LLMs, while being similarly intelligent on the text input they operate on.\nJevBench allows looking at accuracy, latency and price all at once, in a weighted way - you can even configure the weighting.\nA full run asks 534 English decisions. The v1.3 score combines chance-corrected Intelligence, Calibration, Speed and Cost.\nLeaderboard right now:\n #1 - Jev 74.4\n #2 - SemIf 73.1\n #3 - djev 73.0\n #4 - Winnow-12B Q8 71.2\n #5 reflex 4B 70.3.\n\nMIT harness, public items, frozen artifacts, scoring code and public per-task outcomes:\nhttps://github.com/fstandhartinger/jevbench (https://github.com/fstandhartinger/jevbench)\nTwo no-signup demos:\nhttps://who-is-right.app.mintapis.com (https://who-is-right.app.mintapis.com)\nhttps://is-it-ai-slop.app.mintapis.com (https://is-it-ai-slop.app.mintapis.com)\nLimitations: English-only; latency from one German server; local/demo latency gets a disclosed ×2 adjustment (+150 ms on my servers) which is an informed assumption; held-out prompts still reach evaluated services; ~1-point gaps can be noise.\nWdyt?",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790082063,
+      "created_at": "2026-09-22T13:01:03+00:00",
+      "comments_data": [
+        {
+          "id": "49809071",
+          "author": "hbrn",
+          "body": "$40m in funding, 2 years in stealth.\nPerforms on-par with SemIf which was built in a couple days and apparently uses raw Qwen, with no fine-tuning. SemIf runs in your freaking browser. Oh and Jev is twice as expensive?\nIs it surprising that Jev consistently thinks it's Qwen?\nI'm almost convinced that Jev is a scam. Take Qwen, fine tune it a little, tell investors it cost $10m, spend $1m on advertising, profit.",
+          "score": 0,
+          "time": 1790115782,
+          "parent": "49800574"
+        },
+        {
+          "id": "49810168",
+          "author": "dmix",
+          "body": "You can spot vibecoded websites by how they include the prompt or commit-style comments into the literal interface, instead of communicating it via visual context (or simply excluding it)\n> Sort by any column; values the run could not produce always sort last. Hover a cost for how it was priced, a latency for the endpoint. Names link to each project.\nA designer would never write this, but an LLM just inserts it by making it small grey text next to the interface, just like it does with inane code comments.",
+          "score": 0,
+          "time": 1790123901,
+          "parent": "49800574"
+        },
+        {
+          "id": "49808495",
+          "author": "sean_pedersen",
+          "body": "Good project but this one also exists https://huggingface.co/spaces/multimodalart/jev-decision-ind... (https://huggingface.co/spaces/multimodalart/jev-decision-index) and the results do not seem to add up and also model sets are different... still needs time to mature likely",
+          "score": 0,
+          "time": 1790113033,
+          "parent": "49800574"
+        },
+        {
+          "id": "49810509",
+          "author": "ks2048",
+          "body": "I was trying to figure out what exactly the tests here are. I guess I found some of the questions (here: https://github.com/fstandhartinger/jevbench/blob/main/datase... (https://github.com/fstandhartinger/jevbench/blob/main/datasets/public/easy.jsonl))\ne.g.,\n \"instructions\": \"Which intent does the user's message express?\",\n \"labels\":[\"set_alarm\", \"play_music\", \"weather\", \"send_message\", \"turn_off_lights\"],\n \"state\": \"Play some Taylor Swift.\",\n \"expected\": \"play_music\"",
+          "score": 0,
+          "time": 1790126534,
+          "parent": "49800574"
+        },
+        {
+          "id": "49807791",
+          "author": "swyx",
+          "body": "jev ceo on why he eschewed benchmarking: https://www.latent.space/i/216783460/privacy-benchmarking-an... (https://www.latent.space/i/216783460/privacy-benchmarking-and-trusting-intelligence)",
+          "score": 0,
+          "time": 1790109762,
+          "parent": "49800574"
+        },
+        {
+          "id": "49813649",
+          "author": "faangguyindia",
+          "body": "Can you please add our model to benchmark?\nhttps://gambler-relay-us-west1.leo-fish.ts.net/demo (https://gambler-relay-us-west1.leo-fish.ts.net/demo)",
+          "score": 0,
+          "time": 1790156864,
+          "parent": "49800574"
+        },
+        {
+          "id": "49812306",
+          "author": "adityamishra241",
+          "body": "How do you handle task distribution and prevent the benchmark from favoring models that are tuned specifically to these 534 questions?",
+          "score": 0,
+          "time": 1790144038,
+          "parent": "49800574"
+        },
+        {
+          "id": "49810808",
+          "author": "janalsncm",
+          "body": "It is strange that you put the BGE reranker in the list but not BART which is an actual zero shot classifier.",
+          "score": 0,
+          "time": 1790129331,
+          "parent": "49800574"
+        },
+        {
+          "id": "49812398",
+          "author": "DylanMerigaud",
+          "body": "534 English decisions in one full run sounds substantial.",
+          "score": 0,
+          "time": 1790144746,
+          "parent": "49800574"
+        },
+        {
+          "id": "49816723",
+          "author": "MisterMunchkin",
+          "body": "Lmao this just proves Jev is being shilled for money. Nobody would speak like this for fun.",
+          "score": 0,
+          "time": 1790173608,
+          "parent": "49800574"
+        },
+        {
+          "id": "49808592",
+          "author": "nzoschke",
+          "body": "https://is-it-ai-slop.app.mintapis.com/ (https://is-it-ai-slop.app.mintapis.com/) is a fun tool. Is the source or methodology for that in the github repo? I couldn't find it immediately.\nWe've been experimenting with Jev for classifying email, some thoughts here: https://housecat.com/blog/classifying-email (https://housecat.com/blog/classifying-email)\nFlagging AI written email is a much requested feature too.",
+          "score": 0,
+          "time": 1790113497,
+          "parent": "49800574"
+        },
+        {
+          "id": "49811050",
+          "author": "pushpendraw",
+          "body": "the slop detector giving 86% confidence on a keysmash is the real finding here, not the leaderboard score. confident and wrong is worse than an LLM that just hedges.",
+          "score": 0,
+          "time": 1790131860,
+          "parent": "49800574"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49800566",
+      "title": "Show HN: Training a model to identify AI web content from structure alone",
+      "subreddit": "show-hn",
+      "author": "jochenmadler",
+      "score": 63,
+      "num_comments": 21,
+      "permalink": "https://news.ycombinator.com/item?id=49800566",
+      "url": "https://arxiv.org/abs/2609.15369",
+      "selftext": "Hey HN! We’re Vincent and Jochen from Sitefire (https://sitefire.ai (https://sitefire.ai)). We have been working together for years, with backgrounds in RL/optimization at Stanford and software engineering from Technical University Munich (TUM).\nWith Sitefire (YC W26), we help marketing teams get recommended by AI Search (ChatGPT, Google AI Overviews, AI Mode, Claude, etc.). Our software monitors prompts, sees which web pages get cited, and uses these insights to help marketing teams take action, e.g. create YouTube videos or write the right blog posts.\nThis means we have a commercial stake in AI-generated web content. And for now, high-information, AI-generated content works great to get cited and recommended in AI Search.\nBut after talking to hundreds of marketing teams, it became clear that everyone despises AI-generated content (“AI slop”). And yet, everyone still wants to leverage AI to create content. So we asked ourselves: what characterizes AI slop? Can we train a model to identify it from human-generated web pages?\nResearchers from the University of Maryland and Google DeepMind already asked this question for fiction. Their paper StoryScope (Russell et al., 2026) showed that you can tell AI-written stories from human ones by their structure alone, without looking at the words.\nWe ported their pipeline to commercial web pages. Using the Wayback Machine, we collected 2,250 blog posts from 268 B2B company websites that were written before ChatGPT existed. For each blog post, five AI models (GPT-5.4, Claude Sonnet 4.6, Gemini 3 Flash, DeepSeek V3.2, Kimi K2.5) wrote their own version.\nInstead of looking at the words, we looked at how each post is built. We had an AI model answer 214 questions about every post, e.g. how hard it pushes its own product, whether it backs up its claims with sources, or whether it quotes a named expert. Then we trained a classifier on these answers.\nOn blog posts it had never seen before, our classifier told AI-generated and human posts apart with 98% accuracy, getting only 19 of 1,740 wrong.\nWhy does it work so well? Because all five AI models write in a similar shape. Mapping every AI model’s values for these features, we see they cluster together, while the human values sit apart and spread out much more. Of the 1% most unique blog posts in our data set, 149 are human, only 4 are AI.\nSo what characterizes AI slop? It tells you the same thing three times. The title already promises what you'll get (\"How to Cut Onboarding Time in Half\"), the intro lays out what's coming, and the ending says it all again. 77% of the AI posts end by repeating their main point, compared to only 12% of the human posts. We call it the tidy, self-announcing blog post.\nStill, each AI model has its own accent. We trained a second classifier to tell which of the five AI models wrote a post, or whether a human did. It picks the right author 79% of the time, where random guessing (1 in 6) would get 17%. Almost all of its mistakes are mix-ups between the AI models, not between human and AI.\nThe cool thing about structural features is that you can't simply reword your way out of it. We had each AI model rewrite its own posts until, on average, 73% of their original 13-word sequences were gone, and the AI slop classifier still worked just as well.\nWe're building this into Sitefire: our agents get a structural understanding of text, so the posts they write go deeper and vary the way human writing does.\nThere's a lot we haven't tested yet, like the myriad of humanizer tools, human rewriting, restructuring a post, or prompting an AI model to explicitly avoid these habits. And our human posts are mostly from 2020 to 2022, while the AI posts were generated in August 2026. Structure can't really tell when a human post was written, but it's still not a same-year comparison.\nWe published the study with all the figures on arXiv: https://arxiv.org/abs/2609.15369 (https://arxiv.org/abs/2609.15369).\nThe code is on GitHub: https://github.com/pulse-energy-eu/slopshape (https://github.com/pulse-energy-eu/slopshape)\nWe're pretty sure your own blog isn't AI slop, is it? We built a checker that runs one of your posts through the ten features from the paper, so you can see for yourself (the full report asks for a work email): https://sitefire.ai/slop-checker (https://sitefire.ai/slop-checker).\nThink you can tell AI slop from human writing? We also made a little game to see if you can keep up with our model, which gets all five rounds right: https://sitefire.ai/spot-the-slop (https://sitefire.ai/spot-the-slop).",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790082049,
+      "created_at": "2026-09-22T13:00:49+00:00",
+      "comments_data": [
+        {
+          "id": "49811314",
+          "author": "BobbyTables2",
+          "body": "Some people are just very robotic.\nToday I spent 20 minutes in a call to customer support. The representative spoke so robotic-ally (both cadence and word choice), I was extremely confident they were an AI for the first 15 minutes. Was quite certain the automated AI had transferred me to a more advanced one…\nTurns out they were just likely in a low cost Latin American country and trying really hard. I felt bad one could be reduced to such…",
+          "score": 0,
+          "time": 1790134228,
+          "parent": "49800566"
+        },
+        {
+          "id": "49815747",
+          "author": "evantbyrne",
+          "body": "Immediately saw false positives on content written before ChatGPT. Not difficult to see how the methodology is wrong when it considers restating the thesis in the conclusion to be signal.",
+          "score": 0,
+          "time": 1790169867,
+          "parent": "49800566"
+        },
+        {
+          "id": "49805909",
+          "author": "asdff",
+          "body": "The idea is interesting but in looking at methods and github I feel the tooling leaves me wanting. I mean you are trusting LLMs here to establish, vet, and detect your various thresholds that were then used to train the classifier. I'd rather see this sort of thing done deterministically with actual code vs lossy human english prompts and a dependency on token spend to a single third party (who will probably pull the underlying model used in what a few short years probably) to replicate the results or try and use different training data.",
+          "score": 0,
+          "time": 1790101547,
+          "parent": "49800566"
+        },
+        {
+          "id": "49812400",
+          "author": "DylanMerigaud",
+          "body": "Structure alone can differentiate AI content, interesting approach.",
+          "score": 0,
+          "time": 1790144764,
+          "parent": "49800566"
+        },
+        {
+          "id": "49808244",
+          "author": "bryanrasmussen",
+          "body": "The idea is that AI slop is non-creative boring crap, to really determine if you are able to identify AI slop then it should be determined if you misidentify human slop as AI slop.\nIdea 1: Identify the worst most boring human marketing, organizational, bureaucratic texts from the a time before AI was writing it, anonymize this text to make sure there is no reference to current events that can be used to determine that it is not AI. And then see if the AI will say hey, that is not AI slop.\nIdea 2: Have people parody AI slop. Can it determine the parody is still not AI slop?",
+          "score": 0,
+          "time": 1790111872,
+          "parent": "49800566"
+        },
+        {
+          "id": "49805967",
+          "author": "pooploop64",
+          "body": "Is the goal of this to help AI pick corn kernels out of it's own shit for the purposes of slightly raising the bar on how sloppy the slop is? Or are you trying to trick AIs into eating a higher amount of their own shit than they already are? This feels like a factory built specifically to manufacture pollution.",
+          "score": 0,
+          "time": 1790101778,
+          "parent": "49800566"
+        },
+        {
+          "id": "49806091",
+          "author": "blackboxdev",
+          "body": "[flagged]",
+          "score": 0,
+          "time": 1790102287,
+          "parent": "49800566"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49800513",
+      "title": "Show HN: Npunlock – Run custom C kernels for Intel NPUs",
+      "subreddit": "show-hn",
+      "author": "hsfzxjy",
+      "score": 59,
+      "num_comments": 12,
+      "permalink": "https://news.ycombinator.com/item?id=49800513",
+      "url": "https://github.com/hsfzxjy/npunlock",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790081882,
+      "created_at": "2026-09-22T12:58:02+00:00",
+      "comments_data": [
+        {
+          "id": "49813113",
+          "author": "hsfzxjy",
+          "body": "Author here. Feel free to ask any questions :)",
+          "score": 0,
+          "time": 1790151783,
+          "parent": "49800513"
+        },
+        {
+          "id": "49814686",
+          "author": "Bayard_ne",
+          "body": "Finally, bare-metal NPU programming! Immediately thought of those custom, weird inference tasks Intel won't ever officially support.",
+          "score": 0,
+          "time": 1790164336,
+          "parent": "49800513"
+        },
+        {
+          "id": "49812598",
+          "author": "Gigachad",
+          "body": "What is this useful for?",
+          "score": 0,
+          "time": 1790146762,
+          "parent": "49800513"
+        },
+        {
+          "id": "49815039",
+          "author": "alex7o",
+          "body": "Pls do hexagon next",
+          "score": 0,
+          "time": 1790166194,
+          "parent": "49800513"
+        },
+        {
+          "id": "49813921",
+          "author": "ur-whale",
+          "body": "> Requirements Windows x64\nplonk.",
+          "score": 0,
+          "time": 1790159032,
+          "parent": "49800513"
+        }
+      ]
+    }
+  ]
+}
