@@ -293,6 +293,7 @@ Keep every section non-empty, but include only evidence-backed rows. If a catego
 - Use the exact H1 and section headings.
 - Use pipe-delimited Markdown tables where shown.
 - Use only source-derived public HTTPS destinations.
+- In `Visual proof` cells, format every media URL as a descriptive Markdown link. Never wrap a media URL in backticks or leave it as bare text.
 - Use `Idea`, `Prototype`, `Launched`, `Usage`, `Revenue`, `Abandoned`, or `Unknown` only when supported.
 - Use `Matched`, `Partial`, `Contradictory`, or `Unconnected` only for cross-stream relationships.
 - Do not use decorative emoji, badges, trend arrows, frontmatter, footnote-only citations, or local/relative links.

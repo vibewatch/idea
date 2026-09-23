@@ -89,11 +89,13 @@ function imageIcon() {
   };
 }
 
-function imagePreview(link, ctx, locale) {
-  const source = directImageUrl(link.properties?.href);
+function imagePreview(node, ctx, locale) {
+  const candidate =
+    node.tagName === 'a' ? node.properties?.href : ctx.textContent(node).trim();
+  const source = directImageUrl(candidate);
   if (!source) return undefined;
 
-  const originalLabel = ctx.textContent(link).replace(/\s+/g, ' ').trim();
+  const originalLabel = ctx.textContent(node).replace(/\s+/g, ' ').trim();
   const label = locale === 'zh' ? '查看图片' : 'Preview image';
   const alt = originalLabel && originalLabel !== source ? originalLabel : label;
 
@@ -159,11 +161,24 @@ function tableCell(node, ctx) {
   return undefined;
 }
 
+function hasAncestor(node, ctx, tagName) {
+  let parent = ctx.parent(node);
+  while (parent?.type === 'element') {
+    if (parent.tagName === tagName) return true;
+    if (parent.tagName === 'td') return false;
+    parent = ctx.parent(parent);
+  }
+  return false;
+}
+
 export const reportMediaPlugin = {
   name: 'report-media',
   element: {
-    filter: ['a'],
+    filter: ['a', 'code'],
     visit(node, ctx) {
+      if (node.tagName === 'code' && hasAncestor(node, ctx, 'a')) {
+        return undefined;
+      }
       const cell = tableCell(node, ctx);
       const label = cell?.properties?.['data-label'];
       if (typeof label !== 'string' || !VISUAL_COLUMN_RE.test(label)) {

@@ -1106,9 +1106,38 @@ Three current streams are represented; the evidence is limited to one account pe
         )
 
         assert report.read_text(encoding="utf-8") == (
-            "| Pricing tool — Not provided | `https://i.redd.it/example.png` |\n"
+            "| Pricing tool — Not provided | [View media](https://i.redd.it/example.png) |\n"
         )
-        assert messages == ["converted non-URL Markdown destination to plain text: Not provided"]
+        assert messages == [
+            (
+                "converted inline-code media URL to Markdown link: "
+                "https://i.redd.it/example.png"
+            ),
+            "converted non-URL Markdown destination to plain text: Not provided",
+        ]
+
+    def test_rejects_media_urls_formatted_as_inline_code(self, tmp_path: Path) -> None:
+        report = tmp_path / "report.md"
+        image_url = "https://i.redd.it/example.png"
+        content = valid_report(image_url=image_url).replace(
+            f"[Image]({image_url})",
+            f"`{image_url}`",
+            1,
+        )
+        report.write_text(content, encoding="utf-8")
+
+        errors = validate_report(
+            report,
+            expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+            allowed_media_urls={image_url},
+        )
+
+        assert errors == [
+            (
+                "media URLs must be Markdown links rather than inline code: "
+                "https://i.redd.it/example.png"
+            )
+        ]
 
     def test_normalizes_reddit_citation_engagement(self, tmp_path: Path) -> None:
         report = tmp_path / "report.md"

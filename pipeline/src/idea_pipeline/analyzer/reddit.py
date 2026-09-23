@@ -175,6 +175,7 @@ _OUTCOME_SIGNAL_RE = re.compile(
     re.IGNORECASE,
 )
 _MARKDOWN_TARGET_RE = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
+_INLINE_CODE_RE = re.compile(r"(?<!`)`([^`\n]+)`(?!`)")
 _REDDIT_MARKDOWN_LINK_RE = re.compile(
     r"(\[[^\]]+\]\(https://(?:www\.)?reddit\.com/r/[^/\s)]+/"
     r"comments/([a-z0-9]+)/[^)]*\))",
@@ -1754,6 +1755,7 @@ Operational constraints:
 - Cite only Reddit posts present in the listed snapshots, plus public external URLs found in their content.
 - Write a complete Markdown report with the value-focused required sections 1 through 5 to the exact output candidate path.
 - The Visual proof cells in Section 2 must cite actual media URLs and report only information learned from visual inspection. Use `Not inspected` or `None` when no useful visual proof exists.
+- Format every media URL in a Visual proof cell as a descriptive Markdown link. Never wrap a media URL in backticks or leave it as bare text.
 - Do not use P/R/G/C, opportunity scores, rankings, or confidence arithmetic. Reddit engagement is attention, not demand.
 - Start the file with the exact required title and put no preamble before it.
 - Do not mention local files, preparation artifacts, missing inputs, or generation steps in the report.
@@ -1931,7 +1933,7 @@ def normalize_report_links(
     allowed_external_urls: Sequence[str],
     allowed_media_urls: Sequence[str] = (),
 ) -> list[str]:
-    """Make ungrounded external destinations non-clickable without dropping report text."""
+    """Normalize grounded media links and remove ungrounded external destinations."""
     if not path.is_file():
         return []
     try:
@@ -1944,6 +1946,16 @@ def normalize_report_links(
         canonical for value in allowed_media_urls if (canonical := _canonical_url(value))
     }
     messages: list[str] = []
+
+    def replace_inline_media(match: re.Match[str]) -> str:
+        value = match.group(1).strip()
+        canonical = _canonical_url(value)
+        if not canonical or canonical not in grounded_media:
+            return match.group(0)
+        messages.append(f"converted inline-code media URL to Markdown link: {canonical}")
+        return f"[View media]({value})"
+
+    normalized = _INLINE_CODE_RE.sub(replace_inline_media, content)
 
     def ungrounded_external(value: str) -> str:
         canonical = _canonical_url(value)
@@ -1973,7 +1985,7 @@ def normalize_report_links(
         messages.append(f"removed ungrounded external link from report: {canonical}")
         return label or _url_display_text(canonical)
 
-    normalized = _MARKDOWN_TARGET_RE.sub(replace_markdown, content)
+    normalized = _MARKDOWN_TARGET_RE.sub(replace_markdown, normalized)
 
     def replace_bare_url(match: re.Match[str]) -> str:
         raw = match.group(0)
@@ -2699,6 +2711,18 @@ def validate_report(
     allowed_media_canonical = {
         canonical for value in (allowed_media_urls or set()) if (canonical := _canonical_url(value))
     }
+    inline_code_media = sorted(
+        {
+            canonical
+            for match in _INLINE_CODE_RE.finditer(content)
+            if (canonical := _canonical_url(match.group(1))) in allowed_media_canonical
+        }
+    )
+    if inline_code_media:
+        errors.append(
+            "media URLs must be Markdown links rather than inline code: "
+            + ", ".join(inline_code_media)
+        )
     if allowed_media_urls is not None:
         unknown_reddit_media = sorted(
             url
