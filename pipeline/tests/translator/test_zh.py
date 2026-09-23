@@ -790,17 +790,22 @@ class TestPromptAndCommand:
     def test_normalizes_structural_stage_and_empty_visual_values(self) -> None:
         source = """**Stage:** `Usage`
 
+Move from `Prototype` to a stronger stage.
+
 **Visual proof:** `None`
 """
         candidate = """**阶段：** `Usage`
+
+从 `Prototype` 提升到更高阶段。
 
 **视觉证据：** `None`
 """
 
         normalized, count = normalize_structural_literals(source, candidate)
 
-        assert count == 2
+        assert count == 3
         assert "**阶段：** `已有实际使用`" in normalized
+        assert "从 `原型` 提升到更高阶段。" in normalized
         assert "**视觉证据：** 无" in normalized
 
 
@@ -812,13 +817,16 @@ class TestTranslationBoundary:
             translation_path=tmp_path / "zh" / "2026-08-05.md",
             reason="missing overlay",
         )
+        sandbox = tmp_path / "artifacts" / "2026-08-05"
+        sandbox.mkdir(parents=True)
+        for name in ("repair-metadata.json", "repair.stdout.log", "repair.stderr.log"):
+            (sandbox / name).write_text("stale", encoding="utf-8")
 
         with patch("idea_pipeline.translator.zh.subprocess.run") as mock_run:
             result = translate_job(job, artifacts_dir=tmp_path / "artifacts", prepare_only=True)
 
         mock_run.assert_not_called()
         assert result.status == "prepared"
-        sandbox = tmp_path / "artifacts" / "2026-08-05"
         assert json.loads((sandbox / "structure.json").read_text())["tables"] == [
             {"columns": 3, "rows": 1}
         ]
@@ -832,6 +840,9 @@ class TestTranslationBoundary:
             "至少",
         ]
         assert (sandbox / "prompt.txt").is_file()
+        assert not (sandbox / "repair-metadata.json").exists()
+        assert not (sandbox / "repair.stdout.log").exists()
+        assert not (sandbox / "repair.stderr.log").exists()
         assert not job.translation_path.exists()
 
     def test_publishes_normalized_overlay_with_source_digest(self, tmp_path: Path) -> None:

@@ -767,9 +767,15 @@ def normalize_structural_literals(source_text: str, candidate: str) -> tuple[str
     """Translate report-schema values that are prose labels rather than technical code."""
     restored = 0
     for source_value, translated_value in _STRUCTURAL_STAGE_TRANSLATIONS.items():
-        source_count = source_text.count(f"**Stage:** `{source_value}`")
+        source_count = source_text.count(f"`{source_value}`")
         if not source_count:
             continue
+        candidate, count = re.subn(
+            rf"`{re.escape(source_value)}`",
+            f"`{translated_value}`",
+            candidate,
+        )
+        restored += count
         pattern = re.compile(
             rf"(\*\*阶段：\*\*\s*)`?{re.escape(source_value)}`?",
         )
@@ -921,15 +927,10 @@ def validate_translation(
                     f"translation is missing the standard case label: {translated_label}"
                 )
         for source_value, translated_value in _STRUCTURAL_STAGE_TRANSLATIONS.items():
-            source_count = source_text.count(f"**Stage:** `{source_value}`")
+            source_count = source_text.count(f"`{source_value}`")
             if not source_count:
                 continue
-            translated_count = len(
-                re.findall(
-                    rf"\*\*阶段：\*\*\s*`?{re.escape(translated_value)}`?",
-                    body,
-                )
-            )
+            translated_count = body.count(f"`{translated_value}`")
             if translated_count < source_count:
                 errors.append(
                     "translation is missing the standard stage value: "
@@ -1560,6 +1561,9 @@ def translate_job(
         prepared.directory / "copilot.stderr.log",
         usage_path,
         prepared.directory / "repair-usage.json",
+        prepared.directory / "repair-metadata.json",
+        prepared.directory / "repair.stdout.log",
+        prepared.directory / "repair.stderr.log",
         prepared.directory / "editor-usage.json",
         prepared.directory / "editor-metadata.json",
         prepared.directory / "editor.stdout.log",

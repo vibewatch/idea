@@ -160,11 +160,14 @@ jobs:
             pipeline/artifacts/translations/zh/**/validation-errors.json
             pipeline/artifacts/translations/zh/**/validation-warnings.json
             pipeline/artifacts/translations/zh/**/generation-metadata.json
+            pipeline/artifacts/translations/zh/**/repair-metadata.json
             pipeline/artifacts/translations/zh/**/editor-metadata.json
             pipeline/artifacts/translations/zh/**/editor-validation-errors.json
             pipeline/artifacts/translations/zh/**/translation-draft.md
             pipeline/artifacts/translations/zh/**/copilot.stdout.log
             pipeline/artifacts/translations/zh/**/copilot.stderr.log
+            pipeline/artifacts/translations/zh/**/repair.stdout.log
+            pipeline/artifacts/translations/zh/**/repair.stderr.log
             pipeline/artifacts/translations/zh/**/editor.stdout.log
             pipeline/artifacts/translations/zh/**/editor.stderr.log
           if-no-files-found: ignore
@@ -177,6 +180,7 @@ jobs:
           name: reddit-translation-telemetry-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             pipeline/artifacts/translations/zh/**/generation-metadata.json
+            pipeline/artifacts/translations/zh/**/repair-metadata.json
             pipeline/artifacts/translations/zh/**/editor-metadata.json
             pipeline/artifacts/translations/zh/**/validation-warnings.json
           if-no-files-found: ignore
