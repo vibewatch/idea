@@ -22,11 +22,14 @@ from idea_pipeline.analyzer.reddit import (
     REPORT_ARTIFACT_NAME,
     REPORT_TOPICS,
     AnalysisJob,
+    PreparedMediaAssets,
+    PreparedReportArtifacts,
     ReportTarget,
     SnapshotTarget,
     _attached_media_repair_entries,
     _canonical_url,
     _download_image_asset,
+    _merge_media_repair_batch,
     analyze_job,
     build_copilot_command,
     build_parser,
@@ -40,9 +43,11 @@ from idea_pipeline.analyzer.reddit import (
     normalize_media_review,
     normalize_reddit_citations,
     normalize_report_links,
+    normalize_report_structure,
     prepare_report,
     prepare_snapshot,
     rank_score,
+    repair_attached_media_review,
     resolve_jobs,
     validate_media_review,
     validate_report,
@@ -1163,6 +1168,83 @@ Three current streams are represented; the evidence is limited to one account pe
             "converted non-URL Markdown destination to plain text: Not provided",
         ]
 
+    def test_normalizes_report_headings_labels_and_stages(self, tmp_path: Path) -> None:
+        report = tmp_path / "report.md"
+        report.write_text(
+            "## 1. Bottom line\n\n"
+            "### Example\n\n"
+            "Primary link: Not provided\n\n"
+            "- Stage: Pricing validation.  \n\n"
+            "#### Evidence: One interview.\n",
+            encoding="utf-8",
+        )
+
+        messages = normalize_report_structure(report)
+
+        assert report.read_text(encoding="utf-8") == (
+            "## 1. Executive Brief\n\n"
+            "### Example\n\n"
+            "**Primary link:** Not provided\n\n"
+            "**Stage:** `Prototype`\n\n"
+            "**Evidence:** One interview.\n"
+        )
+        assert any("normalized report heading" in message for message in messages)
+        assert any("stage to Prototype" in message for message in messages)
+
+    def test_normalizes_report_whitespace_without_other_repairs(self, tmp_path: Path) -> None:
+        report = tmp_path / "report.md"
+        report.write_text("# Report  \n\n\n", encoding="utf-8")
+
+        messages = normalize_report_structure(report)
+
+        assert report.read_text(encoding="utf-8") == "# Report\n"
+        assert messages == ["normalized report line endings and trailing whitespace"]
+
+    def test_upgrades_schemeless_linked_image_urls(self, tmp_path: Path) -> None:
+        report = tmp_path / "report.md"
+        source = "https://i.redd.it/example.png"
+        report.write_text(
+            "**Visual proof:** "
+            "[![Visible chart](i.redd.it/example.png)](i.redd.it/example.png)\n",
+            encoding="utf-8",
+        )
+
+        messages = normalize_report_links(
+            report,
+            allowed_external_urls=(),
+            allowed_media_urls=(source,),
+            image_media_urls=(source,),
+        )
+
+        assert report.read_text(encoding="utf-8") == (
+            f"**Visual proof:** [![Visible chart]({source})]({source})\n"
+        )
+        assert any("schemeless" in message for message in messages)
+
+    def test_restores_grounded_preview_url_from_schemeless_image_alias(
+        self, tmp_path: Path
+    ) -> None:
+        report = tmp_path / "report.md"
+        source = (
+            "https://preview.redd.it/example.png"
+            "?width=1082&format=png&auto=webp&s=source"
+        )
+        report.write_text(
+            "**Visual proof:** ![Visible chart](i.redd.it/example.png)\n",
+            encoding="utf-8",
+        )
+
+        normalize_report_links(
+            report,
+            allowed_external_urls=(),
+            allowed_media_urls=(source,),
+            image_media_urls=(source,),
+        )
+
+        assert report.read_text(encoding="utf-8") == (
+            f"**Visual proof:** [![Visible chart]({source})]({source})\n"
+        )
+
     def test_embeds_and_links_visual_proof_images(self, tmp_path: Path) -> None:
         report = tmp_path / "report.md"
         image_url = "https://i.redd.it/example.png"
@@ -1477,6 +1559,124 @@ Three current streams are represented; the evidence is limited to one account pe
 
         assert [entry["post_id"] for entry in pending] == ["missing", "unavailable"]
 
+    def test_media_repair_batch_preserves_unrelated_items(self, tmp_path: Path) -> None:
+        review = tmp_path / "media-review.json"
+        retained = {
+            "post_id": "retained",
+            "media_url": "https://i.redd.it/retained.png",
+            "media_type": "image",
+            "status": "inspected",
+            "observation": "The retained image shows a complete dashboard state.",
+            "report_included": False,
+        }
+        repaired = {
+            "post_id": "repaired",
+            "media_url": "https://i.redd.it/repaired.png",
+            "media_type": "image",
+            "status": "inspected",
+            "observation": "The repaired image shows a complete workflow state.",
+            "report_included": False,
+        }
+        review.write_text(
+            json.dumps({"version": 1, "items": [repaired]}),
+            encoding="utf-8",
+        )
+
+        accepted = _merge_media_repair_batch(
+            review,
+            before_items=[retained],
+            batch=[
+                {
+                    "post_id": "repaired",
+                    "url": "https://i.redd.it/repaired.png",
+                }
+            ],
+        )
+
+        items = json.loads(review.read_text(encoding="utf-8"))["items"]
+        assert accepted == 1
+        assert [item["post_id"] for item in items] == ["retained", "repaired"]
+
+    @patch("idea_pipeline.analyzer.reddit.subprocess.run")
+    def test_media_repair_retries_items_omitted_by_a_batch(
+        self, mock_run: MagicMock, tmp_path: Path
+    ) -> None:
+        directory = tmp_path / "artifacts"
+        directory.mkdir()
+        candidate = directory / "report.md"
+        candidate.write_text("# report\n", encoding="utf-8")
+        review = directory / "media-review.json"
+        review.write_text('{"version": 1, "items": []}\n', encoding="utf-8")
+        entries = tuple(
+            {
+                "post_id": post_id,
+                "url": f"https://i.redd.it/{post_id}.png",
+                "media_type": "image",
+                "asset_status": "attached",
+                "asset_paths": [f"{post_id}.png"],
+            }
+            for post_id in ("first", "second")
+        )
+        for entry in entries:
+            (directory / entry["asset_paths"][0]).write_bytes(b"image")
+        prepared = PreparedReportArtifacts(
+            directory=directory,
+            topic_artifacts=(),
+            metadata_path=directory / "metadata.json",
+            media_manifest_path=directory / "media-manifest.json",
+            link_manifest_path=directory / "external-links.json",
+            media_assets_path=directory / "media-assets.json",
+            media_review_path=review,
+            instructions_path=directory / "instructions.md",
+            candidate_path=candidate,
+            total_posts=2,
+        )
+        media_assets = PreparedMediaAssets(
+            manifest_path=prepared.media_assets_path,
+            attachments=tuple(directory / entry["asset_paths"][0] for entry in entries),
+            entries=entries,
+        )
+        calls = 0
+
+        def repair(*_args: object, **_kwargs: object) -> subprocess.CompletedProcess[str]:
+            nonlocal calls
+            entry = entries[calls]
+            calls += 1
+            review.write_text(
+                json.dumps(
+                    {
+                        "version": 1,
+                        "items": [
+                            {
+                                "post_id": entry["post_id"],
+                                "media_url": entry["url"],
+                                "media_type": "image",
+                                "status": "inspected",
+                                "observation": (
+                                    "The image shows a complete product workflow state."
+                                ),
+                                "report_included": False,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            return subprocess.CompletedProcess([], 0, stdout="", stderr="")
+
+        mock_run.side_effect = repair
+
+        messages = repair_attached_media_review(
+            prepared,
+            media_assets,
+            model="gpt-5.4-mini",
+        )
+
+        items = json.loads(review.read_text(encoding="utf-8"))["items"]
+        assert calls == 2
+        assert [item["post_id"] for item in items] == ["first", "second"]
+        assert any("retrying 1 attachment" in message for message in messages)
+
     def test_removes_ungrounded_external_links_without_dropping_text(self, tmp_path: Path) -> None:
         report = tmp_path / "report.md"
         report.write_text(
@@ -1619,6 +1819,40 @@ class TestAnalysisBoundary:
         assert mock_run.call_args.kwargs["check"] is False
         assert "REDDIT_COOKIES" not in mock_run.call_args.kwargs["env"]
         assert mock_run.call_args.kwargs["env"]["COPILOT_GITHUB_TOKEN"] == "copilot-token"
+
+    @patch("idea_pipeline.analyzer.reddit.subprocess.run")
+    def test_structure_drift_is_normalized_before_validation(
+        self, mock_run: MagicMock, tmp_path: Path
+    ) -> None:
+        target = make_report_target(tmp_path)
+        report = tmp_path / "reports" / "2026-08-02.md"
+        job = AnalysisJob(target, report)
+        candidate = tmp_path / "artifacts" / REPORT_ARTIFACT_NAME / "2026-08-02" / "report.md"
+
+        def generate(*_args: object, **_kwargs: object) -> subprocess.CompletedProcess[str]:
+            drifted = (
+                valid_report()
+                .replace("## 1. Executive Brief", "## 1. Bottom line", 1)
+                .replace("### Key Highlights\n\n", "", 1)
+                .replace("**Stage:** `Launched`", "Stage: Signal", 1)
+                .replace("**Evidence:**", "Evidence:", 1)
+            )
+            candidate.write_text(drifted, encoding="utf-8")
+            (candidate.parent / "media-review.json").write_text(
+                '{"version": 1, "items": []}\n', encoding="utf-8"
+            )
+            return subprocess.CompletedProcess([], 0, stdout="done", stderr="")
+
+        mock_run.side_effect = generate
+
+        result = analyze_job(job, artifacts_dir=tmp_path / "artifacts")
+
+        assert result.status == "published"
+        published = report.read_text(encoding="utf-8")
+        assert "## 1. Executive Brief" in published
+        assert "### Key Highlights" in published
+        assert "**Stage:** `Unknown`" in published
+        assert "**Evidence:**" in published
 
     @patch("idea_pipeline.analyzer.reddit.subprocess.run")
     def test_valid_candidate_survives_a_copilot_cli_crash(
