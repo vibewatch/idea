@@ -24,6 +24,7 @@ from idea_pipeline.analyzer.reddit import (
     AnalysisJob,
     ReportTarget,
     SnapshotTarget,
+    _attached_media_repair_entries,
     _canonical_url,
     _download_image_asset,
     analyze_job,
@@ -261,6 +262,9 @@ class TestPathsAndHelpers:
 
         assert _canonical_url(malformed) == ""
         assert isinstance(rank_score(evidence), float)
+
+    def test_canonical_url_strips_inline_code_backtick(self) -> None:
+        assert _canonical_url("https://i.redd.it/example.png`") == "https://i.redd.it/example.png"
 
 
 class TestDiscovery:
@@ -532,8 +536,7 @@ class TestPreparation:
 
     def test_resolve_jobs_prioritizes_newest_missing_reports(self, tmp_path: Path) -> None:
         targets = [
-            make_report_target(tmp_path / f"day-{day}", date(2026, 8, day))
-            for day in (2, 3, 4)
+            make_report_target(tmp_path / f"day-{day}", date(2026, 8, day)) for day in (2, 3, 4)
         ]
 
         jobs = resolve_jobs(targets, tmp_path / "reports", limit=2)
@@ -759,9 +762,7 @@ Three current streams are represented; the evidence is limited to one account pe
         assert any("required highlight heading" in error for error in errors)
         assert any("required highlight label" in error for error in errors)
 
-    def test_rejects_incomplete_synthesis_and_extra_numbered_section(
-        self, tmp_path: Path
-    ) -> None:
+    def test_rejects_incomplete_synthesis_and_extra_numbered_section(self, tmp_path: Path) -> None:
         candidate = tmp_path / "report.md"
         content = valid_report().replace("**Missing proof:**", "**Open question:**", 1)
         content += "\n## 6. Duplicate Inventory\n\nThis section should not exist.\n"
@@ -998,6 +999,22 @@ Three current streams are represented; the evidence is limited to one account pe
         assert any("recommended schema" in warning for warning in warnings)
         assert any("Reddit media URLs absent" in error for error in errors)
 
+    def test_allows_source_manifest_external_media(self, tmp_path: Path) -> None:
+        candidate = tmp_path / "report.md"
+        candidate.write_text(
+            valid_report(image_url="https://i.imgur.com/source.png"),
+            encoding="utf-8",
+        )
+
+        errors = validate_report(
+            candidate,
+            expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+            allowed_external_urls={"https://example.com/product"},
+            allowed_media_urls={"https://i.imgur.com/source.png"},
+        )
+
+        assert errors == []
+
     def test_rejects_a_required_section_without_a_populated_table(self, tmp_path: Path) -> None:
         candidate = tmp_path / "report.md"
         candidate.write_text(
@@ -1030,9 +1047,7 @@ Three current streams are represented; the evidence is limited to one account pe
             "[build](https://www.reddit.com/r/SaaS/comments/build1/build1_title/) |"
         )
         original_row = next(
-            line
-            for line in valid_report().splitlines()
-            if line.startswith("| Review tool — ")
+            line for line in valid_report().splitlines() if line.startswith("| Review tool — ")
         )
         content = valid_report().replace(original_row, "\n".join([row] * 25))
         candidate.write_text(content, encoding="utf-8")
@@ -1061,6 +1076,39 @@ Three current streams are represented; the evidence is limited to one account pe
         )
 
         assert errors == []
+
+    def test_accepts_markdown_tables_without_trailing_pipes(self, tmp_path: Path) -> None:
+        candidate = tmp_path / "report.md"
+        content = "\n".join(
+            line[:-1] if line.startswith("|") and line.endswith("|") else line
+            for line in valid_report().splitlines()
+        )
+        candidate.write_text(content, encoding="utf-8")
+
+        errors = validate_report(
+            candidate,
+            expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+        )
+
+        assert errors == []
+
+    def test_normalizes_not_provided_markdown_destination(self, tmp_path: Path) -> None:
+        report = tmp_path / "report.md"
+        report.write_text(
+            "| [Pricing tool](Not provided) | `https://i.redd.it/example.png` |\n",
+            encoding="utf-8",
+        )
+
+        messages = normalize_report_links(
+            report,
+            allowed_external_urls=(),
+            allowed_media_urls=("https://i.redd.it/example.png",),
+        )
+
+        assert report.read_text(encoding="utf-8") == (
+            "| Pricing tool — Not provided | `https://i.redd.it/example.png` |\n"
+        )
+        assert messages == ["converted non-URL Markdown destination to plain text: Not provided"]
 
     def test_normalizes_reddit_citation_engagement(self, tmp_path: Path) -> None:
         report = tmp_path / "report.md"
@@ -1115,6 +1163,95 @@ Three current streams are represented; the evidence is limited to one account pe
         assert item["report_included"] is True
         assert len(messages) == 2
         assert validate_media_review(review, expected_entries=entries, report_path=report) == []
+
+    def test_adds_missing_non_attached_media_review(self, tmp_path: Path) -> None:
+        review = tmp_path / "media-review.json"
+        review.write_text('{"version": 1, "items": []}\n', encoding="utf-8")
+        entries = [
+            {
+                "post_id": "image",
+                "url": "https://redd.it/example.png",
+                "media_type": "image",
+                "asset_status": "failed",
+                "asset_error": "image host was not approved",
+            }
+        ]
+
+        messages = normalize_media_review(review, expected_entries=entries)
+
+        document = json.loads(review.read_text(encoding="utf-8"))
+        assert document["items"] == [
+            {
+                "post_id": "image",
+                "media_url": "https://redd.it/example.png",
+                "media_type": "image",
+                "status": "unavailable",
+                "observation": "Visual asset was not attached: image host was not approved.",
+                "report_included": False,
+            }
+        ]
+        assert messages == ["added unavailable media review for non-attached post image"]
+
+    def test_identifies_only_missing_or_invalid_attached_media_for_repair(
+        self, tmp_path: Path
+    ) -> None:
+        review = tmp_path / "media-review.json"
+        review.write_text(
+            json.dumps(
+                {
+                    "version": 1,
+                    "items": [
+                        {
+                            "post_id": "complete",
+                            "media_url": "https://i.redd.it/complete.png",
+                            "media_type": "image",
+                            "status": "inspected",
+                            "observation": "The image visibly shows a complete product interface.",
+                            "report_included": False,
+                        },
+                        {
+                            "post_id": "unavailable",
+                            "media_url": "https://i.redd.it/unavailable.png",
+                            "media_type": "image",
+                            "status": "unavailable",
+                            "observation": "The attached image was incorrectly marked unavailable.",
+                            "report_included": False,
+                        },
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+        entries = [
+            {
+                "post_id": "complete",
+                "url": "https://i.redd.it/complete.png",
+                "media_type": "image",
+                "asset_status": "attached",
+            },
+            {
+                "post_id": "missing",
+                "url": "https://i.redd.it/missing.png",
+                "media_type": "image",
+                "asset_status": "attached",
+            },
+            {
+                "post_id": "unavailable",
+                "url": "https://i.redd.it/unavailable.png",
+                "media_type": "image",
+                "asset_status": "attached",
+            },
+            {
+                "post_id": "failed",
+                "url": "https://redd.it/failed.png",
+                "media_type": "image",
+                "asset_status": "failed",
+            },
+        ]
+
+        pending = _attached_media_repair_entries(review, expected_entries=entries)
+
+        assert [entry["post_id"] for entry in pending] == ["missing", "unavailable"]
 
     def test_removes_ungrounded_external_links_without_dropping_text(self, tmp_path: Path) -> None:
         report = tmp_path / "report.md"
