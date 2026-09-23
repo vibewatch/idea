@@ -1,7 +1,11 @@
 import sitemap from '@astrojs/sitemap';
 import { satteri } from '@astrojs/markdown-satteri';
 import { defineConfig } from 'astro/config';
-import { reportMediaPlugin, reportTablesPlugin } from './src/lib/report-tables-plugin.mjs';
+import {
+  reportCasesPlugin,
+  reportMediaPlugin,
+  reportTablesPlugin,
+} from './src/lib/report-tables-plugin.mjs';
 
 const site = process.env.ASTRO_SITE ?? 'https://idea.genisisiq.com';
 const base = process.env.ASTRO_BASE;
@@ -20,7 +24,9 @@ export default defineConfig({
     defaultStrategy: 'viewport',
   },
   markdown: {
-    processor: satteri({ hastPlugins: [reportTablesPlugin, reportMediaPlugin] }),
+    processor: satteri({
+      hastPlugins: [reportTablesPlugin, reportCasesPlugin, reportMediaPlugin],
+    }),
     shikiConfig: {
       themes: {
         light: 'github-light',

@@ -75,19 +75,28 @@ EXECUTIVE_HIGHLIGHT_LABELS = (
 )
 SYNTHESIS_LABELS = ("**Evidence:**", "**Interpretation:**", "**Missing proof:**")
 DECISION_HEADINGS = ("### Practical Moves", "### Watchlist")
+EVIDENCE_CASE_LABELS = (
+    "**Primary link:**",
+    "**Stage:**",
+    "**User or problem:**",
+    "**Build, test, or event:**",
+    "**Evidence:**",
+    "**Visual proof:**",
+    "**Limitation or next proof:**",
+    "**Reddit source:**",
+)
+EVIDENCE_CASE_STAGES = (
+    "Idea",
+    "Prototype",
+    "Launched",
+    "Usage",
+    "Revenue",
+    "Abandoned",
+    "Unknown",
+)
+MAX_EVIDENCE_CASES = 24
 
 REQUIRED_TABLE_SCHEMAS: dict[str, tuple[tuple[str, ...], ...]] = {
-    REQUIRED_SECTIONS[1]: (
-        (
-            "Case and primary link",
-            "User or problem",
-            "Build, test, or event",
-            "Evidence and stage",
-            "Visual proof",
-            "Limitation or next proof",
-            "Reddit source",
-        ),
-    ),
     REQUIRED_SECTIONS[2]: (
         (
             "Problem",
@@ -110,7 +119,6 @@ REQUIRED_TABLE_SCHEMAS: dict[str, tuple[tuple[str, ...], ...]] = {
 }
 
 REQUIRED_TABLE_MAX_ROWS: dict[str, tuple[int, ...]] = {
-    REQUIRED_SECTIONS[1]: (24,),
     REQUIRED_SECTIONS[2]: (16,),
     REQUIRED_SECTIONS[4]: (10,),
 }
@@ -175,6 +183,13 @@ _OUTCOME_SIGNAL_RE = re.compile(
     re.IGNORECASE,
 )
 _MARKDOWN_TARGET_RE = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
+_MARKDOWN_IMAGE_RE = re.compile(r"!\[([^\]\n]*)\]\(([^)\n]+)\)")
+_LINKED_MARKDOWN_IMAGE_RE = re.compile(
+    r"\[!\[([^\]\n]*)\]\(([^)\n]+)\)\]\(([^)\n]+)\)"
+)
+_MARKDOWN_LINK_WITH_LABEL_RE = re.compile(
+    r"(?<!!)\[(?!\!)([^\]\n]+)\]\(([^)\n]+)\)"
+)
 _INLINE_CODE_RE = re.compile(r"(?<!`)`([^`\n]+)`(?!`)")
 _REDDIT_MARKDOWN_LINK_RE = re.compile(
     r"(\[[^\]]+\]\(https://(?:www\.)?reddit\.com/r/[^/\s)]+/"
@@ -1727,11 +1742,11 @@ Value extraction sequence:
 3. Build an idea and validation inventory from startup-ideas evidence. Separate a proposal from what was actually tested and preserve disconfirming evidence.
 4. Build a launch/outcome inventory from saas-build evidence. Preserve exact metrics and separate attention, acquisition, use, payment, and retention.
 5. Review every media item and attach useful visual proof to the matching case instead of creating a second inventory.
-6. Merge the project, validation, launch/outcome, and visual inventories into Section 2. Give each case one primary row; do not repeat the same project or experiment in multiple inventory sections.
-7. Select the strongest decision-useful rows rather than exhausting every candidate. Obey the per-section row caps in instructions.md.
+6. Merge the project, validation, launch/outcome, and visual inventories into Section 2. Give each case one `###` subsection; do not repeat the same project or experiment in multiple inventory sections.
+7. Select the strongest decision-useful cases rather than exhausting every candidate. Obey the per-section case and row caps in instructions.md.
 8. Write Section 1 as a concise bottom line plus the required highlighted findings and coverage/caveat block.
 9. Use Section 4 only for cross-case patterns, contradictions, and missing proof. Do not restate ledger rows.
-10. Write the exact populated table schemas from instructions.md; use the required short synthesis and action formats for the non-table sections.
+10. Write Section 2 as the exact labeled case-subsection schema from instructions.md. Use the exact populated table schemas only in Sections 3 and 5.
 
 Operational constraints:
 - Read all three current sources and their preparation artifacts before writing.
@@ -1754,8 +1769,9 @@ Operational constraints:
 - Never imply that separate posts describe the same users, market, or causal chain. Cross-stream links must be bounded thematic synthesis and labeled as analysis.
 - Cite only Reddit posts present in the listed snapshots, plus public external URLs found in their content.
 - Write a complete Markdown report with the value-focused required sections 1 through 5 to the exact output candidate path.
-- The Visual proof cells in Section 2 must cite actual media URLs and report only information learned from visual inspection. Use `Not inspected` or `None` when no useful visual proof exists.
-- Format every media URL in a Visual proof cell as a descriptive Markdown link. Never wrap a media URL in backticks or leave it as bare text.
+- Every Section 2 case must contain the exact eight labeled paragraphs from instructions.md: Primary link, Stage, User or problem, Build, test, or event, Evidence, Visual proof, Limitation or next proof, and Reddit source.
+- The Visual proof fields in Section 2 must cite actual media URLs and report only information learned from visual inspection. Use `Not inspected` or `None` when no useful visual proof exists.
+- Display each informative direct image as a linked Markdown image with descriptive alt text: `[![visible finding](exact-image-url)](exact-image-url)`. Format videos and galleries as descriptive Markdown links. Never wrap a media URL in backticks or leave it as bare text.
 - Do not use P/R/G/C, opportunity scores, rankings, or confidence arithmetic. Reddit engagement is attention, not demand.
 - Start the file with the exact required title and put no preamble before it.
 - Do not mention local files, preparation artifacts, missing inputs, or generation steps in the report.
@@ -1901,6 +1917,14 @@ def _content_urls(content: str) -> set[str]:
     return {canonical for value in values if (canonical := _canonical_url(value))}
 
 
+def _content_image_urls(content: str) -> set[str]:
+    return {
+        canonical
+        for match in _MARKDOWN_IMAGE_RE.finditer(content)
+        if (canonical := _canonical_url(match.group(2)))
+    }
+
+
 def _allowed_external_url_variants(values: Sequence[str]) -> set[str]:
     """Return exact source URLs plus safe HTTPS upgrades of source HTTP URLs."""
     variants: set[str] = set()
@@ -1932,6 +1956,7 @@ def normalize_report_links(
     *,
     allowed_external_urls: Sequence[str],
     allowed_media_urls: Sequence[str] = (),
+    image_media_urls: Sequence[str] = (),
 ) -> list[str]:
     """Normalize grounded media links and remove ungrounded external destinations."""
     if not path.is_file():
@@ -1944,6 +1969,9 @@ def normalize_report_links(
     grounded_external = _allowed_external_url_variants(allowed_external_urls)
     grounded_media = {
         canonical for value in allowed_media_urls if (canonical := _canonical_url(value))
+    }
+    grounded_images = {
+        canonical for value in image_media_urls if (canonical := _canonical_url(value))
     }
     messages: list[str] = []
 
@@ -1998,6 +2026,65 @@ def normalize_report_links(
         return _url_display_text(canonical) + trailing
 
     normalized = _URL_RE.sub(replace_bare_url, normalized)
+
+    def linked_image(match: re.Match[str]) -> str:
+        alt = match.group(1).strip()
+        target = _markdown_target(match.group(2))
+        canonical = _canonical_url(target)
+        if canonical not in grounded_images:
+            return match.group(0)
+        messages.append(f"made visual evidence image clickable: {canonical}")
+        return f"[![{alt}]({target})]({target})"
+
+    def normalize_linked_visual_image(match: re.Match[str]) -> str:
+        alt = match.group(1).strip() or "View media"
+        image_target = _markdown_target(match.group(2))
+        link_target = _markdown_target(match.group(3))
+        canonical = _canonical_url(image_target)
+        if canonical in grounded_images or canonical not in grounded_media:
+            return match.group(0)
+        messages.append(f"converted non-image media embed to Markdown link: {canonical}")
+        return f"[{alt}]({link_target})"
+
+    def normalize_visual_image(match: re.Match[str]) -> str:
+        alt = match.group(1).strip() or "View media"
+        target = _markdown_target(match.group(2))
+        canonical = _canonical_url(target)
+        if canonical in grounded_images or canonical not in grounded_media:
+            return match.group(0)
+        messages.append(f"converted non-image media embed to Markdown link: {canonical}")
+        return f"[{alt}]({target})"
+
+    def linked_visual_media(match: re.Match[str]) -> str:
+        label = match.group(1).strip()
+        target = _markdown_target(match.group(2))
+        canonical = _canonical_url(target)
+        if canonical not in grounded_images:
+            return match.group(0)
+        messages.append(f"embedded visual evidence image: {canonical}")
+        return f"[![{label}]({target})]({target})"
+
+    normalized_lines: list[str] = []
+    for line in normalized.splitlines(keepends=True):
+        if line.lstrip().startswith("**Visual proof:**"):
+            line = _LINKED_MARKDOWN_IMAGE_RE.sub(
+                normalize_linked_visual_image,
+                line,
+            )
+            line = re.sub(
+                r"(?<!\[)!\[([^\]\n]*)\]\(([^)\n]+)\)",
+                normalize_visual_image,
+                line,
+            )
+            line = re.sub(
+                r"(?<!\[)!\[([^\]\n]*)\]\(([^)\n]+)\)",
+                linked_image,
+                line,
+            )
+            line = _MARKDOWN_LINK_WITH_LABEL_RE.sub(linked_visual_media, line)
+        normalized_lines.append(line)
+    normalized = "".join(normalized_lines)
+
     if normalized != content:
         try:
             _atomic_write_text(path, normalized)
@@ -2533,6 +2620,21 @@ def _contains_populated_table(content: str, expected_header: tuple[str, ...]) ->
     return expected_header in _populated_table_headers(content)
 
 
+def _evidence_case_blocks(content: str) -> list[tuple[str, str]]:
+    """Return Section 2 h3 case headings and their bodies in document order."""
+    lines = content.splitlines()
+    positions = [
+        (index, line.removeprefix("### ").strip())
+        for index, line in enumerate(lines)
+        if line.startswith("### ")
+    ]
+    blocks: list[tuple[str, str]] = []
+    for position, (start, title) in enumerate(positions):
+        end = positions[position + 1][0] if position + 1 < len(positions) else len(lines)
+        blocks.append((title, "\n".join(lines[start + 1 : end]).strip()))
+    return blocks
+
+
 def _record_warning(warnings: list[str] | None, message: str) -> None:
     if warnings is not None and message not in warnings:
         warnings.append(message)
@@ -2555,6 +2657,7 @@ def validate_report(
     allowed_post_ids: set[str] | None = None,
     allowed_external_urls: set[str] | None = None,
     allowed_media_urls: set[str] | None = None,
+    allowed_image_urls: set[str] | None = None,
     required_project_urls: set[str] | None = None,
     minimum_project_links: int = 0,
     required_media_urls_by_type: dict[str, set[str]] | None = None,
@@ -2599,6 +2702,66 @@ def validate_report(
         section_contents[heading] = section_content
         if not any(line and line != "---" for line in body):
             errors.append(f"required section is empty: {heading}")
+        if heading == REQUIRED_SECTIONS[1]:
+            evidence_cases = _evidence_case_blocks(section_content)
+            if not evidence_cases:
+                errors.append("Evidence Ledger must contain at least one h3 case subsection")
+            if len(evidence_cases) > MAX_EVIDENCE_CASES:
+                errors.append(
+                    "Evidence Ledger exceeds the "
+                    f"{MAX_EVIDENCE_CASES}-case decision-useful cap "
+                    f"({len(evidence_cases)} cases)"
+                )
+            if _populated_table_headers(section_content):
+                errors.append(
+                    "Evidence Ledger must use case subsections rather than Markdown tables"
+                )
+            for case_index, (title, case_body) in enumerate(evidence_cases, start=1):
+                if not title:
+                    errors.append(f"Evidence Ledger case {case_index} has an empty heading")
+                label_positions: list[int] = []
+                for label in EVIDENCE_CASE_LABELS:
+                    matches = list(
+                        re.finditer(
+                            rf"(?m)^{re.escape(label)}(?:[ \t]+.+)?$",
+                            case_body,
+                        )
+                    )
+                    if len(matches) != 1:
+                        errors.append(
+                            f"Evidence Ledger case {case_index} must contain exactly one "
+                            f"field: {label}"
+                        )
+                        continue
+                    match = matches[0]
+                    label_positions.append(match.start())
+                    value = match.group(0).removeprefix(label).strip()
+                    if not value:
+                        errors.append(
+                            f"Evidence Ledger case {case_index} field is empty: {label}"
+                        )
+                if len(label_positions) == len(EVIDENCE_CASE_LABELS) and label_positions != sorted(
+                    label_positions
+                ):
+                    errors.append(
+                        f"Evidence Ledger case {case_index} fields must follow the required order"
+                    )
+                stage_match = re.search(r"(?m)^\*\*Stage:\*\*[ \t]+(.+)$", case_body)
+                if stage_match and not any(
+                    re.search(rf"\b{re.escape(stage)}\b", stage_match.group(1))
+                    for stage in EVIDENCE_CASE_STAGES
+                ):
+                    errors.append(
+                        f"Evidence Ledger case {case_index} uses an unsupported stage"
+                    )
+                source_match = re.search(
+                    r"(?m)^\*\*Reddit source:\*\*[ \t]+(.+)$",
+                    case_body,
+                )
+                if source_match and not _REDDIT_POST_LINK_RE.search(source_match.group(1)):
+                    errors.append(
+                        f"Evidence Ledger case {case_index} Reddit source must cite a post"
+                    )
         expected_headers = REQUIRED_TABLE_SCHEMAS.get(heading, ())
         populated_headers = _populated_table_headers(section_content)
         populated_row_counts = _populated_table_row_counts(section_content)
@@ -2711,6 +2874,18 @@ def validate_report(
     allowed_media_canonical = {
         canonical for value in (allowed_media_urls or set()) if (canonical := _canonical_url(value))
     }
+    allowed_image_canonical = {
+        canonical for value in (allowed_image_urls or set()) if (canonical := _canonical_url(value))
+    }
+    if allowed_image_urls is not None:
+        invalid_image_embeds = sorted(
+            _content_image_urls(content) - allowed_image_canonical
+        )
+        if invalid_image_embeds:
+            errors.append(
+                "Markdown image embeds must use source image media URLs: "
+                + ", ".join(invalid_image_embeds)
+            )
     inline_code_media = sorted(
         {
             canonical
@@ -2769,13 +2944,24 @@ def validate_report(
             )
 
     media_section_urls = _content_urls(section_contents.get(REQUIRED_SECTIONS[1], ""))
+    media_section_images = _content_image_urls(
+        section_contents.get(REQUIRED_SECTIONS[1], "")
+    )
     for media_type, urls in sorted((required_media_urls_by_type or {}).items()):
         required_urls = {canonical for value in urls if (canonical := _canonical_url(value))}
-        if required_urls and not media_section_urls.intersection(required_urls):
-            _record_warning(
-                warnings,
-                f"{REQUIRED_SECTIONS[1]} does not link an inspected source {media_type}",
+        included_urls = (
+            media_section_images if media_type == "image" else media_section_urls
+        )
+        if required_urls and not included_urls.intersection(required_urls):
+            requirement = "display" if media_type == "image" else "link"
+            message = (
+                f"{REQUIRED_SECTIONS[1]} does not {requirement} an inspected source "
+                f"{media_type}"
             )
+            if media_type == "image":
+                errors.append(message)
+            else:
+                _record_warning(warnings, message)
 
     cited_ids = {match.casefold() for match in _REDDIT_POST_LINK_RE.findall(content)}
     if require_reddit_citation and not cited_ids:
@@ -2937,6 +3123,7 @@ def analyze_job(
             prepared.candidate_path,
             allowed_external_urls=allowed_external,
             allowed_media_urls=set().union(*media_urls_by_type.values()),
+            image_media_urls=media_urls_by_type.get("image", set()),
         )
         normalizations.extend(
             normalize_reddit_citations(
@@ -2984,6 +3171,7 @@ def analyze_job(
             allowed_post_ids=allowed_ids,
             allowed_external_urls=allowed_external,
             allowed_media_urls=set().union(*media_urls_by_type.values()),
+            allowed_image_urls=media_urls_by_type.get("image", set()),
             required_project_urls=project_urls,
             minimum_project_links=MIN_DIRECT_PROJECT_LINKS,
             required_media_urls_by_type={

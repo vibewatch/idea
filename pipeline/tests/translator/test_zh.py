@@ -25,6 +25,7 @@ from idea_pipeline.translator.zh import (
     main,
     normalize_reddit_link_labels,
     normalize_required_headings,
+    normalize_required_labels,
     normalize_translation,
     prepare_translation,
     protect_translation_source,
@@ -44,12 +45,47 @@ Open-source **OpenValve** reportedly shipped at least a $50 MRR tool. See [Open 
 
 ## 2. Evidence Ledger
 
-| Case and primary link | User or problem | Stage |
-|---|---|---|
-| OpenValve — [Open project](https://open-valve.com/) | Operators | Prototype |
-| PrintMap | Designers | Launched |
+### OpenValve
 
-![Chart](https://i.redd.it/example.png)
+**Primary link:** [Open project](https://open-valve.com/)
+
+**Stage:** `Prototype`
+
+**User or problem:** Operators need a faster review workflow.
+
+**Build, test, or event:** OpenValve shipped an initial prototype.
+
+**Evidence:** The founder reportedly reached at least $50 MRR.
+
+**Visual proof:** [![A chart shows one active workflow](https://i.redd.it/example.png)](https://i.redd.it/example.png) The chart shows one active workflow.
+
+**Limitation or next proof:** Retention is unknown.
+
+**Reddit source:** [Original post](https://www.reddit.com/r/SaaS/comments/openvalve/openvalve/)
+
+### PrintMap
+
+**Primary link:** Not provided
+
+**Stage:** `Launched`
+
+**User or problem:** Designers need printable maps.
+
+**Build, test, or event:** PrintMap launched a first version.
+
+**Evidence:** Usage is not reported.
+
+**Visual proof:** None.
+
+**Limitation or next proof:** Payment and retention are unknown.
+
+**Reddit source:** [Launch post](https://www.reddit.com/r/SaaS/comments/printmap/printmap/)
+
+## 3. Customer Problems and Existing Workarounds
+
+| Problem | Affected user | Workaround |
+|---|---|---|
+| Slow reviews | Operators | Manual checklist |
 """
 
 TRANSLATED_BODY = """# Reddit 构建者情报报告 - 2026-08-05
@@ -60,12 +96,47 @@ TRANSLATED_BODY = """# Reddit 构建者情报报告 - 2026-08-05
 
 ## 2. 证据台账
 
-| 案例与主要链接 | 用户或问题 | 阶段 |
-|---|---|---|
-| OpenValve — [Open project](https://open-valve.com/) | 运维人员 | 原型 |
-| PrintMap | 设计师 | 已发布 |
+### OpenValve
 
-![图表](https://i.redd.it/example.png)
+**主要链接：** [打开项目](https://open-valve.com/)
+
+**阶段：** `Prototype`
+
+**用户或问题：** 运维人员需要更快的审核流程。
+
+**构建、测试或事件：** OpenValve 上线了首个原型。
+
+**证据：** 据报道，创始人至少达到 $50 MRR。
+
+**视觉证据：** [![图表显示一条活跃工作流](https://i.redd.it/example.png)](https://i.redd.it/example.png) 图表显示一条活跃工作流。
+
+**局限或下一步证据：** 留存情况未知。
+
+**Reddit 来源：** [Original post](https://www.reddit.com/r/SaaS/comments/openvalve/openvalve/)
+
+### PrintMap
+
+**主要链接：** 未提供
+
+**阶段：** `Launched`
+
+**用户或问题：** 设计师需要可打印地图。
+
+**构建、测试或事件：** PrintMap 发布了首个版本。
+
+**证据：** 使用情况未披露。
+
+**视觉证据：** 无。
+
+**局限或下一步证据：** 付费和留存情况未知。
+
+**Reddit 来源：** [Launch post](https://www.reddit.com/r/SaaS/comments/printmap/printmap/)
+
+## 3. 用户痛点与现有变通做法
+
+| 问题 | 受影响用户 | 变通做法 |
+|---|---|---|
+| 审核缓慢 | 运维人员 | 手工清单 |
 """
 
 
@@ -94,9 +165,17 @@ class TestStructure:
             (1, "Reddit Builder Intelligence Report - 2026-08-05"),
             (2, "1. Executive Brief"),
             (2, "2. Evidence Ledger"),
+            (3, "OpenValve"),
+            (3, "PrintMap"),
+            (2, "3. Customer Problems and Existing Workarounds"),
         )
-        assert structure.tables == ((3, 2),)
-        assert structure.urls == ("https://open-valve.com/", "https://i.redd.it/example.png")
+        assert structure.tables == ((3, 1),)
+        assert structure.urls == (
+            "https://open-valve.com/",
+            "https://i.redd.it/example.png",
+            "https://www.reddit.com/r/SaaS/comments/openvalve/openvalve/",
+            "https://www.reddit.com/r/SaaS/comments/printmap/printmap/",
+        )
         assert structure.image_urls == ("https://i.redd.it/example.png",)
 
     def test_ignores_tables_inside_fenced_code(self) -> None:
@@ -128,15 +207,21 @@ class TestStructure:
             "$10.62",
             "£5,913.60",
         ]
-        ledger = """| Case and primary link | User or problem |
-|---|---|
-| OpenValve — [Open project](https://open-valve.com/) | Operators |"""
+        ledger = """## 2. Evidence Ledger
+
+### OpenValve
+
+**Primary link:** [Open project](https://open-valve.com/)
+"""
         assert protected_terms(ledger)["project_names"] == ["OpenValve"]
-        descriptive = """| Case and primary link | User or problem |
-|---|---|
-| DistribBuddy / internal-tool validation with primary link | Operators |
-| ClipKaboom SFX library | Editors |
-| Not provided | Unknown |"""
+        descriptive = """## 2. Evidence Ledger
+
+### DistribBuddy — internal-tool validation
+
+### ClipKaboom
+
+### Workflow experiment
+"""
         assert protected_terms(descriptive)["project_names"] == [
             "DistribBuddy",
             "ClipKaboom",
@@ -208,6 +293,26 @@ class TestNormalization:
         assert heading_count == 1
         assert link_count == 1
 
+    def test_restores_standard_case_labels(self) -> None:
+        source = (
+            "## 2. Evidence Ledger\n\n"
+            "### OpenValve\n\n"
+            "**Primary link:** [Open](https://open-valve.com/)\n\n"
+            "**Visual proof:** None.\n"
+        )
+        candidate = (
+            "## 2. 证据台账\n\n"
+            "### OpenValve\n\n"
+            "**Primary link:** [打开](https://open-valve.com/)\n\n"
+            "**Visual proof:** 无。\n"
+        )
+
+        normalized, restored = normalize_required_labels(source, candidate)
+
+        assert "**主要链接：**" in normalized
+        assert "**视觉证据：**" in normalized
+        assert restored == 2
+
     def test_converts_ascii_punctuation_after_chinese_text(self) -> None:
         normalized, messages = normalize_translation("作者自述, 增长停滞; 原因不明.")
 
@@ -218,6 +323,12 @@ class TestNormalization:
         normalized, _messages = normalize_translation("月收入50美元来自Bing流量")
 
         assert normalized == "月收入 50 美元来自 Bing 流量"
+
+    def test_removes_spaces_between_chinese_words(self) -> None:
+        normalized, messages = normalize_translation("作者自述 日活增长，功能 声称仍需验证。")
+
+        assert normalized == "作者自述日活增长，功能声称仍需验证。"
+        assert any("tightened" in message for message in messages)
 
     def test_leaves_code_urls_and_link_targets_untouched(self) -> None:
         text = "参见 [文档](https://a.example/a,b) 与 `git commit -m 'x, y'` 说明"
@@ -254,7 +365,15 @@ class TestValidation:
     def test_rejects_dropped_link(self, tmp_path: Path) -> None:
         candidate = tmp_path / "translation.md"
         candidate.write_text(
-            padded(TRANSLATED_BODY.replace("[Open project](https://open-valve.com/)", "开源项目")),
+            padded(
+                TRANSLATED_BODY.replace(
+                    "[Open project](https://open-valve.com/)",
+                    "开源项目",
+                ).replace(
+                    "[打开项目](https://open-valve.com/)",
+                    "开源项目",
+                )
+            ),
             encoding="utf-8",
         )
 
@@ -276,13 +395,28 @@ class TestValidation:
     def test_rejects_changed_table_shape(self, tmp_path: Path) -> None:
         candidate = tmp_path / "translation.md"
         candidate.write_text(
-            padded(TRANSLATED_BODY.replace("| PrintMap | 设计师 | 已发布 |\n", "")),
+            padded(TRANSLATED_BODY.replace("| 审核缓慢 | 运维人员 | 手工清单 |\n", "")),
             encoding="utf-8",
         )
 
         errors = validate_translation(candidate, structure=extract_structure(SOURCE_REPORT))
 
         assert any("row count differs" in error for error in errors)
+
+    def test_rejects_missing_standard_case_label(self, tmp_path: Path) -> None:
+        candidate = tmp_path / "translation.md"
+        candidate.write_text(
+            padded(TRANSLATED_BODY.replace("**视觉证据：**", "**截图：**", 1)),
+            encoding="utf-8",
+        )
+
+        errors = validate_translation(
+            candidate,
+            structure=extract_structure(SOURCE_REPORT),
+            source_text=SOURCE_REPORT,
+        )
+
+        assert any("standard case label" in error for error in errors)
 
     def test_rejects_untranslated_headings(self, tmp_path: Path) -> None:
         candidate = tmp_path / "translation.md"
@@ -411,8 +545,8 @@ One source is represented.
         candidate.write_text(
             padded(
                 TRANSLATED_BODY.replace(
-                    "| 案例与主要链接 | 用户或问题 | 阶段 |",
-                    "| Case and primary link | User or problem | Stage |",
+                    "| 问题 | 受影响用户 | 变通做法 |",
+                    "| Problem | Affected user | Workaround |",
                 )
             ),
             encoding="utf-8",
@@ -590,13 +724,14 @@ class TestPromptAndCommand:
 
         prompt = build_prompt(job, prepared)
 
-        assert "3 headings in the same order" in prompt
-        assert "#1: 3x2" in prompt
-        assert "2 distinct link targets" in prompt
+        assert "6 headings in the same order" in prompt
+        assert "2 Section 2 case subsections" in prompt
+        assert "#1: 3x1" in prompt
+        assert "4 distinct link targets" in prompt
         assert TARGET_LANGUAGE in prompt
         assert "source line 5: reportedly=1, at least=1" in prompt
         assert "Translation input: translation-source.md" in prompt
-        assert "preserve all 2 inline-code tokens byte-identically" in prompt
+        assert "preserve all 4 inline-code tokens byte-identically" in prompt
         assert "Immutable Markdown image targets:" in prompt
         assert "`https://i.redd.it/example.png`" in prompt
         assert "Blocked translationese patterns (zero occurrences allowed)" in prompt
@@ -621,12 +756,17 @@ class TestTranslationBoundary:
         assert result.status == "prepared"
         sandbox = tmp_path / "artifacts" / "2026-08-05"
         assert json.loads((sandbox / "structure.json").read_text())["tables"] == [
-            {"columns": 3, "rows": 2}
+            {"columns": 3, "rows": 1}
         ]
         assert (sandbox / "instructions.md").is_file()
         assert (sandbox / "translation-source.md").is_file()
         placeholders = json.loads((sandbox / "hedge-placeholders.json").read_text())
-        assert [item["replacement"] for item in placeholders] == ["据报道", "至少"]
+        assert [item["replacement"] for item in placeholders] == [
+            "据报道",
+            "至少",
+            "据报道",
+            "至少",
+        ]
         assert (sandbox / "prompt.txt").is_file()
         assert not job.translation_path.exists()
 

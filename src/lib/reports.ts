@@ -104,6 +104,17 @@ function tableLabels(section: ReportSection | undefined): string[] {
     .filter((label, index, labels) => Boolean(label) && labels.indexOf(label) === index);
 }
 
+function subsectionLabels(section: ReportSection | undefined): string[] {
+  if (!section) {
+    return [];
+  }
+  return section.body
+    .split('\n')
+    .filter((line) => line.startsWith('### '))
+    .map((line) => cleanInlineMarkdown(line.slice(4)))
+    .filter((label, index, labels) => Boolean(label) && labels.indexOf(label) === index);
+}
+
 function findSection(
   sections: ReportSection[],
   patterns: RegExp[],
@@ -126,7 +137,7 @@ function signalGroups(sections: ReportSection[]): SignalGroup[] {
     {
       key: 'projects',
       label: 'Projects & launches',
-      patterns: [/new projects/i, /shipped products/i, /launches.*traction/i],
+      patterns: [/evidence ledger/i, /证据台账/, /new projects/i, /shipped products/i],
     },
     {
       key: 'pain',
@@ -146,7 +157,8 @@ function signalGroups(sections: ReportSection[]): SignalGroup[] {
   ];
 
   return definitions.map(({ key, label, patterns }) => {
-    const items = tableLabels(findSection(sections, patterns));
+    const section = findSection(sections, patterns);
+    const items = key === 'projects' ? subsectionLabels(section) : tableLabels(section);
     return { key, label, count: items.length, items: items.slice(0, 3) };
   });
 }

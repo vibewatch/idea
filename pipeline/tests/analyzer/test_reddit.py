@@ -119,6 +119,15 @@ def valid_report(
     project = "https://example.com/product"
     image = image_url or build
     video = video_url or build
+    visual_items: list[str] = []
+    if image_url:
+        visual_items.append(
+            f"[![The review queue visibly contains one item]({image_url})]({image_url}) "
+            "The image shows one queued item"
+        )
+    if video_url:
+        visual_items.append(f"[watch video]({video_url}) shows the sampled review flow")
+    visual_proof = "; ".join(visual_items) + "." if visual_items else "None."
     sections = [
         (
             "## 1. Executive Brief",
@@ -138,9 +147,23 @@ Three current streams are represented; the evidence is limited to one account pe
         ),
         (
             "## 2. Evidence Ledger",
-            f"""| Case and primary link | User or problem | Build, test, or event | Evidence and stage | Visual proof | Limitation or next proof | Reddit source |
-|---|---|---|---|---|---|---|
-| Review tool — [Open project]({project}) | Operators handling review queues | Prototype tested, then launched through direct outreach | `Launched` — one signup is author-reported | [Image]({image}) shows one queued item; [video]({video}) shows the sampled review flow | Retention and repeat use are unknown | [idea]({idea}) · [build]({build}) |""",
+            f"""### Review tool
+
+**Primary link:** [Open project]({project})
+
+**Stage:** `Launched`
+
+**User or problem:** Operators handling review queues.
+
+**Build, test, or event:** A prototype was tested, then launched through direct outreach.
+
+**Evidence:** One signup is author-reported.
+
+**Visual proof:** {visual_proof}
+
+**Limitation or next proof:** Retention and repeat use are unknown.
+
+**Reddit source:** [idea]({idea}) · [build]({build})""",
         ),
         (
             "## 3. Customer Problems and Existing Workarounds",
@@ -661,6 +684,8 @@ class TestPromptAndCommand:
         assert "Make a destination clickable only when that exact URL appears" in prompt
         assert "visible only inside an attachment" in prompt
         assert "write media-review.json" in prompt
+        assert "Give each case one `###` subsection" in prompt
+        assert "linked Markdown image" in prompt
         assert "Output candidate:\n- report.md\n- media-review.json" in prompt
         assert str(target.snapshots[0].path) not in prompt
         assert "Do not run git commands" in prompt
@@ -762,6 +787,28 @@ Three current streams are represented; the evidence is limited to one account pe
         assert any("required highlight heading" in error for error in errors)
         assert any("required highlight label" in error for error in errors)
 
+    def test_rejects_incomplete_or_tabular_evidence_cases(self, tmp_path: Path) -> None:
+        candidate = tmp_path / "report.md"
+        content = valid_report().replace(
+            "**Limitation or next proof:** Retention and repeat use are unknown.\n\n",
+            "",
+            1,
+        )
+        content = content.replace(
+            "### Review tool\n",
+            "### Review tool\n\n| Legacy | Table |\n|---|---|\n| Old | Shape |\n\n",
+            1,
+        )
+        candidate.write_text(content, encoding="utf-8")
+
+        errors = validate_report(
+            candidate,
+            expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+        )
+
+        assert any("case 1 must contain exactly one field" in error for error in errors)
+        assert any("case subsections rather than Markdown tables" in error for error in errors)
+
     def test_rejects_incomplete_synthesis_and_extra_numbered_section(self, tmp_path: Path) -> None:
         candidate = tmp_path / "report.md"
         content = valid_report().replace("**Missing proof:**", "**Open question:**", 1)
@@ -791,6 +838,7 @@ Three current streams are represented; the evidence is limited to one account pe
             expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
             allowed_post_ids={"pain1", "idea1", "build1"},
             allowed_external_urls={"https://example.com/product"},
+            allowed_image_urls={"https://i.redd.it/example.png"},
             required_project_urls={"https://example.com/product"},
             minimum_project_links=8,
             required_media_urls_by_type={
@@ -972,7 +1020,7 @@ Three current streams are represented; the evidence is limited to one account pe
 
         assert any("external URLs absent" in error for error in errors)
         assert any("direct project links" in warning for warning in warnings)
-        assert any("source image" in warning for warning in warnings)
+        assert any("source image" in error for error in errors)
 
     def test_warns_on_nonstandard_table_header_and_rejects_invented_media(
         self, tmp_path: Path
@@ -981,7 +1029,7 @@ Three current streams are represented; the evidence is limited to one account pe
         content = valid_report(
             image_url="https://i.redd.it/invented.png",
             video_url="https://v.redd.it/example",
-        ).replace("| Build, test, or event |", "| Vague summary |")
+        ).replace("| Trigger and consequence |", "| Vague summary |")
         candidate.write_text(content, encoding="utf-8")
 
         warnings: list[str] = []
@@ -1015,19 +1063,16 @@ Three current streams are represented; the evidence is limited to one account pe
 
         assert errors == []
 
-    def test_rejects_a_required_section_without_a_populated_table(self, tmp_path: Path) -> None:
+    def test_rejects_a_required_table_section_without_a_populated_table(
+        self, tmp_path: Path
+    ) -> None:
         candidate = tmp_path / "report.md"
         candidate.write_text(
             valid_report().replace(
-                "| Review tool — [Open project](https://example.com/product) | "
-                "Operators handling review queues | Prototype tested, then launched through "
-                "direct outreach | `Launched` — one signup is author-reported | "
-                "[Image](https://www.reddit.com/r/SaaS/comments/build1/build1_title/) shows "
-                "one queued item; [video](https://www.reddit.com/r/SaaS/comments/build1/"
-                "build1_title/) shows the sampled review flow | Retention and repeat use are "
-                "unknown | [idea](https://www.reddit.com/r/SaaS/comments/idea1/idea1_title/) "
-                "· [build](https://www.reddit.com/r/SaaS/comments/build1/build1_title/) |",
-                "Project details were not tabulated.",
+                "| Manual handoff | Operator managing reviews | Every review creates a delayed "
+                "handoff | Checklist | One account | "
+                "[pain](https://www.reddit.com/r/SaaS/comments/pain1/pain1_title/) |",
+                "Problem details were not tabulated.",
             ),
             encoding="utf-8",
         )
@@ -1041,15 +1086,17 @@ Three current streams are represented; the evidence is limited to one account pe
 
     def test_rejects_an_oversized_project_inventory(self, tmp_path: Path) -> None:
         candidate = tmp_path / "report.md"
-        row = (
-            "| Review tool — [Open project](https://example.com/product) | Operators | "
-            "Prototype launch | `Launched` — one signup | None | Retention unknown | "
-            "[build](https://www.reddit.com/r/SaaS/comments/build1/build1_title/) |"
+        original_case = valid_report().partition("### Review tool\n")[2].partition(
+            "\n---\n\n## 3."
+        )[0]
+        cases = "\n\n".join(
+            f"### Review tool {index}\n{original_case}" for index in range(1, 26)
         )
-        original_row = next(
-            line for line in valid_report().splitlines() if line.startswith("| Review tool — ")
+        content = valid_report().replace(
+            f"### Review tool\n{original_case}",
+            cases,
+            1,
         )
-        content = valid_report().replace(original_row, "\n".join([row] * 25))
         candidate.write_text(content, encoding="utf-8")
 
         errors = validate_report(
@@ -1057,15 +1104,15 @@ Three current streams are represented; the evidence is limited to one account pe
             expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
         )
 
-        assert any("exceeds the 24-row" in error for error in errors)
+        assert any("exceeds the 24-case" in error for error in errors)
 
     def test_allows_decision_useful_case_without_primary_artifact_link(
         self, tmp_path: Path
     ) -> None:
         candidate = tmp_path / "report.md"
         content = valid_report().replace(
-            "Review tool — [Open project](https://example.com/product)",
-            "Review tool — Not provided",
+            "**Primary link:** [Open project](https://example.com/product)",
+            "**Primary link:** Not provided",
             1,
         )
         candidate.write_text(content, encoding="utf-8")
@@ -1116,11 +1163,73 @@ Three current streams are represented; the evidence is limited to one account pe
             "converted non-URL Markdown destination to plain text: Not provided",
         ]
 
+    def test_embeds_and_links_visual_proof_images(self, tmp_path: Path) -> None:
+        report = tmp_path / "report.md"
+        image_url = "https://i.redd.it/example.png"
+        report.write_text(
+            f"**Visual proof:** `{image_url}` shows the queue.\n",
+            encoding="utf-8",
+        )
+
+        messages = normalize_report_links(
+            report,
+            allowed_external_urls=(),
+            allowed_media_urls=(image_url,),
+            image_media_urls=(image_url,),
+        )
+
+        assert report.read_text(encoding="utf-8") == (
+            f"**Visual proof:** [![View media]({image_url})]({image_url}) "
+            "shows the queue.\n"
+        )
+        assert any("embedded visual evidence image" in message for message in messages)
+
+    def test_converts_video_image_embed_to_link(self, tmp_path: Path) -> None:
+        report = tmp_path / "report.md"
+        video_url = "https://v.redd.it/example"
+        report.write_text(
+            f"**Visual proof:** [![Sampled video frames]({video_url})]({video_url})\n",
+            encoding="utf-8",
+        )
+
+        messages = normalize_report_links(
+            report,
+            allowed_external_urls=(),
+            allowed_media_urls=(video_url,),
+            image_media_urls=(),
+        )
+
+        assert report.read_text(encoding="utf-8") == (
+            f"**Visual proof:** [Sampled video frames]({video_url})\n"
+        )
+        assert messages == [
+            f"converted non-image media embed to Markdown link: {video_url}"
+        ]
+
+    def test_rejects_non_image_media_embed(self, tmp_path: Path) -> None:
+        report = tmp_path / "report.md"
+        video_url = "https://v.redd.it/example"
+        report.write_text(
+            valid_report(video_url=video_url).replace(
+                f"[watch video]({video_url})",
+                f"[![Sampled frames]({video_url})]({video_url})",
+            ),
+            encoding="utf-8",
+        )
+
+        errors = validate_report(
+            report,
+            expected_title="# Reddit Builder Intelligence Report - 2026-08-02",
+            allowed_image_urls=set(),
+        )
+
+        assert any("Markdown image embeds must use source image media URLs" in error for error in errors)
+
     def test_rejects_media_urls_formatted_as_inline_code(self, tmp_path: Path) -> None:
         report = tmp_path / "report.md"
         image_url = "https://i.redd.it/example.png"
         content = valid_report(image_url=image_url).replace(
-            f"[Image]({image_url})",
+            f"[![The review queue visibly contains one item]({image_url})]({image_url})",
             f"`{image_url}`",
             1,
         )
@@ -1620,7 +1729,7 @@ class TestAnalysisBoundary:
         def generate(*_args: object, **_kwargs: object) -> subprocess.CompletedProcess[str]:
             candidate.write_text(
                 valid_report(image_url=image_url).replace(
-                    "| Build, test, or event |", "| Product function |"
+                    "| Trigger and consequence |", "| Product function |"
                 ),
                 encoding="utf-8",
             )

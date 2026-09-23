@@ -37,7 +37,7 @@ This report is a decision brief, not an exhaustive dump. The source corpus can c
 - Prefer evidence diversity across communities and roles when quality is comparable. Never add a weak row solely to balance sources.
 - Treat multiple comments in one Reddit thread as one discussion, not independent evidence breadth.
 - Cap sections so the strongest evidence remains visible:
-  - Section 2: 12-20 unified case rows normally, hard maximum 24.
+  - Section 2: 12-20 unified case subsections normally, hard maximum 24.
   - Section 3: 8-14 problem rows normally, hard maximum 16.
   - Section 4: 3-6 concise synthesis themes.
   - Section 5: 3-8 practical moves and at most 10 watchlist rows.
@@ -137,8 +137,8 @@ Media review is evidence work, not decoration.
 6. Use `inspected` when visual content was actually available, even if the item is not selected for the report.
 7. Extract only visible facts: interface state, workflow sequence shown by sampled frames, product category, before/after state, chart labels, pricing shown on screen, errors, implementation details, or mismatch between claim and demo.
 8. Do not infer hidden functionality, code quality, security, retention, performance, or a complete user journey from screenshots or sampled frames.
-9. Include the strongest visual findings in the matching Section 2 case row with both the direct media URL and Reddit source.
-10. Embed only informative direct images with descriptive alt text. Link videos and galleries rather than pretending Markdown embeds can play them.
+9. Include the strongest visual findings in the matching Section 2 case subsection with both the direct media URL and Reddit source.
+10. Display informative direct images as linked Markdown images with descriptive alt text: `[![what the image visibly shows](https://image.example)](https://image.example)`. Link videos and galleries rather than pretending Markdown embeds can play them.
 
 Before writing the report, create `media-review.json` with exactly one item for every media-manifest entry:
 
@@ -239,13 +239,29 @@ Add one concise paragraph with stream counts, duplicate handling, snapshot compl
 
 ## 2. Evidence Ledger
 
-| Case and primary link | User or problem | Build, test, or event | Evidence and stage | Visual proof | Limitation or next proof | Reddit source |
-|---|---|---|---|---|---|---|
-| Project, experiment, incident, or resource with [primary link](https://direct.example), or `Not provided` | Specific user, workflow, or intended outcome | What was built, changed, tested, launched, or observed | Supported stage plus the strongest metric, behavior, implementation detail, or failure | Direct inspected media and the fact it shows, or `None` | Most important uncertainty or next observable proof | Public Reddit citation |
+### Project, experiment, incident, or resource name
+
+**Primary link:** [Open project](https://direct.example), or `Not provided`
+
+**Stage:** `Idea`, `Prototype`, `Launched`, `Usage`, `Revenue`, `Abandoned`, or `Unknown`
+
+**User or problem:** Specific user, workflow, or intended outcome.
+
+**Build, test, or event:** What was built, changed, tested, launched, or observed.
+
+**Evidence:** Strongest metric, behavior, implementation detail, or failure.
+
+**Visual proof:** [![Descriptive visible finding](https://direct-image.example/image.png)](https://direct-image.example/image.png) followed by the fact visibly established by the image; a descriptive Markdown link for video or gallery evidence; or `None`.
+
+**Limitation or next proof:** Most important uncertainty or next observable proof.
+
+**Reddit source:** Public Reddit citation.
 
 This is the single case inventory. Merge projects, founder validation, launches, measured outcomes, failures, and useful visual evidence here. A project or experiment appears once, not again in separate traction or media tables.
 
-Include at least eight unique direct HTTPS artifact links when available, but keep decision-useful experiments whose primary destination was not provided. Use 12-20 rows normally and never exceed 24.
+Give every case exactly the eight labeled fields above, each in its own paragraph. Use a concise `###` case heading, preferably the source-supported product or project name. Do not add tables inside Section 2.
+
+Include at least eight unique direct HTTPS artifact links when available, but keep decision-useful experiments whose primary destination was not provided. Use 12-20 case subsections normally and never exceed 24.
 
 Preserve zero-result experiments and distinguish attention, acquisition, usage, payment, and retention. Include at least one inspected image and one inspected video when both exist and add useful evidence.
 
@@ -291,9 +307,9 @@ Keep every section non-empty, but include only evidence-backed rows. If a catego
 ## Formatting rules
 
 - Use the exact H1 and section headings.
-- Use pipe-delimited Markdown tables where shown.
+- Use pipe-delimited Markdown tables only where shown in Sections 3 and 5.
 - Use only source-derived public HTTPS destinations.
-- In `Visual proof` cells, format every media URL as a descriptive Markdown link. Never wrap a media URL in backticks or leave it as bare text.
+- In each `Visual proof` field, display informative direct images as linked Markdown images with descriptive alt text. Format videos and galleries as descriptive Markdown links. Never wrap a media URL in backticks or leave it as bare text.
 - Use `Idea`, `Prototype`, `Launched`, `Usage`, `Revenue`, `Abandoned`, or `Unknown` only when supported.
 - Use `Matched`, `Partial`, `Contradictory`, or `Unconnected` only for cross-stream relationships.
 - Do not use decorative emoji, badges, trend arrows, frontmatter, footnote-only citations, or local/relative links.
