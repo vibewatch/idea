@@ -17,9 +17,13 @@ from idea_pipeline.analyzer.builder import (
     DEFAULT_ENV_FILE,
     DEFAULT_HACKERNEWS_DATA_DIR,
     DEFAULT_LIMIT,
+    DEFAULT_MAX_AI_CREDITS,
     DEFAULT_MODEL,
     DEFAULT_REDDIT_DATA_DIR,
     DEFAULT_REPORTS_DIR,
+    MEDIA_AUDIT_EFFORT,
+    MEDIA_AUDIT_MAX_AI_CREDITS,
+    MEDIA_AUDIT_MODEL,
     REPORT_ARTIFACT_NAME,
     REQUIRED_REDDIT_TOPICS,
     AnalysisJob,
@@ -29,9 +33,13 @@ from idea_pipeline.analyzer.builder import (
     SnapshotTarget,
     _attached_media_repair_entries,
     _canonical_url,
+    _cited_attached_media_entries,
     _download_image_asset,
+    _merge_media_audit_report,
     _merge_media_repair_batch,
+    _summarize_copilot_usage,
     analyze_job,
+    audit_cited_media_evidence,
     build_copilot_command,
     build_parser,
     build_prompt,
@@ -789,7 +797,10 @@ class TestPromptAndCommand:
         assert "animated or unsupported source images" in prompt
         assert "Make a destination clickable only when that exact URL appears" in prompt
         assert "visible only inside an attachment" in prompt
+        assert "Source diversity is a tiebreaker, not a quota" in prompt
+        assert "Order Section 2 by decision value" in prompt
         assert "write media-review.json" in prompt
+        assert "media-review item for that exact media URL" in prompt
         assert "Give each case one `###` subsection" in prompt
         assert "linked Markdown image" in prompt
         assert "Output candidate:\n- report.md\n- media-review.json" in prompt
@@ -838,17 +849,25 @@ class TestPromptAndCommand:
             "--no-color",
             "--secret-env-vars=COPILOT_GITHUB_TOKEN",
             "--autopilot",
+            "--max-ai-credits",
+            "150",
         ]
 
     def test_defaults_to_low_cost_synthesis_model(self) -> None:
         args = build_parser().parse_args([])
         command = build_copilot_command("prompt")
 
-        assert DEFAULT_MODEL == "gpt-5.4-mini"
-        assert DEFAULT_EFFORT == "medium"
+        assert DEFAULT_MODEL == "gpt-6-luna"
+        assert DEFAULT_EFFORT == "high"
+        assert DEFAULT_MAX_AI_CREDITS == 150
         assert (args.model, args.effort) == (DEFAULT_MODEL, DEFAULT_EFFORT)
+        assert args.max_ai_credits == DEFAULT_MAX_AI_CREDITS
         assert command[command.index("--model") + 1] == DEFAULT_MODEL
         assert command[command.index("--reasoning-effort") + 1] == DEFAULT_EFFORT
+        assert (
+            command[command.index("--max-ai-credits") + 1]
+            == str(DEFAULT_MAX_AI_CREDITS)
+        )
         assert args.limit == DEFAULT_LIMIT == 1
 
     def test_adds_visual_attachments_to_copilot_command(self, tmp_path: Path) -> None:
@@ -858,10 +877,71 @@ class TestPromptAndCommand:
 
         assert command[-2:] == ["--attachment", str(attachment)]
 
+    def test_adds_usage_telemetry_and_credit_limit_to_copilot_command(
+        self, tmp_path: Path
+    ) -> None:
+        usage_path = tmp_path / "usage.json"
+
+        command = build_copilot_command(
+            "prompt",
+            usage_output_file=usage_path,
+            max_ai_credits=300,
+        )
+
+        assert command[command.index("--usage-output-file") + 1] == str(usage_path)
+        assert command[command.index("--max-ai-credits") + 1] == "300"
+
+    def test_summarizes_copilot_usage_cost_and_tokens(self, tmp_path: Path) -> None:
+        usage_path = tmp_path / "copilot-usage.json"
+        usage_path.write_text(
+            json.dumps(
+                {
+                    "totalNanoAiu": 14_669_664_000,
+                    "totalApiDurationMs": 713_440,
+                    "tokenDetails": {
+                        "cache_read": {"tokenCount": 3_992_019},
+                        "cache_write": {"tokenCount": 585_578},
+                        "output": {"tokenCount": 67_132},
+                    },
+                    "modelMetrics": {
+                        "gpt-6-luna": {
+                            "requests": {"count": 44},
+                            "totalNanoAiu": 14_669_664_000,
+                        }
+                    },
+                }
+            ),
+            encoding="utf-8",
+        )
+
+        summary, errors = _summarize_copilot_usage((usage_path,))
+
+        assert errors == []
+        assert summary == {
+            "files": ["copilot-usage.json"],
+            "ai_credits": 14.669664,
+            "cost_usd": 0.146697,
+            "api_duration_ms": 713_440,
+            "token_counts": {
+                "cache_read": 3_992_019,
+                "cache_write": 585_578,
+                "output": 67_132,
+            },
+            "models": {
+                "gpt-6-luna": {
+                    "requests": 44,
+                    "ai_credits": 14.669664,
+                    "cost_usd": 0.146697,
+                }
+            },
+        }
+
     def test_parser_rejects_invalid_workers_dates_and_topic_mode(self) -> None:
         parser = build_parser()
         with pytest.raises(SystemExit):
             parser.parse_args(["--workers", "0"])
+        with pytest.raises(SystemExit):
+            parser.parse_args(["--max-ai-credits", "29"])
         with pytest.raises(SystemExit):
             parser.parse_args(["--date", "08-01-2026"])
         with pytest.raises(SystemExit):
@@ -1536,6 +1616,26 @@ Three current streams are represented; the evidence is limited to one account pe
         assert "(42 points, 7 comments)" in report.read_text()
         assert messages == ["added engagement metadata after 1 Hacker News citation(s)"]
 
+    def test_replaces_loose_hackernews_engagement_without_duplication(
+        self, tmp_path: Path
+    ) -> None:
+        report = tmp_path / "report.md"
+        source = "https://news.ycombinator.com/item?id=123"
+        report.write_text(
+            f"([Source]({source}), 42 points, 7 comments)\n",
+            encoding="utf-8",
+        )
+
+        messages = normalize_hackernews_citations(
+            report,
+            engagement={"123": (42, 7)},
+        )
+
+        assert report.read_text() == (
+            f"([Source]({source}) (42 points, 7 comments))\n"
+        )
+        assert messages == ["added engagement metadata after 1 Hacker News citation(s)"]
+
     def test_normalizes_media_type_and_report_included(self, tmp_path: Path) -> None:
         review = tmp_path / "media-review.json"
         report = tmp_path / "report.md"
@@ -1788,6 +1888,306 @@ Three current streams are represented; the evidence is limited to one account pe
         assert accepted == 1
         assert [item["post_id"] for item in items] == ["retained", "repaired"]
 
+    def test_normalizes_cited_attached_media_to_inspected(self, tmp_path: Path) -> None:
+        image_url = "https://i.redd.it/cited.png"
+        review = tmp_path / "media-review.json"
+        report = tmp_path / "report.md"
+        review.write_text(
+            json.dumps(
+                {
+                    "version": 1,
+                    "items": [
+                        {
+                            "post_id": "cited",
+                            "media_url": image_url,
+                            "media_type": "image",
+                            "status": "not-substantive",
+                            "observation": (
+                                "The cited screenshot contradicts the report's original claim."
+                            ),
+                            "report_included": False,
+                        }
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+        report.write_text(f"[cited image]({image_url})\n", encoding="utf-8")
+
+        messages = normalize_media_review(
+            review,
+            expected_entries=[
+                {
+                    "post_id": "cited",
+                    "url": image_url,
+                    "media_type": "image",
+                    "asset_status": "attached",
+                }
+            ],
+            report_path=report,
+        )
+
+        item = json.loads(review.read_text(encoding="utf-8"))["items"][0]
+        assert item["report_included"] is True
+        assert item["status"] == "inspected"
+        assert any("cited attached media status" in message for message in messages)
+
+    def test_selects_only_cited_attached_media_for_audit(self, tmp_path: Path) -> None:
+        cited_url = "https://i.redd.it/cited.png"
+        report = tmp_path / "report.md"
+        report.write_text(
+            valid_report(image_url=cited_url),
+            encoding="utf-8",
+        )
+        entries = [
+            {
+                "post_id": "cited",
+                "url": cited_url,
+                "media_type": "image",
+                "asset_status": "attached",
+                "asset_paths": ["media-assets/cited.png"],
+            },
+            {
+                "post_id": "uncited",
+                "url": "https://i.redd.it/uncited.png",
+                "media_type": "image",
+                "asset_status": "attached",
+                "asset_paths": ["media-assets/uncited.png"],
+            },
+            {
+                "post_id": "url-only",
+                "url": "https://i.redd.it/url-only.png",
+                "media_type": "image",
+                "asset_status": "url-only",
+                "asset_paths": [],
+            },
+        ]
+
+        selected = _cited_attached_media_entries(
+            report,
+            expected_entries=entries,
+        )
+
+        assert [entry["post_id"] for entry in selected] == ["cited"]
+
+    def test_media_audit_merge_preserves_every_other_report_field(self) -> None:
+        before = valid_report(image_url="https://i.redd.it/cited.png")
+        after = (
+            before.replace(
+                "# Builder Intelligence Report - 2026-08-02",
+                "# Rewritten title",
+                1,
+            )
+            .replace(
+                "**Evidence:** One signup is author-reported.",
+                (
+                    "**Evidence:** One signup is author-reported. "
+                    "The cited screenshot shows a corrected interface state."
+                ),
+                1,
+            )
+            .replace(
+                "The image shows one queued item",
+                "The image shows the corrected interface state",
+                1,
+            )
+            .replace(
+                "**Interpretation:** This is a `Partial` match",
+                "**Interpretation:** The audit rewrote unrelated synthesis",
+                1,
+            )
+        )
+
+        merged, accepted, compatible = _merge_media_audit_report(before, after)
+
+        assert compatible is True
+        assert accepted == 2
+        assert merged.startswith("# Builder Intelligence Report - 2026-08-02")
+        assert "The cited screenshot shows a corrected interface state." in merged
+        assert "The image shows the corrected interface state" in merged
+        assert "**Interpretation:** This is a `Partial` match" in merged
+        assert "The audit rewrote unrelated synthesis" not in merged
+
+    @patch("idea_pipeline.analyzer.builder.subprocess.run")
+    def test_focused_media_audit_uses_sol_and_preserves_unrelated_items(
+        self,
+        mock_run: MagicMock,
+        tmp_path: Path,
+    ) -> None:
+        directory = tmp_path / "artifacts"
+        media_directory = directory / "media-assets"
+        media_directory.mkdir(parents=True)
+        cited_url = "https://i.redd.it/cited.png"
+        uncited_url = "https://i.redd.it/uncited.png"
+        cited_asset = media_directory / "cited.png"
+        uncited_asset = media_directory / "uncited.png"
+        cited_asset.write_bytes(b"cited")
+        uncited_asset.write_bytes(b"uncited")
+        candidate = directory / "report.md"
+        candidate.write_text(valid_report(image_url=cited_url), encoding="utf-8")
+        review = directory / "media-review.json"
+        retained_item = {
+            "post_id": "uncited",
+            "media_url": uncited_url,
+            "media_type": "image",
+            "status": "inspected",
+            "observation": "The uncited image shows an unrelated interface state.",
+            "report_included": False,
+        }
+        review.write_text(
+            json.dumps(
+                {
+                    "version": 1,
+                    "items": [
+                        {
+                            "post_id": "cited",
+                            "media_url": cited_url,
+                            "media_type": "image",
+                            "status": "inspected",
+                            "observation": "The cited image initially appeared to show one item.",
+                            "report_included": True,
+                        },
+                        retained_item,
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+        entries = (
+            {
+                "post_id": "cited",
+                "url": cited_url,
+                "media_type": "image",
+                "asset_status": "attached",
+                "asset_paths": ["media-assets/cited.png"],
+            },
+            {
+                "post_id": "uncited",
+                "url": uncited_url,
+                "media_type": "image",
+                "asset_status": "attached",
+                "asset_paths": ["media-assets/uncited.png"],
+            },
+        )
+        prepared = PreparedReportArtifacts(
+            directory=directory,
+            topic_artifacts=(),
+            metadata_path=directory / "metadata.json",
+            media_manifest_path=directory / "media-manifest.json",
+            link_manifest_path=directory / "external-links.json",
+            media_assets_path=directory / "media-assets.json",
+            media_review_path=review,
+            instructions_path=directory / "instructions.md",
+            candidate_path=candidate,
+            total_posts=2,
+        )
+        media_assets = PreparedMediaAssets(
+            manifest_path=prepared.media_assets_path,
+            attachments=(cited_asset, uncited_asset),
+            entries=entries,
+        )
+
+        def audit(command: list[str], **_kwargs: object) -> subprocess.CompletedProcess[str]:
+            assert command[command.index("--model") + 1] == MEDIA_AUDIT_MODEL
+            assert command[command.index("--reasoning-effort") + 1] == MEDIA_AUDIT_EFFORT
+            assert command[command.index("--max-ai-credits") + 1] == str(
+                MEDIA_AUDIT_MAX_AI_CREDITS
+            )
+            assert command.count("--attachment") == 1
+            assert command[command.index("--attachment") + 1] == str(cited_asset)
+            usage_path = Path(command[command.index("--usage-output-file") + 1])
+            usage_path.write_text(
+                json.dumps(
+                    {
+                        "totalNanoAiu": 20_000_000_000,
+                        "modelMetrics": {
+                            MEDIA_AUDIT_MODEL: {
+                                "requests": {"count": 3},
+                                "totalNanoAiu": 20_000_000_000,
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            content = candidate.read_text(encoding="utf-8")
+            candidate.write_text(
+                content.replace(
+                    "# Builder Intelligence Report - 2026-08-02",
+                    "# Rewritten title",
+                    1,
+                )
+                .replace(
+                    "**Evidence:** One signup is author-reported.",
+                    (
+                        "**Evidence:** One signup is author-reported. "
+                        "The screenshot shows a corrected interface state."
+                    ),
+                    1,
+                )
+                .replace(
+                    "The image shows one queued item",
+                    "The image shows the corrected interface state",
+                    1,
+                ),
+                encoding="utf-8",
+            )
+            review.write_text(
+                json.dumps(
+                    {
+                        "version": 1,
+                        "items": [
+                            {
+                                "post_id": "cited",
+                                "media_url": cited_url,
+                                "media_type": "image",
+                                "status": "inspected",
+                                "observation": (
+                                    "The cited image shows the corrected interface state."
+                                ),
+                                "report_included": True,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            return subprocess.CompletedProcess(command, 0, stdout="audited", stderr="")
+
+        mock_run.side_effect = audit
+
+        result = audit_cited_media_evidence(
+            prepared,
+            media_assets,
+            primary_model="gpt-6-luna",
+        )
+
+        assert result.status == "completed"
+        assert result.attachment_count == 1
+        assert candidate.read_text(encoding="utf-8").startswith(
+            "# Builder Intelligence Report - 2026-08-02"
+        )
+        assert "The screenshot shows a corrected interface state." in candidate.read_text(
+            encoding="utf-8"
+        )
+        items = json.loads(review.read_text(encoding="utf-8"))["items"]
+        assert [item["post_id"] for item in items] == ["cited", "uncited"]
+        assert items[1] == retained_item
+        manifest = json.loads(
+            (directory / "media-audit-manifest.json").read_text(encoding="utf-8")
+        )
+        assert [item["post_id"] for item in manifest["items"]] == ["cited"]
+        assert any("outside Section 2" in message for message in result.messages)
+
+        mock_run.reset_mock()
+        skipped = audit_cited_media_evidence(
+            prepared,
+            media_assets,
+            primary_model=MEDIA_AUDIT_MODEL,
+        )
+        assert skipped.status == "skipped-same-model"
+        mock_run.assert_not_called()
+
     @patch("idea_pipeline.analyzer.builder.subprocess.run")
     def test_media_repair_retries_items_omitted_by_a_batch(
         self, mock_run: MagicMock, tmp_path: Path
@@ -1989,7 +2389,26 @@ class TestAnalysisBoundary:
         job = AnalysisJob(target, report)
         candidate = tmp_path / "artifacts" / REPORT_ARTIFACT_NAME / "2026-08-02" / "report.md"
 
-        def generate(*_args: object, **_kwargs: object) -> subprocess.CompletedProcess[str]:
+        def generate(*args: object, **_kwargs: object) -> subprocess.CompletedProcess[str]:
+            command = args[0]
+            assert isinstance(command, list)
+            usage_path = Path(command[command.index("--usage-output-file") + 1])
+            usage_path.write_text(
+                json.dumps(
+                    {
+                        "totalNanoAiu": 1_500_000_000,
+                        "totalApiDurationMs": 12_000,
+                        "tokenDetails": {"output": {"tokenCount": 500}},
+                        "modelMetrics": {
+                            "gpt-6-luna": {
+                                "requests": {"count": 2},
+                                "totalNanoAiu": 1_500_000_000,
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
             candidate.write_text(valid_report(), encoding="utf-8")
             (candidate.parent / "media-review.json").write_text(
                 '{"version": 1, "items": []}\n', encoding="utf-8"
@@ -2003,13 +2422,321 @@ class TestAnalysisBoundary:
 
         result = analyze_job(job, artifacts_dir=tmp_path / "artifacts")
 
-        assert result.status == "published"
+        assert result.status == "published", result.message
         assert "(1 points, 0 comments)" in report.read_text(encoding="utf-8")
         assert all(path.read_bytes() == content for path, content in originals.items())
         assert mock_run.call_args.kwargs["cwd"] == candidate.parent
         assert mock_run.call_args.kwargs["check"] is False
         assert "REDDIT_COOKIES" not in mock_run.call_args.kwargs["env"]
         assert mock_run.call_args.kwargs["env"]["COPILOT_GITHUB_TOKEN"] == "copilot-token"
+        generation = json.loads(
+            (candidate.parent / "generation-metadata.json").read_text(encoding="utf-8")
+        )
+        assert generation["max_ai_credits"] == DEFAULT_MAX_AI_CREDITS
+        assert generation["usage"]["ai_credits"] == 1.5
+        assert generation["usage"]["cost_usd"] == 0.015
+
+    @patch("idea_pipeline.analyzer.builder._download_image_asset")
+    @patch("idea_pipeline.analyzer.builder.subprocess.run")
+    def test_visual_audit_is_normalized_and_included_in_generation_telemetry(
+        self,
+        mock_run: MagicMock,
+        mock_download: MagicMock,
+        tmp_path: Path,
+    ) -> None:
+        target = make_report_target(tmp_path)
+        image_url = "https://i.redd.it/demo.png"
+        retained_image_url = "https://i.redd.it/retained.png"
+        build2 = "https://www.reddit.com/r/SaaS/comments/build2/build2_title/"
+        write_snapshot(
+            target.snapshots[-1].path,
+            [
+                post(
+                    "build1",
+                    media_url=image_url,
+                    selftext="A launched tool at https://example.com/product with one user.",
+                ),
+                post(
+                    "build2",
+                    media_url=retained_image_url,
+                    selftext="A second screenshot of the same review workflow.",
+                ),
+            ],
+        )
+        report = tmp_path / "reports" / "2026-08-02.md"
+        job = AnalysisJob(target, report)
+        candidate = tmp_path / "artifacts" / REPORT_ARTIFACT_NAME / "2026-08-02" / "report.md"
+
+        def download(_url: str, stem: Path) -> Path:
+            asset = stem.with_suffix(".png")
+            asset.write_bytes(b"image")
+            return asset
+
+        call_count = 0
+
+        def run(command: list[str], **_kwargs: object) -> subprocess.CompletedProcess[str]:
+            nonlocal call_count
+            call_count += 1
+            usage_path = Path(command[command.index("--usage-output-file") + 1])
+            if call_count == 1:
+                usage_path.write_text(
+                    json.dumps(
+                        {
+                            "totalNanoAiu": 1_500_000_000,
+                            "modelMetrics": {
+                                "gpt-6-luna": {
+                                    "requests": {"count": 2},
+                                    "totalNanoAiu": 1_500_000_000,
+                                }
+                            },
+                        }
+                    ),
+                    encoding="utf-8",
+                )
+                content = (
+                    valid_report(image_url=image_url)
+                    .replace(
+                        (
+                            f"**Visual proof:** [![The review queue visibly contains one item]"
+                            f"({image_url})]({image_url}) The image shows one queued item."
+                        ),
+                        (
+                            f"**Visual proof:** [![The review queue visibly contains one item]"
+                            f"({image_url})]({image_url}) The image shows one queued item; "
+                            f"[![A retained workflow screenshot]({retained_image_url})]"
+                            f"({retained_image_url}) shows the retained workflow."
+                        ),
+                        1,
+                    )
+                    .replace(
+                        (
+                            f"**Evidence:** The [image]({image_url}) and "
+                            "[video](https://www.reddit.com/r/SaaS/comments/build1/"
+                            "build1_title/) show the queue and sampled flow."
+                        ),
+                        "**Evidence:** The sampled flow adds no separate visual evidence.",
+                    )
+                    .replace(
+                        (
+                            "**Reddit source:** [idea](https://www.reddit.com/r/SaaS/"
+                            "comments/idea1/idea1_title/) · [build](https://www.reddit.com/"
+                            "r/SaaS/comments/build1/build1_title/)"
+                        ),
+                        (
+                            "**Reddit source:** [idea](https://www.reddit.com/r/SaaS/"
+                            "comments/idea1/idea1_title/) · [build](https://www.reddit.com/"
+                            f"r/SaaS/comments/build1/build1_title/) · [second build]({build2})"
+                        ),
+                        1,
+                    )
+                )
+                candidate.write_text(content, encoding="utf-8")
+                (candidate.parent / "media-review.json").write_text(
+                    json.dumps(
+                        {
+                            "version": 1,
+                            "items": [
+                                {
+                                    "post_id": "build1",
+                                    "media_url": image_url,
+                                    "media_type": "image",
+                                    "status": "inspected",
+                                    "observation": (
+                                        "The image initially appeared to show one queued item."
+                                    ),
+                                    "report_included": True,
+                                },
+                                {
+                                    "post_id": "build2",
+                                    "media_url": retained_image_url,
+                                    "media_type": "image",
+                                    "status": "inspected",
+                                    "observation": (
+                                        "The retained image visibly shows the review workflow."
+                                    ),
+                                    "report_included": True,
+                                },
+                            ],
+                        }
+                    ),
+                    encoding="utf-8",
+                )
+                return subprocess.CompletedProcess(command, 0, stdout="generated", stderr="")
+
+            assert command[command.index("--model") + 1] == MEDIA_AUDIT_MODEL
+            usage_path.write_text(
+                json.dumps(
+                    {
+                        "totalNanoAiu": 20_500_000_000,
+                        "modelMetrics": {
+                            MEDIA_AUDIT_MODEL: {
+                                "requests": {"count": 4},
+                                "totalNanoAiu": 20_500_000_000,
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            content = candidate.read_text(encoding="utf-8")
+            candidate.write_text(
+                content.replace(
+                    "**Evidence:** One signup is author-reported.",
+                    (
+                        "**Evidence:** One signup is author-reported; "
+                        "the screenshot adds no decision-useful evidence."
+                    ),
+                    1,
+                ).replace(
+                    next(
+                        line
+                        for line in content.splitlines()
+                        if line.startswith("**Visual proof:**")
+                    ),
+                    (
+                        f"**Visual proof:** [![A retained workflow screenshot]"
+                        f"({retained_image_url})]({retained_image_url}) "
+                        "shows the retained workflow."
+                    ),
+                    1,
+                ),
+                encoding="utf-8",
+            )
+            (candidate.parent / "media-review.json").write_text(
+                json.dumps(
+                    {
+                        "version": 1,
+                        "items": [
+                            {
+                                "post_id": "build1",
+                                "media_url": image_url,
+                                "media_type": "image",
+                                "status": "not-substantive",
+                                "observation": (
+                                    "The image adds no decision-useful evidence beyond the post."
+                                ),
+                                "report_included": True,
+                            },
+                            {
+                                "post_id": "build2",
+                                "media_url": retained_image_url,
+                                "media_type": "image",
+                                "status": "inspected",
+                                "observation": (
+                                    "The retained image visibly shows the review workflow."
+                                ),
+                                "report_included": True,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            return subprocess.CompletedProcess(command, 0, stdout="audited", stderr="")
+
+        mock_download.side_effect = download
+        mock_run.side_effect = run
+
+        result = analyze_job(job, artifacts_dir=tmp_path / "artifacts")
+
+        assert result.status == "published", result.message
+        assert call_count == 2
+        review = json.loads((candidate.parent / "media-review.json").read_text())
+        assert review["items"][0]["report_included"] is False
+        assert review["items"][1]["report_included"] is True
+        generation = json.loads(
+            (candidate.parent / "generation-metadata.json").read_text(encoding="utf-8")
+        )
+        assert generation["media_audit"]["status"] == "completed"
+        assert generation["media_audit"]["attachment_count"] == 2
+        assert generation["usage"]["ai_credits"] == 22.0
+        assert generation["usage"]["cost_usd"] == 0.22
+        assert generation["usage"]["files"] == [
+            "copilot-usage.json",
+            "media-audit-usage.json",
+        ]
+        assert generation["total_duration_seconds"] >= generation["duration_seconds"]
+
+    @patch("idea_pipeline.analyzer.builder._download_image_asset")
+    @patch("idea_pipeline.analyzer.builder.subprocess.run")
+    def test_visual_audit_failure_blocks_publication(
+        self,
+        mock_run: MagicMock,
+        mock_download: MagicMock,
+        tmp_path: Path,
+    ) -> None:
+        target = make_report_target(tmp_path)
+        image_url = "https://i.redd.it/demo.png"
+        write_snapshot(
+            target.snapshots[-1].path,
+            [
+                post(
+                    "build1",
+                    media_url=image_url,
+                    selftext="A launched tool at https://example.com/product with one user.",
+                )
+            ],
+        )
+        report = tmp_path / "reports" / "2026-08-02.md"
+        report.parent.mkdir(parents=True)
+        report.write_text("known-good report\n", encoding="utf-8")
+        job = AnalysisJob(target, report)
+        candidate = tmp_path / "artifacts" / REPORT_ARTIFACT_NAME / "2026-08-02" / "report.md"
+        call_count = 0
+
+        def download(_url: str, stem: Path) -> Path:
+            asset = stem.with_suffix(".png")
+            asset.write_bytes(b"image")
+            return asset
+
+        def run(command: list[str], **_kwargs: object) -> subprocess.CompletedProcess[str]:
+            nonlocal call_count
+            call_count += 1
+            if call_count == 1:
+                candidate.write_text(
+                    valid_report(image_url=image_url),
+                    encoding="utf-8",
+                )
+                (candidate.parent / "media-review.json").write_text(
+                    json.dumps(
+                        {
+                            "version": 1,
+                            "items": [
+                                {
+                                    "post_id": "build1",
+                                    "media_url": image_url,
+                                    "media_type": "image",
+                                    "status": "inspected",
+                                    "observation": (
+                                        "The attached image visibly shows one queued item."
+                                    ),
+                                    "report_included": True,
+                                }
+                            ],
+                        }
+                    ),
+                    encoding="utf-8",
+                )
+                return subprocess.CompletedProcess(command, 0, stdout="generated", stderr="")
+            return subprocess.CompletedProcess(
+                command,
+                1,
+                stdout="",
+                stderr="visual audit failed",
+            )
+
+        mock_download.side_effect = download
+        mock_run.side_effect = run
+
+        result = analyze_job(job, artifacts_dir=tmp_path / "artifacts")
+
+        assert result.status == "failed"
+        assert "cited media audit exited with 1" in result.message
+        assert report.read_text(encoding="utf-8") == "known-good report\n"
+        validation = json.loads(
+            (candidate.parent / "validation-errors.json").read_text(encoding="utf-8")
+        )
+        assert "cited media audit exited with 1" in validation["errors"][0]
 
     @patch("idea_pipeline.analyzer.builder.subprocess.run")
     def test_structure_drift_is_normalized_before_validation(
@@ -2183,7 +2910,11 @@ class TestAnalysisBoundary:
         mock_download.side_effect = download
         mock_run.side_effect = generate
 
-        result = analyze_job(job, artifacts_dir=tmp_path / "artifacts")
+        result = analyze_job(
+            job,
+            artifacts_dir=tmp_path / "artifacts",
+            model=MEDIA_AUDIT_MODEL,
+        )
 
         assert result.status == "published"
         assert "warning(s)" in result.message

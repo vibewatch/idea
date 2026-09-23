@@ -279,7 +279,7 @@ model switching, and consistent usage metadata.
 
 | Stage | Default | Fallback | Why |
 |---|---|---|---|
-| English report synthesis | `gpt-5.4-mini`, medium effort | `grok-4.5`, high effort | Use a lower-cost model for structured synthesis; escalate only after generation or validation failure. |
+| English report synthesis | `gpt-6-luna`, high effort, 150-credit cap, then a `gpt-6-sol` low-effort audit of only cited attachments with a 100-credit cap | Full `gpt-6-sol`, high effort, 300-credit cap | Luna handles broad synthesis cheaply; the narrow Sol pass verifies exact screenshot/video binding and may change only media-derived `Evidence` and `Visual proof` text. Full Sol is reserved for generation, audit, or validation failure. |
 | Chinese first pass | `gpt-6-luna`, medium effort | `gpt-6-sol`, high effort | Luna produced the best quality/cost result in the repository benchmark; Sol is reserved for hard cases. |
 | Chinese source editor | `gpt-6-luna`, medium effort | Restore the validated first pass if editing and focused repair fail | Editing improves native phrasing but is never allowed to damage an already valid translation. |
 | Collection, validation, refresh, site build | No model | None | Deterministic code is faster, cheaper, and more reliable for these operations. |
@@ -288,6 +288,33 @@ Manual workflow runs can select other supported Copilot models for controlled
 experiments. A model should not replace a production default merely because it
 is newer: rerun the same difficult samples, deterministic validators, blind
 review, timing comparison, and cost comparison first.
+
+### Analysis benchmark decision
+
+The English route was re-evaluated on the same completed 2026-09-22 bundle:
+438 posts across three Reddit and two Hacker News streams, with 30 visual
+attachments. Every successful candidate passed the same deterministic report
+and media validators.
+
+| Route | Result | Time | AI credits | Approx. cost | Main finding |
+|---|---:|---:|---:|---:|---|
+| GPT-5.4 mini, medium | Valid | 10.4 min | 105.61 | $1.06 | Previous default; weaker metric qualification and one incorrect media description. |
+| GPT-6 Luna, medium | Valid | 13.1 min | 14.67 | $0.15 | Cheapest valid route, but over-weighted optional HN cases and misread one image. |
+| GPT-6 Luna, high | Valid | 29.7 min | 67.24 | $0.67 | Strong selection and metric caveats, but exact visual interpretation remained stochastic. |
+| **Selected hybrid: revised Luna/high + cited-media Sol/low audit** | **Valid** | **18.2 min** | **44.42** | **$0.44** | In the final integrated run, Luna produced the full 18-case report for 15.75 credits; Sol inspected only the 8 cited attachments for 28.68 credits and corrected map/database, storefront, revenue-chart, and other exact-asset mismatches. |
+| GPT-6 Sol, high | Valid | 9.2 min | 229.82 | $2.30 | Quality ceiling and fastest valid run, but 3.4 times Luna/high's cost. |
+| Grok 4.7, high | Failed | 11.8 min | 403.42 | $4.03 | Exceeded the 300-credit benchmark cap without producing a report candidate. |
+
+The selected hybrid reduced observed cost by about **58%** versus the previous
+default while improving evidence selection, factual qualification, and exact
+media grounding. The audit receives only media URLs already cited by the
+candidate, and the pipeline discards any audit edits outside Section 2
+`Evidence` and `Visual proof` fields. It then recomputes
+`media-review.json.report_included`, reruns normalization and validation, and
+fails over to full Sol/high if the audit exits nonzero or leaves invalid output.
+Raw Copilot usage plus combined AI-credit, token, USD, and timing summaries stay
+in each report sandbox. The primary, audit, and full-fallback caps are 150, 100,
+and 300 credits respectively.
 
 ### Translation benchmark decision
 

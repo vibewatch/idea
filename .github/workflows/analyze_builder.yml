@@ -36,15 +36,14 @@ on:
         default: false
         type: boolean
       model:
-        description: Copilot model used for report generation.
+        description: Primary Copilot model used for report generation.
         required: false
-        default: gpt-5.4-mini
+        default: gpt-6-luna
         type: choice
         options:
+          - gpt-6-luna
+          - gpt-6-sol
           - gpt-5.4-mini
-          - grok-4.5
-          - claude-sonnet-5
-          - gpt-5.6-terra
       effort:
         description: Reasoning effort passed to Copilot CLI; auto uses a model-compatible default.
         required: false
@@ -112,7 +111,7 @@ jobs:
           INCLUDE_TODAY: ${{ inputs.include_today || false }}
           FORCE_REPORTS: ${{ inputs.force || false }}
           PREPARE_ONLY: ${{ inputs.prepare_only || false }}
-          COPILOT_MODEL: ${{ inputs.model || 'gpt-5.4-mini' }}
+          COPILOT_MODEL: ${{ inputs.model || 'gpt-6-luna' }}
           COPILOT_EFFORT_INPUT: ${{ inputs.effort || 'auto' }}
           ANALYSIS_WORKERS: ${{ inputs.workers || '2' }}
           ANALYSIS_LIMIT: ${{ inputs.limit || '1' }}
@@ -121,13 +120,16 @@ jobs:
           if [[ "$COPILOT_EFFORT_INPUT" == "auto" ]]; then
             case "$COPILOT_MODEL" in
               gpt-5.4-mini) COPILOT_EFFORT=medium ;;
-              grok-*|claude-*) COPILOT_EFFORT=high ;;
               *) COPILOT_EFFORT=high ;;
             esac
           else
             COPILOT_EFFORT="$COPILOT_EFFORT_INPUT"
           fi
-          args=(analyze-builder --model "$COPILOT_MODEL" --effort "$COPILOT_EFFORT" --workers "$ANALYSIS_WORKERS" --limit "$ANALYSIS_LIMIT")
+          case "$COPILOT_MODEL" in
+            gpt-6-sol) COPILOT_CREDIT_LIMIT=300 ;;
+            *) COPILOT_CREDIT_LIMIT=150 ;;
+          esac
+          args=(analyze-builder --model "$COPILOT_MODEL" --effort "$COPILOT_EFFORT" --max-ai-credits "$COPILOT_CREDIT_LIMIT" --workers "$ANALYSIS_WORKERS" --limit "$ANALYSIS_LIMIT")
           if [[ -n "$ANALYSIS_DATE" ]]; then
             args+=(--date "$ANALYSIS_DATE")
           fi
@@ -141,11 +143,11 @@ jobs:
             args+=(--prepare-only)
           fi
           if ! uv run --frozen "${args[@]}"; then
-            if [[ "$COPILOT_MODEL" == "grok-4.5" || "$PREPARE_ONLY" == "true" ]]; then
+            if [[ "$COPILOT_MODEL" == "gpt-6-sol" || "$PREPARE_ONLY" == "true" ]]; then
               exit 1
             fi
-            echo "::warning::Low-cost analysis failed validation; retrying with grok-4.5/high."
-            fallback=(analyze-builder --model grok-4.5 --effort high --workers "$ANALYSIS_WORKERS" --limit "$ANALYSIS_LIMIT")
+            echo "::warning::Primary generation, cited-media audit, or validation failed; retrying with GPT-6 Sol/high."
+            fallback=(analyze-builder --model gpt-6-sol --effort high --max-ai-credits 300 --artifacts-dir artifacts/builder-fallback --workers "$ANALYSIS_WORKERS" --limit "$ANALYSIS_LIMIT")
             if [[ -n "$ANALYSIS_DATE" ]]; then fallback+=(--date "$ANALYSIS_DATE"); fi
             if [[ "$INCLUDE_TODAY" == "true" ]]; then fallback+=(--include-today); fi
             if [[ "$FORCE_REPORTS" == "true" ]]; then fallback+=(--force); fi
@@ -162,15 +164,37 @@ jobs:
             pipeline/artifacts/builder/builder-intelligence/**/report.md
             pipeline/artifacts/builder/builder-intelligence/**/media-review.json
             pipeline/artifacts/builder/builder-intelligence/**/metadata.json
+            pipeline/artifacts/builder/builder-intelligence/**/copilot-usage.json
+            pipeline/artifacts/builder/builder-intelligence/**/*-usage.json
             pipeline/artifacts/builder/builder-intelligence/**/external-links.json
             pipeline/artifacts/builder/builder-intelligence/**/media-manifest.json
             pipeline/artifacts/builder/builder-intelligence/**/media-assets.json
+            pipeline/artifacts/builder/builder-intelligence/**/media-audit-manifest.json
+            pipeline/artifacts/builder/builder-intelligence/**/media-audit.stdout.log
+            pipeline/artifacts/builder/builder-intelligence/**/media-audit.stderr.log
             pipeline/artifacts/builder/builder-intelligence/**/prompt.txt
             pipeline/artifacts/builder/builder-intelligence/**/validation-errors.json
             pipeline/artifacts/builder/builder-intelligence/**/validation-warnings.json
             pipeline/artifacts/builder/builder-intelligence/**/generation-metadata.json
             pipeline/artifacts/builder/builder-intelligence/**/copilot.stdout.log
             pipeline/artifacts/builder/builder-intelligence/**/copilot.stderr.log
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/report.md
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/media-review.json
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/metadata.json
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/external-links.json
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/media-manifest.json
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/media-assets.json
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/media-audit-manifest.json
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/media-audit.stdout.log
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/media-audit.stderr.log
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/prompt.txt
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/validation-errors.json
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/validation-warnings.json
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/generation-metadata.json
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/copilot-usage.json
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/*-usage.json
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/copilot.stdout.log
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/copilot.stderr.log
           if-no-files-found: ignore
           retention-days: 7
 
@@ -182,7 +206,13 @@ jobs:
           path: |
             pipeline/artifacts/builder/builder-intelligence/**/metadata.json
             pipeline/artifacts/builder/builder-intelligence/**/generation-metadata.json
+            pipeline/artifacts/builder/builder-intelligence/**/copilot-usage.json
+            pipeline/artifacts/builder/builder-intelligence/**/*-usage.json
             pipeline/artifacts/builder/builder-intelligence/**/validation-warnings.json
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/generation-metadata.json
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/copilot-usage.json
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/*-usage.json
+            pipeline/artifacts/builder-fallback/builder-intelligence/**/validation-warnings.json
           if-no-files-found: ignore
           retention-days: 30
 

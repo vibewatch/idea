@@ -32,9 +32,11 @@ Build these inventories before writing synthesis. Prefer fewer concrete rows ove
 
 This report is a decision brief, not an exhaustive dump. The source corpus can contain hundreds of posts and dozens of direct links; inclusion still requires decision-useful evidence.
 
-- Prefer artifacts with at least one of: a measured outcome, concrete implementation detail, inspected visual proof, explicit intended user/problem, or a useful failure.
+- Compare candidates across every supplied source before drafting. Source diversity is a tiebreaker, not a quota; optional enrichment must not displace stronger measured outcomes, independent use, concrete failures, implementation evidence, or inspected visual proof.
+- A direct link plus an intended user is not enough for the evidence ledger. Normally require at least one additional decision-useful signal: measured behavior, payment, independent use or objection, concrete implementation detail, a useful failure, or substantive inspected media.
 - A link alone is not enough. Exclude thin launch announcements, directory drops, generic "share your project" replies, and near-duplicate wrappers unless they add concrete evidence.
 - Prefer evidence diversity across communities and roles when quality is comparable. Never add a weak row solely to balance sources.
+- Order evidence-ledger cases by decision value rather than source order or novelty.
 - Treat multiple comments in one Reddit or Hacker News thread as one discussion, not independent evidence breadth.
 - Cap sections so the strongest evidence remains visible:
   - Section 2: 12-20 unified case subsections normally, hard maximum 24.
@@ -152,6 +154,8 @@ Media review is evidence work, not decoration.
 8. Do not infer hidden functionality, code quality, security, retention, performance, or a complete user journey from screenshots or sampled frames.
 9. Include the strongest visual findings in the matching Section 2 case subsection with both the direct media URL and source discussion.
 10. Display informative direct images as linked Markdown images with descriptive alt text: `[![what the image visibly shows](https://image.example)](https://image.example)`. Link videos and galleries rather than pretending Markdown embeds can play them.
+11. Before publishing each `Visual proof` field, compare its statement with the media-review item for that exact URL. Never transfer an observation from another image, video, or gallery in the same post; omit uncertain media instead.
+12. Apply the same exact-asset check to every media-derived sentence in `Evidence`. If the attachment contradicts or does not support that sentence, correct or remove only the visual assertion while preserving the post-derived facts.
 
 Before writing the report, create `media-review.json` with exactly one item for every media-manifest entry:
 
