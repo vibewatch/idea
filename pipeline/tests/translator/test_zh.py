@@ -26,6 +26,7 @@ from idea_pipeline.translator.zh import (
     normalize_reddit_link_labels,
     normalize_required_headings,
     normalize_required_labels,
+    normalize_structural_literals,
     normalize_translation,
     prepare_translation,
     protect_translation_source,
@@ -100,7 +101,7 @@ TRANSLATED_BODY = """# Reddit 构建者情报报告 - 2026-08-05
 
 **主要链接：** [打开项目](https://open-valve.com/)
 
-**阶段：** `Prototype`
+**阶段：** `原型`
 
 **用户或问题：** 运维人员需要更快的审核流程。
 
@@ -118,7 +119,7 @@ TRANSLATED_BODY = """# Reddit 构建者情报报告 - 2026-08-05
 
 **主要链接：** 未提供
 
-**阶段：** `Launched`
+**阶段：** `已发布`
 
 **用户或问题：** 设计师需要可打印地图。
 
@@ -199,6 +200,9 @@ class TestStructure:
         assert "r/SaaS" in terms["subreddits"]
         assert "$50 MRR" in protected_terms("Revenue reached $50 MRR.")["metrics"]
         assert "AADSTS5000224" in protected_terms("Error AADSTS5000224.")["identifiers"]
+        assert protected_terms("Stages: `Usage`, `Revenue`; visual: `None`.")[
+            "inline_code"
+        ] == []
         assert protected_terms("$2,250 best week; $290.25 balance.")["metrics"] == [
             "$2,250",
             "$290.25",
@@ -221,10 +225,29 @@ class TestStructure:
 ### ClipKaboom
 
 ### Workflow experiment
+
+### SaaS revenue milestone
+
+### Signl - WiFi Analyzer & mapper
+
+### iRead - read aloud EPUB reader
+
+### First 3 Paying Customers
+
+### Free Won Over Premium
+
+### Security Scanning SaaS
+
+### Open Source Software Directory
+
+**Primary link:** [Open project](https://opensourcesoftware.io)
 """
         assert protected_terms(descriptive)["project_names"] == [
             "DistribBuddy",
             "ClipKaboom",
+            "Signl",
+            "iRead",
+            "Open Source Software Directory",
         ]
 
 
@@ -251,6 +274,20 @@ class TestNormalization:
 
         assert "和![图二](https://i.redd.it/example.png)" in normalized
         assert messages == ["restored 1 Markdown image marker(s)"]
+
+    def test_standardizes_label_spacing_link_spacing_and_reddit_counts(self) -> None:
+        normalized, messages = normalize_translation(
+            "**解读：** 分析：产品已上线。\n"
+            "**证据：**作者见 [帖子](https://example.com/)后行动"
+            "（219 points，100 comments）。"
+        )
+
+        assert normalized == (
+            "**解读：** 产品已上线。\n"
+            "**证据：** 作者见 [帖子](https://example.com/) 后行动"
+            "（219 分，100 条评论）。"
+        )
+        assert any("report spacing or Reddit count" in message for message in messages)
 
         preserved, _messages = normalize_translation(
             "图一和 ![图二](https://i.redd.it/example.png)，都需要保留。"
@@ -711,6 +748,14 @@ class TestPromptAndCommand:
 
         assert command[command.index("--model") + 1] == DEFAULT_MODEL
         assert command[command.index("--reasoning-effort") + 1] == DEFAULT_EFFORT
+        assert "--no-custom-instructions" in command
+
+    def test_command_records_usage_when_requested(self, tmp_path: Path) -> None:
+        usage_path = tmp_path / "usage.json"
+
+        command = build_copilot_command("prompt", usage_output_file=usage_path)
+
+        assert command[-2:] == ["--usage-output-file", str(usage_path)]
 
     def test_prompt_states_the_structural_contract(self, tmp_path: Path) -> None:
         report_path = write_report(tmp_path / "reports", "2026-08-05")
@@ -729,15 +774,34 @@ class TestPromptAndCommand:
         assert "#1: 3x1" in prompt
         assert "4 distinct link targets" in prompt
         assert TARGET_LANGUAGE in prompt
-        assert "source line 5: reportedly=1, at least=1" in prompt
         assert "Translation input: translation-source.md" in prompt
         assert "preserve all 4 inline-code tokens byte-identically" in prompt
+        assert "Occurrence-level uncertainty ledger" not in prompt
         assert "Immutable Markdown image targets:" in prompt
         assert "`https://i.redd.it/example.png`" in prompt
         assert "Blocked translationese patterns (zero occurrences allowed)" in prompt
         assert "`通过……来`" in prompt
         assert "Use translation-source.md as a fixed Markdown scaffold" in prompt
+        assert "`Idea` -> `想法`" in prompt
+        assert "`Usage` -> `已有实际使用`" in prompt
+        assert "first identify the topic, action, result, and limitation" in prompt
         assert "Do not run git commands." in prompt
+
+    def test_normalizes_structural_stage_and_empty_visual_values(self) -> None:
+        source = """**Stage:** `Usage`
+
+**Visual proof:** `None`
+"""
+        candidate = """**阶段：** `Usage`
+
+**视觉证据：** `None`
+"""
+
+        normalized, count = normalize_structural_literals(source, candidate)
+
+        assert count == 2
+        assert "**阶段：** `已有实际使用`" in normalized
+        assert "**视觉证据：** 无" in normalized
 
 
 class TestTranslationBoundary:
@@ -797,6 +861,7 @@ class TestTranslationBoundary:
         assert front_matter["source"] == "2026-08-05.md"
         assert len(front_matter["source_sha256"]) == 64
         assert front_matter["quality_version"] == TRANSLATION_QUALITY_VERSION
+        assert front_matter["editor_model"] == "gpt-6-luna"
         assert body.lstrip().startswith("# Reddit 构建者情报报告")
         assert "$50 MRR" in body
         metadata = json.loads(
@@ -853,7 +918,81 @@ class TestTranslationBoundary:
             result = translate_job(job, artifacts_dir=tmp_path / "artifacts")
 
         assert result.status == "published"
-        assert "1 warning(s)" in result.message
+        assert "2 warning(s)" in result.message
+
+    def test_invalid_editor_output_restores_validated_draft(self, tmp_path: Path) -> None:
+        report_path = write_report(tmp_path / "reports", "2026-08-05")
+        target = target_for(report_path)
+        job = TranslationJob(
+            target=target,
+            translation_path=tmp_path / "zh" / "2026-08-05.md",
+            reason="missing overlay",
+        )
+        prepared = prepare_translation(target, tmp_path / "artifacts")
+        calls = 0
+
+        def write_candidates(*_args: object, **_kwargs: object) -> MagicMock:
+            nonlocal calls
+            calls += 1
+            if calls == 1:
+                prepared.candidate_path.write_text(
+                    padded(TRANSLATED_BODY),
+                    encoding="utf-8",
+                )
+            else:
+                prepared.candidate_path.write_text(
+                    padded(SOURCE_REPORT),
+                    encoding="utf-8",
+                )
+            return MagicMock(returncode=0, stdout="", stderr="")
+
+        with patch("idea_pipeline.translator.zh.subprocess.run", side_effect=write_candidates):
+            result = translate_job(job, artifacts_dir=tmp_path / "artifacts")
+
+        assert result.status == "published"
+        front_matter, body = strip_front_matter(job.translation_path.read_text(encoding="utf-8"))
+        assert "editor_model" not in front_matter
+        assert body.lstrip().startswith("# Reddit 构建者情报报告")
+        assert "restored the validated draft" in (
+            tmp_path / "artifacts" / "2026-08-05" / "validation-warnings.json"
+        ).read_text(encoding="utf-8")
+
+    def test_editor_timeout_restores_validated_draft(self, tmp_path: Path) -> None:
+        report_path = write_report(tmp_path / "reports", "2026-08-05")
+        target = target_for(report_path)
+        job = TranslationJob(
+            target=target,
+            translation_path=tmp_path / "zh" / "2026-08-05.md",
+            reason="missing overlay",
+        )
+        prepared = prepare_translation(target, tmp_path / "artifacts")
+        calls = 0
+
+        def generate_then_timeout(*_args: object, **_kwargs: object) -> MagicMock:
+            nonlocal calls
+            calls += 1
+            if calls == 1:
+                prepared.candidate_path.write_text(
+                    padded(TRANSLATED_BODY),
+                    encoding="utf-8",
+                )
+                return MagicMock(returncode=0, stdout="", stderr="")
+            raise subprocess.TimeoutExpired(["copilot"], 1200)
+
+        with patch(
+            "idea_pipeline.translator.zh.subprocess.run",
+            side_effect=generate_then_timeout,
+        ):
+            result = translate_job(job, artifacts_dir=tmp_path / "artifacts")
+
+        assert result.status == "published"
+        front_matter, body = strip_front_matter(job.translation_path.read_text(encoding="utf-8"))
+        assert "editor_model" not in front_matter
+        assert body.lstrip().startswith("# Reddit 构建者情报报告")
+        warnings = (
+            tmp_path / "artifacts" / "2026-08-05" / "validation-warnings.json"
+        ).read_text(encoding="utf-8")
+        assert "translation editor exceeded 1200 seconds" in warnings
 
     def test_crash_without_a_candidate_fails_immediately(self, tmp_path: Path) -> None:
         report_path = write_report(tmp_path / "reports", "2026-08-05")
@@ -905,6 +1044,27 @@ class TestTranslationBoundary:
 
         assert result.status == "failed"
         assert "Copilot CLI not found" in result.message
+
+    def test_translation_timeout_is_reported(self, tmp_path: Path) -> None:
+        report_path = write_report(tmp_path / "reports", "2026-08-05")
+        job = TranslationJob(
+            target=target_for(report_path),
+            translation_path=tmp_path / "zh" / "2026-08-05.md",
+            reason="missing overlay",
+        )
+
+        with patch(
+            "idea_pipeline.translator.zh.subprocess.run",
+            side_effect=subprocess.TimeoutExpired(
+                ["copilot"],
+                1200,
+                output=b"partial output",
+            ),
+        ):
+            result = translate_job(job, artifacts_dir=tmp_path / "artifacts")
+
+        assert result.status == "failed"
+        assert "translation generation exceeded 1200 seconds" in result.message
 
 
 class TestCommandLine:

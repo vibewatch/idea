@@ -39,13 +39,13 @@ on:
       model:
         description: Copilot model used for translation.
         required: false
-        default: gemini-3.8-flash
+        default: gpt-6-luna
         type: choice
         options:
+          - gpt-6-luna
+          - gpt-6-sol
           - gemini-3.8-flash
-          - gpt-5.4-mini
-          - grok-4.5
-          - claude-sonnet-5
+          - grok-4.7
           - gpt-5.6-terra
       effort:
         description: Reasoning effort passed to Copilot CLI; auto uses a model-compatible default.
@@ -111,15 +111,15 @@ jobs:
           TRANSLATION_LIMIT: ${{ inputs.limit || '5' }}
           FORCE_TRANSLATIONS: ${{ inputs.force || false }}
           PREPARE_ONLY: ${{ inputs.prepare_only || false }}
-          COPILOT_MODEL: ${{ inputs.model || 'gemini-3.8-flash' }}
+          COPILOT_MODEL: ${{ inputs.model || 'gpt-6-luna' }}
           COPILOT_EFFORT_INPUT: ${{ inputs.effort || 'auto' }}
           TRANSLATION_WORKERS: ${{ inputs.workers || '1' }}
           PYTHONUNBUFFERED: "1"
         run: |
           if [[ "$COPILOT_EFFORT_INPUT" == "auto" ]]; then
             case "$COPILOT_MODEL" in
-              gemini-*|gpt-5.4-mini) COPILOT_EFFORT=medium ;;
-              grok-*|claude-*) COPILOT_EFFORT=high ;;
+              gpt-6-luna|gemini-*) COPILOT_EFFORT=medium ;;
+              gpt-6-sol|gpt-5.6-terra|grok-*) COPILOT_EFFORT=high ;;
               *) COPILOT_EFFORT=high ;;
             esac
           else
@@ -136,11 +136,11 @@ jobs:
             args+=(--prepare-only)
           fi
           if ! uv run --frozen "${args[@]}"; then
-            if [[ "$COPILOT_MODEL" == "gpt-5.4-mini" || "$PREPARE_ONLY" == "true" ]]; then
+            if [[ "$COPILOT_MODEL" == "gpt-6-sol" || "$PREPARE_ONLY" == "true" ]]; then
               exit 1
             fi
-            echo "::warning::Quality-first translation failed validation; retrying with gpt-5.4-mini/high."
-            fallback=(translate-zh --model gpt-5.4-mini --effort high --workers "$TRANSLATION_WORKERS" --limit "$TRANSLATION_LIMIT")
+            echo "::warning::Cost-efficient translation failed validation; retrying with gpt-6-sol/high."
+            fallback=(translate-zh --model gpt-6-sol --effort high --workers "$TRANSLATION_WORKERS" --limit "$TRANSLATION_LIMIT")
             if [[ -n "$TRANSLATION_DATE" ]]; then fallback+=(--date "$TRANSLATION_DATE"); fi
             if [[ "$FORCE_TRANSLATIONS" == "true" ]]; then fallback+=(--force); fi
             uv run --frozen "${fallback[@]}"
@@ -160,8 +160,13 @@ jobs:
             pipeline/artifacts/translations/zh/**/validation-errors.json
             pipeline/artifacts/translations/zh/**/validation-warnings.json
             pipeline/artifacts/translations/zh/**/generation-metadata.json
+            pipeline/artifacts/translations/zh/**/editor-metadata.json
+            pipeline/artifacts/translations/zh/**/editor-validation-errors.json
+            pipeline/artifacts/translations/zh/**/translation-draft.md
             pipeline/artifacts/translations/zh/**/copilot.stdout.log
             pipeline/artifacts/translations/zh/**/copilot.stderr.log
+            pipeline/artifacts/translations/zh/**/editor.stdout.log
+            pipeline/artifacts/translations/zh/**/editor.stderr.log
           if-no-files-found: ignore
           retention-days: 7
 
@@ -172,6 +177,7 @@ jobs:
           name: reddit-translation-telemetry-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             pipeline/artifacts/translations/zh/**/generation-metadata.json
+            pipeline/artifacts/translations/zh/**/editor-metadata.json
             pipeline/artifacts/translations/zh/**/validation-warnings.json
           if-no-files-found: ignore
           retention-days: 30

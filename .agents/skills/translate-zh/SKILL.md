@@ -47,7 +47,9 @@ English report prose is long, noun-heavy, and clause-stacked. Chinese is verb-dr
 - Translationese: 这些创始人们都提到了他们的一个共同的问题
 - Native: 创始人普遍提到同一个问题
 
-**Prefer active voice.** Use 被 only for genuine adversity or when the agent is unknown and matters. `被认为`/`被使用`/`被发现` are usually wrong; use 普遍认为 / 用于 / 发现.
+Translate the recurring phrase “rolling UTC-day snapshot” as 「本期按 UTC 日统计，数据仍可能更新」. Do not write 「推进中的 UTC 当日动态速览」 or 「UTC 日报仍在更新」.
+
+**Prefer active voice.** Use 被 only for genuine adversity, an imposed obligation, or when the unknown agent matters. `被认为`/`被使用`/`被发现` are usually wrong; use 普遍认为 / 用于 / 发现. `被要求` is acceptable when the source specifically says someone is being made to take on work or risk.
 
 **Avoid 的 pile-ups.** More than one 的 per short clause reads badly. 「一个基于社区的用于开发者的内容聚合的产品」→「面向开发者的社区内容聚合产品」.
 
@@ -57,7 +59,7 @@ Keep verbatim, never translate, never transliterate:
 
 - product, company, app, and repository names — OpenValve, PrintMap, LiveSend, Stripe
 - subreddit and platform handles — r/SaaS, u/name, Product Hunt, App Store
-- every URL, Markdown link target, image target, and inline code span
+- every URL, Markdown link target, image target, and technical inline code span
 - currency symbols, amounts, dates, percentages, and all numerals — $50 MRR stays $50 MRR
 - error codes and identifiers — AADSTS5000224, `.ost`, DR 54
 
@@ -71,6 +73,7 @@ Use these renderings consistently. They are the ones Chinese builder media actua
 |---|---|
 | builder | 构建者 |
 | founder | 创始人 |
+| maker (software/product context) | 开发者 |
 | indie hacker / solo builder | 独立开发者 |
 | customer pain / pain point | 用户痛点 |
 | workaround | 变通做法 |
@@ -83,6 +86,7 @@ Use these renderings consistently. They are the ones Chinese builder media actua
 | landing page | 落地页 |
 | cold DM / cold email | 陌生私信 / 陌生邮件 |
 | funnel | 转化漏斗 |
+| cohort | 同期群 |
 | signup | 注册 |
 | paying customer | 付费用户 |
 | self-reported | 作者自述 |
@@ -95,8 +99,25 @@ Use these renderings consistently. They are the ones Chinese builder media actua
 | what it does not prove | 无法证明的部分 |
 | contact sheet | 帧图拼版 |
 | open source | 开源 |
+| viral / went viral (traffic/content context) | 爆红 / 走红 |
+| cold outreach | 陌生拓客 |
+| qualified lead / traffic | 合格潜客 / 高意向流量 |
 
 Translate a term the same way everywhere in one report.
+
+Structural status values are prose, not technical code. Translate them even when the
+English report wraps them in backticks:
+
+| English source | Chinese output |
+|---|---|
+| `Idea` | `想法` |
+| `Prototype` | `原型` |
+| `Launched` | `已发布` |
+| `Usage` | `已有实际使用` |
+| `Revenue` | `已有营收` |
+| `Abandoned` | `已放弃` |
+| `Unknown` | `未知` |
+| Visual proof `None` | 无 |
 
 ## Punctuation and spacing
 
@@ -118,7 +139,7 @@ Translate a term the same way everywhere in one report.
 - Preserve linked Markdown images exactly as `[![translated alt](exact image target)](exact image target)`. Translate only the alt text.
 - Keep bold, italic, inline code, blockquotes, lists, and horizontal rules where the source has them.
 - Keep `**bold**` on the same facts the source emphasizes — usually the metrics.
-- `protected-terms.json` is a hard contract, not a glossary suggestion. Preserve every listed metric, identifier, inline-code span, subreddit handle, and project name byte-for-byte.
+- `protected-terms.json` is a hard contract, not a glossary suggestion. Preserve every listed metric, identifier, technical inline-code span, subreddit handle, and project name byte-for-byte. Structural status values and Visual proof `None` are deliberately excluded because they must be translated as defined above.
 
 Reddit post titles used as link labels stay byte-identical to the source, including capitalization, punctuation, truncation, and ellipses. They are quoted evidence, not prose. Never expand a shortened title.
 
@@ -176,7 +197,11 @@ Write like an industry briefing: 冷静、克制、信息密度高. State findin
 - No 小编、我们来看看、话不多说 or other content-farm filler.
 - Keep the source's hedging exactly: "author-reported" → 作者自述, "claims" → 声称, "not proven" → 未获证实. Never upgrade a claim into a fact.
 - Preserve Section 1's short bottom line, five highlighted bullets, and coverage paragraph. Keep each bullet concrete and compact rather than turning it into promotional teaser copy.
-- High-confidence translationese is blocking: 对于……而言、通过……来、在……的过程中、被设计为、被要求、被认为是、正在……中、做出决定、进行尝试、产生影响、实现增长. Rewrite the whole sentence instead of swapping one phrase.
+- Before writing each paragraph or field, identify the topic, concrete action, result, and limitation. Then write that meaning in Chinese from scratch. Do not preserve the English clause order or sentence boundaries.
+- Prefer plain newsroom wording over abstract administrative prose. Replace phrases such as 「呈现……特征」「围绕……展开」「予以」「在……层面」「相关」「机制」「路径」「实现了」「进行了」 with a direct subject and verb whenever the meaning permits.
+- Rewrite stacked audience descriptions directly: 「想把纯命令行工具换成更顺手工作流的 Mac 用户」 should become 「觉得纯命令行不够顺手的 Mac 用户」.
+- Read the finished Chinese once without looking at the English. A reader should immediately understand who did what, what changed, and what remains unproven.
+- High-confidence translationese is blocking: 对于……而言、通过……来、在……的过程中、被设计为、被认为是、正在……中、做出决定、进行尝试、产生影响、实现增长. Rewrite the whole sentence instead of swapping one phrase.
 
 ## Safety boundary
 
@@ -197,5 +222,6 @@ Reread `translation.md` once as a Chinese reader who has never seen the English:
 2. Count 的 in each paragraph — thin out the pile-ups.
 3. Are 一个 / 们 / 该 / 其 / 被 doing real work? Delete the rest.
 4. Is every number, name, and URL identical to the source?
-5. Is every heading, case field, and table row present, in the same order?
-6. Would a Chinese tech editor publish this without edits?
+5. Are structural status values translated, and is Visual proof `None` rendered as 「无」?
+6. Is every heading, case field, and table row present, in the same order?
+7. Would a Chinese tech editor publish this without edits?
