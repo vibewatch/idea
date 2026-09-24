@@ -143,7 +143,9 @@ sequenceDiagram
   Translator->>Translator: Validate, repair, or restore valid draft
   Translator->>Git: Commit valid Chinese overlays
 
-  Git-->>Deploy: Push affecting site or reports
+  Analyzer-->>Deploy: Successful workflow completion
+  Translator-->>Deploy: Successful workflow completion
+  Git-->>Deploy: Relevant non-workflow push
   Deploy->>Deploy: Astro build and Pagefind indexing
   Deploy-->>Git: Publish GitHub Pages artifact
 ```
@@ -270,7 +272,7 @@ expandable media. The build produces:
   variables.
 
 `.github/workflows/deploy_site.yml` deploys to GitHub Pages after relevant
-pushes and after successful analysis workflow completion.
+pushes and after successful analysis or translation workflow completion.
 
 ## Model provider and routing
 
@@ -430,7 +432,7 @@ the preserved raw snapshots rather than maintaining legacy rendered formats.
 | `analyze_builder.yml` | `43 2 * * *` (force-refresh previous UTC day) and manual | `reports/builder/*.md` |
 | `translate_zh.yml` | Analysis completion, `17 6 * * *`, and manual | `reports/builder/zh/*.md` |
 | `refresh_reddit_cookies.yml` | `23 1 */3 * *` and manual | `REDDIT_COOKIES`; failure issue only |
-| `deploy_site.yml` | Relevant push, successful analysis completion, and manual | GitHub Pages |
+| `deploy_site.yml` | Relevant push, successful analysis/translation completion, and manual | GitHub Pages |
 
 Analysis and translation workflows expose date, limit, force, prepare-only,
 model, effort, and worker controls for targeted recovery and benchmarking.
