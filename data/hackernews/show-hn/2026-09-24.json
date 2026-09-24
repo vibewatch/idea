@@ -1,8 +1,274 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-09-24T12:44:12.815827+00:00",
+  "last_fetched": "2026-09-24T18:37:26.942994+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49834990",
+      "title": "Show HN: Hormuz Signal – Iran war escalation risk from real data",
+      "subreddit": "show-hn",
+      "author": "mrPaul658",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49834990",
+      "url": "https://www.HormuzSignal.com",
+      "selftext": "This is a side project I have developed to get hard data on Hormuz Strait escalation risk.\nThe thing is the narrative was at some point \"The Strait traffic is at 50% its pre-war level\" when in reality it was below 10%. Not only that but some things like the levels of oil in reserves in USA or amount of oil China imports, etc can have big impact on the political optics of the Strait of Hormuz being blocked.\nOther sensors like seismic activity in Iran can tell two things: (1) did Iran just test a nuclear device?; (2) did someone just hit Pickaxe Mountain with nuclear device? -- both aren't theoretical questions but discussed in the open by geopolitical experts. Not to mention others mentioning \"Iran annihilation\" at the UN yesterday.\nThe point of the website is this: in the crazy times narrative can be crazy too. Better look up hard data and consolidate it into a single score / chart. This will tell you much more about the situation on the ground than listening to the talk. The site has much more data than this though. Check it out for yourself!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790275013,
+      "created_at": "2026-09-24T18:36:53+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49834499",
+      "title": "Show HN: Rig – Open-source cloud desktops for AI agents",
+      "subreddit": "show-hn",
+      "author": "fengjiabo2400",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49834499",
+      "url": "https://github.com/ShadowWalker2014/rig",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790272911,
+      "created_at": "2026-09-24T18:01:51+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49833867",
+      "title": "Show HN: Whiteboard (YC W26) – An open-source IDE for thoughtful software design",
+      "subreddit": "show-hn",
+      "author": "sidharthkmenon",
+      "score": 69,
+      "num_comments": 14,
+      "permalink": "https://news.ycombinator.com/item?id=49833867",
+      "url": "https://github.com/devdotfast/whiteboard",
+      "selftext": "Hello! We’re Sid, Alex, Ketan, and Milan. We’re building Whiteboard, an open-source desktop app where humans and agents can architect software together in a common workspace. Here’s our repo: https://github.com/devdotfast/whiteboard (https://github.com/devdotfast/whiteboard) and our homepage: https://whiteboard.dev.fast/ (https://whiteboard.dev.fast/)\nWe were missing the feeling of a “whiteboard session” with another dev where you leave with a deep understanding of a system, so we built this app for ourselves. Whiteboard plugs into the tools you already use - e.g. Claude Code, Codex, etc. – and gives your agent an SDK to draw on an in-app canvas to describe its work. We began with an MVP based on HTML artifacts and started rethinking the app as we ran into limitations:\n1. Built on top of CodeOSS: We found that in pure HTML tools it was hard to connect a spec or diagram to code. In Whiteboard, when you click on visualizations like a sequence diagram, an entity relationship diagram, or a quote from the agent’s trace, you can jump to the underlying code directly. When navigating code, you get keybindings and LSP support from VSCode out of the box. We’ve found this is especially valuable because tradeoffs are often only discovered after a first pass at implementation (re: slop)\n2. Semantic diff viewer: we wrote a semantic, AST-aware diff viewer in Rust so you can only view the code changes which are relevant to you [1]. We’ve set up some sane defaults: large added functions are summarized as pseudocode, and things like unit tests and large documentation changes are collapsed / hidden. This is all customizable with a WASM-based plugin system.\n3. Decision Log: We found it difficult to reason about what set of decisions our agents made autonomously. So we built tools for agents to query and link their own traces to the Whiteboard, so you can understand how the requirements that you set were implemented, and understand what decisions your agent made autonomously.\nHere’s a quick demo video explaining more: https://youtu.be/ChPn3ftULWE (https://youtu.be/ChPn3ftULWE)\nFolks at companies like Salesforce and Modal are using Whiteboard today as a review tool for architecture or spec-level changes – really any change where they want to be involved:\n1. Reviewing your own coding agent’s work: because Whiteboard makes it easier to review large amounts of code, folks will typically have their AI agents create a prototype and a corresponding Whiteboard session so they can iterate on the design.\n2. Reviewing other people’s changes: We’ve found that Whiteboard is particularly helpful when composed with tools like Greptile. For example, you can run an automated code reviewer on small changes and escalate to a Whiteboard session for the changes that require human judgement.\nWhy we built this: we’re four buddies from college who quit our jobs as tech leads right before agentic coding became industry standard. As we iterated towards an MVP for a previous idea, we struggled to maintain a comprehensible codebase while reaping all the velocity benefits of agentic coding. As more PRs were merged without our understanding, we felt a ‘cognitive debt’ begin to seep in, until it became difficult for us to even contribute to the system [2].\nWe’re releasing our desktop app under an MIT license. Please poke through and feel free to contribute! Eventually we’ll charge companies for a hosted web version that manages whiteboard session creation alongside features like trajectory storage and multiplayer reviews. Everything will always remain self-hostable.\nThanks for reading, and we hope you try it out! We would love to hear any feedback and to learn from your expertise.\nHere’s are the project links again: https://github.com/devdotfast/whiteboard (https://github.com/devdotfast/whiteboard), and you can install (for MacOS + Linux) at https://install.dev.fast (https://install.dev.fast)\n[1] diffs library: https://github.com/devdotfast/diffr (https://github.com/devdotfast/diffr)\n[2] Credit for the term ‘cognitive debt’ goes to https://www.geoffreylitt.com/2026/07/02/understanding-is-the... (https://www.geoffreylitt.com/2026/07/02/understanding-is-the-new-bottleneck)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790270496,
+      "created_at": "2026-09-24T17:21:36+00:00",
+      "comments_data": [
+        {
+          "id": "49834714",
+          "author": "2001zhaozhao",
+          "body": "This is definitely getting at least some things right about how we work with agents today, specifically that we often work at the architecture level, and we need a better alternative to the current Plan Mode offered by coding agents to efficiently architect software at a high level, which is more visual and offers better back-and-forth incrementation with the agent than simply \"reject final plan with X message\".\nFrom the website demos i definitely think this is a clean interface, although I don't know how much better this is compared to some simple custom Mermaid format, which the agent can write as artifact files and present to users. Zooming out, this app seems like 1 feature (a MCP with a GUI attached to it) rather than an entire product.\nAlso, I don't know if asking the agent to write specific code changes into the plan is a good idea. I think maybe that a \"plan -> approve -> write code\" would let the agent write higher quality code than \"plan which contains code -> approve\". But maybe you can make it work when combined with some specific prompting marking the code as clearly work-in-progress and subject to change, and that the agent should surface any parts implemented differently relative to the plan to the user, etc.",
+          "score": 0,
+          "time": 1790273836,
+          "parent": "49833867"
+        },
+        {
+          "id": "49834864",
+          "author": "writtenone",
+          "body": "We need LESS of AI and more HUMAN thinking. The process of thought and the increased difficulty with increased complexity is a feature not a bug.\nAI note taking is a scourge on society and needs to go.",
+          "score": 0,
+          "time": 1790274436,
+          "parent": "49833867"
+        },
+        {
+          "id": "49834543",
+          "author": "bbor",
+          "body": "Oh WOW, cool to see a technique that'll be everywhere in 12 months (the fake pen drawing animations + streaming diagrams as they're produced) first be announced. Do we still do \"First!\" comments, y'all?\n[EDIT: you need to put \"only for macOS\" in way more prominent places, all over -- that offends my soul greatly and may Linus frown upon you all]\nThis all looks really solid. That said, two remarks:\n1. The integration with OS LSPs is quite fun and commendable. Is it possible that the diagrams might get their own LSP, someday? Or is better just staying as direct TS callsites?\n2. The choice of the word \"IDE\" seems like it might get you in trouble, given the small \"cannot edit files\" detail. Any comments on the decision there, as opposed to, say... \"brainstorming tool\"? Or hell, \"[architectonic] harness\"?\n3. The psuedocode \"semantic diff\" thing is an incredible idea, wow. Props there.\n4. This language kinda concerns me: \"how the requirements that you set were implemented\". In my highly-arbitrary development flow, it ideally goes `idea -> spec/reqs -> plan -> test -> impl -> eval -> land -> review`, and this kind of tool seems explicitly targeted towards just the second and third with some partial coverage of their neighbors on either side. More concretely: by adding implementation, don't you lose a powerful specificity selling point and now have to compete with all full harnesses?\n5. Suggesting \"GPT-6 Luna and Claude Opus 5.5\" is presumably a typo? Cause the equivelant of Opus 5.5 is Astra, and even then not really.",
+          "score": 0,
+          "time": 1790273079,
+          "parent": "49833867"
+        },
+        {
+          "id": "49834508",
+          "author": "saadn92",
+          "body": "What does pricing look like?",
+          "score": 0,
+          "time": 1790272940,
+          "parent": "49833867"
+        },
+        {
+          "id": "49834369",
+          "author": "souvlakee",
+          "body": "Loved that zed-inspired landing pages.",
+          "score": 0,
+          "time": 1790272389,
+          "parent": "49833867"
+        },
+        {
+          "id": "49834380",
+          "author": "komposit",
+          "body": "Cool idea will give this a try!",
+          "score": 0,
+          "time": 1790272422,
+          "parent": "49833867"
+        },
+        {
+          "id": "49834622",
+          "author": "nthypes",
+          "body": "Vibe-coded landing pages are an instant “no thanks” for me.",
+          "score": 0,
+          "time": 1790273445,
+          "parent": "49833867"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49832470",
+      "title": "Show HN: Timebar, a Mac timer shown as a thin line below the menu bar",
+      "subreddit": "show-hn",
+      "author": "sabon",
+      "score": 5,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=49832470",
+      "url": "https://github.com/velvet-shark/timebar",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790265211,
+      "created_at": "2026-09-24T15:53:31+00:00",
+      "comments_data": [
+        {
+          "id": "49832631",
+          "author": "supersrdjan",
+          "body": "Super idea. Like an hourglass that never escapes your notice. I typically have to set two timers when I use timers: one actual timer, and a supplementary timer that dings when it's 1/3 time left on the real timer. Otherwise there's no use if I only have one abrupt ding... I can't correct course before my timer expires.\nI wish it integrated with tms, Prot's emacs package for timing things: https://github.com/protesilaos/tmr (https://github.com/protesilaos/tmr) :D",
+          "score": 0,
+          "time": 1790265736,
+          "parent": "49832470"
+        },
+        {
+          "id": "49833849",
+          "author": "nmekala35",
+          "body": "love the idea! I am going to give this a spin.\npersonally, I am always trying to time box tasks, to drive sense of urgency.\nThe thin progress line under the menu bar is a really nice touch.",
+          "score": 0,
+          "time": 1790270407,
+          "parent": "49832470"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49832367",
+      "title": "Show HN: Scalar.dev – Python/SQLite server-rendered starter app, no build step",
+      "subreddit": "show-hn",
+      "author": "felipeccastro",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49832367",
+      "url": "https://getscalar.dev/",
+      "selftext": "Hi HN, I'm Felipe.\nAI-assisted coding is great, but complexity is still complexity. The more you have it, the harder it is to keep the system sane and changes safe over time.\nI've built this project because I wanted to have a different foundation for my apps - one that started simple, with no external dependencies, and that made the code stay easy to understand as it grows and cheap to modify. Simplicity in the stack is a means to absorb the business complexity without turning the project into an unmaintainable mess.\nThis foundation is a Python server-rendered app (no build step, no SPA), and as a starter app it comes with some basic features that most apps will need (Authentication, AI chat, Settings, Clients/Tasks as a demo crud). The foundation is free (MIT), and there are also two paid options if you want more features.\nLooking forward to hear your feedback!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790264895,
+      "created_at": "2026-09-24T15:48:15+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49832351",
+      "title": "Show HN: Trify3D – Compare AI 3D engines on one input and keep the best mesh",
+      "subreddit": "show-hn",
+      "author": "lizoenn",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49832351",
+      "url": "https://trify3d.com",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790264831,
+      "created_at": "2026-09-24T15:47:11+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49832080",
+      "title": "Show HN: Most Hated Tools",
+      "subreddit": "show-hn",
+      "author": "leonagano",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49832080",
+      "url": "https://www.mosthatedtools.app/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790263937,
+      "created_at": "2026-09-24T15:32:17+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49831000",
+      "title": "Show HN: I'm crawling 11k homepages every week to track which fonts they use",
+      "subreddit": "show-hn",
+      "author": "fcjr",
+      "score": 4,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=49831000",
+      "url": "https://fontsovertime.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790259548,
+      "created_at": "2026-09-24T14:19:08+00:00",
+      "comments_data": [
+        {
+          "id": "49831591",
+          "author": "rrr_oh_man",
+          "body": "> every week\n> Dashed lines before September 2026 are estimates from archived copies of these homepages. Solid lines are our weekly crawl. This chart follows a fixed set of 1629 sites, so its numbers differ from the rankings, which cover every site we crawl.\nBut you just started!! >:o\nJk, cool project.\nBut please get rid of the LLMsplaining copy.",
+          "score": 0,
+          "time": 1790262054,
+          "parent": "49831000"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49830000",
+      "title": "Show HN: Clue Me – Describe the word you're given, Jev tries to guess it",
+      "subreddit": "show-hn",
+      "author": "rohanm93",
+      "score": 5,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=49830000",
+      "url": "https://yorohan.com/clue-me",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790254865,
+      "created_at": "2026-09-24T13:01:05+00:00",
+      "comments_data": [
+        {
+          "id": "49830051",
+          "author": "rohanm93",
+          "body": "I made this little guessing game where you describe a word (without using it) and Jev tries to guess it as you type.\nIt's essentially the same dynamic as Charades or Taboo - where you act out the word. The only difference is you're describing it and Jev instantly tries to guess what word you've been given based on the corpus of words. It isn't told which word is yours.\nEveryone gets the same five words each day -- kinda like Wordle. But there's a \"practice\" mode if you want to keep playing or found the daily words too easy.\nWould love feedback! If you have fun with it, let me know. :)",
+          "score": 0,
+          "time": 1790255139,
+          "parent": "49830000"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49829840",
+      "title": "Show HN: Minienv – remote mini environments generated from Docker Compose config",
+      "subreddit": "show-hn",
+      "author": "rgonn",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49829840",
+      "url": "https://github.com/robgonnella/minienv",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790253907,
+      "created_at": "2026-09-24T12:45:07+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,7 +276,7 @@
       "title": "Show HN: Tachyon – Java MCP Server SDK",
       "subreddit": "show-hn",
       "author": "lumestro",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49828275",
       "url": "https://tachyonmcp.dev",
@@ -27,8 +293,8 @@
       "title": "Show HN: Trader News – Hacker News for Finance",
       "subreddit": "show-hn",
       "author": "FailMore",
-      "score": 4,
-      "num_comments": 3,
+      "score": 15,
+      "num_comments": 13,
       "permalink": "https://news.ycombinator.com/item?id=49828019",
       "url": "https://news.ycombinator.com/item?id=49828019",
       "selftext": "Hacker News helps me stay in touch with the world of technology without putting in extensive web browsing work, and I love it for that reason. I am interested in financial markets and wanted a “Hacker News for finance”, but Googling produced surprisingly poor results. So I forked the great HN clone, shark [1], and added some market focused twists.\nThe result is: https://tradernews.fyi (https://tradernews.fyi)\nTrader News is the Hacker News interface you are familiar with, with a difference. Above the article area is a live feed (up to a ~30 min delay) of market data. I show the major indexes and every company within them. E.g click on Nasdaq-100 to see how the index performing, and then scroll the list of companies and click on META to get more detail on its specific performance (and links to Yahoo Finance + it’s investor relations). This gives you a single place to read finance related articles and stay in touch with the markets.\nThe CSS for Trader News is linked to global market performance. On days when stocks are down, Trader News is red. On days where stocks are up, Trader News is green.\nI have an agent running a 24 hour cron job to research articles and post them to the site to keep it a stimulating place to read. I will tone this down if user submissions pick up. If there are sources you think I should include, please leave a comment.\nI also added a basic “chat” panel with polling every 30 seconds for casual market related chat.\nIt’s open source and I’m very interested in feature pull requests. The code is available here:\nhttps://github.com/espressoplease/trader-news (https://github.com/espressoplease/trader-news)\nPublic anonymised analytics are available with a 15 min delay here:\nhttps://tradernews.fyi/analytics (https://tradernews.fyi/analytics)\n[1] https://github.com/shawwn/sharc (https://github.com/shawwn/sharc)",
@@ -38,11 +304,27 @@
       "created_at": "2026-09-24T08:54:57+00:00",
       "comments_data": [
         {
+          "id": "49833695",
+          "author": "nmekala35",
+          "body": "Congrats on shipping! I’ve actually been thinking about a somewhat adjacent problem, but more geared towards fundamentals investors. However the caveat with fundamentals though is that they don't change that often.\nI feel the UI is pretty cluttered and noisy. Especially the fonts below the charts are too small to read.",
+          "score": 0,
+          "time": 1790269803,
+          "parent": "49828019"
+        },
+        {
           "id": "49828087",
           "author": "Bluestein",
           "body": "Godspeed!\n- https://tradernews.fyi/?ref=Bluestein (https://tradernews.fyi/?ref=Bluestein)",
           "score": 0,
           "time": 1790240770,
+          "parent": "49828019"
+        },
+        {
+          "id": "49830292",
+          "author": "qeternity",
+          "body": "Hugged to death?",
+          "score": 0,
+          "time": 1790256451,
           "parent": "49828019"
         },
         {
@@ -79,7 +361,7 @@
       "title": "Show HN: CubeLV – AI that designs your automation before building it",
       "subreddit": "show-hn",
       "author": "qqrun",
-      "score": 3,
+      "score": 4,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49827478",
       "url": "https://app.cubelv.com",
@@ -106,16 +388,24 @@
       "title": "Show HN: Air-gapped file encryption as self-decrypting HTML page",
       "subreddit": "show-hn",
       "author": "emurlin",
-      "score": 6,
-      "num_comments": 4,
+      "score": 9,
+      "num_comments": 6,
       "permalink": "https://news.ycombinator.com/item?id=49827375",
       "url": "https://cms-sfx-demo.apeleg.com/",
-      "selftext": "Air-gapped file encryption packed into a single, self-decrypting HTML page. AI-free.",
+      "selftext": "Air-gapped file encryption packed into a single, self-decrypting HTML page. Repo: https://github.com/ApelegHQ/ts-cms-ep-sfx (https://github.com/ApelegHQ/ts-cms-ep-sfx)\nI was inspired by self-extracting archives. I wanted to share files with basically no dependencies. The goal was:\n 1. Something that didn't require any installation (assuming a web browser)\n 2. Have a single file with no network that could self-decrypt\n 3. Be fully auditable\n\nThe second point is done by having (sort of(*)) reproducible builds and embedded OpenPGP signatures.\nThe first point is made by cleverly manipulating the HTML structure so that it can decrypt without breaking the PGP signature. It can even decrypt using bare openssl (which was a design goal too, though getting the exact structure right took some work and bug reports).\nThe third point is accomplished by the first two, and by the source being freely available.\n(*) Depends on the OS at the moment.",
       "is_self": false,
       "is_video": false,
       "time": 1790234537,
       "created_at": "2026-09-24T07:22:17+00:00",
       "comments_data": [
+        {
+          "id": "49831172",
+          "author": "nikhilkxmar",
+          "body": "Cool!",
+          "score": 0,
+          "time": 1790260321,
+          "parent": "49827375"
+        },
         {
           "id": "49827535",
           "author": "FatalLogic",
@@ -354,8 +644,8 @@
       "title": "Show HN: An open-source manufacturing ERP/MES/QMS",
       "subreddit": "show-hn",
       "author": "barbinbrad",
-      "score": 46,
-      "num_comments": 22,
+      "score": 51,
+      "num_comments": 26,
       "permalink": "https://news.ycombinator.com/item?id=49824715",
       "url": "https://carbon.ms/self-hosted",
       "selftext": "",
@@ -397,19 +687,19 @@
           "parent": "49824715"
         },
         {
-          "id": "49829406",
-          "author": "atomic_cattlepr",
-          "body": "ERP implementer for the past 20 years. I'm an operations specialist rather than a manufacturing specialist, but do have manufacturing clients whose systems I have helped implement and continue to support alongside our manufacturing specialists.\nI will preface this by saying that my initial thoughts are based solely on the website and documentation (which is fairly sparse and includes few screen shots or examples of how the software is actually used). I did not and probably will not* sign up or install this software to review further, so I'll fully admit that I'm probably missing a lot and likely not giving a completely fair review.\nMy first impression, looking at the documentation for the system and how some of the actual ERP-related functionality is described, is that barbinbrad is an expert in software development with a lot of experience writing software to support ERP systems, but has a fairly narrow understanding of how all of the functions of an ERP system are supposed to work. To use a tired old analogy: this can be likened to a highly-skilled heavy-duty mechanic and a veteran long-haul truck driver deciding to start their own trucking business. Between the two of them, they know a ton about the mechanics of driving and maintaining large tractor-trailors and may even know how to keep proper driving and service logs and how to train apprentice mechanics and new drivers. But their knowledge on all the other minutia of running a trucking business is just enough to give them false confidence that they know the industry. Without seeking outside help, many of these startups fail because of mistakes made on these details.\nThere is a lot of detail on how to set up the technical parts of the system (there are definitely two things that are abundantly clear: the database back-end is postgres and the software is open source), there is some good developer-related information on API calls and such. But the documentation on how it all works is very sparse and the functionality that is described appears very rudimentary. Accounting functionality is very simplistic (limited chart of accounts definition, unclear link between subledgers and the G/L, no apparent EFT functionality, limited multicurrency/revaluation capabilities). Similarly, inventory, purchasing, and sales appear to be similar in capability to a basic Quickbooks system. A couple of more advanced manufacturing-specific features like MRP and routing/scheduling seem to exist, but MRP will only \"suggest\" order - users still have to enter them manually in the system, and it is unclear whether there is any linkage with general inventory planning or sales forecasts. Basically, it looks like the software can build a BOM, and it can help run most of the assembly steps for that BOM, complete with some very strong traceability and visual cues, but all of the other business functions surrounding that BOM are very limited.\nTo be clear, this is not meant as a direct criticism of barbinbrad or the software itself. The software has potential, and barbinbrad appears to have a lot of experience working on manufacturing ERP systems. What is needed is more guidance from people with the expertise on the \"other side of the keyboard\". Preferably people who have worked in ERP systems across multiple manufacturing industries.\nThis a huge example of a classic problem that plagues many (if not most) \"non-tech\"* open source projects. Developers who are immersed in a specific type of software can see what it is they're developing and get a very good idea of what the software does and how it works (according to the specs that they've been working on). So they go about building what they see as the \"better version\" of what they've worked on before. In the process, they often do solve some of the glaring individual problems they've encountered in the past, but they do so without understanding the bigger picture of what the system as a whole needs to do. ERP software especially is hard, because it is very complicated, used in many different ways (even by companies in the same industry) and have to support so many different facets of a business. The experts are not developers. They are accountants, operations managers, procurement and warehouse managers, production managers, payroll managers, and the C-Level executives who consume the information that ERP systems spit out. The people guiding development have to have expertise in these areas, not the developers. And in the open source world, this is where the subject-matter expertise is often lacking.\n(couple of footnotes):\nI'm not prepared to enter my credit card number to try it out, don't have the time to install it in my own environment just for a review, and already am a bit annoyed that I had to enter my work e-mail address just to get to the point where I realized I'd have to do one of those two things to get anywhere.\n*By \"non-tech\", I mean that the audience for which the project is intended is a non-technical audience - ERP systems, despite being very sophisticated software with a lot of server infrastructure involved, are systems meant to serve very non-technical people.",
-          "score": 0,
-          "time": 1790251016,
-          "parent": "49824715"
-        },
-        {
           "id": "49826134",
           "author": "Overdrivr",
           "body": "How do you handle the challenge of getting self-hosted customers to upgrade? I'm guessing a lot of self-hosted instances end up running fairly customized versions of your product.\nDisclaimer: I'm the founder of Bonx (bonx.com). Genuinely curious — congrats on what you've built, and best of luck!",
           "score": 0,
           "time": 1790222826,
+          "parent": "49824715"
+        },
+        {
+          "id": "49830194",
+          "author": "AtHeartEngineer",
+          "body": "Way too many acronyms, what is this, the government?",
+          "score": 0,
+          "time": 1790255926,
           "parent": "49824715"
         },
         {
@@ -426,6 +716,14 @@
           "body": "every ERP thread is a good thread!",
           "score": 0,
           "time": 1790213957,
+          "parent": "49824715"
+        },
+        {
+          "id": "49829406",
+          "author": "atomic_cattlepr",
+          "body": "ERP implementer for the past 20 years. I'm an operations specialist rather than a manufacturing specialist, but do have manufacturing clients whose systems I have helped implement and continue to support alongside our manufacturing specialists.\nI will preface this by saying that my initial thoughts are based solely on the website and documentation (which is fairly sparse and includes few screen shots or examples of how the software is actually used). I did not and probably will not* sign up or install this software to review further, so I'll fully admit that I'm probably missing a lot and likely not giving a completely fair review.\nMy first impression, looking at the documentation for the system and how some of the actual ERP-related functionality is described, is that barbinbrad is an expert in software development with a lot of experience writing software to support ERP systems, but has a fairly narrow understanding of how all of the functions of an ERP system are supposed to work. To use a tired old analogy: this can be likened to a highly-skilled heavy-duty mechanic and a veteran long-haul truck driver deciding to start their own trucking business. Between the two of them, they know a ton about the mechanics of driving and maintaining large tractor-trailors and may even know how to keep proper driving and service logs and how to train apprentice mechanics and new drivers. But their knowledge on all the other minutia of running a trucking business is just enough to give them false confidence that they know the industry. Without seeking outside help, many of these startups fail because of mistakes made on these details.\nThere is a lot of detail on how to set up the technical parts of the system (there are definitely two things that are abundantly clear: the database back-end is postgres and the software is open source), there is some good developer-related information on API calls and such. But the documentation on how it all works is very sparse and the functionality that is described appears very rudimentary. Accounting functionality is very simplistic (limited chart of accounts definition, unclear link between subledgers and the G/L, no apparent EFT functionality, limited multicurrency/revaluation capabilities). Similarly, inventory, purchasing, and sales appear to be similar in capability to a basic Quickbooks system. A couple of more advanced manufacturing-specific features like MRP and routing/scheduling seem to exist, but MRP will only \"suggest\" order - users still have to enter them manually in the system, and it is unclear whether there is any linkage with general inventory planning or sales forecasts. Basically, it looks like the software can build a BOM, and it can help run most of the assembly steps for that BOM, complete with some very strong traceability and visual cues, but all of the other business functions surrounding that BOM are very limited.\nTo be clear, this is not meant as a direct criticism of barbinbrad or the software itself. The software has potential, and barbinbrad appears to have a lot of experience working on manufacturing ERP systems. What is needed is more guidance from people with the expertise on the \"other side of the keyboard\". Preferably people who have worked in ERP systems across multiple manufacturing industries.\nThis a huge example of a classic problem that plagues many (if not most) \"non-tech\"* open source projects. Developers who are immersed in a specific type of software can see what it is they're developing and get a very good idea of what the software does and how it works (according to the specs that they've been working on). So they go about building what they see as the \"better version\" of what they've worked on before. In the process, they often do solve some of the glaring individual problems they've encountered in the past, but they do so without understanding the bigger picture of what the system as a whole needs to do. ERP software especially is hard, because it is very complicated, used in many different ways (even by companies in the same industry) and have to support so many different facets of a business. The experts are not developers. They are accountants, operations managers, procurement and warehouse managers, production managers, payroll managers, and the C-Level executives who consume the information that ERP systems spit out. The people guiding development have to have expertise in these areas, not the developers. And in the open source world, this is where the subject-matter expertise is often lacking.\n(couple of footnotes):\nI'm not prepared to enter my credit card number to try it out, don't have the time to install it in my own environment just for a review, and already am a bit annoyed that I had to enter my work e-mail address just to get to the point where I realized I'd have to do one of those two things to get anywhere.\n*By \"non-tech\", I mean that the audience for which the project is intended is a non-technical audience - ERP systems, despite being very sophisticated software with a lot of server infrastructure involved, are systems meant to serve very non-technical people.",
+          "score": 0,
+          "time": 1790251016,
           "parent": "49824715"
         },
         {
