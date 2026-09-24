@@ -1,8 +1,77 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-09-23T20:29:32.618722+00:00",
+  "last_fetched": "2026-09-24T01:04:35.765118+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49823738",
+      "title": "Show HN: Make cursed fonts like Times New Bastard",
+      "subreddit": "show-hn",
+      "author": "MitPitt",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49823738",
+      "url": "https://bastardica.mitpit.com",
+      "selftext": "A joke tool that abuses OpenType's ligature feature to mix fonts. It works pretty fast on client-side by loading Python in WASM.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790204008,
+      "created_at": "2026-09-23T22:53:28+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49823371",
+      "title": "Show HN: Fjordfall – Take the long way down",
+      "subreddit": "show-hn",
+      "author": "maddmann",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49823371",
+      "url": "https://fjordfall.fly.dev/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790201954,
+      "created_at": "2026-09-23T22:19:14+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49821937",
+      "title": "Show HN: QBasic 1.1 in the Browser",
+      "subreddit": "show-hn",
+      "author": "vahidce",
+      "score": 6,
+      "num_comments": 5,
+      "permalink": "https://news.ycombinator.com/item?id=49821937",
+      "url": "https://www.vahidyousefzadeh.com/qbasic/app",
+      "selftext": "I built an independent reimplementation of the QBasic 1.1 compiler, virtual machine, and IDE that runs entirely in the browser. TypeScript with a Svelte 5 frontend.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790194804,
+      "created_at": "2026-09-23T20:20:04+00:00",
+      "comments_data": [
+        {
+          "id": "49823499",
+          "author": "vunderba",
+          "body": "Nice job~\nFor the past 6 months I've also been working on a period-accurate QBASIC 1.1 simulator (and corresponding virtual hardware layer) that runs entirely in the browser.\nI've got a stack of books on my desk from when I was a kid in the 90s that have literally been my religious texts (Undocumented DOS, The Programmer's PC Sourcebook, etc), so I know how hard it is to get this right.\nI've actually posted about it a couple times here in HN.\nAnyway small bit of feedback:\nTechnically if you don't clear the screen (using CLS, or set a SCREEN mode other than zero), the cursor retains its position even between program executions.\nSo basically if you have a program like this:\n PRINT \"WHY IS A RAVEN LIKE A WRITING DESK\"\n END\n\nAnd then you run it again - the output screen should display:\n WHY IS A RAVEN LIKE A WRITING DESK\n WHY IS A RAVEN LIKE A WRITING DESK\n\nThere's a thousand other subtleties like this that make the proverbial \"last mile\" sometimes feel insurmountable. Fun though!\n* Your definition of \"fun\" may vary.",
+          "score": 0,
+          "time": 1790202687,
+          "parent": "49821937"
+        },
+        {
+          "id": "49822337",
+          "author": "MobiusHorizons",
+          "body": "Looks cool, but unfortunately doesn’t trigger the keyboard on mobile",
+          "score": 0,
+          "time": 1790196429,
+          "parent": "49821937"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -27,15 +96,58 @@
       "title": "Show HN: I built a post-mortem debugger for native Windows x64/x86 crashes",
       "subreddit": "show-hn",
       "author": "Loren_SL",
-      "score": 3,
-      "num_comments": 0,
+      "score": 25,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=49821086",
       "url": "https://www.forensicdbg.com",
       "selftext": "Hello HN!\nI've spent years debugging Windows crashes with tools that were either friendly but limited (e.g. Visual Studio) or powerful but archaic (e.g. WinDbg). I developed patterns and methods for understanding what was going on, and decided to build it into a much more effective debugging tool called ForensicDbg.\nI built a modern interface to minimize the friction when debugging. All of the data shown to you is analyzed, interpreted, and presented to you clearly, so you can focus on what matters. Everything is interlinked so you can quickly and intuitivly navigate through the process space.\nForensicDbg comes with an MCP server which allows for agenic debugging. The work done to interpret and interlink your data also benefits AI tools. It removes the risk of hallucinations while building a stable foundation for them to work from without spending tokens.\nIf you want to try it out you can sign up and get a free beta license here: https://www.forensicdbg.com/beta (https://www.forensicdbg.com/beta)",
       "is_self": false,
       "is_video": false,
       "time": 1790190955,
-      "created_at": "2026-09-23T19:15:55+00:00"
+      "created_at": "2026-09-23T19:15:55+00:00",
+      "comments_data": [
+        {
+          "id": "49824129",
+          "author": "_dky",
+          "body": "Reminds of CANASTA for VMS operating system. I never used it but heard many war stories where developers and support would analyze complex crashes in cluster software.\nhttps://cdn.aaai.org/IAAI/1991/IAAI91-013.pdf (https://cdn.aaai.org/IAAI/1991/IAAI91-013.pdf)",
+          "score": 0,
+          "time": 1790206306,
+          "parent": "49821086"
+        },
+        {
+          "id": "49823281",
+          "author": "neitsa",
+          "body": "While I really do appreciate having multiple choices when it comes to tooling I beg to differ when saying that windbg is archaic. As someone who is spending a lot of time with windbg, I think it's fair to say they really put some effort in it: TTD (time travel debugging), JS scriping, Linux core dump support, new type of queries and the data model, new commands, and an upcoming integrated MCP (functionalities \\ function names visible in the data model). That being said, there's a lot of baggage for such an old software and there are definitely some pain points.\nBut as said, I like to have a choice (I sometimes use x64dbg for example), so the more, the merrier!\nI'll definitely give yours a try. Good luck for the beta and the release!",
+          "score": 0,
+          "time": 1790201423,
+          "parent": "49821086"
+        },
+        {
+          "id": "49824243",
+          "author": "kjksf",
+          "body": "consider this a constructive criticism: improve the landing page.\nThe video is a good idea but not like this. It's both large and I can't see anything, just things moving.\nWhen I fullscreen, instead of getting larger video, I get the same thing.\nRecord a video (and upload to youtube) that does a well-paced walkthrough of doing an analysis, with narration, maybe demonstrating how it's unique / different from windbg.",
+          "score": 0,
+          "time": 1790207056,
+          "parent": "49821086"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49820974",
+      "title": "Show HN: TypeBook.lol: Gamified reading by typing novels",
+      "subreddit": "show-hn",
+      "author": "vegnus",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49820974",
+      "url": "https://typebook.lol/",
+      "selftext": "Was inspired by a post here on HN a couple of weeks ago about Typ.ing. This is a more gamified version, where stats are tracked, xp is gained, time is tracked, each book has its own time trials tables, upload your own epubs/txts/raw text. Disable punctuation and capitalization (with separate high score tables). I've spent 20 hours typing Dracula. Reading a book each word at a time has been a very good experience for me.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790190469,
+      "created_at": "2026-09-23T19:07:49+00:00"
     },
     {
       "source": "hackernews",
