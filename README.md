@@ -191,8 +191,10 @@ historical HN file cannot block the core Reddit publication.
 
 ### 3. English analysis
 
-`.github/workflows/analyze_builder.yml` runs daily at 02:43 UTC and defaults to
-the newest missing completed date:
+`.github/workflows/analyze_builder.yml` runs daily at 02:43 UTC. Scheduled runs
+force-refresh the previous UTC date after it has closed, so an earlier
+in-progress report cannot prevent the completed snapshot from being published.
+Manual runs without a date still default to the newest missing completed date:
 
 1. Rank each stream independently by evidence richness rather than raw
    engagement alone.
@@ -425,7 +427,7 @@ the preserved raw snapshots rather than maintaining legacy rendered formats.
 |---|---|---|
 | `scrape_reddit.yml` | `17 */6 * * *` and manual | `data/reddit/` |
 | `scrape_hackernews.yml` | `27 */6 * * *` and manual | `data/hackernews/` |
-| `analyze_builder.yml` | `43 2 * * *` and manual | `reports/builder/*.md` |
+| `analyze_builder.yml` | `43 2 * * *` (force-refresh previous UTC day) and manual | `reports/builder/*.md` |
 | `translate_zh.yml` | Analysis completion, `17 6 * * *`, and manual | `reports/builder/zh/*.md` |
 | `refresh_reddit_cookies.yml` | `23 1 */3 * *` and manual | `REDDIT_COOKIES`; failure issue only |
 | `deploy_site.yml` | Relevant push, successful analysis completion, and manual | GitHub Pages |

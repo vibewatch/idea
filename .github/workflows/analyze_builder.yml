@@ -117,6 +117,11 @@ jobs:
           ANALYSIS_LIMIT: ${{ inputs.limit || '1' }}
           PYTHONUNBUFFERED: "1"
         run: |
+          if [[ "$GITHUB_EVENT_NAME" == "schedule" ]]; then
+            ANALYSIS_DATE="$(date -u -d 'yesterday' +%F)"
+            FORCE_REPORTS=true
+            echo "Scheduled run will force-refresh completed UTC date $ANALYSIS_DATE."
+          fi
           if [[ "$COPILOT_EFFORT_INPUT" == "auto" ]]; then
             case "$COPILOT_MODEL" in
               gpt-5.4-mini) COPILOT_EFFORT=medium ;;
