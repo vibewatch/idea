@@ -1,8 +1,94 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-09-25T06:49:43.601966+00:00",
+  "last_fetched": "2026-09-25T12:43:39.831508+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49842877",
+      "title": "Show HN: Tlx – E2E chat over SSH under 500 lines of code",
+      "subreddit": "show-hn",
+      "author": "achempion",
+      "score": 3,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=49842877",
+      "url": "https://github.com/achempion/tlx",
+      "selftext": "This is a reference implementation of encrypted chats for small trusted groups.\nIt runs SSH server in a container that acts as a mailbox for opaque encrypted blobs (145 lines of code).\nSSH keys serve as an identity.\nThen a local demon syncs and decrypts these blobs into SQLite database (321 lines of code).\nI wanted to make crypto as simple as possible and have only widely used and well audited components.\nRelay server and sync demon are implemented in standard Python without any extra dependencies.\nI've chosen Python as it ships with SQLite client in standard library. Could have used go/rust, but wanted to keep reference implementation as simple as possible with minimal dependencies.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790334553,
+      "created_at": "2026-09-25T11:09:13+00:00",
+      "comments_data": [
+        {
+          "id": "49842912",
+          "author": "achempion",
+          "body": "I've prepared a quick demo on how to run relay locally and connect two demo users: https://github.com/achempion/tlx#demo (https://github.com/achempion/tlx#demo)",
+          "score": 0,
+          "time": 1790334719,
+          "parent": "49842877"
+        },
+        {
+          "id": "49842979",
+          "author": "ddaniel10",
+          "body": "Nice. what the use cases and groups of people you see that are going to use it?",
+          "score": 0,
+          "time": 1790335184,
+          "parent": "49842877"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49842596",
+      "title": "Show HN: Agentic CUDA Kernel Optimizer",
+      "subreddit": "show-hn",
+      "author": "bertaye",
+      "score": 16,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49842596",
+      "url": "https://github.com/bertaye/agentic-cuda-optimizer",
+      "selftext": "Hello; I was working on optimizing some CUDA kernels and I thought may be it is a good oppurtunity learn langgraph as well. I created a simple C++ CUDA Test Harness and handed that to AI agents. They can run kernels, get benchmarks, and even can profile via nsight",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790332378,
+      "created_at": "2026-09-25T10:32:58+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49841469",
+      "title": "Show HN: Can an AI agent bypass a post-quantum signed authorization policy?",
+      "subreddit": "show-hn",
+      "author": "max-russo",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49841469",
+      "url": "https://github.com/max-russo-com/MAX_AUTHORIZATION_SANDBOX",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790322901,
+      "created_at": "2026-09-25T07:55:01+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49841265",
+      "title": "Show HN: TiddlyInstall – Single HTML file that makes cross-platform installers",
+      "subreddit": "show-hn",
+      "author": "Uptrenda",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49841265",
+      "url": "https://robertsdotpm.github.io/_static/tiddlyinstall.html",
+      "selftext": "Hello HN, I wanted to show you some new software I designed (and Claude implemented.)\nIt's called TiddlyInstall. TiddlyInstall is a single-page website that lets you easily build installers for all your projects. What makes TiddlyInstall unusual is there is no software to download and everything is able to work offline. Based on the project that it's inspired by: you can download TiddlyInstall as a HTML file and use it to make working binaries for Windows, Linux, and Mac.\nHow it works:\nMost installers / binaries are custom per project. But with very few modifications they can be made general-purpose. Installers can be made to follow meta-data which can be vouched for by hashes in their file names, embedded data, and signatures. That means new binaries only need meta-data to be changed which can be done entirely in the browser.\nFor the installers themselves NSIS was chosen for its amazing Windows support. Otherwise, the rest is shell scripting. I am very excited about it and would love people to try it out. All the code is open source under MIT. Feel free to report issues on the Github at http://github.com/robertsdotpm/tiddlyinstall (http://github.com/robertsdotpm/tiddlyinstall)\nCredits:\nClaude (and the authors whose works it was trained on :/) deserve huge credits for the implementation. It would have taken me months to code this all this. This project is not affiliated with TiddlyWiki -- though I am heavily inspired by that project!\nIf anyone thinks my work is cool -- I'm currently looking for new opportunities. Feel free to reach out if there's a match (matthew@roberts.pm.)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790321100,
+      "created_at": "2026-09-25T07:25:00+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,15 +96,59 @@
       "title": "Show HN: Reteach – AI tutor that feels human",
       "subreddit": "show-hn",
       "author": "antariksh_verma",
-      "score": 2,
-      "num_comments": 0,
+      "score": 3,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49840850",
       "url": "https://www.reteach.study/",
       "selftext": "Tutoring is very expensive. reteach makes it cheap.",
       "is_self": false,
       "is_video": false,
       "time": 1790317574,
-      "created_at": "2026-09-25T06:26:14+00:00"
+      "created_at": "2026-09-25T06:26:14+00:00",
+      "comments_data": [
+        {
+          "id": "49842192",
+          "author": "Alez007",
+          "body": "great idea but a demo would have been nice before handing in my credentials",
+          "score": 0,
+          "time": 1790329237,
+          "parent": "49840850"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49840526",
+      "title": "Show HN: Miru: Zoomer Daemon for Wayland",
+      "subreddit": "show-hn",
+      "author": "vaishnav110504",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49840526",
+      "url": "https://blog.vaishnavs.is-a.dev/miru/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790314591,
+      "created_at": "2026-09-25T05:36:31+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49840469",
+      "title": "Show HN: A benchmark comparison of C++ vs. Node.js performance",
+      "subreddit": "show-hn",
+      "author": "vikky2810",
+      "score": 5,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49840469",
+      "url": "https://vikky2810.github.io/blog/cpp-vs-node/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790313929,
+      "created_at": "2026-09-25T05:25:29+00:00"
     },
     {
       "source": "hackernews",
@@ -27,15 +157,41 @@
       "title": "Show HN: Avoid smooth spinners, use low-FPS spinners",
       "subreddit": "show-hn",
       "author": "nh2",
-      "score": 3,
-      "num_comments": 0,
+      "score": 14,
+      "num_comments": 13,
       "permalink": "https://news.ycombinator.com/item?id=49839672",
       "url": "https://nh2.me/low-fps-spinners/low-fps-spinners.html",
       "selftext": "I got so annoyed by various apps (VScode, Chromium, Firefox, Thunderbird) burning CPU/GPU cycles and and making my laptop hot and sluggish with spinners on otherwise static content, that I made this little page to fight this.",
       "is_self": false,
       "is_video": false,
       "time": 1790304732,
-      "created_at": "2026-09-25T02:52:12+00:00"
+      "created_at": "2026-09-25T02:52:12+00:00",
+      "comments_data": [
+        {
+          "id": "49841973",
+          "author": "Diti",
+          "body": "Those aren’t spinners (also called numeric updowns, see [1]). Those are throbbers (also called loading icons, see [2]).\n[1]: https://en.wikipedia.org/wiki/Spinner_(computing) (https://en.wikipedia.org/wiki/Spinner_(computing))\n[2]: https://en.wikipedia.org/wiki/Throbber (https://en.wikipedia.org/wiki/Throbber)",
+          "score": 0,
+          "time": 1790327316,
+          "parent": "49839672"
+        },
+        {
+          "id": "49841394",
+          "author": "echoangle",
+          "body": "Your claimed GPU usage seems really high for a simple spinner, even considering the CPU is pretty old. I wonder if there's some other problem going on with your setup.",
+          "score": 0,
+          "time": 1790322219,
+          "parent": "49839672"
+        },
+        {
+          "id": "49841455",
+          "author": "nonamesleft",
+          "body": "I truly wish i could get everything to use the ticking clock one at 1Hz (or maybe 0.5) for spinners, animation in user interfaces causes me anguish in general, so i have to go around filtering them on webapps.",
+          "score": 0,
+          "time": 1790322679,
+          "parent": "49839672"
+        }
+      ]
     }
   ]
 }
