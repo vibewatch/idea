@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-09-26T01:03:43.792067+00:00",
+  "last_fetched": "2026-09-26T06:45:23.667753+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,8 +10,8 @@
       "title": "Show HN: Recurse – Develop and deploy specialist agents faster",
       "subreddit": "show-hn",
       "author": "ozankabak",
-      "score": 4,
-      "num_comments": 0,
+      "score": 5,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49850553",
       "url": "https://recurse.run",
       "selftext": "Hi HN! We are looking to gather some feedback on our serverless agent harness. The admittedly not-so-specific use case is to accelerate agent development and deployment. After building several custom/special-purpose agents for a few customers, we built this to accelerate our workflow at first, and now we are trying to understand whether it could be useful to others.\nOur driver use case was development of specialist agents with a request/response lifecycle. Think of agents that have a well established input/output contract where they are expected to produce high-quality output (artifacts, responses etc.). Especially when the problem is in some verifiable domain and the LLM can iteratively refine a result to a final value that satisfies constraints or optimizes some goal.\nThe product is a coding agent skill + a serverless execution runtime with a harness that takes in a system prompt + Python functions as tools. The coding agent takes in the requirements from the user, and tries agent variants by executing prompt/tool variants it creates.\nIt works best for cases where you can think of how you can evaluate a candidate agent - when you describe this information to your coding agent, it often does a decent job at building candidate prompts, tools and even benchmarks.\nPrompts and Python tools that the coding agent creates integrate with a harness that implements an FSM that is tuned to drive an iterative refinement process for verifiable domains. This tuning enables one to use small models like Luna to produce high quality results while keeping costs at a manageable level.\nOur website is not 100% complete yet (some examples are missing write-ups, not all use cases we tried are there etc.), but the system is operational and docs are there.\nThanks!",
@@ -44,15 +44,25 @@
       "title": "Show HN: Ekselio – Loveable for finance workflows (local first)",
       "subreddit": "show-hn",
       "author": "kdautaj",
-      "score": 4,
-      "num_comments": 0,
+      "score": 14,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49849986",
       "url": "https://www.gptbeyond.com/try?home=1",
       "selftext": "Hi everyone, I am KD - Back in my college days, I dabbled with coding, learned the basics, HTML, CSS etc. but somehow I ended up in Finance which consumed the next 20 years. Then, during covid I picked up coding again, learned react, typescript, etc - even built a rudimentary site - and then came the chatgpt moment, followed by Claude etc.\nSo, as a side project, considering that I had spent 20 years in finance and M&A I started building Ekselio, loveable for finance workflows.\nDifferently from other vibe coding tools, this is local first - meaning the workflows are orchestrated by the LLM based on the file schema but then the execution happens in the browser - the cool thing is that you can see the canvas, the previews of each node, and the code base (SQl) - see the Canvas tab.\nThat said I did include a home tab, which is more of a visual, mainly because people think it's easier to relate to how folks operate, although I know finance and accounting folks usually like the workflow and full transparency - the other thing is that once you create a workflow you can save it and then next month,you can just click Run and it runs it again with no LLM tokes involved - so the infrastructure is minimal.\nEverything can be exported in an excel data pack with M code in case someone would want to reproduce - think Audit ready. And, I also connected to quickbooks on line so someone can directly pull in and manipulate their financials live - I also connected to Fred which carries literally 800k series in terms of macro economic data - i.e. oil prices, inflation, CPI etc and finally to stocks.\nI am hoping people find holes in the architecture or any ideas to make this flow a little bit better. It is in progress so if you run into bugs let me know. Considering that I am using my own API key, I have put a wall in case people overuse it but DM me if you would like to continue using, I can turn off the wall for you - hoping to keep that to a small number of users if I can and will do my best. Thank you again, appreciate you taking the time.",
       "is_self": false,
       "is_video": false,
       "time": 1790370568,
-      "created_at": "2026-09-25T21:09:28+00:00"
+      "created_at": "2026-09-25T21:09:28+00:00",
+      "comments_data": [
+        {
+          "id": "49852237",
+          "author": "jon9544hn",
+          "body": "I’ll mess with it!!",
+          "score": 0,
+          "time": 1790386013,
+          "parent": "49849986"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -78,7 +88,7 @@
       "title": "Show HN: Paper-docx – agent-native Python-docx fork with 78% fewer DOCX failures",
       "subreddit": "show-hn",
       "author": "i_rush_carriers",
-      "score": 5,
+      "score": 6,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49848598",
       "url": "https://github.com/paper-instruments/paper-docx",
@@ -108,12 +118,29 @@
     {
       "source": "hackernews",
       "stream": "show-hn",
+      "id": "49848452",
+      "title": "Show HN: Obsidian Plugin for OpenModelica",
+      "subreddit": "show-hn",
+      "author": "cs3f16",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49848452",
+      "url": "https://community.obsidian.md/plugins/modelica-studio",
+      "selftext": "I created an Obsidian plugin that serves as a front-end for OpenModelica that allows you to model and simulate cyber-physical systems (mechanical, fluid, magnetic, thermal, etc.) or a mix of all these systems all inside Obsidian.\nWhat is special about Modelica is that it is acausal: components do not have fixed input/output roles. You describe physical relationships with equations and connections, and the equations do not need to be written in a step-by-step order. Modelica (language) or OpenModelica (software) flattens the model into a simultaneous equation system (a system of differential algebraic equations (DAEs)) and then determines the computational causality and order needed to simulate it.\nAs a disclaimer, I used AI to build it but not in a sloppy way. I have spent a lot of time testing it and making sure it's functional and accurate. And I hope it may help others to utilize such an underrated tool for learning/researching, as this is my main usage for it.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790362390,
+      "created_at": "2026-09-25T18:53:10+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
       "id": "49848141",
       "title": "Show HN: I couldn't deal with another Claude Code tab",
       "subreddit": "show-hn",
       "author": "grollat",
       "score": 4,
-      "num_comments": 1,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49848141",
       "url": "https://aidash.dev/",
       "selftext": "",
@@ -139,7 +166,7 @@
       "title": "Show HN: I made a WWI dogfight game that runs in the browser",
       "subreddit": "show-hn",
       "author": "fullstackwife",
-      "score": 3,
+      "score": 4,
       "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=49847157",
       "url": "https://www.gamedev.pl/ay/biplane-skirmish",
@@ -166,8 +193,8 @@
       "title": "Show HN: Doom or Bloom, map your AI worldview",
       "subreddit": "show-hn",
       "author": "transitivebs",
-      "score": 54,
-      "num_comments": 42,
+      "score": 56,
+      "num_comments": 44,
       "permalink": "https://news.ycombinator.com/item?id=49846953",
       "url": "https://www.doom-or-bloom.com",
       "selftext": "Map your AI worldview by answering a few questions, and see how you compare with others.\nonly takes a few minutes && free & open source && private by default && powered by Jev\nI think this is a really important question for everyone to be asking themselves, and my hope is that this lil project helps to move our conversations around AI futures in a more balanced, productive direction.",
@@ -177,14 +204,6 @@
       "created_at": "2026-09-25T16:51:28+00:00",
       "comments_data": [
         {
-          "id": "49849389",
-          "author": "purpleflashing",
-          "body": "I tried to answer all the questions and it placed me in the extreme doom category while I would place myself closer to the center because I do not hold any particuarly strong opinions and I struggled to answer coherently some questions (e.g. I don't \"expect\" anything of the future or AI, I don't think \"good future\" is something I can conceptualize, same for \"harm\" on the level of society, etc.)",
-          "score": 0,
-          "time": 1790367529,
-          "parent": "49846953"
-        },
-        {
           "id": "49847889",
           "author": "Suhinnall27",
           "body": "I believe your correct that this is a question everybody should ask themselves, and it would be very interesting to see how varied the responses are. I feel AI has been both a blessing and curse, and I hope it doesn't solely become the later.",
@@ -193,19 +212,19 @@
           "parent": "49846953"
         },
         {
+          "id": "49849389",
+          "author": "purpleflashing",
+          "body": "I tried to answer all the questions and it placed me in the extreme doom category while I would place myself closer to the center because I do not hold any particuarly strong opinions and I struggled to answer coherently some questions (e.g. I don't \"expect\" anything of the future or AI, I don't think \"good future\" is something I can conceptualize, same for \"harm\" on the level of society, etc.)",
+          "score": 0,
+          "time": 1790367529,
+          "parent": "49846953"
+        },
+        {
           "id": "49850513",
           "author": "weinzierl",
           "body": "I'm in the incremental bloom quadrant and I knew that even before I took the test. It's not even that I'm hesitant about this. I mean, I don't know the future but the incremental bloom is by far the likeliest thing I can imagine.\nThat being said, it strikes me as odd how empty this quadrant is. Why?",
           "score": 0,
           "time": 1790373685,
-          "parent": "49846953"
-        },
-        {
-          "id": "49850749",
-          "author": "Mongoose",
-          "body": "I'm surprised to see Tyler Cowen on the \"incremental\" side of the Y axis. He seems pretty AI-pilled, at least compared to the guests he has on his pod that aren't themselves involved with AI companies.",
-          "score": 0,
-          "time": 1790375099,
           "parent": "49846953"
         },
         {
@@ -225,19 +244,27 @@
           "parent": "49846953"
         },
         {
-          "id": "49849379",
-          "author": "chroma_zone",
-          "body": "What are the \"simulated answers\" for the public figures based on? They don't seem to be direct quotes, so I assume they're AI-generated in their voice from the sources? I'd make that more clear since you risk misrepresenting people's opinions.",
-          "score": 0,
-          "time": 1790367481,
-          "parent": "49846953"
-        },
-        {
           "id": "49848504",
           "author": "Marha01",
           "body": "Gary Marcus in the center? He is a strong AI skeptic, I think he should be lower, away from the \"Civilizational change\" direction.",
           "score": 0,
           "time": 1790362627,
+          "parent": "49846953"
+        },
+        {
+          "id": "49850749",
+          "author": "Mongoose",
+          "body": "I'm surprised to see Tyler Cowen on the \"incremental\" side of the Y axis. He seems pretty AI-pilled, at least compared to the guests he has on his pod that aren't themselves involved with AI companies.",
+          "score": 0,
+          "time": 1790375099,
+          "parent": "49846953"
+        },
+        {
+          "id": "49849379",
+          "author": "chroma_zone",
+          "body": "What are the \"simulated answers\" for the public figures based on? They don't seem to be direct quotes, so I assume they're AI-generated in their voice from the sources? I'd make that more clear since you risk misrepresenting people's opinions.",
+          "score": 0,
+          "time": 1790367481,
           "parent": "49846953"
         },
         {
@@ -249,19 +276,19 @@
           "parent": "49846953"
         },
         {
-          "id": "49849662",
-          "author": "in-silico",
-          "body": "The public figure viewer would be way better to use if I could inspect entries without opening a new page.",
-          "score": 0,
-          "time": 1790368803,
-          "parent": "49846953"
-        },
-        {
           "id": "49848356",
           "author": "ddxv",
           "body": "P doom < 1 percent and at the bottom closest to incremental change.\nedit: I would be curious to see how I'd changed over time as well. I would guess I was much more worried a year ago",
           "score": 0,
           "time": 1790361836,
+          "parent": "49846953"
+        },
+        {
+          "id": "49849662",
+          "author": "in-silico",
+          "body": "The public figure viewer would be way better to use if I could inspect entries without opening a new page.",
+          "score": 0,
+          "time": 1790368803,
           "parent": "49846953"
         },
         {
@@ -308,8 +335,8 @@
       "title": "Show HN: I discovered roads in the US across > 1000 themes",
       "subreddit": "show-hn",
       "author": "91awebsi",
-      "score": 9,
-      "num_comments": 5,
+      "score": 12,
+      "num_comments": 6,
       "permalink": "https://news.ycombinator.com/item?id=49846409",
       "url": "https://road-about-a-theme.pinedesk.biz/",
       "selftext": "This interactive dataviz I created lets you explore about ~1k different themes I computed by cross referencing popular Wikidata articles against OSM roads.",
@@ -318,6 +345,14 @@
       "time": 1790352308,
       "created_at": "2026-09-25T16:05:08+00:00",
       "comments_data": [
+        {
+          "id": "49853496",
+          "author": "chrisco255",
+          "body": "There are not 6875 roads named after Lana Del Rey. \"Del Rey\" means \"of the king\" in Spanish and is just a popular fancy-sounding name to use as a street name in subdivisions.\nThe Cheshire Cat example is more on target and was amusing to learn about.",
+          "score": 0,
+          "time": 1790400726,
+          "parent": "49846409"
+        },
         {
           "id": "49850653",
           "author": "xnx",
@@ -438,8 +473,8 @@
       "title": "Show HN: Jev Plays Pokémon Red",
       "subreddit": "show-hn",
       "author": "pancomplex",
-      "score": 141,
-      "num_comments": 64,
+      "score": 183,
+      "num_comments": 78,
       "permalink": "https://news.ycombinator.com/item?id=49845172",
       "url": "https://jev-pokemon.vercel.app/",
       "selftext": "Hey HN! Wanted to share a fun project I've been hacking on. Given Jev can make decisions really fast (but not fast enough to play Doom yet sadly), I wanted to try and push it to play a more complex game than Tetris. So I went with Pokémon.\nI've spent endless hours playing this game as a child so building this was a ton of fun.\nI open sourced everything in case you want to hack on it yourself here: https://github.com/christianmat/jev-pokemon (https://github.com/christianmat/jev-pokemon)\nThe game is being streamed live including the tokens and cost - hopefully we get all the badges and don't get stuck in a cave :)",
@@ -457,11 +492,11 @@
           "parent": "49845172"
         },
         {
-          "id": "49852069",
-          "author": "ViscountPenguin",
-          "body": "The choices Jev has here feel very railroady, it seems like something very significantly dumber could beat the game with these options.",
+          "id": "49851391",
+          "author": "ac2u",
+          "body": "Cool project, comes with a little too much guidance in the harness though IMO (pathfinding, textual milestones etc). (The author is very upfront about this in their README though)\nI think if it was combined with a regular vLLM it could be really interesting, especially watching the reasoning logs.\nBonus points if it was one of the latest open models that somehow had all prior training knowledge of Pokemon abliterated so it was reasoning as an intelligent persona that had no knowledge of even the concept of Pokemon.",
           "score": 0,
-          "time": 1790384386,
+          "time": 1790378726,
           "parent": "49845172"
         },
         {
@@ -470,22 +505,6 @@
           "body": "This is kinda chill to have in the background. I wish there were livestreams showing live reasoning of top models which are currently trying to solve cancer or whatever. Imagine the pogs in chat when it does.",
           "score": 0,
           "time": 1790367373,
-          "parent": "49845172"
-        },
-        {
-          "id": "49851866",
-          "author": "flockonus",
-          "body": "The decisions are quick, but look good as random w/ tons of back and forth.\nAre you at least feeding back some of its previous decisions on to state?",
-          "score": 0,
-          "time": 1790382480,
-          "parent": "49845172"
-        },
-        {
-          "id": "49851391",
-          "author": "ac2u",
-          "body": "Cool project, comes with a little too much guidance in the harness though IMO (pathfinding, textual milestones etc). (The author is very upfront about this in their README though)\nI think if it was combined with a regular vLLM it could be really interesting, especially watching the reasoning logs.\nBonus points if it was one of the latest open models that somehow had all prior training knowledge of Pokemon abliterated so it was reasoning as an intelligent persona that had no knowledge of even the concept of Pokemon.",
-          "score": 0,
-          "time": 1790378726,
           "parent": "49845172"
         },
         {
@@ -513,19 +532,19 @@
           "parent": "49845172"
         },
         {
+          "id": "49852069",
+          "author": "ViscountPenguin",
+          "body": "The choices Jev has here feel very railroady, it seems like something very significantly dumber could beat the game with these options.",
+          "score": 0,
+          "time": 1790384386,
+          "parent": "49845172"
+        },
+        {
           "id": "49849338",
           "author": "lwarfield",
           "body": "Looking at the diagram in the gh repo, it looks like this is entirely jev. Are there any examples of people having a big model like Fable handle high level goals?",
           "score": 0,
           "time": 1790367326,
-          "parent": "49845172"
-        },
-        {
-          "id": "49850755",
-          "author": "hummusFiend",
-          "body": "Great work!\nSuper cool to see it do the whole game. I spent my fable budget building something similar this week but only drove it to Brock. I like the \"current focus\" framing too.",
-          "score": 0,
-          "time": 1790375124,
           "parent": "49845172"
         },
         {
@@ -537,11 +556,27 @@
           "parent": "49845172"
         },
         {
+          "id": "49851866",
+          "author": "flockonus",
+          "body": "The decisions are quick, but look good as random w/ tons of back and forth.\nAre you at least feeding back some of its previous decisions on to state?",
+          "score": 0,
+          "time": 1790382480,
+          "parent": "49845172"
+        },
+        {
           "id": "49849808",
           "author": "djhworld",
           "body": "What's not clear to me on the video is whether jev is doing the button presses for controlling the character to move around.\nThe \"Jev calls\" counter only seems to increment at junction points like battles, conversation prompts, menus etc.\nIs something else moving the character around?",
           "score": 0,
           "time": 1790369581,
+          "parent": "49845172"
+        },
+        {
+          "id": "49850755",
+          "author": "hummusFiend",
+          "body": "Great work!\nSuper cool to see it do the whole game. I spent my fable budget building something similar this week but only drove it to Brock. I like the \"current focus\" framing too.",
+          "score": 0,
+          "time": 1790375124,
           "parent": "49845172"
         }
       ]
@@ -587,15 +622,105 @@
       "title": "Show HN: Hacker Atlas - A map of what Hacker News talks about",
       "subreddit": "show-hn",
       "author": "andrearitossa",
-      "score": 4,
-      "num_comments": 0,
+      "score": 45,
+      "num_comments": 13,
       "permalink": "https://news.ycombinator.com/item?id=49844497",
       "url": "https://hackeratlas.com/",
       "selftext": "I built a tool to explore HN topics and how they change over time.\nCurrently covers 2024 to today. Is it useful? What's missing?",
       "is_self": false,
       "is_video": false,
       "time": 1790343474,
-      "created_at": "2026-09-25T13:37:54+00:00"
+      "created_at": "2026-09-25T13:37:54+00:00",
+      "comments_data": [
+        {
+          "id": "49853649",
+          "author": "pelagicAustral",
+          "body": "One thing I've been doing lately is asking for \"presidential briefings\" on hot threads. I like to read the comments but some threads get really really dense and I just want the gist of it and to get a feel for the general sentiment so I task claude to do a 2 or 3 page max pdf with charts and literally just that a presidential style brief of wtf is going on. It never disappoints =)",
+          "score": 0,
+          "time": 1790402415,
+          "parent": "49844497"
+        },
+        {
+          "id": "49852620",
+          "author": "andai",
+          "body": "Cool idea!\nFrom the name, I was expecting it would be a spatial tool, i.e. some kind of semantic graph I could navigate. I think that is fruitful territory.\nEdit: Oh hey! There is almost exactly what I was visualizing, on the Connections page! This is the coolest part, why isn't this on the front page? (Also, please add scroll to zoom!)\nAs for the grid, I don't see the value of pagination. I'd rather have it all on one page, so I can scroll, Ctrl+F, etc.\nAlso, like half of the first page are different kinds of AI? If we want to visualize what % of HN stuff is AI, maybe it would make sense to have a meta-category for that.\n(Would also be cool if HN itself supported tags you could toggle... show/hide AI :)\nI'm also very curious about the evolution of this data over time. The popularity stats seem to be limited to last 30 days. Would be cool to see stats for all time, and maybe filter by range. (Or graphs? Graphs are cool!)",
+          "score": 0,
+          "time": 1790389687,
+          "parent": "49844497"
+        },
+        {
+          "id": "49853282",
+          "author": "random3",
+          "body": "I thought it's a collection of maps (what an atlas is). Instead it's a list, 9 items per page, 23 pages - it's an index. \nA map lets you see the full picture in a glance. \nIt seems like a missed opportunity to actually make it an atlas.",
+          "score": 0,
+          "time": 1790397848,
+          "parent": "49844497"
+        },
+        {
+          "id": "49852594",
+          "author": "rmason",
+          "body": "I'd like to be able to search if any of my content made the list. Also search the entire stack for stuff not likely to rise high enough for its own category but definitely in there, like less popular languages to see what people are saying. I check HN every couple of hours all day long but its amazing the stuff that you can miss.",
+          "score": 0,
+          "time": 1790389417,
+          "parent": "49844497"
+        },
+        {
+          "id": "49853162",
+          "author": "alfg",
+          "body": "Great idea. UI looks good and clean as well as mobile-friendly. Thanks for this, bookmarked.",
+          "score": 0,
+          "time": 1790396295,
+          "parent": "49844497"
+        },
+        {
+          "id": "49852688",
+          "author": "cjlm",
+          "body": "hey hey, get in touch if you want a better embedded graph\nhttps://garphield.com (https://garphield.com) as seen on https://gdb-engines.com/graph/query-languages/ (https://gdb-engines.com/graph/query-languages/)",
+          "score": 0,
+          "time": 1790390491,
+          "parent": "49844497"
+        },
+        {
+          "id": "49852633",
+          "author": "magicmicah85",
+          "body": "The pace of conversation is a nice graph. Are you still ingesting articles? I see data going back to 2020.",
+          "score": 0,
+          "time": 1790389824,
+          "parent": "49844497"
+        },
+        {
+          "id": "49852328",
+          "author": "cowboylowrez",
+          "body": "this is good, hn's frontpage is sort of tiresome lately",
+          "score": 0,
+          "time": 1790386865,
+          "parent": "49844497"
+        },
+        {
+          "id": "49853468",
+          "author": "forgetfreeman",
+          "body": "Go spend an hour scrolling n-gate.com if you really want to know what's needed.",
+          "score": 0,
+          "time": 1790400302,
+          "parent": "49844497"
+        },
+        {
+          "id": "49852378",
+          "author": "ActorNightly",
+          "body": "Apple Ecosystem lmao.",
+          "score": 0,
+          "time": 1790387305,
+          "parent": "49844497"
+        },
+        {
+          "id": "49853838",
+          "author": "cube00",
+          "body": "I was sure Rust was going to be on the first page.",
+          "score": 0,
+          "time": 1790404604,
+          "parent": "49844497"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -621,8 +746,8 @@
       "title": "Show HN: Hamilton – a no-internet Android health dashboard, named after my dog",
       "subreddit": "show-hn",
       "author": "hamilton_app",
-      "score": 8,
-      "num_comments": 13,
+      "score": 10,
+      "num_comments": 12,
       "permalink": "https://news.ycombinator.com/item?id=49843909",
       "url": "https://play.google.com/store/apps/details?id=com.gads.hamilton&hl=en_US",
       "selftext": "I started experimenting with LLMs and decided I wanted to create a fitness app. My first thought was an app that disabled Google Pay every time my phone detected I was within 50m of a McDonald's.\nHowever, I quickly pivoted like a true founder to create an app that addressed a personal issue of mine.\nOn Android, if you have a bunch of apps and fitness monitors from different manufacturers, very few of them all talk to each other. Your data is scattered across different apps or double counted. However, most data sources write to Health Connect.\nHamilton is a dashboard of your Health Connect data with a homepage that shows your key metrics at a glance. Your choice of data source is flexible to avoid double counting, and you can overlay and offset metrics on charts to view correlations and track progress over time.\nI named the app after my dog, who occasionally fetches things and is responsible for my daily step count.\nBelow is an FAQ, and to avoid confusion I have helpfully labelled my responses [APP] or [DOG]: https://news.ycombinator.com/item?id=49848948 (https://news.ycombinator.com/item?id=49848948).",
@@ -661,14 +786,6 @@
           "body": "If anyone wants to Hamilton before paying for it, I have a few promo codes:\nU2R6RBWH1J7J6HRV4B6K7TS\nTXB633SJEZET335VAVVF3GV\nLJRM2UEB4WYG921P0Q747ZG\nCA8V5VUY1FAMEN1GUL6HP31\nWCR66FQYMZZ4Z0NBW35MQ0H\nTo redeem: Play Store app → your profile picture → Payments & subscriptions → Redeem code.\nThese are first come, first served, and single use. Shout if you have used one so other people don't try it. Thanks!",
           "score": 0,
           "time": 1790341209,
-          "parent": "49843909"
-        },
-        {
-          "id": "49848948",
-          "author": "hamilton_app",
-          "body": "FAQ\n1. Is Hamilton any good?\n[APP] I think so - I use it daily.\n[DOG] He is the absolute BEST BOY EVER\n2. How much does Hamilton cost?\n[APP] £3.59 (or local equivalent). I priced it to be approximately the same as a latte, which is my standard unit of measurement for impulse purchases.\n[DOG] DO NOT REMIND ME. He was a lockdown puppy and I bought him at the top of the market (He's still worth every penny though)\n3. Is Hamilton vibe-coded?\n[APP] 100% yes, but human-designed to fit my needs.\n[DOG] He wants to create an app called Rate my Vet, with ratings dependent on how they take his temperature.\n4. Is that unsafe? Will Hamilton delete data on my phone?\n[APP] Everything is a read-only view on Health Connect, and the app has no internet permission. It can't delete your Health Connect data and it can't transmit data.\n[DOG] No, but my cat jumped on my keyboard when I was in the middle of typing an insightful LinkedIn post and made me send RUBBISH to my THOUSANDS (20) of followers\n5. Is Hamilton active in the background?\n[APP] It fetches your data hourly from Health Connect if granted background access, and it works with Android battery saving rules.\n[DOG] He's active in the background of my Zoom calls, mostly licking his genitals\n6. Is Hamilton tested?\n[APP] I've been using it daily and testing and refining it for months. I realise just typing this sentence means someone will find a critical bug the first time they run it and I will look like a FOOL.\n[DOG] Only for tapeworm and parvo virus.\n7. Do you eat your own dog food?\n[APP] I use it every day to show my steps, body comp, workout sessions etc\n[DOG] He does, but he would far rather eat whatever it is I have on my plate.\n8. Does Hamilton show all your data?\n[APP] 30+ metrics, everything except blood sugar and reproductive health\n[DOG] The only data he gets is from sniffing lamp posts\n9. What units does Hamilton use?\n[APP] Metric, Imperial, and you can also configure per metric group to match the strange mix we have in the UK. No furlongs though.\n[DOG] Approximately 6 urinations per 20m walked\n10. Does Hamilton have any recurring costs?\n[APP] I hate apps with subscriptions, and no internet permission means no backend costs so the app is paid once\n[DOG] Vets are crooks, is all I will say on this.\n11. Has Hamilton won any prizes?\n[APP] Not yet\n[DOG] Second in the Waggiest Tail Category at the Weald of Kent Ploughing Match. He was ROBBED.\n12. Are the metrics on the Play Store yours?\n[APP] Absolutely not. I have 5% body fat, do 20,000 steps a day and have a resting heart rate of 12.\n[DOG] Yes\n13. Where can I see Hamilton?\n[APP] https://play.google.com/store/apps/details?id=com.gads.hamil... (https://play.google.com/store/apps/details?id=com.gads.hamilton)\n[DOG] https://hamiltonapp.github.io/HamiltonApp/dog.html (https://hamiltonapp.github.io/HamiltonApp/dog.html)",
-          "score": 0,
-          "time": 1790365041,
           "parent": "49843909"
         },
         {
@@ -912,7 +1029,7 @@
       "subreddit": "show-hn",
       "author": "nh2",
       "score": 21,
-      "num_comments": 25,
+      "num_comments": 27,
       "permalink": "https://news.ycombinator.com/item?id=49839672",
       "url": "https://nh2.me/low-fps-spinners/low-fps-spinners.html",
       "selftext": "I got so annoyed by various apps (VScode, Chromium, Firefox, Thunderbird) burning CPU/GPU cycles and and making my laptop hot and sluggish with spinners on otherwise static content, that I made this little page to fight this.",
@@ -922,19 +1039,19 @@
       "created_at": "2026-09-25T02:52:12+00:00",
       "comments_data": [
         {
-          "id": "49841973",
-          "author": "Diti",
-          "body": "Those aren’t spinners (also called numeric updowns, see [1]). Those are throbbers (also called loading icons, see [2]).\n[1]: https://en.wikipedia.org/wiki/Spinner_(computing) (https://en.wikipedia.org/wiki/Spinner_(computing))\n[2]: https://en.wikipedia.org/wiki/Throbber (https://en.wikipedia.org/wiki/Throbber)",
-          "score": 0,
-          "time": 1790327316,
-          "parent": "49839672"
-        },
-        {
           "id": "49841394",
           "author": "echoangle",
           "body": "Your claimed GPU usage seems really high for a simple spinner, even considering the CPU is pretty old. I wonder if there's some other problem going on with your setup.",
           "score": 0,
           "time": 1790322219,
+          "parent": "49839672"
+        },
+        {
+          "id": "49841973",
+          "author": "Diti",
+          "body": "Those aren’t spinners (also called numeric updowns, see [1]). Those are throbbers (also called loading icons, see [2]).\n[1]: https://en.wikipedia.org/wiki/Spinner_(computing) (https://en.wikipedia.org/wiki/Spinner_(computing))\n[2]: https://en.wikipedia.org/wiki/Throbber (https://en.wikipedia.org/wiki/Throbber)",
+          "score": 0,
+          "time": 1790327316,
           "parent": "49839672"
         },
         {
