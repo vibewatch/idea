@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-09-26T06:45:29.642632+00:00",
+  "last_fetched": "2026-09-26T12:39:35.357799+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -125,8 +125,8 @@
       "title": "Ask HN: Is Opus 5.5 another step change?",
       "subreddit": "ask-hn",
       "author": "consumer451",
-      "score": 8,
-      "num_comments": 9,
+      "score": 10,
+      "num_comments": 10,
       "permalink": "https://news.ycombinator.com/item?id=49850798",
       "url": "https://news.ycombinator.com/item?id=49850798",
       "selftext": "This feels like another moment, like earlier this year, and the year prior. I am thrilled for my use cases in the applications that I build with CC, and for the LLM API usage that I sell. However, it honestly scares the crap out out of me.\nIs \"the exponential\" an actual thing?",
@@ -136,11 +136,11 @@
       "created_at": "2026-09-25T22:29:12+00:00",
       "comments_data": [
         {
-          "id": "49853729",
-          "author": "sznio",
-          "body": "It's the first model that I feel I can just use freely without crashing into the 5 hour limits. I just manage to get my work done and still have tokens left over",
+          "id": "49855877",
+          "author": "jryan49",
+          "body": "I have Opus 5.5 running subagents for the last 20h without any input from me after developing a plan and it seems to be going well somehow... but I will find out soon...",
           "score": 0,
-          "time": 1790403381,
+          "time": 1790425697,
           "parent": "49850798"
         },
         {
@@ -165,6 +165,14 @@
           "body": "I’m also finding Opus 5.5 to be a significant advance. In the past few days, I’ve given it several complex tasks related to two long-term dictionary-building projects [1, 2], and it handled them impressively—similar to Fable but with much lower token consumption. It also communicates better than Opus 5.1; I don’t think I’ve seen any obvious Claudisms yet.\n[1] https://www.tkgje.jp/ (https://www.tkgje.jp/)\n[2] https://tkgally.github.io/eex-dict/index.html (https://tkgally.github.io/eex-dict/index.html)",
           "score": 0,
           "time": 1790385811,
+          "parent": "49850798"
+        },
+        {
+          "id": "49853729",
+          "author": "sznio",
+          "body": "It's the first model that I feel I can just use freely without crashing into the 5 hour limits. I just manage to get my work done and still have tokens left over",
+          "score": 0,
+          "time": 1790403381,
           "parent": "49850798"
         },
         {
@@ -250,8 +258,8 @@
       "title": "Ask HN: Who's still keeping a DOS machine up because the business depends on it?",
       "subreddit": "ask-hn",
       "author": "mlaux",
-      "score": 107,
-      "num_comments": 95,
+      "score": 148,
+      "num_comments": 142,
       "permalink": "https://news.ycombinator.com/item?id=49848955",
       "url": "https://news.ycombinator.com/item?id=49848955",
       "selftext": "Do you currently work with or know anyone who is still using:\n* dBase/Clipper/CLARION/Paradox/other DOS RAD environments on period hardware to run business processes?\n* CNC mills/spectrometers/microscopes/other industrial instruments controlled by ISA cards (either bespoke or standards like GPIB)?\n* Anything with a parallel port dongle?\nIf so, I'd be very interested in hearing your experience here, or feel free to send me an email at the address in my profile. I'm not trying to sell anything, just doing some research for an idea around keeping these going on modern hardware.",
@@ -266,6 +274,14 @@
           "body": "A certain nuclear power plant had a Windows NT 4.0 machine running as late as 2007. The reason is interesting.\nThe machine's purpose was to report status of the control rods that mitigate nuclear reactions. Basically, \"are the rods inserted, and if so, how many / how far?\". I want to emphasize that this was reporting only, NOT control.\nThe original software was written back in the 80's, when the plant was originally commissioned, for AmigaOS. Of course, it's hard to buy Amigas anymore, and the original one died long ago (nobody remembers when).\nSo in the mid '90s, the utility purchased an AmigaOS emulator that ran on Windows NT 4.0, which was current at the time. The emulator (IIRC) was developed by a firm in the UK. The firm went out of business sometime in the late '90s. The control rod monitoring software ran under this emulator on top of NT4.\nWindows NT 4.0 was the last OS to allow the emulation software direct access to the physical hardware that produced the status signal. Later versions of Windows abstracted the hardware access away, and the monitoring software broke. Because the emulation company had gone belly up, there was no way to fix the incompatibility.\nSo the utility had a choice: get new hardware/software certified (by NRC?), or keep doing what they were doing with the software (and hardware) that they had. They chose the latter.\nSo this is how, in 2007, during a tour of the facility, I stumbled across a Pentium 1 system running an AmigaOS emulator on Windows NT 4.0 that was responsible for displaying the status of the control rods of a nuclear power plant.\nSpare hardware for this setup was purchased off of eBay and stocked on an adjacent shelf.",
           "score": 0,
           "time": 1790375986,
+          "parent": "49848955"
+        },
+        {
+          "id": "49855002",
+          "author": "rleigh",
+          "body": "Not any longer. Back in the mid-2000s the company I worked for sold point-of-sale systems based upon a multi-user 4GL application (TAS Pro). Similar to dBase/Clipper etc., using the Novell Btrieve ISAM database engine.\nWith the advent of USB and SATA we ceased to be able to source industrial embedded x86 boards which could run the application. At the time this was with Novell DR-DOS, which was relatively modern in terms of hardware support but still behind the times and we were struggling to manufacture new systems. The company was very small, so a full rewrite was investigated--I did a prototype using PostgreSQL and Gtkmm--but it wasn't realistic. Today, an AI could probably do a full rewrite in a day or two, including migration tooling. Back then, it would have been a multi-year effort for one person given the application's size and complexity.\nMy solution was to run Linux since it had full support for the hardware. Debian Sarge at the time. This used a Perl frontend and dialog(1) to present a simple menu system at startup. This did backups, software updates (over dialup!), remote access for support (again over dialup), ran backups and ran the main application. It would start DOSEMU which provided the application with VGA display, COM ports and parallel ports for the application to drive \"directly\" (from its perspective). It also used Samba and CUPS to provide the DOS environment with shared network drives with exclusive byte-range file locking needed for the multi-user network database to work with concurrent users without data corruption, and also multi-user report printing and receipt printing.\nI left the company a year after this was put into full production, but the last I heard it kept the company viable with a supportable product for many years after until its owners retired. This kept software from the early 1990s running well into the 2010s, and there are likely still sites running it to this day.",
+          "score": 0,
+          "time": 1790417130,
           "parent": "49848955"
         },
         {
@@ -285,19 +301,27 @@
           "parent": "49848955"
         },
         {
-          "id": "49853500",
-          "author": "M95D",
-          "body": "I had a functional STA Compact [1] coagulation analyzer until 2022. It ran a customized DOS version on a ITX computer board that was integrated into the analyzer. UI was in text mode and used the keyboard only. It had no mouse. The video in the link shows the UI for a few seconds at the end. We kept it functional as a backup and even used it a few days when the replacement broke down. It was one of the best analyzers I ever used.\nThe newer version of that anaylzer, STA Compact Max [2] has mostly the same analyzer hardware, but newer ITX board inside. It runs Windows (XP, 7, 10...). Bugs galore.\nI know labs that used a Beckman-Coulter HmX hematology analyzer [3] until 2015 or so. That machine is attached to an external MS-DOS computer via a very thick cable and an ISA board. The cable connector looked a bit like a 68-pin SCSI-3. The software used VGA graphics mode.\n [1] https://www.youtube.com/watch?v=Kti6Zdyp8dQ\n [2] https://www.youtube.com/watch?v=MJan25vkpEA\n [3] https://www.soriaudio.com/index.php?mid=m_eqp&document_srl=62138152",
+          "id": "49855075",
+          "author": "pumplekin",
+          "body": "Not DOS, but two similar era cases.\nA FTSE 100 company I used to work for, still maintains a SCO UNIX machine that was first installed in 1993. It hasn't had any upgrades since, has specialist hardware in it, and still has an IP stack that is classful (ie. no subnet masks, 10.x.x.x is always a /8). It runs in a 100% airgapped network, and it isn't essential to keeping the core companies operations, but it is a ticking time bomb nobody seems to want to address that will cause a lot of distruption when it finally dies.\nAlso I was recently (very lightly) involved in a consultancy project to remove an OS/2 based point of sale system for a small local retailer with 6 stores.",
           "score": 0,
-          "time": 1790400751,
+          "time": 1790417905,
           "parent": "49848955"
         },
         {
-          "id": "49853523",
-          "author": "mikewarot",
-          "body": "The Gear cutting job shop I worked for had a CNC lathe running with a GE Computer from the late 1970s that stored data on punched Mylar tape, until it was bought out in 2019.\nThe bevel gear generator setup was some formula calculations running in version 1 of TK!solver, which would have been a $5000 upgrade to get the latest version, so they ran them under MS-DOS in DOSbox, and saved the grief.\nWithout that software, they would have to pay Gleason $500+ to do the calculations for each new gear setup.\nThere are strong and reasonable reasons to keep very old systems alive in offline production environments.",
+          "id": "49855723",
+          "author": "rjh29",
+          "body": "Not recently but when I was a teenager (2001-ish) my supermarket was using a DOS computer to handle stock, print new labels when prices updated each day, etc.",
           "score": 0,
-          "time": 1790401012,
+          "time": 1790424175,
+          "parent": "49848955"
+        },
+        {
+          "id": "49855329",
+          "author": "Aldipower",
+          "body": "The Detusche Bahn still runs DOS and Window 3.11 in their ICE I trains! They searched for admins 2 years ago. \nhttps://www.tomshardware.com/software/windows/ms-dos-and-win... (https://www.tomshardware.com/software/windows/ms-dos-and-windows-311-still-run-train-dashboards-at-german-railway-company-listed-admin-job-for-30-year-old-operating-system)",
+          "score": 0,
+          "time": 1790420273,
           "parent": "49848955"
         },
         {
@@ -309,11 +333,11 @@
           "parent": "49848955"
         },
         {
-          "id": "49852056",
-          "author": "_trampeltier",
-          "body": "Siemens Field PG. It is a rugged Notebook for PLC programmers. At least in the last version until last year, the \"Field PG M6\" was possible to buy the Notebook with a special serial port for old S5 PLCs ant the Step5 software came in a special DosBox version with it.\nThe Field PG has also another special port called \"MPI/Profibus\" for S7 PLCs, 2 Ethernet ports and a DVD drive.\nhttps://support.industry.siemens.com/cs/document/109766662/d... (https://support.industry.siemens.com/cs/document/109766662/delivery-release-simatic-field-pg-m6-?dti=0&lc=en-MZ)",
+          "id": "49851259",
+          "author": "londons_explore",
+          "body": "This thread reminds me that there is a huge benefit to using a super common OS+hardware.\nIn 30 years time it will all be outdated... But emulators will exist and a business process in 2050 that still depended on something I built today could still run with minimal effort or risk.",
           "score": 0,
-          "time": 1790384280,
+          "time": 1790377985,
           "parent": "49848955"
         },
         {
@@ -325,35 +349,19 @@
           "parent": "49848955"
         },
         {
+          "id": "49852056",
+          "author": "_trampeltier",
+          "body": "Siemens Field PG. It is a rugged Notebook for PLC programmers. At least in the last version until last year, the \"Field PG M6\" was possible to buy the Notebook with a special serial port for old S5 PLCs ant the Step5 software came in a special DosBox version with it.\nThe Field PG has also another special port called \"MPI/Profibus\" for S7 PLCs, 2 Ethernet ports and a DVD drive.\nhttps://support.industry.siemens.com/cs/document/109766662/d... (https://support.industry.siemens.com/cs/document/109766662/delivery-release-simatic-field-pg-m6-?dti=0&lc=en-MZ)",
+          "score": 0,
+          "time": 1790384280,
+          "parent": "49848955"
+        },
+        {
           "id": "49851890",
           "author": "fires10",
           "body": "I work at a multi billion dollar facility for a Fortune 100 company and we still depend on DOS. Keeping the mandatory DOS machines going is an exercise. Especially integrating them into modern systems.\nEdit: There is no required hardware, however maintaining a stable serial connection through a VM and timing issues due to faster hardware has been fun.",
           "score": 0,
           "time": 1790382635,
-          "parent": "49848955"
-        },
-        {
-          "id": "49851259",
-          "author": "londons_explore",
-          "body": "This thread reminds me that there is a huge benefit to using a super common OS+hardware.\nIn 30 years time it will all be outdated... But emulators will exist and a business process in 2050 that still depended on something I built today could still run with minimal effort or risk.",
-          "score": 0,
-          "time": 1790377985,
-          "parent": "49848955"
-        },
-        {
-          "id": "49853277",
-          "author": "ksec",
-          "body": "We were talking about Visual FoxPro only a few days ago. [1] And one of those same companies in my comment [2] uses an old ordering system that is still in DOS and they boot up a VM to use it. They still have a printing machine ( not a normal printer ) for those order printing connected via a Parallel Port. I don't know the details of how that works though.\nAnd by the end of all that, the order will be Faxed. Manually.\nDid they tried to email it or automate it. Hell yes. Did it work? No.\n[1] https://news.ycombinator.com/item?id=49808023 (https://news.ycombinator.com/item?id=49808023)\n[2] https://news.ycombinator.com/item?id=49811716 (https://news.ycombinator.com/item?id=49811716)",
-          "score": 0,
-          "time": 1790397815,
-          "parent": "49848955"
-        },
-        {
-          "id": "49853637",
-          "author": "lormayna",
-          "body": "Few years ago I was working for a F500 company and during an assessment we discovered couple of OS/2 Warp machines that were controlling CNC equipment",
-          "score": 0,
-          "time": 1790402299,
           "parent": "49848955"
         }
       ]
@@ -382,8 +390,8 @@
       "title": "Ask HN: Which model do you use for work?",
       "subreddit": "ask-hn",
       "author": "george_max",
-      "score": 4,
-      "num_comments": 4,
+      "score": 5,
+      "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=49848426",
       "url": "https://news.ycombinator.com/item?id=49848426",
       "selftext": "The past little while has been filled with new LLM releases. I am curious to understand what you find to work best for your particular workflows and tasks.",
@@ -392,6 +400,30 @@
       "time": 1790362238,
       "created_at": "2026-09-25T18:50:38+00:00",
       "comments_data": [
+        {
+          "id": "49855417",
+          "author": "LUmBULtERA",
+          "body": "Astra on Extra High. Knowledge work, the right answer is much more important than a fast or cheap answer. If I were to switch to Anthropic, Opus 5.5 or Fable 5.1 on high or better.",
+          "score": 0,
+          "time": 1790421200,
+          "parent": "49848426"
+        },
+        {
+          "id": "49854990",
+          "author": "praash",
+          "body": "Qwen 3.8 27b-mlx running locally on Apple M4 48 GB. I only use local LLMs, mostly for getting technical suggestions and code snippet samples. Qwen 3.8 has been the first local model I've tried that has consistently given usable and impressive results.",
+          "score": 0,
+          "time": 1790417036,
+          "parent": "49848426"
+        },
+        {
+          "id": "49854398",
+          "author": "dorianniemiec",
+          "body": "Free models on OpenCode, or just locally running models (at most 27B or 35B A3B or similar) on LM Studio... :')",
+          "score": 0,
+          "time": 1790411216,
+          "parent": "49848426"
+        },
         {
           "id": "49852136",
           "author": "meredithbloom",
@@ -433,8 +465,8 @@
       "title": "Ask HN: What vendor you'd switch out if a better option was available?",
       "subreddit": "ask-hn",
       "author": "jviotti",
-      "score": 4,
-      "num_comments": 12,
+      "score": 5,
+      "num_comments": 14,
       "permalink": "https://news.ycombinator.com/item?id=49847959",
       "url": "https://news.ycombinator.com/item?id=49847959",
       "selftext": "We all pay for things. Either personal (like Spotify) or at your company (Slack).\nOut of those, which one would you swap if a better thing was available?",
@@ -468,14 +500,6 @@
           "parent": "49847959"
         },
         {
-          "id": "49852875",
-          "author": "faangguyindia",
-          "body": "Cronometer\nMyFinessPal",
-          "score": 0,
-          "time": 1790392629,
-          "parent": "49847959"
-        },
-        {
           "id": "49849937",
           "author": "theguysudo",
           "body": "i prefer soundcloud i have switched to it a while ago its better and free as well as you tend to get more freedom exploring content from new artist more slack is pretty good already so wont prefer swaping it",
@@ -489,6 +513,14 @@
           "body": "inference providers\nspotify for sure, working on that\nkinda anything. why wouldn't i switch if there's something better?\ni have that kind of brand loyalty with local small shops maybe, where there's a relationship. but not corporate online brands.",
           "score": 0,
           "time": 1790364559,
+          "parent": "49847959"
+        },
+        {
+          "id": "49852875",
+          "author": "faangguyindia",
+          "body": "Cronometer\nMyFinessPal",
+          "score": 0,
+          "time": 1790392629,
           "parent": "49847959"
         },
         {
@@ -533,7 +565,7 @@
       "subreddit": "ask-hn",
       "author": "har-ki",
       "score": 2,
-      "num_comments": 1,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49847249",
       "url": "https://news.ycombinator.com/item?id=49847249",
       "selftext": "Anyone running multiple agents concurrently in production? And has anyone tried going leaderless?\nThere's LangGraph, CrewAI, etc.\nBut I keep coming back to whether you need an orchestrator at all.\nNo supervisor. Just agents, each reacting to their own inputs, coordinating only through shared state. A true leaderless architecture.\nThe way some distributed systems have been for decades.\nContext: previously, I wrote about running Claude Code as an AI SRE handling an incident end to end. I've been rebuilding it as four, all working on the same incident: detect, diagnose, remediate, communicate.",
@@ -560,14 +592,24 @@
       "subreddit": "ask-hn",
       "author": "par",
       "score": 2,
-      "num_comments": 0,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49845022",
       "url": "https://news.ycombinator.com/item?id=49845022",
       "selftext": "Seems 1 (out of 3) of my openapi keys and of 1 my claude keys was leaked last night all around the same time. My keys are only stored on my laptop and on my server, not on github.",
       "is_self": true,
       "is_video": false,
       "time": 1790345765,
-      "created_at": "2026-09-25T14:16:05+00:00"
+      "created_at": "2026-09-25T14:16:05+00:00",
+      "comments_data": [
+        {
+          "id": "49854533",
+          "author": "DANmode",
+          "body": "What software is the server protected by?",
+          "score": 0,
+          "time": 1790412807,
+          "parent": "49845022"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -577,14 +619,24 @@
       "subreddit": "ask-hn",
       "author": "cpa",
       "score": 3,
-      "num_comments": 0,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49843423",
       "url": "https://news.ycombinator.com/item?id=49843423",
       "selftext": "Do you just download random skills? Write your own prompts? Pay for a specialized service? Or just OAI and Anthropic? Use open source software (which)?",
       "is_self": true,
       "is_video": false,
       "time": 1790337716,
-      "created_at": "2026-09-25T12:01:56+00:00"
+      "created_at": "2026-09-25T12:01:56+00:00",
+      "comments_data": [
+        {
+          "id": "49854542",
+          "author": "DANmode",
+          "body": "Question too vague.",
+          "score": 0,
+          "time": 1790412857,
+          "parent": "49843423"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -610,8 +662,8 @@
       "title": "Tell HN: OpenAI $500 ProMax plan listed in API",
       "subreddit": "ask-hn",
       "author": "GustavHartz",
-      "score": 23,
-      "num_comments": 29,
+      "score": 25,
+      "num_comments": 37,
       "permalink": "https://news.ycombinator.com/item?id=49841605",
       "url": "https://news.ycombinator.com/item?id=49841605",
       "selftext": "OpenAI's API is showing the first signs in the API of a new 500$ ProMax plan\nhttps://chatgpt.com/backend-anon/checkout_pricing_config/con... (https://chatgpt.com/backend-anon/checkout_pricing_config/configs/US)",
@@ -645,19 +697,19 @@
           "parent": "49841605"
         },
         {
-          "id": "49853168",
-          "author": "linesofcode",
-          "body": "I want it and I want it now.",
-          "score": 0,
-          "time": 1790396369,
-          "parent": "49841605"
-        },
-        {
           "id": "49843552",
           "author": "ryandetzel",
           "body": "If it's unlimited that would be tempting. But that will never happen and if it does \"unlimited\" would not be",
           "score": 0,
           "time": 1790338455,
+          "parent": "49841605"
+        },
+        {
+          "id": "49853168",
+          "author": "linesofcode",
+          "body": "I want it and I want it now.",
+          "score": 0,
+          "time": 1790396369,
           "parent": "49841605"
         },
         {
@@ -677,19 +729,19 @@
           "parent": "49841605"
         },
         {
-          "id": "49841857",
-          "author": "ls1911",
-          "body": "the bottom line is that a.i is getting more and more expensive and they have excuses for that.\njust last week trae.ai reduced its plan credits from 400$ to 100$",
-          "score": 0,
-          "time": 1790326325,
-          "parent": "49841605"
-        },
-        {
           "id": "49841992",
           "author": "dudewhocodes",
           "body": "We stole all your work, just subscribe to get it back... now at $500/month.",
           "score": 0,
           "time": 1790327516,
+          "parent": "49841605"
+        },
+        {
+          "id": "49841857",
+          "author": "ls1911",
+          "body": "the bottom line is that a.i is getting more and more expensive and they have excuses for that.\njust last week trae.ai reduced its plan credits from 400$ to 100$",
+          "score": 0,
+          "time": 1790326325,
           "parent": "49841605"
         }
       ]
