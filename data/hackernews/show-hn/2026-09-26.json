@@ -1,8 +1,69 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-09-26T18:36:07.120188+00:00",
+  "last_fetched": "2026-09-27T01:13:36.766480+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49859733",
+      "title": "Show HN: CaughtShipping – curfew app for developers, enforced by a public wall",
+      "subreddit": "show-hn",
+      "author": "misulicus",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49859733",
+      "url": "https://caughtshipping.com/",
+      "selftext": "I am always working well past the normal work hours. Sometimes even past midnight.\nThen one day I thought, what if I could have something to keep me accountable for doing this? So I built a small app that will call me out when I break my downtime.\nYou set a Curfew in the app (Curfew must start between 8:00 PM and 10:00 PM). If a dev app (editor, terminal, etc.) is used on your computer after the set curfew, a countdown starts. If you close the app before the timer runs out, you are safe.\nIf you keep working, you get \"caught\". Your streak is now broken, and you will be posted on the Wall, on the public blotter section.\nIf you keep your nights clean, you will rank higher and higher on the Wall of Rest instead.\nThe App does not look at what work you do; we don't care about that. \nI would love to get feedback from as many users as possible. The app is free, and a 7-day report is available locally in the app itself.\nThere is a paid plan that can give you up to 90 days of reports!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790450845,
+      "created_at": "2026-09-26T19:27:25+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49859066",
+      "title": "Show HN: Sixb, a TypeScript ontology framework for modeling your domain",
+      "subreddit": "show-hn",
+      "author": "ademattos",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=49859066",
+      "url": "https://docs.sixb.ai",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790446559,
+      "created_at": "2026-09-26T18:15:59+00:00",
+      "comments_data": [
+        {
+          "id": "49859073",
+          "author": "ademattos",
+          "body": "Hi HN. If you like the idea behind Palantir's ontology, I think you'll enjoy this.\nIt's an open source (MIT) TypeScript framework for building software around a typed ontology.\nYou model your domain, then put it to work.\nSince it's just code, it's coding agent friendly. Way more efficient than working inside something like Foundry.\nIt's for businesses that want a live operational model of how they run, but are out of Foundry's price range.\nAnd they own the whole thing end to end.\nDocs: https://docs.sixb.ai (https://docs.sixb.ai) Repo: https://github.com/sixb-ai/sixb (https://github.com/sixb-ai/sixb)\nWould love feedback, especially on what you'd want built next.",
+          "score": 0,
+          "time": 1790446619,
+          "parent": "49859066"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49859013",
+      "title": "Show HN: Blender Copilot",
+      "subreddit": "show-hn",
+      "author": "xeonax",
+      "score": 6,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49859013",
+      "url": "https://github.com/XEonAX/blender-copilot",
+      "selftext": "Deepseek generated Blender harness in 7USD.\nI wanted to remake my 6DoF spaceship flying prototype.\nWhat I did not want to do was model the spaceship. Manually. In Blender.\nSo instead of spending a month learning to model, I built a Copilot inside Blender in a day. Which is the same thing, except I still cannot model.\nA chat panel in the 3D viewport sidebar. I type a sentence. The model writes Python, and it runs against my actual scene, the file open on screen, not a copy that some other process has to keep in sync.\nThen I sat down and had a conversation with my own addon. Five sentences:\n1. Make a scifi looking spaceship. It should look scifi-y\n 2. Add RCS thrusters to get 6DoF flight\n 3. Make the RCS thrusters match the scifi look. And also position them properly.\n 4. Give the entire Spaceship a nice flying animation. Make it smooth. Roll and sway.\n 5. Add exhaust flames to main thrusters as well as RCS thrusters. animate the RCS thrusters to fire in sync with the animated motion. they should fire the correct ones so that expected motion should happen.\n15 minutes. 52 tool calls. A ship with swept wings, a tail fin and a glass canopy. Four sets of steering thrusters, 22 exhaust flames. A full flight animation.\nThe bit I did not expect.\nIt checked every one of its own thrusters to make sure nothing was in the way. Found the rear ones were firing straight into the side of the ship. So it rebuilt them, angled them outward, moved them to the wingtips, and checked them all again.\nNobody asked it to do that. It decided exhaust should not be firing into the ship it just built.\nTotal bill for building the tool: $7.18. 3,833 requests, 613M tokens, 97% served from cache. One spaceship: about a seventh of a cent.\nNow the uncomfortable part.\nI didn't model a single vertex. I didn't read Blender's addon dev docs. I didn't learn its Python API, or how to draw a panel in it. Everything the tool needed to know, it asked the running Blender instead.\nI didn't learn how to build an agent harness either. I built one anyway.\nI didn't become a Blender artist. I became the person who gave hands to a model.\nRecently I read someone who described his new job: every spec, ticket and fix written by an AI, nobody reading any of it, twelve-hour days spent pressing enter. No sense of victory.\nI know exactly what he means. I just did the same. I am not proud of the prototype. Gamedevs were known to spend time making game engines before they started making the games. Its different now. No joy.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790446019,
+      "created_at": "2026-09-26T18:06:59+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,7 +71,7 @@
       "title": "Show HN: Cocytus – an esolang where freezes after N accesses",
       "subreddit": "show-hn",
       "author": "natgrish",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49858930",
       "url": "https://github.com/fireside25a-beep/Cocytus",
@@ -27,15 +88,113 @@
       "title": "Show HN: Reladraw – A diagram language where you decide where to place things",
       "subreddit": "show-hn",
       "author": "jpwalsh234",
-      "score": 3,
-      "num_comments": 0,
+      "score": 171,
+      "num_comments": 51,
       "permalink": "https://news.ycombinator.com/item?id=49858513",
       "url": "https://github.com/reladraw/reladraw",
       "selftext": "I love making diagrams to help understand, plan, etc. However, the options are (A) auto-placement languages like Mermaid or Graphviz (which don't let me decide how the diagram looks), or (B) software like Draw.io which are powerful but are very time consuming (and inefficient for agents to manipulate).\nI wanted to have the benefits of both, where you can define a diagram in a diagram language, but also retain a high degree of control over what the diagram looks like.\nI also wanted this to work well for humans and agents.\nOn the Github link, there's a playground where you can try it out without installation. There's also instructions for a simple npm install and for installing a skill you can use with Claude or other agents.",
       "is_self": false,
       "is_video": false,
       "time": 1790442640,
-      "created_at": "2026-09-26T17:10:40+00:00"
+      "created_at": "2026-09-26T17:10:40+00:00",
+      "comments_data": [
+        {
+          "id": "49862178",
+          "author": "Garlef",
+          "body": "1. awesome ~ this seems to be in a sweet spot! (yes, mermaid is fine; but often looks bad - esp when visualizing large diagrams)\n2. it would be great to have this as a layouting layer for C4\n3. which brings me to a suggestion: i think it would make sense to allow for decoupling the topological parts of the language (arrows, groupings, etc) from the layouting concerns (left of, right of, etc)",
+          "score": 0,
+          "time": 1790470386,
+          "parent": "49858513"
+        },
+        {
+          "id": "49861781",
+          "author": "apinstein",
+          "body": "This is very needed in the AI coding age! I find diagramming is one of the best ways for high bandwidth alignment between my mental model and the agent’s. I have been working on this problem a bit as I see good visuals as a key bottleneck in faster development while maintaining a real architecture.\nWill def be adding this to my list of diagramming tools the agent can use!",
+          "score": 0,
+          "time": 1790466760,
+          "parent": "49858513"
+        },
+        {
+          "id": "49862146",
+          "author": "rodmena",
+          "body": "interesting. wonder how agents themselves can create something complex. I'll use it for sure. I direct my agents to [Graphviz provider](https://graphviz.rodmena.co.uk/ (https://graphviz.rodmena.co.uk/))s these days.",
+          "score": 0,
+          "time": 1790470131,
+          "parent": "49858513"
+        },
+        {
+          "id": "49860550",
+          "author": "HeavyStorm",
+          "body": "Mermaid works great for fixed layouts like sequence diagrams and Gantts. For flowcharts, where position is king, it's bad.\nI've tried using svg in my MD files but they get unwieldy quite fast. This is a great idea. My first reaction was - but what's if I need something more exact. But reflecting on it, I've realized that this relative positioning is probably enough.",
+          "score": 0,
+          "time": 1790456843,
+          "parent": "49858513"
+        },
+        {
+          "id": "49860544",
+          "author": "recroad",
+          "body": "Seems a little buggy, I added this line:\nedge parser -> renderer \"test edge\" from: left to: right\nand it wasn't smart enough to make a curved arrow",
+          "score": 0,
+          "time": 1790456808,
+          "parent": "49858513"
+        },
+        {
+          "id": "49860832",
+          "author": "threecheese",
+          "body": "Does this need to be shipped with a renderer? A better question is, are the node layout instructions ultimately being translated into absolute positions?\nIf so, you could target any number of render backends, keeping the same simple interface for your agent, avoiding the bazillion problems rendering engines face to work well across the ecosystem.",
+          "score": 0,
+          "time": 1790459188,
+          "parent": "49858513"
+        },
+        {
+          "id": "49861683",
+          "author": "tnspacetime",
+          "body": "This seems nice but I’ll need to read the syntax more carefully to see how capable and convenient it is.",
+          "score": 0,
+          "time": 1790465857,
+          "parent": "49858513"
+        },
+        {
+          "id": "49860625",
+          "author": "zikohh",
+          "body": "https://d2lang.com/ (https://d2lang.com/) works well?",
+          "score": 0,
+          "time": 1790457459,
+          "parent": "49858513"
+        },
+        {
+          "id": "49860209",
+          "author": "aktenlage",
+          "body": "That is damn interesting. When I made copilot write a script that creates a .dot diagram, I found it funny that it had the same problems with placement that I have when doing it manually.",
+          "score": 0,
+          "time": 1790454199,
+          "parent": "49858513"
+        },
+        {
+          "id": "49859626",
+          "author": "v9v",
+          "body": "Great! Reminds me of Pikchr a bit https://pikchr.org/home/doc/trunk/homepage.md (https://pikchr.org/home/doc/trunk/homepage.md)",
+          "score": 0,
+          "time": 1790450199,
+          "parent": "49858513"
+        },
+        {
+          "id": "49860294",
+          "author": "kinduff",
+          "body": "I love it, and I wish it was part of Mermaid. I've always struggled with the presentation and agents tend to hack or just straight use SVG lol",
+          "score": 0,
+          "time": 1790454954,
+          "parent": "49858513"
+        },
+        {
+          "id": "49859983",
+          "author": "patriciobcs",
+          "body": "I was looking for something like this. I wish it had different themes, the will prob be the best improvement.",
+          "score": 0,
+          "time": 1790452647,
+          "parent": "49858513"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -44,15 +203,25 @@
       "title": "Show HN: Spivak's Calculus formalized in Lean 4 – every theorem, every problem",
       "subreddit": "show-hn",
       "author": "jsLavaGoat",
-      "score": 2,
-      "num_comments": 0,
+      "score": 11,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49858409",
       "url": "https://github.com/stormj-UH/spivak-lean",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1790442023,
-      "created_at": "2026-09-26T17:00:23+00:00"
+      "created_at": "2026-09-26T17:00:23+00:00",
+      "comments_data": [
+        {
+          "id": "49858419",
+          "author": "jsLavaGoat",
+          "body": "[flagged]",
+          "score": 0,
+          "time": 1790442076,
+          "parent": "49858409"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -61,8 +230,8 @@
       "title": "Show HN: Jev predicting your life choices",
       "subreddit": "show-hn",
       "author": "sdrth",
-      "score": 2,
-      "num_comments": 1,
+      "score": 4,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=49858032",
       "url": "https://quiz.seek.ws/",
       "selftext": "Built a simple quiz to check whether AI (Jev) can simply learn and predict life choices.\nExperiment)",
@@ -72,11 +241,35 @@
       "created_at": "2026-09-26T16:24:27+00:00",
       "comments_data": [
         {
+          "id": "49860498",
+          "author": "the__alchemist",
+          "body": "Note: For many (most?) of these, I'm not sure how to answer them, and am choosing arbitrarily; there is a trend of multiple (2-3 generally) all seeming reasonable and/or similar, and I am going with the flow of which I choose.",
+          "score": 0,
+          "time": 1790456427,
+          "parent": "49858032"
+        },
+        {
+          "id": "49859898",
+          "author": "adrianwaj",
+          "body": "This should be used for match-making! Like attracts like.\nNeeds to be a greater delay or key-press upon prediction status. Can it give a report and assessment?\nAlso useful for recruiting. Match candidates with their potential managers.",
+          "score": 0,
+          "time": 1790452041,
+          "parent": "49858032"
+        },
+        {
           "id": "49858653",
           "author": "sdrth",
           "body": "Some questions might be relevant only for Indian audiences.",
           "score": 0,
           "time": 1790443453,
+          "parent": "49858032"
+        },
+        {
+          "id": "49860808",
+          "author": "mvk666",
+          "body": "it started out good, but transitioned to slop question/answers",
+          "score": 0,
+          "time": 1790459040,
           "parent": "49858032"
         }
       ]
@@ -88,8 +281,8 @@
       "title": "Show HN: A Claude Code skill to analyze your chess games",
       "subreddit": "show-hn",
       "author": "brumar",
-      "score": 49,
-      "num_comments": 31,
+      "score": 71,
+      "num_comments": 51,
       "permalink": "https://news.ycombinator.com/item?id=49857528",
       "url": "https://github.com/brumar/chess-postmortem-skills",
       "selftext": "Hello HN,\nIt started as an experiment: can Claude play chess properly if it uses vision instead of PGN notation? Somehow it can.\nThe next experiment was to see whether Claude + Stockfish could explain a game. Somehow it can too.\nA few sessions later, I had a system that takes my live audio notes (or text, for that matter) and a vague instruction like \"analyze my last lichess game\", and gives me a commented video of the game. The result is not perfect and it takes time to deliver (an hour or so), but for me it is a much more pleasant and memorable experience than clicking around Stockfish branches. It burns tokens, so make sure you have enough quota. From the session logs, the last analyzed game would have cost around $15 at API prices.\nThe fact that it reflects on my own thinking during the game makes it interesting from a teaching point of view, so I thought it was worth sharing.",
@@ -99,11 +292,19 @@
       "created_at": "2026-09-26T15:34:53+00:00",
       "comments_data": [
         {
-          "id": "49858031",
-          "author": "WoodenChair",
-          "body": "Just a note that this is not novel. Automatic analysis of chess games built on traditional engines has existed for a long time. Without using stockfish as a sidekick, this wouldn’t be interesting because of the poor play of LLMs, however having an LLM enhance the commentary is interesting and I suspect has already been done by chess.com for years.",
+          "id": "49858841",
+          "author": "brausepulver",
+          "body": "Does this give sensible analysis if you don't record your thinking out loud?\nI've been using Elogram (https://elogram.gg/ (https://elogram.gg/), made by a friend), which gives interpretability by showing how difficulty of a position changes with elo.",
           "score": 0,
-          "time": 1790439860,
+          "time": 1790444813,
+          "parent": "49857528"
+        },
+        {
+          "id": "49859681",
+          "author": "Bootvis",
+          "body": "Already a year ago I vibe coded Babelfish: https://github.com/bobjansen/Babelfish (https://github.com/bobjansen/Babelfish)\nIt integrates an LLM of your choice with StockFish to analyze games. Back then, the results weren't very good and I abandoned the project but a lot has changed (the LLM's got better and I did too) so maybe it is time to take another stab at it.",
+          "score": 0,
+          "time": 1790450573,
           "parent": "49857528"
         },
         {
@@ -115,19 +316,11 @@
           "parent": "49857528"
         },
         {
-          "id": "49858841",
-          "author": "brausepulver",
-          "body": "Does this give sensible analysis if you don't record your thinking out loud?\nI've been using Elogram (https://elogram.gg/ (https://elogram.gg/), made by a friend), which gives interpretability by showing how difficulty of a position changes with elo.",
+          "id": "49858031",
+          "author": "WoodenChair",
+          "body": "Just a note that this is not novel. Automatic analysis of chess games built on traditional engines has existed for a long time. Without using stockfish as a sidekick, this wouldn’t be interesting because of the poor play of LLMs, however having an LLM enhance the commentary is interesting and I suspect has already been done by chess.com for years.",
           "score": 0,
-          "time": 1790444813,
-          "parent": "49857528"
-        },
-        {
-          "id": "49859054",
-          "author": "skyfantom",
-          "body": "You say chess and I’m here to shamelessly promote my “coin chess” version:)\nhttps://chesspoly.com/ (https://chesspoly.com/)",
-          "score": 0,
-          "time": 1790446354,
+          "time": 1790439860,
           "parent": "49857528"
         },
         {
@@ -136,6 +329,14 @@
           "body": "You could also download my free chess app that hooks up to Claude for real time game analysis or chat about the game. \nhttps://pwalessi.itch.io/chess-buddy (https://pwalessi.itch.io/chess-buddy)",
           "score": 0,
           "time": 1790440751,
+          "parent": "49857528"
+        },
+        {
+          "id": "49859054",
+          "author": "skyfantom",
+          "body": "You say chess and I’m here to shamelessly promote my “coin chess” version:)\nhttps://chesspoly.com/ (https://chesspoly.com/)",
+          "score": 0,
+          "time": 1790446354,
           "parent": "49857528"
         },
         {
@@ -155,19 +356,19 @@
           "parent": "49857528"
         },
         {
+          "id": "49859487",
+          "author": "jeremyjh",
+          "body": "You only need to spend a couple of minutes talking to an LLM about chess to realize it has no understanding of the game. It will produce reasonable sounding explanations for things that are completely wrong. It will make illegal moves. It will hallucinate pieces on squares even when the entire PGN is in the context. There are no prompts you can give it to fix this. I don't really understand how you could create this skill without noticing this.",
+          "score": 0,
+          "time": 1790449271,
+          "parent": "49857528"
+        },
+        {
           "id": "49858329",
           "author": "pelican0",
           "body": "Very cool work!\nDid you write the skills (text, and code) all by hand, or are those prompt outputs?",
           "score": 0,
           "time": 1790441621,
-          "parent": "49857528"
-        },
-        {
-          "id": "49858551",
-          "author": "NietTim",
-          "body": "Neat! I've been slopping together various games to have AI play them, balatro, poker, blackjack, it's just so fun. Was just thinking about chess, wondering if, if I gave them an unrestricted sandbox, they'd start using existing solvers or not. They're surprisingly good at doing cardcounting, by the way.",
-          "score": 0,
-          "time": 1790442868,
           "parent": "49857528"
         },
         {
@@ -179,19 +380,11 @@
           "parent": "49857528"
         },
         {
-          "id": "49858722",
-          "author": "TZubiri",
-          "body": "Writing skills files like this one don't seem to be the future of computing or AI, not by the quality, nor by the cost (15$ per usage?).\nAlso, you seem to have written the actual SKILL.md prompts themselves with AI? I don't know what to say that's insane, at least write the prompts? This idea of asking chatgpt to write the prompts for you is beyond lazy. Then presenting it as a project or tool of value to share to others is delusional.\nSorry for being harsh",
+          "id": "49858551",
+          "author": "NietTim",
+          "body": "Neat! I've been slopping together various games to have AI play them, balatro, poker, blackjack, it's just so fun. Was just thinking about chess, wondering if, if I gave them an unrestricted sandbox, they'd start using existing solvers or not. They're surprisingly good at doing cardcounting, by the way.",
           "score": 0,
-          "time": 1790443957,
-          "parent": "49857528"
-        },
-        {
-          "id": "49858019",
-          "author": "Madmallard",
-          "body": "\"The result is not perfect\" as LLMs are\n\"The fact that it reflects on my own thinking during the game makes it interesting from a teaching point of view, so I thought it was worth sharing.\" As AI the premium sycophantic scammer does\n\"but for me it is a much more pleasant and memorable experience than clicking around Stockfish branches\"\nAnd SO much less effective than doing the harder, more tedious feeling work",
-          "score": 0,
-          "time": 1790439783,
+          "time": 1790442868,
           "parent": "49857528"
         }
       ]
@@ -203,7 +396,7 @@
       "title": "Show HN: I checked 1M free proxies – 1 in 5 working ones injected scripts",
       "subreddit": "show-hn",
       "author": "taventix",
-      "score": 4,
+      "score": 6,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49856691",
       "url": "https://github.com/maximilianfeix/proxy-scraper",
@@ -230,7 +423,7 @@
       "title": "Show HN: Print Graph Paper",
       "subreddit": "show-hn",
       "author": "artiomartiom",
-      "score": 4,
+      "score": 6,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49854203",
       "url": "https://printgraphpaper.app/",
@@ -247,7 +440,7 @@
       "title": "Show HN: Gutcheck, grep for meaning with a local CPU model",
       "subreddit": "show-hn",
       "author": "sfmqrb",
-      "score": 3,
+      "score": 5,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49853451",
       "url": "https://github.com/sfmqrb/gutcheck",
