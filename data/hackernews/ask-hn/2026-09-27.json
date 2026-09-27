@@ -1,8 +1,113 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-09-27T12:41:49.655627+00:00",
+  "last_fetched": "2026-09-27T18:36:44.244987+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "49868483",
+      "title": "I was impressed by Jev, please explain why I shouldn't be",
+      "subreddit": "ask-hn",
+      "author": "effisfor",
+      "score": 4,
+      "num_comments": 5,
+      "permalink": "https://news.ycombinator.com/item?id=49868483",
+      "url": "https://news.ycombinator.com/item?id=49868483",
+      "selftext": "I'm not a computer science guy, but I had a play with Jev and found it impressive. It allowed me to offer non-technical researchers the ability to classify arbitrary things their participants enter, without prior training or classification, at near instant speed, and negligible cost. My users may find that very helpful in the qualitative research world.\nI showed them an innocuous working example of how they could classify thousands of participant entries as \"mentioning Italian food\" whether it mentioned \"pasta\", \"penne\", \"rigatone\", etc etc. Jev did this task with high confidence, and showed it could differentiate between the inverse, eg had very low confidence when I switch entry to mentioning \"hamburgers\". I find that a very useful tool to pass on to non-technical colleagues.\nBut on HN, there are lots of much more qualified people saying Jev is a con, a step backwards, or bonkers that people are impressed. Will one of them tell me plainly what software was doing this prior to Jev, and the like? I don't doubt it existed, but I never came across it. I'm interested to hear from people more expert than myself.\nTo be precise, software must be able to:\n- Classify thousands of entries with arbitrary themes or topics, even if entry doesn't mention that theme or topic directly, with high enough confidence to be useful.\n- Do it with thousands of entries in 0-3seconds.\n- Do it at negligible cost, eg sub 0.1cents",
+      "is_self": true,
+      "is_video": false,
+      "time": 1790528355,
+      "created_at": "2026-09-27T16:59:15+00:00",
+      "comments_data": [
+        {
+          "id": "49868490",
+          "author": "minimaxir",
+          "body": "You're allowed to be excited about new technology.",
+          "score": 0,
+          "time": 1790528394,
+          "parent": "49868483"
+        },
+        {
+          "id": "49868556",
+          "author": "bigyabai",
+          "body": "> what software was doing this prior to Jev\nBeRT, BART and FLAN-T5, for text classification. All of those models are ~half a decade old now, are based on the transformer model, and small enough to run locally. They're not perfectly SOTA, but perform quite well in embedded applications. Fine for low-stakes stuff, I think.\nImage classifiers are a hugely competitive space. You've got BeiT, DeiT, MobileOne, ConvNext, FastViT and several more models that all support image classification pipelines.",
+          "score": 0,
+          "time": 1790528812,
+          "parent": "49868483"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "49867620",
+      "title": "Ask HN: Allow agents access to cloud files with least privilege?",
+      "subreddit": "ask-hn",
+      "author": "beerglass",
+      "score": 3,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=49867620",
+      "url": "https://news.ycombinator.com/item?id=49867620",
+      "selftext": "Let's say I have a Google spreadsheet on my Drive that I want an agent like Muse to work on. Currently my options are: a) I can allow Muse to access my Drive b) Share the spreadsheet with edit privilege to anyone with link and give that link to Muse. Both of these are not least privilege access that I'm comfortable with. Ideally I should be able to share access to a file with an agent. Other options like webhooks, burner accounts, etc are too tedious to do regularly. Any obvious solution that I am missing?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1790523526,
+      "created_at": "2026-09-27T15:38:46+00:00",
+      "comments_data": [
+        {
+          "id": "49867768",
+          "author": "sleda",
+          "body": "A grant limited to one selected file, with read and write access scoped separately and an expiry, would avoid giving the agent the whole Drive.",
+          "score": 0,
+          "time": 1790524230,
+          "parent": "49867620"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "49866739",
+      "title": "Ask HN: How are you getting inference for personal projects?",
+      "subreddit": "ask-hn",
+      "author": "variety8675",
+      "score": 2,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=49866739",
+      "url": "https://news.ycombinator.com/item?id=49866739",
+      "selftext": "It seems like the major providers are starting to cut back the usage included with their monthly subscriptions. How are people handling inference for side projects these days?\nAre you still using Codex/Claude subscriptions, paying for hosted open weight models, running local models, etc",
+      "is_self": true,
+      "is_video": false,
+      "time": 1790517775,
+      "created_at": "2026-09-27T14:02:55+00:00",
+      "comments_data": [
+        {
+          "id": "49866782",
+          "author": "intrr",
+          "body": "Claude subscription (the cheapest $20/month one) -- I very rarely hit the limits, particularly the weekly ones. But then again, the largest codebase I ever work on is 50k lines.\nI'd prefer local models massively for both work and \"pleasure\" (I love LLMs as random cognitive sparring partners), but then again, my bank account massively disagrees :/",
+          "score": 0,
+          "time": 1790518050,
+          "parent": "49866739"
+        },
+        {
+          "id": "49866911",
+          "author": "spottedmarley",
+          "body": "I've been on the Claude Max plan for quite a while now but I also run my own local models and every week there are new local models that are slowly but very surely closing the gap to frontier-level quality and so, pretty soon, I won't use APIs at all. Can't wait!",
+          "score": 0,
+          "time": 1790519161,
+          "parent": "49866739"
+        },
+        {
+          "id": "49867411",
+          "author": "sds357",
+          "body": "I have a Proxmox machine with dual P40 gpus that pass thru to a vm with ollama running for local inference. Been working great for over 2 years.",
+          "score": 0,
+          "time": 1790522387,
+          "parent": "49866739"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,8 +115,8 @@
       "title": "Ask HN: Who is the inspiration for your thinking?",
       "subreddit": "ask-hn",
       "author": "SMAAART",
-      "score": 7,
-      "num_comments": 12,
+      "score": 8,
+      "num_comments": 14,
       "permalink": "https://news.ycombinator.com/item?id=49862453",
       "url": "https://news.ycombinator.com/item?id=49862453",
       "selftext": "Leaving broad and vague by design. Who formed your thinking? Philosophers? Business magnates? Ancient wisdom? Or more recent thinking?\nSocrates to Bill Gates?\nI'll go first, in no particular order:\n- The Ancient Stoics\n- D. T. Suzuki, Thich Nhat Hanh, and other\n- C G Jung\n- Alfred Adler\n- Arthur Schopenhauer\n- Friedrich Nietzsche\n- Fyodor Dostoevsky\n- Franz Kafka\n- Niccolo Machiavelli (highly misunderstood, I strongly suggest starting by watching the \"Learning to Love Machiavelli: Don MacDonald at TEDxBoston\"\n- George Pólya",
@@ -29,19 +134,19 @@
           "parent": "49862453"
         },
         {
-          "id": "49864964",
-          "author": "nifragos",
-          "body": "In terms of the view that you should have as an engineer about the product i would say Steve Jobs. As for the view in life i would say Plato, Diogenes of Sinope, Nietzsche",
+          "id": "49868573",
+          "author": "romerocarlos",
+          "body": "For me, it's Daniel Kahneman and Gerd Gigerenzer.",
           "score": 0,
-          "time": 1790501446,
+          "time": 1790528877,
           "parent": "49862453"
         },
         {
-          "id": "49864512",
-          "author": "andyjohnson0",
-          "body": "Username checks out.\nAs for me, I've come to appreciate that I'm a fairly average thinker. Mostly I just try to make things work and watch the clouds.\nThere are people who's thinking I admire - Stewart Brand, for example. As for Nietzsche et al, I've never really had the time.",
+          "id": "49868558",
+          "author": "nikhilkxmar",
+          "body": "Marcus Aurelius for sure",
           "score": 0,
-          "time": 1790497348,
+          "time": 1790528820,
           "parent": "49862453"
         },
         {
@@ -66,6 +171,22 @@
           "body": "I got interested in civic coding because of the essays by Tim O'Reilly. When I was running the Code Michigan hackathon for a couple of years with the State Of Michigan I tried getting him as a speaker with no luck.",
           "score": 0,
           "time": 1790473251,
+          "parent": "49862453"
+        },
+        {
+          "id": "49864512",
+          "author": "andyjohnson0",
+          "body": "Username checks out.\nAs for me, I've come to appreciate that I'm a fairly average thinker. Mostly I just try to make things work and watch the clouds.\nThere are people who's thinking I admire - Stewart Brand, for example. As for Nietzsche et al, I've never really had the time.",
+          "score": 0,
+          "time": 1790497348,
+          "parent": "49862453"
+        },
+        {
+          "id": "49864964",
+          "author": "nifragos",
+          "body": "In terms of the view that you should have as an engineer about the product i would say Steve Jobs. As for the view in life i would say Plato, Diogenes of Sinope, Nietzsche",
+          "score": 0,
+          "time": 1790501446,
           "parent": "49862453"
         },
         {
@@ -99,14 +220,73 @@
           "score": 0,
           "time": 1790477794,
           "parent": "49862453"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "49861878",
+      "title": "What do you do now as a software engineer?",
+      "subreddit": "ask-hn",
+      "author": "fawazali",
+      "score": 4,
+      "num_comments": 7,
+      "permalink": "https://news.ycombinator.com/item?id=49861878",
+      "url": "https://news.ycombinator.com/item?id=49861878",
+      "selftext": "",
+      "is_self": true,
+      "is_video": false,
+      "time": 1790467614,
+      "created_at": "2026-09-27T00:06:54+00:00",
+      "comments_data": [
+        {
+          "id": "49862423",
+          "author": "variety8675",
+          "body": "IMO the value of engineering has always been understanding the problem and designing a way to solve it. If you think about the average day of a non-entry level engineer, the vast majority of it has never been hands on keyboard typing code.",
+          "score": 0,
+          "time": 1790472495,
+          "parent": "49861878"
         },
         {
-          "id": "49864636",
-          "author": "fragmede",
-          "body": "Alan Watts\nThe Red Green Show",
+          "id": "49862827",
+          "author": "entrepy123",
+          "body": "I'm the HITL who knows what's needed and what good looks like, moderating chat agents and coding agents.",
           "score": 0,
-          "time": 1790498601,
-          "parent": "49862453"
+          "time": 1790477004,
+          "parent": "49861878"
+        },
+        {
+          "id": "49864607",
+          "author": "XT3",
+          "body": "Explore new opportunities, Engineers with a problem solving mindset generally are more versatile to adapt and pick up on new skills.",
+          "score": 0,
+          "time": 1790498381,
+          "parent": "49861878"
+        },
+        {
+          "id": "49861909",
+          "author": "neuralkoi",
+          "body": "Type \"Yes\" and press enter.",
+          "score": 0,
+          "time": 1790467959,
+          "parent": "49861878"
+        },
+        {
+          "id": "49862316",
+          "author": "innagadadavida",
+          "body": "You are basically any insurance policy to your employer now - they need someone accountable when things break.",
+          "score": 0,
+          "time": 1790471456,
+          "parent": "49861878"
+        },
+        {
+          "id": "49862199",
+          "author": "verdverm",
+          "body": "collaborate with clankers to engineer even better software",
+          "score": 0,
+          "time": 1790470550,
+          "parent": "49861878"
         }
       ]
     }

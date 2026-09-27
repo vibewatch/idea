@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-09-27T12:41:44.640716+00:00",
+  "last_fetched": "2026-09-27T18:36:41.090029+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -88,8 +88,8 @@
       "title": "Show HN: Reladraw – A diagram language where you decide where to place things",
       "subreddit": "show-hn",
       "author": "jpwalsh234",
-      "score": 332,
-      "num_comments": 90,
+      "score": 376,
+      "num_comments": 103,
       "permalink": "https://news.ycombinator.com/item?id=49858513",
       "url": "https://github.com/reladraw/reladraw",
       "selftext": "I love making diagrams to help understand, plan, etc. However, the options are (A) auto-placement languages like Mermaid or Graphviz (which don't let me decide how the diagram looks), or (B) software like Draw.io which are powerful but are very time consuming (and inefficient for agents to manipulate).\nI wanted to have the benefits of both, where you can define a diagram in a diagram language, but also retain a high degree of control over what the diagram looks like.\nI also wanted this to work well for humans and agents.\nOn the Github link, there's a playground where you can try it out without installation. There's also instructions for a simple npm install and for installing a skill you can use with Claude or other agents.",
@@ -99,19 +99,43 @@
       "created_at": "2026-09-26T17:10:40+00:00",
       "comments_data": [
         {
-          "id": "49866096",
-          "author": "whizzter",
-          "body": "I like it, drawing stuff around can get tedious if an engine like this can do it \"automatically\" when adding more stuff instead of copy-paste-move.\nAs a compiler writer I'm pondering if it'd be possible to parametrise to a degree with data-sources or you think that's something better suited to custom script generators (right now, it feels like you want to write a lot of this manually, but the grouping system does lend itself to wildcard expansions from data.",
+          "id": "49866834",
+          "author": "atombender",
+          "body": "The readme says:\n> Mermaid, Graphviz and D2 let you declare boxes and connections, then determine positions for you. If you have a particular picture in mind, these aren't the right tool.\nD2's layout engine TALA [1] actually allows you to provide a lot of manual control. TALA used to be commercial, but is now open source.\nIn my own testing, TALA tends to produce much better layouts than Mermaid, including the ELK layout algorithm (which is not Mermaid's default; D2 also supports ELK).\nTALA supports controlling direction per container, defining which shapes have to be near each other, and so on. I've not played with this yet, though.\n[1] https://d2lang.com/tour/tala/ (https://d2lang.com/tour/tala/)",
           "score": 0,
-          "time": 1790512070,
+          "time": 1790518569,
           "parent": "49858513"
         },
         {
-          "id": "49866028",
-          "author": "perelin",
-          "body": "Just gave it a spin. Really like it. Adds a lot of visual clarity. Margins matter :) Thx!",
+          "id": "49861781",
+          "author": "apinstein",
+          "body": "This is very needed in the AI coding age! I find diagramming is one of the best ways for high bandwidth alignment between my mental model and the agent’s. I have been working on this problem a bit as I see good visuals as a key bottleneck in faster development while maintaining a real architecture.\nWill def be adding this to my list of diagramming tools the agent can use!",
           "score": 0,
-          "time": 1790511424,
+          "time": 1790466760,
+          "parent": "49858513"
+        },
+        {
+          "id": "49869029",
+          "author": "14u2c",
+          "body": "Well done, I was struggling with this exact problem last week.",
+          "score": 0,
+          "time": 1790531600,
+          "parent": "49858513"
+        },
+        {
+          "id": "49867773",
+          "author": "picardo",
+          "body": "Love it! I created a VSCode extension to render it in markdown files and highlight its syntax: https://github.com/volkanunsal/relative-diagrams-vscode/ (https://github.com/volkanunsal/relative-diagrams-vscode/)",
+          "score": 0,
+          "time": 1790524263,
+          "parent": "49858513"
+        },
+        {
+          "id": "49868091",
+          "author": "s1mon",
+          "body": "I’m excited to see this, but switching many of the examples from “dark” to “light” or “print” theme leaves the boxes black and the text unreadable.",
+          "score": 0,
+          "time": 1790526011,
           "parent": "49858513"
         },
         {
@@ -123,11 +147,11 @@
           "parent": "49858513"
         },
         {
-          "id": "49861781",
-          "author": "apinstein",
-          "body": "This is very needed in the AI coding age! I find diagramming is one of the best ways for high bandwidth alignment between my mental model and the agent’s. I have been working on this problem a bit as I see good visuals as a key bottleneck in faster development while maintaining a real architecture.\nWill def be adding this to my list of diagramming tools the agent can use!",
+          "id": "49866096",
+          "author": "whizzter",
+          "body": "I like it, drawing stuff around can get tedious if an engine like this can do it \"automatically\" when adding more stuff instead of copy-paste-move.\nAs a compiler writer I'm pondering if it'd be possible to parametrise to a degree with data-sources or you think that's something better suited to custom script generators (right now, it feels like you want to write a lot of this manually, but the grouping system does lend itself to wildcard expansions from data.",
           "score": 0,
-          "time": 1790466760,
+          "time": 1790512070,
           "parent": "49858513"
         },
         {
@@ -147,35 +171,11 @@
           "parent": "49858513"
         },
         {
-          "id": "49865272",
-          "author": "0x4a50",
-          "body": "Awesome! Exactly the problem I was having with drawio and mermaid. Nice work on addressing these problems and sharing it!",
-          "score": 0,
-          "time": 1790504103,
-          "parent": "49858513"
-        },
-        {
           "id": "49863408",
           "author": "boblehest",
           "body": "The README looks LLM generated. Sorry, but that's where my interaction stops",
           "score": 0,
           "time": 1790483981,
-          "parent": "49858513"
-        },
-        {
-          "id": "49865711",
-          "author": "fallingmeat",
-          "body": "great work. but at this point prompting a frontier model to make a svg diagram works so well..",
-          "score": 0,
-          "time": 1790508440,
-          "parent": "49858513"
-        },
-        {
-          "id": "49864296",
-          "author": "rramon",
-          "body": "Cool, I think there's a bug when switching themes in the web ui in Safari, the artifacts example with the dark red background isn't readable in light themes. Vesper would be a nice theme to add.",
-          "score": 0,
-          "time": 1790494736,
           "parent": "49858513"
         },
         {
@@ -187,11 +187,11 @@
           "parent": "49858513"
         },
         {
-          "id": "49863699",
-          "author": "shellerik",
-          "body": "This is a wonderful idea that fills a gap that has caused me much pain! When it's more stable I'll be looking for (or creating) an Obsidian plugin, a VS Code extension, etc.\nOpening reladraw/docs/index.html to make a diagram then copy-pasting to save it is a little cumbersome.",
+          "id": "49860625",
+          "author": "zikohh",
+          "body": "https://d2lang.com/ (https://d2lang.com/) works well?",
           "score": 0,
-          "time": 1790488246,
+          "time": 1790457459,
           "parent": "49858513"
         }
       ]
@@ -203,7 +203,7 @@
       "title": "Show HN: Spivak's Calculus formalized in Lean 4 – every theorem, every problem",
       "subreddit": "show-hn",
       "author": "jsLavaGoat",
-      "score": 17,
+      "score": 18,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49858409",
       "url": "https://github.com/stormj-UH/spivak-lean",
@@ -289,7 +289,7 @@
       "title": "Show HN: A Claude Code skill to analyze your chess games",
       "subreddit": "show-hn",
       "author": "brumar",
-      "score": 73,
+      "score": 75,
       "num_comments": 53,
       "permalink": "https://news.ycombinator.com/item?id=49857528",
       "url": "https://github.com/brumar/chess-postmortem-skills",
@@ -380,19 +380,19 @@
           "parent": "49857528"
         },
         {
-          "id": "49862469",
-          "author": "cdelsolar",
-          "body": "I have an LLM explainer for my scrabble AI Macondo. It’s actually pretty decent. The prompt contains a lot of data straight from the Monte Carlo simulations and other analyses. So it’s not just hallucinating things.\nThis skill is a great idea. I’ve been trying to figure out how to integrate this with Woogles.io for automatic game analysis.",
-          "score": 0,
-          "time": 1790472987,
-          "parent": "49857528"
-        },
-        {
           "id": "49857830",
           "author": "IMTDb",
           "body": "I am very interested in this, but it looks like the video link gives 404",
           "score": 0,
           "time": 1790438717,
+          "parent": "49857528"
+        },
+        {
+          "id": "49862469",
+          "author": "cdelsolar",
+          "body": "I have an LLM explainer for my scrabble AI Macondo. It’s actually pretty decent. The prompt contains a lot of data straight from the Monte Carlo simulations and other analyses. So it’s not just hallucinating things.\nThis skill is a great idea. I’ve been trying to figure out how to integrate this with Woogles.io for automatic game analysis.",
+          "score": 0,
+          "time": 1790472987,
           "parent": "49857528"
         }
       ]

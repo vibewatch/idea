@@ -1,8 +1,350 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-09-27T12:41:44.640716+00:00",
+  "last_fetched": "2026-09-27T18:36:41.090029+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49868228",
+      "title": "Show HN: Banker – CLI for your finances using Enable Banking and SQLite",
+      "subreddit": "show-hn",
+      "author": "nautical_dog",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49868228",
+      "url": "https://github.com/karlis-vagalis/banker",
+      "selftext": "Hi HN,\nhere, what started as a small personal tool, I wanted to create an AI agent-friendly way to fetch and store financial data, like bank accounts, their respective balances and transactions and store them in a small SQLite database, to gather all of them in a single place, store them long term, and assign arbitrary metadata, for example, expense categories, etc.\nThere are not many PSD2 compliant providers, that allow access to personal bank accounts, but Enable Banking is one of the rare few. That is why it is the core of the engine used to access the financial data from different ASPSPs.\nThus, it is quite easy to register and set up a personal \"application\" and link your existing bank accounts to access them in the banker CLI.\nI hope you find it useful!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790526743,
+      "created_at": "2026-09-27T16:32:23+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49867775",
+      "title": "Show HN: TinyAIArena watch AI agents battle it out",
+      "subreddit": "show-hn",
+      "author": "hp6",
+      "score": 47,
+      "num_comments": 28,
+      "permalink": "https://news.ycombinator.com/item?id=49867775",
+      "url": "https://tinyaiarena.com/",
+      "selftext": "Did you ever click on an “AI Arena” expecting glorious battle and instead get a boring benchmark? If so, this project is for you: proper life-or-death fights between four models on a picturesque 8×8 grid. May the most intelligent one win!\nClick on any of the matches to spectate them.\nCode: https://github.com/hp6/ai-arena (https://github.com/hp6/ai-arena)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790524288,
+      "created_at": "2026-09-27T15:51:28+00:00",
+      "comments_data": [
+        {
+          "id": "49868922",
+          "author": "PaulStatezny",
+          "body": "The rules:\n* Goal: be the last fighter alive.\n* Turns: each round every fighter takes one turn. Turn order is randomized every round.\n* Actions: Move one cell up/down/left/right, attack an adjacent enemy for 15–24 damage, or wait. An action consumes 1 AP.\n* Rocks/Obstacles: 4 random impassable cells.\n* Power-ups: Gold +1 AP per turn.\n* Kills: the killer gets +1 AP per turn, and heals 50 HP (no over-heal).\n(Unclear while watching replays, found in README.)",
+          "score": 0,
+          "time": 1790530892,
+          "parent": "49867775"
+        },
+        {
+          "id": "49869121",
+          "author": "cs1996",
+          "body": "this is fantastic: https://tinyaiarena.com/assets/sounds/bg_music.mp3 (https://tinyaiarena.com/assets/sounds/bg_music.mp3)",
+          "score": 0,
+          "time": 1790532070,
+          "parent": "49867775"
+        },
+        {
+          "id": "49869283",
+          "author": "__MatrixMan__",
+          "body": "We're mining https://universalpaperclips.fandom.com/wiki/Yomi (https://universalpaperclips.fandom.com/wiki/Yomi) now",
+          "score": 0,
+          "time": 1790532963,
+          "parent": "49867775"
+        },
+        {
+          "id": "49868585",
+          "author": "rao-v",
+          "body": "I love this and the aesthetic.\nI've been jamming on a sort of Corewars (remember?) / Starcraft hybrid battler where LLMs write sandboxed Lua programs to control bots fighting out 10-100 vs 10-100 tank battles. Every quarter the LLM gets a full view of the situation and can reprogram all the bots to better adapt strategy etc.\nIt's good fun to watch - excited to share soon.",
+          "score": 0,
+          "time": 1790528963,
+          "parent": "49867775"
+        },
+        {
+          "id": "49869259",
+          "author": "TomGarden",
+          "body": "This particular itch.io stock graphics asset pack is so widely used it makes my eyes glaze over, but such a fun idea!",
+          "score": 0,
+          "time": 1790532823,
+          "parent": "49867775"
+        },
+        {
+          "id": "49868940",
+          "author": "falsaberN1",
+          "body": "This amuses me greatly. Nice!\nAlthough it'd be even funnier to have some sort of thing like Omega (1989 programming game) where their programming determines the outcome. Heck, if you don't do it I might, although I don't have any good server infrastructure to host it.",
+          "score": 0,
+          "time": 1790530953,
+          "parent": "49867775"
+        },
+        {
+          "id": "49868857",
+          "author": "NBJack",
+          "body": "I literally just indulged in some vibe coding to make a battle arena of neural network driven \"agents\" fighting it out for the rights to proceed and evolve. I managed to get some decently efficient little murder bots out of it. You now make me want to try and throw an actual model at the fight.",
+          "score": 0,
+          "time": 1790530462,
+          "parent": "49867775"
+        },
+        {
+          "id": "49867840",
+          "author": "sleda",
+          "body": "Since the page exposes frame-by-frame playback, a shareable replay link would make it easier to compare decisions across the four models.",
+          "score": 0,
+          "time": 1790524611,
+          "parent": "49867775"
+        },
+        {
+          "id": "49868374",
+          "author": "nananana9",
+          "body": "This will be a weird rant, but the dialogue here is a perfect example of how SOTA models are so heavily tuned towards \"solving agentic tasks\" that they're useless at almost everything else - especially creative tasks.\n\"Coming for you, Crimson!\"\n\"You'll never catch me alive, Azure!\"\nThat's why nobody has been able to stick these things in a video game successfully, even though it seems like the tech is a perfect match.\nIt's all a game to them. They aren't afraid for their lives. They're making a mockery out of the world you've put them in. Those are not the words of little pixel people fighting to the death, those are AI abominations making \"tool calls\", LARPing as little pixel people fighting to the death.\nI'm 100% serious when I say that you would've gotten cooler outputs with a GPT 3.5-era model, once you managed to beat it into producing structured output. Llama 2 would be giving the other agent a heartwarming story about how if it kills it there would be nobody to take care of its grandma or whatever, and the other agent would probably spare it.\nThe output is just so bland and devoid of soul. I feel like we would've found a lot of cool use cases for LLMs, had we not completely maimed their output in the pursuit of getting them to output 3% better TypeScript.",
+          "score": 0,
+          "time": 1790527621,
+          "parent": "49867775"
+        },
+        {
+          "id": "49868630",
+          "author": "ThouYS",
+          "body": "holy guac - the one game I watched, fable just sat around and waited for the other agents to drain each others lives. it then picked them out one by one",
+          "score": 0,
+          "time": 1790529215,
+          "parent": "49867775"
+        },
+        {
+          "id": "49868318",
+          "author": "orliesaurus",
+          "body": "Unusable website on Android running Chrome latest (can't scroll)",
+          "score": 0,
+          "time": 1790527303,
+          "parent": "49867775"
+        },
+        {
+          "id": "49868990",
+          "author": "michaelastreiko",
+          "body": "Nice — an actual match to watch instead of another leaderboard screenshot. Curious how readable the \"why that agent won\" signal stays after a few rounds.",
+          "score": 0,
+          "time": 1790531283,
+          "parent": "49867775"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49867753",
+      "title": "Show HN: MacUp – keep CLI tools up to date from the menu bar",
+      "subreddit": "show-hn",
+      "author": "patriciobcs",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49867753",
+      "url": "https://macup.patriciobcs.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790524174,
+      "created_at": "2026-09-27T15:49:34+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49867443",
+      "title": "Show HN: High-performance, zero-dependency charting engine for Svelte",
+      "subreddit": "show-hn",
+      "author": "bonguynvan",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49867443",
+      "url": "https://bonguynvan.github.io/tradecanvas/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790522572,
+      "created_at": "2026-09-27T15:22:52+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49867029",
+      "title": "Show HN: Andurel V2 – Space-Grade Go Web Framework",
+      "subreddit": "show-hn",
+      "author": "mbvisti",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49867029",
+      "url": "https://andurel.com/docs/head/whats-new",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790520032,
+      "created_at": "2026-09-27T14:40:32+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49866597",
+      "title": "Show HN: Building a Markdown editor for Mac, iOS and web",
+      "subreddit": "show-hn",
+      "author": "thiagoperes",
+      "score": 25,
+      "num_comments": 20,
+      "permalink": "https://news.ycombinator.com/item?id=49866597",
+      "url": "https://www.markdown.beauty/",
+      "selftext": "I've spent the last 10 months building Beauty: a local, powerful greco-roman Markdown editor where the page looks finished while you type. It runs on the Mac, iPhone and in the browser, and the browser version opens without an account: https://app.markdown.beauty (https://app.markdown.beauty)\nI was frustrated with writing apps, and like most I used Apple Notes. After 2+ years immersed in Cursor, Codex and CC, I wished some interactions existed in a text editor.\nThe Markdown renders in place as you write it, including tables (which you can drag and resize without lining up pipes), KaTeX math and Mermaid diagrams. A lot of thought went into typography and the writing experience.\nYour notes on the Mac are plain .md files in a folder with images next to them, so they open in anything else too. Each note keeps 200 versions. If you share a note with a link it syncs peer to peer over WebRTC while someone has it open, and the server that connects you only ever sees a random room id.\nMost of the ~1,000 commits went into the editor itself. It's a contenteditable, and I don't let the browser restructure the document at all, which was a lot more work than I expected. Building this to be performant and cross-platform required some novel approaches, which I'll later open source. The editor is free with no account or ads, and there's an optional subscription for sync through your own iCloud.\nhttps://www.markdown.beauty (https://www.markdown.beauty)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790516685,
+      "created_at": "2026-09-27T13:44:45+00:00",
+      "comments_data": [
+        {
+          "id": "49869398",
+          "author": "jamesboehmer",
+          "body": "Awesome job, this looks fantastic, and has all of the UX gaps I wish existed in Bear and Obsidian. However, my 2 biggest pain points with those could use addressing, and I would happily pay a high one-time price and upgrade fees over the years if they could be solved:\n1. My corporate laptop is locked down, so no apple app store installations. Could this be made into a brew-installable app and licensed another way?\n2. Related - every corporate laptop I've had for the last 10 years prohibits app store and icloud storage. So Bear notes (which I subscribed to) can't sync. Obsidian has a sync service, but I don't trust it (would prefer apple or dropbox), but unfortunately the plugin ecosystem is messy and difficult. There is no reliable community-supported plugin for syncing with dropbox on mobile. If you could make syncing with dropbox possible on desktop and mobile, that would be the ultimate gift to the community.",
+          "score": 0,
+          "time": 1790533606,
+          "parent": "49866597"
+        },
+        {
+          "id": "49869334",
+          "author": "arendtio",
+          "body": "The landing page feels very generic. I have seen this exact style on other vibe-coded pages, so you might want to spice it up a little.\nHowever, regarding the editor, I really like it at first glance. I wonder if it is possible to register a PWA as the default app for .md files with KDE...",
+          "score": 0,
+          "time": 1790533242,
+          "parent": "49866597"
+        },
+        {
+          "id": "49868904",
+          "author": "smokel",
+          "body": "This question is somewhat more general than this specific application, but how can an app guarantee that files will remain local, also in future updates of the app?\nTo put it simply, an automatic update of the app might start uploading the notes to a server. I don't think there is any security boundary in iOS, Android, or any other platform preventing this, right?\nOther than that, congratulations on what seems to be a nice app!",
+          "score": 0,
+          "time": 1790530704,
+          "parent": "49866597"
+        },
+        {
+          "id": "49869173",
+          "author": "mrwetsnow",
+          "body": "What does the \"Open Folder\" option do? For me it opens a system open dialog, but there is no button to select something. Can I point this at my Obsidian folder and call it a day? If not, is there an easy way to import it?",
+          "score": 0,
+          "time": 1790532338,
+          "parent": "49866597"
+        },
+        {
+          "id": "49869256",
+          "author": "rckt",
+          "body": "> I was frustrated with writing apps\nOh my hod… This absolutely AI generated intro.",
+          "score": 0,
+          "time": 1790532815,
+          "parent": "49866597"
+        },
+        {
+          "id": "49868973",
+          "author": "bionhoward",
+          "body": "Looks epic, id like to connect a Dropbox folder",
+          "score": 0,
+          "time": 1790531178,
+          "parent": "49866597"
+        },
+        {
+          "id": "49866787",
+          "author": "bernieo",
+          "body": "Just tried it!\nHell yeah, someone finally got notes right. I don’t say this lightly, but notes are supposed to be simple, fast and easily retrieved.\nApple Notes doesn’t give us nearly enough. Notion gives way too much. Obsidian is a mess. Craft, AnyType, etc are janky, gimmicky or slow.\nYou managed to make something simple, local, that gives us exactly the features we need for writing and finding notes and also MCP so I can point my agent to it?! I’d give you a fcking nobel prize for this lol",
+          "score": 0,
+          "time": 1790518112,
+          "parent": "49866597"
+        },
+        {
+          "id": "49869433",
+          "author": "well_ackshually",
+          "body": ">Secure. Simple. Stoic.\nYou're writing a markdown editor, stop jerking yourself off, you're not Marc Aurelius.",
+          "score": 0,
+          "time": 1790533800,
+          "parent": "49866597"
+        },
+        {
+          "id": "49869232",
+          "author": "iAMkenough",
+          "body": "Website appears to be vibe coded, with some content overflowing off the screen on mobile with no ability scroll horizontally.",
+          "score": 0,
+          "time": 1790532711,
+          "parent": "49866597"
+        },
+        {
+          "id": "49866919",
+          "author": "NarcisMirandes",
+          "body": "It looks really nice. I definitely will use it.\nMany questions come to mind:\n- What is the revenue model?\n- What is your personal story? Why you do not explain it in the site?",
+          "score": 0,
+          "time": 1790519239,
+          "parent": "49866597"
+        },
+        {
+          "id": "49866671",
+          "author": "KlyX",
+          "body": "Hey,\nI quickly tried your editor and even when the writing experience is the most important thing, I have to admit it looks really lovely! I love the design and how it interacts. That is cool. Maybe you could add some more color options (not everyone likes the newish beige-toned interfaces).\nCool that even flowcharts are supported.\nThe only thing I miss in the block options would be a callout and the option to set a color for that callout.\nSo far my first impressions :)",
+          "score": 0,
+          "time": 1790517304,
+          "parent": "49866597"
+        },
+        {
+          "id": "49866756",
+          "author": "intrr",
+          "body": "Amazing project and execution. Makes my IDE's quickly-bolted-on (3 hours) .md support look ridiculous in comparison. Installed as PWA. Thank you!",
+          "score": 0,
+          "time": 1790517875,
+          "parent": "49866597"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49866189",
+      "title": "Show HN: Revise, a new document editor library for React",
+      "subreddit": "show-hn",
+      "author": "artursapek",
+      "score": 2,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=49866189",
+      "url": "https://www.npmjs.com/package/revise",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790512890,
+      "created_at": "2026-09-27T12:41:30+00:00",
+      "comments_data": [
+        {
+          "id": "49866539",
+          "author": "beanjuiceII",
+          "body": "closed source software",
+          "score": 0,
+          "time": 1790516048,
+          "parent": "49866189"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49866163",
+      "title": "Show HN: Interactive Phaistos Disc workbench, rotation ergonomics, null models",
+      "subreddit": "show-hn",
+      "author": "sashakatin",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49866163",
+      "url": "https://lessthanzero.github.io/phaistos-disk/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790512612,
+      "created_at": "2026-09-27T12:36:52+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -50,6 +392,23 @@
     {
       "source": "hackernews",
       "stream": "show-hn",
+      "id": "49865607",
+      "title": "Show HN: What about a no-SSH agentic access tool",
+      "subreddit": "show-hn",
+      "author": "laotree",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49865607",
+      "url": "https://getfda.dev/",
+      "selftext": "I’m going to benchmark my no-SSH agentic tool against SSH, comparing resource usage and latency.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790507323,
+      "created_at": "2026-09-27T11:08:43+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
       "id": "49865111",
       "title": "Show HN: Peekaboolean – image and jev-like typed questions in typed anwers out",
       "subreddit": "show-hn",
@@ -72,7 +431,7 @@
       "subreddit": "show-hn",
       "author": "wmeter",
       "score": 2,
-      "num_comments": 2,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=49865103",
       "url": "https://afterlife-vault.com",
       "selftext": "",
@@ -133,7 +492,7 @@
       "title": "Show HN: I built an AR App that overlays makeup tutorials live on your face",
       "subreddit": "show-hn",
       "author": "Vicmed13",
-      "score": 3,
+      "score": 4,
       "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=49864877",
       "url": "https://urartist.app/",
@@ -185,7 +544,7 @@
       "title": "Show HN: Ppgrid – Rasterising points in minutes, not hours",
       "subreddit": "show-hn",
       "author": "marzukia",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49864205",
       "url": "https://mrzk.io/posts/ppgrid-fast-continentscale-raster-interpolation/",
@@ -202,8 +561,8 @@
       "title": "Show HN: Trail – new kind of logic game",
       "subreddit": "show-hn",
       "author": "franze",
-      "score": 5,
-      "num_comments": 1,
+      "score": 7,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=49864105",
       "url": "https://trail.franzai.com/",
       "selftext": "",
@@ -213,11 +572,27 @@
       "created_at": "2026-09-27T07:02:20+00:00",
       "comments_data": [
         {
+          "id": "49869449",
+          "author": "motoxpro",
+          "body": "Reminded me to go play https://en.wikipedia.org/wiki/Chip%27s_Challenge (https://en.wikipedia.org/wiki/Chip%27s_Challenge) again :)",
+          "score": 0,
+          "time": 1790533900,
+          "parent": "49864105"
+        },
+        {
           "id": "49864559",
           "author": "bmoathn",
           "body": "i like the slick minimal ui. would be interesting to get some speed bonus as to me the most fun was trying to solve them quickly",
           "score": 0,
           "time": 1790497982,
+          "parent": "49864105"
+        },
+        {
+          "id": "49869295",
+          "author": "applfanboysbgon",
+          "body": "This is not a \"new kind of logic game\". This concept is called a Hamiltonian path, and such puzzles are in many video games, with my personal earliest recollection being the Sootopolis Gym puzzles in Pokemon Sapphire (2002).",
+          "score": 0,
+          "time": 1790533037,
           "parent": "49864105"
         }
       ]
