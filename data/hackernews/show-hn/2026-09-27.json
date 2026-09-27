@@ -1,8 +1,227 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-09-27T06:47:11.706110+00:00",
+  "last_fetched": "2026-09-27T12:41:44.640716+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49865948",
+      "title": "Show HN: Aldine. Self-hosted Overleaf alternative. Every paper = 1 Git Repo",
+      "subreddit": "show-hn",
+      "author": "rahloff",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=49865948",
+      "url": "https://github.com/trahloff/Aldine",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790510651,
+      "created_at": "2026-09-27T12:04:11+00:00",
+      "comments_data": [
+        {
+          "id": "49865950",
+          "author": "rahloff",
+          "body": "Hi HN, I'm Toby. While working on a research paper earlier this year, I got progressively frustrated with the available LaTeX editors. Most need a paid subscription service to enable proper collaboration, are clunky, and shove distracting non-features in your face.\nThis is why I built Aldine. It is a collaborative LaTeX editor that you can run yourself: two containers, every project as a git repo, and AGPL licensed. Documentation: https://aldine.dev (https://aldine.dev)\nYou can try it without signing up at https://demo.aldine.dev (https://demo.aldine.dev) (public and wiped every night, so don't leave your thesis there). Create a project, or drop in a ZIP you downloaded from Overleaf.\nMy co-authors want a super simple and browser-based UX. I want git. On Overleaf's cloud the Git integration is a premium feature, and I got tired of copy-pasting files between the two worlds. In Aldine, a colleague who works in VS Code clones the project, commits and pushes, and the people in the browser pull those commits in with one click. Branches, history with diffs, and GitHub/GitLab/Gitea sync all work from the UI.\nSmaller things: live cursors (Yjs underneath), warm recompiles in about two seconds, a compiler container with no network access. And as of this week you can also sign in through your own OIDC provider, so Authentik, Keycloak or Authelia all work.\nThere's an MCP connector as well, off by default. Claude can edit, compile and fix, and every edit lands as a git commit you can revert.\nIt's v0.x, with rough edges I know about (no keystroke-level track changes yet, and CJK needs the full TeX Live image) and surely some I don't.\nHow do you and your co-authors handle LaTeX today?\nWhat would Aldine need to do or support before you would consider moving your next paper to it?",
+          "score": 0,
+          "time": 1790510667,
+          "parent": "49865948"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49865755",
+      "title": "Show HN: An OpenAI-compatible, model-agnostic agent API",
+      "subreddit": "show-hn",
+      "author": "sonicgg",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49865755",
+      "url": "https://rebyte.ai/docs/agents-api/overview",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790508948,
+      "created_at": "2026-09-27T11:35:48+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49865111",
+      "title": "Show HN: Peekaboolean – image and jev-like typed questions in typed anwers out",
+      "subreddit": "show-hn",
+      "author": "bykof",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49865111",
+      "url": "https://github.com/bykof/peekaboolean",
+      "selftext": "I trained a vision-language model that answers typed questions about an image. It uses also choice, score and noul, like Jev.\nI thought, why Jev only processes text? There should be the possibility to process an image too. I will experiment with some pictures and questions in the next days to see, how well it performs in real life.\nOn my M1 Pro a request with six questionut 400 ms p95,\nabout 60 ms on a desktop GPU. The server encodes the image once and scores each\noption as a short suffix against the KV\nLooking forward to answer your questions! :)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790502605,
+      "created_at": "2026-09-27T09:50:05+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49865103",
+      "title": "Show HN: Afterlife Vault – a virtual dead man's switch",
+      "subreddit": "show-hn",
+      "author": "wmeter",
+      "score": 2,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=49865103",
+      "url": "https://afterlife-vault.com",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790502578,
+      "created_at": "2026-09-27T09:49:38+00:00",
+      "comments_data": [
+        {
+          "id": "49865104",
+          "author": "wmeter",
+          "body": "Hi HN — I built Afterlife Vault, a way to send messages to loved ones (or not so loved ones) to make sure these people get access to what matters (documents, passwords, personal messages, PIN codes, etc.), if something happens to you. No upfront communication needed — just their email, and it's your responsibility to make sure it's correct. I don't ask your recipients for confirmation codes :-)\nI am sure there are things you only want people to know after you're gone, next to how much they meant to you, maybe details that could help your survivors, or details like a stray child somewhere else.\nYou create an account, for free if you want to look around, and create your 'recipients' and chest. You can upload files, which are encrypted at rest, and add your recipients.\nYou can select per recipient who receives what.\nYou will be reminded to check in periodically, by email and/or SMS; if you go silent longer than a certain number of days, the information is sent automatically to your defined recipients with a secure token link — no account needed on their end or prior knowledge.\nYou can test of course to see how it looks on the receiving end to make sure it's all well configured before you leave this planet.\nStack: Next.js, Node/Express, Postgres and Redis, self-hosted on my own infrastructure behind CF, Stripe for billing, but free to try, and paid if you want it actually active (monthly/yearly or a one-time lifetime option).\nHappy to discuss and hear your suggestions / comments / feedback.",
+          "score": 0,
+          "time": 1790502578,
+          "parent": "49865103"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49865067",
+      "title": "Show HN: LightCloud – A cloud console organised like file system",
+      "subreddit": "show-hn",
+      "author": "yullius",
+      "score": 6,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=49865067",
+      "url": "https://www.light-cloud.com/",
+      "selftext": "Hi HN, Light Cloud is a hosting platform where the unit of organisation is a folder. A folder holds everything project needs: frontend, API, database, env variables, preview per branch.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790502315,
+      "created_at": "2026-09-27T09:45:15+00:00",
+      "comments_data": [
+        {
+          "id": "49865604",
+          "author": "throwaway7356",
+          "body": "The site claims they have an editor \"ICE\" as open-source software. But that is a lie: it is not open source, but shareware or such.\nThey also accept contributions released only under the no-commercial-use-allowed license, so any dual licensing under a commercial-use-allowed license would be out of the window once a contribution gets merged.\nNot sure what their business model is if they forbid commercial use. I guess selling commercial use licenses in violation of the no-commercial-use-allowed license?",
+          "score": 0,
+          "time": 1790507304,
+          "parent": "49865067"
+        },
+        {
+          "id": "49865763",
+          "author": "fodkodrasz",
+          "body": "A pretty load-bearing theme, full stop.",
+          "score": 0,
+          "time": 1790509004,
+          "parent": "49865067"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49864877",
+      "title": "Show HN: I built an AR App that overlays makeup tutorials live on your face",
+      "subreddit": "show-hn",
+      "author": "Vicmed13",
+      "score": 3,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=49864877",
+      "url": "https://urartist.app/",
+      "selftext": "Hi Hacker News,\nI built UR Artist: AR Makeup Studio after seeing my girlfriend struggling to apply makeup outside with her tiny mirror and bad lighting. I thought to myself, that it would be really cool to have the mirror tell her exactly where and how to apply the makeup she wants. So the app was born ;). I would really love to get some feedback on how you guys see the app's functionality and where I could improve it",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790500689,
+      "created_at": "2026-09-27T09:18:09+00:00",
+      "comments_data": [
+        {
+          "id": "49864885",
+          "author": "Vicmed13",
+          "body": "Hi everyone, I am really looking forward to some feedback on the current AR tutorials and the other features of the app like the AI Stylist that curates looks and personalizes them!",
+          "score": 0,
+          "time": 1790500747,
+          "parent": "49864877"
+        },
+        {
+          "id": "49864918",
+          "author": "stellakhr",
+          "body": "The app seems\ninteresting but I would like to understand how you solved the challenges of makeup application on different face forms since it’s a very important aspect to make it not only a gimmick but a really useful tool!",
+          "score": 0,
+          "time": 1790501078,
+          "parent": "49864877"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49864380",
+      "title": "Show HN: An interactive debugger for the Mornington Crescent esolang",
+      "subreddit": "show-hn",
+      "author": "Two9A",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49864380",
+      "url": "https://codeberg.org/Two9A/mcresc",
+      "selftext": "Originally put together ten years ago, I've migrated this project over to Codeberg and in the process fixed a couple of bugs.\nThe most glaring issue was that in the intervening years, CORS has become a thing so the Transport for London Tube map can no longer be loaded directly from their site; instead, there's a local copy of the SVG.\nI'm happy with where it is at the moment, there might be more small patches in another ten years.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790495592,
+      "created_at": "2026-09-27T07:53:12+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49864205",
+      "title": "Show HN: Ppgrid – Rasterising points in minutes, not hours",
+      "subreddit": "show-hn",
+      "author": "marzukia",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49864205",
+      "url": "https://mrzk.io/posts/ppgrid-fast-continentscale-raster-interpolation/",
+      "selftext": "Hi all,\nI wanted to share a recent library I made for myself since I continually have to work with large-scale point data spanning millions of rows. I generally found existing IDW tools are insanely slow and unreliable with the datasets I commonly work with.\nppgrid is an open source GIS tool and it is intended to create beautiful visualisations that don't take an absurd amount of time to process. It uses a modified Inverse Distance Weighting (IDW) approach: instead of having to traverse every single point for every single grid O(N*M), it precalculates which points intersect which grids. This means that we essentially avoid the multiplicative scaling costs associated with traditional IDW.\nFor perspective, ppgrid is significantly faster than IDW from the likes of gdal_grid or GRASS, in the order of 17x faster. I say in the order of as I couldn't really effectively test IDW on the crappy laptop I use beyond 1M points, where as ppgrid happily chewed through 16mil points.\nMy goals/intention for this post is twofold:\n- looking to share it as a tool for anyone who may find it relevant or useful\n- looking to stress-test it with different types of point data and try to surface any quirks, bugs or random edge case failures\nImportant note which I discuss more in my write-up: ppgrid is not yet stress-tested or validated in terms of statistical correctness, as my current use case prioritises visualisation.\nAI Disclosure & Creds: I've been pair-coding this with my local Qwen3.8 27B agent, I discuss this in my write-up further. I have ~9YoE in GIS work and ~10YoE as a fullstack.\nGitHub Repo: https://github.com/marzukia/ppgrid/ (https://github.com/marzukia/ppgrid/)\nAny other feedback/comments are welcome, please let me know if this has helped as I'd love to see it in action.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790493723,
+      "created_at": "2026-09-27T07:22:03+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49864105",
+      "title": "Show HN: Trail – new kind of logic game",
+      "subreddit": "show-hn",
+      "author": "franze",
+      "score": 5,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=49864105",
+      "url": "https://trail.franzai.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790492540,
+      "created_at": "2026-09-27T07:02:20+00:00",
+      "comments_data": [
+        {
+          "id": "49864559",
+          "author": "bmoathn",
+          "body": "i like the slick minimal ui. would be interesting to get some speed bonus as to me the most fun was trying to solve them quickly",
+          "score": 0,
+          "time": 1790497982,
+          "parent": "49864105"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,15 +229,33 @@
       "title": "Show HN: Shipwithmuse.live – a catalog of things people built with Muse",
       "subreddit": "show-hn",
       "author": "mdayan896",
-      "score": 2,
-      "num_comments": 0,
+      "score": 4,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49863641",
       "url": "https://shipwithmuse.live/",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1790487515,
-      "created_at": "2026-09-27T05:38:35+00:00"
+      "created_at": "2026-09-27T05:38:35+00:00",
+      "comments_data": [
+        {
+          "id": "49864470",
+          "author": "eli_berman",
+          "body": "This is a cool project!! You should do this with Grok Bot as well...",
+          "score": 0,
+          "time": 1790496873,
+          "parent": "49863641"
+        },
+        {
+          "id": "49864080",
+          "author": "DylanMerigaud",
+          "body": "Muse projects showcased; interesting catalog concept.",
+          "score": 0,
+          "time": 1790492176,
+          "parent": "49863641"
+        }
+      ]
     }
   ]
 }
