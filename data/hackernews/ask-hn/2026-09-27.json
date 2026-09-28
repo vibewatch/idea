@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-09-28T01:13:53.077701+00:00",
+  "last_fetched": "2026-09-28T07:05:02.866088+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,15 +10,33 @@
       "title": "Ask HN: What are people doing with their OpenClaw set ups now?",
       "subreddit": "ask-hn",
       "author": "will10pa",
-      "score": 3,
-      "num_comments": 0,
+      "score": 9,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49871556",
       "url": "https://news.ycombinator.com/item?id=49871556",
       "selftext": "I'm always curious what happens with these viral projects a few months after they go viral. Are you still using OpenClaw in your day to day?",
       "is_self": true,
       "is_video": false,
       "time": 1790548978,
-      "created_at": "2026-09-27T22:42:58+00:00"
+      "created_at": "2026-09-27T22:42:58+00:00",
+      "comments_data": [
+        {
+          "id": "49874130",
+          "author": "RebelMonk",
+          "body": "Not my OpenClaw, but I built a little stdlib-only python AI agent. Essentially the same thing only without the bloat and upgrade hell.\nIt's all mundane things.\nEach morning I get:\n1) A message with the weather and AQI for my current location. \n2) A digest of version changes and any security issues on some bits I am interested in (e.g. WordPress + plugins that I manage for clients)\n3) A feed of links that might be interesting in football news, to stop me browsing the web reading the football news. \n4) Any carry-over items I've asked it to remind me of that morning.\n5) If there are any, it lets me know about visa changes across the countries I tend to travel to.\nAt lunchtime, I get a language word of the day using an SM-2 schedule.\nIf I want it to remind me of something it sets a cron job and reminds me during the day. If I want a currency or unit conversion I do it there rather than in another app.\nEssentially I have a few other tools like UptimeKuma and Freescout which send me Telegram messages, so it's just delivering info into a place I am already checking.\nIt doesn't have access my calendar or emails. It doesn't try to make me money. \nNone of this is anything radical or solves anything that hasn't been solved before.",
+          "score": 0,
+          "time": 1790574739,
+          "parent": "49871556"
+        },
+        {
+          "id": "49873808",
+          "author": "weedfroglozenge",
+          "body": "Nothing. People realised really quickly everything it could do, didn't really need to be done. You don't need an AI assistant to close your blinds, turn on your lights, etc because all of that has been solved with triggers.\nNone of us need a condensed feed of our emails because by nature of reduction you will miss things.\nStaying on top of your calendar has been a solved game since alerts.",
+          "score": 0,
+          "time": 1790571276,
+          "parent": "49871556"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -28,7 +46,7 @@
       "subreddit": "ask-hn",
       "author": "luckman212",
       "score": 2,
-      "num_comments": 1,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=49868721",
       "url": "https://news.ycombinator.com/item?id=49868721",
       "selftext": "Just a quick PSA. A handful of my scripts broke today after installing macOS 27. Turns out they decided to redact the interface hardware ether/MAC addresses, all of them report 02:00:00:00:00:00\n(…unless you run with \"sudo\")\nLuckily, you can still get the MAC addresses with\n networksetup -getmacaddress en0",
@@ -54,8 +72,8 @@
       "title": "I was impressed by Jev, please explain why I shouldn't be",
       "subreddit": "ask-hn",
       "author": "effisfor",
-      "score": 6,
-      "num_comments": 11,
+      "score": 10,
+      "num_comments": 13,
       "permalink": "https://news.ycombinator.com/item?id=49868483",
       "url": "https://news.ycombinator.com/item?id=49868483",
       "selftext": "I'm not a computer science guy, but I had a play with Jev and found it impressive. It allowed me to offer non-technical researchers the ability to classify arbitrary things their participants enter, without prior training or classification, at near instant speed, and negligible cost. My users may find that very helpful in the qualitative research world.\nI showed them an innocuous working example of how they could classify thousands of participant entries as \"mentioning Italian food\" whether it mentioned \"pasta\", \"penne\", \"rigatone\", etc etc. Jev did this task with high confidence, and showed it could differentiate between the inverse, eg had very low confidence when I switch entry to mentioning \"hamburgers\". I find that a very useful tool to pass on to non-technical colleagues.\nBut on HN, there are lots of much more qualified people saying Jev is a con, a step backwards, or bonkers that people are impressed. Will one of them tell me plainly what software was doing this prior to Jev, and the like? I don't doubt it existed, but I never came across it. I'm interested to hear from people more expert than myself.\nTo be precise, software must be able to:\n- Classify thousands of entries with arbitrary themes or topics, even if entry doesn't mention that theme or topic directly, with high enough confidence to be useful.\n- Do it with thousands of entries in 0-3seconds.\n- Do it at negligible cost, eg sub 0.1cents",
@@ -65,11 +83,27 @@
       "created_at": "2026-09-27T16:59:15+00:00",
       "comments_data": [
         {
+          "id": "49874372",
+          "author": "daly",
+          "body": "JEV is rule-based programming with a better pattern matcher.\nCharles Forgy did this back in the 80s.",
+          "score": 0,
+          "time": 1790577391,
+          "parent": "49868483"
+        },
+        {
           "id": "49869690",
           "author": "softwaredoug",
           "body": "A lot of the hate is in the same spirit of the infamous hacker news comment discounting Dropbox because you can just setup an FTP server to do the same thing[1]\nIn this case, its people who have built BERT classifiers for years, pointing out you can just fine-tune some model to classify. Of course that's true, and still have value, but its not exactly turnkey. And Jev is surprisingly high quality at what its built for.\n1 - https://news.ycombinator.com/item?id=9224 (https://news.ycombinator.com/item?id=9224)",
           "score": 0,
           "time": 1790535342,
+          "parent": "49868483"
+        },
+        {
+          "id": "49872751",
+          "author": "Jemaclus",
+          "body": "My understanding is that the underlying tech is pretty old and well-established. So if you understand those older models, this is old news. A lot of the negativity is basically \"yeah, this is old stuff.\"\nBut what Jev actually has done that's new and interesting is that it allows you to define a new semantic decision at runtime in natural language, without training a model for that task, and get a fast, cheap, bounded, probability-bearing result designed to be consumed directly by software.\nIn other words, you don't have to fine tune a model. You should if super high quality is really important to you -- but you should also do that with other things that people reach for LLMs for as well. But for the rest of us for whom good enough is, well, good enough, and who aren't interested in training or fine-tuning models? Jev unlocks a lot off-the-shelf.\nYou should be impressed. It's doing something more novel than the haters suggest.",
+          "score": 0,
+          "time": 1790561375,
           "parent": "49868483"
         },
         {
@@ -151,14 +185,6 @@
       "created_at": "2026-09-27T14:02:55+00:00",
       "comments_data": [
         {
-          "id": "49870107",
-          "author": "iliedanila",
-          "body": "In order to have an efficient use of tokens, I created proper documentation from the start of the project:\n- What component is where, what it does and how it does it\n- Kept a history of all the architectural decisions\n- How a new component (of a known type) should be added to the system\n- Instructed the agent to keep this information valid and up to date as part of the PR prerequisites.",
-          "score": 0,
-          "time": 1790538121,
-          "parent": "49866739"
-        },
-        {
           "id": "49866782",
           "author": "intrr",
           "body": "Claude subscription (the cheapest $20/month one) -- I very rarely hit the limits, particularly the weekly ones. But then again, the largest codebase I ever work on is 50k lines.\nI'd prefer local models massively for both work and \"pleasure\" (I love LLMs as random cognitive sparring partners), but then again, my bank account massively disagrees :/",
@@ -172,6 +198,14 @@
           "body": "I've been on the Claude Max plan for quite a while now but I also run my own local models and every week there are new local models that are slowly but very surely closing the gap to frontier-level quality and so, pretty soon, I won't use APIs at all. Can't wait!",
           "score": 0,
           "time": 1790519161,
+          "parent": "49866739"
+        },
+        {
+          "id": "49870107",
+          "author": "iliedanila",
+          "body": "In order to have an efficient use of tokens, I created proper documentation from the start of the project:\n- What component is where, what it does and how it does it\n- Kept a history of all the architectural decisions\n- How a new component (of a known type) should be added to the system\n- Instructed the agent to keep this information valid and up to date as part of the PR prerequisites.",
+          "score": 0,
+          "time": 1790538121,
           "parent": "49866739"
         },
         {
@@ -191,7 +225,7 @@
       "title": "Ask HN: Who is the inspiration for your thinking?",
       "subreddit": "ask-hn",
       "author": "SMAAART",
-      "score": 8,
+      "score": 9,
       "num_comments": 14,
       "permalink": "https://news.ycombinator.com/item?id=49862453",
       "url": "https://news.ycombinator.com/item?id=49862453",
@@ -258,14 +292,6 @@
           "parent": "49862453"
         },
         {
-          "id": "49868558",
-          "author": "nikhilkxmar",
-          "body": "Marcus Aurelius for sure",
-          "score": 0,
-          "time": 1790528820,
-          "parent": "49862453"
-        },
-        {
           "id": "49862537",
           "author": "nonasking_",
           "body": "I’d like to name specific people, but I’ve been influenced much more by my family and the people around me.",
@@ -279,6 +305,14 @@
           "body": "Myself",
           "score": 0,
           "time": 1790478777,
+          "parent": "49862453"
+        },
+        {
+          "id": "49868558",
+          "author": "nikhilkxmar",
+          "body": "Marcus Aurelius for sure",
+          "score": 0,
+          "time": 1790528820,
           "parent": "49862453"
         },
         {
@@ -306,7 +340,7 @@
       "title": "What do you do now as a software engineer?",
       "subreddit": "ask-hn",
       "author": "fawazali",
-      "score": 5,
+      "score": 8,
       "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=49861878",
       "url": "https://news.ycombinator.com/item?id=49861878",
