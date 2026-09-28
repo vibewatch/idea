@@ -1,8 +1,52 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-09-27T18:36:44.244987+00:00",
+  "last_fetched": "2026-09-28T01:13:53.077701+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "49871556",
+      "title": "Ask HN: What are people doing with their OpenClaw set ups now?",
+      "subreddit": "ask-hn",
+      "author": "will10pa",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49871556",
+      "url": "https://news.ycombinator.com/item?id=49871556",
+      "selftext": "I'm always curious what happens with these viral projects a few months after they go viral. Are you still using OpenClaw in your day to day?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1790548978,
+      "created_at": "2026-09-27T22:42:58+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "49868721",
+      "title": "macOS 27: ifconfig command no longer prints hardware MAC address",
+      "subreddit": "ask-hn",
+      "author": "luckman212",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=49868721",
+      "url": "https://news.ycombinator.com/item?id=49868721",
+      "selftext": "Just a quick PSA. A handful of my scripts broke today after installing macOS 27. Turns out they decided to redact the interface hardware ether/MAC addresses, all of them report 02:00:00:00:00:00\n(…unless you run with \"sudo\")\nLuckily, you can still get the MAC addresses with\n networksetup -getmacaddress en0",
+      "is_self": true,
+      "is_video": false,
+      "time": 1790529670,
+      "created_at": "2026-09-27T17:21:10+00:00",
+      "comments_data": [
+        {
+          "id": "49869213",
+          "author": "lapcat",
+          "body": "I can't reproduce this.",
+          "score": 0,
+          "time": 1790532617,
+          "parent": "49868721"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,8 +54,8 @@
       "title": "I was impressed by Jev, please explain why I shouldn't be",
       "subreddit": "ask-hn",
       "author": "effisfor",
-      "score": 4,
-      "num_comments": 5,
+      "score": 6,
+      "num_comments": 11,
       "permalink": "https://news.ycombinator.com/item?id=49868483",
       "url": "https://news.ycombinator.com/item?id=49868483",
       "selftext": "I'm not a computer science guy, but I had a play with Jev and found it impressive. It allowed me to offer non-technical researchers the ability to classify arbitrary things their participants enter, without prior training or classification, at near instant speed, and negligible cost. My users may find that very helpful in the qualitative research world.\nI showed them an innocuous working example of how they could classify thousands of participant entries as \"mentioning Italian food\" whether it mentioned \"pasta\", \"penne\", \"rigatone\", etc etc. Jev did this task with high confidence, and showed it could differentiate between the inverse, eg had very low confidence when I switch entry to mentioning \"hamburgers\". I find that a very useful tool to pass on to non-technical colleagues.\nBut on HN, there are lots of much more qualified people saying Jev is a con, a step backwards, or bonkers that people are impressed. Will one of them tell me plainly what software was doing this prior to Jev, and the like? I don't doubt it existed, but I never came across it. I'm interested to hear from people more expert than myself.\nTo be precise, software must be able to:\n- Classify thousands of entries with arbitrary themes or topics, even if entry doesn't mention that theme or topic directly, with high enough confidence to be useful.\n- Do it with thousands of entries in 0-3seconds.\n- Do it at negligible cost, eg sub 0.1cents",
@@ -21,11 +65,35 @@
       "created_at": "2026-09-27T16:59:15+00:00",
       "comments_data": [
         {
+          "id": "49869690",
+          "author": "softwaredoug",
+          "body": "A lot of the hate is in the same spirit of the infamous hacker news comment discounting Dropbox because you can just setup an FTP server to do the same thing[1]\nIn this case, its people who have built BERT classifiers for years, pointing out you can just fine-tune some model to classify. Of course that's true, and still have value, but its not exactly turnkey. And Jev is surprisingly high quality at what its built for.\n1 - https://news.ycombinator.com/item?id=9224 (https://news.ycombinator.com/item?id=9224)",
+          "score": 0,
+          "time": 1790535342,
+          "parent": "49868483"
+        },
+        {
+          "id": "49871901",
+          "author": "Kuyawa",
+          "body": "As a programmer that uses coding agents a lot, and I mean all the time while I am awake, I really haven't seen the benefit of Jev. It can't code, or I don't know how to make it code. Don't tell me about how good it is about classifying stuff which I don't do, I build apps and need coding agents and LLMs for that, desktop, web, mobile, all kinds of apps\nIf anybody has pointers on how to make Jev code in any language I'd like to know",
+          "score": 0,
+          "time": 1790552126,
+          "parent": "49868483"
+        },
+        {
           "id": "49868490",
           "author": "minimaxir",
           "body": "You're allowed to be excited about new technology.",
           "score": 0,
           "time": 1790528394,
+          "parent": "49868483"
+        },
+        {
+          "id": "49869876",
+          "author": "brudgers",
+          "body": "But on HN, there are lots of much more qualified people saying Jev is a con, a step backwards, or bonkers that people are impressed.\nAs William Gibson said, the future is already here, it’s just not evenly distributed.\nSo people get excited about existing technologies because they are new to them.\nWrapping an existing technology in a new package is a common way to introduce it to new people…there are many wrappers around ffmpeg, html2pdf, etc. that are marketed as products.\nAnd they seem like magic…hell cassette tapes feel like magic to me even though I had a cassette player in 1973.\nOften but not always, the best tool is the one in your hand or the one you know of because then you can just get to the work you are trying to do.\nFirst make it work, then make it good. Good luck.",
+          "score": 0,
+          "time": 1790536427,
           "parent": "49868483"
         },
         {
@@ -73,7 +141,7 @@
       "subreddit": "ask-hn",
       "author": "variety8675",
       "score": 2,
-      "num_comments": 3,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=49866739",
       "url": "https://news.ycombinator.com/item?id=49866739",
       "selftext": "It seems like the major providers are starting to cut back the usage included with their monthly subscriptions. How are people handling inference for side projects these days?\nAre you still using Codex/Claude subscriptions, paying for hosted open weight models, running local models, etc",
@@ -82,6 +150,14 @@
       "time": 1790517775,
       "created_at": "2026-09-27T14:02:55+00:00",
       "comments_data": [
+        {
+          "id": "49870107",
+          "author": "iliedanila",
+          "body": "In order to have an efficient use of tokens, I created proper documentation from the start of the project:\n- What component is where, what it does and how it does it\n- Kept a history of all the architectural decisions\n- How a new component (of a known type) should be added to the system\n- Instructed the agent to keep this information valid and up to date as part of the PR prerequisites.",
+          "score": 0,
+          "time": 1790538121,
+          "parent": "49866739"
+        },
         {
           "id": "49866782",
           "author": "intrr",
@@ -134,22 +210,6 @@
           "parent": "49862453"
         },
         {
-          "id": "49868573",
-          "author": "romerocarlos",
-          "body": "For me, it's Daniel Kahneman and Gerd Gigerenzer.",
-          "score": 0,
-          "time": 1790528877,
-          "parent": "49862453"
-        },
-        {
-          "id": "49868558",
-          "author": "nikhilkxmar",
-          "body": "Marcus Aurelius for sure",
-          "score": 0,
-          "time": 1790528820,
-          "parent": "49862453"
-        },
-        {
           "id": "49863524",
           "author": "al_borland",
           "body": "Steve Jobs and Jony Ive. Particularly one of the promo videos with Ive’s voice-over saying something to the effect of, “There isn’t anything we could remove to make it any better.”\nThis put some language to a shift that was already happening as a result of using the products for several years.\nI’m a different person today because of this lesson and how it shifted the way I think at a pretty deep level, from purchases to problem-solving.\nRelated:\n“Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.” -Antoine de Saint-Exupéry\n“Less, but better.” -Dieter Rams",
@@ -187,6 +247,22 @@
           "body": "In terms of the view that you should have as an engineer about the product i would say Steve Jobs. As for the view in life i would say Plato, Diogenes of Sinope, Nietzsche",
           "score": 0,
           "time": 1790501446,
+          "parent": "49862453"
+        },
+        {
+          "id": "49868573",
+          "author": "romerocarlos",
+          "body": "For me, it's Daniel Kahneman and Gerd Gigerenzer.",
+          "score": 0,
+          "time": 1790528877,
+          "parent": "49862453"
+        },
+        {
+          "id": "49868558",
+          "author": "nikhilkxmar",
+          "body": "Marcus Aurelius for sure",
+          "score": 0,
+          "time": 1790528820,
           "parent": "49862453"
         },
         {
@@ -230,7 +306,7 @@
       "title": "What do you do now as a software engineer?",
       "subreddit": "ask-hn",
       "author": "fawazali",
-      "score": 4,
+      "score": 5,
       "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=49861878",
       "url": "https://news.ycombinator.com/item?id=49861878",
