@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-09-28T07:05:02.866088+00:00",
+  "last_fetched": "2026-09-28T12:49:24.024898+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,8 +10,8 @@
       "title": "Ask HN: What are people doing with their OpenClaw set ups now?",
       "subreddit": "ask-hn",
       "author": "will10pa",
-      "score": 9,
-      "num_comments": 2,
+      "score": 12,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=49871556",
       "url": "https://news.ycombinator.com/item?id=49871556",
       "selftext": "I'm always curious what happens with these viral projects a few months after they go viral. Are you still using OpenClaw in your day to day?",
@@ -20,6 +20,14 @@
       "time": 1790548978,
       "created_at": "2026-09-27T22:42:58+00:00",
       "comments_data": [
+        {
+          "id": "49874981",
+          "author": "lgl",
+          "body": "I've added $50 in DeepSeek credits back in June for my Openclaw tests and still have $19 remaining. Still not sure if I'll keep it after it's depleted.\nIt's mostly doing stuff around my app. I have it connected to my google search console, analytics, paddle, Microsoft partner center, etc.\nI prompted it to give me a 1 liner description of the current jobs:\nBlog production — 05:00 UTC daily: writes new post drafts into growth/blog-drafts/ and pings you; never publishes.\nBlog draft status checks — every 2h: polls the dev blog-drafts API for review/approval status on the 7 pending drafts; silent unless something changes.\nReply opportunity scan — 14:00 UTC daily: finds recent Reddit/HN/X/forum threads where LumoTray genuinely fits, writes a report with links.\nSEO opportunity research — 00:30 UTC daily: keyword and content-gap research report.\nAnalytics optimization — Tue + Fri, 11:00 UTC: GA4 + Search Console + Partner Center read, then an actions report.\nWeekly strategy review — Sunday, 18:00 UTC: aggregates the week and sets the next-week plan.\nHeartbeat — every ~30 min: my own check-in lane (currently mostly skipping on an empty heartbeat file).\nSkill collection review — weekly: housekeeping on the skill catalogue.",
+          "score": 0,
+          "time": 1790583080,
+          "parent": "49871556"
+        },
         {
           "id": "49874130",
           "author": "RebelMonk",
@@ -35,6 +43,14 @@
           "score": 0,
           "time": 1790571276,
           "parent": "49871556"
+        },
+        {
+          "id": "49875967",
+          "author": "Kim_Bruning",
+          "body": "There's a whole cambrian explosion of competitive tools and frameworks now, so I bet the original openclaw is kind of snowed under.",
+          "score": 0,
+          "time": 1790591858,
+          "parent": "49871556"
         }
       ]
     },
@@ -45,8 +61,8 @@
       "title": "macOS 27: ifconfig command no longer prints hardware MAC address",
       "subreddit": "ask-hn",
       "author": "luckman212",
-      "score": 2,
-      "num_comments": 3,
+      "score": 3,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=49868721",
       "url": "https://news.ycombinator.com/item?id=49868721",
       "selftext": "Just a quick PSA. A handful of my scripts broke today after installing macOS 27. Turns out they decided to redact the interface hardware ether/MAC addresses, all of them report 02:00:00:00:00:00\n(…unless you run with \"sudo\")\nLuckily, you can still get the MAC addresses with\n networksetup -getmacaddress en0",
@@ -72,8 +88,8 @@
       "title": "I was impressed by Jev, please explain why I shouldn't be",
       "subreddit": "ask-hn",
       "author": "effisfor",
-      "score": 10,
-      "num_comments": 13,
+      "score": 11,
+      "num_comments": 15,
       "permalink": "https://news.ycombinator.com/item?id=49868483",
       "url": "https://news.ycombinator.com/item?id=49868483",
       "selftext": "I'm not a computer science guy, but I had a play with Jev and found it impressive. It allowed me to offer non-technical researchers the ability to classify arbitrary things their participants enter, without prior training or classification, at near instant speed, and negligible cost. My users may find that very helpful in the qualitative research world.\nI showed them an innocuous working example of how they could classify thousands of participant entries as \"mentioning Italian food\" whether it mentioned \"pasta\", \"penne\", \"rigatone\", etc etc. Jev did this task with high confidence, and showed it could differentiate between the inverse, eg had very low confidence when I switch entry to mentioning \"hamburgers\". I find that a very useful tool to pass on to non-technical colleagues.\nBut on HN, there are lots of much more qualified people saying Jev is a con, a step backwards, or bonkers that people are impressed. Will one of them tell me plainly what software was doing this prior to Jev, and the like? I don't doubt it existed, but I never came across it. I'm interested to hear from people more expert than myself.\nTo be precise, software must be able to:\n- Classify thousands of entries with arbitrary themes or topics, even if entry doesn't mention that theme or topic directly, with high enough confidence to be useful.\n- Do it with thousands of entries in 0-3seconds.\n- Do it at negligible cost, eg sub 0.1cents",
@@ -83,19 +99,19 @@
       "created_at": "2026-09-27T16:59:15+00:00",
       "comments_data": [
         {
-          "id": "49874372",
-          "author": "daly",
-          "body": "JEV is rule-based programming with a better pattern matcher.\nCharles Forgy did this back in the 80s.",
-          "score": 0,
-          "time": 1790577391,
-          "parent": "49868483"
-        },
-        {
           "id": "49869690",
           "author": "softwaredoug",
           "body": "A lot of the hate is in the same spirit of the infamous hacker news comment discounting Dropbox because you can just setup an FTP server to do the same thing[1]\nIn this case, its people who have built BERT classifiers for years, pointing out you can just fine-tune some model to classify. Of course that's true, and still have value, but its not exactly turnkey. And Jev is surprisingly high quality at what its built for.\n1 - https://news.ycombinator.com/item?id=9224 (https://news.ycombinator.com/item?id=9224)",
           "score": 0,
           "time": 1790535342,
+          "parent": "49868483"
+        },
+        {
+          "id": "49874372",
+          "author": "daly",
+          "body": "JEV is rule-based programming with a better pattern matcher.\nCharles Forgy did this back in the 80s.",
+          "score": 0,
+          "time": 1790577391,
           "parent": "49868483"
         },
         {
@@ -226,7 +242,7 @@
       "subreddit": "ask-hn",
       "author": "SMAAART",
       "score": 9,
-      "num_comments": 14,
+      "num_comments": 15,
       "permalink": "https://news.ycombinator.com/item?id=49862453",
       "url": "https://news.ycombinator.com/item?id=49862453",
       "selftext": "Leaving broad and vague by design. Who formed your thinking? Philosophers? Business magnates? Ancient wisdom? Or more recent thinking?\nSocrates to Bill Gates?\nI'll go first, in no particular order:\n- The Ancient Stoics\n- D. T. Suzuki, Thich Nhat Hanh, and other\n- C G Jung\n- Alfred Adler\n- Arthur Schopenhauer\n- Friedrich Nietzsche\n- Fyodor Dostoevsky\n- Franz Kafka\n- Niccolo Machiavelli (highly misunderstood, I strongly suggest starting by watching the \"Learning to Love Machiavelli: Don MacDonald at TEDxBoston\"\n- George Pólya",
@@ -308,19 +324,19 @@
           "parent": "49862453"
         },
         {
-          "id": "49868558",
-          "author": "nikhilkxmar",
-          "body": "Marcus Aurelius for sure",
-          "score": 0,
-          "time": 1790528820,
-          "parent": "49862453"
-        },
-        {
           "id": "49862969",
           "author": "SubGenius",
           "body": "Robert Anton Wilson.",
           "score": 0,
           "time": 1790478257,
+          "parent": "49862453"
+        },
+        {
+          "id": "49868558",
+          "author": "nikhilkxmar",
+          "body": "Marcus Aurelius for sure",
+          "score": 0,
+          "time": 1790528820,
           "parent": "49862453"
         },
         {
@@ -359,19 +375,19 @@
           "parent": "49861878"
         },
         {
-          "id": "49862827",
-          "author": "entrepy123",
-          "body": "I'm the HITL who knows what's needed and what good looks like, moderating chat agents and coding agents.",
-          "score": 0,
-          "time": 1790477004,
-          "parent": "49861878"
-        },
-        {
           "id": "49864607",
           "author": "XT3",
           "body": "Explore new opportunities, Engineers with a problem solving mindset generally are more versatile to adapt and pick up on new skills.",
           "score": 0,
           "time": 1790498381,
+          "parent": "49861878"
+        },
+        {
+          "id": "49862827",
+          "author": "entrepy123",
+          "body": "I'm the HITL who knows what's needed and what good looks like, moderating chat agents and coding agents.",
+          "score": 0,
+          "time": 1790477004,
           "parent": "49861878"
         },
         {
