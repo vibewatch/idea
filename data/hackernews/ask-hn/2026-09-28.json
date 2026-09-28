@@ -1,8 +1,68 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-09-28T12:49:24.024898+00:00",
+  "last_fetched": "2026-09-28T18:41:02.044091+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "49881846",
+      "title": "Ask HN: React Native or Flutter when the back end is Node?",
+      "subreddit": "ask-hn",
+      "author": "rearview",
+      "score": 4,
+      "num_comments": 8,
+      "permalink": "https://news.ycombinator.com/item?id=49881846",
+      "url": "https://news.ycombinator.com/item?id=49881846",
+      "selftext": "Really confused between React Native and Flutter. I’ve mostly worked with Flutter and a little bit with React Native, but that was quite a while back, so I’m not sure how things stand today.\nI’m building a project with a Node.js + tRPC backend, so React Native is looking really tempting cause of that Typescript.\nWhile researching I've seen mixed reviews about performance in React Native like people saying they've spend weeks finding and managing performance issue which does makes me worry.\nThe app I wanna build doesn't have complex canvas work or crazy animations. For a typical production app, what’s the performance situation with React Native vs Flutter now? Are there any major concerns which I should know before looking in React Native?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1790618269,
+      "created_at": "2026-09-28T17:57:49+00:00",
+      "comments_data": [
+        {
+          "id": "49882351",
+          "author": "runningmike",
+          "body": "It depends do you want to maintain ii? Do you use AI? Performance issues can always be solved. Do you want to use browser’s capabilities or keep control in your own backend ? Less frameworks is better, use e.g the same for everything.",
+          "score": 0,
+          "time": 1790620240,
+          "parent": "49881846"
+        },
+        {
+          "id": "49881959",
+          "author": "sync",
+          "body": "I have a similar stack (using oRPC instead of tRPC, recommended!) and I'd say React Native, specifically Expo UI: https://docs.expo.dev/versions/latest/sdk/ui/ (https://docs.expo.dev/versions/latest/sdk/ui/)\nThis will get you the most native feel across all platforms (e.g. Liquid Glass) and keeps you in one language (TypeScript).\nNo performance issues to note in particular because Expo UI is (basically) native - it just uses SwiftUI and Jetpack Compose under the hood.",
+          "score": 0,
+          "time": 1790618732,
+          "parent": "49881846"
+        },
+        {
+          "id": "49881901",
+          "author": "verdverm",
+          "body": "If you aren't doing native apps, my recommendation is to use the same language across full-stack apps. You can share things like zod types and validation logic (in the frontend for quicker user feedback, on the backend because you never trust user provided values)",
+          "score": 0,
+          "time": 1790618500,
+          "parent": "49881846"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "49879648",
+      "title": "Ask HN: JEV for K1 Tax Forms",
+      "subreddit": "ask-hn",
+      "author": "GoRudy",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49879648",
+      "url": "https://news.ycombinator.com/item?id=49879648",
+      "selftext": "Anyone have the ability to create a Jev tool to upload a large number of K1s (10 - 100+ etc) and get an output of all the fields accountants would need for the tax return in one file for all the k1s?\nCurrently accountants manually review every K1, resulting in multiple hours of time for basically manual review.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1790609541,
+      "created_at": "2026-09-28T15:32:21+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,8 +70,8 @@
       "title": "Management is forcing us to use AI",
       "subreddit": "ask-hn",
       "author": "aksjfveoq",
-      "score": 9,
-      "num_comments": 12,
+      "score": 11,
+      "num_comments": 17,
       "permalink": "https://news.ycombinator.com/item?id=49873913",
       "url": "https://news.ycombinator.com/item?id=49873913",
       "selftext": "I’m paraphrasing; «You use AI or you’re not working here. Humans are not perfect coders nor are AIs. So why should you be allowed to code without AI. It’s a netloss for us. You either use it or you start looking for a different job.»\nCan’t believe Im being forced to make myself dumber. I really dont want to spend even more hours in front of my laptop, but looks like I have to because this whole industry is now dependent on AI.\nThis is the US.",
@@ -21,11 +81,35 @@
       "created_at": "2026-09-28T05:11:12+00:00",
       "comments_data": [
         {
-          "id": "49876214",
-          "author": "lolakutty",
-          "body": "Well, why wouldn't you use it, not for coding, but for reviews and research?",
+          "id": "49882084",
+          "author": "ezulabs",
+          "body": "Modern commercial airline pilots manually fly less than 10 percent of a typical flight, using automated systems for the vast majority of the journey.",
           "score": 0,
-          "time": 1790593819,
+          "time": 1790619216,
+          "parent": "49873913"
+        },
+        {
+          "id": "49881460",
+          "author": "luxshan_t",
+          "body": "It started at the end of 2025, nothing new to me. Either adapt to it, work more on finding interesting features and use cases, and introduce them. Don't be a coder; be an engineer OR/ leave; It's a hard decision :)!",
+          "score": 0,
+          "time": 1790616742,
+          "parent": "49873913"
+        },
+        {
+          "id": "49879615",
+          "author": "linesofcode",
+          "body": "They’re correct, albeit likely misinformed in their decision making.\nIndustry is changing. You either have to adapt to keep with the times or find a tech job where AI isn’t necessary - which practically speaking will become a rarity over time.",
+          "score": 0,
+          "time": 1790609414,
+          "parent": "49873913"
+        },
+        {
+          "id": "49877452",
+          "author": "upauld3",
+          "body": "Just a case of management not knowing the history of tech ROI or current studies on AI project ROI such as the one from MIT. \nThinking off the top of my head... I could see AI filling some of the administrative roles of Surgical Team teams mentioned the classic book, \"The Mythical Man-Month\" by Fred Brooks.\nOn a positive note: The AIs make great super search and within certain domains are effective. \nOn a negative note: Often when I see AI used by others, I wonder if these people have heard of code libraries. :)\nA lot of what is going on is FOMO...\nAI Serenity Prayer\n\"God, grant me the serenity to accept the things I cannot use AI on,\nCourage to use AI on the things I can,\nAnd wisdom to know the difference.\"",
+          "score": 0,
+          "time": 1790601375,
           "parent": "49873913"
         },
         {
@@ -34,6 +118,14 @@
           "body": "They want AI? Give a model your old computer and have it do your work from A to Z. It’ll free you to do what you want. Salary probably already covers the model’s plan.",
           "score": 0,
           "time": 1790579192,
+          "parent": "49873913"
+        },
+        {
+          "id": "49876214",
+          "author": "lolakutty",
+          "body": "Well, why wouldn't you use it, not for coding, but for reviews and research?",
+          "score": 0,
+          "time": 1790593819,
           "parent": "49873913"
         },
         {
