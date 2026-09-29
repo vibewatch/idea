@@ -1,8 +1,59 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-09-28T18:41:02.044091+00:00",
+  "last_fetched": "2026-09-29T01:11:08.154121+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "49884087",
+      "title": "Ask HN: How do you get your first users for an MVP?",
+      "subreddit": "ask-hn",
+      "author": "amina124",
+      "score": 4,
+      "num_comments": 4,
+      "permalink": "https://news.ycombinator.com/item?id=49884087",
+      "url": "https://news.ycombinator.com/item?id=49884087",
+      "selftext": "For founders building an MVP today, what’s the best way to get the first users and prove there’s real demand before talking to investors?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1790628260,
+      "created_at": "2026-09-28T20:44:20+00:00",
+      "comments_data": [
+        {
+          "id": "49884408",
+          "author": "byoung2",
+          "body": "If you describe your MVP using the following pattern:\n[customer profile] has [problem] so I built [solution]\nThen you should have an idea of who the product is for and then you can figure out where to find them. For example:\nBoat owners who store their boats at home don't have a convenient way to move their trailers around so I built a motorized trailer puller that is controllable using a smartphone so they can move their boats without using their vehicle.\nSo I need to reach people who have boats on trailers. They are easy to find down at any boat ramp or marina. I could go down there and set up a prototype and show them how it works, get feedback, and maybe show them a QR code to join a mailing list. I could also go to boat shows, FB groups, subreddits, YouTube, etc.\nDo you have a customer profile you could share, and maybe people can offer suggestions for how to reach them?",
+          "score": 0,
+          "time": 1790629856,
+          "parent": "49884087"
+        },
+        {
+          "id": "49885379",
+          "author": "NishanStepak",
+          "body": "Write about it. Add a blog to your function once you have identified your target audience. Make sure you can create links from the posts. Once you have the short articles, post the link with commentary to where the right audience is. This is often in places like Reddit. Reddit has a lot of topical forums.\nYou want to sit down and write something called an ICP, Ideal Customer Profile who you imagine would be the ideal customer for your product. This is the primary target.\nThen you want to do another thing. Figure out how what you created is being used. It might not be anything which you planned. Once you figure out how your thing is being used figure out where the people who are using it are. Then go there.",
+          "score": 0,
+          "time": 1790634659,
+          "parent": "49884087"
+        },
+        {
+          "id": "49885462",
+          "author": "codingdave",
+          "body": "Who did you talk to to validate the product design when developing your MVP? They are your first users.",
+          "score": 0,
+          "time": 1790635209,
+          "parent": "49884087"
+        },
+        {
+          "id": "49885326",
+          "author": "moishe_szyslak",
+          "body": "Feature someone else's MVP. You scratch my back, I'll scratch yours. It's all one big circle jerk.",
+          "score": 0,
+          "time": 1790634369,
+          "parent": "49884087"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,8 +61,8 @@
       "title": "Ask HN: React Native or Flutter when the back end is Node?",
       "subreddit": "ask-hn",
       "author": "rearview",
-      "score": 4,
-      "num_comments": 8,
+      "score": 5,
+      "num_comments": 10,
       "permalink": "https://news.ycombinator.com/item?id=49881846",
       "url": "https://news.ycombinator.com/item?id=49881846",
       "selftext": "Really confused between React Native and Flutter. I’ve mostly worked with Flutter and a little bit with React Native, but that was quite a while back, so I’m not sure how things stand today.\nI’m building a project with a Node.js + tRPC backend, so React Native is looking really tempting cause of that Typescript.\nWhile researching I've seen mixed reviews about performance in React Native like people saying they've spend weeks finding and managing performance issue which does makes me worry.\nThe app I wanna build doesn't have complex canvas work or crazy animations. For a typical production app, what’s the performance situation with React Native vs Flutter now? Are there any major concerns which I should know before looking in React Native?",
@@ -21,11 +72,11 @@
       "created_at": "2026-09-28T17:57:49+00:00",
       "comments_data": [
         {
-          "id": "49882351",
-          "author": "runningmike",
-          "body": "It depends do you want to maintain ii? Do you use AI? Performance issues can always be solved. Do you want to use browser’s capabilities or keep control in your own backend ? Less frameworks is better, use e.g the same for everything.",
+          "id": "49884867",
+          "author": "gitgud",
+          "body": "Well since nobody is suggesting it, then I will.\nGo full native for each platform. React Native and Flutter are great (I’ve used them both), but there’s several reasons not to choose them anymore\n1. Complexity - you’re adding another layer between your app and the device, debugging, compilation, device quirks all become much more annoying\n2. AI coding makes it easier - This works both ways, flutter and react native become easier to develop, but so does native development\n3. Support is always better on native - consider any issue you have building an iOS app, now add in React issues and then React native issues and then a bunch of other framework version issues… it’s generally better support if you use the tools the platform expect you to use\n4. Code reuse is not as big of a deal as you think - trying to share UI code across android, iOS, web ends up making all platforms you build for worse, as bugs and performance issues go to all platforms… if you have a simply designed app, then a native experience is always preferable by users",
           "score": 0,
-          "time": 1790620240,
+          "time": 1790631954,
           "parent": "49881846"
         },
         {
@@ -34,6 +85,14 @@
           "body": "I have a similar stack (using oRPC instead of tRPC, recommended!) and I'd say React Native, specifically Expo UI: https://docs.expo.dev/versions/latest/sdk/ui/ (https://docs.expo.dev/versions/latest/sdk/ui/)\nThis will get you the most native feel across all platforms (e.g. Liquid Glass) and keeps you in one language (TypeScript).\nNo performance issues to note in particular because Expo UI is (basically) native - it just uses SwiftUI and Jetpack Compose under the hood.",
           "score": 0,
           "time": 1790618732,
+          "parent": "49881846"
+        },
+        {
+          "id": "49882351",
+          "author": "runningmike",
+          "body": "It depends do you want to maintain ii? Do you use AI? Performance issues can always be solved. Do you want to use browser’s capabilities or keep control in your own backend ? Less frameworks is better, use e.g the same for everything.",
+          "score": 0,
+          "time": 1790620240,
           "parent": "49881846"
         },
         {
@@ -70,8 +129,8 @@
       "title": "Management is forcing us to use AI",
       "subreddit": "ask-hn",
       "author": "aksjfveoq",
-      "score": 11,
-      "num_comments": 17,
+      "score": 14,
+      "num_comments": 23,
       "permalink": "https://news.ycombinator.com/item?id=49873913",
       "url": "https://news.ycombinator.com/item?id=49873913",
       "selftext": "I’m paraphrasing; «You use AI or you’re not working here. Humans are not perfect coders nor are AIs. So why should you be allowed to code without AI. It’s a netloss for us. You either use it or you start looking for a different job.»\nCan’t believe Im being forced to make myself dumber. I really dont want to spend even more hours in front of my laptop, but looks like I have to because this whole industry is now dependent on AI.\nThis is the US.",
@@ -80,6 +139,30 @@
       "time": 1790572272,
       "created_at": "2026-09-28T05:11:12+00:00",
       "comments_data": [
+        {
+          "id": "49885316",
+          "author": "tripleee",
+          "body": "Using AI doesn't mean you're making yourself dumber. It comes down to how you use it.",
+          "score": 0,
+          "time": 1790634286,
+          "parent": "49873913"
+        },
+        {
+          "id": "49886171",
+          "author": "jamesforestwest",
+          "body": "It’s sad, but there’s no getting around it. Besides, I don’t think using AI in itself makes you less intelligent.",
+          "score": 0,
+          "time": 1790640226,
+          "parent": "49873913"
+        },
+        {
+          "id": "49882767",
+          "author": "rahuljha0403",
+          "body": "I understand and I agree with the side effects of too much AI use but this is inevitable. I think it's better to balance, use AI for work and at the same time, keep learning, maintain habit of writing logic to protect your brain.",
+          "score": 0,
+          "time": 1790621889,
+          "parent": "49873913"
+        },
         {
           "id": "49882084",
           "author": "ezulabs",
@@ -129,11 +212,11 @@
           "parent": "49873913"
         },
         {
-          "id": "49876149",
-          "author": "ORDINAND_PIZZA",
-          "body": "dude can you believe this crap? i’ve been hand-writing manuscripts this whole time and now my boss wants me to… use a printing press?! like what the hell????\nme and the other monks aren’t gonna do this crap, we’ve been doing it our way forever and there’s NO WAY those things can do it as good as i can",
+          "id": "49883809",
+          "author": "4lx87",
+          "body": "Lean into it. Automate your code reviews. Automate ticket refinement. Automatically draft PRs with a demo video of every acceptance criteria. Automate status updates to Slack.",
           "score": 0,
-          "time": 1790593335,
+          "time": 1790626844,
           "parent": "49873913"
         },
         {
@@ -145,11 +228,11 @@
           "parent": "49873913"
         },
         {
-          "id": "49874188",
-          "author": "haimhm",
-          "body": "it is all over not just us",
+          "id": "49876149",
+          "author": "ORDINAND_PIZZA",
+          "body": "dude can you believe this crap? i’ve been hand-writing manuscripts this whole time and now my boss wants me to… use a printing press?! like what the hell????\nme and the other monks aren’t gonna do this crap, we’ve been doing it our way forever and there’s NO WAY those things can do it as good as i can",
           "score": 0,
-          "time": 1790575385,
+          "time": 1790593335,
           "parent": "49873913"
         }
       ]
