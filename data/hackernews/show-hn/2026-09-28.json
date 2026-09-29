@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-09-29T06:51:49.617013+00:00",
+  "last_fetched": "2026-09-29T12:48:22.117589+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -27,8 +27,8 @@
       "title": "Show HN: Pac-Bench – How well can models one-shot a Pac-Man game?",
       "subreddit": "show-hn",
       "author": "thefourthchime",
-      "score": 37,
-      "num_comments": 23,
+      "score": 69,
+      "num_comments": 44,
       "permalink": "https://news.ycombinator.com/item?id=49885493",
       "url": "https://jonclegg.github.io/pacman-bakeoff/",
       "selftext": "Benchmarks how well Harness+models can create a Pac-Man game from a single prompt:\n“Create a Pac-Man game in a single HTML page”\nEach model gets one shot — no follow-up prompts or fixes.",
@@ -38,11 +38,27 @@
       "created_at": "2026-09-28T22:43:12+00:00",
       "comments_data": [
         {
-          "id": "49888440",
-          "author": "_matthew_",
-          "body": "I don't think it makes sense to have the prompt be that short. This is basically a bench.ark of how models interpret an overly vague prompt. It should at least be \"Create a pacman clone in a single html page. Make it faithful to the original\" if that's what we're scoring it on.",
+          "id": "49889268",
+          "author": "yambam",
+          "body": "This reminds me of a couple decades ago when some friends and I set ourselves a challenge to, individually, each create as much of a Pac-Man clone as possible in 10 hours. None of us had any experience in games programming or graphics coding. It was great fun and we all learned a lot.\nNo-one ended up with a complete clone but I loved how we all ended up focusing on different things, like pixel-perfect graphics versus accuracy in gameplay, and how we all brought our existing skills to the challenge despite not really knowing what we were doing.\nI expect if we had AI models available it would have ruined the pleasure of figuring it out for ourselves. I feel kind of sad for the next generation of developers who won't have that experience.",
           "score": 0,
-          "time": 1790657823,
+          "time": 1790665438,
+          "parent": "49885493"
+        },
+        {
+          "id": "49889759",
+          "author": "drcxd",
+          "body": "Interesting, recently I am working on my own clone of Pac-Man. LLM implementations lose lots of details. They are not 1:1 replication of the original game. For example, the behavior of the ghost is not the same as the original. If I have not implemented the game myself, I can not tell the differences. What LLM produced look like the original game, but they are not.",
+          "score": 0,
+          "time": 1790669044,
+          "parent": "49885493"
+        },
+        {
+          "id": "49891983",
+          "author": "darepublic",
+          "body": "The sad thing is that sol takes under 5 min here but takes 10 minutes to make focused targetted change to crud app",
+          "score": 0,
+          "time": 1790684528,
           "parent": "49885493"
         },
         {
@@ -62,6 +78,22 @@
           "parent": "49885493"
         },
         {
+          "id": "49888440",
+          "author": "_matthew_",
+          "body": "I don't think it makes sense to have the prompt be that short. This is basically a bench.ark of how models interpret an overly vague prompt. It should at least be \"Create a pacman clone in a single html page. Make it faithful to the original\" if that's what we're scoring it on.",
+          "score": 0,
+          "time": 1790657823,
+          "parent": "49885493"
+        },
+        {
+          "id": "49890987",
+          "author": "xnx",
+          "body": "This would be a much better benchmark if it contained some twist which was not in the training set (e.g. pelicans on bicycles were not common before simonw).\nMake a pacman game where pacman can always eat ghosts, but ghosts drop pellets.",
+          "score": 0,
+          "time": 1790678571,
+          "parent": "49885493"
+        },
+        {
           "id": "49888538",
           "author": "continuational",
           "body": "Here's GLM-5.2: http://show.ahnfelt.net/demos/glm5.2-pacman.html (http://show.ahnfelt.net/demos/glm5.2-pacman.html)",
@@ -70,27 +102,11 @@
           "parent": "49885493"
         },
         {
-          "id": "49889101",
-          "author": "tamimio",
-          "body": "It would be great to do the models tests but with different harnesses too to see how they impact on the same models and efforts.",
+          "id": "49890420",
+          "author": "swingboy",
+          "body": "Interesting the `high` effort on the Claude models. Did you find that going above that is unnecessary?",
           "score": 0,
-          "time": 1790664021,
-          "parent": "49885493"
-        },
-        {
-          "id": "49888088",
-          "author": "dang",
-          "body": "Recent and related:\nhttps://news.ycombinator.com/item?id=49882889 (https://news.ycombinator.com/item?id=49882889)",
-          "score": 0,
-          "time": 1790654700,
-          "parent": "49885493"
-        },
-        {
-          "id": "49888404",
-          "author": "hoistway",
-          "body": "Always assumed Pac-Man was an easy solve for modern AI. Guess those ghost patterns are trickier than they look for one-shot learning.",
-          "score": 0,
-          "time": 1790657515,
+          "time": 1790674215,
           "parent": "49885493"
         },
         {
@@ -102,27 +118,19 @@
           "parent": "49885493"
         },
         {
-          "id": "49888875",
-          "author": "Stitch4223",
-          "body": "Someday we’re gonna miss the times where models create jank.\nThese results get better and better, but the half-baked pac mans games and pelicans are just funny.\nYou cannot prompt that level of brokenness. Same for those slop-posters you see everywhere.",
+          "id": "49888088",
+          "author": "dang",
+          "body": "Recent and related:\nhttps://news.ycombinator.com/item?id=49882889 (https://news.ycombinator.com/item?id=49882889)",
           "score": 0,
-          "time": 1790662066,
+          "time": 1790654700,
           "parent": "49885493"
         },
         {
-          "id": "49888441",
-          "author": "blindflag",
-          "body": "I'm curious; can you explain why you picked Pac-Man, in particular?",
+          "id": "49889272",
+          "author": "weitendorf",
+          "body": "Gonna be rude and say I don't think this is an interesting or useful benchmark tbh.\nClearly some new RLAAS/dataset/env is being used for this now (it doesn't even seem that complicated, you have one LLM judge whether gameplay is recognizable as the original game or not and another trying to implement a logically/semantically identical version of the game). It's why the performance improvement on this workload has been so dramatic.\nEverything is going to go from 0->1 on this benchmark in short order because of that.",
           "score": 0,
-          "time": 1790657825,
-          "parent": "49885493"
-        },
-        {
-          "id": "49885524",
-          "author": "Computer0",
-          "body": "Opus 5-5 seemed like a perfect clone, with others displaying flaws in an initial look. Astra notably created a bunch of surrounding ugly crap to look at.",
-          "score": 0,
-          "time": 1790635583,
+          "time": 1790665460,
           "parent": "49885493"
         }
       ]
@@ -239,8 +247,8 @@
       "title": "Show HN: Destroy Any Website with Stickman",
       "subreddit": "show-hn",
       "author": "HugoDz",
-      "score": 135,
-      "num_comments": 32,
+      "score": 145,
+      "num_comments": 36,
       "permalink": "https://news.ycombinator.com/item?id=49880601",
       "url": "https://destroy.spritefusion.com/",
       "selftext": "",
@@ -258,19 +266,19 @@
           "parent": "49880601"
         },
         {
-          "id": "49885816",
-          "author": "bosch_mind",
-          "body": "For us Windows XP users, I found an old video of what I used similar to this. \nhttps://www.youtube.com/shorts/qMpLIcSbPFY (https://www.youtube.com/shorts/qMpLIcSbPFY)\nFlame throws, ants eating the screen, etc. Good times. Simpler times...",
-          "score": 0,
-          "time": 1790637557,
-          "parent": "49880601"
-        },
-        {
           "id": "49884967",
           "author": "alexreardon",
           "body": "I am the creator of Page Rage (https://page-rage.com/ (https://page-rage.com/)), which I released about two weeks ago. Page Rage didn't get too much traction on Hacker News (https://news.ycombinator.com/item?id=49746963 (https://news.ycombinator.com/item?id=49746963)), but it did end up being a top post on r/webdev (https://www.reddit.com/r/webdev/comments/1whepc7/page_rage_d... (https://www.reddit.com/r/webdev/comments/1whepc7/page_rage_destroy_any_web_page/)) and r/playmygame (https://www.reddit.com/r/playmygame/comments/1whfp3g/my_firs... (https://www.reddit.com/r/playmygame/comments/1whfp3g/my_first_game_page_rage_destroy_any_web_page/))\nThe linked project \"Destroy any website\" makes it's own distinct creative and gameplay choices. It may have been inspired by Page Rage or it may have been a case of \"multiple discovery\". Either way, \"Destroy any website\" is not a low quality slop clone, it's clearly had a lot of thought put into it",
           "score": 0,
           "time": 1790632490,
+          "parent": "49880601"
+        },
+        {
+          "id": "49885816",
+          "author": "bosch_mind",
+          "body": "For us Windows XP users, I found an old video of what I used similar to this. \nhttps://www.youtube.com/shorts/qMpLIcSbPFY (https://www.youtube.com/shorts/qMpLIcSbPFY)\nFlame throws, ants eating the screen, etc. Good times. Simpler times...",
+          "score": 0,
+          "time": 1790637557,
           "parent": "49880601"
         },
         {
@@ -290,11 +298,11 @@
           "parent": "49880601"
         },
         {
-          "id": "49888802",
-          "author": "EnzeShi",
-          "body": "You should be able to destroy your own website :).",
+          "id": "49889499",
+          "author": "pmontra",
+          "body": "I'm not sure that it can work anymore outside of its own web page (\"works best in chrome or firefox 4\") but you must check Katamari! at http://kathack.com/ (http://kathack.com/)\nClick the Katamari link at the top.\nEdit: I managed to post this comment, went back to the Katameri page, played a little more with it and my Firefox crashed. It didn't use to.",
           "score": 0,
-          "time": 1790661430,
+          "time": 1790667085,
           "parent": "49880601"
         },
         {
@@ -314,11 +322,19 @@
           "parent": "49880601"
         },
         {
-          "id": "49888428",
-          "author": "blindflag",
-          "body": "Nostalgia-fostering and well-executed; thanks for sharing!",
+          "id": "49890403",
+          "author": "mvk666",
+          "body": "I tried to destroy pornhub.com, but I could only get to the disclaimer :(",
           "score": 0,
-          "time": 1790657675,
+          "time": 1790674034,
+          "parent": "49880601"
+        },
+        {
+          "id": "49889317",
+          "author": "epestr",
+          "body": "Interestingly it considers my long monitor to be a mobile. Quite peculiar how resolution was used to identify phones here.",
+          "score": 0,
+          "time": 1790665758,
           "parent": "49880601"
         },
         {
@@ -330,19 +346,11 @@
           "parent": "49880601"
         },
         {
-          "id": "49887446",
-          "author": "ed_mercer",
-          "body": "This was so fulfilling to do on x.com",
+          "id": "49888802",
+          "author": "EnzeShi",
+          "body": "You should be able to destroy your own website :).",
           "score": 0,
-          "time": 1790649867,
-          "parent": "49880601"
-        },
-        {
-          "id": "49884645",
-          "author": "helloforce",
-          "body": "This was surely fun, never played such a game before. Is it competitive when we are playing the multiplayer mode?",
-          "score": 0,
-          "time": 1790630916,
+          "time": 1790661430,
           "parent": "49880601"
         }
       ]
@@ -502,8 +510,8 @@
       "title": "Show HN: HN.watch – Videos of all Hacker News posts",
       "subreddit": "show-hn",
       "author": "mrborgen",
-      "score": 156,
-      "num_comments": 88,
+      "score": 198,
+      "num_comments": 96,
       "permalink": "https://news.ycombinator.com/item?id=49879401",
       "url": "https://hn.watch/",
       "selftext": "Hi HN, I’m Per, founder of Scrimba (YC S20). We’ve spent the last decade teaching people how to code with an HTML-based video format. We’ve now plugged an LLM into it, so that people can create explainer videos about anything. It’s called “Scrimba Explain”.\nTo demo this technology for Hacker News, we built HN.watch. It’s like HN, but with explainer videos instead of articles. We create them on-the-fly the first time someone clicks on a link.\nWhile there are obvious visual drawbacks of using HTML instead of diffusion models, there are three big benefits: - Speed: Much faster to generate than pixel-based videos (just a few seconds from click to playback) - Cost: Our cost per video is ~$0.04. (Excluding image generation, which some videos utilize. Quickly blows up the cost) - Easy editing: the above benefits also make AI-assisted editing cheap & fast\nOur hypothesis is that if video creation goes from “dollars and minutes” to “cents and seconds”, a bunch of new use cases will be unlocked. Here are some we see already: - A video explanation of every single Pull Request (we do this internally) - Give every page in your internal/extrernal docs a video - Turn a complex article into a video in ~4 seconds (via our Chrome extension) - Course creators can quickly draft lessons before recording the real thing - People also create a lot of personal stuff stories for their kids, wedding invitations, birthdays, etc\nThe stack is based on an open-source programming language (Imba) created by our CTO, Sindre Aarsæther. It compiles to JavaScript, so it interoperates fully with the npm + node ecosystem. You can learn more here: https://imba.io/ (https://imba.io/)\nWe’ve also built our own sync engine (OP), and a context management system for agents (Q). We feared this would make the LLMs struggle when writing code for us, as neither is in their training data (there’s very little Imba in there too). However, we’ve been pleasantly surprised to see that LLMs actually are really good at our stack. This is probably because the stack is extremely dense. Imba is compact, and so is OP, where a single declaration sets storage, sync, permissions, UI, and what the AI sees. This means there’s no translations between frontend, API, db and JSON where the model can get confused and get things wrong.\nSimply said, instead of using React.js, Express, Supabase, and LangChain, we built it all from scratch. Definitely suffering from the “not invented here” syndrome, lol! As for the models, we use Gemini, GPTs, Inworld, ElevenLabs, and a few others.\nIf you want to try it out, just take your pick: - The Web UI (scrimba.com/explain) - MCP (add it to your coding agent) - ChatGPT Plugin - Chrome Extension\nYou can find a link to all of the above in our docs: https://docs.scrimba.com/explain/introduction (https://docs.scrimba.com/explain/introduction)\nAnd finally, a real pixel-based video of the tool: https://www.youtube.com/watch?v=k6rbHmBxSEs (https://www.youtube.com/watch?v=k6rbHmBxSEs)\nWould love to hear your feedback and if anyone has ideas for other use cases.\nPS: I expect quite a bit of pushback from HN for this launch, given how fan of text the HN crowd is. This kind of tool is not for everyone. But there are a lot of people today who prefer videos over text, especially in the younger generations.",
@@ -512,6 +520,14 @@
       "time": 1790608573,
       "created_at": "2026-09-28T15:16:13+00:00",
       "comments_data": [
+        {
+          "id": "49889273",
+          "author": "spoon404",
+          "body": "I really dislike this but have to say it is impressive.\nTo test it I tried \"Who Killed Paulina Borsook's Career?\" The summary is correct I did not hear any errors.\nhttps://www.wired.com/story/paulina-borsook-profile/ (https://www.wired.com/story/paulina-borsook-profile/)\nhttps://hn.watch/?item=49866903 (https://hn.watch/?item=49866903)\nIt did do what I expected from such a system:\n- It removed the fun parts of the article and the way it is written.\n- Stated some interpretations as fact without naming the source\n Article '\"That gunshot prematurely aged my brain,” she said'\n Summary 'The impact prematurely aged her brain'\nOne surprise is did not like: The sharpest concrete thing was a .45 caliber bullet. Feels like some sort of attempt to add original humor and I do not like it.\nThis is the worst kind of article for this kind of summary and I feel like it really shows the most and least impressive parts of the system.",
+          "score": 0,
+          "time": 1790665464,
+          "parent": "49879401"
+        },
         {
           "id": "49881614",
           "author": "scosman",
@@ -526,14 +542,6 @@
           "body": "Because we all contain multitudes, I can simultaneously accept that:\n1. I hate everything about this because I vastly prefer text over video for the same content, especially AI generated video\n2. There are a lot of people for whom video is their preferred medium and so this will be valuable to them.\nIt's a technically cool project and your cost-per-video is impressively low. Best of luck!",
           "score": 0,
           "time": 1790619552,
-          "parent": "49879401"
-        },
-        {
-          "id": "49889055",
-          "author": "Igrom",
-          "body": "Are you planning to consume article comments for your videos?",
-          "score": 0,
-          "time": 1790663532,
           "parent": "49879401"
         },
         {
@@ -553,6 +561,22 @@
           "parent": "49879401"
         },
         {
+          "id": "49890652",
+          "author": "alansaber",
+          "body": "I like video as a format because it's pattern-breaking. Consuming thousands of very similarly produced videos sounds even more depressing than consuming LLM blogs and articles. EDIT: That aside, this is of course extremely impressive.",
+          "score": 0,
+          "time": 1790675962,
+          "parent": "49879401"
+        },
+        {
+          "id": "49891252",
+          "author": "ahmedfromtunis",
+          "body": "Don't listen to the naysayers, please. This is both impressive _and_ useful.\nAs someone with limited time (the only one with such an issue in this comment section, it seems), I really appreciate having a quick video to get the gist of a link in under two minutes. It helps me decide whether it's worth diving deeper.\nCurrently, I rely on two main signals when choosing what to read: 1) direct interest in the topic, and 2) upvote/comment counts if the topic is new to me.\nThe downside is obvious: I risk missing out on hidden gems that I’d love, but that lack those initial signals.\nHaving summary videos lowers the cost of exploration (at least on my side) and gives me an easy way to broaden my horizon.",
+          "score": 0,
+          "time": 1790680231,
+          "parent": "49879401"
+        },
+        {
           "id": "49883122",
           "author": "vbernat",
           "body": "This looks a good idea to let people choose their preferred medium. I am not into video either, but I turned one of my latest blog article into a video using Claude, since I thought it would be “easy.” I asked it to build the video by screencasting a browser presenting the interactive diagrams of the article and add some titles. It build some kind of recording app for me. It still took me many hours, but I think I would be faster if I redid it. I would pay to have it done faster, but I want to keep control of the text, not have a summary.\nThe article: https://vincent.bernat.ch/en/blog/2026-spanning-tree-video (https://vincent.bernat.ch/en/blog/2026-spanning-tree-video)\nThe tool built by Claude to make the video: https://github.com/vincentbernat/vincent.bernat.ch/tree/2808... (https://github.com/vincentbernat/vincent.bernat.ch/tree/28085c0eab7b846cb2685b288edb939267ac9f19/scratch)",
@@ -561,11 +585,19 @@
           "parent": "49879401"
         },
         {
-          "id": "49886923",
-          "author": "chimneychanga",
-          "body": "This is actually really useful to me, thanks! I often skip reading interesting articles because it's either too technical or because my eyes have had enough for the day. Listening to a summary video like this is a great solution!",
+          "id": "49889055",
+          "author": "Igrom",
+          "body": "Are you planning to consume article comments for your videos?",
           "score": 0,
-          "time": 1790645524,
+          "time": 1790663532,
+          "parent": "49879401"
+        },
+        {
+          "id": "49884938",
+          "author": "wewewedxfgdf",
+          "body": "I don't really see why a new programming language is needed to make explainer pages (they are not actually videos).\nSeems like over engineering - why not just make JavaScript/HTML?",
+          "score": 0,
+          "time": 1790632344,
           "parent": "49879401"
         },
         {
@@ -577,35 +609,11 @@
           "parent": "49879401"
         },
         {
-          "id": "49883322",
-          "author": "adrianwaj",
-          "body": "Great. Wordpress plugin would work. Get publishers to embed these videos at the top of their own articles. Allow them to tweak/fix/fine-tune them. Accept micropayments and on-demand generation. Readers can pay for better videos or \"deep-dives.\"\nThis will work for young readers too, illiterates, sensory-impaired and foreigners. All four!!",
+          "id": "49886923",
+          "author": "chimneychanga",
+          "body": "This is actually really useful to me, thanks! I often skip reading interesting articles because it's either too technical or because my eyes have had enough for the day. Listening to a summary video like this is a great solution!",
           "score": 0,
-          "time": 1790624572,
-          "parent": "49879401"
-        },
-        {
-          "id": "49883317",
-          "author": "bobajeff",
-          "body": "I like the concept and these explainers. It sounds like this is using a HTML based format to be similar to like a Flash / Shockwave animation to keep data size down.\nI wonder what the challenge would be of making these videos more interactive would be? Also I do wonder if there is any research happening in making AI explainers more trustable.",
-          "score": 0,
-          "time": 1790624565,
-          "parent": "49879401"
-        },
-        {
-          "id": "49883182",
-          "author": "kristopolous",
-          "body": "you know what might be interesting? The \"HN 10 minute\" -- 20 seconds per front page hn story as a podcast, daily.",
-          "score": 0,
-          "time": 1790623761,
-          "parent": "49879401"
-        },
-        {
-          "id": "49883934",
-          "author": "mrborgen",
-          "body": "Btw, we are hiring a new developer to join us in Oslo, Norway. We pay well and give a lot of freedom wrt working from home or at the office (hybrid solution). If getting HTML-based video generation down to 1 cent for 1 minute with 1 second delay, then please email me: per@scrimba.com.",
-          "score": 0,
-          "time": 1790627418,
+          "time": 1790645524,
           "parent": "49879401"
         }
       ]
@@ -818,8 +826,8 @@
       "title": "Show HN: Hntui – A TUI for Hacker News",
       "subreddit": "show-hn",
       "author": "ahmd-sh",
-      "score": 107,
-      "num_comments": 64,
+      "score": 111,
+      "num_comments": 65,
       "permalink": "https://news.ycombinator.com/item?id=49876760",
       "url": "https://github.com/ahmd-sh/hntui",
       "selftext": "hi there! i'd like you to try out a tui i made for browsing hackernews. it's built using opentui and also effect (learning experiment). i really like it and i think you will too!",
@@ -861,19 +869,19 @@
           "parent": "49876760"
         },
         {
-          "id": "49881609",
-          "author": "ahmd-sh",
-          "body": "wow this really blew up! it's so fulfilling and wild to see my post in the top page... using my tui! thanks guys, and i'll take all the valuable feedback into making this better.",
-          "score": 0,
-          "time": 1790617296,
-          "parent": "49876760"
-        },
-        {
           "id": "49877297",
           "author": "glitchc",
           "body": "Thank you, I've been looking for a meaningful way to browse HN on my cyberdeck and this looks perfect.",
           "score": 0,
           "time": 1790600534,
+          "parent": "49876760"
+        },
+        {
+          "id": "49881609",
+          "author": "ahmd-sh",
+          "body": "wow this really blew up! it's so fulfilling and wild to see my post in the top page... using my tui! thanks guys, and i'll take all the valuable feedback into making this better.",
+          "score": 0,
+          "time": 1790617296,
           "parent": "49876760"
         },
         {
@@ -917,11 +925,11 @@
           "parent": "49876760"
         },
         {
-          "id": "49880462",
-          "author": "Surac",
-          "body": "No dependency, node.js in the next line.",
+          "id": "49877306",
+          "author": "keel-control",
+          "body": "why not use ratatui",
           "score": 0,
-          "time": 1790612572,
+          "time": 1790600567,
           "parent": "49876760"
         }
       ]
@@ -933,7 +941,7 @@
       "title": "Show HN: PaperMono, e-ink fridge magnet shopping list with mobile web page",
       "subreddit": "show-hn",
       "author": "seamus_c",
-      "score": 133,
+      "score": 139,
       "num_comments": 58,
       "permalink": "https://news.ycombinator.com/item?id=49875801",
       "url": "https://github.com/seamusc/papermono-shopping-list",
@@ -949,14 +957,6 @@
           "body": "Neat! I have one better though:\nhttps://en.wikipedia.org/wiki/Post-it_note (https://en.wikipedia.org/wiki/Post-it_note)\n* Works during power outage\n* No battery!\n* Very few remote attacks possible\n* Very little attack surface\n* Accepts multiple input technologies (ink, crayon, and so on)",
           "score": 0,
           "time": 1790615396,
-          "parent": "49875801"
-        },
-        {
-          "id": "49882725",
-          "author": "maxglute",
-          "body": "Neato. Every time I see a competent eink project, I remember how long it has taken to due licensing drama and how much I've aged and will age until full wall eink.",
-          "score": 0,
-          "time": 1790621704,
           "parent": "49875801"
         },
         {
@@ -976,6 +976,14 @@
           "parent": "49875801"
         },
         {
+          "id": "49882725",
+          "author": "maxglute",
+          "body": "Neato. Every time I see a competent eink project, I remember how long it has taken to due licensing drama and how much I've aged and will age until full wall eink.",
+          "score": 0,
+          "time": 1790621704,
+          "parent": "49875801"
+        },
+        {
           "id": "49882704",
           "author": "dgently7",
           "body": "i built a similar app, but included more meal planning recipe management features and a \"shopping mode\" that goes section by section like this but just shows the next two things to grab as large clickable button as i found it annoying to fiddle with a list and checkboxes.\nsince its just got a simple api for adding new recipes its also easy for terminal based agents to add new stuff. its really solved the problem\nof the 20page prose about \"why my way of cooking beans is so special\" with the actual recipes hidden at the bottom thing.\nwe can also just snap a picture of a recipe in a regular cookbook to inject it.\nthen we mostly just need to pick what we want to eat that week and it does all the actual list building. we have a few special \"recipies\" for things we just buy every week as standards, milk etc. and the system knows which things are \"staples\" we probably already have in the house, flour etc.\nI love the fridge magnet epaper idea from this though. especially for its potential during cooking to not need your phone or a tablet on the cooking surface",
@@ -992,19 +1000,19 @@
           "parent": "49875801"
         },
         {
-          "id": "49886114",
-          "author": "alexsmirnov",
-          "body": "KISS ! I do use whiteboard + camera. Much simpler and reliable.",
-          "score": 0,
-          "time": 1790639752,
-          "parent": "49875801"
-        },
-        {
           "id": "49883384",
           "author": "Zaheer",
           "body": "Saw this device going around on X that has a mic / speaker so you can just dictate things: https://zectrix.com/en/ (https://zectrix.com/en/)\nOrdered one but haven't tried it out yet. Sharing in case other folks are looking at devices.",
           "score": 0,
           "time": 1790624834,
+          "parent": "49875801"
+        },
+        {
+          "id": "49886114",
+          "author": "alexsmirnov",
+          "body": "KISS ! I do use whiteboard + camera. Much simpler and reliable.",
+          "score": 0,
+          "time": 1790639752,
           "parent": "49875801"
         },
         {
@@ -1048,8 +1056,8 @@
       "title": "Show HN: Free alternative to graphics design giants",
       "subreddit": "show-hn",
       "author": "sia_xi",
-      "score": 115,
-      "num_comments": 47,
+      "score": 125,
+      "num_comments": 50,
       "permalink": "https://news.ycombinator.com/item?id=49875308",
       "url": "https://scissor.studio/",
       "selftext": "A webassembly web based app that help editing raster and vector on browser without any subscription or signups",
@@ -1072,6 +1080,14 @@
           "body": "How can I access this forever without fears of it going away? I hate changing things like workflows or interfaces really. How can I keep a copy locally to run it such that it no longer requires access to the web or freeze the current working version?",
           "score": 0,
           "time": 1790621007,
+          "parent": "49875308"
+        },
+        {
+          "id": "49889649",
+          "author": "cantalopes",
+          "body": "Cool project! Although photopea+inkscape covers any of my free editing needs, it's always good to see anogher capable app that could be developed into something bigger",
+          "score": 0,
+          "time": 1790668298,
           "parent": "49875308"
         },
         {
@@ -1131,14 +1147,6 @@
           "parent": "49875308"
         },
         {
-          "id": "49886855",
-          "author": "paroaria",
-          "body": "I noticed there is no file open but I still can add layers/remove layers. Is that intentional?",
-          "score": 0,
-          "time": 1790644990,
-          "parent": "49875308"
-        },
-        {
           "id": "49879468",
           "author": "shinze",
           "body": "Really fast ! Do you plan to make this a local only app ?",
@@ -1147,11 +1155,11 @@
           "parent": "49875308"
         },
         {
-          "id": "49881217",
-          "author": "fallinditch",
-          "body": "I am not getting the sub menus to expand, e.g. create > pattern >",
+          "id": "49886855",
+          "author": "paroaria",
+          "body": "I noticed there is no file open but I still can add layers/remove layers. Is that intentional?",
           "score": 0,
-          "time": 1790615628,
+          "time": 1790644990,
           "parent": "49875308"
         }
       ]
