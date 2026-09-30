@@ -1,8 +1,306 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-09-29T18:41:04.089913+00:00",
+  "last_fetched": "2026-09-30T01:12:49.985254+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49902382",
+      "title": "Show HN: Ledge.sh – Runnable Markdown Notes",
+      "subreddit": "show-hn",
+      "author": "dancablam",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49902382",
+      "url": "https://ledge.sh",
+      "selftext": "Hi HN,\nLedge is a Markdown notebook that runs shell commands, code, SQL, etc from inside your own notes.\nI built Ledge because I spend much of my day copy/pasting commands from my notes into the terminal. I was inspired by how much cmux helped me organize my terminals - but there was still a split brain between my notes and frequently run commands. I've been daily-driving it for the past few weeks and use it for deploys, API calls, smoke tests, etc.\nLedge runs your real shell just like a terminal app and can be hosted locally or remotely over SSH using ledge-server. I've been building it since July and have recently added support for all the major platforms: Mac (Silicon), Windows (WSL required), Linux, iOS, Android. Mobile devices require SSH access to a ledge-server and Android is still in beta and looking for beta testers (see link on website)!\nIt's built on Bun and Electrobun and is free and open-source. Feel free to review the code and contribute at https://github.com/ledgesh/ledge (https://github.com/ledgesh/ledge)\nFeedback is very much welcome. Any must-have features that are missing?",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790725294,
+      "created_at": "2026-09-29T23:41:34+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49901329",
+      "title": "Show HN: The Activity Monitor for the AI Era",
+      "subreddit": "show-hn",
+      "author": "eduardpantazi",
+      "score": 2,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=49901329",
+      "url": "https://cortexformac.com/",
+      "selftext": "Cortex turns a thousand processes into the apps you actually run, remembers the last 30 days, and shows what your Neural Engine and local models are doing. Everything stays on your Mac.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790719295,
+      "created_at": "2026-09-29T22:01:35+00:00",
+      "comments_data": [
+        {
+          "id": "49901369",
+          "author": "francescobianco",
+          "body": "SPAM!!!!!",
+          "score": 0,
+          "time": 1790719478,
+          "parent": "49901329"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49900760",
+      "title": "Show HN: Phyics-Based Dice Roller",
+      "subreddit": "show-hn",
+      "author": "swid",
+      "score": 2,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=49900760",
+      "url": "https://dice.jswidler.com/",
+      "selftext": "Yes it is a vibe-coded static site, but I'll share it anyway since people have liked it and actually seem to be using it as I would have intended. For me, it was just sad I couldn't find a good free dice rolling app... I couldn't find this version and the ones I did find were covered with ads. I won't put ads in this one and have no costs to cover since it's hosted on GitHub pages.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790716775,
+      "created_at": "2026-09-29T21:19:35+00:00",
+      "comments_data": [
+        {
+          "id": "49901153",
+          "author": "muti",
+          "body": "Have you analysed the fairness of the rolls? Just after a quick play around it doesn't look like there is enough energy in the throws that I would be confident it is.\n10,000 throws with small perturbations in the starting conditions should be distributed evenly across all sides of the die.\nAlternatively you could use RNG to generate a fair result, simulate the throw, and then set the sides of the die to produce the result from RNG. This is all academic though and I imagine anyone using the site won't be bothered.",
+          "score": 0,
+          "time": 1790718529,
+          "parent": "49900760"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49900344",
+      "title": "Show HN: Web server that lets you build iOS & Android offline apps like BitChat",
+      "subreddit": "show-hn",
+      "author": "EGreg",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49900344",
+      "url": "https://github.com/Qbix/webserver/tree/main",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790715208,
+      "created_at": "2026-09-29T20:53:28+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49899464",
+      "title": "Show HN: Clx 0.4.0 – native compiler for Lua",
+      "subreddit": "show-hn",
+      "author": "_samt_",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49899464",
+      "url": "https://samyeyo.github.io/clx/",
+      "selftext": "clx is a native compiler that compiles Lua 5.5 scripts to standalone executables. Version 0.4.0 is out, focused on performance and stability :\n- New generational garbage collector\n- Faster function calls\n- Faster table iteration using next(), pairs(), ipairs()\n- Faster string operations using SIMD instructions on x64 and ARM64\n- Optional dynamic execution of Lua code using an embedded Lua VM with seamless interoperability with native code\n- Better stability : several rare crashes caused by values being freed too early while native code was still using them are fixed\n- As a real-world test, clx can now compile the Teal compiler into a native standalone executable, and it produces the same output as standard Lua when compiling Teal scripts\n- clx is faster than Lua 5.5 in well known Lua benchmark scripts, and competitive with LuaJIT on many of them\nFeedback and bug reports are welcome !",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790711962,
+      "created_at": "2026-09-29T19:59:22+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49898958",
+      "title": "Show HN: Sarala – An open-source WYSIWYG Markdown editor",
+      "subreddit": "show-hn",
+      "author": "solancer",
+      "score": 6,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=49898958",
+      "url": "https://sarala.solancer.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790709704,
+      "created_at": "2026-09-29T19:21:44+00:00",
+      "comments_data": [
+        {
+          "id": "49902971",
+          "author": "blindflag",
+          "body": "Maybe it's me, but I'm having trouble figuring out how this is different (or better) than Obsidian, which is also free? Is it the open source aspect?",
+          "score": 0,
+          "time": 1790729322,
+          "parent": "49898958"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49898931",
+      "title": "Show HN: TurboGPT: train 22KiB transformer in 13s",
+      "subreddit": "show-hn",
+      "author": "lostmsu",
+      "score": 43,
+      "num_comments": 8,
+      "permalink": "https://news.ycombinator.com/item?id=49898931",
+      "url": "https://github.com/lostmsu/TurboGPT",
+      "selftext": "Inspired by minGPT for home experiments.\nRequires CUDA 13.4; build script is Windows only.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790709602,
+      "created_at": "2026-09-29T19:20:02+00:00",
+      "comments_data": [
+        {
+          "id": "49901882",
+          "author": "_345",
+          "body": "Trying to be a little less negative than the guy that got flagged, I too don't understand the motivation behind these projects. I've seen a hundred of them at this point- and each of them is probably worse and has less learning value than the one Andrej Karpathy made to teach people the building blocks involved in a GPT\nSo, why do people keep making these? Asking genuinely",
+          "score": 0,
+          "time": 1790722202,
+          "parent": "49898931"
+        },
+        {
+          "id": "49901244",
+          "author": "vjsrinivas",
+          "body": "Interesting trend of labeling models after how big they are on disk vs how many learnable parameters they have.",
+          "score": 0,
+          "time": 1790718905,
+          "parent": "49898931"
+        },
+        {
+          "id": "49899986",
+          "author": "jey",
+          "body": "At that scale it seems like you could just solve the KKT conditions directly. Exaggerating but only a little",
+          "score": 0,
+          "time": 1790713808,
+          "parent": "49898931"
+        },
+        {
+          "id": "49901641",
+          "author": "w4yai",
+          "body": "\"hn1g.txt\" => not available",
+          "score": 0,
+          "time": 1790720768,
+          "parent": "49898931"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49898778",
+      "title": "Show HN: Real-time Solar System with 526k asteroids and all tracked satellites",
+      "subreddit": "show-hn",
+      "author": "wanick",
+      "score": 100,
+      "num_comments": 27,
+      "permalink": "https://news.ycombinator.com/item?id=49898778",
+      "url": "https://space.bl2.net/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790708881,
+      "created_at": "2026-09-29T19:08:01+00:00",
+      "comments_data": [
+        {
+          "id": "49899187",
+          "author": "wanick",
+          "body": "Author here. It's a browser view of the Solar System at real scale, with its current state, plus the objects around Earth from the CelesTrak catalog.\nData: CelesTrak TLEs (SGP4), asteroids and comets from JPL SBDB, spacecraft positions from JPL Horizons. Updated daily.\nRendering is WebGL2, orbit propagation runs in web workers. The asteroid set (~30 MB) loads in the background.\nThe time slider runs forwards and backwards; satellites appear and disappear by launch date.",
+          "score": 0,
+          "time": 1790710695,
+          "parent": "49898778"
+        },
+        {
+          "id": "49902730",
+          "author": "climech",
+          "body": "Just spent a little time following Europa Clipper, it will fly by Earth very soon! If you zoom out from Earth, it's already pretty close. This will be its second gravity assist after Mars. Very cool site!",
+          "score": 0,
+          "time": 1790727645,
+          "parent": "49898778"
+        },
+        {
+          "id": "49902769",
+          "author": "tintor",
+          "body": "Celestia did all of this and more. 10+ years ago.\nhttps://celestiaproject.space/ (https://celestiaproject.space/)",
+          "score": 0,
+          "time": 1790727927,
+          "parent": "49898778"
+        },
+        {
+          "id": "49903021",
+          "author": "blindflag",
+          "body": "I love this; also runs surprisingly smoothly (at least in browser; didn't check mobile). Also beautiful and hypnotic in motion. What's the next step that you want to take to develop it (not that there needs to be one)?",
+          "score": 0,
+          "time": 1790729679,
+          "parent": "49898778"
+        },
+        {
+          "id": "49902174",
+          "author": "karim79",
+          "body": "Beautiful site. I love how tranquil the scene becomes when satellites and spacecraft is unchecked. Thanks for that SpaceX (and others).",
+          "score": 0,
+          "time": 1790723936,
+          "parent": "49898778"
+        },
+        {
+          "id": "49901311",
+          "author": "nugzbunny",
+          "body": "This is amazing. Well done. How long did it take to make?",
+          "score": 0,
+          "time": 1790719178,
+          "parent": "49898778"
+        },
+        {
+          "id": "49901847",
+          "author": "mcv",
+          "body": "There are way more asteroids near the Earth than I thought.",
+          "score": 0,
+          "time": 1790721899,
+          "parent": "49898778"
+        },
+        {
+          "id": "49901785",
+          "author": "nephihaha",
+          "body": "Quite incredible how much manmade crap there is up there, and much of it probably useless, and a potential problem for the satellites which are of actual use.",
+          "score": 0,
+          "time": 1790721575,
+          "parent": "49898778"
+        },
+        {
+          "id": "49900584",
+          "author": "einpoklum",
+          "body": "Wow, speedy and convenient! Well done!\nSome insights:\n* There is sooo much space debris! Dead sattelites and rocket bodies\n* Starlink put up a hell of lot of satellites, too.\n* There is a pretty dense sphere of items around the earth at geo-stationary orbit, a bit like a mantle; but most of all in a circle on that sphere.",
+          "score": 0,
+          "time": 1790716138,
+          "parent": "49898778"
+        },
+        {
+          "id": "49900341",
+          "author": "eutropia",
+          "body": "What's with those giant blobs of asteroids offset in jupiter's orbit by like 60deg on either side?",
+          "score": 0,
+          "time": 1790715196,
+          "parent": "49898778"
+        },
+        {
+          "id": "49901415",
+          "author": "1shooner",
+          "body": "Almost 1 in 3 tracked spacecraft is Starlink, is that accurate?",
+          "score": 0,
+          "time": 1790719701,
+          "parent": "49898778"
+        },
+        {
+          "id": "49899081",
+          "author": "java-man",
+          "body": "Super! Not easy to select or center on a planet though.",
+          "score": 0,
+          "time": 1790710196,
+          "parent": "49898778"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -27,15 +325,41 @@
       "title": "Show HN: A working 3D model of an Enigma machine",
       "subreddit": "show-hn",
       "author": "primitivesuave",
-      "score": 3,
-      "num_comments": 0,
+      "score": 32,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=49896757",
       "url": "https://enigma.design",
       "selftext": "I watched the excellent Veritasium video [1] on the Enigma machine, and watched the full animation by Jared Owen [2], but was still a bit confused on how the inner mechanics of an Enigma machine work. I used Astra to build out the inner components through a combination of reference images, writing out hundreds of extremely detailed prompts, and building my own inspection tools to ensure that every part is sized and positioned in a historically accurate way.\nIt's still a work in progress, but would love any feedback on the experience so far!\n1. https://www.youtube.com/watch?v=JsBZOcqZerk (https://www.youtube.com/watch?v=JsBZOcqZerk)\n2. https://www.youtube.com/watch?v=ybkkiGtJmkM (https://www.youtube.com/watch?v=ybkkiGtJmkM)",
       "is_self": false,
       "is_video": false,
       "time": 1790702156,
-      "created_at": "2026-09-29T17:15:56+00:00"
+      "created_at": "2026-09-29T17:15:56+00:00",
+      "comments_data": [
+        {
+          "id": "49902945",
+          "author": "ted_dunning",
+          "body": "It would be nice to be able to back up in the sequence. There were a few times where I realized I had not fully understood a previous step and would have like to be able to review some previous steps.\nOtherwise this is completely excellent!",
+          "score": 0,
+          "time": 1790729148,
+          "parent": "49896757"
+        },
+        {
+          "id": "49902863",
+          "author": "anonydsfsfs",
+          "body": "I love the presentation! Would you mind sharing the source code?",
+          "score": 0,
+          "time": 1790728547,
+          "parent": "49896757"
+        },
+        {
+          "id": "49902427",
+          "author": "psolidgold",
+          "body": "Seems pretty cool but unfortunately the poor performance on mobile (Chrome 154 and Android 17) makes it unusable for me. I'll have to check it out on desktop.",
+          "score": 0,
+          "time": 1790725607,
+          "parent": "49896757"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -44,7 +368,7 @@
       "title": "Show HN: Free browser games designed for 80-year-old eyes and hands",
       "subreddit": "show-hn",
       "author": "xmasdong",
-      "score": 3,
+      "score": 9,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49895326",
       "url": "https://freegamesforseniors.com/",
@@ -61,8 +385,8 @@
       "title": "Show HN: NSL – WSL for Linux",
       "subreddit": "show-hn",
       "author": "bketelsen",
-      "score": 52,
-      "num_comments": 40,
+      "score": 79,
+      "num_comments": 61,
       "permalink": "https://news.ycombinator.com/item?id=49894351",
       "url": "https://frostyard.github.io/nsl/",
       "selftext": "One of the things that Windows really got right is WSL2. I drive an atomic Linux distro for daily use, but wanted a way to develop with multiple different distros with that same WSL UX. NSL is my answer. It is a faithful reproduction of the developer experience, powered by a single VM that hosts one or more systemd-nspawn containers with your development instances. Host file edits and port sharing come along for the ride, just like WSL. Take a look and tell me what you think... It's yet another step in my long journey to keep my host installation free from all the changing and breaking dev dependencies that force a reinstall every few months.",
@@ -72,19 +396,11 @@
       "created_at": "2026-09-29T14:51:36+00:00",
       "comments_data": [
         {
-          "id": "49898327",
-          "author": "teeskay",
-          "body": "Just a recommendation that difference between docker container and nsl on homepage is worth it",
+          "id": "49903067",
+          "author": "Fnoord",
+          "body": "'National security letter' for Linux?\nI think I'll stick to Nix & Podman.",
           "score": 0,
-          "time": 1790707247,
-          "parent": "49894351"
-        },
-        {
-          "id": "49898241",
-          "author": "28304283409234",
-          "body": "Always looking for a successor to https://developer.hashicorp.com/vagrant (https://developer.hashicorp.com/vagrant). Is this it?",
-          "score": 0,
-          "time": 1790706947,
+          "time": 1790730103,
           "parent": "49894351"
         },
         {
@@ -96,14 +412,6 @@
           "parent": "49894351"
         },
         {
-          "id": "49898211",
-          "author": "bita_nidir",
-          "body": "I'll give this one a try, thanks for sharing!\nFWIW, I'm currently using systemd-nspawn via mkosi: https://github.com/systemd/mkosi (https://github.com/systemd/mkosi)\nIt makes an image and runs it in separate namespace. It can start at bash or init. It's very fast but there seem to be a problem creating an Ubuntu image on Debian and vice versa.",
-          "score": 0,
-          "time": 1790706808,
-          "parent": "49894351"
-        },
-        {
           "id": "49896511",
           "author": "0x457",
           "body": "I'm confused why VM + systemd-nspawn? From my understaing WSL 2 runs a single VM + something like systemd-nspawn per \"linux installation\", but it runs a VM because it needs linux kernel. Why not just do systemd-nspawn if you alread on linux?",
@@ -112,11 +420,11 @@
           "parent": "49894351"
         },
         {
-          "id": "49897371",
-          "author": "bee_rider",
-          "body": "The name WSL has always struck me as a bit back area (LSW would seem to make more sense, since it is a Linux subsystem for Windows). I guess they mean it as a Windows Subsystem for Linuxing.\nAnyway, should this be called LSL or WSLL? Or maybe LSWSL.",
+          "id": "49901953",
+          "author": "dathinab",
+          "body": "How does it differ from existing tools kinda do exactly same, like e.g. toolbx. (And to a slightly lesser degree flatpack, snap, etc.)?\nAnd what prevented adopting/supporting existing projects, instead of further tool ecosystem fragmentation? (kinda the same question, just differently phrased)",
           "score": 0,
-          "time": 1790703965,
+          "time": 1790722676,
           "parent": "49894351"
         },
         {
@@ -128,14 +436,6 @@
           "parent": "49894351"
         },
         {
-          "id": "49897495",
-          "author": "michaelastreiko",
-          "body": "Nice flip of the WSL idea the other way — simple interop like this keeps a one-person stack from turning into a VM zoo.",
-          "score": 0,
-          "time": 1790704334,
-          "parent": "49894351"
-        },
-        {
           "id": "49896006",
           "author": "graemep",
           "body": "This is most useful to people who run Linux as their daily driver so rather than saying its like WSL can you explain what it offers that existing Linux containers do not?\nIts also sounds different from WSL which I thought is a VM rather than a container.\n> It's yet another step in my long journey to keep my host installation free from all the changing and breaking dev dependencies that force a reinstall every few months.\nSomething that also require a bit of explanation. What do you do that makes this such a common problem.",
@@ -144,19 +444,43 @@
           "parent": "49894351"
         },
         {
-          "id": "49898237",
-          "author": "codr1",
-          "body": "This is very cool. GG.",
-          "score": 0,
-          "time": 1790706937,
-          "parent": "49894351"
-        },
-        {
           "id": "49896021",
           "author": "rpcope1",
           "body": "So you've just basically reimplemented LXC?",
           "score": 0,
           "time": 1790699301,
+          "parent": "49894351"
+        },
+        {
+          "id": "49898211",
+          "author": "bita_nidir",
+          "body": "I'll give this one a try, thanks for sharing!\nFWIW, I'm currently using systemd-nspawn via mkosi: https://github.com/systemd/mkosi (https://github.com/systemd/mkosi)\nIt makes an image and runs it in separate namespace. It can start at bash or init. It's very fast but there seem to be a problem creating an Ubuntu image on Debian and vice versa.",
+          "score": 0,
+          "time": 1790706808,
+          "parent": "49894351"
+        },
+        {
+          "id": "49900759",
+          "author": "naman_307",
+          "body": "Is the VM layer mostly for host hygiene, or are you also treating the instances as a real security boundary when something untrusted (deps or agent-written code) runs inside?",
+          "score": 0,
+          "time": 1790716774,
+          "parent": "49894351"
+        },
+        {
+          "id": "49897495",
+          "author": "michaelastreiko",
+          "body": "Nice flip of the WSL idea the other way — simple interop like this keeps a one-person stack from turning into a VM zoo.",
+          "score": 0,
+          "time": 1790704334,
+          "parent": "49894351"
+        },
+        {
+          "id": "49898327",
+          "author": "teeskay",
+          "body": "Just a recommendation that difference between docker container and nsl on homepage is worth it",
+          "score": 0,
+          "time": 1790707247,
           "parent": "49894351"
         },
         {
@@ -176,7 +500,7 @@
       "title": "Show HN: Sezwhere – Ask any document \"where does it say that?\" (built on Jev)",
       "subreddit": "show-hn",
       "author": "irs",
-      "score": 3,
+      "score": 15,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49894301",
       "url": "https://sezwhere.com/",
@@ -184,7 +508,17 @@
       "is_self": false,
       "is_video": false,
       "time": 1790693334,
-      "created_at": "2026-09-29T14:48:54+00:00"
+      "created_at": "2026-09-29T14:48:54+00:00",
+      "comments_data": [
+        {
+          "id": "49894802",
+          "author": "bsonmez19",
+          "body": "I tested it on a short piece of my own writing. It’s helpful to see the exact lines highlighted instead of a summary.",
+          "score": 0,
+          "time": 1790694998,
+          "parent": "49894301"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -193,7 +527,7 @@
       "title": "Show HN: Ctxfw – AST context firewall that cuts agent prompt tokens by 67%",
       "subreddit": "show-hn",
       "author": "mikemo88",
-      "score": 4,
+      "score": 5,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49893845",
       "url": "https://github.com/heuristicolab/ctxfw",
@@ -210,7 +544,7 @@
       "title": "Show HN: We built a way for web apps to message users' phones without SMS",
       "subreddit": "show-hn",
       "author": "bubbamack",
-      "score": 4,
+      "score": 7,
       "num_comments": 9,
       "permalink": "https://news.ycombinator.com/item?id=49893702",
       "url": "https://thenotifier.app/developers/",
@@ -261,7 +595,7 @@
       "title": "Show HN: Misanthropic – an AI that's honest about how it feels about you",
       "subreddit": "show-hn",
       "author": "yaskyj",
-      "score": 4,
+      "score": 5,
       "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=49893427",
       "url": "https://misanthropic.chat",
@@ -296,7 +630,7 @@
       "title": "Show HN: NetWasm – Independent .NET Compiler/Runtime (82.5 KB Hello World in C#)",
       "subreddit": "show-hn",
       "author": "zionsati",
-      "score": 4,
+      "score": 5,
       "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=49892613",
       "url": "https://playground.netwasm.com/",
@@ -323,7 +657,7 @@
       "title": "Show HN: CodeDiff – Fast (<100ms), robust (99.95%) syntax-aware code diff",
       "subreddit": "show-hn",
       "author": "FabCH",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49891989",
       "url": "https://github.com/ivankovic/codediff",
@@ -340,7 +674,7 @@
       "title": "Show HN: Bough, Visualize your vibe coded project: progress, time, cost and more",
       "subreddit": "show-hn",
       "author": "nikhilkxmar",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49891781",
       "url": "https://github.com/nickelsec/bough",
@@ -357,8 +691,8 @@
       "title": "Show HN: Jevstiller – Distill Jev into a local model, with a disagreement bound",
       "subreddit": "show-hn",
       "author": "tgluck",
-      "score": 45,
-      "num_comments": 6,
+      "score": 61,
+      "num_comments": 14,
       "permalink": "https://news.ycombinator.com/item?id=49891769",
       "url": "https://jevstiller.pages.dev/posts/the-guarantee/",
       "selftext": "",
@@ -367,6 +701,14 @@
       "time": 1790683507,
       "created_at": "2026-09-29T12:05:07+00:00",
       "comments_data": [
+        {
+          "id": "49901154",
+          "author": "ricardobeat",
+          "body": "This will only work for simple text classification tasks, which is the least interesting possible use of Jev.",
+          "score": 0,
+          "time": 1790718543,
+          "parent": "49891769"
+        },
         {
           "id": "49894868",
           "author": "gingersnap",
