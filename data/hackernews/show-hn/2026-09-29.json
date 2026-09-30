@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-09-30T12:50:28.736222+00:00",
+  "last_fetched": "2026-09-30T18:40:11.790584+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,8 +10,8 @@
       "title": "Show HN: Ledge.sh – Runnable Markdown Notes",
       "subreddit": "show-hn",
       "author": "dancablam",
-      "score": 16,
-      "num_comments": 4,
+      "score": 33,
+      "num_comments": 30,
       "permalink": "https://news.ycombinator.com/item?id=49902382",
       "url": "https://ledge.sh",
       "selftext": "Hi HN,\nLedge is a Markdown notebook that runs shell commands, code, SQL, etc from inside your own notes.\nI built Ledge because I spend much of my day copy/pasting commands from my notes into the terminal. I was inspired by how much cmux helped me organize my terminals - but there was still a split brain between my notes and frequently run commands. I've been daily-driving it for the past few weeks and use it for deploys, API calls, smoke tests, etc.\nLedge runs your real shell just like a terminal app and can be hosted locally or remotely over SSH using ledge-server. I've been building it since July and have recently added support for all the major platforms: Mac (Silicon), Windows (WSL required), Linux, iOS, Android. Mobile devices require SSH access to a ledge-server and Android is still in beta and looking for beta testers (see link on website)!\nIt's built on Bun and Electrobun and is free and open-source. Feel free to review the code and contribute at https://github.com/ledgesh/ledge (https://github.com/ledgesh/ledge)\nFeedback is very much welcome. Any must-have features that are missing?",
@@ -21,6 +21,70 @@
       "created_at": "2026-09-29T23:41:34+00:00",
       "comments_data": [
         {
+          "id": "49912570",
+          "author": "drayfield",
+          "body": "I went to look at Atuin Desktop to see what the crossover was with this product, and it's fascinating to see that the repo was archived the day this was posted here!\nhttps://github.com/atuinsh/desktop (https://github.com/atuinsh/desktop)",
+          "score": 0,
+          "time": 1790792999,
+          "parent": "49902382"
+        },
+        {
+          "id": "49912495",
+          "author": "edude03",
+          "body": "I feel like there has been a few takes on this (atuin desktop comes to mind[0] but apparently it's not a going concern anymore?) why hasn't it caught on?\n0: https://github.com/atuinsh/desktop (https://github.com/atuinsh/desktop)",
+          "score": 0,
+          "time": 1790792574,
+          "parent": "49902382"
+        },
+        {
+          "id": "49911906",
+          "author": "TheGoodBarn",
+          "body": "This is awesome I will definitely play around with it. Fits the niche gap as a standalone app vs something like [Observable Framework](https://observablehq.github.io/framework/ (https://observablehq.github.io/framework/)) for data analytical type things.\nI wish Notion could just integrate these things together and make it work, or someone build an Obsidian plugin. More often than not it would be so convenient to do something like this.",
+          "score": 0,
+          "time": 1790789434,
+          "parent": "49902382"
+        },
+        {
+          "id": "49912435",
+          "author": "dannyw",
+          "body": "Love this concept, simple but brilliant idea with lots of utility. I think this can fit in a decent niche. I’ll give it a try!",
+          "score": 0,
+          "time": 1790792208,
+          "parent": "49902382"
+        },
+        {
+          "id": "49911985",
+          "author": "theCodeStig",
+          "body": "As an Emacs user for over a decade I think this is brilliant, it solves my biggest gripes with org-babel which prevent me from using it in a team setting.\nLedge is a lot like org-babel from Emacs, but for muggles: a familiar UI, and common format go a long way.",
+          "score": 0,
+          "time": 1790789792,
+          "parent": "49902382"
+        },
+        {
+          "id": "49912149",
+          "author": "michaelastreiko",
+          "body": "Runnable notes in plain Markdown is a nice one-person stack move—fewer copy/paste hops between the doc and the shell when shipping alone.",
+          "score": 0,
+          "time": 1790790668,
+          "parent": "49902382"
+        },
+        {
+          "id": "49912189",
+          "author": "classictraffic",
+          "body": "This is really cool, and I love the mobile support too! I’ll definitely be giving this a spin",
+          "score": 0,
+          "time": 1790790862,
+          "parent": "49902382"
+        },
+        {
+          "id": "49911945",
+          "author": "tetraodonpuffer",
+          "body": "cool idea, do you have any plans to integrate command generation with the shell completion / aliases / functions? Say I have tons of muscle memory on using ctrl-r fzf to get things from history, or on pressing tab to autocomplete pod names etc. so I would never write out a full kubectl command to execute by hand",
+          "score": 0,
+          "time": 1790789575,
+          "parent": "49902382"
+        },
+        {
           "id": "49906143",
           "author": "baranguneysel",
           "body": "Very cool! I launched something similar as well. My idea was to create a working document in which people could develop their own tools and agents. Conversations with coding agents are treated as editable, executable documents. Both the person and the agent can write on the same page. Rather than correcting a mistake in a follow-up, you can rewrite it, delete a detour, or edit and re-run an earlier prompt. The file is always readable Markdown.\nCheck out: https://piary.dev/ (https://piary.dev/)\nFeel free to get in touch if you are open to an exchange, you can find my contact details in the write-up.",
@@ -29,11 +93,27 @@
           "parent": "49902382"
         },
         {
-          "id": "49905427",
-          "author": "wakaru44",
-          "body": "Years ago I just used Jupyter notebooks with a bash (or many others) backend to have a similar thing.",
+          "id": "49911951",
+          "author": "melito",
+          "body": "Looks cool. I vibe coded this a while back to share some org docs on the web https://orgmode.dev/ (https://orgmode.dev/) - its currently a mess, but it does mostly work.",
           "score": 0,
-          "time": 1790751905,
+          "time": 1790789603,
+          "parent": "49902382"
+        },
+        {
+          "id": "49912304",
+          "author": "KetoManx64",
+          "body": "Woooow! I love the idea of having documentation that I can just run directly as I'm reading through it, that also has a nice GUI to it. \nThere's a similar product called Atuin Desktop (https://github.com/atuinsh/desktop (https://github.com/atuinsh/desktop)) that uses Tauri for the GUI and the performance is just abysmal (makes my pc fans spin up like crazy when I launch it and navigate around), and have been on a lookout for something that handles the GUI aspect better. Definitely going to try this out.",
+          "score": 0,
+          "time": 1790791502,
+          "parent": "49902382"
+        },
+        {
+          "id": "49909139",
+          "author": "rvdca",
+          "body": "How does this compete to something like Org-mode?",
+          "score": 0,
+          "time": 1790776963,
           "parent": "49902382"
         }
       ]
@@ -133,7 +213,7 @@
       "title": "Show HN: Sarala – An open-source WYSIWYG Markdown editor",
       "subreddit": "show-hn",
       "author": "solancer",
-      "score": 18,
+      "score": 19,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49898958",
       "url": "https://sarala.solancer.com/",
@@ -160,7 +240,7 @@
       "title": "Show HN: TurboGPT: train 22KiB transformer in 13s",
       "subreddit": "show-hn",
       "author": "lostmsu",
-      "score": 52,
+      "score": 53,
       "num_comments": 10,
       "permalink": "https://news.ycombinator.com/item?id=49898931",
       "url": "https://github.com/lostmsu/TurboGPT",
@@ -211,8 +291,8 @@
       "title": "Show HN: Real-time Solar System with 526k asteroids and all tracked satellites",
       "subreddit": "show-hn",
       "author": "wanick",
-      "score": 285,
-      "num_comments": 70,
+      "score": 359,
+      "num_comments": 95,
       "permalink": "https://news.ycombinator.com/item?id=49898778",
       "url": "https://space.bl2.net/",
       "selftext": "",
@@ -230,11 +310,11 @@
           "parent": "49898778"
         },
         {
-          "id": "49907828",
-          "author": "totetsu",
-          "body": "How come the James Webb telescopes orbit looks like a taco?",
+          "id": "49905285",
+          "author": "FlowingRiver",
+          "body": "Brilliant project and very well done.\nThat aside, it is just astounding that even a moderate laptop just plows through this as thought it is nothing.\nI remember doing orbital calculations on a 486DX with about 30 objects at just barely 30fps thanks to the FPU. That was pretty good for me. Without the FPU you would get maybe 2FPS. Now, you can just throw a half million around at 60fps+ in a web browser. Crazy!",
           "score": 0,
-          "time": 1790770766,
+          "time": 1790750854,
           "parent": "49898778"
         },
         {
@@ -246,19 +326,35 @@
           "parent": "49898778"
         },
         {
-          "id": "49906668",
-          "author": "dunlin",
-          "body": "Always wanted to see the asteroid belt's true density visualized; this really puts it into perspective. Impressive work keeping everything performant.",
+          "id": "49909633",
+          "author": "smusamashah",
+          "body": "I had no idea that we there are SO many aesteroids that we keeping track of. How are we even doing that? How do we recognize one aesteroid from another?",
           "score": 0,
-          "time": 1790762338,
+          "time": 1790779042,
           "parent": "49898778"
         },
         {
-          "id": "49905285",
-          "author": "FlowingRiver",
-          "body": "Brilliant project and very well done.\nThat aside, it is just astounding that even a moderate laptop just plows through this as thought it is nothing.\nI remember doing orbital calculations on a 486DX with about 30 objects at just barely 30fps thanks to the FPU. That was pretty good for me. Without the FPU you would get maybe 2FPS. Now, you can just throw a half million around at 60fps+ in a web browser. Crazy!",
+          "id": "49909238",
+          "author": "ev0lv",
+          "body": "As of September 29, 2026, there are 16,613 active satellites in Earth orbit, 11,128 of them Starlink.\nA fun fact: Kessler syndrome is a runaway chain reaction in orbit. Collisions create debris, and that debris causes more collisions, and when something breaks into pieces, its mass stays the same but its total surface area goes up, and reflected sunlight scales with area.\nI submit to you that our kids' kids won't be able to see the milky way galaxy because of this litter.",
           "score": 0,
-          "time": 1790750854,
+          "time": 1790777347,
+          "parent": "49898778"
+        },
+        {
+          "id": "49908599",
+          "author": "shagie",
+          "body": "As a \"this is also in current events\" ( Successful Earth flyby improves Juice’s course to Jupiter - https://www.esa.int/Science_Exploration/Space_Science/Juice/... (https://www.esa.int/Science_Exploration/Space_Science/Juice/Successful_Earth_flyby_improves_Juice_s_course_to_Jupiter) )\nDoing a search for JUICE as a spacecraft pulls that one up and shows its impressive pre-Jupiter orbital mechanics.",
+          "score": 0,
+          "time": 1790774580,
+          "parent": "49898778"
+        },
+        {
+          "id": "49910831",
+          "author": "wanick",
+          "body": "Added an endless ambient mode with generated music: flybys, eclipses, missions, time-lapses. The ∞ button at the top, F for full screen.",
+          "score": 0,
+          "time": 1790784868,
           "parent": "49898778"
         },
         {
@@ -278,43 +374,27 @@
           "parent": "49898778"
         },
         {
-          "id": "49906998",
-          "author": "antonyragleap",
-          "body": "This is beautiful — handling 526k asteroids in real-time is insane. Is this Canvas or WebGL under the hood?",
+          "id": "49909702",
+          "author": "vibe42",
+          "body": "This is awesome! Thank you for building this.\nI could find 3I/ATLAS using the search box for \"ATLAS\".\nWould it be possible to also have the search for \"interstellar\" list objects classified as interstellar object?",
           "score": 0,
-          "time": 1790764899,
+          "time": 1790779488,
           "parent": "49898778"
         },
         {
-          "id": "49906538",
-          "author": "GnosiWorks",
-          "body": "526k objects and it still feels smooth. are you culling by distance or doing something smarter on the gpu side?",
+          "id": "49909119",
+          "author": "boringg",
+          "body": "Very cool.\nI'm curious why is there a ring around earth - is that kind of a default position that a bunch of them automatically get given if there isn't more specificity in the data?",
           "score": 0,
-          "time": 1790761284,
+          "time": 1790776853,
           "parent": "49898778"
         },
         {
-          "id": "49905621",
-          "author": "ratox",
-          "body": "It would be nice to have a fun feature where we could vote for the most coolest asteroid. In a bracket way so we can see actual fandom battles.\nSilly? Definitely, but who said the internet needs to be only ad-feeds-related stuff.\nAnyway, nice work mate!",
+          "id": "49906668",
+          "author": "dunlin",
+          "body": "Always wanted to see the asteroid belt's true density visualized; this really puts it into perspective. Impressive work keeping everything performant.",
           "score": 0,
-          "time": 1790753480,
-          "parent": "49898778"
-        },
-        {
-          "id": "49905551",
-          "author": "mentalgear",
-          "body": "A good showcase how easy it is now for LLMs to build these visualizations when the data is structured and available publicly - with the structured and publicly available parts being the main gatekeepers.",
-          "score": 0,
-          "time": 1790752919,
-          "parent": "49898778"
-        },
-        {
-          "id": "49905249",
-          "author": "ComodoHacker",
-          "body": "Thanks for the great work!\nTracking ISS orbit combined with live feed [0] is amazing.\n0. https://www.youtube.com/watch?v=fO9e9jnhYK8 (https://www.youtube.com/watch?v=fO9e9jnhYK8)",
-          "score": 0,
-          "time": 1790750532,
+          "time": 1790762338,
           "parent": "49898778"
         }
       ]
@@ -343,8 +423,8 @@
       "title": "Show HN: A working 3D model of an Enigma machine",
       "subreddit": "show-hn",
       "author": "primitivesuave",
-      "score": 76,
-      "num_comments": 24,
+      "score": 81,
+      "num_comments": 31,
       "permalink": "https://news.ycombinator.com/item?id=49896757",
       "url": "https://enigma.design",
       "selftext": "I watched the excellent Veritasium video [1] on the Enigma machine, and watched the full animation by Jared Owen [2], but was still a bit confused on how the inner mechanics of an Enigma machine work. I used Astra to build out the inner components through a combination of reference images, writing out hundreds of extremely detailed prompts, and building my own inspection tools to ensure that every part is sized and positioned in a historically accurate way.\nIt's still a work in progress, but would love any feedback on the experience so far!\n1. https://www.youtube.com/watch?v=JsBZOcqZerk (https://www.youtube.com/watch?v=JsBZOcqZerk)\n2. https://www.youtube.com/watch?v=ybkkiGtJmkM (https://www.youtube.com/watch?v=ybkkiGtJmkM)",
@@ -353,6 +433,30 @@
       "time": 1790702156,
       "created_at": "2026-09-29T17:15:56+00:00",
       "comments_data": [
+        {
+          "id": "49911800",
+          "author": "dmcrespo",
+          "body": "Really cool project! The only thing I noticed is that the performance feels a bit slow at times, and it could use a little more fluidity, especially when interacting with the model.\nOther than that, everything feels really well done. Building something like this in JavaScript/HTML, especially with a 3D model this detailed, must be quite challenging from an optimization standpoint.\nGreat work!",
+          "score": 0,
+          "time": 1790788960,
+          "parent": "49896757"
+        },
+        {
+          "id": "49910304",
+          "author": "heurekamala",
+          "body": "Cool work. There are some of this educational gems here. Is there a site which combines these treasures (like in a virtual museum?)",
+          "score": 0,
+          "time": 1790782304,
+          "parent": "49896757"
+        },
+        {
+          "id": "49908469",
+          "author": "virtualcolossus",
+          "body": "Good job, I like the many cutaways to show exactly what's going on inside.\nYou may be interested in my simulation of Enigma (https://enigma.virtualcolossus.co.uk (https://enigma.virtualcolossus.co.uk)) which I wrote back in 2021 (pre-AI!). One of several I've done.\nTry it on an Android phone to look around it in VR or on PC/Mac for easier use.\nYou can even send messages to other users over the internet using the radio & Morse key.",
+          "score": 0,
+          "time": 1790773946,
+          "parent": "49896757"
+        },
         {
           "id": "49905779",
           "author": "utopiah",
@@ -367,6 +471,14 @@
           "body": "I love the presentation! Would you mind sharing the source code?",
           "score": 0,
           "time": 1790728547,
+          "parent": "49896757"
+        },
+        {
+          "id": "49904953",
+          "author": "DylanMerigaud",
+          "body": "Inspection tools ensure historical accuracy; great effort!",
+          "score": 0,
+          "time": 1790748050,
           "parent": "49896757"
         },
         {
@@ -391,14 +503,6 @@
           "body": "The coolest and pre-slop simulator is here:\nhttps://www.ciphermachinesandcryptology.com/en/enigmasim.htm (https://www.ciphermachinesandcryptology.com/en/enigmasim.htm)\nA pity that our governments allow such cool tech to be stolen.",
           "score": 0,
           "time": 1790768870,
-          "parent": "49896757"
-        },
-        {
-          "id": "49904953",
-          "author": "DylanMerigaud",
-          "body": "Inspection tools ensure historical accuracy; great effort!",
-          "score": 0,
-          "time": 1790748050,
           "parent": "49896757"
         },
         {
@@ -443,8 +547,8 @@
       "title": "Show HN: NSL – WSL for Linux",
       "subreddit": "show-hn",
       "author": "bketelsen",
-      "score": 143,
-      "num_comments": 86,
+      "score": 153,
+      "num_comments": 97,
       "permalink": "https://news.ycombinator.com/item?id=49894351",
       "url": "https://frostyard.github.io/nsl/",
       "selftext": "One of the things that Windows really got right is WSL2. I drive an atomic Linux distro for daily use, but wanted a way to develop with multiple different distros with that same WSL UX. NSL is my answer. It is a faithful reproduction of the developer experience, powered by a single VM that hosts one or more systemd-nspawn containers with your development instances. Host file edits and port sharing come along for the ride, just like WSL. Take a look and tell me what you think... It's yet another step in my long journey to keep my host installation free from all the changing and breaking dev dependencies that force a reinstall every few months.",
@@ -454,11 +558,19 @@
       "created_at": "2026-09-29T14:51:36+00:00",
       "comments_data": [
         {
-          "id": "49907671",
-          "author": "lproven",
-          "body": "I have never heard of \"Snow Linux\" before. The homepage is minimal:\nhttps://snowlinux.org/ (https://snowlinux.org/)\nI submitted the Github page as a new story:\nhttps://github.com/frostyard/snowdesktop (https://github.com/frostyard/snowdesktop)\nhttps://news.ycombinator.com/item?id=49907568 (https://news.ycombinator.com/item?id=49907568)",
+          "id": "49912468",
+          "author": "vaporup",
+          "body": "How does this compare to \"sdme\"?\n- https://sdme.io (https://sdme.io)\n- https://www.youtube.com/watch?v=1eVfgzd_xyQ (https://www.youtube.com/watch?v=1eVfgzd_xyQ)",
           "score": 0,
-          "time": 1790769753,
+          "time": 1790792430,
+          "parent": "49894351"
+        },
+        {
+          "id": "49910437",
+          "author": "just60sec",
+          "body": "Yeah, I can see why you'd want this. Being able to cobble it together with other tools is one thing. Having it ready to go without a bunch of setup is still a win.\nGot a quick demo? Just opening an editor, running a dev server, and showing how you access the files would help me get a feel for it.",
+          "score": 0,
+          "time": 1790782891,
           "parent": "49894351"
         },
         {
@@ -470,11 +582,11 @@
           "parent": "49894351"
         },
         {
-          "id": "49901953",
-          "author": "dathinab",
-          "body": "How does it differ from existing tools kinda do exactly same, like e.g. toolbx. (And to a slightly lesser degree flatpack, snap, etc.)?\nAnd what prevented adopting/supporting existing projects, instead of further tool ecosystem fragmentation? (kinda the same question, just differently phrased)",
+          "id": "49907671",
+          "author": "lproven",
+          "body": "I have never heard of \"Snow Linux\" before. The homepage is minimal:\nhttps://snowlinux.org/ (https://snowlinux.org/)\nI submitted the Github page as a new story:\nhttps://github.com/frostyard/snowdesktop (https://github.com/frostyard/snowdesktop)\nhttps://news.ycombinator.com/item?id=49907568 (https://news.ycombinator.com/item?id=49907568)",
           "score": 0,
-          "time": 1790722676,
+          "time": 1790769753,
           "parent": "49894351"
         },
         {
@@ -483,6 +595,14 @@
           "body": "I'm confused why VM + systemd-nspawn? From my understaing WSL 2 runs a single VM + something like systemd-nspawn per \"linux installation\", but it runs a VM because it needs linux kernel. Why not just do systemd-nspawn if you alread on linux?",
           "score": 0,
           "time": 1790701331,
+          "parent": "49894351"
+        },
+        {
+          "id": "49901953",
+          "author": "dathinab",
+          "body": "How does it differ from existing tools kinda do exactly same, like e.g. toolbx. (And to a slightly lesser degree flatpack, snap, etc.)?\nAnd what prevented adopting/supporting existing projects, instead of further tool ecosystem fragmentation? (kinda the same question, just differently phrased)",
+          "score": 0,
+          "time": 1790722676,
           "parent": "49894351"
         },
         {
@@ -510,6 +630,14 @@
           "parent": "49894351"
         },
         {
+          "id": "49898211",
+          "author": "bita_nidir",
+          "body": "I'll give this one a try, thanks for sharing!\nFWIW, I'm currently using systemd-nspawn via mkosi: https://github.com/systemd/mkosi (https://github.com/systemd/mkosi)\nIt makes an image and runs it in separate namespace. It can start at bash or init. It's very fast but there seem to be a problem creating an Ubuntu image on Debian and vice versa.",
+          "score": 0,
+          "time": 1790706808,
+          "parent": "49894351"
+        },
+        {
           "id": "49904242",
           "author": "isityettime",
           "body": "What differentiates this from distrobox?",
@@ -518,35 +646,11 @@
           "parent": "49894351"
         },
         {
-          "id": "49905003",
-          "author": "seabrookmx",
-          "body": "I use incus/LXD for this, though it does require a bit of faffing around with the networking.\nThe benefit is that its super low overhead (no VM).",
-          "score": 0,
-          "time": 1790748400,
-          "parent": "49894351"
-        },
-        {
           "id": "49903210",
           "author": "aj2048",
           "body": "I've wanted a little more isolation than what distrobox can give me for a while now, and I did enjoy WSL when I used Windows. I've also never heard of Frostyard before, and the other repos look pretty interesting as well. Thanks for sharing!",
           "score": 0,
           "time": 1790731248,
-          "parent": "49894351"
-        },
-        {
-          "id": "49904738",
-          "author": "ocean2",
-          "body": "Have you measured the performance penalty when compiling code in one of the containers against compiling on the host system itself?",
-          "score": 0,
-          "time": 1790746337,
-          "parent": "49894351"
-        },
-        {
-          "id": "49898211",
-          "author": "bita_nidir",
-          "body": "I'll give this one a try, thanks for sharing!\nFWIW, I'm currently using systemd-nspawn via mkosi: https://github.com/systemd/mkosi (https://github.com/systemd/mkosi)\nIt makes an image and runs it in separate namespace. It can start at bash or init. It's very fast but there seem to be a problem creating an Ubuntu image on Debian and vice versa.",
-          "score": 0,
-          "time": 1790706808,
           "parent": "49894351"
         }
       ]
@@ -559,7 +663,7 @@
       "subreddit": "show-hn",
       "author": "irs",
       "score": 19,
-      "num_comments": 7,
+      "num_comments": 13,
       "permalink": "https://news.ycombinator.com/item?id=49894301",
       "url": "https://sezwhere.com/",
       "selftext": "",
@@ -577,19 +681,19 @@
           "parent": "49894301"
         },
         {
-          "id": "49907592",
-          "author": "sciencesama",
-          "body": "show us the code",
-          "score": 0,
-          "time": 1790769230,
-          "parent": "49894301"
-        },
-        {
           "id": "49903405",
           "author": "articulatepang",
           "body": "“How it works” link is broken on Safari on iOS. I am quite curious how it works, exactly.",
           "score": 0,
           "time": 1790733029,
+          "parent": "49894301"
+        },
+        {
+          "id": "49894802",
+          "author": "bsonmez19",
+          "body": "I tested it on a short piece of my own writing. It’s helpful to see the exact lines highlighted instead of a summary.",
+          "score": 0,
+          "time": 1790694998,
           "parent": "49894301"
         },
         {
@@ -601,11 +705,19 @@
           "parent": "49894301"
         },
         {
-          "id": "49894802",
-          "author": "bsonmez19",
-          "body": "I tested it on a short piece of my own writing. It’s helpful to see the exact lines highlighted instead of a summary.",
+          "id": "49909786",
+          "author": "vinayamsnl",
+          "body": "does it save uploaded documents?",
           "score": 0,
-          "time": 1790694998,
+          "time": 1790779829,
+          "parent": "49894301"
+        },
+        {
+          "id": "49907592",
+          "author": "sciencesama",
+          "body": "show us the code",
+          "score": 0,
+          "time": 1790769230,
           "parent": "49894301"
         },
         {
@@ -797,7 +909,7 @@
       "title": "Show HN: Jevstiller – Distill Jev into a local model, with a disagreement bound",
       "subreddit": "show-hn",
       "author": "tgluck",
-      "score": 63,
+      "score": 64,
       "num_comments": 15,
       "permalink": "https://news.ycombinator.com/item?id=49891769",
       "url": "https://jevstiller.pages.dev/posts/the-guarantee/",
@@ -840,8 +952,8 @@
       "title": "Show HN: JBR-001 – An open-source 3D printable desktop robot",
       "subreddit": "show-hn",
       "author": "gvuksic",
-      "score": 38,
-      "num_comments": 7,
+      "score": 108,
+      "num_comments": 24,
       "permalink": "https://news.ycombinator.com/item?id=49890707",
       "url": "https://projecthub.arduino.cc/syntheticaidata/jbr-001-a-desktop-companion-robot-powered-by-arduino-uno-q-b11c96",
       "selftext": "We built a desktop companion robot that is powered by Arduino UNO Q. Project is open source: source code, 3D printable files and assembly instructions are available at Arduino Project Hub.\nRobot is equipped with camera, distance sensor, buzzer, moves head and arms with 3 servo motors and has an animated display. It can recognise objects and respond to it. We build it with idea this should be fun project people can 3D print and build at home themself.",
@@ -851,11 +963,43 @@
       "created_at": "2026-09-29T10:05:56+00:00",
       "comments_data": [
         {
+          "id": "49909166",
+          "author": "phil42",
+          "body": "This reminds me of the Otto DIY (https://www.ottodiy.com/ (https://www.ottodiy.com/)), which also used to be a free Arduino (nano) based, 3D-printable robot until it was bought by HP. Just like with the JBR-001 it seems that the main goal has shifted towards making it a commercial product, which is a shame. Especially the low price point made it so attractive for beginners and students alike.\nDoes anyone know of similar, really open source and free projects like this?",
+          "score": 0,
+          "time": 1790777052,
+          "parent": "49890707"
+        },
+        {
           "id": "49891318",
           "author": "salamachinas",
           "body": "Thanks for sharing! Love that it's open source with the 3D files and instructions included. My son and I are going to build this together. Great project.",
           "score": 0,
           "time": 1790680645,
+          "parent": "49890707"
+        },
+        {
+          "id": "49910827",
+          "author": "krisoft",
+          "body": "I would never design a robot which looks like it can walk, but actually can’t walk. That feels fundamentally dishonest to me. If nothing else it will let down plenty of people when they realise that the cool robot has legs only for show.",
+          "score": 0,
+          "time": 1790784850,
+          "parent": "49890707"
+        },
+        {
+          "id": "49907355",
+          "author": "mrheosuper",
+          "body": "I’m sad that it uses the Uno Q. I really dislike the uno Q, since it uses QC SoC, which means no cheap Chinese clone, which is not very accessible to everyone.",
+          "score": 0,
+          "time": 1790767583,
+          "parent": "49890707"
+        },
+        {
+          "id": "49910944",
+          "author": "altruios",
+          "body": "We are like... 5 years away from real star wars droids at this pace. keep up the good work!\nWhat was the biggest design challenge you faced?",
+          "score": 0,
+          "time": 1790785382,
           "parent": "49890707"
         },
         {
@@ -867,11 +1011,19 @@
           "parent": "49890707"
         },
         {
-          "id": "49907355",
-          "author": "mrheosuper",
-          "body": "I’m sad that it uses the Uno Q. I really dislike the uno Q, since it uses QC SoC, which means no cheap Chinese clone, which is not very accessible to everyone.",
+          "id": "49909623",
+          "author": "shevy-java",
+          "body": "Finally I can have me my little worker slave. \\o/",
           "score": 0,
-          "time": 1790767583,
+          "time": 1790779017,
+          "parent": "49890707"
+        },
+        {
+          "id": "49909669",
+          "author": "numpad0",
+          "body": "...is this exterior design AI generated?",
+          "score": 0,
+          "time": 1790779275,
           "parent": "49890707"
         }
       ]
@@ -1051,6 +1203,121 @@
       "is_video": false,
       "time": 1790646417,
       "created_at": "2026-09-29T01:46:57+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49886535",
+      "title": "Show HN: Dental Scope – Interactive 3D dental anatomy",
+      "subreddit": "show-hn",
+      "author": "Zeruxe",
+      "score": 84,
+      "num_comments": 50,
+      "permalink": "https://news.ycombinator.com/item?id=49886535",
+      "url": "https://dental-scope.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790642839,
+      "created_at": "2026-09-29T00:47:19+00:00",
+      "comments_data": [
+        {
+          "id": "49886536",
+          "author": "Zeruxe",
+          "body": "Built Dental Scope, a free open source 3D learning tool for exploring teeth, jaws, nerves, vessels and dental structures.\nLive: https://dental-scope.com/ (https://dental-scope.com/)\nGitHub: https://github.com/Yoosseph/dental-scope (https://github.com/Yoosseph/dental-scope)\nFeedback and contributions are welcome",
+          "score": 0,
+          "time": 1790642839,
+          "parent": "49886535"
+        },
+        {
+          "id": "49912562",
+          "author": "thefyuriy",
+          "body": "@Zeruxe: I don't know how to DM people on this platform, but I'd love to chat with you. I'm an ICU doc and have spent the past month vibe-coding a bunch of physiologic and anatomic simulators (med-sim.com). If you want to collaborate, please use the \"contact me\" form at med-sim.com to reach out. I don't want to share my email on this message board b/c I'm not smart enough to know whether that is safe or not.",
+          "score": 0,
+          "time": 1790792961,
+          "parent": "49886535"
+        },
+        {
+          "id": "49908283",
+          "author": "m-s-y",
+          "body": "Years and years of “mobile first” getting getting traction only to be forgotten in a heartbeat when it’s finally easy to do “real cool stuff” on desktop.\nI personally couldn’t be happier about it.",
+          "score": 0,
+          "time": 1790773088,
+          "parent": "49886535"
+        },
+        {
+          "id": "49912372",
+          "author": "sssilver",
+          "body": "When dentists take scans of our teeth, can those scans theoretically be rendered in this tool?",
+          "score": 0,
+          "time": 1790791848,
+          "parent": "49886535"
+        },
+        {
+          "id": "49908003",
+          "author": "jamessb",
+          "body": "This reminds me of \"Human Atlas\" [1] (created by GPT-6 Astra) - there's a video in the tweet announcing it [2].\nThere was a live deploy, but it is currently unavailable: https://human-atlas-seven.vercel.app/ (https://human-atlas-seven.vercel.app/)\n[1]: https://github.com/ashemag/human-atlas (https://github.com/ashemag/human-atlas)\n[2]: https://x.com/ashebytes/status/2096221988763173186?lang=ar-x... (https://x.com/ashebytes/status/2096221988763173186?lang=ar-x-fm)",
+          "score": 0,
+          "time": 1790771746,
+          "parent": "49886535"
+        },
+        {
+          "id": "49907163",
+          "author": "ivanjermakov",
+          "body": "According to commit history, built in 3 days.",
+          "score": 0,
+          "time": 1790766095,
+          "parent": "49886535"
+        },
+        {
+          "id": "49908835",
+          "author": "fouc",
+          "body": "I'm a bit confused that the top wisdom teeth are erupted but the bottom ones aren't.. is that toggle-able?",
+          "score": 0,
+          "time": 1790775697,
+          "parent": "49886535"
+        },
+        {
+          "id": "49908497",
+          "author": "Zeruxe",
+          "body": "Here is the product hunt for those of you who would like to support - https://www.producthunt.com/products/dental-scope?utm_source... (https://www.producthunt.com/products/dental-scope?utm_source=other&utm_medium=social)",
+          "score": 0,
+          "time": 1790774057,
+          "parent": "49886535"
+        },
+        {
+          "id": "49908045",
+          "author": "pelagicAustral",
+          "body": "It's pretty neat... and reminds me, I need to go to the dentist... oh well...",
+          "score": 0,
+          "time": 1790771941,
+          "parent": "49886535"
+        },
+        {
+          "id": "49908222",
+          "author": "Zeruxe",
+          "body": "Just a clarification for the people hating on clankers, I want to know what you expect from todays devs? do you genuinely think that people should manually handcode everything for it to hold any significant value?\nI just don't understand the point of view where - \"a clanker made it therefore it's trash\", it's always the same people they lurk on reddit aswell.\nEven in the case of putting something together manually, you are competing against people using AI and you will never match their production level or speed.\nI mean the people who hold the highest priority say in this are the dentists/dental students, and so far all the feedback from those have been nothing but positive?",
+          "score": 0,
+          "time": 1790772738,
+          "parent": "49886535"
+        },
+        {
+          "id": "49907885",
+          "author": "doodlebugging",
+          "body": "Too bad the AI that this is built with isn't bright enough to know how many permanent teeth there are in a human's jaw. 38 seems high. Why should anyone trust it to know how all the other things are connected?\nI hate to think that there are generations of engineers, programmers, etc who will not be qualified to determine whether the AI tools that they build and deploy can answer any of the questions that one would be inclined to ask or solve any of the problems that might need solutions.\nGet an education. Learn to think for yourself so that you can recognize when some slop like this hits the screen.",
+          "score": 0,
+          "time": 1790771118,
+          "parent": "49886535"
+        },
+        {
+          "id": "49907748",
+          "author": "tmarice",
+          "body": "You built nothing.\nYou pointed your clanker of choice to a dataset (or more realistically, asked it to find an appropriate dataset), and told it to build a interactive 3d model. You learned nothing from this project because no mental effort was spent beyond listing out features for your clanker, and some manual testing.",
+          "score": 0,
+          "time": 1790770290,
+          "parent": "49886535"
+        }
+      ]
     },
     {
       "source": "hackernews",
