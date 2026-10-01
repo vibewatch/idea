@@ -1,8 +1,42 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-01T06:53:17.683630+00:00",
+  "last_fetched": "2026-10-01T12:47:39.671590+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49919734",
+      "title": "Show HN: Walk the Endless Dungeon",
+      "subreddit": "show-hn",
+      "author": "olup",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49919734",
+      "url": "https://the-endless.pages.dev/",
+      "selftext": "Small fun experiment to tinker with \"wave function collapse\" for infinite, organic feeling, maze generation. Then I wanted a way to have the same generation every time for a given seed, while still being explorable infinitely. So I merge a seed-based priority assignment and zone interface and then resolve the inside of a zone using WFC.\nThose places can be walked infinitely with infinite levels up and down.\nProbably just me, but it calms my nerves to roam those digital corridors.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790848561,
+      "created_at": "2026-10-01T09:56:01+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49918836",
+      "title": "Show HN: Vectorless, Reasoning-Based RAG",
+      "subreddit": "show-hn",
+      "author": "nvmdbljstm",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49918836",
+      "url": "https://github.com/VectifyAI/PageIndex",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790840191,
+      "created_at": "2026-10-01T07:36:31+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,15 +44,33 @@
       "title": "Show HN: Classican, listen + watch Classical music in a fun way",
       "subreddit": "show-hn",
       "author": "jaequery",
-      "score": 2,
-      "num_comments": 0,
+      "score": 4,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49918440",
       "url": "https://classican.vercel.app/",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1790836879,
-      "created_at": "2026-10-01T06:41:19+00:00"
+      "created_at": "2026-10-01T06:41:19+00:00",
+      "comments_data": [
+        {
+          "id": "49920083",
+          "author": "deforestgump",
+          "body": "Who did the recordings of the music?",
+          "score": 0,
+          "time": 1790851564,
+          "parent": "49918440"
+        },
+        {
+          "id": "49918578",
+          "author": "DylanMerigaud",
+          "body": "Fun UI for classical music, neat idea.",
+          "score": 0,
+          "time": 1790837890,
+          "parent": "49918440"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -27,8 +79,8 @@
       "title": "Show HN: Yantra – an LALR(1) parser generator for C++",
       "subreddit": "show-hn",
       "author": "renjipanicker",
-      "score": 22,
-      "num_comments": 12,
+      "score": 24,
+      "num_comments": 15,
       "permalink": "https://news.ycombinator.com/item?id=49916997",
       "url": "https://github.com/TantrixAuto/yantra",
       "selftext": "Yantra is a C++ parser generator: lexer, parser, and AST walker all generated from one tool.\nIt builds the whole AST first, then walks it.\nMost LALR parser generators (Yacc, Bison, Lemon) run your semantic actions during parsing, as each rule reduces, bottom-up.\nThat means at the time a rule's action runs, you don't yet know what its parent looks like. This pushes a lot of grammars toward hand-built AST classes and a separate walking pass whenever you need to look ahead into siblings or defer a decision until more context is available.\nOn the other hand, Yantra always builds the whole AST first, then walks it top-down in a separate pass, calling your semantic actions as it goes. A parent rule's action can run before its children are visited.\nA single grammar can define more than one walker. For example, one that emits C++, another that emits Java, from the same parse. The AST and the walker classes are both generated for you.\nA small example (full version, with compile commands, in the README):\n start := expr;\n\n expr := expr(a) PLUS expr(b)\n %{\n std::cout << \"Adding\" << std::endl;\n %}\n\n expr := NUMBER(N)\n %{\n std::cout << \"Number: \" << N.text << std::endl;\n %}\n\n NUMBER := \"\\d+\";\n PLUS := \"\\+\";\n WS := \"\\s+\"!;\n\nRunning this on \"1 + 2 + 3\" prints:\n Adding\n Number: 1\n Adding\n Number: 2\n Number: 3\n\nThe outer \"Adding\", the root of the tree, prints first, before either of its children. That's only possible because the whole tree exists before any action runs.\nSome other things about it: integrated lexer with mode support (for things like nested comments), an optional amalgamated single-file output mode with a generated main(), C++23, MIT licensed.\nIt's young (0.5.1, pre-1.0) and single-maintainer, so treat it as early.\nI'd rather know what breaks than have it look more finished than it is.\nKnown gaps are listed at\nhttps://github.com/TantrixAuto/yantra/blob/main/docs/known_l... (https://github.com/TantrixAuto/yantra/blob/main/docs/known_limitations.md)\nRepo: https://github.com/TantrixAuto/yantra (https://github.com/TantrixAuto/yantra)\nFeedback and questions are all welcome. I'll be around.",
@@ -62,6 +114,22 @@
           "parent": "49916997"
         },
         {
+          "id": "49918659",
+          "author": "froh",
+          "body": "do you intend to add sth like python bindings, especially for the AST and walker classes?\nthen Yantra would become great to parse well-known structured data from python at low-level speed.",
+          "score": 0,
+          "time": 1790838594,
+          "parent": "49916997"
+        },
+        {
+          "id": "49919407",
+          "author": "MichaelMoser123",
+          "body": "Good luck.\nI once knew how to fix shift/reduce reduce/reduce errors, but that was a long time ago. \nWith recursive descent parser you need to check for left recursion, which is somewhat less tricky.",
+          "score": 0,
+          "time": 1790845284,
+          "parent": "49916997"
+        },
+        {
           "id": "49918242",
           "author": "signa11",
           "body": "isn't this close to what ragel does ?",
@@ -82,19 +150,46 @@
     {
       "source": "hackernews",
       "stream": "show-hn",
+      "id": "49916764",
+      "title": "Show HN: ASM Bots – Core War in real 8086 machine code",
+      "subreddit": "show-hn",
+      "author": "pedramamini",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49916764",
+      "url": "https://asmbots.io/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790819848,
+      "created_at": "2026-10-01T01:57:28+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
       "id": "49916747",
       "title": "Show HN: Smartly – Plain English to shell commands, with GNU/BSD awareness",
       "subreddit": "show-hn",
       "author": "rizwanreza",
-      "score": 2,
-      "num_comments": 0,
+      "score": 3,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49916747",
       "url": "https://smartlycli.com/",
       "selftext": "I built Smartly because I kept knowing what I wanted to do in the terminal—but forgetting the exact syntax and flags.\nSmartly turns plain English into shell commands, using your OS, current directory, and Git context to help produce something relevant to where you’re working. It saves the back-and-forth of copying commands from an LLM into your terminal. It also supports Claude Code and Codex CLI if you already use those with a subscription.\nThere’s also a --learn mode for when you want to understand the command, not just get it done.\nI’d love feedback. Thanks!",
       "is_self": false,
       "is_video": false,
       "time": 1790819684,
-      "created_at": "2026-10-01T01:54:44+00:00"
+      "created_at": "2026-10-01T01:54:44+00:00",
+      "comments_data": [
+        {
+          "id": "49919792",
+          "author": "sixtyj",
+          "body": "Good for you.\nCheat sheet would be enough imho. I maintain a list of frequent commands, eg I don’t remember ffmpeg parameters…\nBut if you are in position to run kill command, you should know what to do :) Or make an aliases for frequent tasks.",
+          "score": 0,
+          "time": 1790849073,
+          "parent": "49916747"
+        }
+      ]
     },
     {
       "source": "hackernews",

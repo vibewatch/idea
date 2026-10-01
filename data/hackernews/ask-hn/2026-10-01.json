@@ -1,8 +1,204 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-01T06:53:21.112323+00:00",
+  "last_fetched": "2026-10-01T12:47:42.301189+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "49920411",
+      "title": "Rpi – a Rust rewrite of the Pi agent, 10× faster startup",
+      "subreddit": "ask-hn",
+      "author": "bigfishhk",
+      "score": 2,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=49920411",
+      "url": "https://news.ycombinator.com/item?id=49920411",
+      "selftext": "I've been learning about the Pi agent and decided to rewrite it in Rust. Now that I've finished a lot of the work, I'd like to show how much faster Rust (rpi) is than TypeScript (Pi). Here are the results:\n| Metric | rpi (Rust) | Pi (TypeScript) | Difference |\n|:---|:---|:---|:---|\n| `--version` | 17.5 ms | 169.5 ms | 9.7× faster |\n| Cold start | 17.7 ms | 189.5 ms | 10.7× faster |\n| RSS when ready | 12.0 MiB | 91.5 MiB | 7.6× smaller |\n| Install size | 21.8 MiB | ~385 MiB | ~18× smaller |\nRust is really cool!",
+      "is_self": true,
+      "is_video": false,
+      "time": 1790854998,
+      "created_at": "2026-10-01T11:43:18+00:00",
+      "comments_data": [
+        {
+          "id": "49920489",
+          "author": "vincent-uden",
+          "body": "This kind of invalidate the pitch of Pi, the self-modifying harness. You can't use the Pi extensions I'm assuming...\nWithout a plan of your own for extensions this is comparing apples to oranges. My Pi startup time is dominated by loading extensions and skills, and I don't even have many to begin with!",
+          "score": 0,
+          "time": 1790855563,
+          "parent": "49920411"
+        },
+        {
+          "id": "49920563",
+          "author": "voidUpdate",
+          "body": "That name won't be confusing at all",
+          "score": 0,
+          "time": 1790856258,
+          "parent": "49920411"
+        },
+        {
+          "id": "49920595",
+          "author": "bigfishhk",
+          "body": "github repo: https://github.com/bigfish1913/pi-rust (https://github.com/bigfish1913/pi-rust)",
+          "score": 0,
+          "time": 1790856527,
+          "parent": "49920411"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "49920340",
+      "title": "Ask HN: What landmarks/lighthouses in the era of LLM/AI?",
+      "subreddit": "ask-hn",
+      "author": "throw_away_ai",
+      "score": 3,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=49920340",
+      "url": "https://news.ycombinator.com/item?id=49920340",
+      "selftext": "I used to have things that I knew would improve my life as a Software Engineer: books, videos, learning algorithms, practicing data structures, attending meetings. Now all those things seem archaic and nonsense. You can prompt everything in seconds. What to look at now to be actual as a professional? How to be relevant in the next cycle? How to survive this storm? What options we have?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1790854356,
+      "created_at": "2026-10-01T11:32:36+00:00",
+      "comments_data": [
+        {
+          "id": "49920681",
+          "author": "al_borland",
+          "body": "You can’t effectively prompt what you’re not aware of. Having awareness of a wide range of ideas, and how they might be useful, is still valuable.\nBeing able to properly break down and understand a problem so it can be explained to the LLM is still valuable and something I think a lot of people who can already do it take for granted. Someone showed me their prompt about a project they were working on yesterday and it made no sense at all.\nBeing able to translate a problem into a solution AI can implement is still useful. I haven’t found AI to be good at designing systems or coming up with solutions to problems. It will try, but it always seems really bad. Having a person there to use AI as a tool, to guide it to solve the problem in an effective way, seems like the real skill.\nWhat these tools look like in 2 years will likely be very different than what we see today. The main thing I’ve been doing is increasing my savings rate, and lowering my fixed expenses, so I have a lot of flexibility if/when it’s time for a new job or career. I know that no matter what happens, that will be helpful. Debt and any expensive fixed lifestyle costs represent risk. The more I can derisk, by keeping those values low and savings/investment high, the better.",
+          "score": 0,
+          "time": 1790857243,
+          "parent": "49920340"
+        },
+        {
+          "id": "49920442",
+          "author": "vincent-uden",
+          "body": "You most certainly can not prompt everything in seconds. Especially not without the required domain knowledge of the problem you are solving.\nEven AI maximalists (of which I sure as hell am not) agree that the skill of the human in the loop (no matter the degree to which the human is plugged in) matters greatly for the output.\nYou still have to know things. You still have to learn things. How do you learn? Same as always. You learn by doing.",
+          "score": 0,
+          "time": 1790855254,
+          "parent": "49920340"
+        },
+        {
+          "id": "49920473",
+          "author": "anovikov",
+          "body": "Now it's not what you know, it's who you know.",
+          "score": 0,
+          "time": 1790855497,
+          "parent": "49920340"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "49919185",
+      "title": "Capitalism Can't Handle AI",
+      "subreddit": "ask-hn",
+      "author": "sedan_baklazhan",
+      "score": 3,
+      "num_comments": 7,
+      "permalink": "https://news.ycombinator.com/item?id=49919185",
+      "url": "https://news.ycombinator.com/item?id=49919185",
+      "selftext": "Capitalism as a system of profit-seeking agents can't handle AI right.\nThere is a very simple feedback loop:\n1. Agents seek to increase their profit by automating people.\n2. Each agent acts to its own good but at the same moment, the ultimate goal is to get rid of all consumers of what agents produce, because jobless people are very bad at consuming goods and services.\n3. Agents don't have any motivation to provide goods and services to consumers if they don't get anything valuable in return.\nConclusion is simple. Either:\na. AI development will be completely regulated and jobs will be preserved (thus negating the promised AI effectiveness), or\nb. Capitalism will be destroyed and a completely new economical formation will take place.\nIt is AI or capitalism.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1790843241,
+      "created_at": "2026-10-01T08:27:21+00:00",
+      "comments_data": [
+        {
+          "id": "49920580",
+          "author": "al_borland",
+          "body": "Agents don’t have motivations or care about anything. They just do what they’re told… or try do. If they generate money or not is of no concern to the agent itself.\nConsumers need two things to consume, money and free time. Jobless people have all the free time they could want. Find a way to get them some money to spend and they’ll consume all day long.",
+          "score": 0,
+          "time": 1790856415,
+          "parent": "49919185"
+        },
+        {
+          "id": "49919340",
+          "author": "ben_w",
+          "body": "You seem to be conflating capitalism with consumer goods.\nConsumer goods may indeed disappear completely from the economy, though even this does not follow from your argument.\nFirst: Capitalism doesn't require that corporate income is distributed through wages. The \"capital\" in \"capitalism\" implies owners, who can be paid dividends from that ownership.\nSecond: Before transistors, \"computer\" meant a human. Before AI, \"agent\" meant human. Specifically from the perspective of a firm, paying fees to maintain an AI agent isn't that different from paying wages to a human agent, and there are already plenty of firms whose business is selling to other businesses, \"B2B\" is the keyword.",
+          "score": 0,
+          "time": 1790844586,
+          "parent": "49919185"
+        },
+        {
+          "id": "49919513",
+          "author": "dh65",
+          "body": "Capialism also provides you free email and free ability to read and post here. Or do you think the Church or RedCross or Bernie is running HN? How did HN emerge out of capitalistic system? There are thousands of simple feedback loops interacting with each other to generate reality that itself changes from 1 day to the next. AI is like a weather system. Dynamical. Ever changing. Unpredictable. What human brains have always done when dealing with unpredictablity is to generate simple stories. In the past we used to call it religion.",
+          "score": 0,
+          "time": 1790846278,
+          "parent": "49919185"
+        },
+        {
+          "id": "49919639",
+          "author": "kypro",
+          "body": "Quick point on capitalism – the profit seeking motive is what makes the economy efficient and ultimately is what results in higher wages and living standards for everyone. We should be careful not to over-index on the direct effects of the \"profit motive\" such as profits to asset holders, while overlooking the far more important downstream benefits to society and workers. It's not win-lose.\nBut yes, it seems fairly obvious to me that if AI will effectively displaces all human economic value then the economy will not work for humans.\nThe only point I'll make on that is that I suspect you're worrying about the wrong thing. In a world where humans are economically worthless they're also politically powerless and entirely dependant on the decision making of the more intelligent artificial beings they've created. In this world your employment income will quickly become the least of your concerns.",
+          "score": 0,
+          "time": 1790847593,
+          "parent": "49919185"
+        },
+        {
+          "id": "49919670",
+          "author": "commentor8",
+          "body": "Agents/AI do not respect intellectual property. We see the collapse of the open web/blogging, next will be other digital industries. So of course jobs will decline. More for the pirates and less for everybody else",
+          "score": 0,
+          "time": 1790847994,
+          "parent": "49919185"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "49919026",
+      "title": "OpenAI halved the allowance of the $200 plan to 10x",
+      "subreddit": "ask-hn",
+      "author": "k9294",
+      "score": 12,
+      "num_comments": 5,
+      "permalink": "https://news.ycombinator.com/item?id=49919026",
+      "url": "https://news.ycombinator.com/item?id=49919026",
+      "selftext": "> Our commitment is that, over time, your subscription will continue to help you get more work done with an increasing level of quality.\n> Starting October 30, 2026, your included usage in ChatGPT Work and Codex will decrease from 20 times to 10 times the ChatGPT Plus allowance.\n> For those who want even more usage and speed, the new Pro 500 tier offers our highest usage allowance, with 25 times the usage of Plus.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1790841919,
+      "created_at": "2026-10-01T08:05:19+00:00",
+      "comments_data": [
+        {
+          "id": "49919298",
+          "author": "Betelbuddy",
+          "body": "Wait... I thought Inference was profitable? ;-)",
+          "score": 0,
+          "time": 1790844169,
+          "parent": "49919026"
+        },
+        {
+          "id": "49919074",
+          "author": "ls1911",
+          "body": "yea, trae.ai did that this month as well , reduced from 400$ to 100$ credits.\nits a wave",
+          "score": 0,
+          "time": 1790842388,
+          "parent": "49919026"
+        },
+        {
+          "id": "49919464",
+          "author": "spacedcowboy",
+          "body": "hmm, maybe there is a case for that 512gb Mac Studio after all...\nNot saying it'd price-match this, but if it becomes a regular thing... And with the Micron CEO saying RAM is going to get worse, not better [1], its unlikely the price of the large studio will come down, quite the contrary...\n[1] https://www.theregister.com/systems/2026/10/01/ram-supply-se... (https://www.theregister.com/systems/2026/10/01/ram-supply-set-to-worsen-says-micron-as-ceo-celebrates-much-higher-prices/5300346)",
+          "score": 0,
+          "time": 1790845837,
+          "parent": "49919026"
+        },
+        {
+          "id": "49919404",
+          "author": "x52044893",
+          "body": "what does it mean？",
+          "score": 0,
+          "time": 1790845274,
+          "parent": "49919026"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,7 +206,7 @@
       "title": "Stanislaw Lem quote related to LLMs",
       "subreddit": "ask-hn",
       "author": "daly",
-      "score": 5,
+      "score": 7,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49917321",
       "url": "https://news.ycombinator.com/item?id=49917321",
@@ -38,7 +234,7 @@
       "subreddit": "ask-hn",
       "author": "type4",
       "score": 4,
-      "num_comments": 5,
+      "num_comments": 13,
       "permalink": "https://news.ycombinator.com/item?id=49916803",
       "url": "https://news.ycombinator.com/item?id=49916803",
       "selftext": "Going with the premise that \"software engineer\" or \"developer\" is a dead-end because code is very cheap to produce now, I need something to market myself as.",
@@ -48,11 +244,67 @@
       "created_at": "2026-10-01T02:03:17+00:00",
       "comments_data": [
         {
+          "id": "49920749",
+          "author": "mikewarot",
+          "body": "Software product manager might be a good fit. Personally, I'd go with programmer, the same thing I've used for decades. Being retired does remove the need for title inflation.\nSince there's no statutory legal liability for the product of one's work, nor state licensure, the term Engineer isn't appropriate, and never has been. (But that's a pet peeve of mine, apparently not shared by the majority here)",
+          "score": 0,
+          "time": 1790857680,
+          "parent": "49916803"
+        },
+        {
+          "id": "49920605",
+          "author": "BjoernKW",
+          "body": "Quite a few years ago, Erik Dietrich proposed \"efficiencer\": https://daedtech.com/starting-tech-firm-efficiencer/ (https://daedtech.com/starting-tech-firm-efficiencer/)\nI've always liked that term and it's more fitting than ever.",
+          "score": 0,
+          "time": 1790856625,
+          "parent": "49916803"
+        },
+        {
+          "id": "49920536",
+          "author": "bsenftner",
+          "body": "I've been using \"Mad Computer Scientist\" for 26 years now as my official title.",
+          "score": 0,
+          "time": 1790856052,
+          "parent": "49916803"
+        },
+        {
           "id": "49916920",
           "author": "kayashaolu2",
           "body": "This is what I think: we will go through all of these other titles and then come back to software engineer (e.g. remember Prompt Engineer?).\nThe reason IMO is that true software engineering hasn’t been about producing code. It’s about solving problems by building maintainable systems. The best software engineers don’t only build for the feature, they build for the extensibility, maintainability, and scalability of the feature. That is the art of engineering software that I think we can still take pride in even during this AI era.",
           "score": 0,
           "time": 1790821221,
+          "parent": "49916803"
+        },
+        {
+          "id": "49919545",
+          "author": "austin-cheney",
+          "body": "Engineer was almost never appropriate before. Very few people writing software ever measured anything or innovated anything new. Now, if you are not writing code I cannot imagine how developer would be appropriate.\nFor people who just feed agents I would use the title: trainer.",
+          "score": 0,
+          "time": 1790846596,
+          "parent": "49916803"
+        },
+        {
+          "id": "49920051",
+          "author": "robobo96",
+          "body": "I think the value is shifting: it's moving from actually building the thing to deciding what to build: Product Engineer?",
+          "score": 0,
+          "time": 1790851315,
+          "parent": "49916803"
+        },
+        {
+          "id": "49920217",
+          "author": "farseer",
+          "body": "Enabler",
+          "score": 0,
+          "time": 1790853123,
+          "parent": "49916803"
+        },
+        {
+          "id": "49918744",
+          "author": "drstewart",
+          "body": "Agent Babysitter",
+          "score": 0,
+          "time": 1790839377,
           "parent": "49916803"
         },
         {
@@ -64,19 +316,19 @@
           "parent": "49916803"
         },
         {
-          "id": "49917719",
-          "author": "drsalt",
-          "body": "code jockey / code monkey",
-          "score": 0,
-          "time": 1790828680,
-          "parent": "49916803"
-        },
-        {
           "id": "49916859",
           "author": "nacozarina",
           "body": "Software Whisperers",
           "score": 0,
           "time": 1790820725,
+          "parent": "49916803"
+        },
+        {
+          "id": "49917719",
+          "author": "drsalt",
+          "body": "code jockey / code monkey",
+          "score": 0,
+          "time": 1790828680,
           "parent": "49916803"
         },
         {
