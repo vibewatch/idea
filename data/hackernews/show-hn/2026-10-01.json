@@ -1,0 +1,135 @@
+{
+  "source": "hackernews",
+  "stream": "show-hn",
+  "last_fetched": "2026-10-01T06:53:17.683630+00:00",
+  "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49918440",
+      "title": "Show HN: Classican, listen + watch Classical music in a fun way",
+      "subreddit": "show-hn",
+      "author": "jaequery",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49918440",
+      "url": "https://classican.vercel.app/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790836879,
+      "created_at": "2026-10-01T06:41:19+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49916997",
+      "title": "Show HN: Yantra – an LALR(1) parser generator for C++",
+      "subreddit": "show-hn",
+      "author": "renjipanicker",
+      "score": 22,
+      "num_comments": 12,
+      "permalink": "https://news.ycombinator.com/item?id=49916997",
+      "url": "https://github.com/TantrixAuto/yantra",
+      "selftext": "Yantra is a C++ parser generator: lexer, parser, and AST walker all generated from one tool.\nIt builds the whole AST first, then walks it.\nMost LALR parser generators (Yacc, Bison, Lemon) run your semantic actions during parsing, as each rule reduces, bottom-up.\nThat means at the time a rule's action runs, you don't yet know what its parent looks like. This pushes a lot of grammars toward hand-built AST classes and a separate walking pass whenever you need to look ahead into siblings or defer a decision until more context is available.\nOn the other hand, Yantra always builds the whole AST first, then walks it top-down in a separate pass, calling your semantic actions as it goes. A parent rule's action can run before its children are visited.\nA single grammar can define more than one walker. For example, one that emits C++, another that emits Java, from the same parse. The AST and the walker classes are both generated for you.\nA small example (full version, with compile commands, in the README):\n start := expr;\n\n expr := expr(a) PLUS expr(b)\n %{\n std::cout << \"Adding\" << std::endl;\n %}\n\n expr := NUMBER(N)\n %{\n std::cout << \"Number: \" << N.text << std::endl;\n %}\n\n NUMBER := \"\\d+\";\n PLUS := \"\\+\";\n WS := \"\\s+\"!;\n\nRunning this on \"1 + 2 + 3\" prints:\n Adding\n Number: 1\n Adding\n Number: 2\n Number: 3\n\nThe outer \"Adding\", the root of the tree, prints first, before either of its children. That's only possible because the whole tree exists before any action runs.\nSome other things about it: integrated lexer with mode support (for things like nested comments), an optional amalgamated single-file output mode with a generated main(), C++23, MIT licensed.\nIt's young (0.5.1, pre-1.0) and single-maintainer, so treat it as early.\nI'd rather know what breaks than have it look more finished than it is.\nKnown gaps are listed at\nhttps://github.com/TantrixAuto/yantra/blob/main/docs/known_l... (https://github.com/TantrixAuto/yantra/blob/main/docs/known_limitations.md)\nRepo: https://github.com/TantrixAuto/yantra (https://github.com/TantrixAuto/yantra)\nFeedback and questions are all welcome. I'll be around.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790821848,
+      "created_at": "2026-10-01T02:30:48+00:00",
+      "comments_data": [
+        {
+          "id": "49918212",
+          "author": "mingodad",
+          "body": "For people interested on this topic I strongly recommend to also look at Ben Hanson https://github.com/BenHanson/parsertl17 (https://github.com/BenHanson/parsertl17) and based on it I've created an online LALR(1) playground here https://mingodad.github.io/parsertl-playground/playground/ (https://mingodad.github.io/parsertl-playground/playground/) where you have around 350 non trivial. grammars to experiment (select one from the `Examples` dropdown and then click `Parse` to see a parse tree for the input in `Input`, it also generates EBNF to generate nice navigable railroad diagrams on https://www.bottlecaps.de/rr/ui (https://www.bottlecaps.de/rr/ui) .",
+          "score": 0,
+          "time": 1790834518,
+          "parent": "49916997"
+        },
+        {
+          "id": "49917666",
+          "author": "userbinator",
+          "body": "It's a little surprising to see new parser generators being written, long after the vast majority of compilers have already settled on recursive descent / precedence climbing (including https://news.ycombinator.com/item?id=49913192 (https://news.ycombinator.com/item?id=49913192) , which is currently nearby on the front page.)",
+          "score": 0,
+          "time": 1790828071,
+          "parent": "49916997"
+        },
+        {
+          "id": "49917551",
+          "author": "kazinator",
+          "body": "Yacc has mid-rule actions which can be used to propagate information from left siblings to right siblings, as well as to children (embedded nonterminal symbols).\nOf course, it's not the same as having the parse tree all done from a previous pass and just walking it to do semantics.",
+          "score": 0,
+          "time": 1790826919,
+          "parent": "49916997"
+        },
+        {
+          "id": "49918242",
+          "author": "signa11",
+          "body": "isn't this close to what ragel does ?",
+          "score": 0,
+          "time": 1790834916,
+          "parent": "49916997"
+        },
+        {
+          "id": "49917786",
+          "author": "fithisux",
+          "body": "Congratulations. We need more of these tools. I'll give it a try.",
+          "score": 0,
+          "time": 1790829401,
+          "parent": "49916997"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49916747",
+      "title": "Show HN: Smartly – Plain English to shell commands, with GNU/BSD awareness",
+      "subreddit": "show-hn",
+      "author": "rizwanreza",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49916747",
+      "url": "https://smartlycli.com/",
+      "selftext": "I built Smartly because I kept knowing what I wanted to do in the terminal—but forgetting the exact syntax and flags.\nSmartly turns plain English into shell commands, using your OS, current directory, and Git context to help produce something relevant to where you’re working. It saves the back-and-forth of copying commands from an LLM into your terminal. It also supports Claude Code and Codex CLI if you already use those with a subscription.\nThere’s also a --learn mode for when you want to understand the command, not just get it done.\nI’d love feedback. Thanks!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790819684,
+      "created_at": "2026-10-01T01:54:44+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49916539",
+      "title": "Show HN: Kanmaps – Product roadmaps like videogame skill trees",
+      "subreddit": "show-hn",
+      "author": "pasharayan",
+      "score": 6,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=49916539",
+      "url": "https://kanmaps.com/show",
+      "selftext": "Hi HN! I've made it possible for you to make product roadmaps like you'd make an RPG skill tree, or a tech tree in a video game.\nEver since seeing WoW talent trees* in high school i've been obsessed with RPG skill trees as a way to represent information as I've thought they convey 1) Ordering, 2) Progression and 3) Contingent Requirements really well. Not only do they help give better visual structure of whats happening and what will happen - they also give people a feeling of movement, progression and hope (whereas kanban boards and issue trackers give people the feeling of dread).\nThis isn't surprising as video games were really designed to make people excited to play on and reach the next milestone.\nTurns out this format is really fun for people and agents to think about their products! As an experiment I also hooked up an MCP to one of my product roadmaps and it was able to map out my current codebase to a kanmap, and then suggest realistic next ideas to make. I've even got an agent now working on the next node of a kanmap.\n* Kanmaps was inspired not just by WOW talent trees, but also by the Age of Empires Tech Trees, and FFX ability spheres setup. Also huge shoutout to a bank in Australia called Up who did something called the Tree of Up as a product roadmap like a video game for their banking product - their work definitely inspired things in Kanmaps too.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790817674,
+      "created_at": "2026-10-01T01:21:14+00:00",
+      "comments_data": [
+        {
+          "id": "49916906",
+          "author": "benswerd",
+          "body": "How do you represent uncertainty? I know dependency mapping is a huge problem in GANTT systems when one dependency takes a ton longer than expected. How do you account for that here?",
+          "score": 0,
+          "time": 1790821127,
+          "parent": "49916539"
+        },
+        {
+          "id": "49916893",
+          "author": "penne_pastaa",
+          "body": "This is really cool, thanks for sharing! Have you used it for roadmaps other than software/apps?",
+          "score": 0,
+          "time": 1790820991,
+          "parent": "49916539"
+        }
+      ]
+    }
+  ]
+}
