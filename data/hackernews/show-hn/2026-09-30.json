@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-01T12:47:39.671590+00:00",
+  "last_fetched": "2026-10-01T18:41:20.954775+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -44,7 +44,7 @@
       "title": "Show HN: Perspica – A semantic diff for reviewing code",
       "subreddit": "show-hn",
       "author": "sshah03",
-      "score": 13,
+      "score": 14,
       "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=49914005",
       "url": "https://github.com/sshah03/perspica",
@@ -55,19 +55,19 @@
       "created_at": "2026-09-30T20:34:49+00:00",
       "comments_data": [
         {
-          "id": "49918258",
-          "author": "xcc3641",
-          "body": "Matching renamed and edited functions across files risks high false-positive rates. What similarity threshold determines fallback to line diffs?",
-          "score": 0,
-          "time": 1790835018,
-          "parent": "49914005"
-        },
-        {
           "id": "49915868",
           "author": "sshah03",
           "body": "If you're interested in using this, but your language of choice is presently unsupported, just leave a reply here with the language and I'll prioritize adding it. Also any other requests, or suggestions that would make this genuinely useful to you as well.",
           "score": 0,
           "time": 1790811503,
+          "parent": "49914005"
+        },
+        {
+          "id": "49918258",
+          "author": "xcc3641",
+          "body": "Matching renamed and edited functions across files risks high false-positive rates. What similarity threshold determines fallback to line diffs?",
+          "score": 0,
+          "time": 1790835018,
           "parent": "49914005"
         }
       ]
@@ -198,6 +198,33 @@
     {
       "source": "hackernews",
       "stream": "show-hn",
+      "id": "49911500",
+      "title": "Show HN: Open-source model routing for coding agents at Astra-level performance",
+      "subreddit": "show-hn",
+      "author": "adchurch",
+      "score": 22,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=49911500",
+      "url": "https://news.ycombinator.com/item?id=49911500",
+      "selftext": "A few months ago we started building a model router for coding agents because we thought we could outperform any single model with an ensemble approach. Recently we’ve achieved that milestone and I want to talk about how we did it.\nFirst of all, a quick explanation: the Weave Router (https://github.com/weave-os/router (https://github.com/weave-os/router)) plugs into any coding agent (e.g. Claude Code or Codex) and intelligently switches between LLMs. So, for example, Astra handles tricky debugging or complex system design tasks, and Deepseek v4 Flash handles simple frontend updates.\nWhat we’re announcing today is our new routing model, which we’re calling Weave Router 2.0. We benchmarked 2.0 against GPT-6 Astra on Terminal Bench 4.0 and SWE Atlas. On both benchmarks, the router had equivalent pass rates. On Terminal Bench, the router hit 52% of Astra’s cost, and completed tasks 2.2x faster. On SWE Atlas, the router cost 54% as much as Astra and ran 2.5x faster. (Full results on our website at https://weaveos.com/router (https://weaveos.com/router)!)\nIt turns out training a model to route effectively - taking into consideration model capabilities, costs, cache awareness, and more - is a really hard problem! I want to talk about three ways we were able to improve so much over the last few months: 1) a new architecture, 2) larger training data set size, and 3) smarter cache-eviction impact calculation.\n1) a new architecture. Our initial approach used an RL model without many priors. While RL is still an important part of the story, the cost of fully exploring the space of routing decisions is very high, so we’ve taken some shortcuts that have significantly improved performance.\nConsider how large the search space for the routing problem is. Take a typical coding agent session, with ~100 agent turns (i.e. 100 LLM API calls). Technically there are 100 chances to select a model. If we assume a roster of ~10 models (of course there are lots more but we can remove any that are Pareto dominated), then there are 10^100 possible paths through that session. We simply cannot explore all of them! So that's why clever tricks to shrink this space are so important.\nIn particular: we trained a hidden Markov model to trace the session state, then a classifier maps the session to one of a few buckets of similar models. Using the HMM allows us to evaluate not just where a session is currently, but how it got there. We've gotten significantly better performance on bucket selection by incorporating that information - we believe this is because two sessions that might look quite similar to a naive classifier are much better distinguished by this HMM approach.\nUsing this HMM + classifier to select a bucket first significantly shrinks the space to explore, by throwing out most models that could not reasonably serve the given session. This rearchitecture was the single biggest performance unlock!\n2) larger training data set size (much less technically interesting but still an important part of the story). By using frontier LLMs to help us label a larger and more diverse set of coding agent sessions, we were able to bootstrap the two models discussed in 1) to a better state, while also providing even richer reward signals for RL.\n3) smarter cache-eviction impact calculation. One of the hardest parts of routing well (if you care about saving money) is using the model caches intelligently. We built a subsystem that can calculate the expected value of switching models (and thus paying a high one-time cost to fill up a different cache) much more accurately, helping us avoid costly and unnecessary switches in more cases, while still switching when the benefit outweighs the cost. This is where most of our improvement on cost has come from.\nWe still have a lot of room to continue to improve (we won’t rest until we’re consistently beating Astra/Fable, not just tying!) but matching frontier model performance was a huge milestone for our routing model, and in my opinion validates our initial hypothesis that an ensemble of models can do better than any single model ever could.\nOur router is open source (https://github.com/weave-os/router (https://github.com/weave-os/router)) so anyone can try it out. Or if you prefer you can use our hosted version (https://weaveos.com/router (https://weaveos.com/router)).",
+      "is_self": true,
+      "is_video": false,
+      "time": 1790787504,
+      "created_at": "2026-09-30T16:58:24+00:00",
+      "comments_data": [
+        {
+          "id": "49925019",
+          "author": "redrove",
+          "body": "Is the model you trained available as open weights?",
+          "score": 0,
+          "time": 1790878016,
+          "parent": "49911500"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
       "id": "49911411",
       "title": "Show HN: Datastory, Data storytelling with AI and an open knowledge graph",
       "subreddit": "show-hn",
@@ -263,8 +290,8 @@
       "title": "Show HN: Parrot – Open-Source Smart Meeting Recorder with Co-Pilot on Mac",
       "subreddit": "show-hn",
       "author": "turantekin",
-      "score": 32,
-      "num_comments": 20,
+      "score": 34,
+      "num_comments": 29,
       "permalink": "https://news.ycombinator.com/item?id=49910328",
       "url": "https://openparrot.app",
       "selftext": "Hello Hacker News\nI am Uygar, I am an entrepreneur from London. I run my businesses on calls everyday, customers, partners and suppliers. And i have a horrible memory i forgot things. So months ago with the help of Claude i have built Parrot. I have designed and coded for my work and what i need. An to be honest worked very well and helped me alot.\nParrot records what your mac hears and everything stays in your computer if you use local models, no account, no API calls. There is something called copilot which made my life easier, you can upload your files and when parrot hears that question on the screen recommends the answer. Which i believe very handy.\nIf you want to make it smarter and dont mind cloud you can hook up your Claude API and Deepgram account, that gives super powers to Parrot. You still keep it locally but eventually you need to make API calls.\nSo local or cloud totally up to you.\nThen after months of thinking i have decided share it as open source and this is my first open source project, so please go easy on me :)\nNo account, no membership, open source and free.\nCode: https://github.com/turantekin/Parrot (https://github.com/turantekin/Parrot)\nThis project made me so excited and really would like to share with you guys so i hope can help you too. Again, i am new so go easy on me and if you have any feedback i would like to hear.\nThank you\nUygar",
@@ -273,14 +300,6 @@
       "time": 1790782392,
       "created_at": "2026-09-30T15:33:12+00:00",
       "comments_data": [
-        {
-          "id": "49920396",
-          "author": "serg937",
-          "body": "great app, installed it and will try it out. One comment for now: please can you make it possible to attach a folder to documents? I guess, in the meantime I will keep there one file & update it after each meeting with the summaries and recent notes & decisions made",
-          "score": 0,
-          "time": 1790854860,
-          "parent": "49910328"
-        },
         {
           "id": "49913143",
           "author": "joshstrange",
@@ -298,11 +317,19 @@
           "parent": "49910328"
         },
         {
-          "id": "49917929",
-          "author": "catoc",
-          "body": "Apart from the confusing co-pilot invocation, this looks really cool! Will try it out.",
+          "id": "49921363",
+          "author": "marshalla",
+          "body": "This one looks super nice. Trying it now. I've got one I'm working on full-time and trying to get people to pay for, and in some ways this beats it. I'm using localVQE for echo cancellation. I really just need to give up and get some corporate job",
           "score": 0,
-          "time": 1790831058,
+          "time": 1790861073,
+          "parent": "49910328"
+        },
+        {
+          "id": "49920396",
+          "author": "serg937",
+          "body": "great app, installed it and will try it out. One comment for now: please can you make it possible to attach a folder to documents? I guess, in the meantime I will keep there one file & update it after each meeting with the summaries and recent notes & decisions made",
+          "score": 0,
+          "time": 1790854860,
           "parent": "49910328"
         },
         {
@@ -314,11 +341,11 @@
           "parent": "49910328"
         },
         {
-          "id": "49918189",
-          "author": "librasteve",
-          "body": "kudos for going open source … good business decision too",
+          "id": "49917929",
+          "author": "catoc",
+          "body": "Apart from the confusing co-pilot invocation, this looks really cool! Will try it out.",
           "score": 0,
-          "time": 1790834138,
+          "time": 1790831058,
           "parent": "49910328"
         },
         {
@@ -335,6 +362,14 @@
           "body": "There are so many of these already out there.",
           "score": 0,
           "time": 1790807203,
+          "parent": "49910328"
+        },
+        {
+          "id": "49918189",
+          "author": "librasteve",
+          "body": "kudos for going open source … good business decision too",
+          "score": 0,
+          "time": 1790834138,
           "parent": "49910328"
         },
         {
@@ -388,8 +423,8 @@
       "title": "Show HN: Strata – an expressive semantic layer that can say no to your LLM",
       "subreddit": "show-hn",
       "author": "ajoski9",
-      "score": 19,
-      "num_comments": 8,
+      "score": 21,
+      "num_comments": 14,
       "permalink": "https://news.ycombinator.com/item?id=49909913",
       "url": "https://strata.do/",
       "selftext": "Hello HN, I'm Ajo and I built Strata.\nI spent 4 years at Netflix solving self service for non-technical business users. I think I cracked it with my unique approach to semantic layer design. The key challenge is balancing expressiveness with ease of use for our non technical colleagues. It just so happens that focus made it work pretty well with LLMs too.\nStrata is a full stack solution. It includes a semantic layer, dashboards, subscriptions, and google sheets exports. All of it can be done view agent conversation or via MCP.\nSome key concepts and features:\n- Names are strict. Only one thing called Revenue can exist in a project. If revenue is mapped to multiple tables, the query grain plus speed will decide table.\n- Strict naming conventions lends itself to enabling Automatic data blending acrros fact domains.\n- Partition and Aggregate aware semantic routing. This allows you to load a portion of your data into a faster compute engine like Druid or ClickHose, while keeping full history in trino or something cheaper. The query engine will choose the faster tier if the query can be resolved there.\n- Complex measures: out of the box support for snapshot, LOD (include/exclude), Compound, and Auto leveling compound measures.\n - On top of the semantic layer users can create custom calculations that span fact domains.\n - Another interesting feature is the ability to create cohorts and apply as filter to an entire query or single measure within a query.\nWe are deliberately not building a semantic layer that your BI tools connect to. I think that is a dead end. We have apis, and mcp for anything custom you want to build on top.\nTry it free on docker: https://strata.do/try/ (https://strata.do/try/)\nDocs here to get you going: https://strata.do/docs/ (https://strata.do/docs/)\nThis is an early beta version. It is NOT open source. However, the free tier includes up to 25 users. You should be able to run it entirely on your machine with docker.\nI would love to hear your feedback. Especially, those working with Looker and Cube.\nThanks for reading!",
@@ -398,6 +433,14 @@
       "time": 1790780397,
       "created_at": "2026-09-30T14:59:57+00:00",
       "comments_data": [
+        {
+          "id": "49912890",
+          "author": "efromvt",
+          "body": "I’m a big fan of the strict naming as an abstraction above tables and reuse as blend key approach, it also greatly simplifies aggregate resolution like you have. (Landed on the same abstraction level when building a semantic model personally).\nLots of 404s on the docs pages - might be worth an audit of links?",
+          "score": 0,
+          "time": 1790794752,
+          "parent": "49909913"
+        },
         {
           "id": "49913459",
           "author": "chrisweekly",
@@ -412,14 +455,6 @@
           "body": "How do you weight the value of semantic layers when all of the labs are chasing shell usage benchmarks like TerminalBench?\nAside from the enterprise stuff like consistent metrics I’m not convinced semantic layers improve agent performance. Case in point is Snowflake Analyst has been routing 90%+ of queries to traditional SQL as opposed to their own semantic SQL dialect.\nA semantic layer is a concept from 2018 in the BI world. Metadata is one thing but semantic layer implies an abstraction from physical data with lossy translations.",
           "score": 0,
           "time": 1790795068,
-          "parent": "49909913"
-        },
-        {
-          "id": "49912890",
-          "author": "efromvt",
-          "body": "I’m a big fan of the strict naming as an abstraction above tables and reuse as blend key approach, it also greatly simplifies aggregate resolution like you have. (Landed on the same abstraction level when building a semantic model personally).\nLots of 404s on the docs pages - might be worth an audit of links?",
-          "score": 0,
-          "time": 1790794752,
           "parent": "49909913"
         },
         {
