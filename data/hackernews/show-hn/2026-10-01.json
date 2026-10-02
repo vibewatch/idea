@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-02T01:09:52.197064+00:00",
+  "last_fetched": "2026-10-02T06:51:45.516518+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -28,7 +28,7 @@
       "subreddit": "show-hn",
       "author": "kitao",
       "score": 3,
-      "num_comments": 1,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49928215",
       "url": "https://github.com/kitao/pyxel",
       "selftext": "Hi HN, I'm the creator of Pyxel, a free, MIT-licensed retro game engine for Python. I've been developing it since 2018, and it recently passed 18,000 stars on GitHub.\nPyxel includes pixel art, tilemap, sound, and music editors, so you can create a game's visuals and audio as well as write its code in Python. The engine itself is implemented in Rust.\nGames run on Windows, macOS, Linux, and the web, as well as supported Linux-based retro handhelds.\nYou can share a URL to launch a Pyxel game hosted on GitHub directly in a browser. You can also create games entirely in your browser with Pyxel Code Maker, or write chiptunes in Pyxel MML Studio.\nSee what people have made with Pyxel:\nhttps://kitao.github.io/pyxel-user-examples/ (https://kitao.github.io/pyxel-user-examples/)\nTry Code Maker:\nhttps://kitao.github.io/pyxel/web/code-maker/ (https://kitao.github.io/pyxel/web/code-maker/)\nI'm happy to answer questions about the engine and its implementation.",
@@ -105,8 +105,8 @@
       "title": "Show HN: Janus – Go binary that runs GGUF models via Vulkan on AMD/Intel/Nvidia",
       "subreddit": "show-hn",
       "author": "Maverick617",
-      "score": 47,
-      "num_comments": 5,
+      "score": 66,
+      "num_comments": 10,
       "permalink": "https://news.ycombinator.com/item?id=49926773",
       "url": "https://github.com/Vibra-Ingenn/Janus",
       "selftext": "",
@@ -115,6 +115,14 @@
       "time": 1790887007,
       "created_at": "2026-10-01T20:36:47+00:00",
       "comments_data": [
+        {
+          "id": "49930419",
+          "author": "aidiveyt",
+          "body": "claude code appends a role:\"system\" block after the user prompt, so a proxy rewriting the trailing user message is a no-op.",
+          "score": 0,
+          "time": 1790922544,
+          "parent": "49926773"
+        },
         {
           "id": "49927198",
           "author": "PcChip",
@@ -148,8 +156,8 @@
       "title": "Show HN: Rhun, an open-source code editor written in assembly",
       "subreddit": "show-hn",
       "author": "vladcodes",
-      "score": 31,
-      "num_comments": 13,
+      "score": 47,
+      "num_comments": 26,
       "permalink": "https://news.ycombinator.com/item?id=49926726",
       "url": "https://rhun.app/",
       "selftext": "I found that I'm not using even 1/3 of vim/vscode features anymore.\nThat's wht I'm building rhun - a small code editor for Linux, Windows and Apple silicon Macs. It obviously has Vim mode, a terminal, Git diffs and a panel for Claude Code or Codex sessions.\nThe editor and pixel renderer share an x86-64 assembly core. For Apple silicon, a build-time translator converts that core to AArch64, with separate platform adapters around it.\nThe latest release can draft commit messages using a local Ollama model or an existing Claude Code or Codex subscription.\nIt's a solo project, MIT licensed and still early.",
@@ -159,25 +167,17 @@
       "created_at": "2026-10-01T20:32:18+00:00",
       "comments_data": [
         {
-          "id": "49928821",
-          "author": "tamimio",
-          "body": "Ok wow I am in love! Not just it’s fast, but also it automatically detected the AI session that’s actively working! Might ditch zed now!",
+          "id": "49930350",
+          "author": "nylonstrung",
+          "body": "At this point I very much question that handwritten assembly can be more performant than what LLVM-based langs can produce at the highest optimization settings. Compilers are very good at optimization\nParticularly when the \"handwritten\" code in question is vibecoded, like this is",
           "score": 0,
-          "time": 1790903133,
-          "parent": "49926726"
-        },
-        {
-          "id": "49928735",
-          "author": "haolez",
-          "body": "If you use an LLM to write assembly, it is officially your (optimizing?) compiler :)",
-          "score": 0,
-          "time": 1790902457,
+          "time": 1790921796,
           "parent": "49926726"
         },
         {
           "id": "49928445",
           "author": "jrapdx3",
-          "body": "I'll have to try it.\nIt occurs to me that in this era of RAM hardware shortage, resource-frugal applications like this one could become more prevalent.\nAnyway I guess we'll see if that happens.",
+          "body": "I'll have to try it.\nIt occurs to me that in this era of RAM hardware shortage, resource-frugal applications like this one could become more prevalent.\nAnyway I guess we'll see if that happens.\nEdit: Downloaded, running under Windows.\nImpressive. Loads fast, looks pretty polished. Highlighting for many languages included \"obscure\" ones that I sometimes use.\nMem used: 7.9MB (gvim 12.2MB, emacs 35.5MB, vscodium 291.1MB)",
           "score": 0,
           "time": 1790899526,
           "parent": "49926726"
@@ -199,11 +199,19 @@
           "parent": "49926726"
         },
         {
-          "id": "49928186",
-          "author": "browningstreet",
-          "body": "Assembly plus platform translation, hmmm. I don’t get it but that’s a heck of a thing to do! And yes, I’ll try it.",
+          "id": "49930023",
+          "author": "arecsu",
+          "body": "Honestly, it runs and looks incredible (macOS). Very well done. Would love to have support for pi-agent, as is my go-to for most uses I have. Congratulations!",
           "score": 0,
-          "time": 1790896955,
+          "time": 1790917692,
+          "parent": "49926726"
+        },
+        {
+          "id": "49930174",
+          "author": "vivzkestrel",
+          "body": "- now imagine building entire systems tailored to each OS in just assembly\n- imagine the next gen browser built in only assembly with a browser engine made in assembly\n- imagine photoshop, illustrator, movie maker built ground up in assembly\n- imagine an entire windows 12 operating system made in pure assembly\n- the performance profile of each of the above must be absolutely wild\n- since i am an an absolute newbie at assembly at this point, a sincere question to the some of the more englightened ones reading this, how and where do you recommend I learn assembly? I understand its different for x86 x64 and ARM? where should I start?",
+          "score": 0,
+          "time": 1790919929,
           "parent": "49926726"
         },
         {
@@ -212,6 +220,30 @@
           "body": "People... I just tried it... It is SOOO FAST !!!",
           "score": 0,
           "time": 1790896738,
+          "parent": "49926726"
+        },
+        {
+          "id": "49928735",
+          "author": "haolez",
+          "body": "If you use an LLM to write assembly, it is officially your (optimizing?) compiler :)",
+          "score": 0,
+          "time": 1790902457,
+          "parent": "49926726"
+        },
+        {
+          "id": "49928186",
+          "author": "browningstreet",
+          "body": "Assembly plus platform translation, hmmm. I don’t get it but that’s a heck of a thing to do! And yes, I’ll try it.",
+          "score": 0,
+          "time": 1790896955,
+          "parent": "49926726"
+        },
+        {
+          "id": "49927373",
+          "author": "xorl",
+          "body": "This bring me joy :)",
+          "score": 0,
+          "time": 1790890733,
           "parent": "49926726"
         },
         {
@@ -229,22 +261,6 @@
           "score": 0,
           "time": 1790894970,
           "parent": "49926726"
-        },
-        {
-          "id": "49927373",
-          "author": "xorl",
-          "body": "This bring me joy :)",
-          "score": 0,
-          "time": 1790890733,
-          "parent": "49926726"
-        },
-        {
-          "id": "49928404",
-          "author": "Levitating",
-          "body": "Website has all the hallmarks of AI slop.",
-          "score": 0,
-          "time": 1790899143,
-          "parent": "49926726"
         }
       ]
     },
@@ -255,8 +271,8 @@
       "title": "Show HN: Premortem – AI agents that red-team your startup idea",
       "subreddit": "show-hn",
       "author": "ahoskins",
-      "score": 6,
-      "num_comments": 5,
+      "score": 7,
+      "num_comments": 10,
       "permalink": "https://news.ycombinator.com/item?id=49926691",
       "url": "https://premortem.site",
       "selftext": "",
@@ -266,14 +282,6 @@
       "created_at": "2026-10-01T20:30:02+00:00",
       "comments_data": [
         {
-          "id": "49927469",
-          "author": "skellertor",
-          "body": "I like the name, and the idea. Not sure 6 AI Agents could give you the feeback that the free market naturally provides. Cool idea though",
-          "score": 0,
-          "time": 1790891391,
-          "parent": "49926691"
-        },
-        {
           "id": "49927799",
           "author": "unsnap_biceps",
           "body": "PREMORTEM: AI idea red team. Submit a startup idea. Six AI agents simultaneously try to tear it apart — market, tech, competition, unit economics, and more. A seventh writes the memo.\nIDEA SCORE Average of the six seats: 2.5 / 10\nTHE CUSTOMER DOUBTER 3\nTHE COMPETITOR SCOUT 2\nTHE MARKET SKEPTIC 4\nTHE TECHNICAL CRITIC 3\nTHE UNIT ECONOMICS JUDGE 2\nTHE PESSIMIST 1",
@@ -282,11 +290,51 @@
           "parent": "49926691"
         },
         {
+          "id": "49930335",
+          "author": "rtvn83",
+          "body": "six agents roasting my idea in 90 seconds is way cheaper than pitching it to friends at dinner. any chance of a round two where I get to fight back?",
+          "score": 0,
+          "time": 1790921634,
+          "parent": "49926691"
+        },
+        {
+          "id": "49927469",
+          "author": "skellertor",
+          "body": "I like the name, and the idea. Not sure 6 AI Agents could give you the feeback that the free market naturally provides. Cool idea though",
+          "score": 0,
+          "time": 1790891391,
+          "parent": "49926691"
+        },
+        {
+          "id": "49929015",
+          "author": "jmpavlec",
+          "body": "Sounds like a great way to aggregate a bunch of other people's startup ideas...",
+          "score": 0,
+          "time": 1790905100,
+          "parent": "49926691"
+        },
+        {
           "id": "49927144",
           "author": "lwi00",
           "body": "the idea is good to have those kind of things to evaluate ideas but it is but the score is not really clear, if I have 4/10 does it means my idea is 4 out of 10 to build or the red team gives it a 4/10 on the 'do not build it' scale",
           "score": 0,
           "time": 1790889137,
+          "parent": "49926691"
+        },
+        {
+          "id": "49929488",
+          "author": "vivzkestrel",
+          "body": "- you know what you should actually build?\n- an agent that builds an mvp and auto markets it to get the first 100 customers\n- and then measures how long it took, how many people it reached, how many people converted\n- and then rates an idea from 1 to 10",
+          "score": 0,
+          "time": 1790910669,
+          "parent": "49926691"
+        },
+        {
+          "id": "49928925",
+          "author": "htrp",
+          "body": "isn't most of this in gstack?",
+          "score": 0,
+          "time": 1790904211,
           "parent": "49926691"
         },
         {
@@ -306,8 +354,8 @@
       "title": "Show HN: What 482 hospitals charge vs. what insurers pay, from their own files",
       "subreddit": "show-hn",
       "author": "curatedmcp",
-      "score": 6,
-      "num_comments": 2,
+      "score": 14,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=49926185",
       "url": "https://www.billmender.com/hospital-prices",
       "selftext": "US hospitals must publish a machine-readable file of their prices, including the rate they've negotiated with each insurer. The files are huge (one is 36GB), in four formats and often messy, so almost nobody reads them.\nI built a crawler that finds each hospital's official file and pulls out 29 common services. Across 482 hospitals: a moderate ER visit is listed at a median $1,285 while insurers pay $288; a metabolic panel is listed at $207 while insurers pay $11.46.\nTo keep it honest: only per-service fee-schedule dollar rates count (no case rates or percentages, which cover a whole visit), each figure needs at least 3 insurers, and every value is checked against Medicare reference rates. Surgery is excluded because insurer surgery rates cover the whole operation while the list price is one line item. Each hospital page links its source file. Feedback on the methodology is very welcome.",
@@ -316,6 +364,14 @@
       "time": 1790883729,
       "created_at": "2026-10-01T19:42:09+00:00",
       "comments_data": [
+        {
+          "id": "49929950",
+          "author": "MiroslavPokorny",
+          "body": "So why do American hospitals fly the flag if they dont actually want to help their fellow Americans ?",
+          "score": 0,
+          "time": 1790916646,
+          "parent": "49926185"
+        },
         {
           "id": "49928507",
           "author": "sightspinner",
@@ -392,30 +448,30 @@
       "title": "Show HN: Breadcrumb, record everything on your mac + context manager for AI",
       "subreddit": "show-hn",
       "author": "jv22222",
-      "score": 15,
+      "score": 19,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49924943",
       "url": "https://innerloop.works/breadcrumb",
-      "selftext": "Hi HN, I'm Justin.\nBreadcrumb records everything you do on your Mac (screen + meetings + AI transcripts + what you and your AI decided) and turns it into memory your AI can search. It's local and encrypted.\nYou can also teach it rules by talking to it and it makes sure the right rules turn up in the right context. Works with Claude Code / Codex / Cursor / opencode.\nAll of this is exposed to your AI as 30+ MCP tools (here's the definitions): https://innerloop.works/breadcrumb/mcp (https://innerloop.works/breadcrumb/mcp)\nI started it in June because I wanted to understand what was going on with my AI dev work. Then it just kept growing as I jammed on it 10 hours a day for 3 months.\nI started by recording every screen so I could jump back to a moment and see what I'd been doing with the AI. Then I added MCP so the AI could search it. Then time tracking. Then meetings with transcripts and timestamped screenshots.\nAfter that I started feeding the data back in. At first it was just a few relevant memories in the prompt. Then I started adding rules and rules modules.\nThen I started recording the AI transcripts and all the other stuff the AI did (subagents, tools etc). I wanted a complete record so I could go back and see what the AI did and why.\nI found the more data the AI had the more useful it became. One example. I got off a zoom call with the team at the day job and said:\n\"Review the meeting I just had, find all the bugs we discussed, and create JIRA tickets with screenshots.\"\nIt read the transcript. Found every bug we mentioned, pulled the screens from the screen timeline, spun up my local server, diagnosed each bug, reviewed the code, created 14 tickets in JIRA with diagnosis and likely fixes, attached 12 screenshots as evidence, and created a nice Slack message to send to my colleagues.\nI never built a workflow for any of that. Claude had the meeting record, Breadcrumb tools, and rules I'd accumulated. It basically chained the steps together itself.\nMy favorite thing about the system is observability of my own work as an AI developer. I can trace a bug all the way back to the first thing I said (or the first thing the AI did) that caused it. Then I can add a rule so it doesn't happen again.\nAnyway, my working system is simply Claude Desktop + Breadcrumb + Markdown. I find I don't need anything else.\nIt's local software for one person. Local models for transcription and diarization. Data encrypted with SQLCipher and a passphrase. You can exclude any apps, websites, words and phrases.\nBreadcrumb itself only makes one network call which is a daily update check. (but of course your AI will use it and that is local or cloud depending on what you use).\nIt runs cool about 12% of one core on average (M series mac has 8+). You can set it to just save OCR text or to save screenshots. If just OCR it's about 12mb day (a lot of telemetry, indexing etc). If you record screenshots on meetings it's about 120mb/hour (1 every 2 secs). It can also record screenshots of everything that's heavy at about 160mb/day. It does local classification/naming with ollama with Gemma 3 4B (2.5 GB).\nIt's 100% free. There's no account you can just download and start using it. I'll monetize it via E2EE cloud sync and team sync. It's open beta. Just one developer working on it. Requires 16GB+ M Series Mac.\nThanks for reading!\nhttps://innerloop.works/breadcrumb (https://innerloop.works/breadcrumb) (homepage)\nhttps://innerloop.works/breadcrumb/download (https://innerloop.works/breadcrumb/download) (direct download)\nhttps://innerloop.works/breadcrumb/mcp (https://innerloop.works/breadcrumb/mcp) (mcp definitions)\nhttps://discord.gg/gmavGZ6J8u (https://discord.gg/gmavGZ6J8u) (feedback and requests)",
+      "selftext": "Hi HN, I'm Justin.\nBreadcrumb records everything you do on your Mac (screen + meetings + AI transcripts + what you and your AI decided) and turns it into memory your AI can search. It's local and encrypted.\nYou can also teach it rules by talking to it and it makes sure the right rules turn up in the right context. Works with Claude Code / Codex / Cursor / opencode.\nAll of this is exposed to your AI as 30+ MCP tools (here's the definitions): https://innerloop.works/breadcrumb/mcp (https://innerloop.works/breadcrumb/mcp)\nI started it in June because I wanted to understand what was going on with my AI dev work. Then it just kept growing as I jammed on it 10 hours a day for 3 months.\nI started by recording every screen so I could jump back to a moment and see what I'd been doing with the AI. Then I added MCP so the AI could search it. Then time tracking. Then meetings with transcripts and timestamped screenshots.\nAfter that I started feeding the data back in. At first it was just a few relevant memories in the prompt. Then I started adding rules and rules modules.\nThen I started recording the AI transcripts and all the other stuff the AI did (subagents, tools etc). I wanted a complete record so I could go back and see what the AI did and why.\nI found the more data the AI had the more useful it became. One example. I got off a zoom call with the team at the day job and said:\n\"Review the meeting I just had, find all the bugs we discussed, and create JIRA tickets with screenshots.\"\nIt read the transcript. Found every bug we mentioned, pulled the screens from the screen timeline, spun up my local server, diagnosed each bug, reviewed the code, created 14 tickets in JIRA with diagnosis and likely fixes, attached 12 screenshots as evidence, and created a nice Slack message to send to my colleagues.\nI never built a workflow for any of that. Claude had the meeting record, Breadcrumb tools, and rules I'd accumulated. It basically chained the steps together itself.\nMy favorite thing about the system is observability of my own work as an AI developer. I can trace a bug all the way back to the first thing I said (or the first thing the AI did) that caused it. Then I can add a rule so it doesn't happen again.\nAnyway, my working system is simply Claude Desktop + Breadcrumb + Markdown. I find I don't need anything else.\nIt's local software for one person. Local models for transcription and diarization. Data encrypted with SQLCipher and a passphrase. You can exclude any apps, websites, words and phrases.\nBreadcrumb itself only makes one network call which is a daily update check. (but of course your AI will use it and that is local or cloud depending on what you use).\nIt runs cool about 12% of one core on average (M series mac has 8+). You can set it to just save OCR text or to save screenshots. If just OCR it's about 12mb day (a lot of telemetry, indexing etc). If you record screenshots on meetings it's about 120mb/hour (1 every 2 secs). It can also record screenshots of everything that's heavy at about 160mb/day. It does local classification/naming with ollama with Gemma 3 4B (2.5 GB).\nIt's 100% free. There's no account you can just download and start using it. I'll monetize it via E2EE cloud sync and team sync. It's open beta. Just one developer working on it. Requires 16GB+ M Series Mac.\nThanks for reading!\nhttps://innerloop.works/breadcrumb (https://innerloop.works/breadcrumb) (homepage)\nhttps://innerloop.works/breadcrumb/download (https://innerloop.works/breadcrumb/download) (direct download)\nhttps://innerloop.works/breadcrumb/mcp (https://innerloop.works/breadcrumb/mcp) (mcp definition)",
       "is_self": false,
       "is_video": false,
       "time": 1790877517,
       "created_at": "2026-10-01T17:58:37+00:00",
       "comments_data": [
         {
-          "id": "49927457",
-          "author": "Bjartr",
-          "body": "This is what I wanted Windows Recall to be",
-          "score": 0,
-          "time": 1790891323,
-          "parent": "49924943"
-        },
-        {
           "id": "49925986",
           "author": "jsh42",
           "body": "I use this. My focus in in wringing the most ROI possible from my AI Interns. Breadcrumb is like upgrading to a better model and a better brain simultaneously.",
           "score": 0,
           "time": 1790882718,
+          "parent": "49924943"
+        },
+        {
+          "id": "49927457",
+          "author": "Bjartr",
+          "body": "This is what I wanted Windows Recall to be",
+          "score": 0,
+          "time": 1790891323,
           "parent": "49924943"
         }
       ]
@@ -590,15 +646,25 @@
       "title": "Show HN: I made a computer vision tool for evaluating deadlift form",
       "subreddit": "show-hn",
       "author": "dr_blueberry",
-      "score": 4,
-      "num_comments": 0,
+      "score": 5,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49924301",
       "url": "https://github.com/jeremyipark/vision-demos/tree/main/deadlift",
       "selftext": "I've shared a few deadlift demos in the past. This new demo includes some new models, accessed through the VLM Run Gateway:\n- SAM 3.1 to segment the barbell weight plate\n- ViTPose+ Large to measure the hip hinge angle, which serves as a backup for segmenting the reps. The pose data can definitely be used more later.\n- Gemma 4 26B through the Gateway's TypeSafe-compatible API to output the probability of the back being rounded or not. The predictions line up well with how I intentionally performed each rep.\nOf course, there are many caveats to what is good form, as it depends on the individual. All said, this has the pieces in place to quickly make adjustments to fit the individual better.\nIn short, a tool like this gives people data to assess their form and improve over time.\nLet me know what you think!\nDemo video: https://www.youtube.com/watch?v=917J5oOvcBM (https://www.youtube.com/watch?v=917J5oOvcBM)",
       "is_self": false,
       "is_video": false,
       "time": 1790874469,
-      "created_at": "2026-10-01T17:07:49+00:00"
+      "created_at": "2026-10-01T17:07:49+00:00",
+      "comments_data": [
+        {
+          "id": "49929579",
+          "author": "bhavyshekhaliya",
+          "body": "Great work",
+          "score": 0,
+          "time": 1790912152,
+          "parent": "49924301"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -893,19 +959,19 @@
           "parent": "49916997"
         },
         {
-          "id": "49919407",
-          "author": "MichaelMoser123",
-          "body": "Good luck.\nI once knew how to fix shift/reduce reduce/reduce errors, but that was a long time ago. \nWith recursive descent parser you need to check for left recursion, which is somewhat less tricky.",
-          "score": 0,
-          "time": 1790845284,
-          "parent": "49916997"
-        },
-        {
           "id": "49918242",
           "author": "signa11",
           "body": "isn't this close to what ragel does ?",
           "score": 0,
           "time": 1790834916,
+          "parent": "49916997"
+        },
+        {
+          "id": "49919407",
+          "author": "MichaelMoser123",
+          "body": "Good luck.\nI once knew how to fix shift/reduce reduce/reduce errors, but that was a long time ago. \nWith recursive descent parser you need to check for left recursion, which is somewhat less tricky.",
+          "score": 0,
+          "time": 1790845284,
           "parent": "49916997"
         },
         {
