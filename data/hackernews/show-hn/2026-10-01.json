@@ -1,8 +1,373 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-01T18:41:20.954775+00:00",
+  "last_fetched": "2026-10-02T01:09:52.197064+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49928398",
+      "title": "Show HN: Bun-install – Global CLI installer for Bun with local monorepo support",
+      "subreddit": "show-hn",
+      "author": "joeycumines",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49928398",
+      "url": "https://github.com/joeycumines/bun-install",
+      "selftext": "Hey HN,\nThis is a CLI tool I initially built as a convenient and reliable way to install executable(s) from a local monorepo workspace into Bun's global package store.\nI had a local monorepo with workspace dependencies that needed to be installed as a whole. The commands aren't bundled, and I didn't want to manually manage dependencies. (If you want to try it out, https://github.com/open-pencil/open-pencil (https://github.com/open-pencil/open-pencil) is what I was contributing to)\nI tried `bun link` initially. But linking directly meant I had to keep a separate local checkout just so branch switches wouldn't break my installed tools. `bun-install` solves this by packaging the dependencies and installing a snapshot to Bun's global store instead.\nI later added the `--bun` (and `--package`) options, which mirror the `bunx` option which supports using `bun` over `node`, after I ran into some annoying JS-execution-environment-related issues. I've found the recurring theme with JS-managed commands is they tend to be fragile when installed globally on machines used for development purposes, susceptible to both runtime and update time incompatibilities and breakages. I concluded this was something of a confluence of factors: A vast ecosystem, numerous runtime environments, and indirection between what's installed (the module) and what's executed (the contents of the bin directory end users add to their PATH). This project doesn't magically fix all of those, but, for me personally, it has completely resolved what was a long-standing pain point.\nHighlights:\n- Topological resolution: builds and packs sibling dependencies in order.\n- Command filtering: `bun-install -p my-cli tool-a`. Strips unselected commands from the manifest so they don't clobber existing global symlinks.\n- Shebang rewriting: forces Node shebangs to `#!/usr/bin/env bun` (and injects them if missing). Installed commands actually run under Bun.\n- Safe binary scanning: does an 8 KiB null-byte scan so it doesn't mangle non-node scripts or native executables.\n- Workspace support: install the local state, great for dev, works with internal dependencies that aren't published.\n- Cleans up temporary tarballs and drains TTY input on interactive prompts to prevent stdin bleed.\n(pre-v1, so the API might change, but the core implementation is stable).\nTry it out:\n bun add -g bun-install\nNPM: https://www.npmjs.com/package/bun-install (https://www.npmjs.com/package/bun-install)\nGitHub: https://github.com/joeycumines/bun-install (https://github.com/joeycumines/bun-install)\nI'll be around to answer any questions. Might not respond immediately though :)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790899070,
+      "created_at": "2026-10-01T23:57:50+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49928215",
+      "title": "Show HN: Pyxel – A Python retro game engine with built-in art and sound editors",
+      "subreddit": "show-hn",
+      "author": "kitao",
+      "score": 3,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=49928215",
+      "url": "https://github.com/kitao/pyxel",
+      "selftext": "Hi HN, I'm the creator of Pyxel, a free, MIT-licensed retro game engine for Python. I've been developing it since 2018, and it recently passed 18,000 stars on GitHub.\nPyxel includes pixel art, tilemap, sound, and music editors, so you can create a game's visuals and audio as well as write its code in Python. The engine itself is implemented in Rust.\nGames run on Windows, macOS, Linux, and the web, as well as supported Linux-based retro handhelds.\nYou can share a URL to launch a Pyxel game hosted on GitHub directly in a browser. You can also create games entirely in your browser with Pyxel Code Maker, or write chiptunes in Pyxel MML Studio.\nSee what people have made with Pyxel:\nhttps://kitao.github.io/pyxel-user-examples/ (https://kitao.github.io/pyxel-user-examples/)\nTry Code Maker:\nhttps://kitao.github.io/pyxel/web/code-maker/ (https://kitao.github.io/pyxel/web/code-maker/)\nI'm happy to answer questions about the engine and its implementation.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790897195,
+      "created_at": "2026-10-01T23:26:35+00:00",
+      "comments_data": [
+        {
+          "id": "49928654",
+          "author": "krapp",
+          "body": "It looks cool. I have two questions.\n1) What's your AI policy?\n2) How is this different from PyGame?",
+          "score": 0,
+          "time": 1790901679,
+          "parent": "49928215"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49928113",
+      "title": "Show HN: I built a better way to browse and filter the NYT's 100 Best TV Shows",
+      "subreddit": "show-hn",
+      "author": "felixding",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49928113",
+      "url": "https://100besttvshows.madebyaqua.com/",
+      "selftext": "I made a simple web page to help me choose what to watch from The New York Times’ 100 Best TV Shows of the 21st Century.\nYou can quickly see what each show is about, filter by genre, and filter by streaming service, so you can subscribe to one service at a time and watch everything you want there before moving to the next.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790896164,
+      "created_at": "2026-10-01T23:09:24+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49928011",
+      "title": "Show HN: PhreshOS – OS for Web Apps",
+      "subreddit": "show-hn",
+      "author": "zouhirdx",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49928011",
+      "url": "https://github.com/PhreshOS/system",
+      "selftext": "I'd like to share my experience building this system with you. It's an operating system for web applications, and it took me about six months to develop this model. The idea is that every time I build a web tool, I need to design the infrastructure, including authentication and communication. If it's a WebSocket, it's even more complicated; I need another port for each application. I couldn't find any neutral tool that provided all of this ready-made, allowing me to build my tools directly on top of it. This is where the PhreshOS project began. It's an open-source, neutral platform for any web application, with everything ready-made: authentication, two-way communication without any configuration, and more. Another key feature is that the applications run as Node.js threads, instead of each application using its own Node.js. This means that on a simple server, dozens of applications can run without any problems, unlike if each application had its own Node.js. Furthermore, AI agents can use the services of these applications and interact with the same state displayed by your application's interface, without needing a separate interface of their own.\nThe project and all its associated packages are open source under the MIT license.\nI welcome all your feedback, both encouraging and critical.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790895302,
+      "created_at": "2026-10-01T22:55:02+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49927295",
+      "title": "Show HN: Graphene – Data analysis toolkit for your coding agent",
+      "subreddit": "show-hn",
+      "author": "kcmarr",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49927295",
+      "url": "https://github.com/graphene-data/graphene",
+      "selftext": "My friend and I have worked at a number of BI companies and thought: Can’t a coding agent do most of this now?\nAlmost. They just need a context/semantic layer to ensure query correctness and some kind of artifact for publishing findings and visualizations.\nWe built an open source project called Graphene that provides these tools:\n- Semantic layer that’s more token-efficient than YAML, more deterministic than Markdown (eg, composable, callable metric macros), with a query API that’s well in-distribution (SQL).\n- MDX-like files for dashboards (Markdown with inlined SQL + HTML components for viz with support for CSS and Javascript)\n- Connects to popular data warehouses or local DuckDB\nYour coding agent will build really in-depth reports and can ofc leverage any other skills or context that you've made available to it. We dogfood it inside a monorepo with our website, app source code, planning docs, etc so the agent has access to a ton of context. It’s also nice that the agent can add instrumentation, adjust pipelines and transformations, and add dashboards all in one PR.\nIf you want to try it out, just point your coding agent at https://github.com/graphene-data/graphene/blob/main/docs/set... (https://github.com/graphene-data/graphene/blob/main/docs/setup.md) and ask it to set up Graphene.\nIf you don’t have data to play with, you can clone our example project:\n1. `git clone <https://github.com/graphene-data/example-flights.git` (https://github.com/graphene-data/example-flights.git`)>\n2. `cd example-flights && npm install`\nWould love any/all feedback!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790890192,
+      "created_at": "2026-10-01T21:29:52+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49926773",
+      "title": "Show HN: Janus – Go binary that runs GGUF models via Vulkan on AMD/Intel/Nvidia",
+      "subreddit": "show-hn",
+      "author": "Maverick617",
+      "score": 47,
+      "num_comments": 5,
+      "permalink": "https://news.ycombinator.com/item?id=49926773",
+      "url": "https://github.com/Vibra-Ingenn/Janus",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790887007,
+      "created_at": "2026-10-01T20:36:47+00:00",
+      "comments_data": [
+        {
+          "id": "49927198",
+          "author": "PcChip",
+          "body": "I didn't see any benchmarks against vllm, sglang, exllama, etc",
+          "score": 0,
+          "time": 1790889556,
+          "parent": "49926773"
+        },
+        {
+          "id": "49927903",
+          "author": "dlcarrier",
+          "body": "From what I've seen, Vulkan adds a lot of overhead on Intel hardware.",
+          "score": 0,
+          "time": 1790894409,
+          "parent": "49926773"
+        },
+        {
+          "id": "49927894",
+          "author": "peddling-brink",
+          "body": "> llama.cpp via Vulkan (AMD / Intel / NVIDIA) or CPU fallback\nI got excited about someone paying attention to intel. Oh well.",
+          "score": 0,
+          "time": 1790894332,
+          "parent": "49926773"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49926726",
+      "title": "Show HN: Rhun, an open-source code editor written in assembly",
+      "subreddit": "show-hn",
+      "author": "vladcodes",
+      "score": 31,
+      "num_comments": 13,
+      "permalink": "https://news.ycombinator.com/item?id=49926726",
+      "url": "https://rhun.app/",
+      "selftext": "I found that I'm not using even 1/3 of vim/vscode features anymore.\nThat's wht I'm building rhun - a small code editor for Linux, Windows and Apple silicon Macs. It obviously has Vim mode, a terminal, Git diffs and a panel for Claude Code or Codex sessions.\nThe editor and pixel renderer share an x86-64 assembly core. For Apple silicon, a build-time translator converts that core to AArch64, with separate platform adapters around it.\nThe latest release can draft commit messages using a local Ollama model or an existing Claude Code or Codex subscription.\nIt's a solo project, MIT licensed and still early.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790886738,
+      "created_at": "2026-10-01T20:32:18+00:00",
+      "comments_data": [
+        {
+          "id": "49928821",
+          "author": "tamimio",
+          "body": "Ok wow I am in love! Not just it’s fast, but also it automatically detected the AI session that’s actively working! Might ditch zed now!",
+          "score": 0,
+          "time": 1790903133,
+          "parent": "49926726"
+        },
+        {
+          "id": "49928735",
+          "author": "haolez",
+          "body": "If you use an LLM to write assembly, it is officially your (optimizing?) compiler :)",
+          "score": 0,
+          "time": 1790902457,
+          "parent": "49926726"
+        },
+        {
+          "id": "49928445",
+          "author": "jrapdx3",
+          "body": "I'll have to try it.\nIt occurs to me that in this era of RAM hardware shortage, resource-frugal applications like this one could become more prevalent.\nAnyway I guess we'll see if that happens.",
+          "score": 0,
+          "time": 1790899526,
+          "parent": "49926726"
+        },
+        {
+          "id": "49926762",
+          "author": "vladcodes",
+          "body": "The plan is to add as less new features as possible and keep the same performance/launch time/memory and disk footprint as it is currently.",
+          "score": 0,
+          "time": 1790886938,
+          "parent": "49926726"
+        },
+        {
+          "id": "49927937",
+          "author": "rgbrgb",
+          "body": "can you talk about why you do this in assembly?",
+          "score": 0,
+          "time": 1790894709,
+          "parent": "49926726"
+        },
+        {
+          "id": "49928186",
+          "author": "browningstreet",
+          "body": "Assembly plus platform translation, hmmm. I don’t get it but that’s a heck of a thing to do! And yes, I’ll try it.",
+          "score": 0,
+          "time": 1790896955,
+          "parent": "49926726"
+        },
+        {
+          "id": "49928170",
+          "author": "gespadas",
+          "body": "People... I just tried it... It is SOOO FAST !!!",
+          "score": 0,
+          "time": 1790896738,
+          "parent": "49926726"
+        },
+        {
+          "id": "49928058",
+          "author": "bbor",
+          "body": "…is it fast? Why assembly? Impressive, regardless!\n“Super responsive, minimal-by-default” is kinda already met by Sublime Text, but it’s certainly not in assembly lol. And not OSS — thanks for sharing your work with the world :)",
+          "score": 0,
+          "time": 1790895644,
+          "parent": "49926726"
+        },
+        {
+          "id": "49927966",
+          "author": "heckintime",
+          "body": "Middle Earth reference?",
+          "score": 0,
+          "time": 1790894970,
+          "parent": "49926726"
+        },
+        {
+          "id": "49927373",
+          "author": "xorl",
+          "body": "This bring me joy :)",
+          "score": 0,
+          "time": 1790890733,
+          "parent": "49926726"
+        },
+        {
+          "id": "49928404",
+          "author": "Levitating",
+          "body": "Website has all the hallmarks of AI slop.",
+          "score": 0,
+          "time": 1790899143,
+          "parent": "49926726"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49926691",
+      "title": "Show HN: Premortem – AI agents that red-team your startup idea",
+      "subreddit": "show-hn",
+      "author": "ahoskins",
+      "score": 6,
+      "num_comments": 5,
+      "permalink": "https://news.ycombinator.com/item?id=49926691",
+      "url": "https://premortem.site",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790886602,
+      "created_at": "2026-10-01T20:30:02+00:00",
+      "comments_data": [
+        {
+          "id": "49927469",
+          "author": "skellertor",
+          "body": "I like the name, and the idea. Not sure 6 AI Agents could give you the feeback that the free market naturally provides. Cool idea though",
+          "score": 0,
+          "time": 1790891391,
+          "parent": "49926691"
+        },
+        {
+          "id": "49927799",
+          "author": "unsnap_biceps",
+          "body": "PREMORTEM: AI idea red team. Submit a startup idea. Six AI agents simultaneously try to tear it apart — market, tech, competition, unit economics, and more. A seventh writes the memo.\nIDEA SCORE Average of the six seats: 2.5 / 10\nTHE CUSTOMER DOUBTER 3\nTHE COMPETITOR SCOUT 2\nTHE MARKET SKEPTIC 4\nTHE TECHNICAL CRITIC 3\nTHE UNIT ECONOMICS JUDGE 2\nTHE PESSIMIST 1",
+          "score": 0,
+          "time": 1790893658,
+          "parent": "49926691"
+        },
+        {
+          "id": "49927144",
+          "author": "lwi00",
+          "body": "the idea is good to have those kind of things to evaluate ideas but it is but the score is not really clear, if I have 4/10 does it means my idea is 4 out of 10 to build or the red team gives it a 4/10 on the 'do not build it' scale",
+          "score": 0,
+          "time": 1790889137,
+          "parent": "49926691"
+        },
+        {
+          "id": "49927915",
+          "author": "dgellow",
+          "body": "I don’t understand this type of business. It’s basically a set of prompts? Why wouldn’t I just ask Claude to do the same? It can spawn multiple agents and have them red-team any idea",
+          "score": 0,
+          "time": 1790894515,
+          "parent": "49926691"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49926185",
+      "title": "Show HN: What 482 hospitals charge vs. what insurers pay, from their own files",
+      "subreddit": "show-hn",
+      "author": "curatedmcp",
+      "score": 6,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=49926185",
+      "url": "https://www.billmender.com/hospital-prices",
+      "selftext": "US hospitals must publish a machine-readable file of their prices, including the rate they've negotiated with each insurer. The files are huge (one is 36GB), in four formats and often messy, so almost nobody reads them.\nI built a crawler that finds each hospital's official file and pulls out 29 common services. Across 482 hospitals: a moderate ER visit is listed at a median $1,285 while insurers pay $288; a metabolic panel is listed at $207 while insurers pay $11.46.\nTo keep it honest: only per-service fee-schedule dollar rates count (no case rates or percentages, which cover a whole visit), each figure needs at least 3 insurers, and every value is checked against Medicare reference rates. Surgery is excluded because insurer surgery rates cover the whole operation while the list price is one line item. Each hospital page links its source file. Feedback on the methodology is very welcome.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790883729,
+      "created_at": "2026-10-01T19:42:09+00:00",
+      "comments_data": [
+        {
+          "id": "49928507",
+          "author": "sightspinner",
+          "body": "Very cool. I don't know what your plans are and whether you're trying to monetize this but I think a very simple extra feature would just be to allow a natural language search for those particular rows since people may not know what the procedures are called but an LLM would:\ne.g.\n\"broken arm at red cross hospital\" or something",
+          "score": 0,
+          "time": 1790900223,
+          "parent": "49926185"
+        },
+        {
+          "id": "49926964",
+          "author": "bgolson",
+          "body": "Thanks for shining a light on the scam!",
+          "score": 0,
+          "time": 1790888017,
+          "parent": "49926185"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49925961",
+      "title": "Show HN: Ferry – Sync your coding agent setup to remote Linux boxes",
+      "subreddit": "show-hn",
+      "author": "dlhck",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49925961",
+      "url": "https://dlhck.github.io/ferry/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790882611,
+      "created_at": "2026-10-01T19:23:31+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49925593",
+      "title": "Show HN: D-Engine – deterministic LLM code edits, 42× fewer tokens than an agent",
+      "subreddit": "show-hn",
+      "author": "sergiocorruchag",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49925593",
+      "url": "https://github.com/corruchaga/D-Engine",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790880746,
+      "created_at": "2026-10-01T18:52:26+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -23,19 +388,64 @@
     {
       "source": "hackernews",
       "stream": "show-hn",
+      "id": "49924943",
+      "title": "Show HN: Breadcrumb, record everything on your mac + context manager for AI",
+      "subreddit": "show-hn",
+      "author": "jv22222",
+      "score": 15,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=49924943",
+      "url": "https://innerloop.works/breadcrumb",
+      "selftext": "Hi HN, I'm Justin.\nBreadcrumb records everything you do on your Mac (screen + meetings + AI transcripts + what you and your AI decided) and turns it into memory your AI can search. It's local and encrypted.\nYou can also teach it rules by talking to it and it makes sure the right rules turn up in the right context. Works with Claude Code / Codex / Cursor / opencode.\nAll of this is exposed to your AI as 30+ MCP tools (here's the definitions): https://innerloop.works/breadcrumb/mcp (https://innerloop.works/breadcrumb/mcp)\nI started it in June because I wanted to understand what was going on with my AI dev work. Then it just kept growing as I jammed on it 10 hours a day for 3 months.\nI started by recording every screen so I could jump back to a moment and see what I'd been doing with the AI. Then I added MCP so the AI could search it. Then time tracking. Then meetings with transcripts and timestamped screenshots.\nAfter that I started feeding the data back in. At first it was just a few relevant memories in the prompt. Then I started adding rules and rules modules.\nThen I started recording the AI transcripts and all the other stuff the AI did (subagents, tools etc). I wanted a complete record so I could go back and see what the AI did and why.\nI found the more data the AI had the more useful it became. One example. I got off a zoom call with the team at the day job and said:\n\"Review the meeting I just had, find all the bugs we discussed, and create JIRA tickets with screenshots.\"\nIt read the transcript. Found every bug we mentioned, pulled the screens from the screen timeline, spun up my local server, diagnosed each bug, reviewed the code, created 14 tickets in JIRA with diagnosis and likely fixes, attached 12 screenshots as evidence, and created a nice Slack message to send to my colleagues.\nI never built a workflow for any of that. Claude had the meeting record, Breadcrumb tools, and rules I'd accumulated. It basically chained the steps together itself.\nMy favorite thing about the system is observability of my own work as an AI developer. I can trace a bug all the way back to the first thing I said (or the first thing the AI did) that caused it. Then I can add a rule so it doesn't happen again.\nAnyway, my working system is simply Claude Desktop + Breadcrumb + Markdown. I find I don't need anything else.\nIt's local software for one person. Local models for transcription and diarization. Data encrypted with SQLCipher and a passphrase. You can exclude any apps, websites, words and phrases.\nBreadcrumb itself only makes one network call which is a daily update check. (but of course your AI will use it and that is local or cloud depending on what you use).\nIt runs cool about 12% of one core on average (M series mac has 8+). You can set it to just save OCR text or to save screenshots. If just OCR it's about 12mb day (a lot of telemetry, indexing etc). If you record screenshots on meetings it's about 120mb/hour (1 every 2 secs). It can also record screenshots of everything that's heavy at about 160mb/day. It does local classification/naming with ollama with Gemma 3 4B (2.5 GB).\nIt's 100% free. There's no account you can just download and start using it. I'll monetize it via E2EE cloud sync and team sync. It's open beta. Just one developer working on it. Requires 16GB+ M Series Mac.\nThanks for reading!\nhttps://innerloop.works/breadcrumb (https://innerloop.works/breadcrumb) (homepage)\nhttps://innerloop.works/breadcrumb/download (https://innerloop.works/breadcrumb/download) (direct download)\nhttps://innerloop.works/breadcrumb/mcp (https://innerloop.works/breadcrumb/mcp) (mcp definitions)\nhttps://discord.gg/gmavGZ6J8u (https://discord.gg/gmavGZ6J8u) (feedback and requests)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790877517,
+      "created_at": "2026-10-01T17:58:37+00:00",
+      "comments_data": [
+        {
+          "id": "49927457",
+          "author": "Bjartr",
+          "body": "This is what I wanted Windows Recall to be",
+          "score": 0,
+          "time": 1790891323,
+          "parent": "49924943"
+        },
+        {
+          "id": "49925986",
+          "author": "jsh42",
+          "body": "I use this. My focus in in wringing the most ROI possible from my AI Interns. Breadcrumb is like upgrading to a better model and a better brain simultaneously.",
+          "score": 0,
+          "time": 1790882718,
+          "parent": "49924943"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
       "id": "49924787",
       "title": "Show HN: I built an app that scours the internet to create a daily news briefing",
       "subreddit": "show-hn",
       "author": "yogthos",
       "score": 2,
-      "num_comments": 0,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49924787",
       "url": "https://github.com/yogthos/newsroom",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1790876791,
-      "created_at": "2026-10-01T17:46:31+00:00"
+      "created_at": "2026-10-01T17:46:31+00:00",
+      "comments_data": [
+        {
+          "id": "49926191",
+          "author": "sixtyj",
+          "body": "Unfortunately Windows installation of Jolt and Chez is real pain. :(\nSo to run your app under Windows is “mission impossible”…",
+          "score": 0,
+          "time": 1790883778,
+          "parent": "49924787"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -149,11 +559,38 @@
     {
       "source": "hackernews",
       "stream": "show-hn",
+      "id": "49924329",
+      "title": "Show HN: ASCII Art generator using depth maps",
+      "subreddit": "show-hn",
+      "author": "tonerow",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=49924329",
+      "url": "https://polyglyph-nu.vercel.app/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790874611,
+      "created_at": "2026-10-01T17:10:11+00:00",
+      "comments_data": [
+        {
+          "id": "49926374",
+          "author": "verdverm",
+          "body": "that's actually pretty sick and responsive to boot for ray tracing to ascii",
+          "score": 0,
+          "time": 1790884806,
+          "parent": "49924329"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
       "id": "49924301",
       "title": "Show HN: I made a computer vision tool for evaluating deadlift form",
       "subreddit": "show-hn",
       "author": "dr_blueberry",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49924301",
       "url": "https://github.com/jeremyipark/vision-demos/tree/main/deadlift",
@@ -162,6 +599,33 @@
       "is_video": false,
       "time": 1790874469,
       "created_at": "2026-10-01T17:07:49+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49923634",
+      "title": "Show HN: Secret Santa Name Generator – draw names in the browser, no sign-up",
+      "subreddit": "show-hn",
+      "author": "xmasdong",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=49923634",
+      "url": "https://secretsantanamegenerator.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790871248,
+      "created_at": "2026-10-01T16:14:08+00:00",
+      "comments_data": [
+        {
+          "id": "49927541",
+          "author": "skellertor",
+          "body": "Cool idea. I like the Christmas themed UI. Do you have many users?",
+          "score": 0,
+          "time": 1790891829,
+          "parent": "49923634"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -255,7 +719,7 @@
       "title": "Show HN: CoIsland – Your whole engineering stack in a notch",
       "subreddit": "show-hn",
       "author": "LeDonT",
-      "score": 4,
+      "score": 5,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49922772",
       "url": "https://coisland.app/",
@@ -378,8 +842,8 @@
       "title": "Show HN: Yantra – an LALR(1) parser generator for C++",
       "subreddit": "show-hn",
       "author": "renjipanicker",
-      "score": 30,
-      "num_comments": 15,
+      "score": 31,
+      "num_comments": 16,
       "permalink": "https://news.ycombinator.com/item?id=49916997",
       "url": "https://github.com/TantrixAuto/yantra",
       "selftext": "Yantra is a C++ parser generator: lexer, parser, and AST walker all generated from one tool.\nIt builds the whole AST first, then walks it.\nMost LALR parser generators (Yacc, Bison, Lemon) run your semantic actions during parsing, as each rule reduces, bottom-up.\nThat means at the time a rule's action runs, you don't yet know what its parent looks like. This pushes a lot of grammars toward hand-built AST classes and a separate walking pass whenever you need to look ahead into siblings or defer a decision until more context is available.\nOn the other hand, Yantra always builds the whole AST first, then walks it top-down in a separate pass, calling your semantic actions as it goes. A parent rule's action can run before its children are visited.\nA single grammar can define more than one walker. For example, one that emits C++, another that emits Java, from the same parse. The AST and the walker classes are both generated for you.\nA small example (full version, with compile commands, in the README):\n start := expr;\n\n expr := expr(a) PLUS expr(b)\n %{\n std::cout << \"Adding\" << std::endl;\n %}\n\n expr := NUMBER(N)\n %{\n std::cout << \"Number: \" << N.text << std::endl;\n %}\n\n NUMBER := \"\\d+\";\n PLUS := \"\\+\";\n WS := \"\\s+\"!;\n\nRunning this on \"1 + 2 + 3\" prints:\n Adding\n Number: 1\n Adding\n Number: 2\n Number: 3\n\nThe outer \"Adding\", the root of the tree, prints first, before either of its children. That's only possible because the whole tree exists before any action runs.\nSome other things about it: integrated lexer with mode support (for things like nested comments), an optional amalgamated single-file output mode with a generated main(), C++23, MIT licensed.\nIt's young (0.5.1, pre-1.0) and single-maintainer, so treat it as early.\nI'd rather know what breaks than have it look more finished than it is.\nKnown gaps are listed at\nhttps://github.com/TantrixAuto/yantra/blob/main/docs/known_l... (https://github.com/TantrixAuto/yantra/blob/main/docs/known_limitations.md)\nRepo: https://github.com/TantrixAuto/yantra (https://github.com/TantrixAuto/yantra)\nFeedback and questions are all welcome. I'll be around.",
@@ -410,6 +874,14 @@
           "body": "Yacc has mid-rule actions which can be used to propagate information from left siblings to right siblings, as well as to children (embedded nonterminal symbols).\nOf course, it's not the same as having the parse tree all done from a previous pass and just walking it to do semantics.",
           "score": 0,
           "time": 1790826919,
+          "parent": "49916997"
+        },
+        {
+          "id": "49928253",
+          "author": "sxzygz",
+          "body": "Sorry, but the explanation in your README of the example given here is wrong. This is right associative, not left associative as you claim. Looking at your docs, I think you need a %left PLUS; somewhere in there.\nAt least I think that's the case. Clarification appreciated.",
+          "score": 0,
+          "time": 1790897601,
           "parent": "49916997"
         },
         {
