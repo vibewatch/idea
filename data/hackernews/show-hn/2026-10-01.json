@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-02T06:51:45.516518+00:00",
+  "last_fetched": "2026-10-02T12:46:39.362285+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -27,8 +27,8 @@
       "title": "Show HN: Pyxel – A Python retro game engine with built-in art and sound editors",
       "subreddit": "show-hn",
       "author": "kitao",
-      "score": 3,
-      "num_comments": 2,
+      "score": 5,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=49928215",
       "url": "https://github.com/kitao/pyxel",
       "selftext": "Hi HN, I'm the creator of Pyxel, a free, MIT-licensed retro game engine for Python. I've been developing it since 2018, and it recently passed 18,000 stars on GitHub.\nPyxel includes pixel art, tilemap, sound, and music editors, so you can create a game's visuals and audio as well as write its code in Python. The engine itself is implemented in Rust.\nGames run on Windows, macOS, Linux, and the web, as well as supported Linux-based retro handhelds.\nYou can share a URL to launch a Pyxel game hosted on GitHub directly in a browser. You can also create games entirely in your browser with Pyxel Code Maker, or write chiptunes in Pyxel MML Studio.\nSee what people have made with Pyxel:\nhttps://kitao.github.io/pyxel-user-examples/ (https://kitao.github.io/pyxel-user-examples/)\nTry Code Maker:\nhttps://kitao.github.io/pyxel/web/code-maker/ (https://kitao.github.io/pyxel/web/code-maker/)\nI'm happy to answer questions about the engine and its implementation.",
@@ -37,6 +37,14 @@
       "time": 1790897195,
       "created_at": "2026-10-01T23:26:35+00:00",
       "comments_data": [
+        {
+          "id": "49932469",
+          "author": "gregkb",
+          "body": "had such a great time with Pyxel! was great fun to recreate some of the demo scene effects from my childhood. easy to setup and get coding and make some pixels \"move\" quickly. it has some inherit limitations (eg. how colours and bitmaps are organised) which gives you some satisfying challenges. just enough to satisfy your 8-16bits assembly nostalgia.\nmaybe I should go back add a few more parts to my demo: https://github.com/greg76/megademo (https://github.com/greg76/megademo)",
+          "score": 0,
+          "time": 1790941996,
+          "parent": "49928215"
+        },
         {
           "id": "49928654",
           "author": "krapp",
@@ -71,15 +79,25 @@
       "title": "Show HN: PhreshOS – OS for Web Apps",
       "subreddit": "show-hn",
       "author": "zouhirdx",
-      "score": 2,
-      "num_comments": 0,
+      "score": 6,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49928011",
       "url": "https://github.com/PhreshOS/system",
       "selftext": "I'd like to share my experience building this system with you. It's an operating system for web applications, and it took me about six months to develop this model. The idea is that every time I build a web tool, I need to design the infrastructure, including authentication and communication. If it's a WebSocket, it's even more complicated; I need another port for each application. I couldn't find any neutral tool that provided all of this ready-made, allowing me to build my tools directly on top of it. This is where the PhreshOS project began. It's an open-source, neutral platform for any web application, with everything ready-made: authentication, two-way communication without any configuration, and more. Another key feature is that the applications run as Node.js threads, instead of each application using its own Node.js. This means that on a simple server, dozens of applications can run without any problems, unlike if each application had its own Node.js. Furthermore, AI agents can use the services of these applications and interact with the same state displayed by your application's interface, without needing a separate interface of their own.\nThe project and all its associated packages are open source under the MIT license.\nI welcome all your feedback, both encouraging and critical.",
       "is_self": false,
       "is_video": false,
       "time": 1790895302,
-      "created_at": "2026-10-01T22:55:02+00:00"
+      "created_at": "2026-10-01T22:55:02+00:00",
+      "comments_data": [
+        {
+          "id": "49931870",
+          "author": "avallach",
+          "body": "This looks very cool! All the demo slots are taken at the moment. I'm curious: is the frontend just a dumb display server, or do you run there subset of GUI code responsible for latency sensitive feedback loops (typing, scrolling, dragging, maybe expanding menus etc)? E.g. is it vulnerable to network latency the same way as remote desktop solutions are?",
+          "score": 0,
+          "time": 1790936561,
+          "parent": "49928011"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -88,7 +106,7 @@
       "title": "Show HN: Graphene – Data analysis toolkit for your coding agent",
       "subreddit": "show-hn",
       "author": "kcmarr",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49927295",
       "url": "https://github.com/graphene-data/graphene",
@@ -105,8 +123,8 @@
       "title": "Show HN: Janus – Go binary that runs GGUF models via Vulkan on AMD/Intel/Nvidia",
       "subreddit": "show-hn",
       "author": "Maverick617",
-      "score": 66,
-      "num_comments": 10,
+      "score": 81,
+      "num_comments": 14,
       "permalink": "https://news.ycombinator.com/item?id=49926773",
       "url": "https://github.com/Vibra-Ingenn/Janus",
       "selftext": "",
@@ -116,11 +134,11 @@
       "created_at": "2026-10-01T20:36:47+00:00",
       "comments_data": [
         {
-          "id": "49930419",
-          "author": "aidiveyt",
-          "body": "claude code appends a role:\"system\" block after the user prompt, so a proxy rewriting the trailing user message is a no-op.",
+          "id": "49931557",
+          "author": "antonyragleap",
+          "body": "Curious about Vulkan overhead on Intel vs AMD/Nvidia for long context. Any benchmarks vs vllm/sglang?",
           "score": 0,
-          "time": 1790922544,
+          "time": 1790933338,
           "parent": "49926773"
         },
         {
@@ -132,11 +150,19 @@
           "parent": "49926773"
         },
         {
-          "id": "49927903",
-          "author": "dlcarrier",
-          "body": "From what I've seen, Vulkan adds a lot of overhead on Intel hardware.",
+          "id": "49930419",
+          "author": "aidiveyt",
+          "body": "claude code appends a role:\"system\" block after the user prompt, so a proxy rewriting the trailing user message is a no-op.",
           "score": 0,
-          "time": 1790894409,
+          "time": 1790922544,
+          "parent": "49926773"
+        },
+        {
+          "id": "49930637",
+          "author": "DylanMerigaud",
+          "body": "Intel hardware can have Vulkan overhead, impacting performance.",
+          "score": 0,
+          "time": 1790924844,
           "parent": "49926773"
         },
         {
@@ -145,6 +171,14 @@
           "body": "> llama.cpp via Vulkan (AMD / Intel / NVIDIA) or CPU fallback\nI got excited about someone paying attention to intel. Oh well.",
           "score": 0,
           "time": 1790894332,
+          "parent": "49926773"
+        },
+        {
+          "id": "49927903",
+          "author": "dlcarrier",
+          "body": "From what I've seen, Vulkan adds a lot of overhead on Intel hardware.",
+          "score": 0,
+          "time": 1790894409,
           "parent": "49926773"
         }
       ]
@@ -156,8 +190,8 @@
       "title": "Show HN: Rhun, an open-source code editor written in assembly",
       "subreddit": "show-hn",
       "author": "vladcodes",
-      "score": 47,
-      "num_comments": 26,
+      "score": 55,
+      "num_comments": 32,
       "permalink": "https://news.ycombinator.com/item?id=49926726",
       "url": "https://rhun.app/",
       "selftext": "I found that I'm not using even 1/3 of vim/vscode features anymore.\nThat's wht I'm building rhun - a small code editor for Linux, Windows and Apple silicon Macs. It obviously has Vim mode, a terminal, Git diffs and a panel for Claude Code or Codex sessions.\nThe editor and pixel renderer share an x86-64 assembly core. For Apple silicon, a build-time translator converts that core to AArch64, with separate platform adapters around it.\nThe latest release can draft commit messages using a local Ollama model or an existing Claude Code or Codex subscription.\nIt's a solo project, MIT licensed and still early.",
@@ -167,19 +201,19 @@
       "created_at": "2026-10-01T20:32:18+00:00",
       "comments_data": [
         {
-          "id": "49930350",
-          "author": "nylonstrung",
-          "body": "At this point I very much question that handwritten assembly can be more performant than what LLVM-based langs can produce at the highest optimization settings. Compilers are very good at optimization\nParticularly when the \"handwritten\" code in question is vibecoded, like this is",
-          "score": 0,
-          "time": 1790921796,
-          "parent": "49926726"
-        },
-        {
           "id": "49928445",
           "author": "jrapdx3",
           "body": "I'll have to try it.\nIt occurs to me that in this era of RAM hardware shortage, resource-frugal applications like this one could become more prevalent.\nAnyway I guess we'll see if that happens.\nEdit: Downloaded, running under Windows.\nImpressive. Loads fast, looks pretty polished. Highlighting for many languages included \"obscure\" ones that I sometimes use.\nMem used: 7.9MB (gvim 12.2MB, emacs 35.5MB, vscodium 291.1MB)",
           "score": 0,
           "time": 1790899526,
+          "parent": "49926726"
+        },
+        {
+          "id": "49931703",
+          "author": "uchiha7itachi",
+          "body": "Just tried it out in linux, its very fast and responsive. It would be awesome if it has LSP support though",
+          "score": 0,
+          "time": 1790934798,
           "parent": "49926726"
         },
         {
@@ -191,27 +225,19 @@
           "parent": "49926726"
         },
         {
+          "id": "49930350",
+          "author": "nylonstrung",
+          "body": "At this point I very much question that handwritten assembly can be more performant than what LLVM-based langs can produce at the highest optimization settings. Compilers are very good at optimization\nParticularly when the \"handwritten\" code in question is vibecoded, like this is",
+          "score": 0,
+          "time": 1790921796,
+          "parent": "49926726"
+        },
+        {
           "id": "49927937",
           "author": "rgbrgb",
           "body": "can you talk about why you do this in assembly?",
           "score": 0,
           "time": 1790894709,
-          "parent": "49926726"
-        },
-        {
-          "id": "49930023",
-          "author": "arecsu",
-          "body": "Honestly, it runs and looks incredible (macOS). Very well done. Would love to have support for pi-agent, as is my go-to for most uses I have. Congratulations!",
-          "score": 0,
-          "time": 1790917692,
-          "parent": "49926726"
-        },
-        {
-          "id": "49930174",
-          "author": "vivzkestrel",
-          "body": "- now imagine building entire systems tailored to each OS in just assembly\n- imagine the next gen browser built in only assembly with a browser engine made in assembly\n- imagine photoshop, illustrator, movie maker built ground up in assembly\n- imagine an entire windows 12 operating system made in pure assembly\n- the performance profile of each of the above must be absolutely wild\n- since i am an an absolute newbie at assembly at this point, a sincere question to the some of the more englightened ones reading this, how and where do you recommend I learn assembly? I understand its different for x86 x64 and ARM? where should I start?",
-          "score": 0,
-          "time": 1790919929,
           "parent": "49926726"
         },
         {
@@ -223,6 +249,14 @@
           "parent": "49926726"
         },
         {
+          "id": "49928186",
+          "author": "browningstreet",
+          "body": "Assembly plus platform translation, hmmm. I don’t get it but that’s a heck of a thing to do! And yes, I’ll try it.",
+          "score": 0,
+          "time": 1790896955,
+          "parent": "49926726"
+        },
+        {
           "id": "49928735",
           "author": "haolez",
           "body": "If you use an LLM to write assembly, it is officially your (optimizing?) compiler :)",
@@ -231,11 +265,11 @@
           "parent": "49926726"
         },
         {
-          "id": "49928186",
-          "author": "browningstreet",
-          "body": "Assembly plus platform translation, hmmm. I don’t get it but that’s a heck of a thing to do! And yes, I’ll try it.",
+          "id": "49930023",
+          "author": "arecsu",
+          "body": "Honestly, it runs and looks incredible (macOS). Very well done. Would love to have support for pi-agent, as is my go-to for most uses I have. Congratulations!",
           "score": 0,
-          "time": 1790896955,
+          "time": 1790917692,
           "parent": "49926726"
         },
         {
@@ -247,19 +281,19 @@
           "parent": "49926726"
         },
         {
+          "id": "49930553",
+          "author": "Imustaskforhelp",
+          "body": "This is amazing. I think that the binary itself is just 980kb, which is such a fresh breath of air. I think that I am fairly impressed by the project!\nSome few features that I would love to have for myself is if it can support remote development similar to zed[0] using ssh\nand if possibly, LSP support can be added.\nI also think that this project can be used as the base support for many things and not just an editor as initial inspiration (sort of as a way to bootstrap a way to create extremely minimalist applications with themes and everything!)\nI wish luck to the project and I might even start to daily drive it, there are many ideas that I can think of which I wish to add on top of it (I wish to create a scratch-pad app which can automatically save the files and I wouldn't have to prompt it), I had built it in Odin[1] but I feel like writing it on top of rhun might be easier as well\nor a markdown editor similar to a more barebones version of obsidian/notion also come to my mind (If you are interested, please, do create something like this. QTmarkdown is one of the more minimalist things that I use but nearly all of these aren't really as minimalist as I would want them to and I think that rhun can help in it.)\nThanks once again and have a nice day! Man, do I love hackernews for these type of creative projects :-D\n[0]: https://zed.dev/docs/remote-development (https://zed.dev/docs/remote-development)\n[1]: https://github.com/SerJaimeLannister/odinpad (https://github.com/SerJaimeLannister/odinpad)",
+          "score": 0,
+          "time": 1790924021,
+          "parent": "49926726"
+        },
+        {
           "id": "49928058",
           "author": "bbor",
           "body": "…is it fast? Why assembly? Impressive, regardless!\n“Super responsive, minimal-by-default” is kinda already met by Sublime Text, but it’s certainly not in assembly lol. And not OSS — thanks for sharing your work with the world :)",
           "score": 0,
           "time": 1790895644,
-          "parent": "49926726"
-        },
-        {
-          "id": "49927966",
-          "author": "heckintime",
-          "body": "Middle Earth reference?",
-          "score": 0,
-          "time": 1790894970,
           "parent": "49926726"
         }
       ]
@@ -271,8 +305,8 @@
       "title": "Show HN: Premortem – AI agents that red-team your startup idea",
       "subreddit": "show-hn",
       "author": "ahoskins",
-      "score": 7,
-      "num_comments": 10,
+      "score": 9,
+      "num_comments": 11,
       "permalink": "https://news.ycombinator.com/item?id=49926691",
       "url": "https://premortem.site",
       "selftext": "",
@@ -290,14 +324,6 @@
           "parent": "49926691"
         },
         {
-          "id": "49930335",
-          "author": "rtvn83",
-          "body": "six agents roasting my idea in 90 seconds is way cheaper than pitching it to friends at dinner. any chance of a round two where I get to fight back?",
-          "score": 0,
-          "time": 1790921634,
-          "parent": "49926691"
-        },
-        {
           "id": "49927469",
           "author": "skellertor",
           "body": "I like the name, and the idea. Not sure 6 AI Agents could give you the feeback that the free market naturally provides. Cool idea though",
@@ -311,6 +337,14 @@
           "body": "Sounds like a great way to aggregate a bunch of other people's startup ideas...",
           "score": 0,
           "time": 1790905100,
+          "parent": "49926691"
+        },
+        {
+          "id": "49930335",
+          "author": "rtvn83",
+          "body": "six agents roasting my idea in 90 seconds is way cheaper than pitching it to friends at dinner. any chance of a round two where I get to fight back?",
+          "score": 0,
+          "time": 1790921634,
           "parent": "49926691"
         },
         {
@@ -354,8 +388,8 @@
       "title": "Show HN: What 482 hospitals charge vs. what insurers pay, from their own files",
       "subreddit": "show-hn",
       "author": "curatedmcp",
-      "score": 14,
-      "num_comments": 3,
+      "score": 18,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=49926185",
       "url": "https://www.billmender.com/hospital-prices",
       "selftext": "US hospitals must publish a machine-readable file of their prices, including the rate they've negotiated with each insurer. The files are huge (one is 36GB), in four formats and often messy, so almost nobody reads them.\nI built a crawler that finds each hospital's official file and pulls out 29 common services. Across 482 hospitals: a moderate ER visit is listed at a median $1,285 while insurers pay $288; a metabolic panel is listed at $207 while insurers pay $11.46.\nTo keep it honest: only per-service fee-schedule dollar rates count (no case rates or percentages, which cover a whole visit), each figure needs at least 3 insurers, and every value is checked against Medicare reference rates. Surgery is excluded because insurer surgery rates cover the whole operation while the list price is one line item. Each hospital page links its source file. Feedback on the methodology is very welcome.",
@@ -365,19 +399,19 @@
       "created_at": "2026-10-01T19:42:09+00:00",
       "comments_data": [
         {
-          "id": "49929950",
-          "author": "MiroslavPokorny",
-          "body": "So why do American hospitals fly the flag if they dont actually want to help their fellow Americans ?",
-          "score": 0,
-          "time": 1790916646,
-          "parent": "49926185"
-        },
-        {
           "id": "49928507",
           "author": "sightspinner",
           "body": "Very cool. I don't know what your plans are and whether you're trying to monetize this but I think a very simple extra feature would just be to allow a natural language search for those particular rows since people may not know what the procedures are called but an LLM would:\ne.g.\n\"broken arm at red cross hospital\" or something",
           "score": 0,
           "time": 1790900223,
+          "parent": "49926185"
+        },
+        {
+          "id": "49929950",
+          "author": "MiroslavPokorny",
+          "body": "So why do American hospitals fly the flag if they dont actually want to help their fellow Americans ?",
+          "score": 0,
+          "time": 1790916646,
           "parent": "49926185"
         },
         {
@@ -448,8 +482,8 @@
       "title": "Show HN: Breadcrumb, record everything on your mac + context manager for AI",
       "subreddit": "show-hn",
       "author": "jv22222",
-      "score": 19,
-      "num_comments": 2,
+      "score": 20,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=49924943",
       "url": "https://innerloop.works/breadcrumb",
       "selftext": "Hi HN, I'm Justin.\nBreadcrumb records everything you do on your Mac (screen + meetings + AI transcripts + what you and your AI decided) and turns it into memory your AI can search. It's local and encrypted.\nYou can also teach it rules by talking to it and it makes sure the right rules turn up in the right context. Works with Claude Code / Codex / Cursor / opencode.\nAll of this is exposed to your AI as 30+ MCP tools (here's the definitions): https://innerloop.works/breadcrumb/mcp (https://innerloop.works/breadcrumb/mcp)\nI started it in June because I wanted to understand what was going on with my AI dev work. Then it just kept growing as I jammed on it 10 hours a day for 3 months.\nI started by recording every screen so I could jump back to a moment and see what I'd been doing with the AI. Then I added MCP so the AI could search it. Then time tracking. Then meetings with transcripts and timestamped screenshots.\nAfter that I started feeding the data back in. At first it was just a few relevant memories in the prompt. Then I started adding rules and rules modules.\nThen I started recording the AI transcripts and all the other stuff the AI did (subagents, tools etc). I wanted a complete record so I could go back and see what the AI did and why.\nI found the more data the AI had the more useful it became. One example. I got off a zoom call with the team at the day job and said:\n\"Review the meeting I just had, find all the bugs we discussed, and create JIRA tickets with screenshots.\"\nIt read the transcript. Found every bug we mentioned, pulled the screens from the screen timeline, spun up my local server, diagnosed each bug, reviewed the code, created 14 tickets in JIRA with diagnosis and likely fixes, attached 12 screenshots as evidence, and created a nice Slack message to send to my colleagues.\nI never built a workflow for any of that. Claude had the meeting record, Breadcrumb tools, and rules I'd accumulated. It basically chained the steps together itself.\nMy favorite thing about the system is observability of my own work as an AI developer. I can trace a bug all the way back to the first thing I said (or the first thing the AI did) that caused it. Then I can add a rule so it doesn't happen again.\nAnyway, my working system is simply Claude Desktop + Breadcrumb + Markdown. I find I don't need anything else.\nIt's local software for one person. Local models for transcription and diarization. Data encrypted with SQLCipher and a passphrase. You can exclude any apps, websites, words and phrases.\nBreadcrumb itself only makes one network call which is a daily update check. (but of course your AI will use it and that is local or cloud depending on what you use).\nIt runs cool about 12% of one core on average (M series mac has 8+). You can set it to just save OCR text or to save screenshots. If just OCR it's about 12mb day (a lot of telemetry, indexing etc). If you record screenshots on meetings it's about 120mb/hour (1 every 2 secs). It can also record screenshots of everything that's heavy at about 160mb/day. It does local classification/naming with ollama with Gemma 3 4B (2.5 GB).\nIt's 100% free. There's no account you can just download and start using it. I'll monetize it via E2EE cloud sync and team sync. It's open beta. Just one developer working on it. Requires 16GB+ M Series Mac.\nThanks for reading!\nhttps://innerloop.works/breadcrumb (https://innerloop.works/breadcrumb) (homepage)\nhttps://innerloop.works/breadcrumb/download (https://innerloop.works/breadcrumb/download) (direct download)\nhttps://innerloop.works/breadcrumb/mcp (https://innerloop.works/breadcrumb/mcp) (mcp definition)",
@@ -458,6 +492,14 @@
       "time": 1790877517,
       "created_at": "2026-10-01T17:58:37+00:00",
       "comments_data": [
+        {
+          "id": "49932154",
+          "author": "aidiveyt",
+          "body": "Do all 30+ tools load every request? Claude Code's 24 built-ins already cost ~85,500 chars of definitions before any MCP server.",
+          "score": 0,
+          "time": 1790939328,
+          "parent": "49924943"
+        },
         {
           "id": "49925986",
           "author": "jsh42",
@@ -908,7 +950,7 @@
       "title": "Show HN: Yantra – an LALR(1) parser generator for C++",
       "subreddit": "show-hn",
       "author": "renjipanicker",
-      "score": 31,
+      "score": 32,
       "num_comments": 16,
       "permalink": "https://news.ycombinator.com/item?id=49916997",
       "url": "https://github.com/TantrixAuto/yantra",
@@ -927,14 +969,6 @@
           "parent": "49916997"
         },
         {
-          "id": "49918212",
-          "author": "mingodad",
-          "body": "For people interested on this topic I strongly recommend to also look at Ben Hanson https://github.com/BenHanson/parsertl17 (https://github.com/BenHanson/parsertl17) and based on it I've created an online LALR(1) playground here https://mingodad.github.io/parsertl-playground/playground/ (https://mingodad.github.io/parsertl-playground/playground/) where you have around 350 non trivial. grammars to experiment (select one from the `Examples` dropdown and then click `Parse` to see a parse tree for the input in `Input`, it also generates EBNF to generate nice navigable railroad diagrams on https://www.bottlecaps.de/rr/ui (https://www.bottlecaps.de/rr/ui) .",
-          "score": 0,
-          "time": 1790834518,
-          "parent": "49916997"
-        },
-        {
           "id": "49917551",
           "author": "kazinator",
           "body": "Yacc has mid-rule actions which can be used to propagate information from left siblings to right siblings, as well as to children (embedded nonterminal symbols).\nOf course, it's not the same as having the parse tree all done from a previous pass and just walking it to do semantics.",
@@ -943,11 +977,11 @@
           "parent": "49916997"
         },
         {
-          "id": "49928253",
-          "author": "sxzygz",
-          "body": "Sorry, but the explanation in your README of the example given here is wrong. This is right associative, not left associative as you claim. Looking at your docs, I think you need a %left PLUS; somewhere in there.\nAt least I think that's the case. Clarification appreciated.",
+          "id": "49918212",
+          "author": "mingodad",
+          "body": "For people interested on this topic I strongly recommend to also look at Ben Hanson https://github.com/BenHanson/parsertl17 (https://github.com/BenHanson/parsertl17) and based on it I've created an online LALR(1) playground here https://mingodad.github.io/parsertl-playground/playground/ (https://mingodad.github.io/parsertl-playground/playground/) where you have around 350 non trivial. grammars to experiment (select one from the `Examples` dropdown and then click `Parse` to see a parse tree for the input in `Input`, it also generates EBNF to generate nice navigable railroad diagrams on https://www.bottlecaps.de/rr/ui (https://www.bottlecaps.de/rr/ui) .",
           "score": 0,
-          "time": 1790897601,
+          "time": 1790834518,
           "parent": "49916997"
         },
         {
@@ -956,6 +990,14 @@
           "body": "do you intend to add sth like python bindings, especially for the AST and walker classes?\nthen Yantra would become great to parse well-known structured data from python at low-level speed.",
           "score": 0,
           "time": 1790838594,
+          "parent": "49916997"
+        },
+        {
+          "id": "49928253",
+          "author": "sxzygz",
+          "body": "Sorry, but the explanation in your README of the example given here is wrong. This is right associative, not left associative as you claim. Looking at your docs, I think you need a %left PLUS; somewhere in there.\nAt least I think that's the case. Clarification appreciated.",
+          "score": 0,
+          "time": 1790897601,
           "parent": "49916997"
         },
         {
