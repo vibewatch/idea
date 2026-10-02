@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-02T12:46:39.362285+00:00",
+  "last_fetched": "2026-10-02T18:40:11.933814+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -27,7 +27,7 @@
       "title": "Show HN: Pyxel – A Python retro game engine with built-in art and sound editors",
       "subreddit": "show-hn",
       "author": "kitao",
-      "score": 5,
+      "score": 7,
       "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=49928215",
       "url": "https://github.com/kitao/pyxel",
@@ -80,7 +80,7 @@
       "subreddit": "show-hn",
       "author": "zouhirdx",
       "score": 6,
-      "num_comments": 1,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49928011",
       "url": "https://github.com/PhreshOS/system",
       "selftext": "I'd like to share my experience building this system with you. It's an operating system for web applications, and it took me about six months to develop this model. The idea is that every time I build a web tool, I need to design the infrastructure, including authentication and communication. If it's a WebSocket, it's even more complicated; I need another port for each application. I couldn't find any neutral tool that provided all of this ready-made, allowing me to build my tools directly on top of it. This is where the PhreshOS project began. It's an open-source, neutral platform for any web application, with everything ready-made: authentication, two-way communication without any configuration, and more. Another key feature is that the applications run as Node.js threads, instead of each application using its own Node.js. This means that on a simple server, dozens of applications can run without any problems, unlike if each application had its own Node.js. Furthermore, AI agents can use the services of these applications and interact with the same state displayed by your application's interface, without needing a separate interface of their own.\nThe project and all its associated packages are open source under the MIT license.\nI welcome all your feedback, both encouraging and critical.",
@@ -123,8 +123,8 @@
       "title": "Show HN: Janus – Go binary that runs GGUF models via Vulkan on AMD/Intel/Nvidia",
       "subreddit": "show-hn",
       "author": "Maverick617",
-      "score": 81,
-      "num_comments": 14,
+      "score": 94,
+      "num_comments": 17,
       "permalink": "https://news.ycombinator.com/item?id=49926773",
       "url": "https://github.com/Vibra-Ingenn/Janus",
       "selftext": "",
@@ -133,6 +133,22 @@
       "time": 1790887007,
       "created_at": "2026-10-01T20:36:47+00:00",
       "comments_data": [
+        {
+          "id": "49935271",
+          "author": "colinsane",
+          "body": "> Local inference — llama.cpp via Vulkan (AMD / Intel / NVIDIA) or CPU fallback\nso this is just a go binary that exec's `llama-server --model $MODEL_PATH ...`? there's room for llama wrappers, sure, but the readme only shows features that are already exposed directly from llama-server. it doesn't seem to do anything besides rename the CLI arguments: i don't get it.",
+          "score": 0,
+          "time": 1790957897,
+          "parent": "49926773"
+        },
+        {
+          "id": "49935075",
+          "author": "kgeist",
+          "body": "This seems to be a thin wrapper around libllama, what's the point? Llama.cpp already ships a web server. I don't see anything in the README that llama.cpp doesn't already support.",
+          "score": 0,
+          "time": 1790957016,
+          "parent": "49926773"
+        },
         {
           "id": "49931557",
           "author": "antonyragleap",
@@ -147,6 +163,14 @@
           "body": "I didn't see any benchmarks against vllm, sglang, exllama, etc",
           "score": 0,
           "time": 1790889556,
+          "parent": "49926773"
+        },
+        {
+          "id": "49927894",
+          "author": "peddling-brink",
+          "body": "> llama.cpp via Vulkan (AMD / Intel / NVIDIA) or CPU fallback\nI got excited about someone paying attention to intel. Oh well.",
+          "score": 0,
+          "time": 1790894332,
           "parent": "49926773"
         },
         {
@@ -166,14 +190,6 @@
           "parent": "49926773"
         },
         {
-          "id": "49927894",
-          "author": "peddling-brink",
-          "body": "> llama.cpp via Vulkan (AMD / Intel / NVIDIA) or CPU fallback\nI got excited about someone paying attention to intel. Oh well.",
-          "score": 0,
-          "time": 1790894332,
-          "parent": "49926773"
-        },
-        {
           "id": "49927903",
           "author": "dlcarrier",
           "body": "From what I've seen, Vulkan adds a lot of overhead on Intel hardware.",
@@ -190,8 +206,8 @@
       "title": "Show HN: Rhun, an open-source code editor written in assembly",
       "subreddit": "show-hn",
       "author": "vladcodes",
-      "score": 55,
-      "num_comments": 32,
+      "score": 59,
+      "num_comments": 45,
       "permalink": "https://news.ycombinator.com/item?id=49926726",
       "url": "https://rhun.app/",
       "selftext": "I found that I'm not using even 1/3 of vim/vscode features anymore.\nThat's wht I'm building rhun - a small code editor for Linux, Windows and Apple silicon Macs. It obviously has Vim mode, a terminal, Git diffs and a panel for Claude Code or Codex sessions.\nThe editor and pixel renderer share an x86-64 assembly core. For Apple silicon, a build-time translator converts that core to AArch64, with separate platform adapters around it.\nThe latest release can draft commit messages using a local Ollama model or an existing Claude Code or Codex subscription.\nIt's a solo project, MIT licensed and still early.",
@@ -209,6 +225,14 @@
           "parent": "49926726"
         },
         {
+          "id": "49926762",
+          "author": "vladcodes",
+          "body": "The plan is to add as less new features as possible and keep the same performance/launch time/memory and disk footprint as it is currently.",
+          "score": 0,
+          "time": 1790886938,
+          "parent": "49926726"
+        },
+        {
           "id": "49931703",
           "author": "uchiha7itachi",
           "body": "Just tried it out in linux, its very fast and responsive. It would be awesome if it has LSP support though",
@@ -217,11 +241,11 @@
           "parent": "49926726"
         },
         {
-          "id": "49926762",
-          "author": "vladcodes",
-          "body": "The plan is to add as less new features as possible and keep the same performance/launch time/memory and disk footprint as it is currently.",
+          "id": "49933104",
+          "author": "ab_wahab01",
+          "body": "Just tried it is fantastic. pls add pi agent ...",
           "score": 0,
-          "time": 1790886938,
+          "time": 1790946258,
           "parent": "49926726"
         },
         {
@@ -249,6 +273,14 @@
           "parent": "49926726"
         },
         {
+          "id": "49927373",
+          "author": "xorl",
+          "body": "This bring me joy :)",
+          "score": 0,
+          "time": 1790890733,
+          "parent": "49926726"
+        },
+        {
           "id": "49928186",
           "author": "browningstreet",
           "body": "Assembly plus platform translation, hmmm. I don’t get it but that’s a heck of a thing to do! And yes, I’ll try it.",
@@ -265,22 +297,6 @@
           "parent": "49926726"
         },
         {
-          "id": "49930023",
-          "author": "arecsu",
-          "body": "Honestly, it runs and looks incredible (macOS). Very well done. Would love to have support for pi-agent, as is my go-to for most uses I have. Congratulations!",
-          "score": 0,
-          "time": 1790917692,
-          "parent": "49926726"
-        },
-        {
-          "id": "49927373",
-          "author": "xorl",
-          "body": "This bring me joy :)",
-          "score": 0,
-          "time": 1790890733,
-          "parent": "49926726"
-        },
-        {
           "id": "49930553",
           "author": "Imustaskforhelp",
           "body": "This is amazing. I think that the binary itself is just 980kb, which is such a fresh breath of air. I think that I am fairly impressed by the project!\nSome few features that I would love to have for myself is if it can support remote development similar to zed[0] using ssh\nand if possibly, LSP support can be added.\nI also think that this project can be used as the base support for many things and not just an editor as initial inspiration (sort of as a way to bootstrap a way to create extremely minimalist applications with themes and everything!)\nI wish luck to the project and I might even start to daily drive it, there are many ideas that I can think of which I wish to add on top of it (I wish to create a scratch-pad app which can automatically save the files and I wouldn't have to prompt it), I had built it in Odin[1] but I feel like writing it on top of rhun might be easier as well\nor a markdown editor similar to a more barebones version of obsidian/notion also come to my mind (If you are interested, please, do create something like this. QTmarkdown is one of the more minimalist things that I use but nearly all of these aren't really as minimalist as I would want them to and I think that rhun can help in it.)\nThanks once again and have a nice day! Man, do I love hackernews for these type of creative projects :-D\n[0]: https://zed.dev/docs/remote-development (https://zed.dev/docs/remote-development)\n[1]: https://github.com/SerJaimeLannister/odinpad (https://github.com/SerJaimeLannister/odinpad)",
@@ -289,11 +305,11 @@
           "parent": "49926726"
         },
         {
-          "id": "49928058",
-          "author": "bbor",
-          "body": "…is it fast? Why assembly? Impressive, regardless!\n“Super responsive, minimal-by-default” is kinda already met by Sublime Text, but it’s certainly not in assembly lol. And not OSS — thanks for sharing your work with the world :)",
+          "id": "49930023",
+          "author": "arecsu",
+          "body": "Honestly, it runs and looks incredible (macOS). Very well done. Would love to have support for pi-agent, as is my go-to for most uses I have. Congratulations!",
           "score": 0,
-          "time": 1790895644,
+          "time": 1790917692,
           "parent": "49926726"
         }
       ]
@@ -305,7 +321,7 @@
       "title": "Show HN: Premortem – AI agents that red-team your startup idea",
       "subreddit": "show-hn",
       "author": "ahoskins",
-      "score": 9,
+      "score": 11,
       "num_comments": 11,
       "permalink": "https://news.ycombinator.com/item?id=49926691",
       "url": "https://premortem.site",
@@ -356,19 +372,19 @@
           "parent": "49926691"
         },
         {
-          "id": "49929488",
-          "author": "vivzkestrel",
-          "body": "- you know what you should actually build?\n- an agent that builds an mvp and auto markets it to get the first 100 customers\n- and then measures how long it took, how many people it reached, how many people converted\n- and then rates an idea from 1 to 10",
-          "score": 0,
-          "time": 1790910669,
-          "parent": "49926691"
-        },
-        {
           "id": "49928925",
           "author": "htrp",
           "body": "isn't most of this in gstack?",
           "score": 0,
           "time": 1790904211,
+          "parent": "49926691"
+        },
+        {
+          "id": "49929488",
+          "author": "vivzkestrel",
+          "body": "- you know what you should actually build?\n- an agent that builds an mvp and auto markets it to get the first 100 customers\n- and then measures how long it took, how many people it reached, how many people converted\n- and then rates an idea from 1 to 10",
+          "score": 0,
+          "time": 1790910669,
           "parent": "49926691"
         },
         {
@@ -388,8 +404,8 @@
       "title": "Show HN: What 482 hospitals charge vs. what insurers pay, from their own files",
       "subreddit": "show-hn",
       "author": "curatedmcp",
-      "score": 18,
-      "num_comments": 4,
+      "score": 25,
+      "num_comments": 11,
       "permalink": "https://news.ycombinator.com/item?id=49926185",
       "url": "https://www.billmender.com/hospital-prices",
       "selftext": "US hospitals must publish a machine-readable file of their prices, including the rate they've negotiated with each insurer. The files are huge (one is 36GB), in four formats and often messy, so almost nobody reads them.\nI built a crawler that finds each hospital's official file and pulls out 29 common services. Across 482 hospitals: a moderate ER visit is listed at a median $1,285 while insurers pay $288; a metabolic panel is listed at $207 while insurers pay $11.46.\nTo keep it honest: only per-service fee-schedule dollar rates count (no case rates or percentages, which cover a whole visit), each figure needs at least 3 insurers, and every value is checked against Medicare reference rates. Surgery is excluded because insurer surgery rates cover the whole operation while the list price is one line item. Each hospital page links its source file. Feedback on the methodology is very welcome.",
@@ -398,6 +414,14 @@
       "time": 1790883729,
       "created_at": "2026-10-01T19:42:09+00:00",
       "comments_data": [
+        {
+          "id": "49936954",
+          "author": "blobdole",
+          "body": "This feels both very depressing and very helpful. I wonder if it would be possible to use things like this to call out the most egregious examples and get them adjusted through public pressure? Maybe be able to call out specific institutions in a region as being significantly worse than their competitors?\nCalling hospitals in an area \"competitors\" almost made me vomit in my mouth... so maybe the problem is bigger than this.",
+          "score": 0,
+          "time": 1790966108,
+          "parent": "49926185"
+        },
         {
           "id": "49928507",
           "author": "sightspinner",
@@ -482,8 +506,8 @@
       "title": "Show HN: Breadcrumb, record everything on your mac + context manager for AI",
       "subreddit": "show-hn",
       "author": "jv22222",
-      "score": 20,
-      "num_comments": 4,
+      "score": 37,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=49924943",
       "url": "https://innerloop.works/breadcrumb",
       "selftext": "Hi HN, I'm Justin.\nBreadcrumb records everything you do on your Mac (screen + meetings + AI transcripts + what you and your AI decided) and turns it into memory your AI can search. It's local and encrypted.\nYou can also teach it rules by talking to it and it makes sure the right rules turn up in the right context. Works with Claude Code / Codex / Cursor / opencode.\nAll of this is exposed to your AI as 30+ MCP tools (here's the definitions): https://innerloop.works/breadcrumb/mcp (https://innerloop.works/breadcrumb/mcp)\nI started it in June because I wanted to understand what was going on with my AI dev work. Then it just kept growing as I jammed on it 10 hours a day for 3 months.\nI started by recording every screen so I could jump back to a moment and see what I'd been doing with the AI. Then I added MCP so the AI could search it. Then time tracking. Then meetings with transcripts and timestamped screenshots.\nAfter that I started feeding the data back in. At first it was just a few relevant memories in the prompt. Then I started adding rules and rules modules.\nThen I started recording the AI transcripts and all the other stuff the AI did (subagents, tools etc). I wanted a complete record so I could go back and see what the AI did and why.\nI found the more data the AI had the more useful it became. One example. I got off a zoom call with the team at the day job and said:\n\"Review the meeting I just had, find all the bugs we discussed, and create JIRA tickets with screenshots.\"\nIt read the transcript. Found every bug we mentioned, pulled the screens from the screen timeline, spun up my local server, diagnosed each bug, reviewed the code, created 14 tickets in JIRA with diagnosis and likely fixes, attached 12 screenshots as evidence, and created a nice Slack message to send to my colleagues.\nI never built a workflow for any of that. Claude had the meeting record, Breadcrumb tools, and rules I'd accumulated. It basically chained the steps together itself.\nMy favorite thing about the system is observability of my own work as an AI developer. I can trace a bug all the way back to the first thing I said (or the first thing the AI did) that caused it. Then I can add a rule so it doesn't happen again.\nAnyway, my working system is simply Claude Desktop + Breadcrumb + Markdown. I find I don't need anything else.\nIt's local software for one person. Local models for transcription and diarization. Data encrypted with SQLCipher and a passphrase. You can exclude any apps, websites, words and phrases.\nBreadcrumb itself only makes one network call which is a daily update check. (but of course your AI will use it and that is local or cloud depending on what you use).\nIt runs cool about 12% of one core on average (M series mac has 8+). You can set it to just save OCR text or to save screenshots. If just OCR it's about 12mb day (a lot of telemetry, indexing etc). If you record screenshots on meetings it's about 120mb/hour (1 every 2 secs). It can also record screenshots of everything that's heavy at about 160mb/day. It does local classification/naming with ollama with Gemma 3 4B (2.5 GB).\nIt's 100% free. There's no account you can just download and start using it. I'll monetize it via E2EE cloud sync and team sync. It's open beta. Just one developer working on it. Requires 16GB+ M Series Mac.\nThanks for reading!\nhttps://innerloop.works/breadcrumb (https://innerloop.works/breadcrumb) (homepage)\nhttps://innerloop.works/breadcrumb/download (https://innerloop.works/breadcrumb/download) (direct download)\nhttps://innerloop.works/breadcrumb/mcp (https://innerloop.works/breadcrumb/mcp) (mcp definition)",
@@ -493,19 +517,19 @@
       "created_at": "2026-10-01T17:58:37+00:00",
       "comments_data": [
         {
-          "id": "49932154",
-          "author": "aidiveyt",
-          "body": "Do all 30+ tools load every request? Claude Code's 24 built-ins already cost ~85,500 chars of definitions before any MCP server.",
-          "score": 0,
-          "time": 1790939328,
-          "parent": "49924943"
-        },
-        {
           "id": "49925986",
           "author": "jsh42",
           "body": "I use this. My focus in in wringing the most ROI possible from my AI Interns. Breadcrumb is like upgrading to a better model and a better brain simultaneously.",
           "score": 0,
           "time": 1790882718,
+          "parent": "49924943"
+        },
+        {
+          "id": "49932154",
+          "author": "aidiveyt",
+          "body": "Do all 30+ tools load every request? Claude Code's 24 built-ins already cost ~85,500 chars of definitions before any MCP server.",
+          "score": 0,
+          "time": 1790939328,
           "parent": "49924943"
         },
         {
@@ -850,6 +874,49 @@
     {
       "source": "hackernews",
       "stream": "show-hn",
+      "id": "49922155",
+      "title": "Show HN: We built a real-time desktop companion for patient's telehealth visits",
+      "subreddit": "show-hn",
+      "author": "nikilr",
+      "score": 7,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=49922155",
+      "url": "https://openhand.health",
+      "selftext": "Hey HN,\nSome friends and I built an app called Sidekick that joins your telehealth visits in real-time. It explains medical terms and suggests useful questions, including ones you may not have thought to ask. After the visit, it provides a summary including next steps, so you can focus on the conversation instead of taking notes.\nThe idea of Sidekick came from our team's experiences with healthcare. Our founder, Rahul, had stage three cancer at 17. His mom had to manage everything around his care: taking notes through treatment, figuring out what questions to ask, etc. A decade later and he’s now in remission, but still sees a lot of specialists and deals with the same challenges.\nAnother teammate became a caregiver after his dad had a severe stroke. He found himself taking notes, looking up medical terms, and trying to keep track of what was said during every doctor visit. Others have dealt with situations like this when navigating pancreatitis and other serious health issues.\nThese experiences got us interested in how we might be able to reduce the burden on the patient or caregiver.\nA lot of products focus on simply recording or summarizing the visit. That's useful and a step in the right direction, but we kept coming back to the fact that a lot of the challenge originates while the conversation is still happening. If you can catch something in the moment, you can address it with your clinician immediately and potentially lead to better outcomes. If you realize you missed something after the visit, then you have to try to get another appointment (and in SF I often can't get another doctor visit till 2 months later).\nSo we built Sidekick, to help patients and caregivers during a visit in real-time to translate medical jargon and suggest useful questions, ideally without becoming a distraction.\nIf you want to try it, you can download it on our website. Sidekick is desktop-only for now, but we’re working on a mobile app for in-person visits.\nWe would be especially interested to hear feedback on the live part of the experience. What are your thoughts on the balance between live help vs after-visit? Would something pre-visit be more helpful?",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790864859,
+      "created_at": "2026-10-01T14:27:39+00:00",
+      "comments_data": [
+        {
+          "id": "49936903",
+          "author": "camel_gopher",
+          "body": "I’m sure doctors will love this. “My AI bot thinks I…”",
+          "score": 0,
+          "time": 1790965852,
+          "parent": "49922155"
+        },
+        {
+          "id": "49936639",
+          "author": "delichon",
+          "body": "I'm imagining a patient using this service on one side and a provider using a chatbot on the other end. Telemedicine risks becoming a conversation between AIs over a meat conduit.",
+          "score": 0,
+          "time": 1790964421,
+          "parent": "49922155"
+        },
+        {
+          "id": "49936810",
+          "author": "sandworm101",
+          "body": ">> balance between live help vs after-visit\nDon't forget pre-visit. Doctor visits go much better if the patient advocate (this thing) has questions in hand. The patient can spend hours talking to the tool and get a summary so they are better prepped for the 5-minute doctor conversation. A tool that summarizes observed symptoms for the doctor might be an idea.",
+          "score": 0,
+          "time": 1790965439,
+          "parent": "49922155"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
       "id": "49920582",
       "title": "Show HN: The Kio Programming Language",
       "subreddit": "show-hn",
@@ -951,7 +1018,7 @@
       "subreddit": "show-hn",
       "author": "renjipanicker",
       "score": 32,
-      "num_comments": 16,
+      "num_comments": 17,
       "permalink": "https://news.ycombinator.com/item?id=49916997",
       "url": "https://github.com/TantrixAuto/yantra",
       "selftext": "Yantra is a C++ parser generator: lexer, parser, and AST walker all generated from one tool.\nIt builds the whole AST first, then walks it.\nMost LALR parser generators (Yacc, Bison, Lemon) run your semantic actions during parsing, as each rule reduces, bottom-up.\nThat means at the time a rule's action runs, you don't yet know what its parent looks like. This pushes a lot of grammars toward hand-built AST classes and a separate walking pass whenever you need to look ahead into siblings or defer a decision until more context is available.\nOn the other hand, Yantra always builds the whole AST first, then walks it top-down in a separate pass, calling your semantic actions as it goes. A parent rule's action can run before its children are visited.\nA single grammar can define more than one walker. For example, one that emits C++, another that emits Java, from the same parse. The AST and the walker classes are both generated for you.\nA small example (full version, with compile commands, in the README):\n start := expr;\n\n expr := expr(a) PLUS expr(b)\n %{\n std::cout << \"Adding\" << std::endl;\n %}\n\n expr := NUMBER(N)\n %{\n std::cout << \"Number: \" << N.text << std::endl;\n %}\n\n NUMBER := \"\\d+\";\n PLUS := \"\\+\";\n WS := \"\\s+\"!;\n\nRunning this on \"1 + 2 + 3\" prints:\n Adding\n Number: 1\n Adding\n Number: 2\n Number: 3\n\nThe outer \"Adding\", the root of the tree, prints first, before either of its children. That's only possible because the whole tree exists before any action runs.\nSome other things about it: integrated lexer with mode support (for things like nested comments), an optional amalgamated single-file output mode with a generated main(), C++23, MIT licensed.\nIt's young (0.5.1, pre-1.0) and single-maintainer, so treat it as early.\nI'd rather know what breaks than have it look more finished than it is.\nKnown gaps are listed at\nhttps://github.com/TantrixAuto/yantra/blob/main/docs/known_l... (https://github.com/TantrixAuto/yantra/blob/main/docs/known_limitations.md)\nRepo: https://github.com/TantrixAuto/yantra (https://github.com/TantrixAuto/yantra)\nFeedback and questions are all welcome. I'll be around.",

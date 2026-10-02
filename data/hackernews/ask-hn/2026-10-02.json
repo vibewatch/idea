@@ -1,8 +1,83 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-02T12:46:43.504203+00:00",
+  "last_fetched": "2026-10-02T18:40:19.730352+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "49934037",
+      "title": "Ask HN: Is anybody producing good code with coding agents?",
+      "subreddit": "ask-hn",
+      "author": "ruffrey",
+      "score": 8,
+      "num_comments": 9,
+      "permalink": "https://news.ycombinator.com/item?id=49934037",
+      "url": "https://news.ycombinator.com/item?id=49934037",
+      "selftext": "This is a genuine problem that I hear from senior engineers. I'm looking for a solution.\n--\nThe quality of ai-generated code is <censored> (claude, agy, copilot, codex a little better).\nIt's exhausting to read.\nI used to love learning from my experienced colleagues and taking pride in what we made. We spent time on elegance and craftsmanship.\nNow I spend nearly the whole workday slogging through convoluted code riddled with footguns. I ride on hopes and dreams I might understand a changeset.\nIt takes 5x longer to review Claude merge requests and I barely understand what I approve.\nEach day I drift further from understanding as I shovel the same <censored> into the codebase.\nThe solution seems to be, reach \"level 4 autonomy\" and don't read or write code anymore.\n--\nWHO HAS SOLVED THIS PROBLEM? PLEASE HELP!",
+      "is_self": true,
+      "is_video": false,
+      "time": 1790951915,
+      "created_at": "2026-10-02T14:38:35+00:00",
+      "comments_data": [
+        {
+          "id": "49936657",
+          "author": "runjake",
+          "body": "Yes. The whole time. But, you still need to write good specs if you want well-designed software. Agents are not magic.\n- Write good specs into files, usually Markdown.\n- Go through the spec files with the agents, have it point out holes and problems, and then update the specs. Go through a few iterations of this and then start your agents on development.\nGarbage in, garbage out.",
+          "score": 0,
+          "time": 1790964515,
+          "parent": "49934037"
+        },
+        {
+          "id": "49934949",
+          "author": "leros",
+          "body": "I generally produce nearly the same code I'd write myself about 5x faster with AI. I don't just let Claude Code run wild for a long time and have a mess to review. I have it do small chunks I can quickly review, give it feedback, iterate, etc until I like the output, then I move on to the next step. This takes time of course but I've found it faster than reviewing a giant mess of a code review.",
+          "score": 0,
+          "time": 1790956446,
+          "parent": "49934037"
+        },
+        {
+          "id": "49934257",
+          "author": "drgo",
+          "body": "The way I have been doing it is to use LLMs to generate the code that I don't want to write: prototypes, tests, benchmarks, isolated,straightforward almost copy-paste code. I still write my own code as before because I enjoy doing that and because trying to understand and fix what an LLM generates and regenerates is harder and more tedious and time consuming than writing the code the way I want to do it in the first place.",
+          "score": 0,
+          "time": 1790953196,
+          "parent": "49934037"
+        },
+        {
+          "id": "49935871",
+          "author": "aprdm",
+          "body": "What's the problem of the solution proposed ? Don't read/write code anymore. Have strong harness. That's how my team of ~30 has been operating for the most part.\nThe problem we are trying to solve was never to write code, was to solve business problems",
+          "score": 0,
+          "time": 1790960563,
+          "parent": "49934037"
+        },
+        {
+          "id": "49934223",
+          "author": "drewg123",
+          "body": "Its a spectrum. For ai-maintained code (like a gui to visualize performance data), IDGAF what the code looks like. I just let claude or codex go nuts and 100% vibe code.\nFor code I care about, I audit every single hunk as its produced. I give it extensive style guidelines, and crack down on things like a 20-line essay in a comment.\nFor mission critical code, I write the code myself and have an agent review it.",
+          "score": 0,
+          "time": 1790953014,
+          "parent": "49934037"
+        },
+        {
+          "id": "49934291",
+          "author": "tmarice",
+          "body": "After vibing myself into a corner multiple times on important projects, I now have only two modes: clankermaxx for code I don't really care about (mostly frontend react), and write by hand everything else. Using Django for backend already removes the most of the cruft, and writing by hand also means I actually understand what's going on. Works fine for now.\nI'm still on the fence for tests: I don't really like to write them, but the LLM-generated tests are pretty bad, even the frontier models on xhigh thinking. I usually generate them, but I don't really have the confidence they test anything except 1==1. Unfortunately it's hard to justify the time spent on writing them manually.",
+          "score": 0,
+          "time": 1790953367,
+          "parent": "49934037"
+        },
+        {
+          "id": "49934145",
+          "author": "verdverm",
+          "body": "I'm really happy with my opencode + open weight setup, the code is generally pretty good, but I do spend tokens having agents go look for common ai slop patterns.\nIt's heavily customized, replaced most internal systems via plugins, a set of custom agent instead of builtin ones, different model families for different sub tasks. (don't have claude review its own code)\nI'm working on polishing them up and porting a few more from my own harness, then will be open sourcing. Keep your eye out for a \"better-opencode\" plugin suite, I'll be sure to share it with HN :]\nIn the near-term, I really like GLM 5.3 prose for code explore / review, give it a shot, it's cheaper (flash model) and catches all sorts of mistakes from the Big Ai models. We fully rolled out our custom pr-review on glm-5.3-flash last week. Most devs are still on claude, moving them towards fireworks and opencode.\nOpenCode Go is a great way to try out open weight models for $10/month",
+          "score": 0,
+          "time": 1790952611,
+          "parent": "49934037"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,8 +85,8 @@
       "title": "Tell HN: OVH price increase for dedicated servers",
       "subreddit": "ask-hn",
       "author": "esher",
-      "score": 2,
-      "num_comments": 2,
+      "score": 3,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=49931175",
       "url": "https://news.ycombinator.com/item?id=49931175",
       "selftext": "Since October 1 the OVH price increase also applies to running dedicated servers, at next renewal. A Reddit user posted that their two servers went up 54% in 11 months, no grandfathering.\nOVH's own post: an Advance-1 Gen 2024 renews at $114.99 instead of $89.99 (+28%). RAM options on new orders are up 68% to 652%, the Game range up to 87%. The stated reason is DDR5 costing six times what it did a year ago.\nHetzner did the same in February and June, both threads had 500+ points here.\nI run a small PHP hosting company, so I am biased. But I wonder: Who here still runs OVH or Hetzner dedicated boxes?\nSources:\nhttps://blog.ovhcloud.com/en/posts/dedicated-servers-pricing-update-h2-2026/\nhttps://itdaily.com/news/cloud/ovhcloud-price-increase-ram/\nhttps://www.reddit.com/r/webhosting/comments/1wvfu5i\nhttps://news.ycombinator.com/item?id=47120145\nhttps://news.ycombinator.com/item?id=48540844",
