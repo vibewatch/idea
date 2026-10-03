@@ -1,8 +1,25 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-03T01:07:15.116861+00:00",
+  "last_fetched": "2026-10-03T06:56:48.240501+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "49940029",
+      "title": "We need to deobligate humans from reading generated content",
+      "subreddit": "ask-hn",
+      "author": "retetr",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49940029",
+      "url": "https://news.ycombinator.com/item?id=49940029",
+      "selftext": "Contract law is currently being abused in the U.S. see (Disney says man can't sue over wife's death because he agreed to Disney+ terms of service)[https://www.nbcnews.com/news/us-news/disney-says-man-cant-sue-wifes-death-agreed-disney-terms-service-rcna166594] \nIf the average individual can't even keep up with current (regional laws)[https://www.themarshallproject.org/2015/08/03/how-the-supreme-court-made-it-legal-for-cops-to-pull-you-over-for-just-about-anything] why should they also be subjected to generated agreements?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1790985162,
+      "created_at": "2026-10-02T23:52:42+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,8 +27,8 @@
       "title": "Ask HN: Is anybody producing good code with coding agents?",
       "subreddit": "ask-hn",
       "author": "ruffrey",
-      "score": 17,
-      "num_comments": 27,
+      "score": 24,
+      "num_comments": 31,
       "permalink": "https://news.ycombinator.com/item?id=49934037",
       "url": "https://news.ycombinator.com/item?id=49934037",
       "selftext": "This is a genuine problem that I hear from senior engineers. I'm looking for a solution.\n--\nThe quality of ai-generated code is <censored> (claude, agy, copilot, codex a little better).\nIt's exhausting to read.\nI used to love learning from my experienced colleagues and taking pride in what we made. We spent time on elegance and craftsmanship.\nNow I spend nearly the whole workday slogging through convoluted code riddled with footguns. I ride on hopes and dreams I might understand a changeset.\nIt takes 5x longer to review Claude merge requests and I barely understand what I approve.\nEach day I drift further from understanding as I shovel the same <censored> into the codebase.\nThe solution seems to be, reach \"level 4 autonomy\" and don't read or write code anymore.\n--\nWHO HAS SOLVED THIS PROBLEM? PLEASE HELP!",
@@ -26,6 +43,14 @@
           "body": "I think an underappreciated aspect is that we previously amortized the reading and comprehending over the time we spent designing and writing. I still find myself looking at changes expecting that I can review it in a few minutes when I am in effect coming in cold. That part of the job has changed, but fwiw it isn't so different than the experience I had reviewing another team's changes when I didn't know their services.\nI have found the right harness helps, if you have a setup that gives you memory, specs and a graph-based understanding (that part is key) you can be very productive. For me, that's because being able to understand the big picture helps, the challenge of reading the code is always there but starting with 'this method/class/etc does X, so that means this is doing Y...\" makes it easier and lets you come in warmer.",
           "score": 0,
           "time": 1790973963,
+          "parent": "49934037"
+        },
+        {
+          "id": "49940663",
+          "author": "faangguyindia",
+          "body": "We have multiple apps, but I'll share only the free ones; the others are B2B (they haul in major revenue for us, and businesses dealing with us will not like us disclosing this here), largest free one is MacroCodex with 17,000+ users.\nWe do not have this problem; we heavily use the models from OpenAI and Anthropic, but we have a custom harness built for ultimate cache efficiency and a purpose tuned workflow.\nCodex is GREAT but it keeps updating and its UI changes often (remember mini git sidebar ui?)\nOur Custom Harness does multiple things, like having a \"Skill Selector,\" which uses our Gambler v1 (26B decision model responds in <100ms locally) and overlays tools on top of existing ones (as the models are RLVL over the specific tool in their harness, we overlay those tools with a familiar interface or format and inject custom features we want the model to interpret). Other than this, it leverages local models to accelerate development. Also, instead of providing custom tools, we actually use the same tools that their original model-provided harness uses. We've a list of 100s of such optimizations; these are just a few from the top of my head.\nI have been working on harnesses for a very long time; I read research papers and implement them.\nThe apps use Flutter and Rust for all of our apps; no ads, no subscriptions.\nSo, macrocodex is basically a neural network product which \"predicts\" maintenance calories at a very high accuracy, https://macrocodex.app/ (https://macrocodex.app/)\nMacroCodex beats everything in its category and it does it for free, no ads, no subscriptions.\nSymbiote and CalorieCodex will soon follow the suite.\nIf it fails, people get fat instead of losing weight, or get skinny instead of gaining weight.\nRecently, we launched CalorieCodex (a calorie tracking app with an optional Full Agent Harness, where an agent tracks calories for you) and Symbiote (a programmable workout app; think BoostCamp, but user-programmable so it can run any bodybuilding program).\nYou can find some screenshots here:\nhttps://macrocodex.app/guides/peak-week/ (https://macrocodex.app/guides/peak-week/)",
+          "score": 0,
+          "time": 1790992228,
           "parent": "49934037"
         },
         {
@@ -69,11 +94,11 @@
           "parent": "49934037"
         },
         {
-          "id": "49939410",
-          "author": "catchnear4321",
-          "body": "Step one: just because claude can generate +50k/-50k line PRs doesn’t make it good.\nOptimize the PR flow first.",
+          "id": "49934291",
+          "author": "tmarice",
+          "body": "After vibing myself into a corner multiple times on important projects, I now have only two modes: clankermaxx for code I don't really care about (mostly frontend react), and write by hand everything else. Using Django for backend already removes the most of the cruft, and writing by hand also means I actually understand what's going on. Works fine for now.\nI'm still on the fence for tests: I don't really like to write them, but the LLM-generated tests are pretty bad, even the frontier models on xhigh thinking. I usually generate them, but I don't really have the confidence they test anything except 1==1. Unfortunately it's hard to justify the time spent on writing them manually.",
           "score": 0,
-          "time": 1790980154,
+          "time": 1790953367,
           "parent": "49934037"
         },
         {
@@ -85,11 +110,11 @@
           "parent": "49934037"
         },
         {
-          "id": "49934291",
-          "author": "tmarice",
-          "body": "After vibing myself into a corner multiple times on important projects, I now have only two modes: clankermaxx for code I don't really care about (mostly frontend react), and write by hand everything else. Using Django for backend already removes the most of the cruft, and writing by hand also means I actually understand what's going on. Works fine for now.\nI'm still on the fence for tests: I don't really like to write them, but the LLM-generated tests are pretty bad, even the frontier models on xhigh thinking. I usually generate them, but I don't really have the confidence they test anything except 1==1. Unfortunately it's hard to justify the time spent on writing them manually.",
+          "id": "49939410",
+          "author": "catchnear4321",
+          "body": "Step one: just because claude can generate +50k/-50k line PRs doesn’t make it good.\nOptimize the PR flow first.",
           "score": 0,
-          "time": 1790953367,
+          "time": 1790980154,
           "parent": "49934037"
         },
         {
@@ -109,7 +134,7 @@
       "title": "Tell HN: OVH price increase for dedicated servers",
       "subreddit": "ask-hn",
       "author": "esher",
-      "score": 4,
+      "score": 5,
       "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=49931175",
       "url": "https://news.ycombinator.com/item?id=49931175",

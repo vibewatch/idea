@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-03T01:07:10.848889+00:00",
+  "last_fetched": "2026-10-03T06:56:45.124330+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -27,7 +27,7 @@
       "title": "Show HN: Television – an open source GUI for your agent harness",
       "subreddit": "show-hn",
       "author": "stlhood",
-      "score": 5,
+      "score": 6,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49939817",
       "url": "https://television.run/",
@@ -46,6 +46,23 @@
           "parent": "49939817"
         }
       ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49939688",
+      "title": "Show HN: Teacher Planner – A digital planbook with AI tools for teachers",
+      "subreddit": "show-hn",
+      "author": "sunpy",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49939688",
+      "url": "https://teacherplanner.ai",
+      "selftext": "Hi HN, I built Teacher Planner to help teachers organize lessons and prepare classroom materials in one place.\nThe digital planbook brings together lesson plans, units, schedules, and curriculum standards, with day, week, and month views, read-only sharing, and configurable print layouts. It supports English and Chinese, and you can try the planner as a guest without creating an account.\nAlongside the planner, there are five AI tools: a lesson plan generator, worksheet generator, multiple-choice quiz generator, text rewriter, and writing feedback tool. These help produce drafts that teachers can review and adapt for their classes.\nI'd appreciate feedback from teachers and people building education software. Which parts of your planning and material preparation still take the most time, and where do existing tools fall short?",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790982501,
+      "created_at": "2026-10-02T23:08:21+00:00"
     },
     {
       "source": "hackernews",
@@ -71,15 +88,25 @@
       "title": "Show HN: Rank every HN \"Who is hiring?\" post against your resume, locally",
       "subreddit": "show-hn",
       "author": "intervolz",
-      "score": 4,
-      "num_comments": 0,
+      "score": 9,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49938748",
       "url": "https://github.com/MaxwellVolz/hn_whos_hiring",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1790976074,
-      "created_at": "2026-10-02T21:21:14+00:00"
+      "created_at": "2026-10-02T21:21:14+00:00",
+      "comments_data": [
+        {
+          "id": "49940488",
+          "author": "Neywiny",
+          "body": "We're getting close to completely automatic job searching and applications. Can't wait",
+          "score": 0,
+          "time": 1790989906,
+          "parent": "49938748"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -89,14 +116,24 @@
       "subreddit": "show-hn",
       "author": "ripped_britches",
       "score": 2,
-      "num_comments": 0,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49938648",
       "url": "https://github.com/ctxrs/figma-server",
       "selftext": "There's been a lot of drama lately about using the Figma MCP. You don't need it! Just use figma-server. It gives your agent full control over Figma via CDP. The latest generation of frontier models (GPT-6, Opus-5.5, Fable-5.1) are really good at Figma stuff.",
       "is_self": false,
       "is_video": false,
       "time": 1790975487,
-      "created_at": "2026-10-02T21:11:27+00:00"
+      "created_at": "2026-10-02T21:11:27+00:00",
+      "comments_data": [
+        {
+          "id": "49941216",
+          "author": "nmekala35",
+          "body": "could not agree more. Model capabilities matter a lot more than having a dedicated Figma MCP",
+          "score": 0,
+          "time": 1790999309,
+          "parent": "49938648"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -122,8 +159,8 @@
       "title": "Show HN: Made an open-source Lego AI generator",
       "subreddit": "show-hn",
       "author": "antelocnova",
-      "score": 65,
-      "num_comments": 37,
+      "score": 102,
+      "num_comments": 44,
       "permalink": "https://news.ycombinator.com/item?id=49937916",
       "url": "https://github.com/anteloc/ldraw-nova",
       "selftext": "Hi there :-) New on HN, first time posting.\nPast year, around December, I started experimenting with making ChatGPT and Claude generate source code in LDraw language.\nThis LDraw is literally an \"assembly\" language, a low-level programming language that describes how to assemble LEGO pieces together into models, one placement instruction at a time.\nWhen executed by specific tools, like e.g. LDView, LeoCAD, Studio... these instructions become LEGO CAD models, that can be interacted with, modified, etc.\nOr, in other words: one LDraw source file in .mpd or .ldr format is equivalent to one LEGO CAD model.\nSo, the idea I had was: if I manage for maybe ChatGPT or Claude to generate high-quality LDraw source files... then, they would actually be generating high-quality LEGO CAD models, right?\nThen, after months of iterations and trying one thing after the other... it worked!!!\nLong story short: using GPT-6 Astra and Opus 5.5, I've managed to create a python toolset, instructions, and docs for agents in general. Now, these can be used by them to generate LDraw models.\nI've packed it all as a dockerized web app for others to try and experiment, with several providers (and agents) to choose from: OpenAI, Claude and OpenRouter.\nHere's a bunch of exmaples: https://anteloc.github.io/index-samples.html (https://anteloc.github.io/index-samples.html).\nIf you are curious about the internals of an .mpd model, the \"what was the agent picturing on its mind\", open the .mpd file that got your attention on a text editor, and read the first line under the ones starting with \"0 FILE\".\nI'd really appreciate feedback and comments, let's see where this goes =)",
@@ -141,14 +178,6 @@
           "parent": "49937916"
         },
         {
-          "id": "49938219",
-          "author": "vunderba",
-          "body": "Nice job. I actually read a paper on Arxiv last year about this exact thing - using LLMs to drive model building through LDraw that might be worth reading [1].\nThey had some interesting experiments like giving the LLM a fixed set of parts as a constraint and asked it to \"build\" tools out of those available lego.\nI think they were using Opus 4.5 so I'm sure with even more powerful models it'll be even better.\n[1] - https://arxiv.org/pdf/2512.15743 (https://arxiv.org/pdf/2512.15743)",
-          "score": 0,
-          "time": 1790972949,
-          "parent": "49937916"
-        },
-        {
           "id": "49938490",
           "author": "ash_091",
           "body": "Neat! Perhaps I'll finally get around to doing something with the 51515 Lego set I have laying around collecting dust.\n> I did this in order to get agentic LLMs capable of designing buildable, physical things!\nI've been experimenting with FreeCAD + freecad-mcp + Claude recently and have been similarly surprised how well this works. I've produced three useful parts from Claude's designs: a 3d printed case for an OLED display + some inputs + an ESP32, and a milled aluminium hotend mount adapter for a 3d printer, and a printed pen + pressure sensor mount to use the printer as a plotter. I just provided part/model numbers plus a couple of caliper measurements Claude wasn't able to find online and went through two or three cad revisions before making the parts. All three worked on the first hardware revision.\nThe biggest thing I've found it seems to struggle with is understanding how the parts will be assembled. The pen mount in particular was tricky to put together, having a part which needed to fit through a slightly too small space to get to its spot. Although it's hard to blame the AI for that when I didn't notice it either I suppose.",
@@ -157,11 +186,43 @@
           "parent": "49937916"
         },
         {
+          "id": "49941607",
+          "author": "aarontian0",
+          "body": "This is a really interesting idea. I've never seen something unique like this in a long time, thank you for sharing!",
+          "score": 0,
+          "time": 1791005806,
+          "parent": "49937916"
+        },
+        {
+          "id": "49938219",
+          "author": "vunderba",
+          "body": "Nice job. I actually read a paper on Arxiv last year about this exact thing - using LLMs to drive model building through LDraw that might be worth reading [1].\nThey had some interesting experiments like giving the LLM a fixed set of parts as a constraint and asked it to \"build\" tools out of those available lego.\nI think they were using Opus 4.5 so I'm sure with even more powerful models it'll be even better.\n[1] - https://arxiv.org/pdf/2512.15743 (https://arxiv.org/pdf/2512.15743)",
+          "score": 0,
+          "time": 1790972949,
+          "parent": "49937916"
+        },
+        {
+          "id": "49941704",
+          "author": "quoveo",
+          "body": "Really interesting",
+          "score": 0,
+          "time": 1791007212,
+          "parent": "49937916"
+        },
+        {
           "id": "49938628",
           "author": "ttul",
           "body": "Up next: a tool that converts a photograph of your dumped bin of old Lego into a catalogue of all the Lego in your collection..",
           "score": 0,
           "time": 1790975303,
+          "parent": "49937916"
+        },
+        {
+          "id": "49941588",
+          "author": "Pantera87",
+          "body": "That's so cool!",
+          "score": 0,
+          "time": 1791005616,
           "parent": "49937916"
         },
         {
@@ -189,14 +250,6 @@
           "parent": "49937916"
         },
         {
-          "id": "49939886",
-          "author": "qlasisi15",
-          "body": "Actually very cool and interesting stuff!",
-          "score": 0,
-          "time": 1790984189,
-          "parent": "49937916"
-        },
-        {
           "id": "49938500",
           "author": "1e1a",
           "body": "Can it create functional mechanisms using LEGO Technic parts?",
@@ -210,22 +263,6 @@
           "body": "Any estimates for token costs to generate these models? Curious about costs for Astra, Opus and Jev for some of the examples you have in the video.",
           "score": 0,
           "time": 1790973635,
-          "parent": "49937916"
-        },
-        {
-          "id": "49938877",
-          "author": "shakamd",
-          "body": "This is great",
-          "score": 0,
-          "time": 1790976869,
-          "parent": "49937916"
-        },
-        {
-          "id": "49938699",
-          "author": "khazhoux",
-          "body": "Fun idea. Congrats on building and releasing!\nThat said, LLMs encroaching into the pure-imagination world of Lego gives me a bit of the icks...",
-          "score": 0,
-          "time": 1790975847,
           "parent": "49937916"
         }
       ]
@@ -278,10 +315,10 @@
       "source": "hackernews",
       "stream": "show-hn",
       "id": "49937304",
-      "title": "Show HN: pi pod – run your pi coding agent in sandboxes on your own server",
+      "title": "Show HN: Pi pod – run your pi coding agent in sandboxes on your own server",
       "subreddit": "show-hn",
       "author": "edverma2",
-      "score": 5,
+      "score": 6,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49937304",
       "url": "https://pipod.dev/",
@@ -308,7 +345,7 @@
       "title": "Show HN: Draw from your friends' Claude quota",
       "subreddit": "show-hn",
       "author": "hugopuybareau",
-      "score": 4,
+      "score": 5,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49937235",
       "url": "https://github.com/jaynlabs/jaynshare",
@@ -489,7 +526,7 @@
       "title": "Show HN: Our space game has a built-in RISC-V emulator that runs Linux",
       "subreddit": "show-hn",
       "author": "nor-and-or-not",
-      "score": 16,
+      "score": 19,
       "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=49931993",
       "url": "https://againstallodds.games/",
@@ -583,8 +620,8 @@
       "title": "Show HN: Audionaut – an open-source cross-platform multitrack audio editor",
       "subreddit": "show-hn",
       "author": "vltmrkls",
-      "score": 131,
-      "num_comments": 45,
+      "score": 137,
+      "num_comments": 46,
       "permalink": "https://news.ycombinator.com/item?id=49931031",
       "url": "https://github.com/kvoltmer/Audionaut",
       "selftext": "",
@@ -618,19 +655,19 @@
           "parent": "49931031"
         },
         {
-          "id": "49933533",
-          "author": "bita_nidir",
-          "body": "Wow, thanks! I don't have time to look at it now, but it'll go high on my list. I had a quick look though the docs and I see it supports regions. Does it have labels too? Can I import/export labels and/or regions from file?\nPerhaps an idea to create a docs/features.md to mention what it can do. Might even help LLMs picking up your project. Thanks again, I'm very exited!",
-          "score": 0,
-          "time": 1790949128,
-          "parent": "49931031"
-        },
-        {
           "id": "49932087",
           "author": "sdoering",
           "body": "Concrats for finding the confidence. Looks really interesting. Put it on my list of projects to view during my down time. Thanks a ton for sharing. And congrats for getting something out the door.",
           "score": 0,
           "time": 1790938695,
+          "parent": "49931031"
+        },
+        {
+          "id": "49933533",
+          "author": "bita_nidir",
+          "body": "Wow, thanks! I don't have time to look at it now, but it'll go high on my list. I had a quick look though the docs and I see it supports regions. Does it have labels too? Can I import/export labels and/or regions from file?\nPerhaps an idea to create a docs/features.md to mention what it can do. Might even help LLMs picking up your project. Thanks again, I'm very exited!",
+          "score": 0,
+          "time": 1790949128,
           "parent": "49931031"
         },
         {
@@ -759,8 +796,8 @@
       "title": "Show HN: Giving Opus 5.5 a simulated paint canvas",
       "subreddit": "show-hn",
       "author": "alstonite",
-      "score": 195,
-      "num_comments": 61,
+      "score": 260,
+      "num_comments": 80,
       "permalink": "https://news.ycombinator.com/item?id=49928566",
       "url": "https://stillwet.art/",
       "selftext": "",
@@ -769,6 +806,14 @@
       "time": 1790900876,
       "created_at": "2026-10-02T00:27:56+00:00",
       "comments_data": [
+        {
+          "id": "49941955",
+          "author": "Garlef",
+          "body": "Interesting. They're good in some ways and bad in others.\nI was reminded of the amateur paintings by George W. Bush II.",
+          "score": 0,
+          "time": 1791010525,
+          "parent": "49928566"
+        },
         {
           "id": "49936165",
           "author": "moojacob",
@@ -802,27 +847,11 @@
           "parent": "49928566"
         },
         {
-          "id": "49939990",
-          "author": "augment_me",
-          "body": "Really nice! With this technique you can bypass the requirement of submitting the \"process\" of creating digital art in forums that ban GenAI.",
+          "id": "49937171",
+          "author": "ttd",
+          "body": "Poor fella... I tuned in at an awkward time apparently, right after the work in progress was painted over with an ugly brown:\n> Catastrophe. The glaze pass with medium 0.35 over everywhere() at coverage 0.8 with a filbert 26 at pressure 0.44 laid an enormous broken \"brick/cobblestone\" texture over the entire painting. The medium made it too fluid and the brush's dry-brush pattern created a heavy reptilian texture, obliterating the picture. I need to undo this....",
           "score": 0,
-          "time": 1790984851,
-          "parent": "49928566"
-        },
-        {
-          "id": "49939244",
-          "author": "soundworlds",
-          "body": "I love this! It's heading in a very similar direction I am passionate about!\nIf we are generating artifacts with AI, they should be made out of source code or other form of project file that humans can actually inspect and learn from. I'm doing the same with music: https://johnoestmannmusic.com/0009-when-we-become-discoverer... (https://johnoestmannmusic.com/0009-when-we-become-discoverers/)",
-          "score": 0,
-          "time": 1790979030,
-          "parent": "49928566"
-        },
-        {
-          "id": "49937997",
-          "author": "dizzard",
-          "body": "This is interesting. I've been trying with less success to evolve a good painter that writes its own tools https://artifacts.dizzard.net/s/55052743-bee1-4746-b59e-57e2... (https://artifacts.dizzard.net/s/55052743-bee1-4746-b59e-57e2d595a480) (sorry for the load)\nAlso Pindar Van Arman's prior work acts as a reminder that AI, no matter how powerful, is a tool, not an artist. Pindar's stuff is all non-LLM as far I can tell, but I don't see a fundamental difference in it. I'm sure _humans_ will make continue making really cool art with these new tools https://www.vanarman.com/ (https://www.vanarman.com/)",
-          "score": 0,
-          "time": 1790971673,
+          "time": 1790967338,
           "parent": "49928566"
         },
         {
@@ -834,11 +863,35 @@
           "parent": "49928566"
         },
         {
-          "id": "49937171",
-          "author": "ttd",
-          "body": "Poor fella... I tuned in at an awkward time apparently, right after the work in progress was painted over with an ugly brown:\n> Catastrophe. The glaze pass with medium 0.35 over everywhere() at coverage 0.8 with a filbert 26 at pressure 0.44 laid an enormous broken \"brick/cobblestone\" texture over the entire painting. The medium made it too fluid and the brush's dry-brush pattern created a heavy reptilian texture, obliterating the picture. I need to undo this....",
+          "id": "49940950",
+          "author": "mvkel",
+          "body": "This is absolutely fantastic. I have been an amateur painter for 20 years and have always wanted to explore new techniques without burning a canvas. This will derisk it and teach me some things!",
           "score": 0,
-          "time": 1790967338,
+          "time": 1790995368,
+          "parent": "49928566"
+        },
+        {
+          "id": "49937997",
+          "author": "dizzard",
+          "body": "This is interesting. I've been trying with less success to evolve a good painter that writes its own tools https://artifacts.dizzard.net/s/55052743-bee1-4746-b59e-57e2... (https://artifacts.dizzard.net/s/55052743-bee1-4746-b59e-57e2d595a480) (sorry for the load)\nAlso Pindar Van Arman's prior work acts as a reminder that AI, no matter how powerful, is a tool, not an artist. Pindar's stuff is all non-LLM as far I can tell, but I don't see a fundamental difference in it. I'm sure _humans_ will make continue making really cool art with these new tools https://www.vanarman.com/ (https://www.vanarman.com/)",
+          "score": 0,
+          "time": 1790971673,
+          "parent": "49928566"
+        },
+        {
+          "id": "49939244",
+          "author": "soundworlds",
+          "body": "I love this! It's heading in a very similar direction I am passionate about!\nIf we are generating artifacts with AI, they should be made out of source code or other form of project file that humans can actually inspect and learn from. I'm doing the same with music: https://johnoestmannmusic.com/0009-when-we-become-discoverer... (https://johnoestmannmusic.com/0009-when-we-become-discoverers/)",
+          "score": 0,
+          "time": 1790979030,
+          "parent": "49928566"
+        },
+        {
+          "id": "49941173",
+          "author": "Individuum",
+          "body": "It's fun to watch them work in real time. How much does each painting cost in tokens?",
+          "score": 0,
+          "time": 1790998650,
           "parent": "49928566"
         },
         {
@@ -847,22 +900,6 @@
           "body": "I’m a bit behind the times…\nHow does Opus actually paint? Thought it only generated text…",
           "score": 0,
           "time": 1790908530,
-          "parent": "49928566"
-        },
-        {
-          "id": "49931967",
-          "author": "mhw11",
-          "body": "What capability makes this possible? It’s incredible! Does it have an image-generation model?",
-          "score": 0,
-          "time": 1790937346,
-          "parent": "49928566"
-        },
-        {
-          "id": "49936410",
-          "author": "danielvaughn",
-          "body": "Very interesting. I think a useful experiment would be to show AI a photograph, then ask it to paint it or draw it.",
-          "score": 0,
-          "time": 1790963386,
           "parent": "49928566"
         }
       ]
