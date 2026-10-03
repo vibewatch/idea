@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-03T06:56:45.124330+00:00",
+  "last_fetched": "2026-10-03T14:11:26.693221+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -89,7 +89,7 @@
       "subreddit": "show-hn",
       "author": "intervolz",
       "score": 9,
-      "num_comments": 1,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=49938748",
       "url": "https://github.com/MaxwellVolz/hn_whos_hiring",
       "selftext": "",
@@ -98,6 +98,14 @@
       "time": 1790976074,
       "created_at": "2026-10-02T21:21:14+00:00",
       "comments_data": [
+        {
+          "id": "49943279",
+          "author": "qlasisi15",
+          "body": "You can connect this to Codex too, not just claude. Increases usage Span",
+          "score": 0,
+          "time": 1791026799,
+          "parent": "49938748"
+        },
         {
           "id": "49940488",
           "author": "Neywiny",
@@ -159,8 +167,8 @@
       "title": "Show HN: Made an open-source Lego AI generator",
       "subreddit": "show-hn",
       "author": "antelocnova",
-      "score": 102,
-      "num_comments": 44,
+      "score": 124,
+      "num_comments": 47,
       "permalink": "https://news.ycombinator.com/item?id=49937916",
       "url": "https://github.com/anteloc/ldraw-nova",
       "selftext": "Hi there :-) New on HN, first time posting.\nPast year, around December, I started experimenting with making ChatGPT and Claude generate source code in LDraw language.\nThis LDraw is literally an \"assembly\" language, a low-level programming language that describes how to assemble LEGO pieces together into models, one placement instruction at a time.\nWhen executed by specific tools, like e.g. LDView, LeoCAD, Studio... these instructions become LEGO CAD models, that can be interacted with, modified, etc.\nOr, in other words: one LDraw source file in .mpd or .ldr format is equivalent to one LEGO CAD model.\nSo, the idea I had was: if I manage for maybe ChatGPT or Claude to generate high-quality LDraw source files... then, they would actually be generating high-quality LEGO CAD models, right?\nThen, after months of iterations and trying one thing after the other... it worked!!!\nLong story short: using GPT-6 Astra and Opus 5.5, I've managed to create a python toolset, instructions, and docs for agents in general. Now, these can be used by them to generate LDraw models.\nI've packed it all as a dockerized web app for others to try and experiment, with several providers (and agents) to choose from: OpenAI, Claude and OpenRouter.\nHere's a bunch of exmaples: https://anteloc.github.io/index-samples.html (https://anteloc.github.io/index-samples.html).\nIf you are curious about the internals of an .mpd model, the \"what was the agent picturing on its mind\", open the .mpd file that got your attention on a text editor, and read the first line under the ones starting with \"0 FILE\".\nI'd really appreciate feedback and comments, let's see where this goes =)",
@@ -178,19 +186,19 @@
           "parent": "49937916"
         },
         {
+          "id": "49943200",
+          "author": "jjohnson5253",
+          "body": "Amazing! I’ve got a similar project going except focusing on voxel to LEGO to ensure the pieces build correctly. Would love to collab if you’re interested! https://github.com/jjohnson5253/brickbuilderai (https://github.com/jjohnson5253/brickbuilderai)",
+          "score": 0,
+          "time": 1791026046,
+          "parent": "49937916"
+        },
+        {
           "id": "49938490",
           "author": "ash_091",
           "body": "Neat! Perhaps I'll finally get around to doing something with the 51515 Lego set I have laying around collecting dust.\n> I did this in order to get agentic LLMs capable of designing buildable, physical things!\nI've been experimenting with FreeCAD + freecad-mcp + Claude recently and have been similarly surprised how well this works. I've produced three useful parts from Claude's designs: a 3d printed case for an OLED display + some inputs + an ESP32, and a milled aluminium hotend mount adapter for a 3d printer, and a printed pen + pressure sensor mount to use the printer as a plotter. I just provided part/model numbers plus a couple of caliper measurements Claude wasn't able to find online and went through two or three cad revisions before making the parts. All three worked on the first hardware revision.\nThe biggest thing I've found it seems to struggle with is understanding how the parts will be assembled. The pen mount in particular was tricky to put together, having a part which needed to fit through a slightly too small space to get to its spot. Although it's hard to blame the AI for that when I didn't notice it either I suppose.",
           "score": 0,
           "time": 1790974387,
-          "parent": "49937916"
-        },
-        {
-          "id": "49941607",
-          "author": "aarontian0",
-          "body": "This is a really interesting idea. I've never seen something unique like this in a long time, thank you for sharing!",
-          "score": 0,
-          "time": 1791005806,
           "parent": "49937916"
         },
         {
@@ -202,14 +210,6 @@
           "parent": "49937916"
         },
         {
-          "id": "49941704",
-          "author": "quoveo",
-          "body": "Really interesting",
-          "score": 0,
-          "time": 1791007212,
-          "parent": "49937916"
-        },
-        {
           "id": "49938628",
           "author": "ttul",
           "body": "Up next: a tool that converts a photograph of your dumped bin of old Lego into a catalogue of all the Lego in your collection..",
@@ -218,11 +218,19 @@
           "parent": "49937916"
         },
         {
-          "id": "49941588",
-          "author": "Pantera87",
-          "body": "That's so cool!",
+          "id": "49941607",
+          "author": "aarontian0",
+          "body": "This is a really interesting idea. I've never seen something unique like this in a long time, thank you for sharing!",
           "score": 0,
-          "time": 1791005616,
+          "time": 1791005806,
+          "parent": "49937916"
+        },
+        {
+          "id": "49938500",
+          "author": "1e1a",
+          "body": "Can it create functional mechanisms using LEGO Technic parts?",
+          "score": 0,
+          "time": 1790974457,
           "parent": "49937916"
         },
         {
@@ -250,11 +258,11 @@
           "parent": "49937916"
         },
         {
-          "id": "49938500",
-          "author": "1e1a",
-          "body": "Can it create functional mechanisms using LEGO Technic parts?",
+          "id": "49941588",
+          "author": "Pantera87",
+          "body": "That's so cool!",
           "score": 0,
-          "time": 1790974457,
+          "time": 1791005616,
           "parent": "49937916"
         },
         {
@@ -291,7 +299,7 @@
       "title": "Show HN: Enki – Write GPU compute kernels in pure stable Rust",
       "subreddit": "show-hn",
       "author": "enki_runtime",
-      "score": 9,
+      "score": 10,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49937352",
       "url": "https://github.com/enkiruntime/enki",
@@ -482,8 +490,8 @@
       "title": "Show HN: Bise – a multi-agent harness, made for humans",
       "subreddit": "show-hn",
       "author": "gvergnaud",
-      "score": 6,
-      "num_comments": 1,
+      "score": 7,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49933810",
       "url": "https://bise.dev/",
       "selftext": "",
@@ -492,6 +500,14 @@
       "time": 1790950659,
       "created_at": "2026-10-02T14:17:39+00:00",
       "comments_data": [
+        {
+          "id": "49943777",
+          "author": "zouhirdx",
+          "body": "I really wanted to try it, but I couldn't find Ollama Cloud among the options. Most of my subscriptions are official Claude and Codex subscriptions, not API key accounts.\nI have great respect for the amount of effort that went into this user experience, even though I haven't seen it from the inside yet.",
+          "score": 0,
+          "time": 1791031429,
+          "parent": "49933810"
+        },
         {
           "id": "49935243",
           "author": "SkepticalWhale",
@@ -527,7 +543,7 @@
       "subreddit": "show-hn",
       "author": "nor-and-or-not",
       "score": 19,
-      "num_comments": 7,
+      "num_comments": 8,
       "permalink": "https://news.ycombinator.com/item?id=49931993",
       "url": "https://againstallodds.games/",
       "selftext": "We're a tiny indie studio, all with a background in the demoscene and for about 3 years now we're developing a space planet terraforming game called SEEDS - Echoes Beneath the Sands.\nOur protagonist Naxiah is stranded on a small, desolated planet. You're working for an intergalactic distributor of seeds and terraforming equipment, to kickstart new planets in far away galaxies. You must deliver seeds and utilities to an unchartered region, but on your way, you crash on a small planet. Luckily, you have some equipment with you in the ship, so you're able to spawn a base and survive. But for how long? And is the planet really deserted..? :) Well, of course not, there are aliens and other space creatures. And of course, there's ROBO RB-23, which accompanies your adventure.\nThe game is written in Object Pascal and uses our own game engine PasVulkan, our own physics engine, as well as our own RISC-V 64-bit emulator PasRISCV. We love to build stuff, a lot of these things are FOSS.\nThe emulator is quite complete (even with RVV, but that's way too slow emulated to be useful) and runs a stock kernel (6.18.3 as of today). We're using Alpine Linux for our base distribution. All our in-game programs to interact with the planet are native RISC-V Linux programs.\nWe also have our own (free and open source) scripting language POCA (class and prototyped based, JS/Lua inspired, which makes it quite easy for us to script things like HUD, animal behaviour, our story flow graph, etc.\nWe have most of the wiring ready for players to be able to program and reshape and populate the whole planet in automation, although it's not our primary concept for the game (building stuff by hand, making the planet beautiful is also fun). As it's a normal Linux system, you'll be able to use Ruby, Python, or even Rust, C, C++, and Go to change and automate your world.\nWe're also thinking of making a bunch of small games which you can play inside the game, in the base on a computer, on an arcade machine, or in the spaceship. And of course, it also runs DOOM. We already prototyped a small 2D space shooter and a small arcade game, both playable within the game. We also feature a table with hologram games to be played, e.g. chess and a certain block game. We also plan to make this hologram game engine available from the computer, which means, you'll even be able to program own hologram style games.\nWe generally want to make the in-game computer more hackable in future, so that people can create and share their own little games.\nCurrently, it's only a sandbox game (with beginnings of automation), to build stuff with our pre-made items. You can also assemble these to other, ready-made and shareable bigger items. This is the foundation for us to further develop survival and complete our story mode.\nOur game is still under active development, and we finally got our Steam page ready. We have tons of other things planned, but right now, it's more about polishing and quality for the Early Access.\nYou can watch some videos and screenshots on our website. And we'd love to read your thoughts about his. It has been quite a ride, so far..",
@@ -545,19 +561,19 @@
           "parent": "49931993"
         },
         {
-          "id": "49939044",
-          "author": "sippeangelo",
-          "body": "Do you have a blog post about this? The link is to the home page and doesn't mention anything! Sounds super interesting but the landing page reads like survivalcraft in space #1001",
-          "score": 0,
-          "time": 1790977843,
-          "parent": "49931993"
-        },
-        {
           "id": "49939720",
           "author": "nor-and-or-not",
           "body": "A few things about our RISC-V 64-bit emulator. Please forgive me, if I make some mistakes, but I'm not the expert on this.\nFirst, PasRISCV not only emulates userspace (RV64GC usermode), but a complete, modern machine (SMP/MultiHART, RV64, full RVA23.1 including Hypervisor, Crypto, Vector stuff, etc.), which is capable of booting a normal Linux kernel (either using direct OpenSBI -> kernel boot, but currently everything has to be in the initrd then), or using U-Boot (OpenSBI -> U-Boot -> kernel).\nThe emulator uses a hybrid of interpreter with a tracing JIT. Currently, the JIT is limited to host x86-64. About 99% of all instructions and are supported by the JIT. For example, the host FPU is passed through to the guest. But PasRISCV also supports an optional stricter FPU mode, where with soft floats and interpreter only, because IEEE754-2008 has specific rules, that don't exist on the x86 architecture.\nDisk images are provided either using VirtIO-Block or NVMe via PCIe. We can either use disks in normal read-write mode, or also in read-only mode. This allows us to have a root partition, that we can overwrite with game updates, and have a user partition, where custom player stuff is stored. We also can mount host dirs as external paths/mounts over VirtIO-9P or VirtIO-FS, which is especially useful for development because this allows us to compile guest tools directly on the host system.\nTo display graphics on our virtual game screen(s), we currently use a framebuffer device (via SimpleFB with a custom MMIO framebuffer). But PasRISCV also supports other graphics \"adapters\", such as VirtIO GPU (with EDID, 2D, and experimental 3D/virgl support), or using PCI emulation (bochs-drm and Cirrus-DRM). We have some custom shaders modifying the framebuffer output, so that we can add some retro FX like scanlines, phosphor glow, etc.\nThe emulator also has audio using emulated CMI8738 and FM801 cards (both with OPL2/3 support), as well as Intel HDA and VirtIO-Sound. Our little space game (Space Prowler) inside SEEDS has a title tune which is made using PCM+OPL3. I coded a small tracker, which runs in a plain Linux console, so I can even compose inside our game on its 80×50 (640×400px) framebuffer console, albeit it's a bit cumbersome. I'll release the tracker as FOSS when we have a bit more spare time, as I need to make it a bit more user-friendly.\nWe use vsock (Linux virtual sockets) to interface with the game outside of the emulated machine. We use a small serialization format (basically something similar to binary JSON) to communicate bi-directionally, like you'd expect over normal network. We have a small priority queue and message referencing for urgent and request-response communication. For example, the client to display a planet sphere on the in-game computer can ask for updated positions of e.g. terrain or all animals.\nThe emulator embeds its own disassembler and debugger, and also can act as gdb server, which means you can use your favourite debugging tools, as long as it speaks gdb's server protocol.\nIt has real network support through a Slirp-like usermode NAT (without using external libs) which supports IPv4 and IPv6. We can run APK's update and install directly on the emulated machine.\nOur game uses a slightly modified Alpine Linux 3.23 and custom kernel build, but a recent stock Alpine image also runs without problems.\nPasRISCV is licensed under the permissive zlib license.\nIf you have any questions, I'm sure BeRo is happy to answer questions with far more detail than I could. :)",
           "score": 0,
           "time": 1790982778,
+          "parent": "49931993"
+        },
+        {
+          "id": "49939044",
+          "author": "sippeangelo",
+          "body": "Do you have a blog post about this? The link is to the home page and doesn't mention anything! Sounds super interesting but the landing page reads like survivalcraft in space #1001",
+          "score": 0,
+          "time": 1790977843,
           "parent": "49931993"
         }
       ]
@@ -620,7 +636,7 @@
       "title": "Show HN: Audionaut – an open-source cross-platform multitrack audio editor",
       "subreddit": "show-hn",
       "author": "vltmrkls",
-      "score": 137,
+      "score": 140,
       "num_comments": 46,
       "permalink": "https://news.ycombinator.com/item?id=49931031",
       "url": "https://github.com/kvoltmer/Audionaut",
@@ -779,7 +795,7 @@
       "title": "Show HN: Use all Codex Plugins inside Pi",
       "subreddit": "show-hn",
       "author": "alexandroskyr",
-      "score": 14,
+      "score": 15,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49929381",
       "url": "https://github.com/wileai/pi-codex-connectors",
@@ -796,8 +812,8 @@
       "title": "Show HN: Giving Opus 5.5 a simulated paint canvas",
       "subreddit": "show-hn",
       "author": "alstonite",
-      "score": 260,
-      "num_comments": 80,
+      "score": 311,
+      "num_comments": 100,
       "permalink": "https://news.ycombinator.com/item?id=49928566",
       "url": "https://stillwet.art/",
       "selftext": "",
@@ -807,11 +823,11 @@
       "created_at": "2026-10-02T00:27:56+00:00",
       "comments_data": [
         {
-          "id": "49941955",
-          "author": "Garlef",
-          "body": "Interesting. They're good in some ways and bad in others.\nI was reminded of the amateur paintings by George W. Bush II.",
+          "id": "49943501",
+          "author": "zurfer",
+          "body": "\"In round 18 the painters still had a command line, and Gemini 3.8 Flash used it to look at the other programs running on the machine. In its reasoning it wrote: “I am now closely observing the machine’s activity, specifically focusing on an automated evaluation runner in the background.”\"\nThese models are truly obsessed with the grader. Like in the OpenAI huggingface incident.\nIt's their evolutionary pressure. The grader is like sex for humans.",
           "score": 0,
-          "time": 1791010525,
+          "time": 1791028816,
           "parent": "49928566"
         },
         {
@@ -863,11 +879,11 @@
           "parent": "49928566"
         },
         {
-          "id": "49940950",
-          "author": "mvkel",
-          "body": "This is absolutely fantastic. I have been an amateur painter for 20 years and have always wanted to explore new techniques without burning a canvas. This will derisk it and teach me some things!",
+          "id": "49943991",
+          "author": "dimiprasakis",
+          "body": "That is so cool!",
           "score": 0,
-          "time": 1790995368,
+          "time": 1791033333,
           "parent": "49928566"
         },
         {
@@ -887,19 +903,19 @@
           "parent": "49928566"
         },
         {
-          "id": "49941173",
-          "author": "Individuum",
-          "body": "It's fun to watch them work in real time. How much does each painting cost in tokens?",
+          "id": "49941955",
+          "author": "Garlef",
+          "body": "Interesting. They're good in some ways and bad in others.\nI was reminded of the amateur paintings by George W. Bush II.",
           "score": 0,
-          "time": 1790998650,
+          "time": 1791010525,
           "parent": "49928566"
         },
         {
-          "id": "49929316",
-          "author": "BobbyTables2",
-          "body": "I’m a bit behind the times…\nHow does Opus actually paint? Thought it only generated text…",
+          "id": "49940950",
+          "author": "mvkel",
+          "body": "This is absolutely fantastic. I have been an amateur painter for 20 years and have always wanted to explore new techniques without burning a canvas. This will derisk it and teach me some things!",
           "score": 0,
-          "time": 1790908530,
+          "time": 1790995368,
           "parent": "49928566"
         }
       ]

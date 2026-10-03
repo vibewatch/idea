@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-03T06:56:48.240501+00:00",
+  "last_fetched": "2026-10-03T14:11:31.673934+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -27,8 +27,8 @@
       "title": "Ask HN: Is anybody producing good code with coding agents?",
       "subreddit": "ask-hn",
       "author": "ruffrey",
-      "score": 24,
-      "num_comments": 31,
+      "score": 26,
+      "num_comments": 35,
       "permalink": "https://news.ycombinator.com/item?id=49934037",
       "url": "https://news.ycombinator.com/item?id=49934037",
       "selftext": "This is a genuine problem that I hear from senior engineers. I'm looking for a solution.\n--\nThe quality of ai-generated code is <censored> (claude, agy, copilot, codex a little better).\nIt's exhausting to read.\nI used to love learning from my experienced colleagues and taking pride in what we made. We spent time on elegance and craftsmanship.\nNow I spend nearly the whole workday slogging through convoluted code riddled with footguns. I ride on hopes and dreams I might understand a changeset.\nIt takes 5x longer to review Claude merge requests and I barely understand what I approve.\nEach day I drift further from understanding as I shovel the same <censored> into the codebase.\nThe solution seems to be, reach \"level 4 autonomy\" and don't read or write code anymore.\n--\nWHO HAS SOLVED THIS PROBLEM? PLEASE HELP!",
@@ -46,19 +46,27 @@
           "parent": "49934037"
         },
         {
-          "id": "49940663",
-          "author": "faangguyindia",
-          "body": "We have multiple apps, but I'll share only the free ones; the others are B2B (they haul in major revenue for us, and businesses dealing with us will not like us disclosing this here), largest free one is MacroCodex with 17,000+ users.\nWe do not have this problem; we heavily use the models from OpenAI and Anthropic, but we have a custom harness built for ultimate cache efficiency and a purpose tuned workflow.\nCodex is GREAT but it keeps updating and its UI changes often (remember mini git sidebar ui?)\nOur Custom Harness does multiple things, like having a \"Skill Selector,\" which uses our Gambler v1 (26B decision model responds in <100ms locally) and overlays tools on top of existing ones (as the models are RLVL over the specific tool in their harness, we overlay those tools with a familiar interface or format and inject custom features we want the model to interpret). Other than this, it leverages local models to accelerate development. Also, instead of providing custom tools, we actually use the same tools that their original model-provided harness uses. We've a list of 100s of such optimizations; these are just a few from the top of my head.\nI have been working on harnesses for a very long time; I read research papers and implement them.\nThe apps use Flutter and Rust for all of our apps; no ads, no subscriptions.\nSo, macrocodex is basically a neural network product which \"predicts\" maintenance calories at a very high accuracy, https://macrocodex.app/ (https://macrocodex.app/)\nMacroCodex beats everything in its category and it does it for free, no ads, no subscriptions.\nSymbiote and CalorieCodex will soon follow the suite.\nIf it fails, people get fat instead of losing weight, or get skinny instead of gaining weight.\nRecently, we launched CalorieCodex (a calorie tracking app with an optional Full Agent Harness, where an agent tracks calories for you) and Symbiote (a programmable workout app; think BoostCamp, but user-programmable so it can run any bodybuilding program).\nYou can find some screenshots here:\nhttps://macrocodex.app/guides/peak-week/ (https://macrocodex.app/guides/peak-week/)",
-          "score": 0,
-          "time": 1790992228,
-          "parent": "49934037"
-        },
-        {
           "id": "49934949",
           "author": "leros",
           "body": "I generally produce nearly the same code I'd write myself about 5x faster with AI. I don't just let Claude Code run wild for a long time and have a mess to review. I have it do small chunks I can quickly review, give it feedback, iterate, etc until I like the output, then I move on to the next step. This takes time of course but I've found it faster than reviewing a giant mess of a code review.",
           "score": 0,
           "time": 1790956446,
+          "parent": "49934037"
+        },
+        {
+          "id": "49943630",
+          "author": "saluki",
+          "body": "Having great success with Claude Code.\nShort claude.md file, skills for various things like db schema, etc\nFor larger or complex features do a design session with claude, review design and make suggestions and collaborate, once design is dialed in ask to break in to tasks then do similar session collaboarating on plan.md files for each task/phase then have claude build it.\nClaude is really really good at adding tests, leverage this for near 100% test coverage and it can also test that it's meeting the PRD/spec.\nIt's also creative and seems to like collaborating on the design and plan parts join in with that. Claude feels really similar to my favorite engineer I worked with as far as collaboration and even banter. It's nice.\nUsing claude code in the terminal btw, md files go in repo so all team, devs, consoles can see context across front and backend.\nUse PRs run claude code review, I created a Minority Report style review skill as well, code quality, security, performance with anderton as the judge/orch\nThen we have a human review PR as well\nThis process we are getting good code and faster velocity for sure, vs traditional SDLC for solo and with team\nAs far as reading the code, I think that will become less and less as long as it passes automated code review, it's performant, meets the spec and tests pass . . . SHIP IT\nWatch DHH's recent RailsConf keynote, this is where we're heading, buckle up",
+          "score": 0,
+          "time": 1791029882,
+          "parent": "49934037"
+        },
+        {
+          "id": "49940663",
+          "author": "faangguyindia",
+          "body": "We have multiple apps, but I'll share only the free ones; the others are B2B (they haul in major revenue for us, and businesses dealing with us will not like us disclosing this here), largest free one is MacroCodex with 17,000+ users.\nWe do not have this problem; we heavily use the models from OpenAI and Anthropic, but we have a custom harness built for ultimate cache efficiency and a purpose tuned workflow.\nCodex is GREAT but it keeps updating and its UI changes often (remember mini git sidebar ui?)\nOur Custom Harness does multiple things, like having a \"Skill Selector,\" which uses our Gambler v1 (26B decision model responds in <100ms locally) and overlays tools on top of existing ones (as the models are RLVL over the specific tool in their harness, we overlay those tools with a familiar interface or format and inject custom features we want the model to interpret). Other than this, it leverages local models to accelerate development. Also, instead of providing custom tools, we actually use the same tools that their original model-provided harness uses. We've a list of 100s of such optimizations; these are just a few from the top of my head.\nI have been working on harnesses for a very long time; I read research papers and implement them.\nThe apps use Flutter and Rust for all of our apps; no ads, no subscriptions.\nSo, macrocodex is basically a neural network product which \"predicts\" maintenance calories at a very high accuracy, https://macrocodex.app/ (https://macrocodex.app/)\nMacroCodex beats everything in its category and it does it for free, no ads, no subscriptions.\nSymbiote and CalorieCodex will soon follow the suite.\nIf it fails, people get fat instead of losing weight, or get skinny instead of gaining weight.\nRecently, we launched CalorieCodex (a calorie tracking app with an optional Full Agent Harness, where an agent tracks calories for you) and Symbiote (a programmable workout app; think BoostCamp, but user-programmable so it can run any bodybuilding program).\nYou can find some screenshots here:\nhttps://macrocodex.app/guides/peak-week/ (https://macrocodex.app/guides/peak-week/)",
+          "score": 0,
+          "time": 1790992228,
           "parent": "49934037"
         },
         {
