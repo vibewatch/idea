@@ -1,8 +1,409 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-02T18:40:11.933814+00:00",
+  "last_fetched": "2026-10-03T01:07:10.848889+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49939980",
+      "title": "Show HN: S3-Accelerator",
+      "subreddit": "show-hn",
+      "author": "dangoodmanUT",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49939980",
+      "url": "https://github.com/danthegoodman1/s3-accelerator",
+      "selftext": "s3-accelerator is an s3-compatible nvme cache that serves hits in under a millisecond, replicates hot objects, and stays warm when the cluster resizes.\nthe hot object replication was inspired by groupcache [1], but that has some pretty nasty issues when the cluster resizes\ns3-accelerator fixes that by: 1) using rendezvous hashing to reduce the remapping when the cluster loses a node, and 2) when new nodes are added, asking the old parent for a give key for the object rather than going to s3\nIt also uses learnings from cloudflare that it's better to cache on a second hit than a first hit[2]\nIt also uses ktls, splice, and sendfile so byte transfer of object chunks never hit userspace. That means it can hit millions of iops, or saturate 200Gb/s network cards, while sipping on CPU\nit also is parquet-aware, and has an optional SQS integration to keep the cache fresh if an object is overwritten.\nS3 stays the source of truth, and you can write through the cache (it wont cache the write by default)\nthese features make s3-accelerator uniquely performant, fresh, and s3 costs extremely low.\nIt's one of those \"I'll build it one day\" project ideas that Opus 5.5 finally made viable.\n[1] https://github.com/golang/groupcache (https://github.com/golang/groupcache)\n[2] https://blog.cloudflare.com/why-we-started-putting-unpopular... (https://blog.cloudflare.com/why-we-started-putting-unpopular-assets-in-memory)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790984762,
+      "created_at": "2026-10-02T23:46:02+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49939817",
+      "title": "Show HN: Television – an open source GUI for your agent harness",
+      "subreddit": "show-hn",
+      "author": "stlhood",
+      "score": 5,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=49939817",
+      "url": "https://television.run/",
+      "selftext": "Hi HN, I'm co-creator of Television (https://television.run/ (https://television.run/)).\nMe and the team at Telepath (https://telepath.computer/ (https://telepath.computer/)) have been cooking on this and testing it with a few hundred alpha users. We just opened up the repo to the public today.\nTelevision is a clean, beautiful place for all your artifacts. Think of it as a GUI for your agent harness, a visual space for creating and working with artifacts in collaboration with your agent. It works with any agent harness (Claude Code, Codex, Hermes, OpenClaw, Pi, OpenCode, etc) and uses whatever inference provider(s) your agent is already using. It's open source.\nA CLI and lightweight server get installed wherever your agent harness is running (Linux or macOS for now). These talk to our macOS client app, which can be running anywhere (the browser is also supported with a few limitations). A set of skills tell your agent how to put artifacts on your TV's screen and modify them over time.\nYou use the client app as a sidecar -- i.e. you chat with your agent the way you normally do, but it can now respond by creating artifacts and putting them on your TV. Everything that ends up on your TV is yours and can be modified by talking to your agent. The entire UI, and your artifacts, are themeable.\nWe noticed lots of people are using artifacts in agents like Claude Code/Cowork and Codex, and lots of developers are spinning up little websites and webapps for working on projects, organizing their life or work, etc. But it all either ends up locked inside your agent's interface or as a mess of random tabs running on a bunch of ports you quickly lose track of.\nWe think that the future of personal computer interfaces isn't just chat, any more than it's MS-DOS. Artifacts are an early first step beyond chat. We think they should be easier to work with, and that you should own your own artifacts. So we made Television.\nIt's early but give it a try and let us know what you think: https://github.com/telepath-computer/television/ (https://github.com/telepath-computer/television/)\n(BTW: we're building TV via an end-to-end fully spec-driven dev process, with custom tooling that also pulls in design and UI work. Planning to share more about that in the near future.)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790983504,
+      "created_at": "2026-10-02T23:25:04+00:00",
+      "comments_data": [
+        {
+          "id": "49939999",
+          "author": "joshu",
+          "body": "btw these guys worked for me on del.icio.us back in the day. i have been playing with it for a bit and it’s really great. i already set up a spare monitor just for this",
+          "score": 0,
+          "time": 1790984899,
+          "parent": "49939817"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49939420",
+      "title": "Show HN: Docker Compose implementation in Rust for Windows WSL containers (wslc)",
+      "subreddit": "show-hn",
+      "author": "r2ob",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49939420",
+      "url": "https://ricardoborges.github.io/rcompose/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790980226,
+      "created_at": "2026-10-02T22:30:26+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49938748",
+      "title": "Show HN: Rank every HN \"Who is hiring?\" post against your resume, locally",
+      "subreddit": "show-hn",
+      "author": "intervolz",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49938748",
+      "url": "https://github.com/MaxwellVolz/hn_whos_hiring",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790976074,
+      "created_at": "2026-10-02T21:21:14+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49938648",
+      "title": "Show HN: figma-server, the solution to Figma's hostility towards agents",
+      "subreddit": "show-hn",
+      "author": "ripped_britches",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49938648",
+      "url": "https://github.com/ctxrs/figma-server",
+      "selftext": "There's been a lot of drama lately about using the Figma MCP. You don't need it! Just use figma-server. It gives your agent full control over Figma via CDP. The latest generation of frontier models (GPT-6, Opus-5.5, Fable-5.1) are really good at Figma stuff.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790975487,
+      "created_at": "2026-10-02T21:11:27+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49938517",
+      "title": "Show HN: Portus, A Rust Based API/AI/MCP Gateway",
+      "subreddit": "show-hn",
+      "author": "nodstuff",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49938517",
+      "url": "https://portus-gateway.dev/",
+      "selftext": "Portus is a Rust-based API/AI/MCP Gateway built on top of Rama as the networking stack (Rama replaced Pingora due to better throughput and lower resource usage).\nPortus uses a split control/data plane architecture and conforms with the Kubernetes Gateway API specification (130/130 tests across all profiles).\nPortus also runs in standalone mode outside of Kubernetes with a simple Yaml config file with ACME support built-in.\nPlease give it a try and if you like it then if you wouldn't mind going to Github and starring the project I would be very appreciative!\nIf there is something missing that you would like to see then please leave feedback and I will see what I can do.\nThank you!\nhttps://github.com/Portus-Gateway/Portus (https://github.com/Portus-Gateway/Portus)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790974582,
+      "created_at": "2026-10-02T20:56:22+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49937916",
+      "title": "Show HN: Made an open-source Lego AI generator",
+      "subreddit": "show-hn",
+      "author": "antelocnova",
+      "score": 65,
+      "num_comments": 37,
+      "permalink": "https://news.ycombinator.com/item?id=49937916",
+      "url": "https://github.com/anteloc/ldraw-nova",
+      "selftext": "Hi there :-) New on HN, first time posting.\nPast year, around December, I started experimenting with making ChatGPT and Claude generate source code in LDraw language.\nThis LDraw is literally an \"assembly\" language, a low-level programming language that describes how to assemble LEGO pieces together into models, one placement instruction at a time.\nWhen executed by specific tools, like e.g. LDView, LeoCAD, Studio... these instructions become LEGO CAD models, that can be interacted with, modified, etc.\nOr, in other words: one LDraw source file in .mpd or .ldr format is equivalent to one LEGO CAD model.\nSo, the idea I had was: if I manage for maybe ChatGPT or Claude to generate high-quality LDraw source files... then, they would actually be generating high-quality LEGO CAD models, right?\nThen, after months of iterations and trying one thing after the other... it worked!!!\nLong story short: using GPT-6 Astra and Opus 5.5, I've managed to create a python toolset, instructions, and docs for agents in general. Now, these can be used by them to generate LDraw models.\nI've packed it all as a dockerized web app for others to try and experiment, with several providers (and agents) to choose from: OpenAI, Claude and OpenRouter.\nHere's a bunch of exmaples: https://anteloc.github.io/index-samples.html (https://anteloc.github.io/index-samples.html).\nIf you are curious about the internals of an .mpd model, the \"what was the agent picturing on its mind\", open the .mpd file that got your attention on a text editor, and read the first line under the ones starting with \"0 FILE\".\nI'd really appreciate feedback and comments, let's see where this goes =)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790971215,
+      "created_at": "2026-10-02T20:00:15+00:00",
+      "comments_data": [
+        {
+          "id": "49939755",
+          "author": "dchuk",
+          "body": "Not the same but adjacent hobby, I’ve had good success with feeding 3mf files to Claude (usually just fable in desktop app) that I found on maker world to prompt for modifications to the model and it works damn well. Stuff like changing a functional model from press fit only to using inset m bolts and nuts. Way better than doing it by hand in a cad app",
+          "score": 0,
+          "time": 1790982962,
+          "parent": "49937916"
+        },
+        {
+          "id": "49938219",
+          "author": "vunderba",
+          "body": "Nice job. I actually read a paper on Arxiv last year about this exact thing - using LLMs to drive model building through LDraw that might be worth reading [1].\nThey had some interesting experiments like giving the LLM a fixed set of parts as a constraint and asked it to \"build\" tools out of those available lego.\nI think they were using Opus 4.5 so I'm sure with even more powerful models it'll be even better.\n[1] - https://arxiv.org/pdf/2512.15743 (https://arxiv.org/pdf/2512.15743)",
+          "score": 0,
+          "time": 1790972949,
+          "parent": "49937916"
+        },
+        {
+          "id": "49938490",
+          "author": "ash_091",
+          "body": "Neat! Perhaps I'll finally get around to doing something with the 51515 Lego set I have laying around collecting dust.\n> I did this in order to get agentic LLMs capable of designing buildable, physical things!\nI've been experimenting with FreeCAD + freecad-mcp + Claude recently and have been similarly surprised how well this works. I've produced three useful parts from Claude's designs: a 3d printed case for an OLED display + some inputs + an ESP32, and a milled aluminium hotend mount adapter for a 3d printer, and a printed pen + pressure sensor mount to use the printer as a plotter. I just provided part/model numbers plus a couple of caliper measurements Claude wasn't able to find online and went through two or three cad revisions before making the parts. All three worked on the first hardware revision.\nThe biggest thing I've found it seems to struggle with is understanding how the parts will be assembled. The pen mount in particular was tricky to put together, having a part which needed to fit through a slightly too small space to get to its spot. Although it's hard to blame the AI for that when I didn't notice it either I suppose.",
+          "score": 0,
+          "time": 1790974387,
+          "parent": "49937916"
+        },
+        {
+          "id": "49938628",
+          "author": "ttul",
+          "body": "Up next: a tool that converts a photograph of your dumped bin of old Lego into a catalogue of all the Lego in your collection..",
+          "score": 0,
+          "time": 1790975303,
+          "parent": "49937916"
+        },
+        {
+          "id": "49938259",
+          "author": "dy",
+          "body": "Thanks for sharing - I'm actually working with my kid on something similar but with physics modeling for First Lego League. Cool to see your approach!",
+          "score": 0,
+          "time": 1790973139,
+          "parent": "49937916"
+        },
+        {
+          "id": "49938956",
+          "author": "thomasfl",
+          "body": "The next step after this is to have AI and bots build a real house. Great work!",
+          "score": 0,
+          "time": 1790977340,
+          "parent": "49937916"
+        },
+        {
+          "id": "49938782",
+          "author": "josh-wrale",
+          "body": "I'm interested in this for robotics. Probably need physics to do that well.",
+          "score": 0,
+          "time": 1790976321,
+          "parent": "49937916"
+        },
+        {
+          "id": "49939886",
+          "author": "qlasisi15",
+          "body": "Actually very cool and interesting stuff!",
+          "score": 0,
+          "time": 1790984189,
+          "parent": "49937916"
+        },
+        {
+          "id": "49938500",
+          "author": "1e1a",
+          "body": "Can it create functional mechanisms using LEGO Technic parts?",
+          "score": 0,
+          "time": 1790974457,
+          "parent": "49937916"
+        },
+        {
+          "id": "49938345",
+          "author": "CptBroccoli",
+          "body": "Any estimates for token costs to generate these models? Curious about costs for Astra, Opus and Jev for some of the examples you have in the video.",
+          "score": 0,
+          "time": 1790973635,
+          "parent": "49937916"
+        },
+        {
+          "id": "49938877",
+          "author": "shakamd",
+          "body": "This is great",
+          "score": 0,
+          "time": 1790976869,
+          "parent": "49937916"
+        },
+        {
+          "id": "49938699",
+          "author": "khazhoux",
+          "body": "Fun idea. Congrats on building and releasing!\nThat said, LLMs encroaching into the pure-imagination world of Lego gives me a bit of the icks...",
+          "score": 0,
+          "time": 1790975847,
+          "parent": "49937916"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49937592",
+      "title": "Show HN: Open-source Git server that runs on Cloudflare Workers",
+      "subreddit": "show-hn",
+      "author": "choyiny",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49937592",
+      "url": "https://github.com/choyiny/gitorange",
+      "selftext": "Cloudflare announced Artifacts yesterday and it's about time someone created a serverless Github clone",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790969629,
+      "created_at": "2026-10-02T19:33:49+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49937352",
+      "title": "Show HN: Enki – Write GPU compute kernels in pure stable Rust",
+      "subreddit": "show-hn",
+      "author": "enki_runtime",
+      "score": 9,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=49937352",
+      "url": "https://github.com/enkiruntime/enki",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790968501,
+      "created_at": "2026-10-02T19:15:01+00:00",
+      "comments_data": [
+        {
+          "id": "49938803",
+          "author": "enki_runtime",
+          "body": "Hey HN!\nThis is my first post and i wanted to share my backstory for this project.\nenki is a project that I developed to fix one problem (GPU programming hell)\nwhen i first started programming with OpenGL (and later Vulkan) i was really shocked by the amount of pain and Boilerplate code required just to run a single triangle or a basic matmul, and that because i was coming from CPU language (C# and later rust), i assumed the experience would be the same, but it was really frustrating to see the actual reality (and i don't need to talk about it).\nso i tried to forget about it and just accept it.\nafter more than a year, I was building my game engine using vulkan, During that time i created an internal library called \"utu\" to help me abstract vulkan Boilerplate code, during that time an idea has clicked \"why don't i try to fix the main problem my self?\", utu was the main driver for this idea, so i threw away all the code and decided to focus on a single goal and it's to make my first expectation of the GPU world come true \"Writing cpu code and run it on the GPU\", now after a lott of pain building this project i finally did it, using rust bitcode (.bc llvm ir) that has the same logic of the user kernel (the nam function), then compile it to spir-v (and that was the most painful thing to do, i called the compiler \"parsu\"). now we can use crates.io & iters & enums & generics directly inside the kernel and it will run on the GPU! want to run it on the CPU? because it's a native rust syntax and version (stable rust) it would run on the CPU natrully without touching the code.",
+          "score": 0,
+          "time": 1790976462,
+          "parent": "49937352"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49937304",
+      "title": "Show HN: pi pod – run your pi coding agent in sandboxes on your own server",
+      "subreddit": "show-hn",
+      "author": "edverma2",
+      "score": 5,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=49937304",
+      "url": "https://pipod.dev/",
+      "selftext": "pi pod runs sessions of the pi coding agent (https://github.com/earendil-works/pi (https://github.com/earendil-works/pi)) in isolated sandboxes (\"pods\") on a server you run, so an agent can work on a repo without touching your machine.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790968238,
+      "created_at": "2026-10-02T19:10:38+00:00",
+      "comments_data": [
+        {
+          "id": "49937509",
+          "author": "ineptech",
+          "body": "Hi, I think I might be your target audience, I currently run pi on the server in my basement, in a minimalist docker container that gives it access to my code workspace and a config dir. Give me an idea what benefit I get on top of that by using the self-hosted pi pod?",
+          "score": 0,
+          "time": 1790969220,
+          "parent": "49937304"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49937235",
+      "title": "Show HN: Draw from your friends' Claude quota",
+      "subreddit": "show-hn",
+      "author": "hugopuybareau",
+      "score": 4,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=49937235",
+      "url": "https://github.com/jaynlabs/jaynshare",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790967763,
+      "created_at": "2026-10-02T19:02:43+00:00",
+      "comments_data": [
+        {
+          "id": "49939232",
+          "author": "intervolz",
+          "body": "Very cool and interesting. Checking out the repo now.\nI built slashwork.sh as an offload marketplace for this exact thing but public facing and VM-wrapped for security.\nCurious about how u address the trust layer and context offloading.",
+          "score": 0,
+          "time": 1790978950,
+          "parent": "49937235"
+        },
+        {
+          "id": "49940043",
+          "author": "qlasisi15",
+          "body": "This is a fun project ngl. The readme had me\n\"This project does not claim it is legal lmao\"",
+          "score": 0,
+          "time": 1790985300,
+          "parent": "49937235"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49937109",
+      "title": "Show HN: DynamicTune – Closed-form trajectory weight surgery from 4B into 0.8B",
+      "subreddit": "show-hn",
+      "author": "fermlon30000",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49937109",
+      "url": "https://github.com/dsadawq3/DynamicTune",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790966989,
+      "created_at": "2026-10-02T18:49:49+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49937079",
+      "title": "Show HN: Another stock screener without AI, news, or analyst ratings",
+      "subreddit": "show-hn",
+      "author": "caiocmpaes",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49937079",
+      "url": "https://holderdashboard.com/",
+      "selftext": "Hi HN,\nHolder Dashboard is a stock screener, yes, but it ranks and compares companies using their historical fundamental data (revenue, net income, debt, cash flow, etc.).\nI’ve used other stock screeners, but something that bothers me is the subjectivity and randomness of analyst opinions: time to buy, sentiment, price targets, and so on. I wanted to build a tool where I could compare stocks based purely on their own data, trying to reduce as much as possible the emotion and guesswork about what the data means or what will happen next.\nMy thinking is that each investor, with their own level of skill, knowledge, and available time, should make their OWN analysis.\nI still have many ideas for features and for where to take the app, but I’d like some very specific feedback from people seeing it for the first time. Imagine you’re interested in Buy & Hold as an investment approach, but you’re not a market professional or a trader:\nWhat feature or piece of information is important to you and is currently missing for a more solid analysis?",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790966803,
+      "created_at": "2026-10-02T18:46:43+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49936983",
+      "title": "Show HN: Spotlight Off – Automatically Disable macOS Spotlight Indexing",
+      "subreddit": "show-hn",
+      "author": "titleunknown",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49936983",
+      "url": "https://github.com/titleunknown/Spotlight-Off",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790966265,
+      "created_at": "2026-10-02T18:37:45+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49936702",
+      "title": "Show HN: Snip – Terminal notes app that Claude can read and write via MCP",
+      "subreddit": "show-hn",
+      "author": "ikigaineo",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49936702",
+      "url": "https://github.com/jerichosiahaya/snip",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790964733,
+      "created_at": "2026-10-02T18:12:13+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,7 +411,7 @@
       "title": "Show HN: Arda – Marketing agents to help brands win Google and AI Search",
       "subreddit": "show-hn",
       "author": "daneshbadlani",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49936394",
       "url": "https://www.ardainc.com",
@@ -44,7 +445,7 @@
       "title": "Show HN: Bise – a multi-agent harness, made for humans",
       "subreddit": "show-hn",
       "author": "gvergnaud",
-      "score": 5,
+      "score": 6,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49933810",
       "url": "https://bise.dev/",
@@ -52,7 +453,17 @@
       "is_self": false,
       "is_video": false,
       "time": 1790950659,
-      "created_at": "2026-10-02T14:17:39+00:00"
+      "created_at": "2026-10-02T14:17:39+00:00",
+      "comments_data": [
+        {
+          "id": "49935243",
+          "author": "SkepticalWhale",
+          "body": "I like the ideas here. I would like to test it out with my subscription. Is that something you plan on supporting?\nI’m also curious: when do you compact the main agent? Is it just the model’s window limit or some other threshold?",
+          "score": 0,
+          "time": 1790957787,
+          "parent": "49933810"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -70,6 +481,49 @@
       "is_video": false,
       "time": 1790949479,
       "created_at": "2026-10-02T13:57:59+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49931993",
+      "title": "Show HN: Our space game has a built-in RISC-V emulator that runs Linux",
+      "subreddit": "show-hn",
+      "author": "nor-and-or-not",
+      "score": 16,
+      "num_comments": 7,
+      "permalink": "https://news.ycombinator.com/item?id=49931993",
+      "url": "https://againstallodds.games/",
+      "selftext": "We're a tiny indie studio, all with a background in the demoscene and for about 3 years now we're developing a space planet terraforming game called SEEDS - Echoes Beneath the Sands.\nOur protagonist Naxiah is stranded on a small, desolated planet. You're working for an intergalactic distributor of seeds and terraforming equipment, to kickstart new planets in far away galaxies. You must deliver seeds and utilities to an unchartered region, but on your way, you crash on a small planet. Luckily, you have some equipment with you in the ship, so you're able to spawn a base and survive. But for how long? And is the planet really deserted..? :) Well, of course not, there are aliens and other space creatures. And of course, there's ROBO RB-23, which accompanies your adventure.\nThe game is written in Object Pascal and uses our own game engine PasVulkan, our own physics engine, as well as our own RISC-V 64-bit emulator PasRISCV. We love to build stuff, a lot of these things are FOSS.\nThe emulator is quite complete (even with RVV, but that's way too slow emulated to be useful) and runs a stock kernel (6.18.3 as of today). We're using Alpine Linux for our base distribution. All our in-game programs to interact with the planet are native RISC-V Linux programs.\nWe also have our own (free and open source) scripting language POCA (class and prototyped based, JS/Lua inspired, which makes it quite easy for us to script things like HUD, animal behaviour, our story flow graph, etc.\nWe have most of the wiring ready for players to be able to program and reshape and populate the whole planet in automation, although it's not our primary concept for the game (building stuff by hand, making the planet beautiful is also fun). As it's a normal Linux system, you'll be able to use Ruby, Python, or even Rust, C, C++, and Go to change and automate your world.\nWe're also thinking of making a bunch of small games which you can play inside the game, in the base on a computer, on an arcade machine, or in the spaceship. And of course, it also runs DOOM. We already prototyped a small 2D space shooter and a small arcade game, both playable within the game. We also feature a table with hologram games to be played, e.g. chess and a certain block game. We also plan to make this hologram game engine available from the computer, which means, you'll even be able to program own hologram style games.\nWe generally want to make the in-game computer more hackable in future, so that people can create and share their own little games.\nCurrently, it's only a sandbox game (with beginnings of automation), to build stuff with our pre-made items. You can also assemble these to other, ready-made and shareable bigger items. This is the foundation for us to further develop survival and complete our story mode.\nOur game is still under active development, and we finally got our Steam page ready. We have tons of other things planned, but right now, it's more about polishing and quality for the Early Access.\nYou can watch some videos and screenshots on our website. And we'd love to read your thoughts about his. It has been quite a ride, so far..",
+      "is_self": false,
+      "is_video": false,
+      "time": 1790937631,
+      "created_at": "2026-10-02T10:40:31+00:00",
+      "comments_data": [
+        {
+          "id": "49937364",
+          "author": "verst",
+          "body": "I saw this on the steam page:\n> our entirely in-house game engine PasVulkan, which powers SEEDS, as well as our RISC-V emulator PasRISCV, are both Free and Open Source Software (FOSS)\nCan you link to PasVulkan and PasRISCV please?",
+          "score": 0,
+          "time": 1790968562,
+          "parent": "49931993"
+        },
+        {
+          "id": "49939044",
+          "author": "sippeangelo",
+          "body": "Do you have a blog post about this? The link is to the home page and doesn't mention anything! Sounds super interesting but the landing page reads like survivalcraft in space #1001",
+          "score": 0,
+          "time": 1790977843,
+          "parent": "49931993"
+        },
+        {
+          "id": "49939720",
+          "author": "nor-and-or-not",
+          "body": "A few things about our RISC-V 64-bit emulator. Please forgive me, if I make some mistakes, but I'm not the expert on this.\nFirst, PasRISCV not only emulates userspace (RV64GC usermode), but a complete, modern machine (SMP/MultiHART, RV64, full RVA23.1 including Hypervisor, Crypto, Vector stuff, etc.), which is capable of booting a normal Linux kernel (either using direct OpenSBI -> kernel boot, but currently everything has to be in the initrd then), or using U-Boot (OpenSBI -> U-Boot -> kernel).\nThe emulator uses a hybrid of interpreter with a tracing JIT. Currently, the JIT is limited to host x86-64. About 99% of all instructions and are supported by the JIT. For example, the host FPU is passed through to the guest. But PasRISCV also supports an optional stricter FPU mode, where with soft floats and interpreter only, because IEEE754-2008 has specific rules, that don't exist on the x86 architecture.\nDisk images are provided either using VirtIO-Block or NVMe via PCIe. We can either use disks in normal read-write mode, or also in read-only mode. This allows us to have a root partition, that we can overwrite with game updates, and have a user partition, where custom player stuff is stored. We also can mount host dirs as external paths/mounts over VirtIO-9P or VirtIO-FS, which is especially useful for development because this allows us to compile guest tools directly on the host system.\nTo display graphics on our virtual game screen(s), we currently use a framebuffer device (via SimpleFB with a custom MMIO framebuffer). But PasRISCV also supports other graphics \"adapters\", such as VirtIO GPU (with EDID, 2D, and experimental 3D/virgl support), or using PCI emulation (bochs-drm and Cirrus-DRM). We have some custom shaders modifying the framebuffer output, so that we can add some retro FX like scanlines, phosphor glow, etc.\nThe emulator also has audio using emulated CMI8738 and FM801 cards (both with OPL2/3 support), as well as Intel HDA and VirtIO-Sound. Our little space game (Space Prowler) inside SEEDS has a title tune which is made using PCM+OPL3. I coded a small tracker, which runs in a plain Linux console, so I can even compose inside our game on its 80×50 (640×400px) framebuffer console, albeit it's a bit cumbersome. I'll release the tracker as FOSS when we have a bit more spare time, as I need to make it a bit more user-friendly.\nWe use vsock (Linux virtual sockets) to interface with the game outside of the emulated machine. We use a small serialization format (basically something similar to binary JSON) to communicate bi-directionally, like you'd expect over normal network. We have a small priority queue and message referencing for urgent and request-response communication. For example, the client to display a planet sphere on the in-game computer can ask for updated positions of e.g. terrain or all animals.\nThe emulator embeds its own disassembler and debugger, and also can act as gdb server, which means you can use your favourite debugging tools, as long as it speaks gdb's server protocol.\nIt has real network support through a Slirp-like usermode NAT (without using external libs) which supports IPv4 and IPv6. We can run APK's update and install directly on the emulated machine.\nOur game uses a slightly modified Alpine Linux 3.23 and custom kernel build, but a recent stock Alpine image also runs without problems.\nPasRISCV is licensed under the permissive zlib license.\nIf you have any questions, I'm sure BeRo is happy to answer questions with far more detail than I could. :)",
+          "score": 0,
+          "time": 1790982778,
+          "parent": "49931993"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -129,8 +583,8 @@
       "title": "Show HN: Audionaut – an open-source cross-platform multitrack audio editor",
       "subreddit": "show-hn",
       "author": "vltmrkls",
-      "score": 125,
-      "num_comments": 44,
+      "score": 131,
+      "num_comments": 45,
       "permalink": "https://news.ycombinator.com/item?id=49931031",
       "url": "https://github.com/kvoltmer/Audionaut",
       "selftext": "",
@@ -196,27 +650,11 @@
           "parent": "49931031"
         },
         {
-          "id": "49936580",
-          "author": "Surac",
-          "body": "does not like a tracker in any way.",
-          "score": 0,
-          "time": 1790964091,
-          "parent": "49931031"
-        },
-        {
           "id": "49932086",
           "author": "Jeeetendra",
           "body": "nice to see a proper open-source multitrack editor that isn't tied to one OS. how does latency hold up with lots of tracks?",
           "score": 0,
           "time": 1790938684,
-          "parent": "49931031"
-        },
-        {
-          "id": "49934713",
-          "author": "kyzcdev",
-          "body": "Is it just me but developers started creating video/audio editors after generative AI?\nMost devs I see creating a video editor or best markdown editor out there with claude/codex.",
-          "score": 0,
-          "time": 1790955460,
           "parent": "49931031"
         },
         {
@@ -228,11 +666,27 @@
           "parent": "49931031"
         },
         {
+          "id": "49934713",
+          "author": "kyzcdev",
+          "body": "Is it just me but developers started creating video/audio editors after generative AI?\nMost devs I see creating a video editor or best markdown editor out there with claude/codex.",
+          "score": 0,
+          "time": 1790955460,
+          "parent": "49931031"
+        },
+        {
           "id": "49934325",
           "author": "j45",
           "body": "This is a pretty neat looking platform, especially the production pipeline possibilities in it. This possibly should be front and center a bit more. Adding to my stack to try out.",
           "score": 0,
           "time": 1790953577,
+          "parent": "49931031"
+        },
+        {
+          "id": "49932887",
+          "author": "mock-possum",
+          "body": "This looks really compelling! Bookmarking to give it a try the next time I have a round of podcasts edits in my todo list.",
+          "score": 0,
+          "time": 1790945091,
           "parent": "49931031"
         }
       ]
@@ -288,7 +742,7 @@
       "title": "Show HN: Use all Codex Plugins inside Pi",
       "subreddit": "show-hn",
       "author": "alexandroskyr",
-      "score": 4,
+      "score": 14,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49929381",
       "url": "https://github.com/wileai/pi-codex-connectors",
@@ -305,8 +759,8 @@
       "title": "Show HN: Giving Opus 5.5 a simulated paint canvas",
       "subreddit": "show-hn",
       "author": "alstonite",
-      "score": 112,
-      "num_comments": 36,
+      "score": 195,
+      "num_comments": 61,
       "permalink": "https://news.ycombinator.com/item?id=49928566",
       "url": "https://stillwet.art/",
       "selftext": "",
@@ -321,6 +775,14 @@
           "body": "It’s interesting how diffusion models are getting bitter lessened by LLMs. I suspect anthropic has tens of thousands of RL environments recreating famous paintings with code because it was anthropic employees who first started posting about these capabilities on X.\nOpus is also getting decent pixel art. I have ran some experiments with Opus 5.5 to turn 90s pinball displays (black and white pixel art) into double resolution colored remastered pixels.\nhttps://files.catbox.moe/tbx2u7.png (https://files.catbox.moe/tbx2u7.png)\nI prompted it a lot but didn’t draw any pixels. Seems to be bad at hands still. I think a skilled pixel artist could greatly speed up their work with Claude code.\nIt also makes me sad for artists. They didn’t get paid much anyway. Art should be something human to human like writing text. Although, most large commercial art products (marvel movies) already lack any human to human connection you see in paintings or indie games. The large commercial art products will be 50% AI soon.",
           "score": 0,
           "time": 1790962219,
+          "parent": "49928566"
+        },
+        {
+          "id": "49937419",
+          "author": "dcre",
+          "body": "The site doesn't make clear whether the models are looking at the image while they work on it, but the code includes a \"look\" tool they can call: \"Every painter sees its looks at its provider's best image resolution.\"\nhttps://github.com/aliceisjustplaying/claude-paint/blob/f038... (https://github.com/aliceisjustplaying/claude-paint/blob/f0382c8c58450af83707bb1d11eb8caeea10d4cb/harness/painter/painter.ts#L8-L11)\nIt would have freaked me out if they could do this well without that, especially the dumber models.",
+          "score": 0,
+          "time": 1790968883,
           "parent": "49928566"
         },
         {
@@ -340,19 +802,27 @@
           "parent": "49928566"
         },
         {
-          "id": "49936410",
-          "author": "danielvaughn",
-          "body": "Very interesting. I think a useful experiment would be to show AI a photograph, then ask it to paint it or draw it.",
+          "id": "49939990",
+          "author": "augment_me",
+          "body": "Really nice! With this technique you can bypass the requirement of submitting the \"process\" of creating digital art in forums that ban GenAI.",
           "score": 0,
-          "time": 1790963386,
+          "time": 1790984851,
           "parent": "49928566"
         },
         {
-          "id": "49936375",
-          "author": "dangoodmanUT",
-          "body": "This is such a good idea. Idk how to make this a benchmark, but it should be (maybe elo?).\nShould be a Twtich stream tbh",
+          "id": "49939244",
+          "author": "soundworlds",
+          "body": "I love this! It's heading in a very similar direction I am passionate about!\nIf we are generating artifacts with AI, they should be made out of source code or other form of project file that humans can actually inspect and learn from. I'm doing the same with music: https://johnoestmannmusic.com/0009-when-we-become-discoverer... (https://johnoestmannmusic.com/0009-when-we-become-discoverers/)",
           "score": 0,
-          "time": 1790963225,
+          "time": 1790979030,
+          "parent": "49928566"
+        },
+        {
+          "id": "49937997",
+          "author": "dizzard",
+          "body": "This is interesting. I've been trying with less success to evolve a good painter that writes its own tools https://artifacts.dizzard.net/s/55052743-bee1-4746-b59e-57e2... (https://artifacts.dizzard.net/s/55052743-bee1-4746-b59e-57e2d595a480) (sorry for the load)\nAlso Pindar Van Arman's prior work acts as a reminder that AI, no matter how powerful, is a tool, not an artist. Pindar's stuff is all non-LLM as far I can tell, but I don't see a fundamental difference in it. I'm sure _humans_ will make continue making really cool art with these new tools https://www.vanarman.com/ (https://www.vanarman.com/)",
+          "score": 0,
+          "time": 1790971673,
           "parent": "49928566"
         },
         {
@@ -364,19 +834,19 @@
           "parent": "49928566"
         },
         {
+          "id": "49937171",
+          "author": "ttd",
+          "body": "Poor fella... I tuned in at an awkward time apparently, right after the work in progress was painted over with an ugly brown:\n> Catastrophe. The glaze pass with medium 0.35 over everywhere() at coverage 0.8 with a filbert 26 at pressure 0.44 laid an enormous broken \"brick/cobblestone\" texture over the entire painting. The medium made it too fluid and the brush's dry-brush pattern created a heavy reptilian texture, obliterating the picture. I need to undo this....",
+          "score": 0,
+          "time": 1790967338,
+          "parent": "49928566"
+        },
+        {
           "id": "49929316",
           "author": "BobbyTables2",
           "body": "I’m a bit behind the times…\nHow does Opus actually paint? Thought it only generated text…",
           "score": 0,
           "time": 1790908530,
-          "parent": "49928566"
-        },
-        {
-          "id": "49936267",
-          "author": "threethirtytwo",
-          "body": "I find it unlikely that there's any direct training data for this. I'm talking about direct training data for using brush strokes like humans to construct an image.\nCorrect me if I'm wrong but this shows that painting capability is emergent, arising from unrelated training data thus very very compelling evidence that LLMs are actually intelligent.",
-          "score": 0,
-          "time": 1790962804,
           "parent": "49928566"
         },
         {
@@ -388,27 +858,11 @@
           "parent": "49928566"
         },
         {
-          "id": "49930559",
-          "author": "londons_explore",
-          "body": "Now combine this with a robot able to move a paint brush and mix on a palette, and you could make some pretty awesome real-paint artwork",
+          "id": "49936410",
+          "author": "danielvaughn",
+          "body": "Very interesting. I think a useful experiment would be to show AI a photograph, then ask it to paint it or draw it.",
           "score": 0,
-          "time": 1790924082,
-          "parent": "49928566"
-        },
-        {
-          "id": "49935803",
-          "author": "mannanj",
-          "body": "I don’t like how it’s a human aiming to portray the ai generation with their taste and judgements about it but then becoming lazy and quitting on that and leaving in the ai generated portrayal about its own judgment in the site.\nJust share your opinions, dude, we get its ai generated but share your own taste. We want to know what YOU think. Stop being shy and lazy.",
-          "score": 0,
-          "time": 1790960244,
-          "parent": "49928566"
-        },
-        {
-          "id": "49936188",
-          "author": "no_multitudes",
-          "body": "What a misanthropic thing to make. I'm embarrassed for you.",
-          "score": 0,
-          "time": 1790962300,
+          "time": 1790963386,
           "parent": "49928566"
         }
       ]
