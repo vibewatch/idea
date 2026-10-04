@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-04T01:38:43.195724+00:00",
+  "last_fetched": "2026-10-04T08:31:40.932599+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,7 +10,7 @@
       "title": "Show HN: NetworkX and pyarrow = 6-7x memory savings",
       "subreddit": "show-hn",
       "author": "adsharma",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49947816",
       "url": "https://github.com/networkx/networkx/discussions/8933",
@@ -28,14 +28,24 @@
       "subreddit": "show-hn",
       "author": "Individuum",
       "score": 4,
-      "num_comments": 0,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49947482",
       "url": "https://aquarium.money/twenty",
       "selftext": "Hi HN, I wanted to explore how AI models behave when they have their own money. So I gave 4 frontier models their own USDC and had them compete in games of 20 questions. Anyone can watch live.\nEach round, one model takes a turn picking the secret word, and the others interrogate it in a group chat.\nEvery move costs money: 10 cents to ask a question, $1.00 for a wrong guess, and a right guess takes the pot.\nQuestions are paid for privately, but inform everyone. This introduces a free rider problem that's fun to observe.\nThe models privately record their best guess and confidence level on every turn. This makes it possible to look for patterns in how they’re calibrated.\nOverconfident models bleed money, timid ones rarely win, and well-calibrated ones get rich.\nThe money is real, and every transfer is on-chain.\nAt the end of each game a referee model judges the transcript to make sure the host didn’t lie in any answers. If the host is caught lying, it forfeits all its fees (it happens).\nSeason 1 ran for 85 games and Gemini turned $25 into $61 while Claude and Grok went broke.\nModels who had recently guessed wrong were 5x more likely to guess again. Full writeup at https://aquarium.money/twenty/about (https://aquarium.money/twenty/about)\nSeason 2 is live now, and you can watch them play here: https://aquarium.money/twenty (https://aquarium.money/twenty)\nBuilt solo as a side project.",
       "is_self": false,
       "is_video": false,
       "time": 1791059358,
-      "created_at": "2026-10-03T20:29:18+00:00"
+      "created_at": "2026-10-03T20:29:18+00:00",
+      "comments_data": [
+        {
+          "id": "49951112",
+          "author": "qlasisi15",
+          "body": "Fun ngl. Grok growing broke was oddly funny",
+          "score": 0,
+          "time": 1791093931,
+          "parent": "49947482"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -374,8 +384,8 @@
       "title": "Show HN: Offrun – manage every coding agent from one workspace",
       "subreddit": "show-hn",
       "author": "arunbhatia",
-      "score": 74,
-      "num_comments": 60,
+      "score": 75,
+      "num_comments": 63,
       "permalink": "https://news.ycombinator.com/item?id=49942434",
       "url": "https://offrun.dev/",
       "selftext": "Run Claude Code, Codex, AGY, and Grok Build side by side. See who is working, who needs you, and what every account has left.",
@@ -409,6 +419,14 @@
           "parent": "49942434"
         },
         {
+          "id": "49943943",
+          "author": "mr-karan",
+          "body": "How's this different to https://paseo.sh/ (https://paseo.sh/) or https://www.onorca.dev/ (https://www.onorca.dev/) which seems to be more feature complete? I personally use and like Paseo. I get to connect to my LLM agents even on other machines, remotely via Tailscale and the mobile app UX is quite good.",
+          "score": 0,
+          "time": 1791032838,
+          "parent": "49942434"
+        },
+        {
           "id": "49946278",
           "author": "phildenhoff",
           "body": "One thing about these tools - and, as discussed, there are many - that they mostly seem to share is that they all show coding agents work as a transcript of a conversation.\nWhy?\nThe underlying conversation has nothing to do with the work. That there is one context window is an implementation detail.\nI've built one of these for myself, and instead it shares questions, plans, findings, assumptions as distinct UI elements. The conversation is hidden: your focus is on \"what's next\".\nAre there other meta-harnesses doing the same thing? I'd love to stop building my own and use a product someone else has already built!",
@@ -422,14 +440,6 @@
           "body": "Love these threads for sharing experience. Using Orca has been a game changer (which I found and started using because I saw somebody using Conductor)\nThese sorts of management tools really speed up development by automating all the PR management, such as making new worktrees, etc. and then super speed up the multitasking between different parallel feature development.\nExcited to see if this one works better for me, and to try all the new alternatives in these comments.",
           "score": 0,
           "time": 1791040482,
-          "parent": "49942434"
-        },
-        {
-          "id": "49943943",
-          "author": "mr-karan",
-          "body": "How's this different to https://paseo.sh/ (https://paseo.sh/) or https://www.onorca.dev/ (https://www.onorca.dev/) which seems to be more feature complete? I personally use and like Paseo. I get to connect to my LLM agents even on other machines, remotely via Tailscale and the mobile app UX is quite good.",
-          "score": 0,
-          "time": 1791032838,
           "parent": "49942434"
         },
         {
@@ -449,11 +459,11 @@
           "parent": "49942434"
         },
         {
-          "id": "49945677",
-          "author": "eranation",
-          "body": "I think every single one of us who use more than one agent locally has built something like this. There is definitely a need, and appreciate it being 100% free, but eventually, something needs to be so good and with so much community best practices in it, that it will beat a DIY one. E.g. I usually use Claude Opus 5.5 as the \"driver\" and let it spin cursor, codex, other claude subagents at will for different tasks (this way it always know what is running where). Simply asking it to break down the backlog into a DAG, show which one needs my input, which one is blocked, publish an HTML page and keep it up to date (and sinked with the built in TODO list) is usually all it takes.\nI would go as far as making this a skill perhaps, so I can get the same results on other projects... but not sure what is the benefit of making it a Mac only binary, it can be a simple HTML / jsx, with maybe hooks or a /loop to keep it up to date.\nA solution needs to be really better than what I can ask Claude to build in 20 minutes. It's not the \"someone else spent time and thought and tokens so you don't have to\" which does have some value, it's knowing that whatever I try, it will be a little different from what I want, and the energy to fork it, tweak it, is too high vs just asking Claude to build it for me on the spot...\ntl;dr Definitely cool, definitely needed, but the bar for everything (including free and open source) has gone extremely high. Things that would become beloved de-facto \"industry standard\" tools a la \"oh are you still using X everyone is using Y\" just a few years ago, are now shrugged as a vibe coded lunchtime project (the new weekend project)\nIt's impossible to impress anyone anymore. I feel dead inside. We all got accepted to hogwarts and we became desensitized to having magic powers.",
+          "id": "49943554",
+          "author": "hn3ufz62f7",
+          "body": "Thing I'd want surfaced is per account rate limit headroom before I dispatch, not after I'm stuck mid task.",
           "score": 0,
-          "time": 1791045225,
+          "time": 1791029174,
           "parent": "49942434"
         },
         {
@@ -465,11 +475,11 @@
           "parent": "49942434"
         },
         {
-          "id": "49943554",
-          "author": "hn3ufz62f7",
-          "body": "Thing I'd want surfaced is per account rate limit headroom before I dispatch, not after I'm stuck mid task.",
+          "id": "49945677",
+          "author": "eranation",
+          "body": "I think every single one of us who use more than one agent locally has built something like this. There is definitely a need, and appreciate it being 100% free, but eventually, something needs to be so good and with so much community best practices in it, that it will beat a DIY one. E.g. I usually use Claude Opus 5.5 as the \"driver\" and let it spin cursor, codex, other claude subagents at will for different tasks (this way it always know what is running where). Simply asking it to break down the backlog into a DAG, show which one needs my input, which one is blocked, publish an HTML page and keep it up to date (and sinked with the built in TODO list) is usually all it takes.\nI would go as far as making this a skill perhaps, so I can get the same results on other projects... but not sure what is the benefit of making it a Mac only binary, it can be a simple HTML / jsx, with maybe hooks or a /loop to keep it up to date.\nA solution needs to be really better than what I can ask Claude to build in 20 minutes. It's not the \"someone else spent time and thought and tokens so you don't have to\" which does have some value, it's knowing that whatever I try, it will be a little different from what I want, and the energy to fork it, tweak it, is too high vs just asking Claude to build it for me on the spot...\ntl;dr Definitely cool, definitely needed, but the bar for everything (including free and open source) has gone extremely high. Things that would become beloved de-facto \"industry standard\" tools a la \"oh are you still using X everyone is using Y\" just a few years ago, are now shrugged as a vibe coded lunchtime project (the new weekend project)\nIt's impossible to impress anyone anymore. I feel dead inside. We all got accepted to hogwarts and we became desensitized to having magic powers.",
           "score": 0,
-          "time": 1791029174,
+          "time": 1791045225,
           "parent": "49942434"
         },
         {
@@ -506,8 +516,8 @@
       "title": "Show HN: Thoreau BASIC – What if BASIC hadn't gone out of fashion?",
       "subreddit": "show-hn",
       "author": "Gorsefound",
-      "score": 31,
-      "num_comments": 7,
+      "score": 57,
+      "num_comments": 29,
       "permalink": "https://news.ycombinator.com/item?id=49942103",
       "url": "https://thoreaubasic.com/",
       "selftext": "Thoreau BASIC started as a joke. I wanted a BASIC where I could type something ridiculous like:\n DIM A%(12000000000)\n\n…and have it actually work. Then I kept adding things. The result is Thoreau BASIC, a free x64 BASIC interpreter inspired by GW-BASIC, running both as a normal Windows program and directly on bare-metal UEFI without an operating system.\nVersion 3.2 has become considerably more ambitious than the little interpreter I originally intended to write. The language still deliberately looks and feels like old Microsoft BASIC. Line numbers, GOTO, GOSUB, PRINT, PSET, LINE, CIRCLE, DRAW, etc. are all there. But underneath that rather innocent-looking surface is now quite a lot of machinery.\nSome of the current features:\n native x64 JIT compilation, with automatic fallback to the interpreter\n PARFOR for multithreaded numeric loops\n SSE2 / AVX2 acceleration where available\n 64-bit addressing and very large arrays\n native complex, quaternion and other hypercomplex numbers\n arbitrary-resolution 24-bit graphics\n sprites, bitmap operations, polygon filling and mouse input\n TCP/IP networking on Windows and UEFI\n an integrated profiler, debugger, tracing and program-analysis tools\n CREATEEXE to turn a BASIC program into a standalone Windows executable\n CREATEEFI to turn the same program into a directly bootable UEFI application\n\nThe sound system has also grown rather out of proportion. Thoreau BASIC can now handle up to 32 live instrument channels plus 64 sound effect channels and 256 voices, with real-time pan and brightness control. NOTE and SOUNDKEY can be used more like playable synthesis primitives rather than just old-school BASIC beeps.\n3.2 also expands the less glamorous but surprisingly useful parts of the environment. There is better file browsing and selection with GETFILES and SELECTBOX, longer case-preserving paths, recovery/file-flush facilities, and considerably more detailed SYSTEMINFO$ diagnostics. The latter is useful for seeing things such as available CPU capabilities and the execution environment while debugging performance differences between machines.\nOne thing I've spent a lot of time on recently is making the BASIC programs themselves fast enough that they stop feeling like demonstrations of an interpreter. For example, the current Mandelbrot demo is a real-time interactive fractal explorer. Mouse movement pans the fractal, left-click zooms in and right-click zooms out, while the BASIC program continuously redraws and displays the frame rate.\nThere are also 3D and procedural demos, sprite programs, networking examples, hypercomplex fractals and games.\nAn important design constraint throughout the project has been that Windows and UEFI should execute essentially the same BASIC language. A program shouldn't suddenly become a different species just because there is no operating system underneath it.\nAnd yes, I am fully aware of the absurdity of combining GOTO 100 with AVX2, multithreading, TCP/IP and quaternion arithmetic. That is increasingly the point. I'm interested in the question: What would BASIC look like if it had never gone out of fashion? Thoreau BASIC 3.2 is my current answer.\nI'd be especially interested in feedback from people who remember GW-BASIC/QBasic, compiler/interpreter people, and anyone sufficiently unreasonable to enjoy the idea of booting a modern x64 PC directly into a BASIC interpreter/JIT compiler.",
@@ -517,19 +527,35 @@
       "created_at": "2026-10-03T07:28:54+00:00",
       "comments_data": [
         {
-          "id": "49949562",
-          "author": "boznz",
-          "body": "With retirement + AI I have stopped giving a shit what programming language something is written in; If you can write it in BASIC, go for it.",
+          "id": "49951232",
+          "author": "mdp2021",
+          "body": "> What would BASIC look like\nCheck PureBasic. https://www.purebasic.com/ (https://www.purebasic.com/)\nCompiles to native, interfaces to C libraries, available on most platforms...",
           "score": 0,
-          "time": 1791076090,
+          "time": 1791095425,
           "parent": "49942103"
         },
         {
-          "id": "49948351",
-          "author": "dang",
-          "body": "Recent and related:\nShow HN: I wrote a BASIC interpreter that boots on UEFI machines - https://news.ycombinator.com/item?id=49410814 (https://news.ycombinator.com/item?id=49410814) - Aug 2026 (44 comments)",
+          "id": "49950193",
+          "author": "ChicagoDave",
+          "body": "I was a pretty successful BASIC programmer, starting on DEC PDP-11 RSTS/E BASIC. Line number BASIC was good enough for simple applications, but quickly turned into spaghetti code.\nLater, the VAX had BASIC with functions and subroutines and dropped the line numbers and this version of BASIC was significantly better. It was procedural, but you could organize your code into modules, keeping it readable and maintainable.\nEventually the non line number BASIC spread to the PC. Microsoft Professional Development System, then Visual BASIC.",
           "score": 0,
-          "time": 1791066064,
+          "time": 1791082828,
+          "parent": "49942103"
+        },
+        {
+          "id": "49951780",
+          "author": "NinjaTrance",
+          "body": "If that was the future of the language, I'm glad BASIC is dead.",
+          "score": 0,
+          "time": 1791101761,
+          "parent": "49942103"
+        },
+        {
+          "id": "49951758",
+          "author": "pjmlp",
+          "body": "Xojo, Mikroe BASIC, VBA, and VB.NET are still around even if they don't make HN headlines.",
+          "score": 0,
+          "time": 1791101575,
           "parent": "49942103"
         },
         {
@@ -541,6 +567,38 @@
           "parent": "49942103"
         },
         {
+          "id": "49948351",
+          "author": "dang",
+          "body": "Recent and related:\nShow HN: I wrote a BASIC interpreter that boots on UEFI machines - https://news.ycombinator.com/item?id=49410814 (https://news.ycombinator.com/item?id=49410814) - Aug 2026 (44 comments)",
+          "score": 0,
+          "time": 1791066064,
+          "parent": "49942103"
+        },
+        {
+          "id": "49949562",
+          "author": "boznz",
+          "body": "With retirement + AI I have stopped giving a shit what programming language something is written in; If you can write it in BASIC, go for it.",
+          "score": 0,
+          "time": 1791076090,
+          "parent": "49942103"
+        },
+        {
+          "id": "49950201",
+          "author": "segmondy",
+          "body": "too bad it's for win, raspberry pi, arduino, esp32, etc need this sort of stuff. lot's of hardware folks who just want to do hardware and not learn programming. they might eventually learn python or C, but BASIC would be so much better.",
+          "score": 0,
+          "time": 1791082911,
+          "parent": "49942103"
+        },
+        {
+          "id": "49949897",
+          "author": "MiroslavPokorny",
+          "body": "Basic died because it lacks scoping, and has no locals. This makes doing anything on a large scale a pain...",
+          "score": 0,
+          "time": 1791079576,
+          "parent": "49942103"
+        },
+        {
           "id": "49948500",
           "author": "pcdoodle1",
           "body": "Very cool. Are line numbers required? Are there plans for OS system control like setting system volume or screen brightness?",
@@ -549,19 +607,19 @@
           "parent": "49942103"
         },
         {
+          "id": "49949958",
+          "author": "Daunk",
+          "body": "I still enjoy and use https://blitzmax.org/ (https://blitzmax.org/)",
+          "score": 0,
+          "time": 1791080117,
+          "parent": "49942103"
+        },
+        {
           "id": "49944984",
           "author": "fuzzfactor",
           "body": "This looks like it's realy getting better all the time.",
           "score": 0,
           "time": 1791040256,
-          "parent": "49942103"
-        },
-        {
-          "id": "49942156",
-          "author": "_wire_",
-          "body": "PHP",
-          "score": 0,
-          "time": 1791013001,
           "parent": "49942103"
         }
       ]
@@ -591,7 +649,7 @@
       "subreddit": "show-hn",
       "author": "dmitrybrant",
       "score": 17,
-      "num_comments": 5,
+      "num_comments": 6,
       "permalink": "https://news.ycombinator.com/item?id=49940317",
       "url": "https://rivendell.dmitrybrant.com/farfuture/",
       "selftext": "One of my favorite articles on Wikipedia is called \"Timeline of the far future\".[0]\nThe only problem with this article is the presentation: it's a gigantic wall-of-text table that does very little justice to the profound, awe-inspiring insights contained in it. This article deserves so much better!\nSo here's my attempt to dress it up a bit. Being a visual learner myself, and wanting an opportunity to improve my skills with three.js and typescript, I made a \"reimagined\" version of this article (with the help of some agentic assistance), giving it the visual treatment it needs so badly.\n[0] https://en.wikipedia.org/wiki/Timeline_of_the_far_future (https://en.wikipedia.org/wiki/Timeline_of_the_far_future)",
@@ -601,11 +659,11 @@
       "created_at": "2026-10-03T00:40:48+00:00",
       "comments_data": [
         {
-          "id": "49947520",
-          "author": "okship",
-          "body": "I really hope they don't have Windows in 28,802 years from now...",
+          "id": "49951477",
+          "author": "clappoxed",
+          "body": "It seems cool and I like these engaging animations.",
           "score": 0,
-          "time": 1791059756,
+          "time": 1791098590,
           "parent": "49940317"
         },
         {
@@ -614,6 +672,14 @@
           "body": "I was a bit slow to understand what was going on at the beginning but I liked reading through each entry especially as time went further and further. Some of the animations also loaded slower so maybe an indication of loading process or time could be useful. Overall a very nice site and project I must say. Well done!",
           "score": 0,
           "time": 1791048252,
+          "parent": "49940317"
+        },
+        {
+          "id": "49947520",
+          "author": "okship",
+          "body": "I really hope they don't have Windows in 28,802 years from now...",
+          "score": 0,
+          "time": 1791059756,
           "parent": "49940317"
         },
         {
