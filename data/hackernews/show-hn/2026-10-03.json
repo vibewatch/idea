@@ -1,8 +1,138 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-03T19:14:51.785360+00:00",
+  "last_fetched": "2026-10-04T01:38:43.195724+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49947816",
+      "title": "Show HN: NetworkX and pyarrow = 6-7x memory savings",
+      "subreddit": "show-hn",
+      "author": "adsharma",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49947816",
+      "url": "https://github.com/networkx/networkx/discussions/8933",
+      "selftext": "Writes will be slower though. That's the trade-off for all columnar tech in general. You can enjoy the savings for a read-only network and switch to classic networkx when you need to write.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791061858,
+      "created_at": "2026-10-03T21:10:58+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49947482",
+      "title": "Show HN: Four LLMs play 20 questions for real money, live",
+      "subreddit": "show-hn",
+      "author": "Individuum",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49947482",
+      "url": "https://aquarium.money/twenty",
+      "selftext": "Hi HN, I wanted to explore how AI models behave when they have their own money. So I gave 4 frontier models their own USDC and had them compete in games of 20 questions. Anyone can watch live.\nEach round, one model takes a turn picking the secret word, and the others interrogate it in a group chat.\nEvery move costs money: 10 cents to ask a question, $1.00 for a wrong guess, and a right guess takes the pot.\nQuestions are paid for privately, but inform everyone. This introduces a free rider problem that's fun to observe.\nThe models privately record their best guess and confidence level on every turn. This makes it possible to look for patterns in how they’re calibrated.\nOverconfident models bleed money, timid ones rarely win, and well-calibrated ones get rich.\nThe money is real, and every transfer is on-chain.\nAt the end of each game a referee model judges the transcript to make sure the host didn’t lie in any answers. If the host is caught lying, it forfeits all its fees (it happens).\nSeason 1 ran for 85 games and Gemini turned $25 into $61 while Claude and Grok went broke.\nModels who had recently guessed wrong were 5x more likely to guess again. Full writeup at https://aquarium.money/twenty/about (https://aquarium.money/twenty/about)\nSeason 2 is live now, and you can watch them play here: https://aquarium.money/twenty (https://aquarium.money/twenty)\nBuilt solo as a side project.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791059358,
+      "created_at": "2026-10-03T20:29:18+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49947309",
+      "title": "Show HN: KubeZap – Declarative workflow automation for Kubernetes",
+      "subreddit": "show-hn",
+      "author": "borfswitch",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49947309",
+      "url": "https://github.com/kubezap/kubezap-operator",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791058057,
+      "created_at": "2026-10-03T20:07:37+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49946786",
+      "title": "Show HN: Valet – Self-Hosted Cloud Agents with Computers",
+      "subreddit": "show-hn",
+      "author": "imbobbytables",
+      "score": 3,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=49946786",
+      "url": "https://github.com/dropalltables/valet",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791054103,
+      "created_at": "2026-10-03T19:01:43+00:00",
+      "comments_data": [
+        {
+          "id": "49946818",
+          "author": "imbobbytables",
+          "body": "Hi HN, I built Valet because Cursor Cloud Agents and Amp Orbs are the coolest things I've ever seen, but they cost money. And Codex Remote/Claude Remote Control isn't good enough because my computer can reboot anytime.\nBy default there are 10 docker \"runners\" that host threads, with one warm spare available at all times for a new thread. Hosted, it's about 3 seconds from first message to sandbox startup/token streaming.\nIt uses embeds Claude Code SDK and Codex into the runner with a setup token, so subscription usage is supported.\nLet me know if you guys have any questions!",
+          "score": 0,
+          "time": 1791054337,
+          "parent": "49946786"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49946507",
+      "title": "Show HN: Claude Code Routine Session Cleanup Skill",
+      "subreddit": "show-hn",
+      "author": "naw103",
+      "score": 3,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=49946507",
+      "url": "https://github.com/naw103/claude-routine-cleanup",
+      "selftext": "Claude Code's scheduled tasks (routines) leaves a session behind on every run and in the desktop app you can only delete them one at a time. We had 618 open sessions in just one routine.\nThe skill plans the clean up (keeps the newest N and protect any sessions where you typed a reply - optional) and then has Claude delete through the apps own session tool, 25 per call each behind an approval card.\nI tried just deleting the sessions on disk manually first but deleting the files directly dosnt work because the app keeps the list in memory and writes records back. The apps delete tool is turned off inside routine runs so the clean up command has to run from a normal conversation session.\nThe planner is a single python file that dosnt delete by itself so you can run it by hand to see where everything exists.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791051621,
+      "created_at": "2026-10-03T18:20:21+00:00",
+      "comments_data": [
+        {
+          "id": "49946781",
+          "author": "naw103",
+          "body": "The planner file is intentionally non destructive so you can run it to preview everything first",
+          "score": 0,
+          "time": 1791054060,
+          "parent": "49946507"
+        },
+        {
+          "id": "49946820",
+          "author": "Corgen",
+          "body": "Does it delete regular sessions too or just routines?",
+          "score": 0,
+          "time": 1791054353,
+          "parent": "49946507"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49946506",
+      "title": "Show HN: Revline – an AI web app that researches TikTok and Instagram for you",
+      "subreddit": "show-hn",
+      "author": "ZuraMakaradzeHe",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49946506",
+      "url": "https://tryrevline.com/",
+      "selftext": "I build revline because i was trying to figure out how viral content works across tiktok and instagram, since i am mainly developer, i was confused about how to create content that gets me users.\nActually going viral requires single founder ( me ) to upload 3-4 videos a day, brainstorming all the formats was not effective to do alone, so i build the agent that does all the scrolling for me.\nwould appreciate feedback",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791051618,
+      "created_at": "2026-10-03T18:20:18+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -19,6 +149,40 @@
       "is_video": false,
       "time": 1791048942,
       "created_at": "2026-10-03T17:35:42+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49946139",
+      "title": "Show HN: UI for answering agent questions async",
+      "subreddit": "show-hn",
+      "author": "ramoz",
+      "score": 5,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49946139",
+      "url": "https://docs.plannotator.ai/open-source/workflows/questions",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791048848,
+      "created_at": "2026-10-03T17:34:08+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49945236",
+      "title": "Show HN: Agentlytics – cookieless analytics your AI agent can read and act on",
+      "subreddit": "show-hn",
+      "author": "developeron29",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49945236",
+      "url": "https://measuremy.site",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791042200,
+      "created_at": "2026-10-03T15:43:20+00:00"
     },
     {
       "source": "hackernews",
@@ -44,7 +208,7 @@
       "title": "Show HN: Deterministic security scanner for Model Context Protocol",
       "subreddit": "show-hn",
       "author": "zariflatif",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49944383",
       "url": "https://github.com/zariffromlatif/life-forge",
@@ -70,6 +234,23 @@
       "is_video": false,
       "time": 1791034943,
       "created_at": "2026-10-03T13:42:23+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49943598",
+      "title": "Show HN: Entombed in a Raycaster",
+      "subreddit": "show-hn",
+      "author": "stelabouras",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49943598",
+      "url": "https://www.stelabouras.com/blog/entombed-raycaster/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791029595,
+      "created_at": "2026-10-03T12:13:15+00:00"
     },
     {
       "source": "hackernews",
@@ -193,8 +374,8 @@
       "title": "Show HN: Offrun – manage every coding agent from one workspace",
       "subreddit": "show-hn",
       "author": "arunbhatia",
-      "score": 70,
-      "num_comments": 43,
+      "score": 74,
+      "num_comments": 60,
       "permalink": "https://news.ycombinator.com/item?id=49942434",
       "url": "https://offrun.dev/",
       "selftext": "Run Claude Code, Codex, AGY, and Grok Build side by side. See who is working, who needs you, and what every account has left.",
@@ -244,19 +425,19 @@
           "parent": "49942434"
         },
         {
-          "id": "49945350",
-          "author": "hmokiguess",
-          "body": "I still believe this space to be unclaimed, and I am yet to see who's going to crack the demand and needs of the niches out there.\nI don't think we even have a great understanding of the market, the niches, and where it is going.\nIt's also evolving very aggressively constantly, sticky workflows get replaced dramatically whenever new UX or tooling brings a shift into how things can be done.\nI'm very curious if anyone has good research or idea of this space mapped out somewhere, I am trying to build for it too but it's really foggy right now and the North Star moves often.",
-          "score": 0,
-          "time": 1791042914,
-          "parent": "49942434"
-        },
-        {
           "id": "49943943",
           "author": "mr-karan",
           "body": "How's this different to https://paseo.sh/ (https://paseo.sh/) or https://www.onorca.dev/ (https://www.onorca.dev/) which seems to be more feature complete? I personally use and like Paseo. I get to connect to my LLM agents even on other machines, remotely via Tailscale and the mobile app UX is quite good.",
           "score": 0,
           "time": 1791032838,
+          "parent": "49942434"
+        },
+        {
+          "id": "49945350",
+          "author": "hmokiguess",
+          "body": "I still believe this space to be unclaimed, and I am yet to see who's going to crack the demand and needs of the niches out there.\nI don't think we even have a great understanding of the market, the niches, and where it is going.\nIt's also evolving very aggressively constantly, sticky workflows get replaced dramatically whenever new UX or tooling brings a shift into how things can be done.\nI'm very curious if anyone has good research or idea of this space mapped out somewhere, I am trying to build for it too but it's really foggy right now and the North Star moves often.",
+          "score": 0,
+          "time": 1791042914,
           "parent": "49942434"
         },
         {
@@ -268,22 +449,6 @@
           "parent": "49942434"
         },
         {
-          "id": "49943785",
-          "author": "handfuloflight",
-          "body": "Why does \"and what every account has left.\" activate the \"written by LLM\" part of my brain?",
-          "score": 0,
-          "time": 1791031552,
-          "parent": "49942434"
-        },
-        {
-          "id": "49945039",
-          "author": "jatins",
-          "body": "Congrats on this ship, it's hard to get anything out there!\nHowever, as many other comments have mentioned -- how do you plan to get users in a crowded space?",
-          "score": 0,
-          "time": 1791040657,
-          "parent": "49942434"
-        },
-        {
           "id": "49945677",
           "author": "eranation",
           "body": "I think every single one of us who use more than one agent locally has built something like this. There is definitely a need, and appreciate it being 100% free, but eventually, something needs to be so good and with so much community best practices in it, that it will beat a DIY one. E.g. I usually use Claude Opus 5.5 as the \"driver\" and let it spin cursor, codex, other claude subagents at will for different tasks (this way it always know what is running where). Simply asking it to break down the backlog into a DAG, show which one needs my input, which one is blocked, publish an HTML page and keep it up to date (and sinked with the built in TODO list) is usually all it takes.\nI would go as far as making this a skill perhaps, so I can get the same results on other projects... but not sure what is the benefit of making it a Mac only binary, it can be a simple HTML / jsx, with maybe hooks or a /loop to keep it up to date.\nA solution needs to be really better than what I can ask Claude to build in 20 minutes. It's not the \"someone else spent time and thought and tokens so you don't have to\" which does have some value, it's knowing that whatever I try, it will be a little different from what I want, and the energy to fork it, tweak it, is too high vs just asking Claude to build it for me on the spot...\ntl;dr Definitely cool, definitely needed, but the bar for everything (including free and open source) has gone extremely high. Things that would become beloved de-facto \"industry standard\" tools a la \"oh are you still using X everyone is using Y\" just a few years ago, are now shrugged as a vibe coded lunchtime project (the new weekend project)\nIt's impossible to impress anyone anymore. I feel dead inside. We all got accepted to hogwarts and we became desensitized to having magic powers.",
@@ -292,11 +457,27 @@
           "parent": "49942434"
         },
         {
+          "id": "49943785",
+          "author": "handfuloflight",
+          "body": "Why does \"and what every account has left.\" activate the \"written by LLM\" part of my brain?",
+          "score": 0,
+          "time": 1791031552,
+          "parent": "49942434"
+        },
+        {
           "id": "49943554",
           "author": "hn3ufz62f7",
           "body": "Thing I'd want surfaced is per account rate limit headroom before I dispatch, not after I'm stuck mid task.",
           "score": 0,
           "time": 1791029174,
+          "parent": "49942434"
+        },
+        {
+          "id": "49945039",
+          "author": "jatins",
+          "body": "Congrats on this ship, it's hard to get anything out there!\nHowever, as many other comments have mentioned -- how do you plan to get users in a crowded space?",
+          "score": 0,
+          "time": 1791040657,
           "parent": "49942434"
         }
       ]
@@ -317,6 +498,73 @@
       "is_video": false,
       "time": 1791014394,
       "created_at": "2026-10-03T07:59:54+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49942103",
+      "title": "Show HN: Thoreau BASIC – What if BASIC hadn't gone out of fashion?",
+      "subreddit": "show-hn",
+      "author": "Gorsefound",
+      "score": 31,
+      "num_comments": 7,
+      "permalink": "https://news.ycombinator.com/item?id=49942103",
+      "url": "https://thoreaubasic.com/",
+      "selftext": "Thoreau BASIC started as a joke. I wanted a BASIC where I could type something ridiculous like:\n DIM A%(12000000000)\n\n…and have it actually work. Then I kept adding things. The result is Thoreau BASIC, a free x64 BASIC interpreter inspired by GW-BASIC, running both as a normal Windows program and directly on bare-metal UEFI without an operating system.\nVersion 3.2 has become considerably more ambitious than the little interpreter I originally intended to write. The language still deliberately looks and feels like old Microsoft BASIC. Line numbers, GOTO, GOSUB, PRINT, PSET, LINE, CIRCLE, DRAW, etc. are all there. But underneath that rather innocent-looking surface is now quite a lot of machinery.\nSome of the current features:\n native x64 JIT compilation, with automatic fallback to the interpreter\n PARFOR for multithreaded numeric loops\n SSE2 / AVX2 acceleration where available\n 64-bit addressing and very large arrays\n native complex, quaternion and other hypercomplex numbers\n arbitrary-resolution 24-bit graphics\n sprites, bitmap operations, polygon filling and mouse input\n TCP/IP networking on Windows and UEFI\n an integrated profiler, debugger, tracing and program-analysis tools\n CREATEEXE to turn a BASIC program into a standalone Windows executable\n CREATEEFI to turn the same program into a directly bootable UEFI application\n\nThe sound system has also grown rather out of proportion. Thoreau BASIC can now handle up to 32 live instrument channels plus 64 sound effect channels and 256 voices, with real-time pan and brightness control. NOTE and SOUNDKEY can be used more like playable synthesis primitives rather than just old-school BASIC beeps.\n3.2 also expands the less glamorous but surprisingly useful parts of the environment. There is better file browsing and selection with GETFILES and SELECTBOX, longer case-preserving paths, recovery/file-flush facilities, and considerably more detailed SYSTEMINFO$ diagnostics. The latter is useful for seeing things such as available CPU capabilities and the execution environment while debugging performance differences between machines.\nOne thing I've spent a lot of time on recently is making the BASIC programs themselves fast enough that they stop feeling like demonstrations of an interpreter. For example, the current Mandelbrot demo is a real-time interactive fractal explorer. Mouse movement pans the fractal, left-click zooms in and right-click zooms out, while the BASIC program continuously redraws and displays the frame rate.\nThere are also 3D and procedural demos, sprite programs, networking examples, hypercomplex fractals and games.\nAn important design constraint throughout the project has been that Windows and UEFI should execute essentially the same BASIC language. A program shouldn't suddenly become a different species just because there is no operating system underneath it.\nAnd yes, I am fully aware of the absurdity of combining GOTO 100 with AVX2, multithreading, TCP/IP and quaternion arithmetic. That is increasingly the point. I'm interested in the question: What would BASIC look like if it had never gone out of fashion? Thoreau BASIC 3.2 is my current answer.\nI'd be especially interested in feedback from people who remember GW-BASIC/QBasic, compiler/interpreter people, and anyone sufficiently unreasonable to enjoy the idea of booting a modern x64 PC directly into a BASIC interpreter/JIT compiler.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791012534,
+      "created_at": "2026-10-03T07:28:54+00:00",
+      "comments_data": [
+        {
+          "id": "49949562",
+          "author": "boznz",
+          "body": "With retirement + AI I have stopped giving a shit what programming language something is written in; If you can write it in BASIC, go for it.",
+          "score": 0,
+          "time": 1791076090,
+          "parent": "49942103"
+        },
+        {
+          "id": "49948351",
+          "author": "dang",
+          "body": "Recent and related:\nShow HN: I wrote a BASIC interpreter that boots on UEFI machines - https://news.ycombinator.com/item?id=49410814 (https://news.ycombinator.com/item?id=49410814) - Aug 2026 (44 comments)",
+          "score": 0,
+          "time": 1791066064,
+          "parent": "49942103"
+        },
+        {
+          "id": "49949459",
+          "author": "qingcharles",
+          "body": "I was writing BASIC code for everything until a few years ago -- VB.NET -- until it was really clear that it had become a totally second-class citizen and I switched to C#.\nI still think VB.NET is vastly more readable than C/C#/Java etc.",
+          "score": 0,
+          "time": 1791075263,
+          "parent": "49942103"
+        },
+        {
+          "id": "49948500",
+          "author": "pcdoodle1",
+          "body": "Very cool. Are line numbers required? Are there plans for OS system control like setting system volume or screen brightness?",
+          "score": 0,
+          "time": 1791067411,
+          "parent": "49942103"
+        },
+        {
+          "id": "49944984",
+          "author": "fuzzfactor",
+          "body": "This looks like it's realy getting better all the time.",
+          "score": 0,
+          "time": 1791040256,
+          "parent": "49942103"
+        },
+        {
+          "id": "49942156",
+          "author": "_wire_",
+          "body": "PHP",
+          "score": 0,
+          "time": 1791013001,
+          "parent": "49942103"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -342,8 +590,8 @@
       "title": "Show HN: Timeline of the Far Future",
       "subreddit": "show-hn",
       "author": "dmitrybrant",
-      "score": 14,
-      "num_comments": 3,
+      "score": 17,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=49940317",
       "url": "https://rivendell.dmitrybrant.com/farfuture/",
       "selftext": "One of my favorite articles on Wikipedia is called \"Timeline of the far future\".[0]\nThe only problem with this article is the presentation: it's a gigantic wall-of-text table that does very little justice to the profound, awe-inspiring insights contained in it. This article deserves so much better!\nSo here's my attempt to dress it up a bit. Being a visual learner myself, and wanting an opportunity to improve my skills with three.js and typescript, I made a \"reimagined\" version of this article (with the help of some agentic assistance), giving it the visual treatment it needs so badly.\n[0] https://en.wikipedia.org/wiki/Timeline_of_the_far_future (https://en.wikipedia.org/wiki/Timeline_of_the_far_future)",
@@ -352,6 +600,14 @@
       "time": 1790988048,
       "created_at": "2026-10-03T00:40:48+00:00",
       "comments_data": [
+        {
+          "id": "49947520",
+          "author": "okship",
+          "body": "I really hope they don't have Windows in 28,802 years from now...",
+          "score": 0,
+          "time": 1791059756,
+          "parent": "49940317"
+        },
         {
           "id": "49946082",
           "author": "trendscore",
