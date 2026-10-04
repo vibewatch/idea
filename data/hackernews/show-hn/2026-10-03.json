@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-04T08:31:40.932599+00:00",
+  "last_fetched": "2026-10-04T14:21:43.530241+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -71,7 +71,7 @@
       "title": "Show HN: Valet – Self-Hosted Cloud Agents with Computers",
       "subreddit": "show-hn",
       "author": "imbobbytables",
-      "score": 3,
+      "score": 4,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49946786",
       "url": "https://github.com/dropalltables/valet",
@@ -516,8 +516,8 @@
       "title": "Show HN: Thoreau BASIC – What if BASIC hadn't gone out of fashion?",
       "subreddit": "show-hn",
       "author": "Gorsefound",
-      "score": 57,
-      "num_comments": 29,
+      "score": 71,
+      "num_comments": 40,
       "permalink": "https://news.ycombinator.com/item?id=49942103",
       "url": "https://thoreaubasic.com/",
       "selftext": "Thoreau BASIC started as a joke. I wanted a BASIC where I could type something ridiculous like:\n DIM A%(12000000000)\n\n…and have it actually work. Then I kept adding things. The result is Thoreau BASIC, a free x64 BASIC interpreter inspired by GW-BASIC, running both as a normal Windows program and directly on bare-metal UEFI without an operating system.\nVersion 3.2 has become considerably more ambitious than the little interpreter I originally intended to write. The language still deliberately looks and feels like old Microsoft BASIC. Line numbers, GOTO, GOSUB, PRINT, PSET, LINE, CIRCLE, DRAW, etc. are all there. But underneath that rather innocent-looking surface is now quite a lot of machinery.\nSome of the current features:\n native x64 JIT compilation, with automatic fallback to the interpreter\n PARFOR for multithreaded numeric loops\n SSE2 / AVX2 acceleration where available\n 64-bit addressing and very large arrays\n native complex, quaternion and other hypercomplex numbers\n arbitrary-resolution 24-bit graphics\n sprites, bitmap operations, polygon filling and mouse input\n TCP/IP networking on Windows and UEFI\n an integrated profiler, debugger, tracing and program-analysis tools\n CREATEEXE to turn a BASIC program into a standalone Windows executable\n CREATEEFI to turn the same program into a directly bootable UEFI application\n\nThe sound system has also grown rather out of proportion. Thoreau BASIC can now handle up to 32 live instrument channels plus 64 sound effect channels and 256 voices, with real-time pan and brightness control. NOTE and SOUNDKEY can be used more like playable synthesis primitives rather than just old-school BASIC beeps.\n3.2 also expands the less glamorous but surprisingly useful parts of the environment. There is better file browsing and selection with GETFILES and SELECTBOX, longer case-preserving paths, recovery/file-flush facilities, and considerably more detailed SYSTEMINFO$ diagnostics. The latter is useful for seeing things such as available CPU capabilities and the execution environment while debugging performance differences between machines.\nOne thing I've spent a lot of time on recently is making the BASIC programs themselves fast enough that they stop feeling like demonstrations of an interpreter. For example, the current Mandelbrot demo is a real-time interactive fractal explorer. Mouse movement pans the fractal, left-click zooms in and right-click zooms out, while the BASIC program continuously redraws and displays the frame rate.\nThere are also 3D and procedural demos, sprite programs, networking examples, hypercomplex fractals and games.\nAn important design constraint throughout the project has been that Windows and UEFI should execute essentially the same BASIC language. A program shouldn't suddenly become a different species just because there is no operating system underneath it.\nAnd yes, I am fully aware of the absurdity of combining GOTO 100 with AVX2, multithreading, TCP/IP and quaternion arithmetic. That is increasingly the point. I'm interested in the question: What would BASIC look like if it had never gone out of fashion? Thoreau BASIC 3.2 is my current answer.\nI'd be especially interested in feedback from people who remember GW-BASIC/QBasic, compiler/interpreter people, and anyone sufficiently unreasonable to enjoy the idea of booting a modern x64 PC directly into a BASIC interpreter/JIT compiler.",
@@ -527,35 +527,11 @@
       "created_at": "2026-10-03T07:28:54+00:00",
       "comments_data": [
         {
-          "id": "49951232",
-          "author": "mdp2021",
-          "body": "> What would BASIC look like\nCheck PureBasic. https://www.purebasic.com/ (https://www.purebasic.com/)\nCompiles to native, interfaces to C libraries, available on most platforms...",
-          "score": 0,
-          "time": 1791095425,
-          "parent": "49942103"
-        },
-        {
           "id": "49950193",
           "author": "ChicagoDave",
           "body": "I was a pretty successful BASIC programmer, starting on DEC PDP-11 RSTS/E BASIC. Line number BASIC was good enough for simple applications, but quickly turned into spaghetti code.\nLater, the VAX had BASIC with functions and subroutines and dropped the line numbers and this version of BASIC was significantly better. It was procedural, but you could organize your code into modules, keeping it readable and maintainable.\nEventually the non line number BASIC spread to the PC. Microsoft Professional Development System, then Visual BASIC.",
           "score": 0,
           "time": 1791082828,
-          "parent": "49942103"
-        },
-        {
-          "id": "49951780",
-          "author": "NinjaTrance",
-          "body": "If that was the future of the language, I'm glad BASIC is dead.",
-          "score": 0,
-          "time": 1791101761,
-          "parent": "49942103"
-        },
-        {
-          "id": "49951758",
-          "author": "pjmlp",
-          "body": "Xojo, Mikroe BASIC, VBA, and VB.NET are still around even if they don't make HN headlines.",
-          "score": 0,
-          "time": 1791101575,
           "parent": "49942103"
         },
         {
@@ -575,6 +551,14 @@
           "parent": "49942103"
         },
         {
+          "id": "49951232",
+          "author": "mdp2021",
+          "body": "> What would BASIC look like\nCheck PureBasic. https://www.purebasic.com/ (https://www.purebasic.com/)\nCompiles to native, interfaces to C libraries, available on most platforms...",
+          "score": 0,
+          "time": 1791095425,
+          "parent": "49942103"
+        },
+        {
           "id": "49949562",
           "author": "boznz",
           "body": "With retirement + AI I have stopped giving a shit what programming language something is written in; If you can write it in BASIC, go for it.",
@@ -591,19 +575,19 @@
           "parent": "49942103"
         },
         {
-          "id": "49949897",
-          "author": "MiroslavPokorny",
-          "body": "Basic died because it lacks scoping, and has no locals. This makes doing anything on a large scale a pain...",
+          "id": "49951758",
+          "author": "pjmlp",
+          "body": "Xojo, Mikroe BASIC, VBA, and VB.NET are still around even if they don't make HN headlines.",
           "score": 0,
-          "time": 1791079576,
+          "time": 1791101575,
           "parent": "49942103"
         },
         {
-          "id": "49948500",
-          "author": "pcdoodle1",
-          "body": "Very cool. Are line numbers required? Are there plans for OS system control like setting system volume or screen brightness?",
+          "id": "49952851",
+          "author": "meelford",
+          "body": "this would be ideal for the latest version of the modern ZX Speccys, especially given the growing interest from hardware enthusiasts",
           "score": 0,
-          "time": 1791067411,
+          "time": 1791112407,
           "parent": "49942103"
         },
         {
@@ -615,11 +599,27 @@
           "parent": "49942103"
         },
         {
-          "id": "49944984",
-          "author": "fuzzfactor",
-          "body": "This looks like it's realy getting better all the time.",
+          "id": "49948500",
+          "author": "pcdoodle1",
+          "body": "Very cool. Are line numbers required? Are there plans for OS system control like setting system volume or screen brightness?",
           "score": 0,
-          "time": 1791040256,
+          "time": 1791067411,
+          "parent": "49942103"
+        },
+        {
+          "id": "49951780",
+          "author": "NinjaTrance",
+          "body": "If that was the future of the language, I'm glad BASIC is dead.",
+          "score": 0,
+          "time": 1791101761,
+          "parent": "49942103"
+        },
+        {
+          "id": "49949897",
+          "author": "MiroslavPokorny",
+          "body": "Basic died because it lacks scoping, and has no locals. This makes doing anything on a large scale a pain...",
+          "score": 0,
+          "time": 1791079576,
           "parent": "49942103"
         }
       ]
@@ -659,19 +659,19 @@
       "created_at": "2026-10-03T00:40:48+00:00",
       "comments_data": [
         {
-          "id": "49951477",
-          "author": "clappoxed",
-          "body": "It seems cool and I like these engaging animations.",
-          "score": 0,
-          "time": 1791098590,
-          "parent": "49940317"
-        },
-        {
           "id": "49946082",
           "author": "trendscore",
           "body": "I was a bit slow to understand what was going on at the beginning but I liked reading through each entry especially as time went further and further. Some of the animations also loaded slower so maybe an indication of loading process or time could be useful. Overall a very nice site and project I must say. Well done!",
           "score": 0,
           "time": 1791048252,
+          "parent": "49940317"
+        },
+        {
+          "id": "49951477",
+          "author": "clappoxed",
+          "body": "It seems cool and I like these engaging animations.",
+          "score": 0,
+          "time": 1791098590,
           "parent": "49940317"
         },
         {
