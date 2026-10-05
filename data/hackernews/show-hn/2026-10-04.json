@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-05T01:15:47.578103+00:00",
+  "last_fetched": "2026-10-05T07:10:30.508961+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -27,7 +27,7 @@
       "title": "Show HN: An eBPF kernel guard for vTPM access",
       "subreddit": "show-hn",
       "author": "bschaatsbergen",
-      "score": 4,
+      "score": 5,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49958131",
       "url": "https://github.com/bschaatsbergen/tpmlsm",
@@ -44,7 +44,7 @@
       "title": "Show HN: Recly – turn your watch into a Plaud-style AI recorder",
       "subreddit": "show-hn",
       "author": "rokrokss",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49957724",
       "url": "https://recly.dev/",
@@ -78,8 +78,8 @@
       "title": "Show HN: Build with Python – a beginner course where your code draws",
       "subreddit": "show-hn",
       "author": "davidwshao",
-      "score": 24,
-      "num_comments": 10,
+      "score": 35,
+      "num_comments": 11,
       "permalink": "https://news.ycombinator.com/item?id=49956771",
       "url": "https://scimigo.com/en/learn/build-with-python/01-draw-with-python",
       "selftext": "Hi HN, I built this because I watched my daughter struggle at learning Python. I made something that runs only in the browser with visuals rather than relying on CLI/terminal output. No need to worry about python installation, package versions, venv etc.\nThe lab runs with Pyodide in a web worker, and the program output is a picture by the side of the code block. A user would experiment with the code, and see the immediate changes in the visual output.\nThe course has 13 modules, with the first 6 foundation modules free, module 7-13 with free readings but guide labs for a one-time price of $49.\nPlease give it a try at https://scimigo.com/en/learn/build-with-python (https://scimigo.com/en/learn/build-with-python)\nSend me feedback on the UX and on the exercise design, especially if you teach kids to program.\nI am also working on a C++ version for beginners (also with browser, no gcc or command lines). stay tuned.",
@@ -88,6 +88,14 @@
       "time": 1791140365,
       "created_at": "2026-10-04T18:59:25+00:00",
       "comments_data": [
+        {
+          "id": "49960450",
+          "author": "zarify",
+          "body": "Most of teaching kids to code is them understanding terminology, structure, and getting them unstuck. This has bits of information mixed with unscaffolded terminology all over the place, some hidden in collapsibles, and some just missing.\nFor example the `range` example in the second activity doesn't show a `for` loop's structure, how `range` is called, or what it does. One of the hints shows you the syntax for a `range` call, but nothing about loop syntax.\nThe hints are on request rather than at-need, and aren't linked to what's going wrong for them - doing some structural analysis of the code to decide what hint might be needed would make hints more useful. The couple of activities I looked at didn't have particularly useful hints that targeted real problems and were more of the \"here's a snippet of completed code\" variety, which doesn't teach anyone anything.\nI'd recommend going and looking into some teaching pedagogy before building stuff, tbh.\nThe actual activity objectives don't look too bad, but the UI is a mess of the wrong sorts of information to help kids learn the principles.\nI was curious about the tutor, but not curious enough to hand over an auth token to it. I've been building a writing tutor using local models for my kids, and it's been an interesting experience trying to provide helpful, structured information at the time they need it, rather than just asking for answers, or parsing generic advice.",
+          "score": 0,
+          "time": 1791171861,
+          "parent": "49956771"
+        },
         {
           "id": "49959256",
           "author": "ezra60",
@@ -191,7 +199,7 @@
       "title": "Show HN: Jev-pages – Building landing pages real time with Jev",
       "subreddit": "show-hn",
       "author": "pranavsanga",
-      "score": 2,
+      "score": 3,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49955930",
       "url": "https://github.com/sagapranav/jev-pages",
@@ -218,7 +226,7 @@
       "title": "Show HN: French Revolutionary Calendar",
       "subreddit": "show-hn",
       "author": "libcg",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49955423",
       "url": "https://repcal.libcg.so/",
@@ -313,8 +321,8 @@
       "title": "Show HN: AI search for every photo and every frame of video on macOS",
       "subreddit": "show-hn",
       "author": "allenleee",
-      "score": 137,
-      "num_comments": 65,
+      "score": 150,
+      "num_comments": 67,
       "permalink": "https://news.ycombinator.com/item?id=49952111",
       "url": "https://github.com/allenv0/SCM",
       "selftext": "",
@@ -340,14 +348,6 @@
           "parent": "49952111"
         },
         {
-          "id": "49953541",
-          "author": "lucideer",
-          "body": "possibly off-topic, but for anyone interested in this on a more cross-platform / holistic basis, Immich does this\n(& by \"this\" I mean an approximate AI search for photos & videos - I can't account for the \"every frame\", nor for the comparative search quality)",
-          "score": 0,
-          "time": 1791118741,
-          "parent": "49952111"
-        },
-        {
           "id": "49953375",
           "author": "hn3ufz62f7",
           "body": "Having built something similar with CLIP on an M1, frame sampling rate is the whole ballgame. One frame a second on 12k videos is days, keyframes only got me to an overnight run.",
@@ -356,11 +356,11 @@
           "parent": "49952111"
         },
         {
-          "id": "49953634",
-          "author": "measure2xcut1x",
-          "body": "How well do you think this would work on stock photography on m1 mac with 32GB ram? For example I'd like to be able to search a folder of ~2k photos for houses with palm trees. Or find photos of kitchens, or find photos of desert southwest landscapes.",
+          "id": "49953541",
+          "author": "lucideer",
+          "body": "possibly off-topic, but for anyone interested in this on a more cross-platform / holistic basis, Immich does this\n(& by \"this\" I mean an approximate AI search for photos & videos - I can't account for the \"every frame\", nor for the comparative search quality)",
           "score": 0,
-          "time": 1791119500,
+          "time": 1791118741,
           "parent": "49952111"
         },
         {
@@ -369,6 +369,14 @@
           "body": "Why chose CLIP to do this. Have you tried small VLMs like Qwen-VL? I believe those models have video encoders can better perform at this scenario.",
           "score": 0,
           "time": 1791122362,
+          "parent": "49952111"
+        },
+        {
+          "id": "49953634",
+          "author": "measure2xcut1x",
+          "body": "How well do you think this would work on stock photography on m1 mac with 32GB ram? For example I'd like to be able to search a folder of ~2k photos for houses with palm trees. Or find photos of kitchens, or find photos of desert southwest landscapes.",
+          "score": 0,
+          "time": 1791119500,
           "parent": "49952111"
         },
         {
@@ -396,19 +404,19 @@
           "parent": "49952111"
         },
         {
-          "id": "49953989",
-          "author": "cpursley",
-          "body": "Why is this a JS bloatware instead of native or Rust which is easier than ever now with LLM coding tools.",
-          "score": 0,
-          "time": 1791122201,
-          "parent": "49952111"
-        },
-        {
           "id": "49953551",
           "author": "qprofyeh",
           "body": "This is cool. Any way to search for People / faces / pets? Like on iOS?",
           "score": 0,
           "time": 1791118855,
+          "parent": "49952111"
+        },
+        {
+          "id": "49953989",
+          "author": "cpursley",
+          "body": "Why is this a JS bloatware instead of native or Rust which is easier than ever now with LLM coding tools.",
+          "score": 0,
+          "time": 1791122201,
           "parent": "49952111"
         },
         {
@@ -420,6 +428,23 @@
           "parent": "49952111"
         }
       ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49951625",
+      "title": "Show HN: Solvi 1.0 – an LLM proposes, checks decide, every decision replays",
+      "subreddit": "show-hn",
+      "author": "mxkuzn",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49951625",
+      "url": "https://github.com/solvi-ai/solvi",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791100257,
+      "created_at": "2026-10-04T07:50:57+00:00"
     },
     {
       "source": "hackernews",
