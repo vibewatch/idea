@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-05T12:49:39.253607+00:00",
+  "last_fetched": "2026-10-05T18:42:52.877707+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,15 +10,113 @@
       "title": "Tell HN: Uceprotect is extorting website owners",
       "subreddit": "ask-hn",
       "author": "goldenmember",
-      "score": 2,
-      "num_comments": 0,
+      "score": 95,
+      "num_comments": 54,
       "permalink": "https://news.ycombinator.com/item?id=49964045",
       "url": "https://news.ycombinator.com/item?id=49964045",
-      "selftext": "I recently discovered by accident that our website was being blocked by Orange's security filters.\nAfter a quick check, I found that our IP address is listed on UCEPROTECT Level 3. The listing is based on the reputation of the entire ASN 14061 (DigitalOcean, US) [1]. In other words, even if your IP did nothing wrong, it will still be listed because of its ASN.\nIf your site is innocent and listed only because it's hosted on DigitalOcean, UCEPROTECT offers to whitelist it for about $30/month or $108/year [2].\nI checked the ASNs of several other popular hosting providers, and they're all listed too. So if your site is hosted on DigitalOcean or any other major provider, it's probably blacklisted as well. That can cut you off from customers on mobile networks like Orange, whose \"cybersecurity protection\" uses blacklists like UCEPROTECT to filter traffic.\nHonestly, in my 20-year career, this is the first time I've seen a blacklist misbehave this badly and ask for money when there's clearly been no wrongdoing.\n[1] http://www.uceprotect.net/en/rblcheck.php?asn=14061\n[2] https://www.whitelisted.org/",
+      "selftext": "I recently discovered by accident that our website was being blocked by Orange's security filters.\nAfter a quick check, I found that our IP address is listed on UCEPROTECT Level 3. The listing is based on the reputation of the entire ASN 14061 (DigitalOcean, US) [1]. In other words, even if your IP did nothing wrong, it will still be listed because of its ASN.\nIf your site is innocent and listed only because it's hosted on DigitalOcean, UCEPROTECT offers to whitelist it for about $30/month or $108/year [2].\nI checked the ASNs of several other popular hosting providers, and they're all listed too. So if your site is hosted on DigitalOcean or any other major provider, it's probably blacklisted as well. That can cut you off from customers on mobile networks like Orange, whose \"cybersecurity protection\" uses blacklists like UCEPROTECT to filter traffic.\nHonestly, in my 20-year career, this is the first time I've seen a blacklist misbehave this badly and ask for money when there's clearly been no wrongdoing.\n[1] http://www.uceprotect.net/en/rblcheck.php?asn=14061 (http://www.uceprotect.net/en/rblcheck.php?asn=14061)\n[2] https://www.whitelisted.org/ (https://www.whitelisted.org/)",
       "is_self": true,
       "is_video": false,
       "time": 1791203755,
-      "created_at": "2026-10-05T12:35:55+00:00"
+      "created_at": "2026-10-05T12:35:55+00:00",
+      "comments_data": [
+        {
+          "id": "49964775",
+          "author": "someonebaggy",
+          "body": "All of the spam blocklists are like this.\nAt one time quite recently, Cloudflare was on Spamhaus's \"Don't Route Or Peer\" list. Imagine where the world would be if anyone cared about that list.\nBut if an entire ISP is blocking you based on UCEPROTECT, which is designed for email spam filters - are you sure? An ISP that blocked all of DO would get so many complaints and be open to so much legal liability. Usually these are only used for email filtering.",
+          "score": 0,
+          "time": 1791207664,
+          "parent": "49964045"
+        },
+        {
+          "id": "49967432",
+          "author": "john_strinlai",
+          "body": "the more ive looked at this uceprotect site, the more i see how unhinged they are.\nfor example: \"People with a brain would simply fix their systems after getting listed for abuse. Stupid losers are different.\" http://www.uceprotect.org/cart00neys/index.html (http://www.uceprotect.org/cart00neys/index.html)\nor\n\"This time, however, we have a premiere: A Woman. Actually, it reads more like a brat than a woman [...] If we were as emotional as you are and report you to our authorities, the handcuffs might click the next time you move your ass off the British Isles. [...] This means that they have heared that bullshit you spammed to them at times when you still slipped across the floor with your shit diaper. :-) [...]\nGrow up and also try to grow a brain before you make a fool out of yourself, again next time.\nClaus von Wolfhausen\nTechnical Director\" http://www.uceprotect.org/cart00neys/2021-001.html (http://www.uceprotect.org/cart00neys/2021-001.html)\ntheir main page has an iamverybadass quote, too: \"WARNING: Do not play around here. You have no idea who we really are, and what will happen to you!\"",
+          "score": 0,
+          "time": 1791219625,
+          "parent": "49964045"
+        },
+        {
+          "id": "49965311",
+          "author": "mrmattyboy",
+          "body": "The uceprotect Level 3 page clearly says using the list will cause collateral damage and should only use as an indicator as part of a spam score, not to act purely on it.\nSo, yes, if a service provider is known for having a lot of spam coming from it, it makes sense to be on there. They're not saying every IP is bad, they're literally stating the opposite (which seems fair).\nSo, if Orange are blocking purely based on it, not only are they using a spam filter as a DNS query/web filter (given uceprotect seems to flag based on mail spam traps based detections etc.) and ignoring their documentation (which says it shouldn't be used to block on it's own).",
+          "score": 0,
+          "time": 1791210235,
+          "parent": "49964045"
+        },
+        {
+          "id": "49964832",
+          "author": "JohnMakin",
+          "body": "DigitalOcean has been on their list for a while, they say something like “if you don’t want to be flagged as spam, dont host on a site that hosts spammers” which is pretty ridiculous given every cloud platform does",
+          "score": 0,
+          "time": 1791207924,
+          "parent": "49964045"
+        },
+        {
+          "id": "49966211",
+          "author": "5kyl4b",
+          "body": "https://uceprotect.wtf (https://uceprotect.wtf)\nCheck this...",
+          "score": 0,
+          "time": 1791214393,
+          "parent": "49964045"
+        },
+        {
+          "id": "49966893",
+          "author": "Polizeiposaune",
+          "body": "Do you have any direct evidence that the Orange block is due to the listing in UCEPROTECT?\nDigital Ocean is not a great neighborhood.\nAfter seeing periodic bursts of login attempts from there, I now block all inbound ssh from AS14061 (among several such bad neighborhoods) as no authorized clients are hosted there and there is a constant level of attempted attacks from there.",
+          "score": 0,
+          "time": 1791217285,
+          "parent": "49964045"
+        },
+        {
+          "id": "49967113",
+          "author": "petecooper",
+          "body": "UCEPROTECT Extortion Service: All Your Mails Are Belong To Us! (2009)\nhttps://www.aaroncake.net/misc/showthought.asp?thought=57 (https://www.aaroncake.net/misc/showthought.asp?thought=57)",
+          "score": 0,
+          "time": 1791218187,
+          "parent": "49964045"
+        },
+        {
+          "id": "49967089",
+          "author": "throwaway67743",
+          "body": "This is not new, \"UCEPROTECT\" has been a garbage RBL doing this for decades (even listing blocks preemptively, so that when they're assigned they're unusable), nobody worth emailing actually uses it.",
+          "score": 0,
+          "time": 1791218122,
+          "parent": "49964045"
+        },
+        {
+          "id": "49964973",
+          "author": "ozim",
+          "body": "Sounds like this should go via Orange they have means to slap UCEPROTECT on the wrist. It also looks like it would be in Orange business to have proper spam lists not ones like that.",
+          "score": 0,
+          "time": 1791208593,
+          "parent": "49964045"
+        },
+        {
+          "id": "49966659",
+          "author": "tagyro",
+          "body": "Playing the devil’s advocate, my domains get constantly scanned from DO ips. I know it’s not feasible but some basic kyc on DO’s side would probably help.",
+          "score": 0,
+          "time": 1791216143,
+          "parent": "49964045"
+        },
+        {
+          "id": "49965175",
+          "author": "rithdmc",
+          "body": "Which Orange are you blocked on?\nI personally found Meteor in Ireland (previously owned by Orange) to be far more liberal with blocks on an unregistered mobile internet connection than other providers.\nAlso, Orange UK have a much stricter block list to enforce than, for example, Orange FR.",
+          "score": 0,
+          "time": 1791209643,
+          "parent": "49964045"
+        },
+        {
+          "id": "49965192",
+          "author": "pelagicAustral",
+          "body": "I think what's happening is obviously not fair, and should be corrected, but I also what to say that I've had pretty bad experiences when working with DO. I think maybe what happens is that they take too long to weed out problematic accounts. Not going to mention any other provider so it's not assumed that shilling for someone else, but there are quite a few that are no in the AWS, GCP, or Azure tier and work just fine, so, shouldnt be too hard to find a replacement.",
+          "score": 0,
+          "time": 1791209725,
+          "parent": "49964045"
+        }
+      ]
     },
     {
       "source": "hackernews",

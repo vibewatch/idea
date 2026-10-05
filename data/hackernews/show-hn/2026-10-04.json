@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-05T12:49:35.813007+00:00",
+  "last_fetched": "2026-10-05T18:42:50.399399+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -78,8 +78,8 @@
       "title": "Show HN: Build with Python – a beginner course where your code draws",
       "subreddit": "show-hn",
       "author": "davidwshao",
-      "score": 37,
-      "num_comments": 12,
+      "score": 44,
+      "num_comments": 14,
       "permalink": "https://news.ycombinator.com/item?id=49956771",
       "url": "https://scimigo.com/en/learn/build-with-python/01-draw-with-python",
       "selftext": "Hi HN, I built this because I watched my daughter struggle at learning Python. I made something that runs only in the browser with visuals rather than relying on CLI/terminal output. No need to worry about python installation, package versions, venv etc.\nThe lab runs with Pyodide in a web worker, and the program output is a picture by the side of the code block. A user would experiment with the code, and see the immediate changes in the visual output.\nThe course has 13 modules, with the first 6 foundation modules free, module 7-13 with free readings but guide labs for a one-time price of $49.\nPlease give it a try at https://scimigo.com/en/learn/build-with-python (https://scimigo.com/en/learn/build-with-python)\nSend me feedback on the UX and on the exercise design, especially if you teach kids to program.\nI am also working on a C++ version for beginners (also with browser, no gcc or command lines). stay tuned.",
@@ -88,6 +88,14 @@
       "time": 1791140365,
       "created_at": "2026-10-04T18:59:25+00:00",
       "comments_data": [
+        {
+          "id": "49966648",
+          "author": "SIMPL_Language",
+          "body": "I tried to create a comprehensive environment to meet the needs of students and beginners who want to get into programming. Version 1.0 was released just a week ago, and I'm currently finalizing version 1.1, which should go live very soon.\nYou can download it for free here: https://simpl-pseudocode.itch.io/simpl (https://simpl-pseudocode.itch.io/simpl)",
+          "score": 0,
+          "time": 1791216114,
+          "parent": "49956771"
+        },
         {
           "id": "49960450",
           "author": "zarify",
@@ -325,12 +333,39 @@
     {
       "source": "hackernews",
       "stream": "show-hn",
+      "id": "49952148",
+      "title": "Show HN: Nightwatch – a Mac menu-bar app that tells you when tonight is clear",
+      "subreddit": "show-hn",
+      "author": "delphidolphin",
+      "score": 16,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=49952148",
+      "url": "https://github.com/rsutcliffe/nightwatch",
+      "selftext": "Here in the north of England clear nights are at a premium, and it's never guaranteed that you'll be able to see anything but cloud. That's why I developed Nightwatch, so that I could be notified when one of those precious few nights where I could see into the heavens was available. Finding out whether tonight was worth setting up meant reading forecast charts every evening, usually to learn that it was not. Nightwatch does that reading for me.\nIt sits in the Mac's menu bar and refreshes the forecast every 30 minutes. An hour before sunset it sends one notification, and only if there is an unbroken run of clear sky in astronomical darkness long enough to image in. Otherwise it says nothing: no news means \"clouds\".\nI hope this is useful for other hobbyist stargazers too!\nWhen I was a child I wanted desperately to be an astronaut or a dinosaur. I'm now old enough to be the latter and was born in a country where the former was never an option. I've had a fascination with the stars since a a friend of my father gifted me a telescope, and have faded memories of sharing time with my father staring at the stars. My father passed away a few years back and the memory of those nights came back, along with the want to share the same experience with my kids and grandchild.\nThe app uses two forecasts: Apple's WeatherKit is the main source and Open-Meteo is a second opinion. When they disagree, the alert says so instead of averaging them.\nThin high cloud counts for half. Stacking many short frames works through a veil of cirrus, so treating it as full cloud threw away usable nights.\nIt works on your own horizon: hills come from terrain data, and you set the houses and trees in each direction, so they are accounted for when it says what is up.\nIt works out, a year ahead, when the Moon will pass in front of a planet, a bright star or the Pleiades as seen from your site.\nYou don't need an account. What leaves the Mac is the coordinates of the place being forecast, sent to the forecast and sky-survey services listed in PRIVACY.md.\nLimits: Mac only, and the aurora alerts are UK only. The worldwide light-pollution data is new this week. I have checked it against Britain's finer grid and a handful of cities, so I would especially like to hear from people elsewhere whether the darkness it suggests for your site looks right.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791106261,
+      "created_at": "2026-10-04T09:31:01+00:00",
+      "comments_data": [
+        {
+          "id": "49968321",
+          "author": "leetrout",
+          "body": "Awesome! Thank you for sharing!\nFor iOS stargazers that don't already know (we've all been there) xasteria is a great option for your phone to compliment this (it also uses 7Timer!).\nhttps://apps.apple.com/us/app/xasteria-astronomy-weather/id9... (https://apps.apple.com/us/app/xasteria-astronomy-weather/id985030722)",
+          "score": 0,
+          "time": 1791223842,
+          "parent": "49952148"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
       "id": "49952111",
       "title": "Show HN: AI search for every photo and every frame of video on macOS",
       "subreddit": "show-hn",
       "author": "allenleee",
-      "score": 154,
-      "num_comments": 71,
+      "score": 161,
+      "num_comments": 72,
       "permalink": "https://news.ycombinator.com/item?id=49952111",
       "url": "https://github.com/allenv0/SCM",
       "selftext": "",
@@ -345,14 +380,6 @@
           "body": "Since this is for the mac you really should be using apple's vision framework for OCR. It smokes tesseract in both speed and accuracy.\nEdit: I'm curious which LLM was used to generate the code. I fed the title of your post to claude/deepseek/qwen/codex asking to recommend a stack for this project, expecting to frown thinking that they still recommend tesseract. However, I found that they all recommend apple's vision framework. In fact the latest model to recommend Tesseract is gpt-4.1.",
           "score": 0,
           "time": 1791122276,
-          "parent": "49952111"
-        },
-        {
-          "id": "49964094",
-          "author": "xcc3641",
-          "body": "Do you pipe frames directly through a bounded queue to keep ffmpeg decoding from outpacing the embedding model?",
-          "score": 0,
-          "time": 1791204106,
           "parent": "49952111"
         },
         {
@@ -385,6 +412,14 @@
           "body": "Why chose CLIP to do this. Have you tried small VLMs like Qwen-VL? I believe those models have video encoders can better perform at this scenario.",
           "score": 0,
           "time": 1791122362,
+          "parent": "49952111"
+        },
+        {
+          "id": "49964094",
+          "author": "xcc3641",
+          "body": "Do you pipe frames directly through a bounded queue to keep ffmpeg decoding from outpacing the embedding model?",
+          "score": 0,
+          "time": 1791204106,
           "parent": "49952111"
         },
         {
