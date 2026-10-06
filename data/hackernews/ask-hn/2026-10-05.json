@@ -1,8 +1,68 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-05T18:42:52.877707+00:00",
+  "last_fetched": "2026-10-06T01:10:07.607763+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "49970078",
+      "title": "Orcah Studio: A local-first video agent that can search your videos",
+      "subreddit": "ask-hn",
+      "author": "iliashad",
+      "score": 5,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=49970078",
+      "url": "https://news.ycombinator.com/item?id=49970078",
+      "selftext": "Hey,\nI'm Ilias, the founder of Orcah Studio. I'm building a local-first desktop app (Mac OS available now) that can transcribe audio, recognize faces, detect objects, perform OCR, and describe video scenes.\nPlus, a local-first video agent that understands your prompt and finds the exact moment you're looking for. I fine-tune the agent based on an open-weight model (an 8-billion-parameter model) with tool calling.\nYou can check out all the features here: https://orcah.app.\nPlus, I have an MCP that you can connect to Claude Code, Codex, and OpenCode to search your indexed videos: https://orcah.app/mcp",
+      "is_self": true,
+      "is_video": false,
+      "time": 1791231450,
+      "created_at": "2026-10-05T20:17:30+00:00",
+      "comments_data": [
+        {
+          "id": "49970368",
+          "author": "iliashad",
+          "body": "Plus, you can search your video moments using a reference image or color https://orcah.app/features/visual-search (https://orcah.app/features/visual-search) or an audio file https://orcah.app/features/audio-search (https://orcah.app/features/audio-search).\nAnd transcription with speaker diarization: https://orcah.app/features/transcription (https://orcah.app/features/transcription)",
+          "score": 0,
+          "time": 1791232760,
+          "parent": "49970078"
+        },
+        {
+          "id": "49970147",
+          "author": "iliashad",
+          "body": "Plus, I have a source-available version that can be self-hosted via Docker (https://github.com/iliashad/edit-mind (https://github.com/iliashad/edit-mind)) (Rebranded from Edit Mind to Orcah Studio)",
+          "score": 0,
+          "time": 1791231766,
+          "parent": "49970078"
+        },
+        {
+          "id": "49972068",
+          "author": "marshalla",
+          "body": "I set the battery to low power mode on the website and it didn't do anything and now I'm profoundly disappointed.\nOn a more serious note, I think on-device object/face recognition search is a great idea. Having the cta button on the site go to Polar is a little unexpected. It'd be nice to be able to try the app without going through the hoops of running it in a Docker container, if that's the same app or system?",
+          "score": 0,
+          "time": 1791242122,
+          "parent": "49970078"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "49969809",
+      "title": "Our digital privacy is being aggressively disbanded this week",
+      "subreddit": "ask-hn",
+      "author": "Steaglsz",
+      "score": 8,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49969809",
+      "url": "https://news.ycombinator.com/item?id=49969809",
+      "selftext": "Google has started 70+ unique trackers the last 24 hours which bring it on my phone to at least 130 unique trackers i could find. Reddit is up to 149 unique trackers.\nMy phone is being pinged 8 (EIGHT.) TIMES. A. SECOND. You cant delete or change any of these settings from google or it breaks the app and just reinstalls it fresh on your next battery restart.\nWelcome to the New Age\nhttps://archive.org/details/screenshot-20261005-101228",
+      "is_self": true,
+      "is_video": false,
+      "time": 1791230281,
+      "created_at": "2026-10-05T19:58:01+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,8 +70,8 @@
       "title": "Tell HN: Uceprotect is extorting website owners",
       "subreddit": "ask-hn",
       "author": "goldenmember",
-      "score": 95,
-      "num_comments": 54,
+      "score": 99,
+      "num_comments": 59,
       "permalink": "https://news.ycombinator.com/item?id=49964045",
       "url": "https://news.ycombinator.com/item?id=49964045",
       "selftext": "I recently discovered by accident that our website was being blocked by Orange's security filters.\nAfter a quick check, I found that our IP address is listed on UCEPROTECT Level 3. The listing is based on the reputation of the entire ASN 14061 (DigitalOcean, US) [1]. In other words, even if your IP did nothing wrong, it will still be listed because of its ASN.\nIf your site is innocent and listed only because it's hosted on DigitalOcean, UCEPROTECT offers to whitelist it for about $30/month or $108/year [2].\nI checked the ASNs of several other popular hosting providers, and they're all listed too. So if your site is hosted on DigitalOcean or any other major provider, it's probably blacklisted as well. That can cut you off from customers on mobile networks like Orange, whose \"cybersecurity protection\" uses blacklists like UCEPROTECT to filter traffic.\nHonestly, in my 20-year career, this is the first time I've seen a blacklist misbehave this badly and ask for money when there's clearly been no wrongdoing.\n[1] http://www.uceprotect.net/en/rblcheck.php?asn=14061 (http://www.uceprotect.net/en/rblcheck.php?asn=14061)\n[2] https://www.whitelisted.org/ (https://www.whitelisted.org/)",
@@ -20,22 +80,6 @@
       "time": 1791203755,
       "created_at": "2026-10-05T12:35:55+00:00",
       "comments_data": [
-        {
-          "id": "49964775",
-          "author": "someonebaggy",
-          "body": "All of the spam blocklists are like this.\nAt one time quite recently, Cloudflare was on Spamhaus's \"Don't Route Or Peer\" list. Imagine where the world would be if anyone cared about that list.\nBut if an entire ISP is blocking you based on UCEPROTECT, which is designed for email spam filters - are you sure? An ISP that blocked all of DO would get so many complaints and be open to so much legal liability. Usually these are only used for email filtering.",
-          "score": 0,
-          "time": 1791207664,
-          "parent": "49964045"
-        },
-        {
-          "id": "49967432",
-          "author": "john_strinlai",
-          "body": "the more ive looked at this uceprotect site, the more i see how unhinged they are.\nfor example: \"People with a brain would simply fix their systems after getting listed for abuse. Stupid losers are different.\" http://www.uceprotect.org/cart00neys/index.html (http://www.uceprotect.org/cart00neys/index.html)\nor\n\"This time, however, we have a premiere: A Woman. Actually, it reads more like a brat than a woman [...] If we were as emotional as you are and report you to our authorities, the handcuffs might click the next time you move your ass off the British Isles. [...] This means that they have heared that bullshit you spammed to them at times when you still slipped across the floor with your shit diaper. :-) [...]\nGrow up and also try to grow a brain before you make a fool out of yourself, again next time.\nClaus von Wolfhausen\nTechnical Director\" http://www.uceprotect.org/cart00neys/2021-001.html (http://www.uceprotect.org/cart00neys/2021-001.html)\ntheir main page has an iamverybadass quote, too: \"WARNING: Do not play around here. You have no idea who we really are, and what will happen to you!\"",
-          "score": 0,
-          "time": 1791219625,
-          "parent": "49964045"
-        },
         {
           "id": "49965311",
           "author": "mrmattyboy",
@@ -53,11 +97,35 @@
           "parent": "49964045"
         },
         {
+          "id": "49967432",
+          "author": "john_strinlai",
+          "body": "the more ive looked at this uceprotect site, the more i see how unhinged they are.\nfor example: \"People with a brain would simply fix their systems after getting listed for abuse. Stupid losers are different.\" http://www.uceprotect.org/cart00neys/index.html (http://www.uceprotect.org/cart00neys/index.html)\nor\n\"This time, however, we have a premiere: A Woman. Actually, it reads more like a brat than a woman [...] If we were as emotional as you are and report you to our authorities, the handcuffs might click the next time you move your ass off the British Isles. [...] This means that they have heared that bullshit you spammed to them at times when you still slipped across the floor with your shit diaper. :-) [...]\nGrow up and also try to grow a brain before you make a fool out of yourself, again next time.\nClaus von Wolfhausen\nTechnical Director\" http://www.uceprotect.org/cart00neys/2021-001.html (http://www.uceprotect.org/cart00neys/2021-001.html)\ntheir main page has an iamverybadass quote, too: \"WARNING: Do not play around here. You have no idea who we really are, and what will happen to you!\"",
+          "score": 0,
+          "time": 1791219625,
+          "parent": "49964045"
+        },
+        {
           "id": "49966211",
           "author": "5kyl4b",
           "body": "https://uceprotect.wtf (https://uceprotect.wtf)\nCheck this...",
           "score": 0,
           "time": 1791214393,
+          "parent": "49964045"
+        },
+        {
+          "id": "49964973",
+          "author": "ozim",
+          "body": "Sounds like this should go via Orange they have means to slap UCEPROTECT on the wrist. It also looks like it would be in Orange business to have proper spam lists not ones like that.",
+          "score": 0,
+          "time": 1791208593,
+          "parent": "49964045"
+        },
+        {
+          "id": "49966659",
+          "author": "tagyro",
+          "body": "Playing the devil’s advocate, my domains get constantly scanned from DO ips. I know it’s not feasible but some basic kyc on DO’s side would probably help.",
+          "score": 0,
+          "time": 1791216143,
           "parent": "49964045"
         },
         {
@@ -85,22 +153,6 @@
           "parent": "49964045"
         },
         {
-          "id": "49964973",
-          "author": "ozim",
-          "body": "Sounds like this should go via Orange they have means to slap UCEPROTECT on the wrist. It also looks like it would be in Orange business to have proper spam lists not ones like that.",
-          "score": 0,
-          "time": 1791208593,
-          "parent": "49964045"
-        },
-        {
-          "id": "49966659",
-          "author": "tagyro",
-          "body": "Playing the devil’s advocate, my domains get constantly scanned from DO ips. I know it’s not feasible but some basic kyc on DO’s side would probably help.",
-          "score": 0,
-          "time": 1791216143,
-          "parent": "49964045"
-        },
-        {
           "id": "49965175",
           "author": "rithdmc",
           "body": "Which Orange are you blocked on?\nI personally found Meteor in Ireland (previously owned by Orange) to be far more liberal with blocks on an unregistered mobile internet connection than other providers.\nAlso, Orange UK have a much stricter block list to enforce than, for example, Orange FR.",
@@ -114,6 +166,14 @@
           "body": "I think what's happening is obviously not fair, and should be corrected, but I also what to say that I've had pretty bad experiences when working with DO. I think maybe what happens is that they take too long to weed out problematic accounts. Not going to mention any other provider so it's not assumed that shilling for someone else, but there are quite a few that are no in the AWS, GCP, or Azure tier and work just fine, so, shouldnt be too hard to find a replacement.",
           "score": 0,
           "time": 1791209725,
+          "parent": "49964045"
+        },
+        {
+          "id": "49965557",
+          "author": "cendyne",
+          "body": "UCEPROTECT is why I stopped self hosting my own email :(",
+          "score": 0,
+          "time": 1791211467,
           "parent": "49964045"
         }
       ]
