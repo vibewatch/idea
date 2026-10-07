@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-07T06:52:08.392323+00:00",
+  "last_fetched": "2026-10-07T12:49:07.077077+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -85,8 +85,8 @@
       "title": "Ask HN: What do you run on a $5 VPS that's worth keeping online 24/7?",
       "subreddit": "ask-hn",
       "author": "mariocesar",
-      "score": 16,
-      "num_comments": 10,
+      "score": 23,
+      "num_comments": 18,
       "permalink": "https://news.ycombinator.com/item?id=49985548",
       "url": "https://news.ycombinator.com/item?id=49985548",
       "selftext": "DHH's \"AI shed\" idea got me thinking about getting a small $5–10/month VPS.\nI'm a Linux guy and have on many points of my life have a personal server. So I like the idea of having something always on, but I’m not sure the maintenance is worth it when most things can just run on my laptop.\nThat said, I tend to do things myself and only later realize I could have automated or delegated them, so I may have a blind spot here.\nIf you have a cheap VPS or mini PC, what actually ended up being useful long-term? Anything that saved enough time or replaced enough subscriptions to justify keeping it around?",
@@ -96,11 +96,43 @@
       "created_at": "2026-10-06T23:16:56+00:00",
       "comments_data": [
         {
+          "id": "49991110",
+          "author": "mattfrommars",
+          "body": "I repurposed my old macbook pro from 2013 as dedicated Proxmox machine. I run all short of application on it - mostly pulled from https://community-scripts.org/ (https://community-scripts.org/). Along this, I use free tier of Oracle VM to funnel traffic to my box and use that as reverse proxy appliance. Thee isn't a real need to pay $5-$10 for a VPS if you have old machine lying around and use AI to help you configure it. I gave my setup using whichever LLM model I want to use at that day full access via SSH keys.",
+          "score": 0,
+          "time": 1791371466,
+          "parent": "49985548"
+        },
+        {
+          "id": "49991915",
+          "author": "neverminder",
+          "body": "Seedbox. With 5TB storage attached. Glory to Hetzner.",
+          "score": 0,
+          "time": 1791376653,
+          "parent": "49985548"
+        },
+        {
           "id": "49989237",
           "author": "ehe78qhe",
-          "body": "- qBitorrent for \"Linux ISOs\"\n- Jellyfin so I can watch/read/listen to my \"Linux ISOs\"\n- Tailscale so me, my family and friends can watch/read/listen to my \"Linux ISOs\" from anywhere in the world\n- Self hosting my photo albums. Immich is a handy choice for this. Very useful for personal photos you don't want to trust to strange tech companies.\n- Gitea for self-hosting git repos for some personal projects I have not open-sourced.",
+          "body": "On my home server (just an older desktop PC)\n- qBittorrent for \"Linux ISOs\"\n- Jellyfin so I can watch/read/listen to my \"Linux ISOs\"\n- Tailscale so me, my family and friends can watch/read/listen to my \"Linux ISOs\" from anywhere in the world\n- Self hosting my photo albums. Immich is a handy choice for this. Very useful for personal photos you don't want to trust to strange tech companies.\n- Gitea for self-hosting git repos for some personal projects I have not open-sourced.",
           "score": 0,
           "time": 1791355912,
+          "parent": "49985548"
+        },
+        {
+          "id": "49991059",
+          "author": "grugdev42",
+          "body": "* Mirror my Github repos (in case GH goes down or closes my account)\n* Serve my small website (just HTML files using Nginx)\n* Monitor other applications (and hits a URL when they fail)\n* Occasionally use it as a WeTransfer alternative (just uploading files into the WWW directory with an obscure name)",
+          "score": 0,
+          "time": 1791371162,
+          "parent": "49985548"
+        },
+        {
+          "id": "49990355",
+          "author": "jdboyd",
+          "body": "Here are a few things I do: \nHost static content behind nginx\nRun filestash as a partial GoogleDrive replacement (I use it for sharing files with other people, like deliverables), files place on an S3 compatible object store.\nRun vaultwarder for myself and some family members.\nRun a container registry service backed by an s3 compatible object store.\nRun a django web application I wrote for my own use. However, it stores to postgresql running in a different VPS.\nRun caddy for ssl termination and reverse proxying the other services running here.\nRedis (I forget if that was for filestash or the container registry, but can be configured to be very light weight).\nAll of those are in different containers running through podman.",
+          "score": 0,
+          "time": 1791365728,
           "parent": "49985548"
         },
         {
@@ -109,6 +141,14 @@
           "body": "I recently closed down a VPS I had been running for the last 10 years. Mostly used it for hosting a personal website and some smaller other static sites, as well as git repo backups.\nAfter getting into home assistant and setting up a proper home server I no longer saw a need to keep the VPS running. With cloudflare reverse proxy I can still host personal websites, but from inside my home network. Since getting the home server I'm discovering a lot of neat self hosted options and use it a lot more than I ever did the VPS. If nothing else, hosting your own stuff provides a great place to learn and explore. It doesn't have to be always on/on the internet for that to be true though.",
           "score": 0,
           "time": 1791346687,
+          "parent": "49985548"
+        },
+        {
+          "id": "49990888",
+          "author": "onel",
+          "body": "I keep moose os instance on a vps, for immich, cap (recordings), cal for meetings and one app for notes.\nSmall productivity apps that I just like to have access to everywhere.",
+          "score": 0,
+          "time": 1791369759,
           "parent": "49985548"
         },
         {
@@ -128,6 +168,14 @@
           "parent": "49985548"
         },
         {
+          "id": "49990802",
+          "author": "Kim_Bruning",
+          "body": "Right this minute I've got wireguard and caddy up.",
+          "score": 0,
+          "time": 1791368985,
+          "parent": "49985548"
+        },
+        {
           "id": "49988108",
           "author": "ogou",
           "body": "Messaging queues and brokers. RabbitMQ, BullMQ, etc. Simple services, but I've learned to keep them on their own images so they recover fast and don't compete with other resources.",
@@ -142,38 +190,6 @@
           "score": 0,
           "time": 1791336696,
           "parent": "49985548"
-        },
-        {
-          "id": "49988332",
-          "author": "browningstreet",
-          "body": "Hermes and an Orca dev server",
-          "score": 0,
-          "time": 1791348587,
-          "parent": "49985548"
-        },
-        {
-          "id": "49987762",
-          "author": "1vuio0pswjnm7",
-          "body": "1. Authoritative DNS server\n2. Rendezvous server (\"supernode\")",
-          "score": 0,
-          "time": 1791343798,
-          "parent": "49985548"
-        },
-        {
-          "id": "49988432",
-          "author": "mikewarot",
-          "body": "I've seen too many chat services go away, or behind a paywall, so I vibe-coded my own chat and use the VPS to host the hole-punching infrastructure, because I and my friend who I wish to chat with are both behind NAT.\nThe price was low enough that I left it running.",
-          "score": 0,
-          "time": 1791349355,
-          "parent": "49985548"
-        },
-        {
-          "id": "49986333",
-          "author": "Sha1rholder",
-          "body": "Deploy a vpn",
-          "score": 0,
-          "time": 1791333566,
-          "parent": "49985548"
         }
       ]
     },
@@ -184,8 +200,8 @@
       "title": "Ask HN: What games do you religiously play on your phone browser?",
       "subreddit": "ask-hn",
       "author": "saimiam",
-      "score": 8,
-      "num_comments": 19,
+      "score": 12,
+      "num_comments": 24,
       "permalink": "https://news.ycombinator.com/item?id=49985502",
       "url": "https://news.ycombinator.com/item?id=49985502",
       "selftext": "I play a few word games every day - Wordle, connections, crossword - but I feel I need to look at non-word games to keep the brain agile. Looking for ideas.",
@@ -194,6 +210,14 @@
       "time": 1791328368,
       "created_at": "2026-10-06T23:12:48+00:00",
       "comments_data": [
+        {
+          "id": "49989819",
+          "author": "abbadadda",
+          "body": "A while back I was enjoying Mahjong Solitaire: https://www.crazygames.com/game/mahjongg-solitaire (https://www.crazygames.com/game/mahjongg-solitaire)",
+          "score": 0,
+          "time": 1791361241,
+          "parent": "49985502"
+        },
         {
           "id": "49988728",
           "author": "quuxplusone",
@@ -219,11 +243,11 @@
           "parent": "49985502"
         },
         {
-          "id": "49987875",
-          "author": "cpach",
-          "body": "1010 https://poki.com/en/g/1010-deluxe (https://poki.com/en/g/1010-deluxe)",
+          "id": "49990816",
+          "author": "hulitu",
+          "body": "None. The Phone's browser is unsuitable for games and I am not masochistic.",
           "score": 0,
-          "time": 1791344703,
+          "time": 1791369096,
           "parent": "49985502"
         },
         {
@@ -243,19 +267,19 @@
           "parent": "49985502"
         },
         {
+          "id": "49987875",
+          "author": "cpach",
+          "body": "1010 https://poki.com/en/g/1010-deluxe (https://poki.com/en/g/1010-deluxe)",
+          "score": 0,
+          "time": 1791344703,
+          "parent": "49985502"
+        },
+        {
           "id": "49987378",
           "author": "satya71",
           "body": "https://whereabouts.earth/daily (https://whereabouts.earth/daily)",
           "score": 0,
           "time": 1791340684,
-          "parent": "49985502"
-        },
-        {
-          "id": "49987687",
-          "author": "Kurd",
-          "body": "I play a lot of chess on lichess.org \nNo login required and the matching system is very decent.",
-          "score": 0,
-          "time": 1791343120,
           "parent": "49985502"
         },
         {
@@ -267,11 +291,11 @@
           "parent": "49985502"
         },
         {
-          "id": "49988870",
-          "author": "fragmede",
-          "body": "https://unflipgame.com/ (https://unflipgame.com/)",
+          "id": "49987687",
+          "author": "Kurd",
+          "body": "I play a lot of chess on lichess.org \nNo login required and the matching system is very decent.",
           "score": 0,
-          "time": 1791352875,
+          "time": 1791343120,
           "parent": "49985502"
         },
         {
@@ -280,14 +304,6 @@
           "body": "uncrossy.\nAbout twice a week I go and do the last few days of puzzles. Ever since I first saw it released here on HN.",
           "score": 0,
           "time": 1791334869,
-          "parent": "49985502"
-        },
-        {
-          "id": "49985522",
-          "author": "PaulHoule",
-          "body": "My favorite mobile game of all time is Arknights, although it isn't a browser game.",
-          "score": 0,
-          "time": 1791328486,
           "parent": "49985502"
         }
       ]
@@ -316,8 +332,8 @@
       "title": "Ask HN: Why is Ask HN only showing me 14 posts?",
       "subreddit": "ask-hn",
       "author": "Gooblebrai",
-      "score": 42,
-      "num_comments": 40,
+      "score": 45,
+      "num_comments": 44,
       "permalink": "https://news.ycombinator.com/item?id=49984484",
       "url": "https://news.ycombinator.com/item?id=49984484",
       "selftext": "I'd have swear before there were more and even a more button at the bottom",
@@ -431,8 +447,8 @@
       "title": "Ask HN: How do you describe what your relationship brings you?",
       "subreddit": "ask-hn",
       "author": "maxignol",
-      "score": 2,
-      "num_comments": 4,
+      "score": 3,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=49983113",
       "url": "https://news.ycombinator.com/item?id=49983113",
       "selftext": "I've been struggling to put into words what I want from my relationships and began asking my friends what their answers were, and so now I ask you.",
@@ -441,6 +457,14 @@
       "time": 1791315987,
       "created_at": "2026-10-06T19:46:27+00:00",
       "comments_data": [
+        {
+          "id": "49990003",
+          "author": "drakonka",
+          "body": "Warmth, intimacy, companionship, curiosity, discovery.",
+          "score": 0,
+          "time": 1791362968,
+          "parent": "49983113"
+        },
         {
           "id": "49989027",
           "author": "abstractspoon",
@@ -474,8 +498,8 @@
       "title": "Tell HN: GitHub refuses to remove cracked copies of my software after a month",
       "subreddit": "ask-hn",
       "author": "IvanK_net",
-      "score": 130,
-      "num_comments": 85,
+      "score": 340,
+      "num_comments": 186,
       "permalink": "https://news.ycombinator.com/item?id=49982498",
       "url": "https://news.ycombinator.com/item?id=49982498",
       "selftext": "I am a developer of https://www.photopea.com, a popular photo editor that runs in a web browser.\nMany people are asking AI models to take the Javascript code from my website, remove all ads from it, and they publish such a \"new product\" on Github for everyone to download.\nThere exist tens of such repositories on Github. I want my website to be the only source of a stable version of my program Photopea. I even received emails from people complaining about something in Photopea, and it took several emails to figure out that they are not using Photopea.com (so it ruins my reputation a little).\nI reported it to Github on the 4th of September 2026: https://www.photopea.com/g/XKoqqIGv\nToday, a month later, I received this response:\nThank you for submitting a DMCA takedown notice. We've reviewed the information you've provided, and based on the facts presented to us, we're unable to confirm a violation of 17 U.S. Code § 1201.\nWhat do you think I could do? Do you think I should look for a lawyer to deal with it outside the digital world? I really doubt that a real person ever looked at my report, and they probably send this response automatically to 99% of people.",
@@ -490,6 +514,14 @@
           "body": "First off, let me get this out of the way - I am not a lawyer. If you want a legal advice talk to a lawyer.\nSecond, I am sorry this is happening to you.\nThird, based on GitHub's reply, specifically\n> we're unable to confirm a violation of 17 U.S. Code § 1201\nthey took your submission as 17 U.S. Code § 1201 takedown notice. Maybe you specifically stated this. Maybe it was implied. This is likely not what you want and GitHub's response is likely correct. The reason for this is that § 1201 prohibits circumventing a technological measure. The JS you host on your public site, even if obfuscated, very likely does not qualify for this protection. Another detail - the reason it took long (a month later according to your post) is that after the youtube-dl fiasco, they committed to manual review, legal and technical, of every 1201 takedown notice [0].\nFourth, if you believe these copies are sufficiently reproducing your copyrighted work, \nwhat you likely want to do is file a standard copyright infringement 17 U.S Code § 512(c) takedown notice. This still goes through the same DMCA report flow but it should result in a less stringent review process and a faster response.\nFifth and finally, consider asking your favorite LLM to get more context around these laws. Good luck!\n[0] https://github.blog/news-insights/policy-news-and-insights/s... (https://github.blog/news-insights/policy-news-and-insights/standing-up-for-developers-youtube-dl-is-back/)",
           "score": 0,
           "time": 1791346429,
+          "parent": "49982498"
+        },
+        {
+          "id": "49990074",
+          "author": "summarity",
+          "body": "Is there a ticket code or other contact you've been in touch with?\nAs for DMCA filings, we publish all of them here: https://github.com/github/dmca (https://github.com/github/dmca)\nI see two from Photopea, one from 2022 (https://github.com/github/dmca/blob/d97814f268e07e62aabe8b5c... (https://github.com/github/dmca/blob/d97814f268e07e62aabe8b5c43d48643560eb1a5/2022/03/2022-03-22-photopea.md?plain=1#L27)) and one from 2024 (https://github.com/github/dmca/blob/d97814f268e07e62aabe8b5c... (https://github.com/github/dmca/blob/d97814f268e07e62aabe8b5c43d48643560eb1a5/2024/07/2024-07-15-photopea.md?plain=1#L21)) - could you point to the recent filing?\nI work at GH, but am not involved in DMCA filings, and can in no way answer or judge this case, but potentially follow up internally.",
+          "score": 0,
+          "time": 1791363500,
           "parent": "49982498"
         },
         {
@@ -509,6 +541,30 @@
           "parent": "49982498"
         },
         {
+          "id": "49991287",
+          "author": "MisterMunchkin",
+          "body": "It's inevitable if your entire product is statically hosted and pulled into their browser. They didn't even need AI to do this, they could have just done it by hand anyway.",
+          "score": 0,
+          "time": 1791372773,
+          "parent": "49982498"
+        },
+        {
+          "id": "49992030",
+          "author": "cringleycringe",
+          "body": "This is so 1990s",
+          "score": 0,
+          "time": 1791377293,
+          "parent": "49982498"
+        },
+        {
+          "id": "49991556",
+          "author": "lewelove",
+          "body": "With all due respect: people should be able to do this. Copyright as a concept applied to code was always a god-awful idea, DMCA especially. And for JS served on the open web it's plainly comedic.\nSomeone can always make a new repo without redistributing your code, sourcing and hot-patching it directly from your domain. GitHub deleting this repo won't ever fix it, you're playing whack-a-mole and doing free PR for these repos here on HN.\nWe seem to forget that this website is called Hacker News.",
+          "score": 0,
+          "time": 1791374531,
+          "parent": "49982498"
+        },
+        {
           "id": "49985916",
           "author": "bartread",
           "body": "Man, some of the comments this is getting are absolutely wild.\nOP, I’m sorry this is happening to you. It must be incredibly frustrating to have people ripping off something you’ve worked on for many years and pass it off as their own work. I would be furious in your position.\nI wish I could do something directly to help you but the best I can offer is to echo the best advice others have already given you: it’s time to get a lawyer. That is the one guaranteed route to get GitHub to sit up and take the action they should already have taken on your behalf.",
@@ -517,19 +573,19 @@
           "parent": "49982498"
         },
         {
-          "id": "49987935",
-          "author": "anilgulecha",
-          "body": "Can you post the actual link of the repo? You'd get responses with more context.\nYou had commented on the photocraft post prior, so if it's that, then it's a bit muddled. It's a LLM based re-implementation and not a copy of the code made open. So the argument would be weaker there, and you'd really need specific code samples to make a case of copyright infringement. Photocraft not \"piracy\" as is normally understood, which is the exact same binary, optionally with the license protection removed.",
+          "id": "49990052",
+          "author": "schnebbau",
+          "body": "I think we're going to see a lot more of this going forward.\nI think we're also going to see the strategy to be to remove the processing and magic sauce from the client and move it to the server where it can't be decompiled and rebuilt with AI.",
           "score": 0,
-          "time": 1791345227,
+          "time": 1791363322,
           "parent": "49982498"
         },
         {
-          "id": "49988957",
-          "author": "BSVogler",
-          "body": "I am in the same situation where people are hosting copies of the software for commercial use in companies. Even as big as Tencent. That is not allowed with my license and they also went to remove the code that does the license check on application startup. GitHub’s response so far: “please give an explanation how they can become conformant so that the users can fix this.”",
+          "id": "49990195",
+          "author": "msalihb",
+          "body": "I use photopea for years and really respect what you did. I disabled the adblocker. I hope they remove that.",
           "score": 0,
-          "time": 1791353607,
+          "time": 1791364407,
           "parent": "49982498"
         },
         {
@@ -541,43 +597,11 @@
           "parent": "49982498"
         },
         {
-          "id": "49985812",
-          "author": "binlog",
-          "body": "Yes you need a lawyer. You may not have filed the DMCA request correctly. You may not be understanding the law correctly.",
+          "id": "49990300",
+          "author": "throwawayffffas",
+          "body": "> What do you think I could do?\nHire a copyright lawyer.\nStart going after the people that run this as a service, for both copyright and trademark infringement (you have a trademark for photopea right?).",
           "score": 0,
-          "time": 1791330308,
-          "parent": "49982498"
-        },
-        {
-          "id": "49986031",
-          "author": "jameshilliard",
-          "body": "> Thank you for submitting a DMCA takedown notice. We've reviewed the information you've provided, and based on the facts presented to us, we're unable to confirm a violation of 17 U.S. Code § 1201.\nDid they actually republish you code or were they just creating wrappers that download/cache the code from your website to run locally?",
-          "score": 0,
-          "time": 1791331632,
-          "parent": "49982498"
-        },
-        {
-          "id": "49982602",
-          "author": "B4uler5",
-          "body": "Sorry this happened to you dude. I don’t want to be harsh but, out of the crimes ignored in this era of AI clean rooming, book destroying distilleries and a despondent ostrich adjacent legal system you do seem to be one amongst a deluge of cheated individuals.\nHope you manage to get it sorted but I have no idea how that would go down at this point. I’m sure at least one of them could claim they copied it off the other ones and then you’re shit out of luck.",
-          "score": 0,
-          "time": 1791313370,
-          "parent": "49982498"
-        },
-        {
-          "id": "49988246",
-          "author": "kasajian",
-          "body": "On the bright side, I now know about your product. Had never heard of it prior to this.",
-          "score": 0,
-          "time": 1791347976,
-          "parent": "49982498"
-        },
-        {
-          "id": "49982620",
-          "author": "ianberdin",
-          "body": "I personally know Ivan. For many years of his life, every day, he programmed algorithm after algorithm in this complex online photo editing tool. Essentially, he devoted half his life to it. And now, when someone has literally stolen his work, nobody is reacting. And that's terrible. I think it's absolutely terrible. GitHub should respond to this.\nI've seen people on Reddit writing things like, \"Come on, what's the big deal? AI can write any code now.\" I disagree. There are hundreds of thousands of lines of code here, very complex code, which even AI wouldn't be able to write on the first try or in a single day. So this person stole this code from Photopea and built a product on top of it.",
-          "score": 0,
-          "time": 1791313446,
+          "time": 1791365293,
           "parent": "49982498"
         }
       ]
@@ -606,8 +630,8 @@
       "title": "Ask HN: Do you still own a printer?",
       "subreddit": "ask-hn",
       "author": "nunorbatista",
-      "score": 11,
-      "num_comments": 17,
+      "score": 14,
+      "num_comments": 19,
       "permalink": "https://news.ycombinator.com/item?id=49981885",
       "url": "https://news.ycombinator.com/item?id=49981885",
       "selftext": "My wife tried to convince me to buy a printer, she said that it could be useful to print school related stuff for the kids and I was kind of surprised because I have the feeling that it's not needed anymore? \nEven if we talk about school, today the communication with the teacher is done through an App, so I'm not sure it's going to go back (my kids are 6, if that matters).\nI also have a printer at the office which I have to go every day and she asked me to print stuff like twice, so I'm kind of curious about what's the status of home printing?\nPS - when I need to print photos, I use a service that prints in a proper photographic paper and size to frame. I do this like twice a year.",
@@ -633,11 +657,11 @@
           "parent": "49981885"
         },
         {
-          "id": "49987544",
-          "author": "kalleboo",
-          "body": "I only had an ImageWriter II dot matrix printer in my retro setup.\nOur printing needs are minimal, maybe 1 or 2 times a year we'll just go and print at 7-11, which has better options than a home printer anyway (A3 size paper, both laser and inkjet photo printing options, sticker paper etc)\nRecently my father-in-law passed away and he had 3 inkjet printers and we inherited 2 of them. For the first few weeks there was a flurry of \"we can print now\" and there was some arts and crafts being done, but since they they've been laying dormant.",
+          "id": "49989495",
+          "author": "d3Xt3r",
+          "body": "Everyone keeps saying how great laser printers are, but I vastly prefer my Brother inkjet (ask me why). I use it only maybe once or twice an year, usually to print copies of flight tickets and important documents, and very rarely scan copies of original documents.",
           "score": 0,
-          "time": 1791342005,
+          "time": 1791358308,
           "parent": "49981885"
         },
         {
@@ -646,6 +670,14 @@
           "body": "We have seven printers. I use an HP LaserJet 6P which I bought 20+ years ago. My son uses an Epson setup to print films for screen printing tee shirts. All the others were free on Craiglist over the years. I also have two FedX Kinkos nearby for color printing.",
           "score": 0,
           "time": 1791334672,
+          "parent": "49981885"
+        },
+        {
+          "id": "49987544",
+          "author": "kalleboo",
+          "body": "I only had an ImageWriter II dot matrix printer in my retro setup.\nOur printing needs are minimal, maybe 1 or 2 times a year we'll just go and print at 7-11, which has better options than a home printer anyway (A3 size paper, both laser and inkjet photo printing options, sticker paper etc)\nRecently my father-in-law passed away and he had 3 inkjet printers and we inherited 2 of them. For the first few weeks there was a flurry of \"we can print now\" and there was some arts and crafts being done, but since they they've been laying dormant.",
+          "score": 0,
+          "time": 1791342005,
           "parent": "49981885"
         },
         {
@@ -689,14 +721,6 @@
           "parent": "49981885"
         },
         {
-          "id": "49988174",
-          "author": "mhdhn",
-          "body": "yes, 2 multifunction printers with scanning and faxing and copying capability",
-          "score": 0,
-          "time": 1791347137,
-          "parent": "49981885"
-        },
-        {
           "id": "49983271",
           "author": "DerArzt",
           "body": "Yes! I bought a brother laser printer to use as part of my D&D hobby. I love paper and pencil for D&D to the point that my notes are all printed and staple bound in a digest sized packet for each session.",
@@ -705,11 +729,11 @@
           "parent": "49981885"
         },
         {
-          "id": "49981951",
-          "author": "DamonHD",
-          "body": "Yes, an Epson EcoTank.",
+          "id": "49988174",
+          "author": "mhdhn",
+          "body": "yes, 2 multifunction printers with scanning and faxing and copying capability",
           "score": 0,
-          "time": 1791309958,
+          "time": 1791347137,
           "parent": "49981885"
         }
       ]
@@ -722,7 +746,7 @@
       "subreddit": "ask-hn",
       "author": "microflash",
       "score": 5,
-      "num_comments": 3,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=49981268",
       "url": "https://news.ycombinator.com/item?id=49981268",
       "selftext": "Interested to know what has worked and what hasn’t. How can you stay sane and not burned out by all the “gentle encouragements” to use AI?",
@@ -775,7 +799,7 @@
       "title": "Ask HN: How come everyone is an LLM expert?",
       "subreddit": "ask-hn",
       "author": "delis-thumbs-7e",
-      "score": 3,
+      "score": 4,
       "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=49980529",
       "url": "https://news.ycombinator.com/item?id=49980529",
@@ -835,7 +859,7 @@
       "title": "Ask HN: Is observability broken for you?",
       "subreddit": "ask-hn",
       "author": "tmach32",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49977695",
       "url": "https://news.ycombinator.com/item?id=49977695",
@@ -852,8 +876,8 @@
       "title": "Ask HN: My Apple ID is locked for a week, Apple is a single point of failure",
       "subreddit": "ask-hn",
       "author": "akg_67",
-      "score": 11,
-      "num_comments": 4,
+      "score": 12,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=49976972",
       "url": "https://news.ycombinator.com/item?id=49976972",
       "selftext": "My Apple ID was locked by Apple Oct 3rd. I got an automated email stating that I will receive further instructions for account recovery Oct 10th, a week of pain. There is zero human escalation path, no phone number to call, the iforget link leads to same message as email and no further escalation.\nBecause my Apple ID is frozen, the App Store is completely bricked. I can’t update any apps. Living in Japan, almost all of my critical banking and payment apps (like Rakuten Pay) enforce hard version checks for security. The app refuses to launch, needing update. A locked Apple ID effectively cut off my access to my money and daily transactions.\nMy temporary workaround was digging out an old Android phone to use as a backup for my payment apps (of course these apps are only allowed on one device so now I need to carry two phones). But it made me realize how scary my setup was. If Apple decides to lock account, entire day-to-day life stops, and no one to talk to about it. Going forward I am definitely not storing any important government ID like driver license, payments cards, my number card (similar to SSN in US) on Apple devices.\nHow are you guys decoupling your digital lives from a single OS ecosystem? What does your personal \"cold standby\" look like to handle this risk?\nMy personal computing infrastructure was all in Apple ecosystem. But this incident made me realize, Apple is SPOF, I need to diversify away from Apple and be also part of non-Apple environment.",
@@ -964,7 +988,7 @@
       "subreddit": "ask-hn",
       "author": "Hixon10",
       "score": 4,
-      "num_comments": 1,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49973382",
       "url": "https://news.ycombinator.com/item?id=49973382",
       "selftext": "As in many other areas (e.g. code, emails, PRs, blog posts), people have started using LLMs to generate slides for their conference talks (e.g., set of HTML pages as a talk).\nOn the one hand, the slides look tidy, neat, and precise, with infographics, plots, dashboards, and so on. Nothing to complain about.\nOn the other hand, they look, hm, like LLM generated web sites, like soulless, if I may say so. I don't know why, but I don't enjoy reading them, even though they probably provide more value than hand crafted.\nWhat's your current take?",

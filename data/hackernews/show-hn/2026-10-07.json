@@ -1,8 +1,103 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-07T06:52:05.119681+00:00",
+  "last_fetched": "2026-10-07T12:49:03.342192+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49991569",
+      "title": "Show HN: CloudGrip – Open-source AI proxy to cap LLM API budgets",
+      "subreddit": "show-hn",
+      "author": "aliyunazeer07",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49991569",
+      "url": "https://github.com/Aliyunazeer/cloudgrip-backend",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791374633,
+      "created_at": "2026-10-07T12:03:53+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49991419",
+      "title": "Show HN: Cellula Humana – 3D interactive exploration of a human cell",
+      "subreddit": "show-hn",
+      "author": "djordjejanjic",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49991419",
+      "url": "https://cellulahumana.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791373658,
+      "created_at": "2026-10-07T11:47:38+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49991390",
+      "title": "Show HN: Every number in a tiny GPT, from one forward pass to one step of RLHF",
+      "subreddit": "show-hn",
+      "author": "xtcntr",
+      "score": 7,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49991390",
+      "url": "https://llm.manogya.dev",
+      "selftext": "Source: https://github.com/manogyasingh/transformer-visualisation (https://github.com/manogyasingh/transformer-visualisation)\nWas taking a course on reasoning LMs with a 50% project component. Shortly after I started, I realised I didn't fully understand how these work. I know the architecture and the theory and steps but still there are stages where either the purpose, or the functioning was unclear to me and so I wanted an interactive walkthrough of one token's generation. So here it is, made with Opus 5.5.\nIt's a step by step walkthrough of a toy GPT-2 like model. Every matrix fits on screen, every number is computed live in the browser, and hovering over any cell shows the exact math of that step. It covers inference -- following the generation of one token from tokensiation to sampling, one training step of pretraining, and one PPO iteration of RLHF for post-training.\nInspired in part by Brendan Bycroft's LLM visualization (https://bbycroft.net/llm (https://bbycroft.net/llm))",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791373477,
+      "created_at": "2026-10-07T11:44:37+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49990447",
+      "title": "Show HN: PgNimbus 1.0, an open-source PostgreSQL client that sends no telemetry",
+      "subreddit": "show-hn",
+      "author": "shman4ik",
+      "score": 5,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=49990447",
+      "url": "https://github.com/Shman4ik/pgNimbus",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791366510,
+      "created_at": "2026-10-07T09:48:30+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49989493",
+      "title": "Show HN: Neptune, a free and open-source terminal built in Rust",
+      "subreddit": "show-hn",
+      "author": "gabo2006",
+      "score": 5,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=49989493",
+      "url": "https://github.com/zevem/neptune",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791358305,
+      "created_at": "2026-10-07T07:31:45+00:00",
+      "comments_data": [
+        {
+          "id": "49989527",
+          "author": "gabo2006",
+          "body": "I built Neptune partly because I couldn’t find a terminal I liked for working with AI agents. cmux didn’t run well on my Ubuntu setup, and Ghostty was missing some features I liked in cmux. I wanted something free and open source that works well across Linux, macOS and Windows. It’s still early, so I’d like to hear how it works for you and what needs improving.",
+          "score": 0,
+          "time": 1791358560,
+          "parent": "49989493"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,8 +105,8 @@
       "title": "Show HN: Musql, JIT-compiled SQL, up to 300x faster than SQLite, 1000x vs. Turso",
       "subreddit": "show-hn",
       "author": "dsamy",
-      "score": 4,
-      "num_comments": 2,
+      "score": 8,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=49988641",
       "url": "https://github.com/samyfodil/musql",
       "selftext": "Howdy HN!\nMissing a fast pure Go embedded SQL database. The issue is that compared to C, go is slow. Having done a lot of JIT in go, I naturally wanted to stick a JIT that generates native query kernels and see what happens.\nResult: musql. Pronounced \"muscle.\"\nOn a 100K-row filtered count, musql takes 21 µs: about 300x faster than C SQLite and nearly 1,000x faster than Turso. Single-threaded, warm cache, using musql's direct API, native C SQLite, and Turso's Go driver. Filtered sums are 130x faster than C SQLite, grouped aggregates 95x.\nIt works with Go's database/sql or through a server for libSQL clients. It uses its own storage format, with SQLite import/export. And yes, the SQL VM runs DOOM.\nCode, setup, and benchmarks: https://github.com/samyfodil/musql (https://github.com/samyfodil/musql)",
@@ -20,6 +115,14 @@
       "time": 1791351023,
       "created_at": "2026-10-07T05:30:23+00:00",
       "comments_data": [
+        {
+          "id": "49990376",
+          "author": "stefanos82",
+          "body": "> Result: musql. Pronounced \"muscle.\"\nYou mean it's pronounced \"muscal\", like Mezcal, but with an \"ah\" LOL!",
+          "score": 0,
+          "time": 1791365872,
+          "parent": "49988641"
+        },
         {
           "id": "49988940",
           "author": "DylanMerigaud",
@@ -37,7 +140,7 @@
       "title": "Show HN: Rgpu – a PyTorch device whose tensors live on a remote GPU",
       "subreddit": "show-hn",
       "author": "boxstream",
-      "score": 4,
+      "score": 5,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49988516",
       "url": "https://github.com/ymcrcat/rgpu",
@@ -98,7 +201,7 @@
       "title": "Show HN: Snug, a local-only bookmark export, import and backup extension",
       "subreddit": "show-hn",
       "author": "AndryOre",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49988372",
       "url": "https://github.com/AndryOre/snug",
@@ -115,7 +218,7 @@
       "title": "Show HN: Git extension for controlling Git worktree mess",
       "subreddit": "show-hn",
       "author": "ironfootnz",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49988001",
       "url": "https://getzit.org/",
@@ -166,15 +269,73 @@
       "title": "Show HN: NanoMuse – An open-source AI agent for your phone and computer",
       "subreddit": "show-hn",
       "author": "ilreb",
-      "score": 10,
-      "num_comments": 0,
+      "score": 29,
+      "num_comments": 8,
       "permalink": "https://news.ycombinator.com/item?id=49987765",
       "url": "https://github.com/nano-muse/nanoMuse",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1791343844,
-      "created_at": "2026-10-07T03:30:44+00:00"
+      "created_at": "2026-10-07T03:30:44+00:00",
+      "comments_data": [
+        {
+          "id": "49989579",
+          "author": "shlewis",
+          "body": "Great name to be replaced in about a week.",
+          "score": 0,
+          "time": 1791359016,
+          "parent": "49987765"
+        },
+        {
+          "id": "49991152",
+          "author": "aidiveyt",
+          "body": "audit the installer: a similar tool, state dir redirected, still wrote eleven other assistants' config files and a port 4400 daemon.",
+          "score": 0,
+          "time": 1791371774,
+          "parent": "49987765"
+        },
+        {
+          "id": "49989928",
+          "author": "soltanov",
+          "body": "If name changing becomes main topic, i suggest nanoCat :). Btw how do you handle security boundaries?",
+          "score": 0,
+          "time": 1791362184,
+          "parent": "49987765"
+        },
+        {
+          "id": "49990553",
+          "author": "herbst",
+          "body": "Sounds like a meta product made to steal my data on yet another device, not good marketing",
+          "score": 0,
+          "time": 1791367363,
+          "parent": "49987765"
+        },
+        {
+          "id": "49991328",
+          "author": "thatsabadlook",
+          "body": "Anyone running ai agents directly on their phone deserves exactly what they get.",
+          "score": 0,
+          "time": 1791373026,
+          "parent": "49987765"
+        },
+        {
+          "id": "49989739",
+          "author": "tiku",
+          "body": "Yeah not installing this on my daily phone yet...",
+          "score": 0,
+          "time": 1791360469,
+          "parent": "49987765"
+        },
+        {
+          "id": "49991273",
+          "author": "i_love_retros",
+          "body": "I honestly can't imagine ever having, needing or wanting an AI assistant on any of my devices.\nHave people really been struggling so badly all these years with managing their emails and gym memberships?",
+          "score": 0,
+          "time": 1791372677,
+          "parent": "49987765"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -201,14 +362,24 @@
       "subreddit": "show-hn",
       "author": "valorantPanda",
       "score": 4,
-      "num_comments": 0,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49987419",
       "url": "https://ohmytt.com/",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1791340928,
-      "created_at": "2026-10-07T02:42:08+00:00"
+      "created_at": "2026-10-07T02:42:08+00:00",
+      "comments_data": [
+        {
+          "id": "49989827",
+          "author": "Markoff",
+          "body": "what's benefit over open source cobalt.tools ?\nhttps://cobalt.directory (https://cobalt.directory)",
+          "score": 0,
+          "time": 1791361298,
+          "parent": "49987419"
+        }
+      ]
     },
     {
       "source": "hackernews",

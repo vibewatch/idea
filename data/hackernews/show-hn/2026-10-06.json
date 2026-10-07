@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-07T06:52:05.119681+00:00",
+  "last_fetched": "2026-10-07T12:49:03.342192+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -96,15 +96,25 @@
       "title": "Show HN: An AI agent runs ten web errands a day, every transcript published",
       "subreddit": "show-hn",
       "author": "khalidsaidi",
-      "score": 10,
-      "num_comments": 0,
+      "score": 13,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=49984736",
       "url": "https://agentability.org/",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1791324058,
-      "created_at": "2026-10-06T22:00:58+00:00"
+      "created_at": "2026-10-06T22:00:58+00:00",
+      "comments_data": [
+        {
+          "id": "49990484",
+          "author": "zerolunier",
+          "body": "that's cool, i'm digging into it, looks intersting to me",
+          "score": 0,
+          "time": 1791366772,
+          "parent": "49984736"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -347,8 +357,8 @@
       "title": "Show HN: I turned my iPhone and a $20 smart plug into an f-stop timer",
       "subreddit": "show-hn",
       "author": "pentakkusu",
-      "score": 78,
-      "num_comments": 30,
+      "score": 83,
+      "num_comments": 35,
       "permalink": "https://news.ycombinator.com/item?id=49978595",
       "url": "https://peterszentkiralyi.eu/darkplug/",
       "selftext": "I am a film photographer and do some darkroom printing and always wanted one of the proper, advanced f-stop timers, but never really wanted to spend a couple hundred dollars on one. Eventually I figured my phone was already perfectly capable of doing the timing, it just needed a way to switch the enlarger.\nSo I built Darkplug around a cheap smart plug. The app controls the enlarger over the local network and does regular timing, f-stop timing, test strips, has an intuitive dodge/burn workflow, split grade (2 timing channels) and paper development timing.\nI’ve been using it for a few months in my improvised bathroom darkroom.\nFair warning: the app was blindly vibe coded using Codex and Xcode.",
@@ -357,6 +367,14 @@
       "time": 1791295087,
       "created_at": "2026-10-06T13:58:07+00:00",
       "comments_data": [
+        {
+          "id": "49990064",
+          "author": "pathartl",
+          "body": "I grew up with two photographer parents that built a house around photographic printing. I was looking through their exposure notes a bit ago and as long as you can get sub second you should be able to get some pretty consistent results.\nThey did color, so when printing there was no such thing as a safelite. I can still vividly remember being that \"can I help?\" age and setting the timers for each color, loading in the paper in complete darkness, firing up the enlarger, and then feeding it to the auto processor. It was certainly an interesting way to grow up.",
+          "score": 0,
+          "time": 1791363423,
+          "parent": "49978595"
+        },
         {
           "id": "49981221",
           "author": "arnarbi",
@@ -382,19 +400,19 @@
           "parent": "49978595"
         },
         {
-          "id": "49987167",
-          "author": "nottorp",
-          "body": "I'd like to endorse the plug choice :)\nShellys can be configured to connect to your wifi and are not dependent on any cloud service.",
-          "score": 0,
-          "time": 1791339142,
-          "parent": "49978595"
-        },
-        {
           "id": "49982816",
           "author": "sailingcode",
           "body": "Good idea. I wonder if the iPhone's camera would be able to measure the projected negative and guide exposure time?",
           "score": 0,
           "time": 1791314509,
+          "parent": "49978595"
+        },
+        {
+          "id": "49987167",
+          "author": "nottorp",
+          "body": "I'd like to endorse the plug choice :)\nShellys can be configured to connect to your wifi and are not dependent on any cloud service.",
+          "score": 0,
+          "time": 1791339142,
           "parent": "49978595"
         },
         {
@@ -447,7 +465,7 @@
       "title": "Show HN: Jotbus – a shared encrypted scratchpad for coding agents",
       "subreddit": "show-hn",
       "author": "shake-n-fries",
-      "score": 25,
+      "score": 27,
       "num_comments": 14,
       "permalink": "https://news.ycombinator.com/item?id=49978401",
       "url": "https://jotbus.com/",
@@ -458,19 +476,19 @@
       "created_at": "2026-10-06T13:45:04+00:00",
       "comments_data": [
         {
-          "id": "49988522",
-          "author": "tomsonoda",
-          "body": "It is certainly a benefit that the server only ever sees encrypted data. \nI have also worked on E2EE for multi-device shared spaces, and the trickiest bugs weren't in the encryption itself, but in edge cases related to key distribution. I have two questions regarding this:\n1. When a new client joins but fails to retrieve the workspace key (due to temporary network issues or a 404 error from the server, for example), does it ever generate a new key locally? We encountered exactly this scenario: a device \"helpfully\" created its own key and encrypted data with it, rendering the message unreadable to other members (without any error notification). We ended up changing the server behavior so that instead of returning a \"key missing\" response, it signals that the key exists and the client should wait for it.\n2. How do you handle key revocation? If you invite someone and later remove them, do you rotate (update) the workspace key and re-wrap it for the remaining members, or does the old key still allow access to past content?",
-          "score": 0,
-          "time": 1791350197,
-          "parent": "49978401"
-        },
-        {
           "id": "49979346",
           "author": "tinthedev",
           "body": "Looks pretty cool, although I'm not sure I see the advantage over a skill using something like a private git repo / file store / server?\nSo far, I've used that, a UNIX-socket inspired approach to push/pull with a remote git (hosted on my server) that the branches/files can be tossed to, and pulled via other agent. Skill instructs them to make a copy-paste ready instruction for the other prompt.\nWhy'd Jotbus be worth the overhead?",
           "score": 0,
           "time": 1791298090,
+          "parent": "49978401"
+        },
+        {
+          "id": "49988522",
+          "author": "tomsonoda",
+          "body": "It is certainly a benefit that the server only ever sees encrypted data. \nI have also worked on E2EE for multi-device shared spaces, and the trickiest bugs weren't in the encryption itself, but in edge cases related to key distribution. I have two questions regarding this:\n1. When a new client joins but fails to retrieve the workspace key (due to temporary network issues or a 404 error from the server, for example), does it ever generate a new key locally? We encountered exactly this scenario: a device \"helpfully\" created its own key and encrypted data with it, rendering the message unreadable to other members (without any error notification). We ended up changing the server behavior so that instead of returning a \"key missing\" response, it signals that the key exists and the client should wait for it.\n2. How do you handle key revocation? If you invite someone and later remove them, do you rotate (update) the workspace key and re-wrap it for the remaining members, or does the old key still allow access to past content?",
+          "score": 0,
+          "time": 1791350197,
           "parent": "49978401"
         },
         {
@@ -574,8 +592,8 @@
       "title": "Show HN: Parseable, an open observability datalake, handles 100M time-series/min",
       "subreddit": "show-hn",
       "author": "yashdotrv",
-      "score": 82,
-      "num_comments": 22,
+      "score": 84,
+      "num_comments": 23,
       "permalink": "https://news.ycombinator.com/item?id=49978171",
       "url": "https://www.parseable.com",
       "selftext": "",
