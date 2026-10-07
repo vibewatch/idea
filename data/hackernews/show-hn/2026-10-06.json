@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-07T12:49:03.342192+00:00",
+  "last_fetched": "2026-10-07T18:42:17.720754+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -313,6 +313,73 @@
           "score": 0,
           "time": 1791315380,
           "parent": "49980418"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "49980399",
+      "title": "Show HN: Durable Actors – OSS Durable Objects with configurable compute",
+      "subreddit": "show-hn",
+      "author": "thomask1995",
+      "score": 23,
+      "num_comments": 17,
+      "permalink": "https://news.ycombinator.com/item?id=49980399",
+      "url": "https://github.com/TerseAI/durable-actors",
+      "selftext": "Hi HN, we're Thomas and Olivier from Terse (https://www.useterse.ai/ (https://www.useterse.ai/)) We've built Durable Actors, an open-source alternative to Cloudflare's Durable Objects.\nA Durable Object/Actor is a tiny server that handles one request at a time and has its own SQLite database. There's exactly one of each in the world and it is addressed by name.\nThis is the perfect primitive for deploying multiplayer agents. Each agent can have its own Durable Actor, and each user can connect to that Actor via websocket. This is fully horizontally scalable. Your users can deploy and share agents at will without putting pressure on a central DB or websocket server.\nDurable Actors are also great for coordinating agents within a system. Since only one request is handled at a time, you can protect critical data such as a CRM and allow multiple agents to run concurrently without worrying about data races.\nThe only alternative to this is Cloudflare's Durable Objects. However, there is extreme lock in (they pull you into D1, R2 + workers as well) and it wasn't originally built for agentic workfloads when it was released 5 years ago.\nSome notable projects built on Durable Objects include RampInspect, OpenInspect as well as the multiplayer frameworks Liveblocks and PartyKit. You can now build these kinds of projects on Durable Actors.\nDurable Actors is a version of DO that is built for concurrent agentic workloads. It is fully open source (MIT License) and includes a helm chart for you to easily self-host.\nSome key features:\n- Configurable compute: Specify CPU, RAM, data residency, idle-timeouts all in a decorator\n- No outer worker: We generate a type-safe client that you can just plug into your existing tech stack.\n- (coming soon, like today) Export SQLite table via CLI + MCP for exposing OLTP logs to your agent to help you debug.\nAnd our Performance Numbers (all p95):\n- Durable write: 85.6ms\n- Stateful Read (data in sqlite): 2.14ms\n- Actor Warm up: 334ms\nHere is a little counter demo so you can see the latency yourself: https://demo.useterse.ai/ (https://demo.useterse.ai/)\nWould love your feedback!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791302299,
+      "created_at": "2026-10-06T15:58:19+00:00",
+      "comments_data": [
+        {
+          "id": "49995954",
+          "author": "jeremycarter",
+          "body": "Looks great but one of the common problems with the virtual actor model is state query. It's all well and good to have nice separated state dbs but for most use cases that means further double up on storing the state again in another database that can query it. I don't think anyone has come up with a nice solution for this problem without using a loose document database, but even then actors can change their schema.\nPerhaps emitting versioned domain events transactionally with the actor state is an option without prescribing an exact solution.",
+          "score": 0,
+          "time": 1791394009,
+          "parent": "49980399"
+        },
+        {
+          "id": "49995842",
+          "author": "verst",
+          "body": "How do you compare to Azure Durable Functions, Temporal, AWS Lambda Durable Functions?\nCan't Durable Entities meet the same use cases?\nEDIT: Of course I am not talking about the difference in OSS vs not. Rather I'm interested in the difference in use cases and capabilities. Some of the aforementioned have ways to run things locally as well, though they are designed as distributed cloud-based PaaS services.",
+          "score": 0,
+          "time": 1791393546,
+          "parent": "49980399"
+        },
+        {
+          "id": "49996250",
+          "author": "divyagnan",
+          "body": "This looks really nice! How would you compare it to Rivet? I think they were also originally pitched as an open source version of durable objects: https://rivet.dev/actors/compare/rivet-actors-vs-cloudflare-... (https://rivet.dev/actors/compare/rivet-actors-vs-cloudflare-durable-objects/)\nAlso are you able to self-host this outside of GCP (from the docs it seems like it is locked to GCP but I'm not that familiar with it so maybe not)?",
+          "score": 0,
+          "time": 1791395254,
+          "parent": "49980399"
+        },
+        {
+          "id": "49995743",
+          "author": "m1117",
+          "body": "Great! Let’s have more cloudflare alternatives",
+          "score": 0,
+          "time": 1791393156,
+          "parent": "49980399"
+        },
+        {
+          "id": "49996305",
+          "author": "anilgulecha",
+          "body": "100ms for a write - not usable for anything beyond toys.\nI mean we have https://github.com/denoland/celld (https://github.com/denoland/celld) - with a known good open source history. Durable writes there are as low as 1ms.",
+          "score": 0,
+          "time": 1791395558,
+          "parent": "49980399"
+        },
+        {
+          "id": "49996005",
+          "author": "handfuloflight",
+          "body": "How does it compare to celld?",
+          "score": 0,
+          "time": 1791394240,
+          "parent": "49980399"
         }
       ]
     },

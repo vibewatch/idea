@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-07T12:49:07.077077+00:00",
+  "last_fetched": "2026-10-07T18:42:22.018192+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -85,8 +85,8 @@
       "title": "Ask HN: What do you run on a $5 VPS that's worth keeping online 24/7?",
       "subreddit": "ask-hn",
       "author": "mariocesar",
-      "score": 23,
-      "num_comments": 18,
+      "score": 31,
+      "num_comments": 28,
       "permalink": "https://news.ycombinator.com/item?id=49985548",
       "url": "https://news.ycombinator.com/item?id=49985548",
       "selftext": "DHH's \"AI shed\" idea got me thinking about getting a small $5–10/month VPS.\nI'm a Linux guy and have on many points of my life have a personal server. So I like the idea of having something always on, but I’m not sure the maintenance is worth it when most things can just run on my laptop.\nThat said, I tend to do things myself and only later realize I could have automated or delegated them, so I may have a blind spot here.\nIf you have a cheap VPS or mini PC, what actually ended up being useful long-term? Anything that saved enough time or replaced enough subscriptions to justify keeping it around?",
@@ -96,19 +96,11 @@
       "created_at": "2026-10-06T23:16:56+00:00",
       "comments_data": [
         {
-          "id": "49991110",
-          "author": "mattfrommars",
-          "body": "I repurposed my old macbook pro from 2013 as dedicated Proxmox machine. I run all short of application on it - mostly pulled from https://community-scripts.org/ (https://community-scripts.org/). Along this, I use free tier of Oracle VM to funnel traffic to my box and use that as reverse proxy appliance. Thee isn't a real need to pay $5-$10 for a VPS if you have old machine lying around and use AI to help you configure it. I gave my setup using whichever LLM model I want to use at that day full access via SSH keys.",
+          "id": "49996452",
+          "author": "andOlga",
+          "body": "Exit node for friends in countries with internet censorship. Specific use case, but it is mine.",
           "score": 0,
-          "time": 1791371466,
-          "parent": "49985548"
-        },
-        {
-          "id": "49991915",
-          "author": "neverminder",
-          "body": "Seedbox. With 5TB storage attached. Glory to Hetzner.",
-          "score": 0,
-          "time": 1791376653,
+          "time": 1791396176,
           "parent": "49985548"
         },
         {
@@ -120,19 +112,27 @@
           "parent": "49985548"
         },
         {
-          "id": "49991059",
-          "author": "grugdev42",
-          "body": "* Mirror my Github repos (in case GH goes down or closes my account)\n* Serve my small website (just HTML files using Nginx)\n* Monitor other applications (and hits a URL when they fail)\n* Occasionally use it as a WeTransfer alternative (just uploading files into the WWW directory with an obscure name)",
+          "id": "49991110",
+          "author": "mattfrommars",
+          "body": "I repurposed my old macbook pro from 2013 as dedicated Proxmox machine. I run all short of application on it - mostly pulled from https://community-scripts.org/ (https://community-scripts.org/). Along this, I use free tier of Oracle VM to funnel traffic to my box and use that as reverse proxy appliance. Thee isn't a real need to pay $5-$10 for a VPS if you have old machine lying around and use AI to help you configure it. I gave my setup using whichever LLM model I want to use at that day full access via SSH keys.",
           "score": 0,
-          "time": 1791371162,
+          "time": 1791371466,
           "parent": "49985548"
         },
         {
-          "id": "49990355",
-          "author": "jdboyd",
-          "body": "Here are a few things I do: \nHost static content behind nginx\nRun filestash as a partial GoogleDrive replacement (I use it for sharing files with other people, like deliverables), files place on an S3 compatible object store.\nRun vaultwarder for myself and some family members.\nRun a container registry service backed by an s3 compatible object store.\nRun a django web application I wrote for my own use. However, it stores to postgresql running in a different VPS.\nRun caddy for ssl termination and reverse proxying the other services running here.\nRedis (I forget if that was for filestash or the container registry, but can be configured to be very light weight).\nAll of those are in different containers running through podman.",
+          "id": "49995880",
+          "author": "jotato",
+          "body": "Mine aren't technically VPSs but I have two mini pc.\n- Jellyfin\n- Audiobook shelf\n- Immich\n- ChangeDetection (for monitoring when something is back in stock)\n- Minecraft server for my kids\n- Several apps I have for my own use\n- HomeAssistant\n- Hermes",
           "score": 0,
-          "time": 1791365728,
+          "time": 1791393713,
+          "parent": "49985548"
+        },
+        {
+          "id": "49992542",
+          "author": "scottydelta",
+          "body": "I developed tarvis.io which is being used by friends and family to self host notion alternative and run hermes agents. This let's them run self hosted apps as actual apps without having to worry about the server or setups.\nOne friend was running a gitlab runner on a laptop but moved to tarvis given how easy it is. Tarvis has a catalog of 750 apps already so I am sure you can find a few things from there to run 24/7.\nIMO being able to see all the apps in a catalog and being able to easily add that app and experiment helped me figure out which apps I should be running.",
+          "score": 0,
+          "time": 1791379631,
           "parent": "49985548"
         },
         {
@@ -144,11 +144,19 @@
           "parent": "49985548"
         },
         {
-          "id": "49990888",
-          "author": "onel",
-          "body": "I keep moose os instance on a vps, for immich, cap (recordings), cal for meetings and one app for notes.\nSmall productivity apps that I just like to have access to everywhere.",
+          "id": "49994898",
+          "author": "slipwalker",
+          "body": "openresty with several half-done micro-saas, written in golang with sqlite3 storage.\n( my post-factum inspiration: https://stevehanov.ca/blog/how-i-run-multiple-10k-mrr-compan... (https://stevehanov.ca/blog/how-i-run-multiple-10k-mrr-companies-on-a-20month-tech-stack) )",
           "score": 0,
-          "time": 1791369759,
+          "time": 1791389798,
+          "parent": "49985548"
+        },
+        {
+          "id": "49990355",
+          "author": "jdboyd",
+          "body": "Here are a few things I do: \nHost static content behind nginx\nRun filestash as a partial GoogleDrive replacement (I use it for sharing files with other people, like deliverables), files place on an S3 compatible object store.\nRun vaultwarder for myself and some family members.\nRun a container registry service backed by an s3 compatible object store.\nRun a django web application I wrote for my own use. However, it stores to postgresql running in a different VPS.\nRun caddy for ssl termination and reverse proxying the other services running here.\nRedis (I forget if that was for filestash or the container registry, but can be configured to be very light weight).\nAll of those are in different containers running through podman.",
+          "score": 0,
+          "time": 1791365728,
           "parent": "49985548"
         },
         {
@@ -160,35 +168,27 @@
           "parent": "49985548"
         },
         {
-          "id": "49988649",
-          "author": "spl757",
-          "body": "dns and email server. i just make aliases that point to a single imap account that is unique for everything i sign up for. if i start to get spam, turn off the alias. it also lets me see who is selling my info or has been hacked when bestbuy@example.com starts getting emails from russia.",
+          "id": "49991059",
+          "author": "grugdev42",
+          "body": "* Mirror my Github repos (in case GH goes down or closes my account)\n* Serve my small website (just HTML files using Nginx)\n* Monitor other applications (and hits a URL when they fail)\n* Occasionally use it as a WeTransfer alternative (just uploading files into the WWW directory with an obscure name)",
           "score": 0,
-          "time": 1791351085,
+          "time": 1791371162,
           "parent": "49985548"
         },
         {
-          "id": "49990802",
-          "author": "Kim_Bruning",
-          "body": "Right this minute I've got wireguard and caddy up.",
+          "id": "49991915",
+          "author": "neverminder",
+          "body": "Seedbox. With 5TB storage attached. Glory to Hetzner.",
           "score": 0,
-          "time": 1791368985,
+          "time": 1791376653,
           "parent": "49985548"
         },
         {
-          "id": "49988108",
-          "author": "ogou",
-          "body": "Messaging queues and brokers. RabbitMQ, BullMQ, etc. Simple services, but I've learned to keep them on their own images so they recover fast and don't compete with other resources.",
+          "id": "49990888",
+          "author": "onel",
+          "body": "I keep moose os instance on a vps, for immich, cap (recordings), cal for meetings and one app for notes.\nSmall productivity apps that I just like to have access to everywhere.",
           "score": 0,
-          "time": 1791346734,
-          "parent": "49985548"
-        },
-        {
-          "id": "49986800",
-          "author": "dare944",
-          "body": "Mail / IMAP server for my family domain. Small web server with a few static content sites. Trillium notes server.\nPretty low maintenance overall - I can go months without even thinking about it.",
-          "score": 0,
-          "time": 1791336696,
+          "time": 1791369759,
           "parent": "49985548"
         }
       ]
@@ -200,8 +200,8 @@
       "title": "Ask HN: What games do you religiously play on your phone browser?",
       "subreddit": "ask-hn",
       "author": "saimiam",
-      "score": 12,
-      "num_comments": 24,
+      "score": 13,
+      "num_comments": 27,
       "permalink": "https://news.ycombinator.com/item?id=49985502",
       "url": "https://news.ycombinator.com/item?id=49985502",
       "selftext": "I play a few word games every day - Wordle, connections, crossword - but I feel I need to look at non-word games to keep the brain agile. Looking for ideas.",
@@ -211,14 +211,6 @@
       "created_at": "2026-10-06T23:12:48+00:00",
       "comments_data": [
         {
-          "id": "49989819",
-          "author": "abbadadda",
-          "body": "A while back I was enjoying Mahjong Solitaire: https://www.crazygames.com/game/mahjongg-solitaire (https://www.crazygames.com/game/mahjongg-solitaire)",
-          "score": 0,
-          "time": 1791361241,
-          "parent": "49985502"
-        },
-        {
           "id": "49988728",
           "author": "quuxplusone",
           "body": "Gerrymandle, although it's started the slow slide into ads and popups in the past month.\n https://gerrymandle.com/puzzles (https://gerrymandle.com/puzzles)\nsaimiam's comment mentioned 2048, so I'll plug my variant:\nhttps://quuxplusone.github.io/2048 (https://quuxplusone.github.io/2048)",
@@ -227,11 +219,11 @@
           "parent": "49985502"
         },
         {
-          "id": "49988804",
-          "author": "perilunar",
-          "body": "Since you're already on the NYT site/app, try Pips, Tiles, and Sodoku.",
+          "id": "49989819",
+          "author": "abbadadda",
+          "body": "A while back I was enjoying Mahjong Solitaire: https://www.crazygames.com/game/mahjongg-solitaire (https://www.crazygames.com/game/mahjongg-solitaire)",
           "score": 0,
-          "time": 1791352253,
+          "time": 1791361241,
           "parent": "49985502"
         },
         {
@@ -243,11 +235,19 @@
           "parent": "49985502"
         },
         {
-          "id": "49990816",
-          "author": "hulitu",
-          "body": "None. The Phone's browser is unsuitable for games and I am not masochistic.",
+          "id": "49988804",
+          "author": "perilunar",
+          "body": "Since you're already on the NYT site/app, try Pips, Tiles, and Sodoku.",
           "score": 0,
-          "time": 1791369096,
+          "time": 1791352253,
+          "parent": "49985502"
+        },
+        {
+          "id": "49985599",
+          "author": "tkdb",
+          "body": "It's been a bit since I've done anything other than Wordle.\nReally Bad Chess was a daily driver for me. I loved the chaos, which strangely collapsed to recognizable patterns and strategies based on difficulty and board layout.\nOh, you said phone browser. Are you against native apps?\n2048 is fun - you can probably find a browser version of that.",
+          "score": 0,
+          "time": 1791328933,
           "parent": "49985502"
         },
         {
@@ -259,11 +259,11 @@
           "parent": "49985502"
         },
         {
-          "id": "49985599",
-          "author": "tkdb",
-          "body": "It's been a bit since I've done anything other than Wordle.\nReally Bad Chess was a daily driver for me. I loved the chaos, which strangely collapsed to recognizable patterns and strategies based on difficulty and board layout.\nOh, you said phone browser. Are you against native apps?\n2048 is fun - you can probably find a browser version of that.",
+          "id": "49990816",
+          "author": "hulitu",
+          "body": "None. The Phone's browser is unsuitable for games and I am not masochistic.",
           "score": 0,
-          "time": 1791328933,
+          "time": 1791369096,
           "parent": "49985502"
         },
         {
@@ -291,11 +291,11 @@
           "parent": "49985502"
         },
         {
-          "id": "49987687",
-          "author": "Kurd",
-          "body": "I play a lot of chess on lichess.org \nNo login required and the matching system is very decent.",
+          "id": "49992877",
+          "author": "thorin",
+          "body": "Wordle occasionally\nConnections daily\nLichess most days",
           "score": 0,
-          "time": 1791343120,
+          "time": 1791380962,
           "parent": "49985502"
         },
         {
@@ -447,8 +447,8 @@
       "title": "Ask HN: How do you describe what your relationship brings you?",
       "subreddit": "ask-hn",
       "author": "maxignol",
-      "score": 3,
-      "num_comments": 5,
+      "score": 6,
+      "num_comments": 8,
       "permalink": "https://news.ycombinator.com/item?id=49983113",
       "url": "https://news.ycombinator.com/item?id=49983113",
       "selftext": "I've been struggling to put into words what I want from my relationships and began asking my friends what their answers were, and so now I ask you.",
@@ -457,6 +457,14 @@
       "time": 1791315987,
       "created_at": "2026-10-06T19:46:27+00:00",
       "comments_data": [
+        {
+          "id": "49994292",
+          "author": "muzani",
+          "body": "A tribe is a group of people who act as a single unit instead of multiple individuals. A marriage is the same with two people.\nLove is the unconditional, unequivocal commitment to the welfare of another. This makes it very susceptible to abuse - you can simply use a loved one for endless money, sex, or labor for example.\nMuch of society has formed to protect individuals against the abuse of love, often to the point where we think love is evil. Restrictions on marriage, people are decoupled from their jobs, welfare is villainised. Unbounded love leads to tyrants and child abuse.\nBut love is still necessary for society to thrive. Love is by nature unbounded. And one of the hardest optimization problems of being human is deciding who to love.",
+          "score": 0,
+          "time": 1791387235,
+          "parent": "49983113"
+        },
         {
           "id": "49990003",
           "author": "drakonka",
@@ -498,8 +506,8 @@
       "title": "Tell HN: GitHub refuses to remove cracked copies of my software after a month",
       "subreddit": "ask-hn",
       "author": "IvanK_net",
-      "score": 340,
-      "num_comments": 186,
+      "score": 484,
+      "num_comments": 266,
       "permalink": "https://news.ycombinator.com/item?id=49982498",
       "url": "https://news.ycombinator.com/item?id=49982498",
       "selftext": "I am a developer of https://www.photopea.com, a popular photo editor that runs in a web browser.\nMany people are asking AI models to take the Javascript code from my website, remove all ads from it, and they publish such a \"new product\" on Github for everyone to download.\nThere exist tens of such repositories on Github. I want my website to be the only source of a stable version of my program Photopea. I even received emails from people complaining about something in Photopea, and it took several emails to figure out that they are not using Photopea.com (so it ruins my reputation a little).\nI reported it to Github on the 4th of September 2026: https://www.photopea.com/g/XKoqqIGv\nToday, a month later, I received this response:\nThank you for submitting a DMCA takedown notice. We've reviewed the information you've provided, and based on the facts presented to us, we're unable to confirm a violation of 17 U.S. Code § 1201.\nWhat do you think I could do? Do you think I should look for a lawyer to deal with it outside the digital world? I really doubt that a real person ever looked at my report, and they probably send this response automatically to 99% of people.",
@@ -509,11 +517,27 @@
       "created_at": "2026-10-06T18:54:01+00:00",
       "comments_data": [
         {
+          "id": "49992066",
+          "author": "DannyBee",
+          "body": "IP lawyer here - I can't give you actual legal advice because you aren't my client, but generally, you have two options here, neither of which will be surprising, or very satisfying:\n1. Pay a lawyer or firm that specializes in this sort of thing to play whack a mole for you\n2. Accept it as normal losses and ignore it.\nContrary to others claims here, it is not a 500/hour thing to do #1 when dealing with firms that specialize in this. it probably would be if you just hire a random one-off IP lawyer to try and deal with this particular instance.\nTrying to deal with it yourself will be increasingly frustrating and time wasting for you. You will also never be able to prevent someone sufficiently motivated from doing stuff like this to your software.\nUnless you want to spend your time dealing with those folks instead of building the software, you should hand this part off - it's not a good use of your time, value wise.\nPut another way: most companies farm out processing of this sort of request to high volume low cost processing teams. Or AI. Or both. For you this is an important one off. For the person processing it it's one of a hundred tickets they are handling today. You are not going to get very personalized attention and consistency.\nI don't claim this is how it should be, etc. I simply claim this is how it realistically is. It would practically require legislative change to have a different thing happen here and while interesting to discuss, that seems outside the scope of your questions, which seemed more practically oriented",
+          "score": 0,
+          "time": 1791377536,
+          "parent": "49982498"
+        },
+        {
           "id": "49988079",
           "author": "thought-gap",
           "body": "First off, let me get this out of the way - I am not a lawyer. If you want a legal advice talk to a lawyer.\nSecond, I am sorry this is happening to you.\nThird, based on GitHub's reply, specifically\n> we're unable to confirm a violation of 17 U.S. Code § 1201\nthey took your submission as 17 U.S. Code § 1201 takedown notice. Maybe you specifically stated this. Maybe it was implied. This is likely not what you want and GitHub's response is likely correct. The reason for this is that § 1201 prohibits circumventing a technological measure. The JS you host on your public site, even if obfuscated, very likely does not qualify for this protection. Another detail - the reason it took long (a month later according to your post) is that after the youtube-dl fiasco, they committed to manual review, legal and technical, of every 1201 takedown notice [0].\nFourth, if you believe these copies are sufficiently reproducing your copyrighted work, \nwhat you likely want to do is file a standard copyright infringement 17 U.S Code § 512(c) takedown notice. This still goes through the same DMCA report flow but it should result in a less stringent review process and a faster response.\nFifth and finally, consider asking your favorite LLM to get more context around these laws. Good luck!\n[0] https://github.blog/news-insights/policy-news-and-insights/s... (https://github.blog/news-insights/policy-news-and-insights/standing-up-for-developers-youtube-dl-is-back/)",
           "score": 0,
           "time": 1791346429,
+          "parent": "49982498"
+        },
+        {
+          "id": "49992685",
+          "author": "gwbas1c",
+          "body": "> take the Javascript code from my website, remove all ads from it, and they publish such a \"new product\" on Github for everyone to download\nRemember that there is still quite a bit of friction to doing that, and that many people have better things to do than jump through those hoops.\nIn addition to the \"hire a lawyer\" comments in this thread, I suggest building in some heuristics that detect when Photopea is running outside of your domain. They don't need to be \"foolproof,\" but add additional friction to pirating Photopea so that less people will jump through the hoops.\nSome historical examples:\n- Commercial software in the 1980s and 1990s would burn a hole on the disk, and the software would look for the error when reading that sector.\n- Donkey Kong Country would detect that it was pirated by reading the amount of RAM available. (Because SNES backup systems had slightly different runtime properties than the real cartridge.)\nMore importantly, when detecting that Photopea is pirated, if it runs for 3-6 minutes and then crashes, it's more likely to look like a bug in the export than a deliberate anti-piracy attempt.\n---\nFinally, you could consider a business model that relies on server-side functionality for revenue or stickiness, that's hard to replicate merely by pirating the software. (IE, some kind of server-side storage and sharing system.)",
+          "score": 0,
+          "time": 1791380160,
           "parent": "49982498"
         },
         {
@@ -541,27 +565,11 @@
           "parent": "49982498"
         },
         {
-          "id": "49991287",
-          "author": "MisterMunchkin",
-          "body": "It's inevitable if your entire product is statically hosted and pulled into their browser. They didn't even need AI to do this, they could have just done it by hand anyway.",
+          "id": "49994299",
+          "author": "hgs3",
+          "body": "The 3rd U.S. Circuit Court of Appeals recently ruled [1] that using AI to train on a competitor's copyrighted material to build a competing product is _not_ fair use. This is a recent ruling (September 30, 2026). GitHub policy has surely not caught up yet and who knows when it will.\n> Do you think I should look for a lawyer to deal with it outside the digital world?\nAbsolutely. This is a copyright infringement case and there is now an appellate precedent to cite. Gather as much evidence as you can and speak with an IP attorney.\n[1] https://www.reuters.com/legal/litigation/unsealed-opinion-sh... (https://www.reuters.com/legal/litigation/unsealed-opinion-shows-why-thomson-reuters-won-landmark-ai-fair-use-ruling-2026-09-30/)",
           "score": 0,
-          "time": 1791372773,
-          "parent": "49982498"
-        },
-        {
-          "id": "49992030",
-          "author": "cringleycringe",
-          "body": "This is so 1990s",
-          "score": 0,
-          "time": 1791377293,
-          "parent": "49982498"
-        },
-        {
-          "id": "49991556",
-          "author": "lewelove",
-          "body": "With all due respect: people should be able to do this. Copyright as a concept applied to code was always a god-awful idea, DMCA especially. And for JS served on the open web it's plainly comedic.\nSomeone can always make a new repo without redistributing your code, sourcing and hot-patching it directly from your domain. GitHub deleting this repo won't ever fix it, you're playing whack-a-mole and doing free PR for these repos here on HN.\nWe seem to forget that this website is called Hacker News.",
-          "score": 0,
-          "time": 1791374531,
+          "time": 1791387265,
           "parent": "49982498"
         },
         {
@@ -573,6 +581,22 @@
           "parent": "49982498"
         },
         {
+          "id": "49993345",
+          "author": "jodrellblank",
+          "body": "You’ve made a million dollars a year for five years with it? Why are you stressing about lawyers and support tickets instead of being retired?",
+          "score": 0,
+          "time": 1791383230,
+          "parent": "49982498"
+        },
+        {
+          "id": "49991556",
+          "author": "lewelove",
+          "body": "With all due respect: people should be able to do this. Copyright as a concept applied to code was always a god-awful idea, DMCA especially. And for JS served on the open web it's plainly comedic.\nSomeone can always make a new repo without redistributing your code, sourcing and hot-patching it directly from your domain. GitHub deleting this repo won't ever fix it, you're playing whack-a-mole and doing free PR for these repos here on HN.\nWe seem to forget that this website is called Hacker News.",
+          "score": 0,
+          "time": 1791374531,
+          "parent": "49982498"
+        },
+        {
           "id": "49990052",
           "author": "schnebbau",
           "body": "I think we're going to see a lot more of this going forward.\nI think we're also going to see the strategy to be to remove the processing and magic sauce from the client and move it to the server where it can't be decompiled and rebuilt with AI.",
@@ -581,27 +605,11 @@
           "parent": "49982498"
         },
         {
-          "id": "49990195",
-          "author": "msalihb",
-          "body": "I use photopea for years and really respect what you did. I disabled the adblocker. I hope they remove that.",
+          "id": "49991287",
+          "author": "MisterMunchkin",
+          "body": "It's inevitable if your entire product is statically hosted and pulled into their browser. They didn't even need AI to do this, they could have just done it by hand anyway.",
           "score": 0,
-          "time": 1791364407,
-          "parent": "49982498"
-        },
-        {
-          "id": "49985819",
-          "author": "jdlshore",
-          "body": "It sounds like you might have a case for copyright infringement. Resolving the situation yourself has failed. Your next step is to talk to a lawyer.",
-          "score": 0,
-          "time": 1791330333,
-          "parent": "49982498"
-        },
-        {
-          "id": "49990300",
-          "author": "throwawayffffas",
-          "body": "> What do you think I could do?\nHire a copyright lawyer.\nStart going after the people that run this as a service, for both copyright and trademark infringement (you have a trademark for photopea right?).",
-          "score": 0,
-          "time": 1791365293,
+          "time": 1791372773,
           "parent": "49982498"
         }
       ]
@@ -614,7 +622,7 @@
       "subreddit": "ask-hn",
       "author": "ikishade",
       "score": 2,
-      "num_comments": 2,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=49982033",
       "url": "https://news.ycombinator.com/item?id=49982033",
       "selftext": "Hello,\nWe’re Iki Software, an AI R&D company working on “SPC-AI”, our new AI technology. SPC is a different kind of AI from LLMs, transformers or neural networks. Instead of prompting, you use it as a trainable data-structure inside software. It’s easily trained by common programmers, and has a number of uses we’re eager to talk about.\nWe’re currently looking at our first public release in a few weeks (pending any behind the scenes business stuff), so that everyone can learn about and get their hands on SPC. We’ve got minimal library implementations ready in four languages: Python, JavaScript, C++ and Lua for anyone interested. But to that end, we wanted to ask so we can better prepare: what would you like to see or hear about our SPC-AI that would interest you in about two to three weeks time?\nWe look forward to your replies! Thanks, and have a great day.",
@@ -630,8 +638,8 @@
       "title": "Ask HN: Do you still own a printer?",
       "subreddit": "ask-hn",
       "author": "nunorbatista",
-      "score": 14,
-      "num_comments": 19,
+      "score": 15,
+      "num_comments": 23,
       "permalink": "https://news.ycombinator.com/item?id=49981885",
       "url": "https://news.ycombinator.com/item?id=49981885",
       "selftext": "My wife tried to convince me to buy a printer, she said that it could be useful to print school related stuff for the kids and I was kind of surprised because I have the feeling that it's not needed anymore? \nEven if we talk about school, today the communication with the teacher is done through an App, so I'm not sure it's going to go back (my kids are 6, if that matters).\nI also have a printer at the office which I have to go every day and she asked me to print stuff like twice, so I'm kind of curious about what's the status of home printing?\nPS - when I need to print photos, I use a service that prints in a proper photographic paper and size to frame. I do this like twice a year.",
@@ -640,6 +648,14 @@
       "time": 1791309567,
       "created_at": "2026-10-06T17:59:27+00:00",
       "comments_data": [
+        {
+          "id": "49996953",
+          "author": "sdevonoes",
+          "body": "You never need to print sensitive stuff like ids/passports/medical-reports? I wouldn’t print that in public places",
+          "score": 0,
+          "time": 1791398021,
+          "parent": "49981885"
+        },
         {
           "id": "49988111",
           "author": "RobGR",
@@ -657,11 +673,35 @@
           "parent": "49981885"
         },
         {
-          "id": "49989495",
-          "author": "d3Xt3r",
-          "body": "Everyone keeps saying how great laser printers are, but I vastly prefer my Brother inkjet (ask me why). I use it only maybe once or twice an year, usually to print copies of flight tickets and important documents, and very rarely scan copies of original documents.",
+          "id": "49993080",
+          "author": "muzani",
+          "body": "Yes, ironically most of it for homework on the days the school is physically closed. Sometimes I need to sign or stamp a document and it's easier to print and scan. We use the scanner more.\nHaving one where you fill in the ink rather than buying a whole RGB cartridge has been a great decision. I used to replace a whole cartridge up just for reds.",
           "score": 0,
-          "time": 1791358308,
+          "time": 1791381990,
+          "parent": "49981885"
+        },
+        {
+          "id": "49981922",
+          "author": "mattm",
+          "body": "Yes, actually I bought a Brother laserjet earlier this year. I don't need to print a lot but there are things needed every now and then. I could print at work or an office supply store or even the library but this is just more convenient. I upgraded from an inkjet so that the laserjet should basically last me the rest of my life.",
+          "score": 0,
+          "time": 1791309735,
+          "parent": "49981885"
+        },
+        {
+          "id": "49994242",
+          "author": "tagwall",
+          "body": "we have a small black&white laser from Brother which the family use about once a week. It is very low cost and convenient. The one we have now replaced a larger model which had scanning and fax, but it's so easy to 'scan' with your phone now it's not really necessary and the machine is so much smaller because of it.",
+          "score": 0,
+          "time": 1791387028,
+          "parent": "49981885"
+        },
+        {
+          "id": "49994075",
+          "author": "SpeakingOfBrad",
+          "body": "We have one, and it is useful sometimes. Is it worth the price? I'm not sure. \nDon't forget that most libraries will print documents for you too. It's probably something like 25¢/page, so it's not really a great deal, but if you don't need to print often it's probably worth it. Plus it supports the library, so that's nice.",
+          "score": 0,
+          "time": 1791386422,
           "parent": "49981885"
         },
         {
@@ -689,11 +729,11 @@
           "parent": "49981885"
         },
         {
-          "id": "49981922",
-          "author": "mattm",
-          "body": "Yes, actually I bought a Brother laserjet earlier this year. I don't need to print a lot but there are things needed every now and then. I could print at work or an office supply store or even the library but this is just more convenient. I upgraded from an inkjet so that the laserjet should basically last me the rest of my life.",
+          "id": "49989495",
+          "author": "d3Xt3r",
+          "body": "Everyone keeps saying how great laser printers are, but I vastly prefer my Brother inkjet (ask me why). I use it only maybe once or twice an year, usually to print copies of flight tickets and important documents, and very rarely scan copies of original documents.",
           "score": 0,
-          "time": 1791309735,
+          "time": 1791358308,
           "parent": "49981885"
         },
         {
@@ -702,38 +742,6 @@
           "body": "Regarding photo printing, which would be my main use case for a printer, I've read that the inkjet heads can get clogged up if you don't use them on a regular basis, and that the process for clearing them can use up a significant amount of ink. So I've just decided the premium of having a print shop do it on my behalf is worth it.\nThis does mean I can't exactly get my colors right, since I don't print often enough and I'm not that familiar with proofing digitally, but even if I have to get a print done twice I probably end up ahead financially.\nI also have a tiny Canon Selphy that I use for small 4x6 prints, which I can recommend so people will actually get their photos into the real world and off the screen.",
           "score": 0,
           "time": 1791314610,
-          "parent": "49981885"
-        },
-        {
-          "id": "49986910",
-          "author": "snazz",
-          "body": "No, I just use the one at work when needed. I encouraged my parents to get the absolute cheapest Brother laser printer, which has worked great for a lot of years at a very reasonable cost (both for the printer and per page).",
-          "score": 0,
-          "time": 1791337455,
-          "parent": "49981885"
-        },
-        {
-          "id": "49987094",
-          "author": "grizzles",
-          "body": "My wife bought one over my strenuous objections. I think it broke shortly after she bought it. I noticed it disappeared recently from its sitting place so looks like the situation has resolved itself.",
-          "score": 0,
-          "time": 1791338662,
-          "parent": "49981885"
-        },
-        {
-          "id": "49983271",
-          "author": "DerArzt",
-          "body": "Yes! I bought a brother laser printer to use as part of my D&D hobby. I love paper and pencil for D&D to the point that my notes are all printed and staple bound in a digest sized packet for each session.",
-          "score": 0,
-          "time": 1791316768,
-          "parent": "49981885"
-        },
-        {
-          "id": "49988174",
-          "author": "mhdhn",
-          "body": "yes, 2 multifunction printers with scanning and faxing and copying capability",
-          "score": 0,
-          "time": 1791347137,
           "parent": "49981885"
         }
       ]
@@ -746,7 +754,7 @@
       "subreddit": "ask-hn",
       "author": "microflash",
       "score": 5,
-      "num_comments": 4,
+      "num_comments": 6,
       "permalink": "https://news.ycombinator.com/item?id=49981268",
       "url": "https://news.ycombinator.com/item?id=49981268",
       "selftext": "Interested to know what has worked and what hasn’t. How can you stay sane and not burned out by all the “gentle encouragements” to use AI?",
@@ -762,6 +770,22 @@
           "score": 0,
           "time": 1791307194,
           "parent": "49981268"
+        },
+        {
+          "id": "49993609",
+          "author": "slipwalker",
+          "body": "just surrender... agree with them and collect your paychecks. Later you will collect more paychecks fixing the slop.",
+          "score": 0,
+          "time": 1791384417,
+          "parent": "49981268"
+        },
+        {
+          "id": "49992913",
+          "author": "thiago_fm",
+          "body": "Just go with the flow, leadership doesn't know the limitations and by using it and and causing incidents or pushing lots of slop, they will find out.\nThey are the leaders, you are the employee and the follower.\nAnd honestly, AI is so fucking good, for me it's surprising the fact that you are so behind in adoption and questioning it.\nNobody is writing code anymore.\nCompanies now need to figure out how to actually structure work and teams based on the fact they can build anything very quickly.\nAs harsh as it sounds, I loved writing code and configuring my VIM editor, but our old way of working is absolutely over. You have to adapt to it or they have no reason to keep you.",
+          "score": 0,
+          "time": 1791381095,
+          "parent": "49981268"
         }
       ]
     },
@@ -773,7 +797,7 @@
       "subreddit": "ask-hn",
       "author": "vegnus",
       "score": 4,
-      "num_comments": 2,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=49980939",
       "url": "https://news.ycombinator.com/item?id=49980939",
       "selftext": "Any of you ever just will into existence something totally useless and pointless, but just for fun/etc?\nI would love to view some of these projects, as I find they can be fascinating",
@@ -859,7 +883,7 @@
       "title": "Ask HN: Is observability broken for you?",
       "subreddit": "ask-hn",
       "author": "tmach32",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49977695",
       "url": "https://news.ycombinator.com/item?id=49977695",
@@ -876,7 +900,7 @@
       "title": "Ask HN: My Apple ID is locked for a week, Apple is a single point of failure",
       "subreddit": "ask-hn",
       "author": "akg_67",
-      "score": 12,
+      "score": 15,
       "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=49976972",
       "url": "https://news.ycombinator.com/item?id=49976972",
@@ -970,7 +994,7 @@
       "title": "Ask HN: Why does Astra compact context so frequently vs. Fable?",
       "subreddit": "ask-hn",
       "author": "yesitcan",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49973507",
       "url": "https://news.ycombinator.com/item?id=49973507",
@@ -988,7 +1012,7 @@
       "subreddit": "ask-hn",
       "author": "Hixon10",
       "score": 4,
-      "num_comments": 2,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=49973382",
       "url": "https://news.ycombinator.com/item?id=49973382",
       "selftext": "As in many other areas (e.g. code, emails, PRs, blog posts), people have started using LLMs to generate slides for their conference talks (e.g., set of HTML pages as a talk).\nOn the one hand, the slides look tidy, neat, and precise, with infographics, plots, dashboards, and so on. Nothing to complain about.\nOn the other hand, they look, hm, like LLM generated web sites, like soulless, if I may say so. I don't know why, but I don't enjoy reading them, even though they probably provide more value than hand crafted.\nWhat's your current take?",
@@ -1004,7 +1028,7 @@
       "title": "Ask HN: How are AI budgets changing in your company?",
       "subreddit": "ask-hn",
       "author": "bobby-cb",
-      "score": 5,
+      "score": 6,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=49972842",
       "url": "https://news.ycombinator.com/item?id=49972842",
