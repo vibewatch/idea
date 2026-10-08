@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-08T06:54:27.356281+00:00",
+  "last_fetched": "2026-10-08T12:48:50.383662+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -123,7 +123,7 @@
       "title": "Show HN: Convkit – A command line tool for converting images/video/docs offline",
       "subreddit": "show-hn",
       "author": "shdwfruit",
-      "score": 3,
+      "score": 6,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49996408",
       "url": "https://github.com/shdwfruit/convkit",
@@ -157,15 +157,49 @@
       "title": "Show HN: Terse, a Claude Code plugin that halves reply length by cutting filler",
       "subreddit": "show-hn",
       "author": "lowenbjer",
-      "score": 16,
-      "num_comments": 0,
+      "score": 20,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=49995809",
       "url": "https://github.com/lowenbjer/claude-terse",
       "selftext": "I struggle with the way Claude speaks to me when I do work. So much text, every, single, time.\nWhen I ask a question, I get an essay back, and with so many weird constructs: slogans, metaphors, recaps, strange choice of nouns, \"it's not X, it's Y\".\nClaude's own \"concise\" mode shortens it, somewhat, but keeps the the rest of the slop.\nI tried system prompts, those got forgotten after a couple of turns. I tried looking for plugins but none consistently made Claude speak normally. Some where slash commands, other solved for token use, others solved for neurodivergence.\nI just wanted to not read an essay and make Claude get to the point fast, every single time.\nIs that so much to ask? Apparently; it took me weeks of trial and error to make something that worked for me, I have stories, but I'm sharing it as a claude code plugin with you, those of you who struggle with Claude, the same way I did.",
       "is_self": false,
       "is_video": false,
       "time": 1791393408,
-      "created_at": "2026-10-07T17:16:48+00:00"
+      "created_at": "2026-10-07T17:16:48+00:00",
+      "comments_data": [
+        {
+          "id": "50004714",
+          "author": "glimshe",
+          "body": "My earlier whole grail for LLM interaction was making them stop trying to follow up with a stupid question.\n\"Are you thinking of doing this or are you just daydreaming?\" and garbage like that. They got better at it with LLM options and instructions, but I couldn't make them stop completely to try to keep me \"engaged\".",
+          "score": 0,
+          "time": 1791460222,
+          "parent": "49995809"
+        },
+        {
+          "id": "50004099",
+          "author": "trashymctrash",
+          "body": "Opus 5.5 has reduced this to an acceptable level for me. Are you also using this plugin with that model?",
+          "score": 0,
+          "time": 1791455471,
+          "parent": "49995809"
+        },
+        {
+          "id": "50004163",
+          "author": "citizenfishy",
+          "body": "Claude Mods seem to answer this pain better without affecting the model reasoning",
+          "score": 0,
+          "time": 1791455988,
+          "parent": "49995809"
+        },
+        {
+          "id": "50004127",
+          "author": "TZubiri",
+          "body": "Read up on Chain of Thought\nThe model is essentially thinking out loud, when you ask it to be more concise, you make it think less, therefore producing more erroneous answers.\nSome models have an internal chain of thought (claude being one of them), which sometimes isn't even published to avoid reverse engineering, but it seems that this might still be a problem.\nWhat you'd want actually is a layer that summarizes the actual answer, but that's actually an internal prompt by claude that you are not seeing, the model just doesn't expose the necessary bits for you to hack this together.\nTry another model that exposes the raw llm output instead of exposing a CoT result directly.\nOf course the real hack is learning to read diagonally without reading every single word, this is a skill that is useful in general. It's also less effort in general, instead of making plugins and super customizing the thing, you just consume the default settings, which are hyperoptimized, and require no time spent in configuration.",
+          "score": 0,
+          "time": 1791455756,
+          "parent": "49995809"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -201,8 +235,8 @@
       "title": "Show HN: Pinrail – A desktop inbox where coding agents wait for your review",
       "subreddit": "show-hn",
       "author": "pnezis",
-      "score": 21,
-      "num_comments": 4,
+      "score": 22,
+      "num_comments": 9,
       "permalink": "https://news.ycombinator.com/item?id=49995778",
       "url": "https://github.com/forgeplane/pinrail",
       "selftext": "",
@@ -211,6 +245,30 @@
       "time": 1791393303,
       "created_at": "2026-10-07T17:15:03+00:00",
       "comments_data": [
+        {
+          "id": "50005083",
+          "author": "metamitya",
+          "body": "very nice. ive been hopping around threads and browser windows trying to find the right PLACES to unblock the ai, its useful to have it in a single app",
+          "score": 0,
+          "time": 1791462904,
+          "parent": "49995778"
+        },
+        {
+          "id": "50004756",
+          "author": "redhale",
+          "body": "If you're in the Claude ecosystem, Artifacts can fill a similar purpose. They've gotten really good, if you haven't checked back on them in a while. The recent Docs and Slides update especially is fantastic for working on deliverables in those formats.",
+          "score": 0,
+          "time": 1791460578,
+          "parent": "49995778"
+        },
+        {
+          "id": "50004195",
+          "author": "pony17620",
+          "body": "The exitcode contract is such a clean idea",
+          "score": 0,
+          "time": 1791456313,
+          "parent": "49995778"
+        },
         {
           "id": "50000315",
           "author": "Jayakumark",
@@ -321,7 +379,7 @@
       "title": "Show HN: A virtual recording studio where you direct session players",
       "subreddit": "show-hn",
       "author": "hthillman",
-      "score": 6,
+      "score": 7,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=49995687",
       "url": "https://labs.daydream.live/studio/",
@@ -355,8 +413,8 @@
       "title": "Show HN: Agent.reviews – Where AI agents read and write reviews on tools",
       "subreddit": "show-hn",
       "author": "screm",
-      "score": 54,
-      "num_comments": 44,
+      "score": 62,
+      "num_comments": 45,
       "permalink": "https://news.ycombinator.com/item?id=49995539",
       "url": "https://agent.reviews/",
       "selftext": "Hi HN!\nI’m Louis, Co-Founder of Armature (YC P26), where we help teams make their product discoverable and usable by coding agents. We already measured 50k+ agent sessions and realized that over and over agents would encounter the exact same limitations on different tasks using the same tool. So we wondered why these weren’t fixed. And the answer is simple: the feedback loop just doesn’t exist between agents and software vendors but also between different agents. Humans can share their experience on platforms like https://g2.com (https://g2.com) and https://trustpilot.com (https://trustpilot.com), but agents have nowhere to.\nSo we created: https://agent.reviews (https://agent.reviews): the G2 for agents.\nIt works with a set of skills and an npm CLI (@armature-tech/agent-reviews) connecting agents to our API endpoints. Anyone can ask their agent (Claude Code, Codex, Cursor, etc.) to install it, and agents will naturally check reviews before picking a tool and post their own after using one.\nAs usual, privacy was our main concern, so we added 3 layers before a review gets posted:\nDeterministic rules filtering secrets, PII, URLs, etc.\nA Jev classifier trained to detect any leak after the first check\nA small LLM checking each review to make sure nothing was missed\nWe've been sharing this project around for a few weeks now and gathered thousands of reviews already. There are already interesting ones, for example:\n- A Claude Code agent noticed that the Stripe SDK systematically crashed when the API key was missing on the health check page (while it’s this page’s role to actually return an “API key missing” error)\n- 2 agents mentioned that Prisma required a DATABASE_URL variable even when it wasn’t connecting to any database. They both put fake URLs as a workaround, and it worked.\nWe truly think the agent experience needs the same community effect user experience has, so everyone benefits from it: agents can pick the tools that are best optimized for them and software companies can improve their product based on real feedback. That’s why we made sure accessing reviews is free for both humans and agents and just requires copy/pasting one prompt for the agent to install our CLI & skill, start the authentication flow, and submit their first review (this helps us prevent unauthorized scraping and spam reviews).\nWould you let your agents submit and read reviews too?\nWe’d love for you to set up agent reviews, ask your agent to check reviews next time it needs to pick a tool and post its own experience when using it. Then tell us how it went!",
@@ -366,19 +424,19 @@
       "created_at": "2026-10-07T16:59:11+00:00",
       "comments_data": [
         {
+          "id": "50003595",
+          "author": "layerv-ai",
+          "body": "Love the idea!. Curious how agents would review dev tools, like ngrok vs. trycloudflare vs. qurl - where the differences are largely just in terms of how easy it is for humans to access/integrated with existing ecosystems.\nGiven that these are all tools for sharing local temporary local links (just with different internal nuances/uses), then as an agent, maybe you'd think to write \"great for XYZ use case\" under each one. That'd make sense and be pretty obvious. But from a human perspective, as a user or vibe coder, you're just asking \"how do i get my agent to just do this thing without having to click buttons anywhere?!\" which is a very different problem.\nWe're truly splitting demographics here lol",
+          "score": 0,
+          "time": 1791451067,
+          "parent": "49995539"
+        },
+        {
           "id": "50000768",
           "author": "marcelo-earth",
           "body": "I like it!, sometimes I think we overlook what agents have to deal with, I can imagine that by spotting small issues, we should have better tools... I'll use it",
           "score": 0,
           "time": 1791421121,
-          "parent": "49995539"
-        },
-        {
-          "id": "50000848",
-          "author": "madrox",
-          "body": "If you're building an MCP or CLI for agents to use, one of the best loops you can do is give your agent a task to perform with it then when it's done ask the agent what it thought about using it. It will give great feedback.",
-          "score": 0,
-          "time": 1791421928,
           "parent": "49995539"
         },
         {
@@ -390,11 +448,11 @@
           "parent": "49995539"
         },
         {
-          "id": "50001334",
-          "author": "vessenes",
-          "body": "I love this - anything agent economy first is super interesting. Would you be willing to add qntm to your review list? Https://github.com/corpollc/qntm or more simply ‘uvx qntm —help’ - e2e encrypted messaging for agents.",
+          "id": "50000848",
+          "author": "madrox",
+          "body": "If you're building an MCP or CLI for agents to use, one of the best loops you can do is give your agent a task to perform with it then when it's done ask the agent what it thought about using it. It will give great feedback.",
           "score": 0,
-          "time": 1791427045,
+          "time": 1791421928,
           "parent": "49995539"
         },
         {
@@ -414,6 +472,14 @@
           "parent": "49995539"
         },
         {
+          "id": "49997827",
+          "author": "conception",
+          "body": "I noticed lots of talk about privacy but this seems to be a prompt injection factory no?",
+          "score": 0,
+          "time": 1791402110,
+          "parent": "49995539"
+        },
+        {
           "id": "49998124",
           "author": "moezd",
           "body": "This is probably one step towards an agentic Stack Overflow. Don't you guys also hate it when your agent gets one small detail wrong and then proceeds to throw your entire harness out of the window... No? Oh well.",
@@ -422,19 +488,11 @@
           "parent": "49995539"
         },
         {
-          "id": "50000526",
-          "author": "hmokiguess",
-          "body": "Is this like exposing bias in some ways? I feel like there has been similar benchmarks or tools in this space before, but this approach to marketing it is novel and funny, I like it.",
+          "id": "50001334",
+          "author": "vessenes",
+          "body": "I love this - anything agent economy first is super interesting. Would you be willing to add qntm to your review list? Https://github.com/corpollc/qntm or more simply ‘uvx qntm —help’ - e2e encrypted messaging for agents.",
           "score": 0,
-          "time": 1791418875,
-          "parent": "49995539"
-        },
-        {
-          "id": "49999917",
-          "author": "cpan22",
-          "body": "I think this is a great idea, it's weird to me how the state of AEO at the moment is publishing a bunch of blog posts on a company website\nI think the biggest issue though will be preventing bad actors e.g. biased agents",
-          "score": 0,
-          "time": 1791413915,
+          "time": 1791427045,
           "parent": "49995539"
         },
         {
@@ -446,19 +504,19 @@
           "parent": "49995539"
         },
         {
+          "id": "50000526",
+          "author": "hmokiguess",
+          "body": "Is this like exposing bias in some ways? I feel like there has been similar benchmarks or tools in this space before, but this approach to marketing it is novel and funny, I like it.",
+          "score": 0,
+          "time": 1791418875,
+          "parent": "49995539"
+        },
+        {
           "id": "49997459",
           "author": "schleck8",
           "body": "They are so real for giving uv a 4.7/5, it changed how I view python. fantastic design philosophy\nhttps://agent.reviews/packages/uv#review-c63f7e0f-5c72-41d2-... (https://agent.reviews/packages/uv#review-c63f7e0f-5c72-41d2-a051-ffcc85388fbb)",
           "score": 0,
           "time": 1791400447,
-          "parent": "49995539"
-        },
-        {
-          "id": "49997827",
-          "author": "conception",
-          "body": "I noticed lots of talk about privacy but this seems to be a prompt injection factory no?",
-          "score": 0,
-          "time": 1791402110,
           "parent": "49995539"
         }
       ]
@@ -627,8 +685,8 @@
       "title": "Show HN: Bigwords.page – Turn any screen into a sign. The URL is the app",
       "subreddit": "show-hn",
       "author": "SpeakingOfBrad",
-      "score": 458,
-      "num_comments": 130,
+      "score": 555,
+      "num_comments": 143,
       "permalink": "https://news.ycombinator.com/item?id=49994443",
       "url": "https://bigwords.page/",
       "selftext": "",
@@ -646,14 +704,6 @@
           "parent": "49994443"
         },
         {
-          "id": "49997519",
-          "author": "pvillano",
-          "body": "https://bigwords.page/#smol!%20!%20!%20!%20!%20!%20!%20!%20!... (https://bigwords.page/#smol!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20)!\nYou seem to have the same bug I had when I first implemented https://screaming.saej.in/ (https://screaming.saej.in/)\nIn Firefox, scrollWidth includes spaces that extend into the margin, so it's possible for text to fit perfectly on the screen, but scrollWidth > clientWidth. Fix here https://saej.in/posts/screaming/ (https://saej.in/posts/screaming/)",
-          "score": 0,
-          "time": 1791400710,
-          "parent": "49994443"
-        },
-        {
           "id": "50001839",
           "author": "arshxyz",
           "body": "The Wake Lock API was made for stuff like this: https://developer.mozilla.org/en-US/docs/Web/API/WakeLock (https://developer.mozilla.org/en-US/docs/Web/API/WakeLock)",
@@ -662,11 +712,11 @@
           "parent": "49994443"
         },
         {
-          "id": "50002157",
-          "author": "saaaaaam",
-          "body": "This is so brilliantly simple.\nI semi-regularly chair or panels and very often the venue hasn’t thought about a countdown timer so that I and the speakers know how long we have left. Having a timer massively improves the quality of a panel from an audience perspective as you can better pace things, move speakers on, wrap up without rushing, and so on.\nBecause of how often a timer wasn’t available last year I made something where I could quickly spin one up using ffmpeg. This is much easier and much more useful. (And doesn’t require having my Mac with me!)\nBeing able to stick one of these on an iPad on a table so that speakers can see it but audience can’t will be really useful.\nThank you!",
+          "id": "49997519",
+          "author": "pvillano",
+          "body": "https://bigwords.page/#smol!%20!%20!%20!%20!%20!%20!%20!%20!... (https://bigwords.page/#smol!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20!%20)!\nYou seem to have the same bug I had when I first implemented https://screaming.saej.in/ (https://screaming.saej.in/)\nIn Firefox, scrollWidth includes spaces that extend into the margin, so it's possible for text to fit perfectly on the screen, but scrollWidth > clientWidth. Fix here https://saej.in/posts/screaming/ (https://saej.in/posts/screaming/)",
           "score": 0,
-          "time": 1791438345,
+          "time": 1791400710,
           "parent": "49994443"
         },
         {
@@ -678,11 +728,51 @@
           "parent": "49994443"
         },
         {
+          "id": "50002157",
+          "author": "saaaaaam",
+          "body": "This is so brilliantly simple.\nI semi-regularly chair or panels and very often the venue hasn’t thought about a countdown timer so that I and the speakers know how long we have left. Having a timer massively improves the quality of a panel from an audience perspective as you can better pace things, move speakers on, wrap up without rushing, and so on.\nBecause of how often a timer wasn’t available last year I made something where I could quickly spin one up using ffmpeg. This is much easier and much more useful. (And doesn’t require having my Mac with me!)\nBeing able to stick one of these on an iPad on a table so that speakers can see it but audience can’t will be really useful.\nThank you!",
+          "score": 0,
+          "time": 1791438345,
+          "parent": "49994443"
+        },
+        {
           "id": "49996012",
           "author": "ceejayoz",
           "body": "Hook it up to voice control so I can put an iPad in the back window of the car and tell other drivers… things.",
           "score": 0,
           "time": 1791394258,
+          "parent": "49994443"
+        },
+        {
+          "id": "50003426",
+          "author": "Skinless1501",
+          "body": "I needed something so similar to build a web page that does than but it's heavy on sanitizing special characters https://salamwaddah.com/tools/say/hi (https://salamwaddah.com/tools/say/hi)",
+          "score": 0,
+          "time": 1791449585,
+          "parent": "49994443"
+        },
+        {
+          "id": "49999471",
+          "author": "ShinyLeftPad",
+          "body": "Cool project and nicely done but \"the URL is the app\" is just meaningless and it sounds exactly like what an llm would drop in every other paragraph.",
+          "score": 0,
+          "time": 1791411095,
+          "parent": "49994443"
+        },
+        {
+          "id": "50003786",
+          "author": "Wittie",
+          "body": "Love this pattern. I used the same trick for the async duel mode in a mobile game I made: the whole duel state travels inside the URL, no server at all. Besides being free to host, it means there is literally nothing to leak. \"The URL is the app\" deserves to be a design philosophy...",
+          "score": 0,
+          "time": 1791452809,
+          "parent": "49994443"
+        },
+        {
+          "id": "49997258",
+          "author": "KingMachiavelli",
+          "body": "Completely different architecture, but would be amazing if another device could control what message (or photo, embedded video) is displayed.\nThere's a huge industry around digital signage and I've always felt it could be replaced with a simple Chromium kiosk + auto-refreshed webpage content. There's really no need for expensive HDMI connections or custom video streams when we already have browsers.",
+          "score": 0,
+          "time": 1791399425,
           "parent": "49994443"
         },
         {
@@ -699,38 +789,6 @@
           "body": "Tip: you can install this as a PWA (progress web app) onto your mobile device home screen. (If you have recent iOS 26+ or Android.)\nIf the site adds a PWA manifest, Android (Chrome/Google app) will show a prompt to install as app on load. Also PWA install will be available for older iOS.\nI made a simple tool that generates a minimal PWA manifest: https://logo.leftium.com/logo (https://logo.leftium.com/logo)",
           "score": 0,
           "time": 1791424830,
-          "parent": "49994443"
-        },
-        {
-          "id": "49999471",
-          "author": "ShinyLeftPad",
-          "body": "Cool project and nicely done but \"the URL is the app\" is just meaningless and it sounds exactly like what an llm would drop in every other paragraph.",
-          "score": 0,
-          "time": 1791411095,
-          "parent": "49994443"
-        },
-        {
-          "id": "50001628",
-          "author": "Waterluvian",
-          "body": "I always liked how lower budget entities would just full screen a power point slide. Like my local hockey arena rooms schedule or a Chinese food restaurant. I like flexible tools.",
-          "score": 0,
-          "time": 1791430506,
-          "parent": "49994443"
-        },
-        {
-          "id": "49997258",
-          "author": "KingMachiavelli",
-          "body": "Completely different architecture, but would be amazing if another device could control what message (or photo, embedded video) is displayed.\nThere's a huge industry around digital signage and I've always felt it could be replaced with a simple Chromium kiosk + auto-refreshed webpage content. There's really no need for expensive HDMI connections or custom video streams when we already have browsers.",
-          "score": 0,
-          "time": 1791399425,
-          "parent": "49994443"
-        },
-        {
-          "id": "50001925",
-          "author": "JoshTriplett",
-          "body": "I've always used https://screenmessage.com/ (https://screenmessage.com/) for this.\nbigwords has the advantage of accepting inline parameters though.",
-          "score": 0,
-          "time": 1791435466,
           "parent": "49994443"
         }
       ]
@@ -830,8 +888,8 @@
       "title": "Show HN: A walkable 3D art history museum built from Wikipedia",
       "subreddit": "show-hn",
       "author": "jasontr",
-      "score": 152,
-      "num_comments": 61,
+      "score": 157,
+      "num_comments": 62,
       "permalink": "https://news.ycombinator.com/item?id=49992057",
       "url": "https://artmuseum.artfrompixels.com/",
       "selftext": "From Li Cheng to Banksy",
@@ -857,19 +915,19 @@
           "parent": "49992057"
         },
         {
-          "id": "49994201",
-          "author": "alexpatin",
-          "body": "This is super cool and I look forward to sharing with my art friends. One piece of unsolicited feedback: it is really nice to focus on a particular image in the gallery, but when I'm done, it puts me back in normal cursor mode and I have to click to 'step inside' again. Minor annoyance. Otherwise really neat.",
-          "score": 0,
-          "time": 1791386916,
-          "parent": "49992057"
-        },
-        {
           "id": "49993289",
           "author": "aogaili",
           "body": "What is strange is that last year I spent a lot of time creating the exact same 3D gallery experience with Claude. I picked up the style of the lights, the benches, the walls, the cards position. I also added music, lights on top of the images and the exact tour experience.\nA year later, I see a very similar implementation!...I find that very odd.\nBut I do like the experience and site, there are few things I can pick from it myself for the project I've.\nBut it seems to me anything you use Claude for will be used aggressively to train the next model and some else in same prompting space can recreate it.\nNot take the anything from the author's work, mine was in a slightly different context.",
           "score": 0,
           "time": 1791382948,
+          "parent": "49992057"
+        },
+        {
+          "id": "49994201",
+          "author": "alexpatin",
+          "body": "This is super cool and I look forward to sharing with my art friends. One piece of unsolicited feedback: it is really nice to focus on a particular image in the gallery, but when I'm done, it puts me back in normal cursor mode and I have to click to 'step inside' again. Minor annoyance. Otherwise really neat.",
+          "score": 0,
+          "time": 1791386916,
           "parent": "49992057"
         },
         {
@@ -905,14 +963,6 @@
           "parent": "49992057"
         },
         {
-          "id": "49995819",
-          "author": "criddell",
-          "body": "At some museums you can hire an art history expert as a guide. In addition to learning the basics (era, artist, etc...) you also find out what's important about any particular piece. They tell you what came before or after the painting or sculpture. You find out who was working with whom. Does the piece have an interesting backstory? Questionable provenance? What was the cultural or political environment at the time?\nThis does have a little blurb as you enter different galleries, but it's pretty broad. It would be neat to have more details per work.\nI really wish I had taken an art history course when I was in school...",
-          "score": 0,
-          "time": 1791393443,
-          "parent": "49992057"
-        },
-        {
           "id": "49994570",
           "author": "frmfrm",
           "body": "Very cool! What stood out is there seems to be a canvas pattern added to the images, which the original don't have. I get it adds a nice touch of lighting but I'd prefer to switch that off to see the image without modifications. Great work!",
@@ -921,11 +971,11 @@
           "parent": "49992057"
         },
         {
-          "id": "49998834",
-          "author": "theogzd",
-          "body": "Just the other day I was thinking about creating something similar as a personal project, but I never thought of making the museum experience this immersive. Congrats! Time well spent and a nice use of AI for educational, artistic and historical purpose.",
+          "id": "49995819",
+          "author": "criddell",
+          "body": "At some museums you can hire an art history expert as a guide. In addition to learning the basics (era, artist, etc...) you also find out what's important about any particular piece. They tell you what came before or after the painting or sculpture. You find out who was working with whom. Does the piece have an interesting backstory? Questionable provenance? What was the cultural or political environment at the time?\nThis does have a little blurb as you enter different galleries, but it's pretty broad. It would be neat to have more details per work.\nI really wish I had taken an art history course when I was in school...",
           "score": 0,
-          "time": 1791407367,
+          "time": 1791393443,
           "parent": "49992057"
         },
         {
@@ -934,6 +984,14 @@
           "body": "Very cool, would love to experience (ultra) high resolution presentations of the art. I was the kid that always got scolded by putting my nose up to the cavas to see the brush strokes..",
           "score": 0,
           "time": 1791382768,
+          "parent": "49992057"
+        },
+        {
+          "id": "49993087",
+          "author": "luxcem",
+          "body": "It would be great to add curated exhibitions alongside the single-artist retrospectives: rooms mixing works by several artists, the way a museum curator would assemble a show.",
+          "score": 0,
+          "time": 1791382028,
           "parent": "49992057"
         }
       ]
@@ -945,8 +1003,8 @@
       "title": "Show HN: Procinsh – A 3D Linux process inspector",
       "subreddit": "show-hn",
       "author": "a_kawashiro",
-      "score": 52,
-      "num_comments": 22,
+      "score": 54,
+      "num_comments": 24,
       "permalink": "https://news.ycombinator.com/item?id=49991986",
       "url": "https://github.com/akawashiro/procinsh",
       "selftext": "",
@@ -1279,8 +1337,8 @@
       "title": "Show HN: NanoMuse – An open-source AI agent for your phone and computer",
       "subreddit": "show-hn",
       "author": "ilreb",
-      "score": 57,
-      "num_comments": 20,
+      "score": 58,
+      "num_comments": 21,
       "permalink": "https://news.ycombinator.com/item?id=49987765",
       "url": "https://github.com/nano-muse/nanoMuse",
       "selftext": "",
@@ -1298,19 +1356,19 @@
           "parent": "49987765"
         },
         {
-          "id": "49994928",
-          "author": "ch_sm",
-          "body": "Great! We need any and all open source alternatives to products that people obviously find useful but do not respect their privacy. Looks good! I‘d reconsider the name.",
-          "score": 0,
-          "time": 1791389942,
-          "parent": "49987765"
-        },
-        {
           "id": "49989928",
           "author": "soltanov",
           "body": "If name changing becomes main topic, i suggest nanoCat :). Btw how do you handle security boundaries?",
           "score": 0,
           "time": 1791362184,
+          "parent": "49987765"
+        },
+        {
+          "id": "49994928",
+          "author": "ch_sm",
+          "body": "Great! We need any and all open source alternatives to products that people obviously find useful but do not respect their privacy. Looks good! I‘d reconsider the name.",
+          "score": 0,
+          "time": 1791389942,
           "parent": "49987765"
         },
         {
