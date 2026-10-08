@@ -1268,8 +1268,8 @@
       "title": "Windows Update KB5120998 Causing Group Policy Refresh Failure and Enabling Administrator Protection on Windows 11",
       "subreddit": "sysadmin",
       "author": "certifiedsysadmin",
-      "score": 43,
-      "num_comments": 7,
+      "score": 51,
+      "num_comments": 9,
       "created_utc": 1791407031.0,
       "permalink": "/r/sysadmin/comments/1x08a84/windows_update_kb5120998_causing_group_policy/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1x08a84/windows_update_kb5120998_causing_group_policy/",
@@ -1285,8 +1285,8 @@
       "title": "Next Tuesday is the final cutoff for Server 2012 ESUs. How are you guys isolating the boxes you can't kill?",
       "subreddit": "sysadmin",
       "author": "Malakai_uk",
-      "score": 40,
-      "num_comments": 40,
+      "score": 38,
+      "num_comments": 42,
       "created_utc": 1791408977.0,
       "permalink": "/r/sysadmin/comments/1x093wb/next_tuesday_is_the_final_cutoff_for_server_2012/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1x093wb/next_tuesday_is_the_final_cutoff_for_server_2012/",
@@ -1309,15 +1309,15 @@
           "score": 1
         },
         {
-          "id": "peim8if",
-          "author": "Demented_CEO",
-          "body": "Isolated VLAN with everything inbound denied and only outbound to Cloudflare allowed. We use a Cloudflare Tunnel to facilitate accesses for apps / users alike and that's controlled by our Entra groups. We run Windows Mobile devices in logistics. The main controller was migrated to Linux, thankfully... It used to be Server 2012.",
-          "score": 1
-        },
-        {
           "id": "peiv29n",
           "author": "googsem",
           "body": "lol we literally had people quit instead of migrating the apps they maintained off of 2012",
+          "score": 1
+        },
+        {
+          "id": "peim8if",
+          "author": "Demented_CEO",
+          "body": "Isolated VLAN with everything inbound denied and only outbound to Cloudflare allowed. We use a Cloudflare Tunnel to facilitate accesses for apps / users alike and that's controlled by our Entra groups. We run Windows Mobile devices in logistics. The main controller was migrated to Linux, thankfully... It used to be Server 2012.",
           "score": 1
         },
         {
@@ -1327,15 +1327,15 @@
           "score": 1
         },
         {
-          "id": "pejbdo7",
-          "author": "Sure-Squirrel8384",
-          "body": "They just accidentally fall over and the backup data is good but we can't seem to restore. Oh well, guess we \\*have\\* to replace it.",
-          "score": 1
-        },
-        {
           "id": "peju9ev",
           "author": "420GB",
           "body": "I think apps that run on 2012 but not 2016 or 2019 should be insanely rare. We had none so we upgraded to 2019 a long time ago.",
+          "score": 1
+        },
+        {
+          "id": "pejbdo7",
+          "author": "Sure-Squirrel8384",
+          "body": "They just accidentally fall over and the backup data is good but we can't seem to restore. Oh well, guess we \\*have\\* to replace it.",
           "score": 1
         }
       ]
@@ -1606,8 +1606,8 @@
       "title": "Stale Inventory - do you keep pending locks on PC are never returned?",
       "subreddit": "sysadmin",
       "author": "blueeggsandketchup",
-      "score": 27,
-      "num_comments": 26,
+      "score": 37,
+      "num_comments": 31,
       "created_utc": 1791398569.0,
       "permalink": "/r/sysadmin/comments/1x04na9/stale_inventory_do_you_keep_pending_locks_on_pc/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1x04na9/stale_inventory_do_you_keep_pending_locks_on_pc/",
@@ -1654,18 +1654,6 @@
           "score": 1
         },
         {
-          "id": "pehoz1k",
-          "author": "fireandbass",
-          "body": "The domain trust should stop working without a connection in 30 days and the laptop should have bitlocker, so effectively nobody can sign in after 30 days anyways without the LAPS password, so after 30 days of no communication the laptop is basically encrypted and the data cant be accessed just as if it was wiped.\n\nIf it gets deleted from Intune and powered on again, it would connect to Intune again like a new PC and not allow a user to sign in to it.\n\nBasically, there are some institutional configurations you should have active and once you have those, you dont need to worry about a missing device.  (LAPS, Bitlocker, Strong authentication, BIOS password)",
-          "score": 1
-        },
-        {
-          "id": "pehpvje",
-          "author": "LayerOneStaging",
-          "body": "You're asking the right question. In the field we treat the MDM record and the asset record as two separate things. The asset record flips to a lost or pending recovery status with a review date on it, usually a quarter out. Finance can then pull it off the active books without pretending the device doesn't exist. On the MDM side, keep the pending lock until your policy says otherwise. If that laptop ever phones home, you want that command still waiting for it. A year is a reasonable timeline and honestly on the generous side. The bigger thing here is getting your retention policy in writing with legal and security sign-off. Once that's in an email, it stops being a debate you have to win every week. Hardware walks off. Your job is to make sure nobody can argue you were careless, not to chase laptops for the rest of your career. One more thing worth a look while you're at it: verify bitlocker is actually on across your fleet. A lost laptop with confirmed encryption is a boring problem. A lost laptop where you can't confirm that is a very exciting one, and not in a fun way.",
-          "score": 1
-        },
-        {
           "id": "pei8azl",
           "author": "OregonTechHead",
           "body": "> Security was ok after a short period. Legal doesn't care.\n\nIf neither of those two care, why should you?",
@@ -1675,6 +1663,18 @@
           "id": "pehlnqf",
           "author": "FarmboyJustice",
           "body": "If the machines are not returned and you have no way of confirming whether they were wiped, I would want them to be flagged as lost or stolen after a specified period of time, and removed from inventory. \n\nKeeping them in inventory might actually increase your liability if the machines ever resurface in connection with criminal activity. By reporting them as lost or stolen, you're basically saying \"we no longer have control of these computers and cannot do anything about them.\"\n\n",
+          "score": 1
+        },
+        {
+          "id": "pehoz1k",
+          "author": "fireandbass",
+          "body": "The domain trust should stop working without a connection in 30 days and the laptop should have bitlocker, so effectively nobody can sign in after 30 days anyways without the LAPS password, so after 30 days of no communication the laptop is basically encrypted and the data cant be accessed just as if it was wiped.\n\nIf it gets deleted from Intune and powered on again, it would connect to Intune again like a new PC and not allow a user to sign in to it.\n\nBasically, there are some institutional configurations you should have active and once you have those, you dont need to worry about a missing device.  (LAPS, Bitlocker, Strong authentication, BIOS password)",
+          "score": 1
+        },
+        {
+          "id": "pehpvje",
+          "author": "LayerOneStaging",
+          "body": "You're asking the right question. In the field we treat the MDM record and the asset record as two separate things. The asset record flips to a lost or pending recovery status with a review date on it, usually a quarter out. Finance can then pull it off the active books without pretending the device doesn't exist. On the MDM side, keep the pending lock until your policy says otherwise. If that laptop ever phones home, you want that command still waiting for it. A year is a reasonable timeline and honestly on the generous side. The bigger thing here is getting your retention policy in writing with legal and security sign-off. Once that's in an email, it stops being a debate you have to win every week. Hardware walks off. Your job is to make sure nobody can argue you were careless, not to chase laptops for the rest of your career. One more thing worth a look while you're at it: verify bitlocker is actually on across your fleet. A lost laptop with confirmed encryption is a boring problem. A lost laptop where you can't confirm that is a very exciting one, and not in a fun way.",
           "score": 1
         },
         {
@@ -1936,8 +1936,8 @@
       "title": "What is the popular platform for e-commerce web site?",
       "subreddit": "ecommerce",
       "author": "gevorgter",
-      "score": 9,
-      "num_comments": 30,
+      "score": 12,
+      "num_comments": 35,
       "created_utc": 1791418323.0,
       "permalink": "/r/ecommerce/comments/1x0cmww/what_is_the_popular_platform_for_ecommerce_web/",
       "url": "https://www.reddit.com/r/ecommerce/comments/1x0cmww/what_is_the_popular_platform_for_ecommerce_web/",
@@ -2015,8 +2015,8 @@
       "title": "Need advice regarding consolidating the software I use for shipping + inventory ordering",
       "subreddit": "ecommerce",
       "author": "Snowboardsurfer91",
-      "score": 6,
-      "num_comments": 12,
+      "score": 7,
+      "num_comments": 16,
       "created_utc": 1791400290.0,
       "permalink": "/r/ecommerce/comments/1x05ef5/need_advice_regarding_consolidating_the_software/",
       "url": "https://www.reddit.com/r/ecommerce/comments/1x05ef5/need_advice_regarding_consolidating_the_software/",
@@ -2024,7 +2024,45 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "pehpeyl",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "peih1cv",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "peirj86",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "peiwp55",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "pelyqgy",
+          "author": "Otherwise_Primary123",
+          "body": "A solo shop with kitting is exactly where spreadsheets start costing you. Two things before you pick software:\n\n1. Get barcodes in first. A cheap scanner and printed labels fix the manual counts whatever system you end up with.\n2. Pick one source of truth for stock. Right now it's split across StockTrim, Sheets and BigCommerce.\n\nThen shortlist tools that do purchase orders with receiving, native kits (selling 1 case deducts 10 packs), two-way BigCommerce sync, and either built-in shipping or a ShipStation integration. Cin7 and Zoho Inventory are two to compare, but check kitting and BigCommerce sync on each. Trial with your 20 messiest SKUs, and keep QuickBooks for accounting, just not for POs.",
+          "score": 1
+        },
+        {
+          "id": "peoa1z6",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1x0basp",
@@ -2032,8 +2070,8 @@
       "title": "Anyone running a full ecommerce software stack, what's actually essential vs nice-to-have?",
       "subreddit": "ecommerce",
       "author": "Content_Most2673",
-      "score": 5,
-      "num_comments": 7,
+      "score": 4,
+      "num_comments": 9,
       "created_utc": 1791414593.0,
       "permalink": "/r/ecommerce/comments/1x0basp/anyone_running_a_full_ecommerce_software_stack/",
       "url": "https://www.reddit.com/r/ecommerce/comments/1x0basp/anyone_running_a_full_ecommerce_software_stack/",
@@ -2167,8 +2205,8 @@
       "title": "how do you prepare for black friday?",
       "subreddit": "shopify",
       "author": "Material-Art-9798",
-      "score": 2,
-      "num_comments": 10,
+      "score": 4,
+      "num_comments": 11,
       "created_utc": 1791417358.0,
       "permalink": "/r/shopify/comments/1x0c9zg/how_do_you_prepare_for_black_friday/",
       "url": "https://www.reddit.com/r/shopify/comments/1x0c9zg/how_do_you_prepare_for_black_friday/",
@@ -2201,8 +2239,8 @@
       "title": "Anyone's custom content / metafields just...disappear?",
       "subreddit": "shopify",
       "author": "cuhwassahn",
-      "score": 1,
-      "num_comments": 2,
+      "score": 2,
+      "num_comments": 4,
       "created_utc": 1791417352.0,
       "permalink": "/r/shopify/comments/1x0c9wy/anyones_custom_content_metafields_justdisappear/",
       "url": "https://www.reddit.com/r/shopify/comments/1x0c9wy/anyones_custom_content_metafields_justdisappear/",
@@ -2218,8 +2256,8 @@
       "title": "Local Pickup only on certain dates?",
       "subreddit": "shopify",
       "author": "potato__champion",
-      "score": 2,
-      "num_comments": 7,
+      "score": 3,
+      "num_comments": 11,
       "created_utc": 1791414145.0,
       "permalink": "/r/shopify/comments/1x0b4tx/local_pickup_only_on_certain_dates/",
       "url": "https://www.reddit.com/r/shopify/comments/1x0b4tx/local_pickup_only_on_certain_dates/",
@@ -2235,8 +2273,8 @@
       "title": "Anyone ever remove something customers were supposedly expecting... and they just didn't care?",
       "subreddit": "shopify",
       "author": "PresidentEvil99",
-      "score": 4,
-      "num_comments": 7,
+      "score": 7,
+      "num_comments": 9,
       "created_utc": 1791410272.0,
       "permalink": "/r/shopify/comments/1x09mow/anyone_ever_remove_something_customers_were/",
       "url": "https://www.reddit.com/r/shopify/comments/1x09mow/anyone_ever_remove_something_customers_were/",
@@ -2523,8 +2561,8 @@
       "title": "where do you draw the line between quoting a job and designing it for free?",
       "subreddit": "smallbusiness",
       "author": "CompleteAct3694",
-      "score": 14,
-      "num_comments": 30,
+      "score": 15,
+      "num_comments": 32,
       "created_utc": 1791406349.0,
       "permalink": "/r/smallbusiness/comments/1x07zkp/where_do_you_draw_the_line_between_quoting_a_job/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1x07zkp/where_do_you_draw_the_line_between_quoting_a_job/",
@@ -2544,7 +2582,7 @@
           "id": "peifo7g",
           "author": "marwar-tech",
           "body": "I’d stop treating every custom enquiry as a free quote.\n\nFor straightforward work, free quoting makes sense because you already know the inputs and can price quickly.\n\nBut once the customer is asking you to solve engineering/design questions before you can even price it, that’s really a different service.\n\nI’d structure it like:\n\ninitial enquiry → basic qualification → rough budget range → paid feasibility/design/scoping → final fabrication quote\n\nThe rough range helps filter out people whose budget is nowhere near realistic before you spend hours figuring out thickness, machining, hardware, assembly and packing.\n\nYou can also credit the design/scoping fee toward the final order if they proceed. That way serious customers don’t feel penalized, but you stop doing technical work for people who are only curious.\n\nThe difficult part isn’t quoting — it’s recognizing when the quote has turned into consulting.",
-          "score": 5
+          "score": 7
         },
         {
           "id": "peicxyt",
@@ -2590,8 +2628,8 @@
       "title": "What actually works for you in the slow season?",
       "subreddit": "smallbusiness",
       "author": "bhaboooo",
-      "score": 21,
-      "num_comments": 12,
+      "score": 29,
+      "num_comments": 24,
       "created_utc": 1791429302.0,
       "permalink": "/r/smallbusiness/comments/1x0gas6/what_actually_works_for_you_in_the_slow_season/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1x0gas6/what_actually_works_for_you_in_the_slow_season/",
@@ -2599,7 +2637,57 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "pekfyjo",
+          "author": "butwhatififly_",
+          "body": "I have a cookie shop.\n\n1) can you build an experience for team building or friends outings? In our world it’s cookie decorating, in yours it may entail getting creative and thinking outside the box, but perhaps make your own ice xream? With unique asian flavors and mixins? Or hosting a wine or mocktail and dessert pairing night?  What I and many bakers learned early in the business is that the private event space - or even public class space - is where the money is! That, and…\n\n2) corporate! Do you offer catering to local big businesses? Going in and dropping off samples, building types of platters they can order and come pick up? Can you customize them at all? \n\nI highly recommend both. \n\nAlso, it’s only been 2 months since schools picked back up — I get the panic of slow season especially in your first year when seeing a profit doesn’t even hit for another 1-2, but things you mentioned ALL take at least 6 months to build into something that has a return. Google ads (find a professional who knows what they’re doing or else you’re throwing money down the drain), social media, etc. \n\nOh another thing - hosting events at your shop, make an fb event for it, and after you get 10+ ppl interested, boost it. Make sure you have a fun graphic and an engaging writeup. What kinds of events? You could invite some vendors to come set up, launch a fun weekend only product with limited of them, we had a pop up thrift shop experience - that’s where asking other businesses can help! See if they want to pop up in your space, if you have room.",
+          "score": 11
+        },
+        {
+          "id": "pekgag1",
+          "author": "Ibench690",
+          "body": "I'm in Dallas, Texas so the market is a little different but I've been in the asian-dessert food scene for the past 10 years mainly in boba, ice cream, and other desserts so hopefully I can add some context to your situation: \n\n1. All stores have a grand opening and usually 1-2 year honeymoon phase where  you get organic discovery and customers who are genuinely interested in your product market fit will come and check you guys out - If you hit on all the metrics: taste/flavor, service, cost, overall experience this will help \n\n2. How are your reviews? Google and Yelp, any negative feedback or opportunity to improve? \n\n3. Retail is always dependent on location so much so that a good location will pay dividends in perpetuity where as a mediocre or bad location you can never recover from. For desserts especially it's really important to consider being next to high volume restaurants that trend salty, spicy, etc. where you get a 2nd wind to want to eat desserts \n\n4. I personally am not a huge fan of paid marketing even if you can 100% quantify the ROI. I would rather preserve my cash to pay your fixed costs since even as your store sales fall all of your fixed costs stay the same. In this time be super vigilant about controlling your costs going into winter season. I would absolutely staff thinner than you did for summer opening\n\n5. I would focus on developing new channels that don't fully live in die by retail:   \nA. Catering   \nB. pop-up and vendor markets   \nC. local partnerships with restaurants nearby   \nD. fundraising \n\n6. I've experimented with adding hot items and adding things like baked goods, but honestly it wasn't worth the time - go ahead and experiment to see if it changes but if you're known as a asian dessert shop people aren't going to think about you for coffee or hot chocolate. ",
+          "score": 7
+        },
+        {
+          "id": "pekp5m9",
+          "author": "LazyLeslieKnope",
+          "body": "I close. Seriously. I just close up from mid-November til mid-March. The last winter we were open we did the same amount of sales in the whole month of December than we do on one Sunday in June. One location hosts local pop-ups and one is set up for photo shoots during the off-season. It wasn’t worth the electricity, water, payroll and maintenance. Plus the excitement and buzz from re-opening offsets things a bit. Nobody is eating extra calories or spending excess money in January, no matter what they tell you.",
+          "score": 6
+        },
+        {
+          "id": "pel2jlf",
+          "author": "Present-Pitch-8196",
+          "body": "Slow season is when you build the stuff that pays off in busy season. Catering and corporate orders don't care about foot traffic, offices order year-round. Get a simple catering menu together and hit up nearby businesses. Also, limited-time seasonal items give people a reason to come in specifically during the months they'd normally skip you.",
+          "score": 7
+        },
+        {
+          "id": "pekrc6y",
+          "author": "rconrarrechaa",
+          "body": "Study your customer a little further. It seems like students could be your primary focus so consider them during school time, their peak hrs, what are their paint points? They could need:\n\n 1. Quiet study spaces\n 2. Social gathering events\n 3. Personal events: bdays, graduations, etc\n\nAnd aside from students, consider their parents/guardians as your secondary customer, they might the ones funding their expences. If you can convince students this is a good space to study for a few hrs AND mom feels safe in letting their kid go because your space is clean and you have good student deals, she wins, you win.\n\nYou got this 💪🏼 the desserts sound delicious!",
+          "score": 3
+        },
+        {
+          "id": "pemt0xs",
+          "author": "akrish_17",
+          "body": "I do marketing for restaurants and food spots, and what I've noticed with clients is that slow seasons rarely get fixed by doing more of the summer stuff. You need a different reason for people to come in.\n\nHot menu items are the obvious one but they work. Things like taiyaki, egg waffles, hot mango or milk teas give people a winter excuse, and they're easy to push on reels since steam and fresh-off-the-iron shots do really well.\n\nThe theater across the street is your best asset. I'd build a pre/post-show offer tied to their schedule (show your ticket, get a combo) and run Meta ads targeting a small radius around the venue on show nights. That's way more targeted than Google ads for a dessert shop since nobody's searching \"mango crepe\" in December.\n\nLunar New Year (early Feb) is also huge for an Asian dessert concept. Party trays and pre-orders for families and offices can be a real bump. Same with gift cards before Christmas.\n\nAnd start collecting customer numbers or emails now (a punch card or \"free topping next visit\") so you can bring summer regulars back with a text in January instead of hoping they remember you.\n\nHope this helps, goodluck!",
+          "score": 3
+        },
+        {
+          "id": "pelybjw",
+          "author": "AnglerFulfilment",
+          "body": "Gift cards are worth pushing for the holidays. People buy them in November and December, so you get cash in during your slowest stretch, and the people who get them come in later as new customers.",
+          "score": 1
+        },
+        {
+          "id": "pem3113",
+          "author": "No_Treacle_5071",
+          "body": "Gift cards before the holidays are probably the easiest win, people buy them for teachers, coworkers and stockings, and you get the cash in your slowest months. Adding a couple of hot items helps more than you'd think, even just hot drinks or warm crepes, so you're not only the ice cream stop in December. The theater across the street is great, I'd make an offer their audience sees, like show your ticket for 10% off that night, not just courting the performers. Dessert trays for office parties and birthdays are worth pushing in November and December too. Give each thing its own code so you can see which ones actually move numbers.",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1x0isb1",
@@ -2607,8 +2695,8 @@
       "title": "Any tips for an online business??",
       "subreddit": "smallbusiness",
       "author": "adayintheraces",
-      "score": 16,
-      "num_comments": 20,
+      "score": 26,
+      "num_comments": 33,
       "created_utc": 1791437624.0,
       "permalink": "/r/smallbusiness/comments/1x0isb1/any_tips_for_an_online_business/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1x0isb1/any_tips_for_an_online_business/",
@@ -2616,7 +2704,69 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "pel0ava",
+          "author": "BobbySweets",
+          "body": "Cross platform promotion. All the major sites. \n\nFriends and customers using their platform to also promote your stuff. Offer discounts or add on’s for the service. \n\nYou can try paid ads. \n\nOpen a LinkedIn page for your business and make posts about being the best in your business.  Ai bots pick that up and deleted it back. \n\nHope that helps. ",
+          "score": 6
+        },
+        {
+          "id": "pemwn3a",
+          "author": "tristan035",
+          "body": "I would suggest you have a proper business set up now rather than later. You don't want to get hit with tax implications when you turn 18 that you weren't expecting. \n\nThis just means you keep track of inventory (costs of your accessories for materials and other expenses, like travel if you do that, or a website if you have that). \n\nStart this process early and keep track of any costs and sales. \n\nAs for sales, see about a personal website, and cross sell on social media. If friends or family or whomever, for example, wants something, have them buy from your site or from an Etsy page or something to boost your visibility and presence. ",
+          "score": 3
+        },
+        {
+          "id": "pelbkqs",
+          "author": "EquivalentTop3213",
+          "body": "Before you post even more, figure out which step is actually holding you back. The fix is different for each one, and 4 posts a week is already a decent pace. Posting more only helps if the real issue is that not enough people are seeing your stuff.\n\nLook back at the last few weeks and see where people drop off:\n\n- Low views: it's a reach problem. Try posts people like to share, like a short clip of you making a piece or how it looks worn with an outfit.\n- Decent views but few profile visits or shop clicks: people enjoy the content but may not realize it's for sale. Put the price and how to order right in the post.\n- Clicks but few orders: the shop page is the problem. Check your photos, your prices, and whether shipping costs only show up at checkout.\n\nAlso check which of your past launches sold best and figure out what they had in common, like style, price or color, so your next drop builds on that.\n\nWhich is closer to where you are right now: lots of likes but few sales, or not many views at all?",
+          "score": 2
+        },
+        {
+          "id": "pel1vlx",
+          "author": "rexmd13",
+          "body": "Post more everyday multiple times a day ",
+          "score": 1
+        },
+        {
+          "id": "pelglwl",
+          "author": "MossySignal",
+          "body": "Posting 4x a week is good, but I’d focus less on posting more and more on figuring out what actually gets people to buy. I’d try different types of posts for a few weeks, like showing how you make the accessories, styling them, customer photos, or even the story behind a piece, then put more effort into whatever gets the most clicks or orders. For small businesses I feel like the little behind-the-scenes stuff can make people care about the person making it, not just the product, which can make a big difference when you’re selling something handmade.\n\nFor actually getting more customers, I’d also try small referral discounts, like giving an existing customer 10% off their next order if they get a friend to buy. Even a few customers doing that can slowly build a customer base without having to spend much on ads.\n\nBut overall it's all about experimenting different things and eventually find something that works for you. Good luck!",
+          "score": 1
+        },
+        {
+          "id": "pelmoqs",
+          "author": "HATDOGUSERNi",
+          "body": "keep posting, but also track which products and posts actually bring sales. double down on whats working instead of just posting more",
+          "score": 1
+        },
+        {
+          "id": "peltvgr",
+          "author": "nare___k",
+          "body": "On what platforms do you post? Do you have a written strategy or smth like that?",
+          "score": 1
+        },
+        {
+          "id": "pelvc6x",
+          "author": "wakwaw322",
+          "body": "|Honestly, I think you could post more cause at the early stage, you need to know what content works and generates engagement, it could require a lot of posting|\n|:-|\n",
+          "score": 1
+        },
+        {
+          "id": "pelvq6a",
+          "author": "redefinedconcepts",
+          "body": "Not much to go off of, but heavily broadcast what you love and your love for it",
+          "score": 1
+        },
+        {
+          "id": "pelyr9u",
+          "author": "SC_Sam02",
+          "body": "Try showing more of the behind the scene stuff too like making the pieces or even little fails lol. Don't forget to keep track of what posts/products get the most views so you can do more of what's working",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1x0d3gl",
@@ -2624,7 +2774,7 @@
       "title": "what to do for a struggling business?",
       "subreddit": "smallbusiness",
       "author": "Realistic_Creme885",
-      "score": 6,
+      "score": 7,
       "num_comments": 13,
       "created_utc": 1791419678.0,
       "permalink": "/r/smallbusiness/comments/1x0d3gl/what_to_do_for_a_struggling_business/",
@@ -2642,7 +2792,7 @@
       "subreddit": "smallbusiness",
       "author": "ZainMunawari",
       "score": 8,
-      "num_comments": 12,
+      "num_comments": 13,
       "created_utc": 1791424667.0,
       "permalink": "/r/smallbusiness/comments/1x0ers7/who_sends_the_reminders_in_your_business_you_or/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1x0ers7/who_sends_the_reminders_in_your_business_you_or/",
@@ -2658,8 +2808,8 @@
       "title": "Wise closed my US business account overnight with no warning. Ukrainian owner here, anyone else?",
       "subreddit": "smallbusiness",
       "author": "Adventurous_Cup_4263",
-      "score": 9,
-      "num_comments": 8,
+      "score": 17,
+      "num_comments": 10,
       "created_utc": 1791435522.0,
       "permalink": "/r/smallbusiness/comments/1x0i6l1/wise_closed_my_us_business_account_overnight_with/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1x0i6l1/wise_closed_my_us_business_account_overnight_with/",
@@ -2684,7 +2834,15 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "pejkwcp",
+          "author": "davidjones145",
+          "body": "it is self-reported through brand registry, amazon asks for employee count and revenue and basically takes your word for it. that is why you see big brands wearing the badge. have you seen it actually move the needle on conversion for real small sellers?",
+          "score": 3
+        }
+      ]
     },
     {
       "id": "1x0bvzd",
@@ -2692,7 +2850,7 @@
       "title": "Business Tax Receipt Question FL",
       "subreddit": "smallbusiness",
       "author": "nintendoggosgrooming",
-      "score": 4,
+      "score": 5,
       "num_comments": 10,
       "created_utc": 1791416225.0,
       "permalink": "/r/smallbusiness/comments/1x0bvzd/business_tax_receipt_question_fl/",
@@ -2798,8 +2956,8 @@
       "title": "Captchas from Dante's Inferno",
       "subreddit": "sysadmin",
       "author": "Relevant-Law-7303",
-      "score": 6,
-      "num_comments": 22,
+      "score": 9,
+      "num_comments": 25,
       "created_utc": 1791424217.0,
       "permalink": "/r/sysadmin/comments/1x0emce/captchas_from_dantes_inferno/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1x0emce/captchas_from_dantes_inferno/",
@@ -2838,6 +2996,12 @@
           "author": "TimePlankton3171",
           "body": "I get this sometimes on my home network. When it happens, it's stubborn. It'll be on any browser, even a new clean profile. Rarely do I get through the captcha. It'll last for a while, and it'll be 100% persistent. No Google searches possible.\n\nThen it disappears. No captchas at all. Seems random.",
           "score": 1
+        },
+        {
+          "id": "peo0soa",
+          "author": "pdp10",
+          "body": "Ensure that IPv6 is enabled. CAPTCHAs are often an indication of IP sharing with NAT or NAT64.\n\n> the captchas followed my browser!\n\nYou're very sus. It's either in your cookies or not in your cookies.",
+          "score": 1
         }
       ]
     },
@@ -2864,8 +3028,8 @@
       "title": "Google IT Support Cert or Microsoft IT Support Cert? Transitioning from teaching to IT Help Desk",
       "subreddit": "sysadmin",
       "author": "Acceptable-Echo1260",
-      "score": 4,
-      "num_comments": 18,
+      "score": 5,
+      "num_comments": 19,
       "created_utc": 1791407881.0,
       "permalink": "/r/sysadmin/comments/1x08nd3/google_it_support_cert_or_microsoft_it_support/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1x08nd3/google_it_support_cert_or_microsoft_it_support/",
@@ -2873,7 +3037,63 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "peihz1e",
+          "author": "Demented_CEO",
+          "body": "Microsoft is by far more popular. Out of every company I've worked at, only one actually used Google. Everyone else had Microsoft 365, Entra / AD, SharePoint, etc.",
+          "score": 1
+        },
+        {
+          "id": "peih9d8",
+          "author": "jimbojambo40",
+          "body": "Microsoft",
+          "score": 1
+        },
+        {
+          "id": "peii1cv",
+          "author": "SlowkayCoomer",
+          "body": "A lot of the certifications are kinda difficult to put value on because of how prevalent the braindumps and similar cram guides are.\n\nIt's way too easy to be certified into a paper tiger if you can memorize answers.",
+          "score": 1
+        },
+        {
+          "id": "peikd9j",
+          "author": "Cold_Arachnid_2617",
+          "body": "None of them would get you a job!",
+          "score": 1
+        },
+        {
+          "id": "peiiczu",
+          "author": "Loehmann",
+          "body": "Microsoft's enterprise ecosystem is much more robust compared to Google's.",
+          "score": 1
+        },
+        {
+          "id": "pen0x5i",
+          "author": "Palmolive",
+          "body": "Unless you are going somewhere that uses Google, don’t get that one.  Microsoft or Comptia a+ would be a better use of funds",
+          "score": 1
+        },
+        {
+          "id": "peimvcq",
+          "author": "metalblessing",
+          "body": "I usually recommend CompTIA A+ as the baseline",
+          "score": 1
+        },
+        {
+          "id": "peip687",
+          "author": "Sad_Weakness4091",
+          "body": "Neither. Get CompTia+. Know couple of green guys with those certs abd they lack the basic knowledge of IT...",
+          "score": 1
+        },
+        {
+          "id": "pejro6p",
+          "author": "TechB84",
+          "body": "Neither will get you a job. Stop by [https://www.reddit.com/r/ITCareerQuestions/](https://www.reddit.com/r/ITCareerQuestions/)\n\nCheck out Cisco Networking Academy [https://www.netacad.com/](https://www.netacad.com/) , the training modules are free for the CCST exams.  You can eventually work yourself towards CCNA\n\nA+ is a lot of work for nothing. Network + is not as impressive compared to CCNA, so no point in wasting time with that. ",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1x0h40f",
@@ -2882,7 +3102,7 @@
       "subreddit": "shopify",
       "author": "Prudent_Hat_6714",
       "score": 2,
-      "num_comments": 20,
+      "num_comments": 27,
       "created_utc": 1791431926.0,
       "permalink": "/r/shopify/comments/1x0h40f/should_i_fulfill_this_highrisk_order_it_feels/",
       "url": "https://www.reddit.com/r/shopify/comments/1x0h40f/should_i_fulfill_this_highrisk_order_it_feels/",
@@ -2890,7 +3110,81 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "pekmva7",
+          "author": "usernamewhatever77",
+          "body": "Cancel all medium to high risk orders.",
+          "score": 12
+        },
+        {
+          "id": "peksxj4",
+          "author": "John___Matrix",
+          "body": "High risk will definitely be fraudulent. I have a flow that automatically cancels them, not even worth looking at them.",
+          "score": 5
+        },
+        {
+          "id": "pemah4p",
+          "author": "WaddlingPanda17",
+          "body": "cancel and refund it. the \"my orders keep getting canceled on other sites\" email is basically them telling you other stores already caught it, and a stolen card chargeback still lands on you even if tracking shows delivered. refund now and you're out nothing, ship it and you're out the product plus the chargeback fee",
+          "score": 4
+        },
+        {
+          "id": "peklnay",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "pekucrr",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "pel9lui",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        },
+        {
+          "id": "pelaam9",
+          "author": "not_apply_yet",
+          "body": "You must be new as a merchant, this is not even a 30/70 decision, its 100% that you should cancel it.",
+          "score": 1
+        },
+        {
+          "id": "pelqea5",
+          "author": "pythonbashman",
+          "body": "Never.",
+          "score": 1
+        },
+        {
+          "id": "pemj4vb",
+          "author": "knifeymcknifeface",
+          "body": "Trust the system unless you can afford the loss. I cancel all high risk almost immediately. I don’t have time for that level of risk. ",
+          "score": 1
+        },
+        {
+          "id": "pengm5j",
+          "author": "VillageHomeF",
+          "body": "I would not fulfill.   cancel it",
+          "score": 1
+        },
+        {
+          "id": "penvjau",
+          "author": "Informal-Dust4499",
+          "body": "The decision itself is unanimous here for good reason, so the part worth adding is what to do going forward. Since you're not on Shopify Payments, check whether your gateway lets you auto-decline on CVV/AVS mismatch instead of flagging it for manual review after the fact, that catches this pattern before you ever see the order. A proxy/VPN detection app on top handles the IP side, since mismatched billing country plus a proxy connection is already enough for most fraud filters to block automatically.",
+          "score": 1
+        },
+        {
+          "id": "peopjmv",
+          "author": "[deleted]",
+          "body": "[removed]",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1x0jrik",
@@ -2898,8 +3192,8 @@
       "title": "How do you follow up after a verbal yes?",
       "subreddit": "smallbusiness",
       "author": "PuzzleheadedCode8409",
-      "score": 6,
-      "num_comments": 15,
+      "score": 10,
+      "num_comments": 26,
       "created_utc": 1791441228.0,
       "permalink": "/r/smallbusiness/comments/1x0jrik/how_do_you_follow_up_after_a_verbal_yes/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1x0jrik/how_do_you_follow_up_after_a_verbal_yes/",
@@ -2907,7 +3201,39 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "pel8jsr",
+          "author": "No_Treacle_5071",
+          "body": "Following up now is totally normal. They said next week and it's Wednesday, so you're just checking in, not chasing. I'd keep it practical and make it about getting started: something like \"Hi, just want to lock in a start date for you. Once the deposit is in I can get you on the schedule for next week. Want me to resend the invoice?\" Giving them an easy next step usually gets a reply faster than asking if they're still interested.",
+          "score": 10
+        },
+        {
+          "id": "pelblhf",
+          "author": "theclosersdesk",
+          "body": "We've learned to stop accepting verbal yeses without a next step attached. Before the call ends, we always ask: what do you need from me to get the deposit moving this week? Gets you a real answer instead of silence on Wednesday.",
+          "score": 4
+        },
+        {
+          "id": "pelad6z",
+          "author": "Legal-Translator-529",
+          "body": "Wednesday is a normal day to follow up. Don't send another \"still good?\" note. Put the Friday quote back in the email in three lines: what's included, the deposit, and the date that deposit holds the slot. Ask for the deposit, or for the one change they want written on the quote. Don't start the job and don't cut the price off a chat yes. If Thursday goes by with neither, say once that the week is open again.",
+          "score": 2
+        },
+        {
+          "id": "pelt5ge",
+          "author": "redefinedconcepts",
+          "body": "You text or return a call to that exact statement, with a message saying you’re just following up since it’s been a few business days…. Simply bc you don’t know if they’ve been busy or it slipped their mind",
+          "score": 2
+        },
+        {
+          "id": "pemg3nb",
+          "author": "bluekmg",
+          "body": "Once we get the yes we immediately send a detailed invoice of everything we're providing and price.  For most we require payment in full before we start.  There's a link on the invoice email to pay.  ",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1x0j7dx",
@@ -2916,11 +3242,11 @@
       "subreddit": "smallbusiness",
       "author": "TMLSKGJ",
       "score": 6,
-      "num_comments": 7,
+      "num_comments": 10,
       "created_utc": 1791439196.0,
       "permalink": "/r/smallbusiness/comments/1x0j7dx/bookstore_owner_other_tools_outside_of/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1x0j7dx/bookstore_owner_other_tools_outside_of/",
-      "selftext": "Hi, looking for some advice on tools/direction to use for an online bookstore. Context on my business- its rolling out in phases: online store —> pop-ups (actively hosting now) —> eventual brick-and-mortar.\n\n* **Needs:** I am okay with not owning 100% of my online sale margins right now, for the trade of fulfillment management. I am a solo founder, in the process of running everything on my own (building socials, business dev, pop up markets etc). The online store is primarily there as a means for customers to engage with us directly while I work toward the big picture which is a physical store/cafe. I may in the next year want to fully own/manage my online shop but for now I am looking for a self-run tool. All my research basically took me to [bookstore.org](http://bookstore.org).\n* **My question: are there other, better options to fill that need? Might be worth noting, I host on wix.**\n\nMy thoughts so far on [bookstore.org](http://bookstore.org)\n\nPros:\n\n* As mentioned, it handles stocking inventory and fulfillment, which I need right now. My main business goal isn’t online sales, so I am essentially looking for something that runs itself in terms of fulfillment and stock.\n* Direct and easy access to inventory/one off titles - obviously running my own shopify etc would require me to wholesale order, which is harder to do for a single new titles due to order minimums. I’m just starting off, so I am being strategic about my wholesale approach (right now, I am only ordering physical stock for pop-up markets).\n\nCons:\n\n* Just using their base affiliate program, the margin per sale is of course essentially nothing. If I join the ABA, I could bring this up to 30% which is much better. I am considering it, since as a POC owner I would get their first year of membership at no cost. But, I want to ensure [bookstore.org](http://bookstore.org). is the right tool before I proceed.\n* Their UI is pretty bad. Its difficult to even add lists to their backend, and time consuming. I could deal with it, but its one thing to consider vs other tools.\n* Their online imbed is awful. You can’t directly implement it into your site, other than a button/link OR a widget that isn’t customizable or shoppable at all. My website is very branded, so it clashes a lot with the brand identity. I would love something that is more shoppable within my own website environment. Not sure if any tools will really be feasible for that, outside of my own managed shop.\n\nI recently came across this tool through ABA, still looking into it, but has anyone had any experience? [https://indiecommerce.com/](https://indiecommerce.com/)\n\nAppreciate any insight/help!! Thank you kindly.",
+      "selftext": "Hi, looking for some advice on tools/direction to use for an online bookstore. Context on my business- its rolling out in phases: online store —> pop-ups (actively hosting now) —> eventual brick-and-mortar.\n\n* **Needs:** I am okay with not owning 100% of my online sale margins right now, for the trade of fulfillment management. I am a solo founder, in the process of running everything on my own (building socials, business dev, pop up markets etc). The online store is primarily there as a means for customers to engage with us directly while I work toward the big picture which is a physical store/cafe. I may in the next year want to fully own/manage my online shop but for now I am looking for a self-run tool. All my research basically took me to [book](http://bookstore.org)\n\n[shop.org](http://bookstore.org)\n\n* **My question: are there other, better options to fill that**\n\n**fulfillment** \n\n* **need? Might be worth noting, I host on wix.**\n\nMy thoughts so far on [books](http://bookstore.org)[hop.org](http://bookstore.org)\n\nPros:\n\n* As mentioned, it handles stocking inventory and fulfillment, which I need right now. My main business goal isn’t online sales, so I am essentially looking for something that runs itself in terms of fulfillment and stock.\n* Direct and easy access to inventory/one off titles - obviously running my own shopify etc would require me to wholesale order, which is harder to do for a single new titles due to order minimums. I’m just starting off, so I am being strategic about my wholesale approach (right now, I am only ordering physical stock for pop-up markets).\n\nCons:\n\n* Just using their base affiliate program, the margin per sale is of course essentially nothing. If I join the ABA, I could bring this up to 30% which is much better. I am considering it, since as a POC owner I would get their first year of membership at no cost. But, I want to ensure [bookstore.org](http://bookstore.org). is the right tool before I proceed.\n* Their UI is pretty bad. Its difficult to even add lists to their backend, and time consuming. I could deal with it, but its one thing to consider vs other tools.\n* Their online imbed is awful. You can’t directly implement it into your site, other than a button/link OR a widget that isn’t customizable or shoppable at all. My website is very branded, so it clashes a lot with the brand identity. I would love something that is more shoppable within my own website environment. Not sure if any tools will really be feasible for that, outside of my own managed shop.\n\nI recently came across this tool through ABA, still looking into it, but has anyone had any experience? [https://indiecommerce.com/](https://indiecommerce.com/)\n\nAppreciate any insight/help!! Thank you kindly.",
       "is_self": true,
       "over_18": false,
       "is_video": false,
@@ -2932,8 +3258,8 @@
       "title": "I've been on the customer side of automotive sourcing for years. Here are 5 mistakes that almost guarantee a supplier loses the business.",
       "subreddit": "smallbusiness",
       "author": "Familiar_Wheel_7665",
-      "score": 4,
-      "num_comments": 2,
+      "score": 2,
+      "num_comments": 3,
       "created_utc": 1791450595.0,
       "permalink": "/r/smallbusiness/comments/1x0m6dp/ive_been_on_the_customer_side_of_automotive/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1x0m6dp/ive_been_on_the_customer_side_of_automotive/",
@@ -2949,8 +3275,8 @@
       "title": "Odor removal business in, 3 months in. How do you find consistent leads?",
       "subreddit": "smallbusiness",
       "author": "aj_216",
-      "score": 2,
-      "num_comments": 21,
+      "score": 7,
+      "num_comments": 29,
       "created_utc": 1791433017.0,
       "permalink": "/r/smallbusiness/comments/1x0hg4z/odor_removal_business_in_3_months_in_how_do_you/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1x0hg4z/odor_removal_business_in_3_months_in_how_do_you/",
@@ -2958,7 +3284,63 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "pekpc1i",
+          "author": "ministryofchampagne",
+          "body": "I would target property management companies. Apartments or houses yet to be rented. ",
+          "score": 3
+        },
+        {
+          "id": "pekrxh7",
+          "author": "da_xiong12",
+          "body": "This is a thing that might be limited to my area (Georgia) but try reaching out to the guys at www.numentrades.work and see if they might be interested in trying out your territory.",
+          "score": 2
+        },
+        {
+          "id": "pekyc8h",
+          "author": "ZarehD",
+          "body": "Follow your nose? ;-)",
+          "score": 2
+        },
+        {
+          "id": "pel2hni",
+          "author": "Present-Pitch-8196",
+          "body": "Odor removal is one of those services people only search for when they need it urgently, so you want to own that moment. Make sure your Google Business Profile is dialed in with before/after photos and review requests after every job. Property managers and realtors are your goldmine for repeat work. One relationship there beats 50 ad clicks.",
+          "score": 2
+        },
+        {
+          "id": "pem305i",
+          "author": "No_Treacle_5071",
+          "body": "Clicks but no calls on Google Ads usually means the clicks are coming from the wrong searches, so check the search terms report first. Odor stuff pulls a lot of DIY people looking for how to get smoke smell out of a car, so add negatives like how to, diy, spray, homemade. Make sure you have a call extension or call ads running during your hours, and check if your category qualifies for Local Services Ads since you pay per lead there instead of per click. Your Google Business Profile with before and after photos and reviews matters a lot for \"odor removal near me\" too. For repeat work, property managers and apartment turnover crews are usually better than dealerships, they deal with smoke and pet smell every time a tenant moves out.",
+          "score": 2
+        },
+        {
+          "id": "pekyi24",
+          "author": "achiya-automation",
+          "body": "in your ads account, the search terms report shows what people actually typed before they clicked. if a lot of it is diy searches like \"how to get smoke smell out of car\", add them as negative keywords.",
+          "score": 1
+        },
+        {
+          "id": "pel4s1m",
+          "author": "lilythemoon54",
+          "body": "Clicks without calls is usually the landing page or the keywords, not the spend. Check that the ad lands on a page with a tap-to-call button above the fold, and read the search terms report for the 'how to remove smoke smell' and DIY searches that were never going to hire you. On the dealerships with no repeat orders: pitch the reconditioning manager a flat per-car price with a turnaround time, so it becomes a line item for them instead of a one-off favor.",
+          "score": 1
+        },
+        {
+          "id": "pel5z01",
+          "author": "webypost",
+          "body": "[ Removed by Reddit ]",
+          "score": 1
+        },
+        {
+          "id": "peli4ih",
+          "author": "FewLeadership4423",
+          "body": "The fix for uneven lead flow is picking one repeat buyer and contacting them yourself every week, instead of waiting for people to search.\n\nWhat I'd change first: drop the dealership walk-ins and build a list of about 150 property managers and rental or fleet managers within 30 miles. One manager with 40 units is worth more than 40 random car owners.\n\nThen send a short cold email, 4 or 5 lines. Something like: \"I do smoke and pet odor removal for turnover units around DFW. Usually done in one day so the unit isn't empty longer. Can I do one unit at a discount so you can compare?\" No attachments, no price table.\n\nThe detail most people miss is that replies come from the follow up, not the first email. Send 3 touches over 10 days, around 7 to 8am local, because managers read email before the day's fires start. Expect 3 to 6 percent replies, so 150 contacts is maybe 5 conversations and 1 or 2 accounts.\n\nOn any call, ask just one thing: how many units turn over a month.",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1x0il1t",
@@ -2967,7 +3349,7 @@
       "subreddit": "smallbusiness",
       "author": "Fortestingporpoises",
       "score": 3,
-      "num_comments": 10,
+      "num_comments": 12,
       "created_utc": 1791436883.0,
       "permalink": "/r/smallbusiness/comments/1x0il1t/opinions_as_to_how_youd_close_this_funding_gap/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1x0il1t/opinions_as_to_how_youd_close_this_funding_gap/",
@@ -2984,7 +3366,7 @@
       "subreddit": "smallbusiness",
       "author": "Outrageous_Garden771",
       "score": 3,
-      "num_comments": 7,
+      "num_comments": 8,
       "created_utc": 1791407012.0,
       "permalink": "/r/smallbusiness/comments/1x089xk/accountant/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1x089xk/accountant/",
@@ -3000,8 +3382,8 @@
       "title": "How much are junior sysadmins actually expected to know?",
       "subreddit": "sysadmin",
       "author": "Salt_Translator_6274",
-      "score": 33,
-      "num_comments": 36,
+      "score": 66,
+      "num_comments": 70,
       "created_utc": 1791442393.0,
       "permalink": "/r/sysadmin/comments/1x0k2ms/how_much_are_junior_sysadmins_actually_expected/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1x0k2ms/how_much_are_junior_sysadmins_actually_expected/",
@@ -3018,15 +3400,27 @@
           "score": 1
         },
         {
+          "id": "pela4dr",
+          "author": "buy_chocolate_bars",
+          "body": "After over 15 years of experience, I do not know the ins & outs of any technology I use today. Even many senior level staff that only serves a subset of Windows OS working for MS does not know the ins & outs. I know because I had to work with escalation teams for years. \n\nYour task is to be better than the competition so the company makes a rational decision to hire you instead. ",
+          "score": 1
+        },
+        {
+          "id": "pem5s01",
+          "author": "jakgal04",
+          "body": "There's no way any Sysadmin, even with decades of experience, can possibly know every piece of technology and software you can find in a workplace. Anyone that says they do is lying through their teeth.\n\nAs a junior, I'd expect you to know how infrastructure works. Things like what a domain controller is, how dns and routing work, understand cloud/hybrid and on prem, etc. And of course, have troubleshooting skills, communication skills and a will to learn and grow.\n\nDon't try to learn everything, you'll burn yourself out. I'm already half way into my career making 6 figures with a pension and I still jump on this sub and have no clue what half these people are talking about.\n\nAs long as you have a well rounded understanding of how IT works, you can kind of \"specialize\" yourself into a silo that you want to focus on. Whether its just traditional IT, security, development, etc. ",
+          "score": 1
+        },
+        {
           "id": "pela041",
           "author": "Elraviel",
           "body": "Willing to learn, dude asks me if we have space to set up a test environment for him\n\nWe good, let's break stuff together and make a mess to fix",
           "score": 1
         },
         {
-          "id": "pela4dr",
-          "author": "buy_chocolate_bars",
-          "body": "After over 15 years of experience, I do not know the ins & outs of any technology I use today. Even many senior level staff that only serves a subset of Windows OS working for MS does not know the ins & outs. I know because I had to work with escalation teams for years. \n\nYour task is to be better than the competition so the company makes a rational decision to hire you instead. ",
+          "id": "pemaejc",
+          "author": "Pawnfodder",
+          "body": "Nothing too crazy - average job ad for entry or junior level reads as:\n* 15+ years experience \n* Masters or Doctorate in AI\n* Experience in building,  developing,  and maintaining a high functioning team\n* No remote work option\n* 13 days vacation\n* On call duties 365 days a year,  can't use vacation when on call\n* Starting pay $13.50\n/s ... kinda? ",
           "score": 1
         },
         {
@@ -3042,9 +3436,9 @@
           "score": 1
         },
         {
-          "id": "pem5s01",
-          "author": "jakgal04",
-          "body": "There's no way any Sysadmin, even with decades of experience, can possibly know every piece of technology and software you can find in a workplace. Anyone that says they do is lying through their teeth.\n\nAs a junior, I'd expect you to know how infrastructure works. Things like what a domain controller is, how dns and routing work, understand cloud/hybrid and on prem, etc. And of course, have troubleshooting skills, communication skills and a will to learn and grow.\n\nDon't try to learn everything, you'll burn yourself out. I'm already half way into my career making 6 figures with a pension and I still jump on this sub and have no clue what half these people are talking about.\n\nAs long as you have a well rounded understanding of how IT works, you can kind of \"specialize\" yourself into a silo that you want to focus on. Whether its just traditional IT, security, development, etc. ",
+          "id": "pemnxs9",
+          "author": "dominus087",
+          "body": "Depends on the company. Unfortunately there are a lot of companies out there who have zero IT knowledge at all. They slap a \"junior\" title on there to pay you less and keep you there longer while expecting the full skill set of a seasoned IT professional. \n\nIn reality, a lot of those things are conceptually the same, just call the same things different names, and have slightly different services at different levels of licensing. You don't need to know every single one, but having the base knowledge of what those things do and are capable of doing is what an employer with an actual IT department is looking for. It's just bonus if you've dealt with their specific stuff before. ",
           "score": 1
         },
         {
@@ -3054,33 +3448,9 @@
           "score": 1
         },
         {
-          "id": "pele56j",
-          "author": "Unexpected_chair",
-          "body": "I'd hire a junior that know nothing but wants to learn anytime. I don't care much if he doesn't know stuff, I want him to be able to lookup things and learn. One great thing to do with a junior is to set them up to a hard task and see what questions they ask, if any.",
-          "score": 1
-        },
-        {
-          "id": "pellkfn",
-          "author": "JB_onpoint",
-          "body": "NOBODY expects a junior to know everything, 1-2yrs in they want solid basics: AD/Entry, one cloud at a basic level, networking fundamentals, troubleshoot and mainly being able to learn on the job. TRUST Me on the rest you pick up when you hit the job!!  \nPick a lane after a bit i would say, look at what your current job uses and what jobs you actually want, go deep on that and just stay aware of the rest.  \nALSO, learning every single day until your brain is fried isnt helping. Retention drops when you are burnt out. Take real breaks, learn from what you actually do at work instead of random stuff. Hope it helped. Cheers!",
-          "score": 1
-        },
-        {
           "id": "pelm9ro",
           "author": "Professional_Ask5759",
           "body": "Oh dude it’s not what you know. ……..It’s what you can figure out \\~backflip BASE jumps of building in Panama illegally\\~",
-          "score": 1
-        },
-        {
-          "id": "pelcpue",
-          "author": "Bob_Spud",
-          "body": "Some places have definitions what junior, midlevel, senior., experts are its usually all about how much work you can do with/without supervision and the expectations of your role.\n\nSome places (included recruiters) use the SIFA Framework which defines different levels of responsibility.  This is the one for Infrastructure Operations  (Provisioning, deploying, configuring, operating and optimising technology infrastructure across physical, virtual and cloud-based environments.) covering the skill levels 1 to 5 \n\nIts very generic buts a good source of ideas.\n\n[https://sfia-online.org/en/sfia-9/skills/infrastructure-operations](https://sfia-online.org/en/sfia-9/skills/infrastructure-operations)",
-          "score": 1
-        },
-        {
-          "id": "pele9mw",
-          "author": "dld2517",
-          "body": "It is impossible to know everything. Just be curious, be willing to learn, be willing to work with a team, be open to recommendations and suggestions, be ready to engage with customers and stakeholders, be ready to admit where you need more information and training. You wont know everything and are not expected to. Most importantly is to know how to learn. Be ready to say, “Here is my understanding of the problem. Stand by, I’ll be back shortly with a solution.”",
           "score": 1
         }
       ]
@@ -3091,8 +3461,8 @@
       "title": "How do you do OS Deployment in your enviroment?",
       "subreddit": "sysadmin",
       "author": "Tough-Slide-4490",
-      "score": 7,
-      "num_comments": 38,
+      "score": 16,
+      "num_comments": 76,
       "created_utc": 1791446686.0,
       "permalink": "/r/sysadmin/comments/1x0l6r0/how_do_you_do_os_deployment_in_your_enviroment/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1x0l6r0/how_do_you_do_os_deployment_in_your_enviroment/",
@@ -3102,6 +3472,12 @@
       "is_video": false,
       "stickied": false,
       "comments_data": [
+        {
+          "id": "pem9bt4",
+          "author": "LooseEthernet",
+          "body": "microsoft deprecating the tools you actually use to install their own os is a special kind of comedy lol",
+          "score": 1
+        },
         {
           "id": "peliqbt",
           "author": "Turak64",
@@ -3121,15 +3497,21 @@
           "score": 1
         },
         {
-          "id": "pem9bt4",
-          "author": "LooseEthernet",
-          "body": "microsoft deprecating the tools you actually use to install their own os is a special kind of comedy lol",
-          "score": 1
-        },
-        {
           "id": "pelik81",
           "author": "MrMrRubic",
           "body": "We do SCCM but it's waaaay overkill for just OS Deployment. You should look into OSDCloud, IIRC you can configure it to work over PXE so no random USB drives needed.",
+          "score": 1
+        },
+        {
+          "id": "peli8ia",
+          "author": "Dave_A480",
+          "body": "When I had to do desktops it was FOG Project and PXE for image deployments....\n\nBeen a long time since that though, and the name of the game for that job was to make a handful of Linux things cosplay as Windows Server/AD/etc for Windows clients....",
+          "score": 1
+        },
+        {
+          "id": "pellnzz",
+          "author": "Acrobatic_Fortune334",
+          "body": "Usb with autounattend script that loads our rmm, everything else is done by ninjarmm",
           "score": 1
         },
         {
@@ -3145,33 +3527,9 @@
           "score": 1
         },
         {
-          "id": "peli8ia",
-          "author": "Dave_A480",
-          "body": "When I had to do desktops it was FOG Project and PXE for image deployments....\n\nBeen a long time since that though, and the name of the game for that job was to make a handful of Linux things cosplay as Windows Server/AD/etc for Windows clients....",
-          "score": 1
-        },
-        {
-          "id": "pelks88",
-          "author": "AcornAnomaly",
-          "body": "You can still use MDT with Windows 11, but you can't use custom images anymore. (And obviously, it's officially unsupported.)\n\nInstead of a custom image, you need to perform all the customizations you need with task sequences.\n\nI've got ours set up to join the machine to AD, set up bitlocker, and auto-install our needed applications.",
-          "score": 1
-        },
-        {
-          "id": "pellnzz",
-          "author": "Acrobatic_Fortune334",
-          "body": "Usb with autounattend script that loads our rmm, everything else is done by ninjarmm",
-          "score": 1
-        },
-        {
-          "id": "pelj9eo",
-          "author": "Snoo_61639",
-          "body": "I load AOMEI Backupper and the image is over network via NAS",
-          "score": 1
-        },
-        {
-          "id": "pellese",
-          "author": "Inn0centSinner",
-          "body": "I used to do it with Symantec Ghost years back over the network when I was building custom PC like how gamers build theirs. I uploaded an image for each motherboard model. I still had to boot to a CD to load the wizard and tell it which image to download from the image server. After that, I just bought Dell computers, and just virtualized all the apps. The company wasn’t big enough to maintain a PXE environment anyway.\n\nLater on when the company had FedEx Ship Manager stations that had locally installed custom configs, I used ManageEngine to back this up each station.  It was a real pain the ass to learn and set up. Ship Manager eventually went away. The more we moved to virtualized apps and SaaS, the less need for PXE.",
+          "id": "pemkitc",
+          "author": "nerdyviking88",
+          "body": "Deployr, after moving off SCCM. It's been solid.",
           "score": 1
         }
       ]
@@ -3182,8 +3540,8 @@
       "title": "New Time Zone Craziness",
       "subreddit": "sysadmin",
       "author": "LForbesIam",
-      "score": 6,
-      "num_comments": 5,
+      "score": 17,
+      "num_comments": 27,
       "created_utc": 1791456093.0,
       "permalink": "/r/sysadmin/comments/1x0nmu7/new_time_zone_craziness/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1x0nmu7/new_time_zone_craziness/",
@@ -3191,7 +3549,69 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "pem1ues",
+          "author": "snebsnek",
+          "body": "It looks like it was only decided mid-September https://www.cbc.ca/news/canada/manitoba/daylight-time-manitoba-9.7347844\n\ntzdata from ICANN updated last week https://www.iana.org/time-zones/releases/2026e for Manitoba specifically\n\nThis is brand new",
+          "score": 1
+        },
+        {
+          "id": "pem91cr",
+          "author": "smkelly",
+          "body": "This is pretty typical for timezone changes, and not just with Microsoft. Turns out governments don't run these kinds of changes through change control boards with all the stakeholders present.\n\nzoneinfo, the most canonical you can get on computer timezone information, only had the 2026e update last week that included Manitoba.\n\nBACK IN MY DAY, it was a similar mess when the United States changed the start/end dates of DST.",
+          "score": 1
+        },
+        {
+          "id": "pen4zct",
+          "author": "thewunderbar",
+          "body": "This is one I don't *really* blame Microsoft too much on, especially Manitoba. Deciding in September that you're going to change something in November is nonsense, and it is even nonsense for only 6 months of notice.\n\nBut the entire thing is nonsense from front to back. Most people can agree that changing the clocks is bad but all the science says Permanent standard time is correct but the vibes say permanent daylight time. Which one to go on is a pretty evenly divididd issue because of vibes.\n\nAlberta specifically voted against changing clocks as a ballot measure/plebiscite in the last election, and the government is ignore it because vibes.",
+          "score": 1
+        },
+        {
+          "id": "pempyo9",
+          "author": "willychonka54",
+          "body": ">Manitoba they just forgot to include at all.\n\nIt's because the MB Gov't hastily decided on the time change only 2-months in advance. This is not enough time and it should've been postponed to next year to give everyone a chance to patch and update.",
+          "score": 1
+        },
+        {
+          "id": "penc9z9",
+          "author": "OregonTechHead",
+          "body": "\n> It is causing a nightmare for all the booking software that doctors and offices cannot book appointments past October 31st.\n\nThat sounds like an issue with your booking software, not windows.",
+          "score": 1
+        },
+        {
+          "id": "pem4lj9",
+          "author": "tankerkiller125real",
+          "body": "Entra can't set GPOs or anything, but Intune can, very easily even. Wouldn't exactly call it a 3rd party.",
+          "score": 1
+        },
+        {
+          "id": "pemmrpx",
+          "author": "FatBook-Air",
+          "body": "Time-zone changes are a big deal.  That's why we don't change time zones every day.  Expect many systems to fail the first time.\n\nThe real issue is that these governments go into this process thinking it's quick and easy.  It isn't.  It was not easy in the era of pre-electronics.  It is no easier today.",
+          "score": 1
+        },
+        {
+          "id": "pemyn2d",
+          "author": "vectravl400",
+          "body": "Looks like they squeezed Manitoba into the October update as well. Since it's a rush job I'd expect there to be some issues with it.\n\n[https://techcommunity.microsoft.com/blog/dstblog/interim-guidance-for-manitoba-permanent-dst-2026/4562488](https://techcommunity.microsoft.com/blog/dstblog/interim-guidance-for-manitoba-permanent-dst-2026/4562488)",
+          "score": 1
+        },
+        {
+          "id": "penj8u4",
+          "author": "Frothyleet",
+          "body": ">I don’t envy those using Entra which cannot set registry preferences and will have to rely on 3rd party scripting solutions that cannot be enforced or nor confirmed.\n\nI'm assuming you mean Intune for configuration management, and sure, you can configure registry changes if you want.",
+          "score": 1
+        },
+        {
+          "id": "pen5m0l",
+          "author": "droog62",
+          "body": "Isn't the patch coming out on the 13th supposed to get most of this sorted.  Not exactly much lead time, but 2 weeks is better than two days.",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1x0my8p",
@@ -3199,8 +3619,8 @@
       "title": "Thickheaded Thursday - October 08, 2026",
       "subreddit": "sysadmin",
       "author": "AutoModerator",
-      "score": 4,
-      "num_comments": 0,
+      "score": 6,
+      "num_comments": 1,
       "created_utc": 1791453615.0,
       "permalink": "/r/sysadmin/comments/1x0my8p/thickheaded_thursday_october_08_2026/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1x0my8p/thickheaded_thursday_october_08_2026/",
@@ -3233,7 +3653,7 @@
       "title": "MD-102 Endpoint administrator exam",
       "subreddit": "sysadmin",
       "author": "Majestic-Home2021",
-      "score": 4,
+      "score": 5,
       "num_comments": 2,
       "created_utc": 1791439663.0,
       "permalink": "/r/sysadmin/comments/1x0jcar/md102_endpoint_administrator_exam/",
@@ -3250,8 +3670,8 @@
       "title": "Best t-shirt print for value",
       "subreddit": "ecommerce",
       "author": "Born_Advantage7515",
-      "score": 1,
-      "num_comments": 0,
+      "score": 2,
+      "num_comments": 4,
       "created_utc": 1791453486.0,
       "permalink": "/r/ecommerce/comments/1x0mwze/best_tshirt_print_for_value/",
       "url": "https://www.reddit.com/r/ecommerce/comments/1x0mwze/best_tshirt_print_for_value/",
@@ -3267,8 +3687,8 @@
       "title": "Anyone actually running ChatGPT Ads for their Shopify store? What are your CPCs and results looking like?",
       "subreddit": "shopify",
       "author": "i-loveshopify",
-      "score": 7,
-      "num_comments": 4,
+      "score": 8,
+      "num_comments": 5,
       "created_utc": 1791442919.0,
       "permalink": "/r/shopify/comments/1x0k7u1/anyone_actually_running_chatgpt_ads_for_their/",
       "url": "https://www.reddit.com/r/shopify/comments/1x0k7u1/anyone_actually_running_chatgpt_ads_for_their/",
@@ -3285,11 +3705,713 @@
       "subreddit": "shopify",
       "author": "Substantial_Leave714",
       "score": 3,
-      "num_comments": 4,
+      "num_comments": 10,
       "created_utc": 1791458971.0,
       "permalink": "/r/shopify/comments/1x0oh7w/does_uninstalling_a_shopify_app_always_remove_its/",
       "url": "https://www.reddit.com/r/shopify/comments/1x0oh7w/does_uninstalling_a_shopify_app_always_remove_its/",
       "selftext": "I've been looking into how Shopify handles app removal, especially with older apps that modify theme files.\n\nFrom what I understand, newer apps using theme app extensions are generally easier to remove, but older apps may leave snippets, scripts or other changes behind.\n\nI'm wondering how people handle this when cleaning up a Shopify theme. Is checking the theme code after uninstalling an app still worth doing, or does Shopify handle most of this now?\n\nInterested in the technical side of it, particularly with older themes.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1x0hnim",
+      "name": "t3_1x0hnim",
+      "title": "Family Trying To Join/Copy Your Business",
+      "subreddit": "smallbusiness",
+      "author": "steakkitty",
+      "score": 29,
+      "num_comments": 30,
+      "created_utc": 1791433700.0,
+      "permalink": "/r/smallbusiness/comments/1x0hnim/family_trying_to_joincopy_your_business/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1x0hnim/family_trying_to_joincopy_your_business/",
+      "selftext": "I run a small real estate/construction company that has been perfected and down to a science. With my documentation, budgets, and contacts, it could easily be replicated in my market. \n\nMy cousin keeps bugging me to help them start their own company and give them some info on my contacts/problems. By doing this, I would add another competitor to my market with my knowledge on the keys to success. Something I obviously don’t want. \n\nAny idea on how to handle? ",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "pekttty",
+          "author": "Original_Bicycle5696",
+          "body": "Tell them no. \n\nNo need for more than that. Cousin can follow in your footsteps and bootstrap himself like you did. I would be careful about hiring him too. Listen when people tell you who they are. Its annoying when its family or people you care about.",
+          "score": 55
+        },
+        {
+          "id": "pemsd33",
+          "author": "slothman01",
+          "body": "Before you answer them, decide what you actually want out of this. Protecting your market is one goal. Keeping things good with your cousin is another. You can usually have both, you just can't give away the playbook to get there.\n\nWhat you've built (the documentation, the budgets, the contacts) might be the most valuable thing the company owns. If you ever sell, it's a big part of what a buyer is paying for. Treat it that way here too. The contacts especially aren't really yours to hand out. They're relationships that trust you, and they'll judge you by how your cousin treats them.\n\nSo split what's general from what's yours. General stuff any owner would share is fine: setting up the entity, finding a bookkeeper and insurance, the mistakes to avoid in year one. Your systems, budgets, subs and clients stay off the table.\n\nThen say it plainly and kindly. Something like \"Happy to help you get set up, but I'm not sharing my contacts or systems. That's what keeps my business running.\" No long explanation needed.\n\nIf they're serious and you'd actually like working with them, there are options that don't put a new competitor in your backyard, like hiring them or helping them start outside your market under a real paid agreement. That's a business decision with a contract though, not a family favor.\n\nDM me if you want to discuss further.",
+          "score": 14
+        },
+        {
+          "id": "pelxofc",
+          "author": "GossipingKitty",
+          "body": "\"No.\"",
+          "score": 14
+        },
+        {
+          "id": "pekxskj",
+          "author": "ZarehD",
+          "body": "Teaching someone \"the basic how\" to get them started is one thing. But giving away your contacts? That's a whole other story. Those are YOUR hard-earned relationships. What if they damage those relationships? That's not exactly a remote possibility. No, that should be completely off the table.\n\nI can see helping them get started, as a \"favor\" -- get 'em stared & give tips and pointers along the way -- but not \"here's the whole business operation in detail with docs and budges\" kind of \"help\". \n\nTeach? Yes. Give? No!\n\nBy just giving it to them, you wouldn't really be doing them any real favors. they've got to earn it for themselves to make it count. Otherwise, it's just a gimme that they'll never appreciate.",
+          "score": 9
+        },
+        {
+          "id": "pemb1zw",
+          "author": "ZealousidealCharge24",
+          "body": "\"No\" is a complete sentence\n\nResist the urge to overexplain. \n\nIf they get grumpy, request 15% of their gross for 5 years as a startup help and then 7% in perpetuity as a franchisee, get a contract drawn up and have them sign it, and then and only then\n\n\nBut thats if you really want to",
+          "score": 6
+        },
+        {
+          "id": "pemiffk",
+          "author": "yam384",
+          "body": "Without detail and coming from an individual who has worked 20+ years in my family business...  along side, under, managed family members.\n\nDon't.  ",
+          "score": 3
+        },
+        {
+          "id": "pemqmvx",
+          "author": "Frosty_Yesterday_761",
+          "body": "\"We trained him wrong on purpose, as a joke.\"\n\nTake this quote and do with it as you will.",
+          "score": 2
+        },
+        {
+          "id": "penxzml",
+          "author": "nottoowhacky",
+          "body": "No. Dont you have another cousin? Losing one or two wont be an issue lol ",
+          "score": 3
+        },
+        {
+          "id": "pemxrad",
+          "author": "MOTIVATE_ME_23",
+          "body": "I don’t mind helping you get started as long as we don’t compete in the same markets, but it would even take me a couple of years to replicate it from scratch.  Come work for me while I mentor you.\n\nFirst step, Non-compete and non-disclosure.  Constantly scan business records and squash and legally encumber anything he tries without your approval.\n\nSecond step, copyright all of your materials and put that copyright on every single document.\n\nThird step, make sure he can’t access any sensitive information like bank or customer information.  Use code words to reference them, not actual names. \n\nStart teaching him from the ground up and determine the pace at which he advances based on his aptitude for the previous steps.\n\nWhen it is time for him to start his own business, partner with him by opening a branch office in another area and continue to monitor his progress.  Tie him into a franchise using your documents and software and system.",
+          "score": 2
+        },
+        {
+          "id": "pelpe3p",
+          "author": "HATDOGUSERNi",
+          "body": "you dont owe anyone your business playbook. be polite, but set a clear boundary about sharing your contacts and processes.",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1x0vror",
+      "name": "t3_1x0vror",
+      "title": "What's a client red flag you can spot from their very first email?",
+      "subreddit": "smallbusiness",
+      "author": "zzhekoooo",
+      "score": 6,
+      "num_comments": 38,
+      "created_utc": 1791477518.0,
+      "permalink": "/r/smallbusiness/comments/1x0vror/whats_a_client_red_flag_you_can_spot_from_their/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1x0vror/whats_a_client_red_flag_you_can_spot_from_their/",
+      "selftext": "Not the obvious ones like \"can you do it cheaper.\" I mean the small stuff that seems harmless at first and ends up predicting the whole project.\n\nThings like how they phrase the deadline, who's cc'd, whether they actually answer the questions you asked, or how fast \"one quick extra thing\" shows up.\n\nWhat's the one you've learned to never ignore?\n\nEdit: This blew up, thank you all. I'm compiling the best red flags + the screening questions people use into one checklist. Comment \"checklist\" and I'll DM it to you",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "peo6akt",
+          "author": "CaptRickDiculous",
+          "body": "The one I never ignore anymore is when the very first email trashes their last vendor.  Stuff like \"our last agency dropped the ball\" or \"the previous guy just disappeared on us.\"  Sometimes that's true, sure.  But if every problem in their story happened TO them, you're about to become the next chapter..\n\nI spent 20 years in corporate before running my own shop and the pattern holds pretty much everywhere.  People who own their outcomes make great clients, people who live in \"things keep happening to me\" mode will find a way to make your project happen to them too.\n\nClose second is urgency with no reason attached.  \"We need this ASAP\" with no date, no launch, no event behind it usually means they're running on fumes and reacting to whatever's loudest that day, and next week the loudest thing is gonna be you.  Those are the clients who move the goalposts constantly because there was never a goalpost to begin with.\n\nHonestly the fix for me was one question on the first call, \"what happened with the last person you worked with?\"  How they answer tells you basically everything.  Curious if anyone else uses a screening question like that?",
+          "score": 17
+        },
+        {
+          "id": "peo4yv5",
+          "author": "davidjones145",
+          "body": "mine is zero answers to my questions plus three new ones of theirs. tells me nobody is reading and review rounds will be chaos. what never lies for you",
+          "score": 12
+        },
+        {
+          "id": "peogejf",
+          "author": "thegarr",
+          "body": "People that write in all lower case with no introduction, because they can't be bothered to hit shift or form sentences.  E.g. an email that just says:\n\n\"need you to talk to tom i need this now\"",
+          "score": 11
+        },
+        {
+          "id": "peoas3v",
+          "author": "Terrible-Piece1864",
+          "body": "when they ask for a proposal before explaining what they actually want. always turns into a 2 week email chain where you're basically doing discovery work for free and they still haven't told you the budget",
+          "score": 7
+        },
+        {
+          "id": "peom088",
+          "author": "subsector",
+          "body": "Where they assume likely effort. For example: “we’ve already done xyz ourselves so this should be a small job”. Never is. ",
+          "score": 6
+        },
+        {
+          "id": "peo8i32",
+          "author": "ClipandPlay",
+          "body": "My business has certain buzz words which immediately tell me this person is never going to be happy. ",
+          "score": 3
+        },
+        {
+          "id": "peohf59",
+          "author": "Codex432",
+          "body": "AI. If all you do is talk to me by having AI write your emails and whatever ridiculous scope of work it concocts, I’m out. ",
+          "score": 3
+        },
+        {
+          "id": "peojfvj",
+          "author": "DippityPig",
+          "body": "My three big ones, working in a field where success is heavily dependent on the client's commitment to the process:\n\n- one word answers to my questions\n- unrealistic expectations/looking for a quick fix\n- emotional manipulation ",
+          "score": 3
+        },
+        {
+          "id": "peoolb7",
+          "author": "Elegant-Floor-402",
+          "body": "\" should only take 30 minutes \" \n\" small job \" \n\" last guy did it for x \" \n\nAka I want thousands of dollars of work for $300",
+          "score": 3
+        },
+        {
+          "id": "peo8vrd",
+          "author": "Meeschers",
+          "body": "In my industry (video and film) if they cold call me for services and they are in my neighboring state, which is full of people who do my specific service. It tells me they are trying to book me because they think next state over=cheaper rates so I will screen the job and ask questions before I decide to take it or pass. \n\nAnd those types are always looking for more than what's expected in the job. Extra gear for free or not including OT when they run long because of their poor planning.",
+          "score": 2
+        }
+      ]
+    },
+    {
+      "id": "1x0vb7g",
+      "name": "t3_1x0vb7g",
+      "title": "What is a registered agent?",
+      "subreddit": "smallbusiness",
+      "author": "Negative-Tie2445",
+      "score": 2,
+      "num_comments": 6,
+      "created_utc": 1791476457.0,
+      "permalink": "/r/smallbusiness/comments/1x0vb7g/what_is_a_registered_agent/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1x0vb7g/what_is_a_registered_agent/",
+      "selftext": "Do I need one? I’m starting an LLC to get my invention off the ground. ",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1x0ugnm",
+      "name": "t3_1x0ugnm",
+      "title": "Do any of you only work 4 hours/day even though you're still in 'grind mode'?",
+      "subreddit": "smallbusiness",
+      "author": "rococo78",
+      "score": 2,
+      "num_comments": 7,
+      "created_utc": 1791474522.0,
+      "permalink": "/r/smallbusiness/comments/1x0ugnm/do_any_of_you_only_work_4_hoursday_even_though/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1x0ugnm/do_any_of_you_only_work_4_hoursday_even_though/",
+      "selftext": "I know it's a weird question but I ask because sometimes I think I might be more productive that way and curious if anyone has actually tried it.\n\nRight now I work a 'typical' 8-10 hour day. I start at around 8am and work until noon, take a break and then get back at it.\n\nThe problem is that from about 1-4 I feel like I'm mostly just putzing around on my computer. I get drawn into social media chats and even play dumb little solitaire video games, and then get another second wind around 4pm until 6 or 7, but even then it's not as productive as the morning.\n\nSometimes I wonder if I just limited myself to those \\~4 morning hours, with maybe an afternoon/evening check in, if I might be on the net getting just as much done.\n\nThe problem is I haven't really figured out anything interesting enough to replace those midday hours. I schedule appointments in there and things like that but I'd love to give myself space to go do something fun too.\n\nThe other problem is that I'm not really where I want to be financially at all yet either.\n\nAnyways, curious if anyone has done something similar and what your experience was.\n\nThanks!",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1x0ufy1",
+      "name": "t3_1x0ufy1",
+      "title": "Entrepreneurship project",
+      "subreddit": "smallbusiness",
+      "author": "chickenwithathumb",
+      "score": 2,
+      "num_comments": 2,
+      "created_utc": 1791474495.0,
+      "permalink": "/r/smallbusiness/comments/1x0ufy1/entrepreneurship_project/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1x0ufy1/entrepreneurship_project/",
+      "selftext": "I have a midterm pitch on Tuesday in which I have to present a business idea that's both innovative and whose working physical prototype or application can be prepared by December. I thought of a three in one makeup (lipgloss, lipstick and lip-liner combo to keep it simple) applicator in which its mechanism would be simillar to that of a colour changing mechanical pen. The problem is I'm a freshman university student with a small budget, so do any of you guys know how I can execute it's prototype? I reached out to three different 3d printing services in my country but no response so far, and I need to confirm the feasibility of this prototype. If there are any videos that can help me build this prototype, please let me know.\n\nIf you have any other ideas that are better or more suited please let me know those as well.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1x0p7vf",
+      "name": "t3_1x0p7vf",
+      "title": "What are sysadmins wearing to work these days?",
+      "subreddit": "sysadmin",
+      "author": "lostmatt",
+      "score": 185,
+      "num_comments": 645,
+      "created_utc": 1791461291.0,
+      "permalink": "/r/sysadmin/comments/1x0p7vf/what_are_sysadmins_wearing_to_work_these_days/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1x0p7vf/what_are_sysadmins_wearing_to_work_these_days/",
+      "selftext": "What is the dress code at work and what are you wearing these days?\n\nHoodies & Jeans aren't as prominent as they once were.  \n\nI just turned 40 and stick to company logo'd sport polos and sometimes tshirt.\n\nEvery time I dress nicer, I end up having to run cables or crawl under desks, or install an outdoor AP.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "pemgn9v",
+          "author": "Hot-Meat-11",
+          "body": "Thong.  Pasties.  Eye patch and pirate hat.",
+          "score": 1
+        },
+        {
+          "id": "pemt1cn",
+          "author": "IMongoose",
+          "body": "My boss taught me a very valuable lesson. We like to have fun and don't take ourselves too seriously, so on Halloween he dressed as an actual clown. But there was a real security incident that day and I sat in a little office with the police, a C level, and my boss as an actual clown. No ones dressed up again after that, I just wear jeans and a polo.",
+          "score": 1
+        },
+        {
+          "id": "pemhlrr",
+          "author": "-Shants-",
+          "body": "https://preview.redd.it/ku2o5z1ak8uh1.jpeg?width=3024&format=pjpg&auto=webp&s=33191fc9fa206f87ea3daec447936e84e5ac8b9c\n\n  \nA shirt I found that I thought was cool",
+          "score": 1
+        },
+        {
+          "id": "pemgu2d",
+          "author": "DogThatGoesBook",
+          "body": "Fursuit",
+          "score": 1
+        },
+        {
+          "id": "pemjewy",
+          "author": "Deepeh",
+          "body": "Oh, and remember: next Friday... is Hawaiian shirt day. So, you know, if you want to, go ahead and wear a Hawaiian shirt and jeans.",
+          "score": 1
+        },
+        {
+          "id": "pemfrzo",
+          "author": "Past_Conference_2889",
+          "body": "Plain T-shirt and Jeans",
+          "score": 1
+        },
+        {
+          "id": "pemk76u",
+          "author": "NuAngelDOTnet",
+          "body": "Khakis and a button up, Wish I could wear jeans. But no. I gotta roll around under desks changing batteries in UPS' while pretending I'm a professional. Oh, is it a problem out on the shop floor? Crawl under that machine with all of the shaved aluminum bits and reset the PC. Don't scuff your shiny Oxford shoes.",
+          "score": 1
+        },
+        {
+          "id": "pemftvr",
+          "author": "crimsonDnB",
+          "body": "When I had to go into the office. The rule was \"Just please have pants/shorts on\"\n\nThere was no dress code. I wore shorts or sweatpants everyday.\n\nOnly place I had a dress code was when I did trade floor support. I had to wear a full suite to \"look professional\" while crawling under desks replacing token ring shit.\n\nI'm 49.",
+          "score": 1
+        },
+        {
+          "id": "pemhuqz",
+          "author": "bassdeface",
+          "body": "Jeans and polo. When it's really hot in the summer some of those Costco tech pants. Every Friday is hawaiin shirt day. ",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1x0txqr",
+      "name": "t3_1x0txqr",
+      "title": "Resources to build a foundational understanding on Operating systems.",
+      "subreddit": "sysadmin",
+      "author": "redwing096399",
+      "score": 7,
+      "num_comments": 8,
+      "created_utc": 1791473330.0,
+      "permalink": "/r/sysadmin/comments/1x0txqr/resources_to_build_a_foundational_understanding/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1x0txqr/resources_to_build_a_foundational_understanding/",
+      "selftext": "Hi all, i want to get a foundational understanding operating systems, the various concepts that we may encounter in them, the bird's eye view of their structure.\n\nI tried reading \"How Linux works\" 3rd edition, but reading that book felt like it didn't explain the foundational questions but rather built on top of the topics. it felt more intermediate level.\n\nIf i have to explain what i am looking after in the resources, Please can you recommend me resources that fit my requirement.\n\n1. provides exposure to various concepts, systems involved in an OS. More like an introduction.\n2. a bit of introduction to a bit of hardware would also be good.\n3. i am not looking for resources that focus on development/programming side of OS. but rather the infrastructure, power user, administration side of OS.\n\nThanks in advance to all of you.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1x0tmbe",
+      "name": "t3_1x0tmbe",
+      "title": "Disabling direct chats and calls from external MS Teams users/accounts",
+      "subreddit": "sysadmin",
+      "author": "reddit-user-seven",
+      "score": 6,
+      "num_comments": 11,
+      "created_utc": 1791472606.0,
+      "permalink": "/r/sysadmin/comments/1x0tmbe/disabling_direct_chats_and_calls_from_external_ms/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1x0tmbe/disabling_direct_chats_and_calls_from_external_ms/",
+      "selftext": "Hey Reddit,\n\n  \nI've tried asking AI and doing some research but getting conflicting information. Can you disable external MS teams users from starting direct chats or calls with users in your M365 tenant while NOT blocking the use of MS teams for meetings with external users and/or direct calls via DID's assigned to Teams users? ",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1x0h37c",
+      "name": "t3_1x0h37c",
+      "title": "Unresponsive vm after rdp",
+      "subreddit": "sysadmin",
+      "author": "ntuner",
+      "score": 6,
+      "num_comments": 17,
+      "created_utc": 1791431854.0,
+      "permalink": "/r/sysadmin/comments/1x0h37c/unresponsive_vm_after_rdp/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1x0h37c/unresponsive_vm_after_rdp/",
+      "selftext": "Dealing with a strange issue. Hyper v VMs server 2019 randomly will stop accepting rdp connections and also when trying to login via console will take the login and hangs at welcome screen. So far only a reboot fixes the issue (turn off only not normal shutdown) No changes or updates recently. When it hangs I can still connect via remote powershell and run commands fine but commands like query session just hangs. From what I was able to gather there are no resources exhaustion and all roles or services still run fine just seems like the ability to login isn’t working. Event log does show connection accepted, rdp will try to connect for a while after entering credentials then fails eventually. Event log does show ip helper and NLA (network awareness ) services rebooting multiple times, maybe network stack crashing ?   \nIdeas what to check ? I’m unable to reproduce the user but it seems to happen with only a few VMs users rdp into and normally these users rdp from a 2025 server. ",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "pekly7v",
+          "author": "BragawSt",
+          "body": "Pretty sure September updates caused something like this. There were OOB patches and mitigations for similar symptoms. \n\nhttps://lazyadmin.nl/it/september-2026-update-break-rds-how-to-fix/",
+          "score": 1
+        },
+        {
+          "id": "pekqrtv",
+          "author": "vivkkrishnan2005",
+          "body": "it's the September updates, if the RDP hangs then even console login doesn't work. OOB fix is needed. ",
+          "score": 1
+        },
+        {
+          "id": "peklrdu",
+          "author": "topher358",
+          "body": "Check the patch level… there is a recent OOB update you need to apply to resolve this if this is the issue I think it is",
+          "score": 1
+        },
+        {
+          "id": "pekl07m",
+          "author": "adamandevil",
+          "body": "Is this happening for any account that attempts to connect via RDP or just your account?",
+          "score": 1
+        },
+        {
+          "id": "pel2cec",
+          "author": "PleasantRuin7989",
+          "body": "Disable UDP in RDP client group policy. That saved us from this exact nightmare on our 2019 session hosts last year.",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1x0u6q4",
+      "name": "t3_1x0u6q4",
+      "title": "Full lifecycle inventory",
+      "subreddit": "sysadmin",
+      "author": "ScarySprinkles3",
+      "score": 6,
+      "num_comments": 8,
+      "created_utc": 1791473906.0,
+      "permalink": "/r/sysadmin/comments/1x0u6q4/full_lifecycle_inventory/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1x0u6q4/full_lifecycle_inventory/",
+      "selftext": "I'm looking for a temperature check on keeping inventory of IT assets. Mainly computers that may get wiped and repurposed. Do you have an inventory system that tracks that asset from purchase to retirement and the entire chain of ownership?\n\nI'm asking because my current company wipes everything when a machine is repurposed including inventory (it's updated by an agent so when a device is repurposed, it gets deleted and then the agent adds it again seemingly as a new machine). I personally like knowing what a machine was used for in the past especially as it can relate to prior tickets for that specific device even if it changes hands. But I'm not sure if I'm just too particular.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1x0qysy",
+      "name": "t3_1x0qysy",
+      "title": "HP Printer Support Changes",
+      "subreddit": "sysadmin",
+      "author": "darkwyrm42",
+      "score": 4,
+      "num_comments": 11,
+      "created_utc": 1791466186.0,
+      "permalink": "/r/sysadmin/comments/1x0qysy/hp_printer_support_changes/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1x0qysy/hp_printer_support_changes/",
+      "selftext": "My work is an HP shop and I just recently had to do a call for a CLJ printer. Long story short, I had to contact their support. I know their support has been bad, but I don't recall it being *this* bad. \n\nAm I missing something, or have they just routed all their business support for printers to the same department that does consumer? I've made 2 calls now, and both times I was routed to a L1 tech who had no troubleshooting skills for anything beyond what you'd expect to do for a home network. This very much feels like they've gone to \"we don't care, and now we don't care who knows it.\"",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1x0nv8a",
+      "name": "t3_1x0nv8a",
+      "title": "Small/med  company migrating from GW to 365. MS tool or something else?",
+      "subreddit": "sysadmin",
+      "author": "NotABug2000",
+      "score": 5,
+      "num_comments": 11,
+      "created_utc": 1791456932.0,
+      "permalink": "/r/sysadmin/comments/1x0nv8a/smallmed_company_migrating_from_gw_to_365_ms_tool/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1x0nv8a/smallmed_company_migrating_from_gw_to_365_ms_tool/",
+      "selftext": "We are a predominantly 365 house (approx 80 users total). Our google tenant is only about 15 humans, maybe 20 accounts total including shared mailboxes. \n\nTotal data is less than 100gb across mailboxes and google drive\n\nI am super new to IT, and am more or less flying solo. \n\nI have seen the Migration tool in Entra. Is that good enough/easy enough to use for something like this? Or should I look for a third party? I don't want to rely on Claude for this, as it's been iffy lately! \n\nThank you!\n\n",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1x0xiky",
+      "name": "t3_1x0xiky",
+      "title": "M365 domain question – DNS hosted at Microsoft, records intact but admin panel now blank",
+      "subreddit": "sysadmin",
+      "author": "Jaedee",
+      "score": 3,
+      "num_comments": 4,
+      "created_utc": 1791481469.0,
+      "permalink": "/r/sysadmin/comments/1x0xiky/m365_domain_question_dns_hosted_at_microsoft/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1x0xiky/m365_domain_question_dns_hosted_at_microsoft/",
+      "selftext": "Our domain uses Microsoft's nameservers (ns1-4.bdm.microsoftonline.com) and we manage DNS through the M365 admin centre. It's the tenant's default domain with live mailboxes.\n\nToday I mistakenly ran \"Add domain\" on the **existing** domain and skipped the connect step. The domain now shows \"No services selected\" and the DNS records tab is empty, saying to use Manage DNS to choose services.\n\nThe zone itself is fine: querying all four Microsoft nameservers directly shows every record unchanged two hours later (MX, SPF, DKIM, DMARC, A records, CNAMEs, SRVs).\n\nQuestion: if I go Manage DNS → \"Add your own DNS records\" → tick Exchange/Intune, will that just bring the records back into view, or could it overwrite or remove the existing zone? We have custom records (extra SPF IPs, third-party DKIM, subdomains) I don't want touched. Has anyone done this?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1x0patl",
+      "name": "t3_1x0patl",
+      "title": "Deploying Application Control on Azure VMs",
+      "subreddit": "sysadmin",
+      "author": "denstorepingvin",
+      "score": 3,
+      "num_comments": 2,
+      "created_utc": 1791461536.0,
+      "permalink": "/r/sysadmin/comments/1x0patl/deploying_application_control_on_azure_vms/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1x0patl/deploying_application_control_on_azure_vms/",
+      "selftext": "Hey folks,\n\nI was wondering if anyone have ideas on how to configure AppLocker or App Control for Business for Azure VMs?  \nThe Azure VMs are server objects, that are not in a domain.\n\nThey are running Server OS 2022 and 2025. They do not have Defender for Servers plan license, but do however have crowdstrike, which most likely can some of the things that i want, but as i've read it's not as great as App Control for Business.\n\nI found an article for OSConfig: \n\n[Configure App Control policies in Windows Server | Microsoft Learn](https://learn.microsoft.com/en-us/windows-server/security/osconfig/osconfig-how-to-configure-app-control-for-business?tabs=configure%2Cview)\n\nHowever, this is only for Server 2025. I'm considering upgrading the VMs, in order to use this tool, but beforehand i wanted to make sure i have checked broadly enough.\n\nAnyone experience with this?\n\n",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1x05hty",
+      "name": "t3_1x05hty",
+      "title": "evidence offsite backup integrity between restore tests",
+      "subreddit": "sysadmin",
+      "author": "Benjamin-7933",
+      "score": 2,
+      "num_comments": 4,
+      "created_utc": 1791400511.0,
+      "permalink": "/r/sysadmin/comments/1x05hty/evidence_offsite_backup_integrity_between_restore/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1x05hty/evidence_offsite_backup_integrity_between_restore/",
+      "selftext": "Between full restore tests, here’s what, in my experience, has proven effective with auditors:   \n  \n1) an automated partial restore, performed every night, from the most recent off-site backup to a disposable container, accompanied by a few checks whose results are logged: the service starts up, the expected tables exist, the number of rows falls within a range derived from previous runs, and an application query returns the expected results;   \n  \n2) a “canary” file created just before the backup and checked again after the restore, to ensure that it is indeed this backup that was restored and not an older one; (3) the result is signed and stored outside the backup system, so that the proof does not reside on the very medium it certifies. Checksums only prove that the bytes have arrived safely, not that the application can use them.   \n  \nThe quarterly full restore is maintained, while the nightly run bridges the gap between two of these restores. What do you think of this protocol?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1x0u7z6",
+      "name": "t3_1x0u7z6",
+      "title": "How I bring up to 6 figures in revenue to my e-commerce clients using simple Google and Meta Ads structures",
+      "subreddit": "ecommerce",
+      "author": "cauaphilips",
+      "score": 4,
+      "num_comments": 4,
+      "created_utc": 1791473988.0,
+      "permalink": "/r/ecommerce/comments/1x0u7z6/how_i_bring_up_to_6_figures_in_revenue_to_my/",
+      "url": "https://www.reddit.com/r/ecommerce/comments/1x0u7z6/how_i_bring_up_to_6_figures_in_revenue_to_my/",
+      "selftext": "In this post, you're going to learn some paid traffic strategies specifically tailored for e-commerce. Remember: just because it worked for me doesn't mean it will magically work for you. Analyze, test, and use your own knowledge and background to adapt these strategies to your specific reality.\n\n\n\nBefore jumping into the technical stuff, let me introduce myself. I'm Cauã, I'm 23 years old, and I've been working with e-commerce since 2021. I've operated across various niches, from a company selling sinks and faucets to gaming peripherals brands, but my primary market is the fashion and apparel niche.\n\n\n\nHere is a summary of what you'll find below:\n\n\n\nSetup and base structure\n\n\n\nThe ads\n\n\n\nFinal considerations\n\n\n\n1. Setup and base structure\n\nThe first step is having a minimally competitive e-commerce business. When I say e-commerce, think about everything involving your brand: your website, your Instagram, your customer service channels, how you treat your customers. EVERYTHING that influences your customer's perception of your company—that is your branding.\n\n\n\nYou need to be and look like a serious business. This is step one. Pouring paid traffic into a weak structure is exactly like pouring water into a tiny, cracked jar. So, build a big, beautiful, and robust jar first.\n\n\n\n1.1 Setup\n\nBefore we start pouring the water (running ads), you need the plumbing in place: ad accounts on Google and Meta, basic tracking, an approved Google Merchant Center account, and a Meta Ads catalog. If you don't know how to set these up, go study—there is plenty of free content on YouTube.\n\n\n\n2. The ads\n\nNow let me explain the logic behind this structure. The idea is to test several products, identify the demand, and work on top of that demand to extract the maximum market share for your company. Think of these campaigns as different water pressures filling your jar.\n\n\n\nMeta Ads:\n\nOn Meta, we work with 3 main campaigns.\n\n\n\nCampaign 1 (The Testing Ground): A sales campaign using the catalog objective with a broad audience. I recommend starting with an ABO (Ad Set Budget Optimization) structure so you can strictly control what you spend testing. Use 2 ads per ad set: one static carousel and one multimedia carousel.\n\n\n\nMedia buyer translation: 1 ABO 1-X-2. I recommend starting with 5 ad sets at $20/each. I've tested smaller budgets like $7 and it also worked, sometimes with an even higher ROI than larger budgets.\n\n\n\nCampaign 2 (The Pressure Hose): An Advantage+ Shopping Campaign (ADV+). This works similarly to a Performance Max campaign without a feed on Google Ads. There’s not much to configure here because it’s basically created by AI—it's the high-pressure water that scales your results. The only requirement is that you must add your engagement, customer, and interest audiences into the ad account so the campaign has baseline intelligence.\n\n\n\nBudget: At least $20/day. For me, the magic number is $30. You have to hold this campaign for at least 15 days without touching it. Ideally, turn it on only after your pixel already has a good volume of sales and data.\n\n\n\nCampaign 3 (The Safety Net): Very similar to the first campaign, but instead of a broad audience, you plug in your remarketing audiences: 30- and 60-day visitors, 7-, 14-, and 30-day abandoned carts. This catches the water that spills over.\n\n\n\nMedia buyer translation: 1 CBO 1-X-2. Use CBO (Campaign Budget Optimization) here. Start with one ad set containing all your warm audiences, then later you can split the budget into other ad sets for isolated testing.\n\n\n\nGoogle Ads:\n\nHere, we work with Search, Shopping, and Performance Max.\n\n\n\nStandard Shopping: If you've never advertised on Google, start here. This campaign will advertise all your products at once, OR you can filter by specific categories depending on your budget.\n\n\n\nBudget: \\~$30/day for up to 30 products. This ad is triggered by search terms with high purchase intent (the Google Shopping tab). Your only control over it is the title used in the Merchant Center feed, the main photo, the price, and the reviews. Start with the Maximize Conversions bid strategy.\n\n\n\nPerformance Max (without feed): \\~$30/day, up to 50 products, Maximize Conversions bid strategy.\n\n\n\nThink of this as an upgraded Shopping campaign. Turn off Google's AI text/image improvements and don't use any extra assets in this campaign initially. Also, don't add anything to the audience signals yet. Let it hunt.\n\n\n\nInstitutional Search Network: \\~$20/day. The goal of this campaign is to capture people who are actively searching for your brand after being impacted by the other campaigns in your funnel.\n\n\n\nUse search terms directly related to your brand, like \"Is \\[Your Brand\\] reliable?\", \"\\[Your Brand\\] reviews\", etc. Think about what your customer searches for in the discovery/trust-building phase and use that. This campaign usually brings in higher-ticket sales and an excellent ROAS.\n\n\n\n3. Final considerations\n\nWell, these are the campaigns. With this structure, you can easily reach 6 or 7 figures in revenue without heavy daily maintenance and with constant growth—but ONLY if your jar is well-built!\n\n\n\nYou can scale using these exact same structures, but scaling requires a deeper business analysis: you need to understand your CAC (Customer Acquisition Cost), LTV (Lifetime Value), ABC inventory curve, and your niche's seasonality.\n\n\n\nExecute this, and if you have any questions or need to clear anything up, I'll be happy to help. Drop them in the comments below. Thanks for reading this far, cheers!",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1x0q4e8",
+      "name": "t3_1x0q4e8",
+      "title": "Why warmup often doesn’t carry over to real campaigns",
+      "subreddit": "ecommerce",
+      "author": "Silly_Captain2089",
+      "score": 1,
+      "num_comments": 8,
+      "created_utc": 1791463941.0,
+      "permalink": "/r/ecommerce/comments/1x0q4e8/why_warmup_often_doesnt_carry_over_to_real/",
+      "url": "https://www.reddit.com/r/ecommerce/comments/1x0q4e8/why_warmup_often_doesnt_carry_over_to_real/",
+      "selftext": "I’ve seen this happen a lot. Someone warms a mailbox for a couple of weeks, the tool shows great health, then they start real outreach and placement drops hard.\n\nPart of the problem is that a lot of warmup emails have identifier tags or filter keywords that normal campaigns don’t have. The engagement can also look too perfect. Instant opens, no real reading time, very consistent patterns. And the content used for warmup is usually generic, nothing like the actual sales copy being sent.\n\nWhen the warmup doesn’t look or behave like real email activity, the reputation doesn’t transfer as well as people expect. This is one of the bigger differences I’ve noticed between tools like Instantly, Smartlead, Warmy, and E-Warmup.\n\nCurious if others have run into the same issue.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1x0pa27",
+      "name": "t3_1x0pa27",
+      "title": "Trying to check competitor international pricing is driving me crazy",
+      "subreddit": "ecommerce",
+      "author": "theCOLLECTOR7250",
+      "score": 1,
+      "num_comments": 2,
+      "created_utc": 1791461477.0,
+      "permalink": "/r/ecommerce/comments/1x0pa27/trying_to_check_competitor_international_pricing/",
+      "url": "https://www.reddit.com/r/ecommerce/comments/1x0pa27/trying_to_check_competitor_international_pricing/",
+      "selftext": "we're expanding to the EU next quarter and I spent the entire morning just trying to map out the checkout flows for two of our biggest competitors.\n\nit's honestly infuriating. every time I try to load their localized sites, their cdn just aggressive force-redirects me back to the US storefront. clear cookies, incognito, doesn't matter. they just absolutely refuse to let an american IP see their european pricing tiers.\n\ni got so fed up i just routed my browser through shifter so I could spoof a connection from berlin and actually get past the geo-block. it worked to grab the shipping screenshots, but man...\n\nwhy is basic market research like a black ops mission now? i'm just trying to see what these guys charge for standard DHL delivery lol. i miss when you could just click the little flag dropdown in the footer and it would actually let you view the site.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1x0tywa",
+      "name": "t3_1x0tywa",
+      "title": "Anyone else greeted by a lovely black sidebar and neon colours on Shopify this morning?",
+      "subreddit": "shopify",
+      "author": "JustRestaurant4217",
+      "score": 9,
+      "num_comments": 12,
+      "created_utc": 1791473408.0,
+      "permalink": "/r/shopify/comments/1x0tywa/anyone_else_greeted_by_a_lovely_black_sidebar_and/",
+      "url": "https://www.reddit.com/r/shopify/comments/1x0tywa/anyone_else_greeted_by_a_lovely_black_sidebar_and/",
+      "selftext": "[https://imgur.com/a/W5Ro0eq](https://imgur.com/a/W5Ro0eq)\n\nSorry if this is repetitive but I physically gagged 🥲 I have been wanting Shopify to come out with a dark mode for years... this is not what I meant. It's even worse as the stark contrast between the black sidebar and white main content is actually painful for my eyes. And it's even worse that the labels are neon. Begging them to simply change the HTML colour codes 😭",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1x0sp90",
+      "name": "t3_1x0sp90",
+      "title": "Shopify is Down in Southeastern US?",
+      "subreddit": "shopify",
+      "author": "nismaniak",
+      "score": 8,
+      "num_comments": 11,
+      "created_utc": 1791470445.0,
+      "permalink": "/r/shopify/comments/1x0sp90/shopify_is_down_in_southeastern_us/",
+      "url": "https://www.reddit.com/r/shopify/comments/1x0sp90/shopify_is_down_in_southeastern_us/",
+      "selftext": "Card reader isn't working and when trying to log in to [Shopify.com](http://Shopify.com), getting error that page \"There was a problem loading this website\"\n\n  \nAnyone else seeing issues?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1x0rof3",
+      "name": "t3_1x0rof3",
+      "title": "UK Based - Shipping options, complex stock sorts, how do I simplify shipping?",
+      "subreddit": "shopify",
+      "author": "divaschematic",
+      "score": 3,
+      "num_comments": 10,
+      "created_utc": 1791468008.0,
+      "permalink": "/r/shopify/comments/1x0rof3/uk_based_shipping_options_complex_stock_sorts_how/",
+      "url": "https://www.reddit.com/r/shopify/comments/1x0rof3/uk_based_shipping_options_complex_stock_sorts_how/",
+      "selftext": "Background: been online nearly ten years. \n\nWe currently have a complex shipping set up as our stock ranges from very small letter sized badge items to clothing and books.  People may buy one badge, they may buy 100, they may buy one t-shirt or a full uniform set, they may buy one book or 10. \n\nThe rate is decided via complex tagging system.  There is no way to add weights and sizes to all of our products individually, we have too many variants for this.\n\nWe currently ship out nearly everything via Royal Mail on the office franking machine.  Franking machines only do Signed For not Tracked, customers really want end to end tracking these days.  I would like to go with Evri or another courier so that we can do this and ditch the franking machine.\n\nI do not know how to categorise my stock so that I can add an integrated courier and streamline this.  We just want to cover the cost of shipping, we are not in it to make a profit on any shipping but I also don't want to have to charge someone £5 to send a £1.00 woven badge.\n\nI can't get my head around how to do this.  I am sure there's a solution but for some reason this one is making my brain itch.  I feel like you're the people to help me get my head around this change and how it works?  ",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1x0txvy",
+      "name": "t3_1x0txvy",
+      "title": "TIL: Another Reason To Hate M365 and New Outlook",
+      "subreddit": "msp",
+      "author": "Optimal_Technician93",
+      "score": 15,
+      "num_comments": 19,
+      "created_utc": 1791473340.0,
+      "permalink": "/r/msp/comments/1x0txvy/til_another_reason_to_hate_m365_and_new_outlook/",
+      "url": "https://www.reddit.com/r/msp/comments/1x0txvy/til_another_reason_to_hate_m365_and_new_outlook/",
+      "selftext": "Imagine, if you will, a new eDiscovery demand arrives. This one's pretty broad and vague so it's gonna be a pain in the ass. But, it's not the first time.\n\nThese people are using Outlook, New Outlook, and God knows what other client. But, that shouldn't matter. This is an eDiscovery search. Server(Purview) side.\n\nBut wait, they've got delegates assigned access to the target mailboxes all over the place. And New Outlook and phone mail clients put deleted items from the source mailbox into the delegates deleted items. So now instead of searching 10 mailboxes, you're searching 45 mailboxes for two dozen various search parameters. \n\nNo problem. You've got backups, right? You can restore the deleted items to their original mailboxes, right?\n\nWhat a mess.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "penvqr6",
+          "author": "GrouchySpicyPickle",
+          "body": "If you've got a client with an email data retention requirement and you're not using an immutable journaling system, be it within 365, or better yet, a 3rd party service, you're the problem. ",
+          "score": 1
+        },
+        {
+          "id": "pensf0f",
+          "author": "newboofgootin",
+          "body": "It's a huge pain in the ass. Consider Journaling or enabling legal hold if this might be an issue again for you in the future.",
+          "score": 1
+        },
+        {
+          "id": "penrwjb",
+          "author": "discosoc",
+          "body": "Regardless of client, a hard delete (shift-delete) will result in the same thing, even if you have set the “correct” registry fix.  Also similar issues with sent items.\n\nYour best strategy regardless of mail provider is to maintain a love archive.",
+          "score": 1
+        },
+        {
+          "id": "peo7ya0",
+          "author": "Skyccord",
+          "body": "The problem is that the lawyers didn't clarify in their ESI protocol what they would be searching and what is vs what isn't in scope.  \n\nSecondly, I wouldn't be doing this as an MSP, if you did it's definitely billable, and it should be done by an e-Discovery vendor so they can be the ones who can testify to what happened and why it happened.\n\nIf the ESI parameters say to search Sam's mailbox for these words, legally all you have to do is search Sam's mailbox for these words, regardless of whether Sam's deleted messages are in Sam's mailbox.  That wasn't what was specified in the search parameter.  Your job is not to think in these situations, it's just to execute the  search within the parameters that are laid out in front of you.",
+          "score": 1
+        },
+        {
+          "id": "penqji6",
+          "author": "InsolentJaguar",
+          "body": "Welcome to shitty \"new Outlook\"...aka shitty OWA wrapper that can't do shit.",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1x0wtus",
+      "name": "t3_1x0wtus",
+      "title": "A ChatGPT conversation directed a user to a fake OpenAI verification site that tried to execute malware. Our EDR stopped it.",
+      "subreddit": "msp",
+      "author": "Vq-Blink",
+      "score": 9,
+      "num_comments": 32,
+      "created_utc": 1791479940.0,
+      "permalink": "/r/msp/comments/1x0wtus/a_chatgpt_conversation_directed_a_user_to_a_fake/",
+      "url": "https://www.reddit.com/r/msp/comments/1x0wtus/a_chatgpt_conversation_directed_a_user_to_a_fake/",
+      "selftext": "I'm an IT administrator at an MSP, and today (October 8, 2026) we investigated one of the stranger security incidents I've encountered.\n\nA user at an organization we support was working on a completely legitimate business task in ChatGPT. They uploaded a PowerPoint presentation and asked ChatGPT to help turn the material into content for an investor presentation.\n\nInstead of simply helping with the presentation, ChatGPT displayed a message claiming that the service was experiencing elevated automated traffic and malicious activity.\n\nThe message stated that additional security verification was required to continue using ChatGPT. It included a link to a website impersonating an OpenAI verification service and signed the message as the \"OpenAI Security Team.\"\n\n**This wasn't a phishing email pretending to be ChatGPT. The instruction appeared directly inside a conversation on the real** [**chatgpt.com**](http://chatgpt.com) **website.**\n\nThe user followed the link.\n\n# What happened next\n\nThe website displayed what appeared to be a security verification challenge. However, it was actually a ClickFix attack.\n\nThe page automatically copied a malicious command to the user's clipboard and instructed them to:\n\n1. Press Win + X.\n2. Open Windows Terminal.\n3. Press Ctrl + V.\n4. Press Enter.\n\nThe command used PowerShell's `Invoke-RestMethod` to retrieve remote content from an attacker-controlled domain and piped the response into `Invoke-Expression` for execution.\n\nOur endpoint protection detected and terminated the PowerShell process.\n\nIn fact, the user attempted the process twice, approximately 88 seconds apart. Both attempts were stopped.\n\nOur managed detection and response provider confirmed that the PowerShell processes were terminated before establishing connections to the malicious payload infrastructure. They found no evidence of a successful payload download or persistence.\n\n# How we investigated\n\nInitially, the security provider believed the malicious link originated from an email containing a SharePoint PowerPoint link.\n\nWe investigated that lead, including the alleged sender's messages and the relevant presentation links.\n\nAfter further investigation, the security provider revised its assessment. The suspected email link had opened in a different Chrome instance from the one associated with the malicious domain activity. The original email attribution was therefore not substantiated.\n\nWe then examined the user's ChatGPT conversation.\n\nThat's where we found the fake verification instructions, presented as an assistant response within the legitimate ChatGPT interface.\n\nThe suspicious message appeared more than once while the user was trying to work with the presentation.\n\nI also inspected a copy of the PowerPoint for embedded prompt-injection instructions, suspicious hyperlinks, hidden content, and other indicators. Nothing malicious was identified in the examined file. That doesn't establish that the original uploaded version was identical or that prompt injection can be ruled out entirely.\n\n# What concerns me\n\nAt this point, we don't know **why ChatGPT produced the malicious verification instructions**.\n\nPossibilities include prompt injection from content the assistant encountered, another form of conversation manipulation, or an unsafe model response. We have not established which occurred.\n\nI am not claiming OpenAI's infrastructure was compromised.\n\nWhat we can establish is:\n\n* The user was operating within a legitimate ChatGPT conversation.\n* A message appearing as an assistant response directed them to a malicious verification website.\n* The website instructed them to execute malicious PowerShell.\n* Our endpoint security blocked two execution attempts.\n* The original source of the malicious instruction remains unidentified.\n\n# Why I'm sharing this\n\nThis raises an important trust-boundary issue.\n\nUsers are increasingly comfortable trusting instructions that appear inside AI assistants, particularly when those instructions appear to come from the service itself.\n\nIn this case, a user was convinced that running a command in Windows Terminal was a legitimate requirement to continue using ChatGPT.\n\nThankfully, our endpoint protection prevented the payload from running successfully.\n\nWe're preserving the evidence and reporting the incident to OpenAI for investigation.\n\n**Has anyone else encountered a legitimate ChatGPT conversation displaying a fake security verification message or directing users to an external CAPTCHA/anti-bot site?**\n\nI'd be especially interested in hearing from anyone investigating prompt injection, AI-assisted phishing, or similar incidents.\n\nAnd as a general reminder: no website should be trusted when it asks you to paste an unexplained command into Windows Terminal as part of a CAPTCHA or security verification.\n\n  \nA couple of notes:  \nThere was no ghost prompt inside the PPTX prompting this GPT response.\n\nThis screenshot was taken from the real GPT website, not a spoof.\n\nEdit:\n\nI will not post the full screenshot or link to the chat. It has company disclosing information and I will not risk disclosing the company.\n\nYou don't have to believe me, but I have no reason to lie. Up to you to decide what you believe.\n\nEdit 2\n\nThis user has NO suspicious installed plugins. They have no suspicious skills in GPT.\n\nThey have no Suspicious Chrome Extensions.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "peog0ut",
+          "author": "Nyy8",
+          "body": "Yes, this is a fairly new tactic we've been tracking. It involves the use of customGPTs. The user was talking to a 'CustomGPT' and not vanilla ChatGPT.\n\nHuntress did a great write-up on it here, \n\n[https://www.huntress.com/blog/chatgpt-custom-gpts-clickfix-rat](https://www.huntress.com/blog/chatgpt-custom-gpts-clickfix-rat)",
+          "score": 1
+        },
+        {
+          "id": "peofc6j",
+          "author": "DeadStockWalking",
+          "body": "\"That's where we found the fake verification instructions, presented as an assistant response within the legitimate ChatGPT interface.\"\n\nCan we get a screenshot of that?",
+          "score": 1
+        },
+        {
+          "id": "peofaq3",
+          "author": "Diligent_Tech_Bro",
+          "body": "I’d give anything to just kill it all off and go back to the glory days ",
+          "score": 1
+        },
+        {
+          "id": "peop6yp",
+          "author": "Slight_Manufacturer6",
+          "body": "TL;DR  \nLooks like an ad. I’m not interested.",
+          "score": 1
+        },
+        {
+          "id": "peongsz",
+          "author": "SPMrFantastic",
+          "body": "It in fact is now Spooky season year round",
+          "score": 1
+        },
+        {
+          "id": "peog4zp",
+          "author": "MikeTalonNYC",
+          "body": "It sounds like they connected a corrupted skill to their ChatGPT account, to be honest. \n\nThere is a possibility that the LLM somehow spat out ClickFix instructions because of bad training data, but since we're not seeing news reports of this all over the Internet, I suspect that's not it. \n\nWhatever they added to ChatGPT to be the \"assistant\" they mentioned was either malware from the start, or was corrupted through compromise of a legitimate skill. \n\nOne other thing, this attack - \"ClickFix\" - is so well known, and has been around for more than a year now, that no user should be pasting ANYTHING into the Windows Run box, Windows or macOS Terminal apps, or anywhere else just because a website tells them to.  This company's internal user security awareness training needs to be updated immediately. ",
+          "score": 1
+        },
+        {
+          "id": "peoigs5",
+          "author": "Vq-Blink",
+          "body": "I understand why people have their doubts.  [https://imgur.com/a/1QJ4GP1](https://imgur.com/a/1QJ4GP1)\n\nPlease see the attached screenshot. a couple of notes:  \nThere was no ghost prompt inside the PPTX prompting this GPT response.\n\nThis screenshot was taken from the real GPT website, not a spoof.\n\nEdit:\n\nI will not post the full screenshot or link to the chat. It has company disclosing information and I will not risk disclosing the company.\n\nYou don't have to believe me, but I have no reason to lie. Up to you to decide what you believe.\n\nEdit 2\n\nThis user has NO suspicious installed plugins. They have no suspicious skills in GPT. \n\nThey have no Suspicious Chrome Extensions.",
+          "score": 1
+        },
+        {
+          "id": "peok0ky",
+          "author": "Hollyweird78",
+          "body": "I think both DNS filtering and Removing the Ability to Win + X, Win +R would have prevented this issue. But yes that is a highly concerning corrupted instance of ChatGPT. \n\n",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1x0w9u8",
+      "name": "t3_1x0w9u8",
+      "title": "How do you get Rightworks to work with you as a company's MSP without hassling the customer each time?",
+      "subreddit": "msp",
+      "author": "VNJCinPA",
+      "score": 5,
+      "num_comments": 3,
+      "created_utc": 1791478666.0,
+      "permalink": "/r/msp/comments/1x0w9u8/how_do_you_get_rightworks_to_work_with_you_as_a/",
+      "url": "https://www.reddit.com/r/msp/comments/1x0w9u8/how_do_you_get_rightworks_to_work_with_you_as_a/",
+      "selftext": "I'm setting up a company and I need to work with support to get the installation on the remote system. I put the QuickBooks license in, but I can't log into QuickBooks or even see it. \n\nI have the installation file but it won't upload. \n\nI called in and being honest, told them who I was but that I control the entire account. The only way they would validate me is to get the account owner on the phone, and they are always extremely busy. Moreso, I can call one of my technicians and tell them to just pretend that they are this person. I have all of the information and can validate it, but because I was honest, they refused to work with me.\n\nIs this the norm with them? Anybody have any tricks? \n\nI hate lying to people just to get a job done, and there's no way they're going to know who's on the phone with me if I have all the information. An email validation should have been enough, I can even multi-factor it if they need to because I control the entire account right now... ",
       "is_self": true,
       "over_18": false,
       "is_video": false,
