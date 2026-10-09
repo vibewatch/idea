@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-09T12:46:27.045971+00:00",
+  "last_fetched": "2026-10-09T18:40:47.395608+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,8 +10,8 @@
       "title": "Show HN: SVG Spark – 10 client-side SVG design and dev tools",
       "subreddit": "show-hn",
       "author": "Zeus808",
-      "score": 41,
-      "num_comments": 7,
+      "score": 44,
+      "num_comments": 8,
       "permalink": "https://news.ycombinator.com/item?id=50013931",
       "url": "https://svg-spark.vercel.app/",
       "selftext": "",
@@ -80,7 +80,7 @@
       "title": "Show HN: I built a fast spreadsheet engine for the web in Rust/WASM",
       "subreddit": "show-hn",
       "author": "deathg0d",
-      "score": 7,
+      "score": 8,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50012880",
       "url": "https://github.com/podraven/titan-engine",
@@ -312,8 +312,8 @@
       "title": "Show HN: K10s – A Clickable Kubernetes TUI (Go, Bubble Tea)",
       "subreddit": "show-hn",
       "author": "pierreneter",
-      "score": 65,
-      "num_comments": 51,
+      "score": 67,
+      "num_comments": 53,
       "permalink": "https://news.ycombinator.com/item?id=50009904",
       "url": "https://github.com/p10node/k10s",
       "selftext": "",
@@ -347,19 +347,19 @@
           "parent": "50009904"
         },
         {
-          "id": "50018192",
-          "author": "magnusokik",
-          "body": "Vim keybindings are missing, it's just habit using k9s nothing against k10s. I like the layout so far and how fast it is.",
-          "score": 0,
-          "time": 1791538630,
-          "parent": "50009904"
-        },
-        {
           "id": "50012617",
           "author": "sa-code",
           "body": "https://github.com/kubernetes-sigs/headlamp (https://github.com/kubernetes-sigs/headlamp) is a good established option for a clickable k8s UI",
           "score": 0,
           "time": 1791495093,
+          "parent": "50009904"
+        },
+        {
+          "id": "50018192",
+          "author": "magnusokik",
+          "body": "Vim keybindings are missing, it's just habit using k9s nothing against k10s. I like the layout so far and how fast it is.",
+          "score": 0,
+          "time": 1791538630,
           "parent": "50009904"
         },
         {
@@ -427,8 +427,8 @@
       "title": "Show HN: Pocketty – iPhone SSH terminal that pings you when an agent is blocked",
       "subreddit": "show-hn",
       "author": "lukeed",
-      "score": 28,
-      "num_comments": 15,
+      "score": 31,
+      "num_comments": 19,
       "permalink": "https://news.ycombinator.com/item?id=50009634",
       "url": "https://pocketty.app/",
       "selftext": "Hello~! pocketty is an SSH terminal for iPhone and iPad, made for herdr. herdr keeps your agent panes alive on your computer and knows the state of each one: working, needs you, or done.\nI made this in anger/desperation for the latter half of my recent paternity leave. Nap traps are sweet, but there's only so much doom-scrolling and movie-watching I can handle... In any event, I've been using it for the last couple months and no longer have to be my desk anymore to be productive. Now the nap-traps are still productive (when i want them to be) !\nHow it works:\n- The app talks to your computer directly over plain SSH. Tailscale is the easy way to reach it from anywhere but any SSH host you can reach works.\n- A small Rust daemon on the host watches herdr. When a pane needs you, it seals the alert to your phone's key with HPKE (X25519, ChaCha20-Poly1305). A stateless relay (pocketty's) on Cloudflare Workers passes the sealed bytes to APNs (Apple Push Notification servers), and a notification extension opens them on the phone. The relay can't read them and keeps nothing.\n- Your SSH key is made in the Secure Enclave and can't be exported.\n- The terminal uses libghostty-vt for state and draws with wgpu on Metal, so full-screen TUIs look like they do on your desk, albeit narrower.\n- Diffs for each agent turn, a file browser, and previews of `localhost` dev servers your agent starts, all through the same SSH connection. No port forwarding to set up.\nherdr and the daemon are optional. Without them, it's a normal SSH client.\nThere's no account to set up and no analytics or tracking in the app. \nThe app runs a 14-day free trial, with full feature access. Then, if you're as happy as I am with it, then it can be yours forever with a one-time purchase: $99 for the first two weeks (launch promo) then $129 after that.\nHappy to answer anything about the sealed push setup or running libghostty on iOS.",
@@ -438,19 +438,19 @@
       "created_at": "2026-10-08T18:11:52+00:00",
       "comments_data": [
         {
+          "id": "50022457",
+          "author": "joshstrange",
+          "body": "I can highly recommend Heeler if you are are using Herdr and iOS: https://github.com/ZingerLittleBee/Heeler (https://github.com/ZingerLittleBee/Heeler)\nIt's free/open-source and I've been using it for a few weeks now and it's replaced Blink Shell for me on my phone.",
+          "score": 0,
+          "time": 1791561677,
+          "parent": "50009634"
+        },
+        {
           "id": "50014638",
           "author": "antoniomika",
           "body": "Was looking for something like this but stumbled upon herdr-web-ui [0] first. They seem to do the same thing, but herdr-web-ui is completely free and self hosted and sets up as a PWA with webpush support. Seems to work decently well and it’s under heavy development. Will have to try this too!\n[0] https://github.com/devswha/herdr-web-ui (https://github.com/devswha/herdr-web-ui)",
           "score": 0,
           "time": 1791507354,
-          "parent": "50009634"
-        },
-        {
-          "id": "50018343",
-          "author": "hensenjuang",
-          "body": "If I answer on the desktop, does the \"blocked\" notification disappear from the phone too?",
-          "score": 0,
-          "time": 1791539954,
           "parent": "50009634"
         },
         {
@@ -462,11 +462,19 @@
           "parent": "50009634"
         },
         {
-          "id": "50015729",
-          "author": "metamitya",
-          "body": "very interesting. seems like lots of people trying to turn the agent chat push into a feed pull. basically have the agents reach out to you instead of you to them. interesting take on the problem",
+          "id": "50020280",
+          "author": "casualhermit27",
+          "body": "Hey, i worked on something exactly if not very similar to this.\nActually happy to see more people doing this.",
           "score": 0,
-          "time": 1791517317,
+          "time": 1791552670,
+          "parent": "50009634"
+        },
+        {
+          "id": "50018343",
+          "author": "hensenjuang",
+          "body": "If I answer on the desktop, does the \"blocked\" notification disappear from the phone too?",
+          "score": 0,
+          "time": 1791539954,
           "parent": "50009634"
         },
         {
@@ -475,6 +483,14 @@
           "body": "Nice! I did something like this running tailscale to my laptop with a TUI and it worked well for awhile. And then I realized I didn't want to be notified when my agents weren't working because I'd had enough.\nEnjoy your nap traps! They don't last very long.",
           "score": 0,
           "time": 1791506184,
+          "parent": "50009634"
+        },
+        {
+          "id": "50015729",
+          "author": "metamitya",
+          "body": "very interesting. seems like lots of people trying to turn the agent chat push into a feed pull. basically have the agents reach out to you instead of you to them. interesting take on the problem",
+          "score": 0,
+          "time": 1791517317,
           "parent": "50009634"
         },
         {
@@ -553,8 +569,8 @@
       "title": "Show HN: Making a flexible \"neon\" t-shirt with LED filaments",
       "subreddit": "show-hn",
       "author": "scottbez1",
-      "score": 184,
-      "num_comments": 32,
+      "score": 211,
+      "num_comments": 36,
       "permalink": "https://news.ycombinator.com/item?id=50008047",
       "url": "http://scottbezek.blogspot.com/2026/10/making-flexible-neon-t-shirt-with-leds.html",
       "selftext": "",
@@ -572,14 +588,6 @@
           "parent": "50008047"
         },
         {
-          "id": "50008051",
-          "author": "scottbez1",
-          "body": "Author here, happy to answer any questions!",
-          "score": 0,
-          "time": 1791477464,
-          "parent": "50008047"
-        },
-        {
           "id": "50014200",
           "author": "khaki54",
           "body": "One of my kids had something like this built into a Halloween costume that their mom procured from Amazon. One of the filaments was blinking out within a day so I started running the length of the filament to figure out where the bad connection was. Unexpectedly it shocked the hell out of me. I put a meter on it and it was 240V. I couldn't believe I got such a nasty poke from 2 AA batteries.",
@@ -588,11 +596,11 @@
           "parent": "50008047"
         },
         {
-          "id": "50019394",
-          "author": "formvoltron",
-          "body": "want!",
+          "id": "50008051",
+          "author": "scottbez1",
+          "body": "Author here, happy to answer any questions!",
           "score": 0,
-          "time": 1791548030,
+          "time": 1791477464,
           "parent": "50008047"
         },
         {
@@ -604,19 +612,19 @@
           "parent": "50008047"
         },
         {
-          "id": "50016627",
-          "author": "DylanMerigaud",
-          "body": "Looks solid, best of luck with it.",
-          "score": 0,
-          "time": 1791526343,
-          "parent": "50008047"
-        },
-        {
           "id": "50013087",
           "author": "IshKebab",
           "body": "Ooo this is cool, I didn't know these exist. I once half made something like this with EL wire but I stopped after getting an electric shock from some EL tape. Turns out the edges are not at all insulated and you need high voltages to drive them. I'm not wearing that. 24V sounds much nicer.",
           "score": 0,
           "time": 1791497275,
+          "parent": "50008047"
+        },
+        {
+          "id": "50016627",
+          "author": "DylanMerigaud",
+          "body": "Looks solid, best of luck with it.",
+          "score": 0,
+          "time": 1791526343,
           "parent": "50008047"
         },
         {
@@ -644,6 +652,14 @@
           "parent": "50008047"
         },
         {
+          "id": "50019394",
+          "author": "formvoltron",
+          "body": "want!",
+          "score": 0,
+          "time": 1791548030,
+          "parent": "50008047"
+        },
+        {
           "id": "50015609",
           "author": "fnord77",
           "body": "We old timers used to use EL wire for this.",
@@ -668,8 +684,8 @@
       "title": "Show HN: Jevman – AI decision models play Pac-Man",
       "subreddit": "show-hn",
       "author": "felix089",
-      "score": 65,
-      "num_comments": 16,
+      "score": 69,
+      "num_comments": 21,
       "permalink": "https://news.ycombinator.com/item?id=50007993",
       "url": "https://opper.ai/jevman-benchmark/",
       "selftext": "Openai just launched their decisions endpoint, cloudflare launched clef the other week, and many more jev alternatives are out there.\nWe wanted to put the popular ones to the test and thought Pac-Man is a good benchmark for simple and fast decision making.\nSo we let jev 1.13, kev, clef, clef flash, GPT-6 Luna and Laya play Pac-Man against bot ghosts.\nThe low latency of these models allows for real time play. We had each model play 100 games, published a leader board and open-sourced the repo so anyone can run their own model and join the ranking. Link to repo:\nhttps://github.com/opper-ai/jevman-benchmark/blob/main/CONTR... (https://github.com/opper-ai/jevman-benchmark/blob/main/CONTRIBUTING.md#benchmark-your-own-model)\nYou can also join the game and play as Pac-Man yourself, and the ghosts are the models, either a mix of models or all jev, kev, clef etc. A game costs about 2 cent, all models are running via my startup opper, and we added free credits for everyone to try.\nIt's pretty fun to play and surprisingly difficult to beat jev's highscore. Any feedback is more than welcome!",
@@ -684,6 +700,14 @@
           "body": "Shouldn't it be running at every tick of the game rather than just the junctions? Pac-Man should be able to change direction at any point.",
           "score": 0,
           "time": 1791514619,
+          "parent": "50007993"
+        },
+        {
+          "id": "50022442",
+          "author": "felix089",
+          "body": "Quick update, we doubled the models tested based on community contributions, and a new model took the #1 spot. also well over 1000 games have been played against decision model ghosts.\nhttps://opper.ai/jevman-benchmark/#leaderboard (https://opper.ai/jevman-benchmark/#leaderboard)",
+          "score": 0,
+          "time": 1791561626,
           "parent": "50007993"
         },
         {
@@ -711,19 +735,19 @@
           "parent": "50007993"
         },
         {
-          "id": "50018732",
-          "author": "ismailmaj",
-          "body": "it would be nice to have a regular LLM for reference",
-          "score": 0,
-          "time": 1791543247,
-          "parent": "50007993"
-        },
-        {
           "id": "50014356",
           "author": "ozozozd",
           "body": "Super cool!\nI wish the controls were a little easier on mobile.",
           "score": 0,
           "time": 1791505527,
+          "parent": "50007993"
+        },
+        {
+          "id": "50018732",
+          "author": "ismailmaj",
+          "body": "it would be nice to have a regular LLM for reference",
+          "score": 0,
+          "time": 1791543247,
           "parent": "50007993"
         },
         {
@@ -845,8 +869,8 @@
       "title": "Show HN: Wordminos – Crosswords Meet Dominos",
       "subreddit": "show-hn",
       "author": "dyarosla",
-      "score": 19,
-      "num_comments": 8,
+      "score": 21,
+      "num_comments": 9,
       "permalink": "https://news.ycombinator.com/item?id=50005276",
       "url": "https://wordminos.com/play-en.html",
       "selftext": "I built a daily word game in 12 days.\nThe base mechanic only took an hour. \nGetting it to the finish line took the rest.\nThe work was in iteration: design, polish, juice, character. Taste, for now, is still relevant.\nEnjoy!",
@@ -856,19 +880,19 @@
       "created_at": "2026-10-08T12:56:46+00:00",
       "comments_data": [
         {
-          "id": "50017712",
-          "author": "RestartKernel",
-          "body": "This barely feels like a Web game. Well done, especially in 12 days. What was your workflow like? How much use could you get out of LLMs past the basic mechanics (if at all)?",
-          "score": 0,
-          "time": 1791534984,
-          "parent": "50005276"
-        },
-        {
           "id": "50012873",
           "author": "blobdole",
           "body": "Wowza... I am so bad at this. lol\nOne thing I would say is that when there is a \"done\" or a \"next\" button, it took me a sec to see it as a button because the actual button color was too close to white on my monitor. So I thought it was a click anywhere kinda \"done\".",
           "score": 0,
           "time": 1791496217,
+          "parent": "50005276"
+        },
+        {
+          "id": "50017712",
+          "author": "RestartKernel",
+          "body": "This barely feels like a Web game. Well done, especially in 12 days. What was your workflow like? How much use could you get out of LLMs past the basic mechanics (if at all)?",
+          "score": 0,
+          "time": 1791534984,
           "parent": "50005276"
         },
         {
