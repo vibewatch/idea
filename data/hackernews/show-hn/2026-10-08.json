@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-09T06:54:24.370930+00:00",
+  "last_fetched": "2026-10-09T12:46:27.045971+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,7 +10,7 @@
       "title": "Show HN: SVG Spark – 10 client-side SVG design and dev tools",
       "subreddit": "show-hn",
       "author": "Zeus808",
-      "score": 38,
+      "score": 41,
       "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=50013931",
       "url": "https://svg-spark.vercel.app/",
@@ -80,7 +80,7 @@
       "title": "Show HN: I built a fast spreadsheet engine for the web in Rust/WASM",
       "subreddit": "show-hn",
       "author": "deathg0d",
-      "score": 6,
+      "score": 7,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50012880",
       "url": "https://github.com/podraven/titan-engine",
@@ -227,7 +227,7 @@
       "subreddit": "show-hn",
       "author": "chettto983",
       "score": 6,
-      "num_comments": 2,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50010250",
       "url": "https://github.com/chetto1983/Aura",
       "selftext": "",
@@ -312,8 +312,8 @@
       "title": "Show HN: K10s – A Clickable Kubernetes TUI (Go, Bubble Tea)",
       "subreddit": "show-hn",
       "author": "pierreneter",
-      "score": 63,
-      "num_comments": 47,
+      "score": 65,
+      "num_comments": 51,
       "permalink": "https://news.ycombinator.com/item?id=50009904",
       "url": "https://github.com/p10node/k10s",
       "selftext": "",
@@ -347,6 +347,14 @@
           "parent": "50009904"
         },
         {
+          "id": "50018192",
+          "author": "magnusokik",
+          "body": "Vim keybindings are missing, it's just habit using k9s nothing against k10s. I like the layout so far and how fast it is.",
+          "score": 0,
+          "time": 1791538630,
+          "parent": "50009904"
+        },
+        {
           "id": "50012617",
           "author": "sa-code",
           "body": "https://github.com/kubernetes-sigs/headlamp (https://github.com/kubernetes-sigs/headlamp) is a good established option for a clickable k8s UI",
@@ -355,19 +363,19 @@
           "parent": "50009904"
         },
         {
-          "id": "50015518",
-          "author": "sharts",
-          "body": "Nothing wrong with interactive TUI. Much better than bloated javascript UI.",
-          "score": 0,
-          "time": 1791515292,
-          "parent": "50009904"
-        },
-        {
           "id": "50010333",
           "author": "advisedwang",
           "body": "I hope vibecoding doesn't mean the concept of contributing upstream gets lost. At least some of this (mouse clicking) would have been a great upstream contribution instead of rewrite.",
           "score": 0,
           "time": 1791485730,
+          "parent": "50009904"
+        },
+        {
+          "id": "50015518",
+          "author": "sharts",
+          "body": "Nothing wrong with interactive TUI. Much better than bloated javascript UI.",
+          "score": 0,
+          "time": 1791515292,
           "parent": "50009904"
         },
         {
@@ -409,14 +417,6 @@
           "score": 0,
           "time": 1791490629,
           "parent": "50009904"
-        },
-        {
-          "id": "50011460",
-          "author": "colesantiago",
-          "body": "TUIs are such a complete fad which i’m getting annoyed with.\nIt seems we cannot move on from them and I think we should.\nIt is a shame because surely there must be something better than terminals and TUIs.",
-          "score": 0,
-          "time": 1791490313,
-          "parent": "50009904"
         }
       ]
     },
@@ -428,7 +428,7 @@
       "subreddit": "show-hn",
       "author": "lukeed",
       "score": 28,
-      "num_comments": 13,
+      "num_comments": 15,
       "permalink": "https://news.ycombinator.com/item?id=50009634",
       "url": "https://pocketty.app/",
       "selftext": "Hello~! pocketty is an SSH terminal for iPhone and iPad, made for herdr. herdr keeps your agent panes alive on your computer and knows the state of each one: working, needs you, or done.\nI made this in anger/desperation for the latter half of my recent paternity leave. Nap traps are sweet, but there's only so much doom-scrolling and movie-watching I can handle... In any event, I've been using it for the last couple months and no longer have to be my desk anymore to be productive. Now the nap-traps are still productive (when i want them to be) !\nHow it works:\n- The app talks to your computer directly over plain SSH. Tailscale is the easy way to reach it from anywhere but any SSH host you can reach works.\n- A small Rust daemon on the host watches herdr. When a pane needs you, it seals the alert to your phone's key with HPKE (X25519, ChaCha20-Poly1305). A stateless relay (pocketty's) on Cloudflare Workers passes the sealed bytes to APNs (Apple Push Notification servers), and a notification extension opens them on the phone. The relay can't read them and keeps nothing.\n- Your SSH key is made in the Secure Enclave and can't be exported.\n- The terminal uses libghostty-vt for state and draws with wgpu on Metal, so full-screen TUIs look like they do on your desk, albeit narrower.\n- Diffs for each agent turn, a file browser, and previews of `localhost` dev servers your agent starts, all through the same SSH connection. No port forwarding to set up.\nherdr and the daemon are optional. Without them, it's a normal SSH client.\nThere's no account to set up and no analytics or tracking in the app. \nThe app runs a 14-day free trial, with full feature access. Then, if you're as happy as I am with it, then it can be yours forever with a one-time purchase: $99 for the first two weeks (launch promo) then $129 after that.\nHappy to answer anything about the sealed push setup or running libghostty on iOS.",
@@ -443,6 +443,22 @@
           "body": "Was looking for something like this but stumbled upon herdr-web-ui [0] first. They seem to do the same thing, but herdr-web-ui is completely free and self hosted and sets up as a PWA with webpush support. Seems to work decently well and it’s under heavy development. Will have to try this too!\n[0] https://github.com/devswha/herdr-web-ui (https://github.com/devswha/herdr-web-ui)",
           "score": 0,
           "time": 1791507354,
+          "parent": "50009634"
+        },
+        {
+          "id": "50018343",
+          "author": "hensenjuang",
+          "body": "If I answer on the desktop, does the \"blocked\" notification disappear from the phone too?",
+          "score": 0,
+          "time": 1791539954,
+          "parent": "50009634"
+        },
+        {
+          "id": "50017619",
+          "author": "alyssassan",
+          "body": "Having access to herdr on phone and iPad is the best gap I've ever found. That way people can do things while they're at the train station. I also do something similar for huge things.\nSo one thing: how can you know if an agent is thinking and not blocked?",
+          "score": 0,
+          "time": 1791534271,
           "parent": "50009634"
         },
         {
@@ -462,14 +478,6 @@
           "parent": "50009634"
         },
         {
-          "id": "50015250",
-          "author": "topaz0",
-          "body": "Does it also help alleviate wealth inequality?",
-          "score": 0,
-          "time": 1791513023,
-          "parent": "50009634"
-        },
-        {
           "id": "50013229",
           "author": "worldisaduck",
           "body": "right after connecting to my workstation it says: “herdr is not installed on this host” while it clearly is. Running it in shell directly works, but it’s impossible to scroll inside herdr session like that. What exactly should I pay 99 for?",
@@ -478,19 +486,27 @@
           "parent": "50009634"
         },
         {
-          "id": "50015771",
-          "author": "amber71de",
-          "body": "Of the trials started so far, how many have bought at $99?",
-          "score": 0,
-          "time": 1791517736,
-          "parent": "50009634"
-        },
-        {
           "id": "50012053",
           "author": "1123581321",
           "body": "Neat. Thought about syncing the key with iCloud Keychain towards supporting any of the user’s devices connecting? Optionally; I understand the appeal of the current storage method.",
           "score": 0,
           "time": 1791492542,
+          "parent": "50009634"
+        },
+        {
+          "id": "50015250",
+          "author": "topaz0",
+          "body": "Does it also help alleviate wealth inequality?",
+          "score": 0,
+          "time": 1791513023,
+          "parent": "50009634"
+        },
+        {
+          "id": "50015771",
+          "author": "amber71de",
+          "body": "Of the trials started so far, how many have bought at $99?",
+          "score": 0,
+          "time": 1791517736,
           "parent": "50009634"
         }
       ]
@@ -537,8 +553,8 @@
       "title": "Show HN: Making a flexible \"neon\" t-shirt with LED filaments",
       "subreddit": "show-hn",
       "author": "scottbez1",
-      "score": 153,
-      "num_comments": 30,
+      "score": 184,
+      "num_comments": 32,
       "permalink": "https://news.ycombinator.com/item?id=50008047",
       "url": "http://scottbezek.blogspot.com/2026/10/making-flexible-neon-t-shirt-with-leds.html",
       "selftext": "",
@@ -553,14 +569,6 @@
           "body": "Yeah I do kinda the same but I embed them into latex prosthetics. Like horns or protrusions for the face that you glue on. They're really good for a cyberpunkey vibe. I'm just casting some at the moment actually because we're coming up on Halloween soon.\nThey look great but they're difficult to solder. Too little heat and it doesn't attach, too much and it damages them. The strip has some annoying coating that repels the solder.\nSome of them have metal crimped contacts that solve this but at the expense of end flexibility. And those usually have contacts at each end, i prefer them with both contacts at the same end so I can cut the strips to size.\nThey're also prone to breaking and the silicone is very resistant to glues and it keeps jumping around when you try to fix it in place. Embedding totally in liquid latex helps but if you use a lot it takes ages to cure.\nI tend to just drive them with an ESP powered by a simple power bank. Just like the OP but I tend to leave out the drivers, for short lengths 3V is ok directly on the ESP. The WLED firmware with an ESP-S3 and a MEMS microphone can even do audio reactivity.\nI combine them usually with ws2812 strips too which have individual RGB. These flexi strips of course don't.\nPs one annoying thing is that some strips are much brighter on one side than the other, and some are not. But on AliExpress it's really hard to determine which ones you end up getting.",
           "score": 0,
           "time": 1791519994,
-          "parent": "50008047"
-        },
-        {
-          "id": "50016627",
-          "author": "DylanMerigaud",
-          "body": "Looks solid, best of luck with it.",
-          "score": 0,
-          "time": 1791526343,
           "parent": "50008047"
         },
         {
@@ -580,11 +588,11 @@
           "parent": "50008047"
         },
         {
-          "id": "50015787",
-          "author": "landgenoot",
-          "body": "That's a nice wearable!",
+          "id": "50019394",
+          "author": "formvoltron",
+          "body": "want!",
           "score": 0,
-          "time": 1791517839,
+          "time": 1791548030,
           "parent": "50008047"
         },
         {
@@ -596,27 +604,11 @@
           "parent": "50008047"
         },
         {
-          "id": "50016385",
-          "author": "stuga",
-          "body": "looking great!",
+          "id": "50016627",
+          "author": "DylanMerigaud",
+          "body": "Looks solid, best of luck with it.",
           "score": 0,
-          "time": 1791524061,
-          "parent": "50008047"
-        },
-        {
-          "id": "50013869",
-          "author": "mlmonkey",
-          "body": "Is \"LED Filament\" the same as \"EL Wire\" ?",
-          "score": 0,
-          "time": 1791501980,
-          "parent": "50008047"
-        },
-        {
-          "id": "50015609",
-          "author": "fnord77",
-          "body": "We old timers used to use EL wire for this.",
-          "score": 0,
-          "time": 1791516230,
+          "time": 1791526343,
           "parent": "50008047"
         },
         {
@@ -628,6 +620,22 @@
           "parent": "50008047"
         },
         {
+          "id": "50013869",
+          "author": "mlmonkey",
+          "body": "Is \"LED Filament\" the same as \"EL Wire\" ?",
+          "score": 0,
+          "time": 1791501980,
+          "parent": "50008047"
+        },
+        {
+          "id": "50015787",
+          "author": "landgenoot",
+          "body": "That's a nice wearable!",
+          "score": 0,
+          "time": 1791517839,
+          "parent": "50008047"
+        },
+        {
           "id": "50011747",
           "author": "danilafe",
           "body": "Beautiful! Thank you for sharing.",
@@ -636,11 +644,19 @@
           "parent": "50008047"
         },
         {
-          "id": "50011700",
-          "author": "Razengan",
-          "body": "Reminds me of a Japanese tech demo on YouTube I can't find right now, of projecting a flexible hologram on to a t-shirt with invisible markers.",
+          "id": "50015609",
+          "author": "fnord77",
+          "body": "We old timers used to use EL wire for this.",
           "score": 0,
-          "time": 1791491229,
+          "time": 1791516230,
+          "parent": "50008047"
+        },
+        {
+          "id": "50016385",
+          "author": "stuga",
+          "body": "looking great!",
+          "score": 0,
+          "time": 1791524061,
           "parent": "50008047"
         }
       ]
@@ -652,8 +668,8 @@
       "title": "Show HN: Jevman – AI decision models play Pac-Man",
       "subreddit": "show-hn",
       "author": "felix089",
-      "score": 60,
-      "num_comments": 10,
+      "score": 65,
+      "num_comments": 16,
       "permalink": "https://news.ycombinator.com/item?id=50007993",
       "url": "https://opper.ai/jevman-benchmark/",
       "selftext": "Openai just launched their decisions endpoint, cloudflare launched clef the other week, and many more jev alternatives are out there.\nWe wanted to put the popular ones to the test and thought Pac-Man is a good benchmark for simple and fast decision making.\nSo we let jev 1.13, kev, clef, clef flash, GPT-6 Luna and Laya play Pac-Man against bot ghosts.\nThe low latency of these models allows for real time play. We had each model play 100 games, published a leader board and open-sourced the repo so anyone can run their own model and join the ranking. Link to repo:\nhttps://github.com/opper-ai/jevman-benchmark/blob/main/CONTR... (https://github.com/opper-ai/jevman-benchmark/blob/main/CONTRIBUTING.md#benchmark-your-own-model)\nYou can also join the game and play as Pac-Man yourself, and the ghosts are the models, either a mix of models or all jev, kev, clef etc. A game costs about 2 cent, all models are running via my startup opper, and we added free credits for everyone to try.\nIt's pretty fun to play and surprisingly difficult to beat jev's highscore. Any feedback is more than welcome!",
@@ -679,6 +695,14 @@
           "parent": "50007993"
         },
         {
+          "id": "50014967",
+          "author": "nico",
+          "body": "Very cool, are you also testing local, cpu-runnable/trainable models/classifiers?\nI trained some to do some interesting things, including playing doom: https://github.com/nicobrenner/jeffy (https://github.com/nicobrenner/jeffy)\nI’ll try training one for this benchmark, seems like fun",
+          "score": 0,
+          "time": 1791510135,
+          "parent": "50007993"
+        },
+        {
           "id": "50016032",
           "author": "soltanov",
           "body": "Running cloud API inference for Pac-Man is peak modern software engineering. A 2 MB local ONNX model on a CPU core beats network round-trip jitter every time.",
@@ -687,11 +711,11 @@
           "parent": "50007993"
         },
         {
-          "id": "50014967",
-          "author": "nico",
-          "body": "Very cool, are you also testing local, cpu-runnable/trainable models/classifiers?\nI trained some to do some interesting things, including playing doom: https://github.com/nicobrenner/jeffy (https://github.com/nicobrenner/jeffy)\nI’ll try training one for this benchmark, seems like fun",
+          "id": "50018732",
+          "author": "ismailmaj",
+          "body": "it would be nice to have a regular LLM for reference",
           "score": 0,
-          "time": 1791510135,
+          "time": 1791543247,
           "parent": "50007993"
         },
         {
@@ -727,8 +751,8 @@
       "title": "Show HN: Pivot – fast analytics on Iceberg, 2x+ faster than ClickHouse / DuckDB",
       "subreddit": "show-hn",
       "author": "dkgs",
-      "score": 12,
-      "num_comments": 1,
+      "score": 14,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50006760",
       "url": "https://pivotlake.io/",
       "selftext": "",
@@ -754,8 +778,8 @@
       "title": "Show HN: I Put an AI Agent on a Nokia 110",
       "subreddit": "show-hn",
       "author": "anupray",
-      "score": 27,
-      "num_comments": 12,
+      "score": 29,
+      "num_comments": 14,
       "permalink": "https://news.ycombinator.com/item?id=50006114",
       "url": "https://github.com/anupray95/AI-Agent-on-a-NOKIA",
       "selftext": "I was using this mobile to reduce my screentime. Recently got the idea to put ai agent in it. Started with installing android, but failed as it has only 48MB RAM. Then reverse-engineered for few days and finally able use AI Agent in this and automated few actions.\nThanks",
@@ -765,19 +789,19 @@
       "created_at": "2026-10-08T14:18:51+00:00",
       "comments_data": [
         {
-          "id": "50016072",
-          "author": "RexHuang",
-          "body": "Great work! Though the hard part for me is even finding a Nokia 110 :)",
-          "score": 0,
-          "time": 1791521068,
-          "parent": "50006114"
-        },
-        {
           "id": "50011283",
           "author": "butz",
           "body": "Is there any way to add custom apps to this series of Nokia phones? It's so annoying that 20 years ago mobile phones were running Java apps (J2ME), and now - nothing.",
           "score": 0,
           "time": 1791489710,
+          "parent": "50006114"
+        },
+        {
+          "id": "50016072",
+          "author": "RexHuang",
+          "body": "Great work! Though the hard part for me is even finding a Nokia 110 :)",
+          "score": 0,
+          "time": 1791521068,
           "parent": "50006114"
         },
         {
@@ -822,7 +846,7 @@
       "subreddit": "show-hn",
       "author": "dyarosla",
       "score": 19,
-      "num_comments": 7,
+      "num_comments": 8,
       "permalink": "https://news.ycombinator.com/item?id=50005276",
       "url": "https://wordminos.com/play-en.html",
       "selftext": "I built a daily word game in 12 days.\nThe base mechanic only took an hour. \nGetting it to the finish line took the rest.\nThe work was in iteration: design, polish, juice, character. Taste, for now, is still relevant.\nEnjoy!",
@@ -831,6 +855,14 @@
       "time": 1791464206,
       "created_at": "2026-10-08T12:56:46+00:00",
       "comments_data": [
+        {
+          "id": "50017712",
+          "author": "RestartKernel",
+          "body": "This barely feels like a Web game. Well done, especially in 12 days. What was your workflow like? How much use could you get out of LLMs past the basic mechanics (if at all)?",
+          "score": 0,
+          "time": 1791534984,
+          "parent": "50005276"
+        },
         {
           "id": "50012873",
           "author": "blobdole",
