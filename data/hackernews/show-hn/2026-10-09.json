@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-10T01:12:53.954126+00:00",
+  "last_fetched": "2026-10-10T06:49:37.373700+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -44,15 +44,25 @@
       "title": "Show HN: I made a TV game console inside an antenna plug",
       "subreddit": "show-hn",
       "author": "pst723",
-      "score": 3,
-      "num_comments": 0,
+      "score": 5,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50027337",
       "url": "https://raytriangle.com/making-the-worlds-smallest-game-console/",
       "selftext": "Abused a bunch of ESP32-S3 peripherals to generate an analog TV channel with minimal external components.\nObviously it plays Doom.",
       "is_self": false,
       "is_video": false,
       "time": 1791584638,
-      "created_at": "2026-10-09T22:23:58+00:00"
+      "created_at": "2026-10-09T22:23:58+00:00",
+      "comments_data": [
+        {
+          "id": "50028833",
+          "author": "mattmar96",
+          "body": "Very cool, thanks for sharing!",
+          "score": 0,
+          "time": 1791598204,
+          "parent": "50027337"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -139,8 +149,8 @@
       "title": "Show HN: Babytalk: Offline speech to text and text to speech on ESP32",
       "subreddit": "show-hn",
       "author": "tlack",
-      "score": 6,
-      "num_comments": 4,
+      "score": 10,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50026819",
       "url": "https://github.com/tlack/babytalk",
       "selftext": "I have been playing with a lot of $20 devices with no keyboards or screens. I wanted to use speech to interact with them, but without it having to run through a cloud service or use a fixed command vocabulary.\nI worked with Claude to implement high performance 4bit int kernels for the ESP32S3 and P4 and quantize some larger STT and TTS models. Surprisingly, it's quite usable on these tiny boards.\nAlso includes a finetuned model that can better cope with my diesel drones, hacking coughs, and mumbling. Works with Micropython (RAM scarcity issues) and AtomVM (better).",
@@ -155,6 +165,14 @@
           "body": "I was hoping this could be a hardware STT-to-HID, but, even after looking at the Git ReadMe, I still don't understand how is the text supposed to exit the device?",
           "score": 0,
           "time": 1791582433,
+          "parent": "50026819"
+        },
+        {
+          "id": "50029922",
+          "author": "vivzkestrel",
+          "body": "- need a real time original voice to clone voice open source offline library\n- need it for recording gaming videos while talking into mic with my voice but output is clone voice",
+          "score": 0,
+          "time": 1791610689,
           "parent": "50026819"
         }
       ]
@@ -183,8 +201,8 @@
       "title": "Show HN: Carrier-Explode: iPhone, Pixel and Galaxy carrier settings decoded",
       "subreddit": "show-hn",
       "author": "simplyalec",
-      "score": 211,
-      "num_comments": 20,
+      "score": 278,
+      "num_comments": 38,
       "permalink": "https://news.ycombinator.com/item?id=50024499",
       "url": "https://carrierexplode.com/",
       "selftext": "Showing off carrier-explode, one of my side projects that continuously archives carrier settings for all major phone brands.\ncarrier-explode also contains decoders and explanations for all the common baseband configurations, etc.\nThere’s still quite a bit of work to be done in checking my assumptions, but the tool has already been proven useful for a few enthusiast groups.",
@@ -194,6 +212,14 @@
       "created_at": "2026-10-09T18:10:55+00:00",
       "comments_data": [
         {
+          "id": "50025744",
+          "author": "etatester",
+          "body": "This is super cool. Particularly for the fact that it just showed my country's operators rather than the usual America First.",
+          "score": 0,
+          "time": 1791575316,
+          "parent": "50024499"
+        },
+        {
           "id": "50025685",
           "author": "isomorphic",
           "body": "I saw this linked from MacRumors during the AT&T iPhone 18 Pro Max lockup news discussions. It was interesting to see what AT&T/Apple did to try to get ahead of the issue. So far it looks like they disabled 5G Standalone mode, possibly just to prevent a bug from literally destroying the hardware (possibly only on one batch of phones).\nApple/AT&T still haven't released any kind of statement addressing the issue other than to replace affected hardware.",
@@ -202,11 +228,11 @@
           "parent": "50024499"
         },
         {
-          "id": "50025744",
-          "author": "etatester",
-          "body": "This is super cool. Particularly for the fact that it just showed my country's operators rather than the usual America First.",
+          "id": "50028597",
+          "author": "jakobdabo",
+          "body": "I wonder which field is responsible for disabling the Personal Hotspot feature? About a year ago mine suddenly got disabled in the phone's UI. Since then, the only time it got enabled was when I was traveling and using a travel eSIM.\nIt's sad that phone companies allow carriers such anti-user things.",
           "score": 0,
-          "time": 1791575316,
+          "time": 1791595757,
           "parent": "50024499"
         },
         {
@@ -226,6 +252,14 @@
           "parent": "50024499"
         },
         {
+          "id": "50030314",
+          "author": "niuniuqqqniuniu",
+          "body": "wow",
+          "score": 0,
+          "time": 1791614446,
+          "parent": "50024499"
+        },
+        {
           "id": "50027299",
           "author": "roundup",
           "body": "Can I use these settings to disable incoming calls? Does GrapheneOS have this option at the android level?",
@@ -234,19 +268,11 @@
           "parent": "50024499"
         },
         {
-          "id": "50026820",
-          "author": "tantalor",
-          "body": "How did you build the UI? Is it custom?",
+          "id": "50030146",
+          "author": "DylanMerigaud",
+          "body": "Good luck with the launch!",
           "score": 0,
-          "time": 1791581648,
-          "parent": "50024499"
-        },
-        {
-          "id": "50026011",
-          "author": "denysvitali",
-          "body": "What's more useful, or at least was a while ago, is the CA combos list - basically showing which bands can be aggregated and how.\nA while ago I built a decoder for that (Qualcomm only!), it was fun and helped me improve the support of my device for my carrier.\nhttps://github.com/denysvitali/ca-combos-editor (https://github.com/denysvitali/ca-combos-editor)",
-          "score": 0,
-          "time": 1791576706,
+          "time": 1791612873,
           "parent": "50024499"
         },
         {
@@ -258,35 +284,27 @@
           "parent": "50024499"
         },
         {
-          "id": "50025498",
-          "author": "ahmedfromtunis",
-          "body": "Are these configs read-only on the phone or is it possible to manipulate them using the data here to de/activate any service?",
+          "id": "50026011",
+          "author": "denysvitali",
+          "body": "What's more useful, or at least was a while ago, is the CA combos list - basically showing which bands can be aggregated and how.\nA while ago I built a decoder for that (Qualcomm only!), it was fun and helped me improve the support of my device for my carrier.\nhttps://github.com/denysvitali/ca-combos-editor (https://github.com/denysvitali/ca-combos-editor)",
           "score": 0,
-          "time": 1791573994,
+          "time": 1791576706,
           "parent": "50024499"
         },
         {
-          "id": "50025060",
-          "author": "mrweasel",
-          "body": "Not really sure what to do with the information, but I love the UI.",
+          "id": "50026820",
+          "author": "tantalor",
+          "body": "How did you build the UI? Is it custom?",
           "score": 0,
-          "time": 1791571779,
+          "time": 1791581648,
           "parent": "50024499"
         },
         {
-          "id": "50025073",
-          "author": "dorianmariecom",
-          "body": "very interesting here is my carrier for instance https://carrierexplode.com/ios/carriers/Free_fr/72.0/setting... (https://carrierexplode.com/ios/carriers/Free_fr/72.0/settings)",
+          "id": "50028648",
+          "author": "rustcleaner",
+          "body": "Nice! Thank you for this public service. Phone makers & carriers should be ashamed of themselves for hiding such important configuration behind proprietary formats. If you [lurker] are a decision maker who decided to make our world this way: for shame, for shaaame!",
           "score": 0,
-          "time": 1791571851,
-          "parent": "50024499"
-        },
-        {
-          "id": "50028437",
-          "author": "arslan9063",
-          "body": "bro this is neat",
-          "score": 0,
-          "time": 1791594113,
+          "time": 1791596246,
           "parent": "50024499"
         }
       ]
@@ -325,8 +343,8 @@
       "title": "Show HN: The rarest tech books and docs you've probably never read",
       "subreddit": "show-hn",
       "author": "miletus",
-      "score": 72,
-      "num_comments": 11,
+      "score": 113,
+      "num_comments": 35,
       "permalink": "https://news.ycombinator.com/item?id=50024055",
       "url": "https://readrare.com/",
       "selftext": "",
@@ -336,11 +354,11 @@
       "created_at": "2026-10-09T17:39:44+00:00",
       "comments_data": [
         {
-          "id": "50027868",
-          "author": "wk_end",
-          "body": "What’s meant by “rare” here? It seems like there might be a language barrier thing going on. There’s nothing rare about, say, John Sculley’s autobiography; I can buy it on Amazon new for about $20 or used for about $5.",
+          "id": "50029204",
+          "author": "bas",
+          "body": "Certainly not rare, but consistent with the readings on the shelves: \"Thoughts on Flash\" (https://web.archive.org/web/20170615060422/https://www.apple... (https://web.archive.org/web/20170615060422/https://www.apple.com/hotnews/thoughts-on-flash/))",
           "score": 0,
-          "time": 1791588578,
+          "time": 1791602221,
           "parent": "50024055"
         },
         {
@@ -349,6 +367,30 @@
           "body": "hi friends!\ni like building cool things so i built read rare - the rarest docs and books you've probably never read.\nsome of the best writing about building things was never meant to be public - steve jobs' agenda email for apple's secret top 100 offsite. facebook's little red book. the 1968 memo intel used to raise its first money. sequoia's \"R.I.P. good times\" deck.\nmost of it is buried in court exhibits, dead links, and archive scans, so i put it all on one shelf.\nwhat's the rarest doc or book you've ever read? drop it in the comments and i'll add the best ones to the shelf.",
           "score": 0,
           "time": 1791567850,
+          "parent": "50024055"
+        },
+        {
+          "id": "50027868",
+          "author": "wk_end",
+          "body": "What’s meant by “rare” here? It seems like there might be a language barrier thing going on. There’s nothing rare about, say, John Sculley’s autobiography; I can buy it on Amazon new for about $20 or used for about $5.",
+          "score": 0,
+          "time": 1791588578,
+          "parent": "50024055"
+        },
+        {
+          "id": "50029779",
+          "author": "sshussain270",
+          "body": "I yearn for internal memos because they reveal the first-person craft, my reading list just got reshuffled!",
+          "score": 0,
+          "time": 1791609246,
+          "parent": "50024055"
+        },
+        {
+          "id": "50029573",
+          "author": "jlarocco",
+          "body": "Interesting, but not what I was expecting. I have a small book collection, mostly from used book stores around Boulder, CO. I think the rarest and most interesting ones I have are:\n\"Music By Computers\", published in 1969. Before books had websites, CDs, or floppy disks, they had \"flexi discs\". Covers composing and generating music on computers in the 60s. [0]\n\"Parallel Logic Programming\" published in 1991. Covers implementing Prolog and other logic programming languages on multi-processor systems in the late 80s and early 90s. [1]\n\"Strand: New Concepts in Parallel Programming\", published in 1990. Documents a language that's more-or-less a stepping stone between Prolog and Erlang. [2]\n\"LISP LORE: A Guide To Programming The Lisp Machine\", published in 1987 and is an intro to programming on Lisp Machines. I found a mint condition copy at Goodwill for $1. [3]\n\"Elementary BASIC: Learning To Program Your Computer In Basic With Sherlock Holmes\" published in 1982. Write BASIC code to help Sherlock and Watson solve cases. They just don't make computer books like this any more. [4]\n\"Man And The Computer\" published in 1972, written by John Kemeny, one of the creators of Basic. Predicts the rise of home computers, the internet, Wikipedia, online news, and a bunch of other modern technologies decades before they actually existed. [5]\n[0] https://www.amazon.com/Music-Computers-Heinz-von-Foerster/dp... (https://www.amazon.com/Music-Computers-Heinz-von-Foerster/dp/0471910309)\n[1] https://mitpress.mit.edu/9780262200875/parallel-logic-progra... (https://mitpress.mit.edu/9780262200875/parallel-logic-programming/)\n[2] https://archive.org/details/strandnewconcept0000fost (https://archive.org/details/strandnewconcept0000fost)\n[3] https://www.amazon.com/Lisp-Lore-Guide-Programming-Machine/d... (https://www.amazon.com/Lisp-Lore-Guide-Programming-Machine/dp/1461291895)\n[4] https://www.amazon.com/Elementary-Chronicled-Learning-Comput... (https://www.amazon.com/Elementary-Chronicled-Learning-Computer-Sherlock/dp/0394524233)\n[5] https://archive.org/details/mancomputerbyjoh0000john (https://archive.org/details/mancomputerbyjoh0000john)",
+          "score": 0,
+          "time": 1791606648,
           "parent": "50024055"
         },
         {
@@ -365,6 +407,22 @@
           "body": "Nice collections, cool to have these in one place.",
           "score": 0,
           "time": 1791588623,
+          "parent": "50024055"
+        },
+        {
+          "id": "50028989",
+          "author": "ubaid1990",
+          "body": "like your collection thank you for putting this together",
+          "score": 0,
+          "time": 1791600003,
+          "parent": "50024055"
+        },
+        {
+          "id": "50028706",
+          "author": "fnord77",
+          "body": "here's a rare tech book written by the guy who wrote the C compiler for Sun\nhttps://progforperf.github.io/Expert_C_Programming.pdf (https://progforperf.github.io/Expert_C_Programming.pdf)",
+          "score": 0,
+          "time": 1791596912,
           "parent": "50024055"
         },
         {
@@ -443,7 +501,7 @@
       "title": "Show HN: RcloneView 1.6 – A desktop GUI for rclone with 40 cloud storages",
       "subreddit": "show-hn",
       "author": "newclone",
-      "score": 5,
+      "score": 6,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50021521",
       "url": "https://rcloneview.com/",
@@ -555,8 +613,8 @@
       "title": "Show HN: Let your AI agents paint big arrows, boxes and text on your screen",
       "subreddit": "show-hn",
       "author": "franze",
-      "score": 376,
-      "num_comments": 164,
+      "score": 392,
+      "num_comments": 175,
       "permalink": "https://news.ycombinator.com/item?id=50018817",
       "url": "https://github.com/franzenzenhofer/big-arrow-on-the-screen",
       "selftext": "",
@@ -582,14 +640,6 @@
           "parent": "50018817"
         },
         {
-          "id": "50026433",
-          "author": "internet101010",
-          "body": "The worst trend in UX in the last decade is the endless \"Got it!\" popups and feature notifications that distract the user from what they were trying to do.\nI don't know why anyone would ever willingly want this.",
-          "score": 0,
-          "time": 1791579118,
-          "parent": "50018817"
-        },
-        {
           "id": "50021210",
           "author": "tangotaylor",
           "body": "\"It is an arrow, so we spent an unreasonable amount of time on how it looks.\"\nBrilliant. This is exactly the kind of content I seek when I visit Hacker News.\nTruly art.",
@@ -603,6 +653,14 @@
           "body": "My first reaction was similar to the reaction I'd have if you told me that cockroaches had learned to unlock doors and stand on their hind legs. But then I thought about accessibility, and the ways this could be used to help technologically illiterate or disabled people, and I thought again.\nDo you remember when PCs used to come with a completely soup-to-nuts tutorial that would talk to you like you had never seen a PC before? Things like this: https://www.youtube.com/watch?v=3ScS4OYDfHE (https://www.youtube.com/watch?v=3ScS4OYDfHE)\nThis kind of baked-in interactivity could really help in a training or disability context.",
           "score": 0,
           "time": 1791568015,
+          "parent": "50018817"
+        },
+        {
+          "id": "50026433",
+          "author": "internet101010",
+          "body": "The worst trend in UX in the last decade is the endless \"Got it!\" popups and feature notifications that distract the user from what they were trying to do.\nI don't know why anyone would ever willingly want this.",
+          "score": 0,
+          "time": 1791579118,
           "parent": "50018817"
         },
         {
@@ -622,14 +680,6 @@
           "parent": "50018817"
         },
         {
-          "id": "50027798",
-          "author": "nedt",
-          "body": "Funniest thing about this is how the arrows look like. They aren't just straight or one clear curve. If you have ever seen what Franz draws in workshops, this mix of art and a children drawing, that's how the arrows look like.\nI'm wondering if the AI has been trained on Franz. Which would also explain why the Terminator ends up with Manner Schnitten.",
-          "score": 0,
-          "time": 1791588014,
-          "parent": "50018817"
-        },
-        {
           "id": "50019128",
           "author": "isoprophlex",
           "body": "Literally unusable as it is. Some minimal extra features this would need:\n- rainbow dripping arrows\n- angrily pointing arrows\n- flame-surrounded text boxes with particle effects\n- the ability for the agent to play airhorn.wav at max volume, overriding existing volume or mute settings\nEDIT: ayy lmao https://github.com/franzenzenhofer/big-arrow-on-the-screen/p... (https://github.com/franzenzenhofer/big-arrow-on-the-screen/pull/37)",
@@ -646,11 +696,19 @@
           "parent": "50018817"
         },
         {
-          "id": "50022699",
-          "author": "alansaber",
-          "body": "OP has inspired me to write up my tedious thoughts on agent GUIs if of interest https://news.ycombinator.com/item?id=50022688 (https://news.ycombinator.com/item?id=50022688)",
+          "id": "50027798",
+          "author": "nedt",
+          "body": "Funniest thing about this is how the arrows look like. They aren't just straight or one clear curve. If you have ever seen what Franz draws in workshops, this mix of art and a children drawing, that's how the arrows look like.\nI'm wondering if the AI has been trained on Franz. Which would also explain why the Terminator ends up with Manner Schnitten.",
           "score": 0,
-          "time": 1791562566,
+          "time": 1791588014,
+          "parent": "50018817"
+        },
+        {
+          "id": "50019330",
+          "author": "alansaber",
+          "body": "This might be goofy, but it underscores that there's potential for more visual agent UIUX than reading off a sidebar/opening modals.",
+          "score": 0,
+          "time": 1791547603,
           "parent": "50018817"
         },
         {
@@ -704,7 +762,7 @@
       "title": "Show HN: Apogee: Rebuilding Mozilla's Orbit, fully local and private",
       "subreddit": "show-hn",
       "author": "zxdc7896",
-      "score": 62,
+      "score": 64,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50017301",
       "url": "https://github.com/darshi1337/apogee",
@@ -732,7 +790,7 @@
       "subreddit": "show-hn",
       "author": "awa11",
       "score": 16,
-      "num_comments": 4,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50016840",
       "url": "https://www.oldroll.io/",
       "selftext": "OldRoll Web brings vintage camera effects and film-inspired filters to your browser. Give everyday photos a nostalgic look without installing an app, with all creative assets free to use.",
@@ -783,8 +841,8 @@
       "title": "Show HN: Quake ported to safe Rust, playable in browser",
       "subreddit": "show-hn",
       "author": "ilreb",
-      "score": 225,
-      "num_comments": 175,
+      "score": 226,
+      "num_comments": 176,
       "permalink": "https://news.ycombinator.com/item?id=50016312",
       "url": "https://quake-srp.pages.dev/",
       "selftext": "",
