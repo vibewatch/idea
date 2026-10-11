@@ -1,8 +1,60 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-11T12:45:32.037189+00:00",
+  "last_fetched": "2026-10-11T18:40:01.283509+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50044784",
+      "title": "Vibecoded 3D Game Running on Veda OS",
+      "subreddit": "ask-hn",
+      "author": "vahmoh25",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50044784",
+      "url": "https://news.ycombinator.com/item?id=50044784",
+      "selftext": "Hey everyone! I vibecoded a 3D game that runs on top of my OS, Veda! Feel free to give it a try!\nI'm not a game developer, and I have zero experience in game development. I just vibecoded this game, and I'm amazed by how polished and playable it turned out!\nhttps://github.com/vahmoh25/Veda",
+      "is_self": true,
+      "is_video": false,
+      "time": 1791735029,
+      "created_at": "2026-10-11T16:10:29+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50043719",
+      "title": "Open source software is slowly turning into open slop software",
+      "subreddit": "ask-hn",
+      "author": "theonly1me",
+      "score": 5,
+      "num_comments": 5,
+      "permalink": "https://news.ycombinator.com/item?id=50043719",
+      "url": "https://news.ycombinator.com/item?id=50043719",
+      "selftext": "Code has become extremely cheap to produce, if you have a 5x claude subscription, you can produce or at least try to produce any piece of software you want. And, to be honest, I actually like that, I feel more people should build their own tools and release them as open source because everyone gets to turn their ideas into real products, for their own use if not for others.\nBut this also means it is getting easier to copy a product, put it on public GitHub and announce you've killed the paid version. Being open source shouldn't give you a pass for shipping slop. If you are calling your tool a replacement for something people pay for, show how it compares.\nIn the past week, each time I opened X, I kept seeing ads about a new open source code review tool claiming to be the \"CodeRabbit killer\". I have used CodeRabbit in the past and it definitely has its shortcomings, but if you're claiming you've killed a product, there needs to be evidence.\nI saw the advertisement so many times that I decided to evaluate how the product actually performs, it also gave me an excuse to add review capabilities into my own open source tool called shadowclone which helps me manage my agent skills and ensure that regardless of the harness or model I use, agents consistently follow my engineering preferences.\nI ran an eval using Greptile, OpenQodex (the open source tool I wanted to evaluate), and my own implementation of a code reviewer in shadowclone, which is basically a code review skill, a local reviewer and a Github bot that can review on the cloud.\nMy bot reported a higher proportion of findings that both model judges considered real, but it missed 4 real bugs that Greptile caught and as for OpenQodex, I will let the results speak for themselves.\n1. Greptile found 69% of the known bugs and 68% of its findings were judged as real\n2. shadowclone cloud bot found 38% and 96% of the findings were judged as real\n3. shadowclone locally found 36% and 91% of the findings were judged as real\n4. OpenQodex found 31% and 86% of its findings were judged as real\nThe local reviewers ran 3 times per PR. You can see the full eval results at https://github.com/theonly1me/shadowclone/tree/main/evals/code-review\nThe harness is open source too and you can re-run the eval if you like.\nI still want more people to build and release their own tools. I am doing it too. But, if you advertise yours as a replacement for an existing product, I want to see what you tested and where it falls short. Mine missed bugs Greptile caught and publishing that gives me something useful to work on, calling it a Greptile killer wouldn't.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1791729180,
+      "created_at": "2026-10-11T14:33:00+00:00",
+      "comments_data": [
+        {
+          "id": "50044727",
+          "author": "vaibhavsing",
+          "body": "its name is also confusing sounds like codex",
+          "score": 0,
+          "time": 1791734719,
+          "parent": "50043719"
+        },
+        {
+          "id": "50043794",
+          "author": "jleyank",
+          "body": "Gresham's Law applies here too. Bad code drives out good. And if it costs money to maintain good code, it's going to hasten its departure. I really hope Linus and others at that level filter out all the slop that's being produced.",
+          "score": 0,
+          "time": 1791729607,
+          "parent": "50043719"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,8 +62,8 @@
       "title": "Ask HN: How would you go about domain change and getting a job in the domain?",
       "subreddit": "ask-hn",
       "author": "joddystreet",
-      "score": 2,
-      "num_comments": 4,
+      "score": 4,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50041008",
       "url": "https://news.ycombinator.com/item?id=50041008",
       "selftext": "I have a couple of years of experience with full-stack development (JS/TS, PY, Java), and I've always wanted dive deep into how databases work and how they are built.\nWith LLMs as a teacher, I have been making steady progress in how systems work and how databases work. I am also gaining experience with C++ and Rust. (I can't just code from memory yet, and have to refer to Google for the syntax and then LLMs to learn a better way).\nNow, coming to switching domains, I am not sure how to go about applying to DB companies.\nWould it be weird to apply for an internship, given I am as good as a recent graduate when it comes to systems programming?\nOr, are there better ways to go about making this happen?\nHow would you go about - changing domain + getting a job in the domain? (for me, the domain is database development, but I am open to reading suggestions from anyone who has changed domains in recent times, given, with the LLMs, having experience is becoming more important).",
@@ -29,14 +81,6 @@
           "parent": "50041008"
         },
         {
-          "id": "50042108",
-          "author": "sajithdilshan",
-          "body": "Your best chance would be to apply for an SRE role. Even in there there won’t be much database development, but more of maintenance and scaling where your deep understanding on DB might be helpful. Once you have more exposure and experience, then you might be able to apply directly for a company that develop DBs",
-          "score": 0,
-          "time": 1791718474,
-          "parent": "50041008"
-        },
-        {
           "id": "50041594",
           "author": "trio8453",
           "body": "Your particular case is very uphill - there aren't that many people or companies that do this, very limited number of openings, you have no relevant experience, not in the pipeline for internships. Learning about databases and doing a bit of C++ and Rust is worth just about nothing in terms of helping you for these jobs.\nKeep it up as a hobby, find open source projects in which you can make meaningful contributions (that alone can be very hard), spend years in it, then maybe you'll have a better shot - whether all of that's worth it is for you to decide.\nIf I were you, I'd reconsider why you even want this in the first place.",
@@ -51,6 +95,22 @@
           "score": 0,
           "time": 1791714195,
           "parent": "50041008"
+        },
+        {
+          "id": "50044409",
+          "author": "yolp5",
+          "body": "Get yourself a time machine and go back 10 or so years when the market was hot enough for this it be feasible.",
+          "score": 0,
+          "time": 1791732911,
+          "parent": "50041008"
+        },
+        {
+          "id": "50042108",
+          "author": "sajithdilshan",
+          "body": "Your best chance would be to apply for an SRE role. Even in there there won’t be much database development, but more of maintenance and scaling where your deep understanding on DB might be helpful. Once you have more exposure and experience, then you might be able to apply directly for a company that develop DBs",
+          "score": 0,
+          "time": 1791718474,
+          "parent": "50041008"
         }
       ]
     },
@@ -61,7 +121,7 @@
       "title": "Chatcasting, an Alternative to Podcasting",
       "subreddit": "ask-hn",
       "author": "tsydenzhap",
-      "score": 5,
+      "score": 6,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50039481",
       "url": "https://news.ycombinator.com/item?id=50039481",
@@ -88,8 +148,8 @@
       "title": "All startups need is distribution",
       "subreddit": "ask-hn",
       "author": "relaxfolio",
-      "score": 6,
-      "num_comments": 3,
+      "score": 8,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50039114",
       "url": "https://news.ycombinator.com/item?id=50039114",
       "selftext": "We don't need capital, we don't need technical co-founders (that's Claude now), and we don't need non-technical co-founders.\nWe just need a partner who can bring in traffic.",
@@ -98,6 +158,14 @@
       "time": 1791684439,
       "created_at": "2026-10-11T02:07:19+00:00",
       "comments_data": [
+        {
+          "id": "50044378",
+          "author": "benoau",
+          "body": "This is actually the hardest problem most startups face, the desperation spawned services like Product Hunt capitalizing on founders wanting success to be as simple as submitting a link to HN, Reddit, PH, etc.\nThe worst thing is practically everything you do in this space is going to fail, you can't solve it by adding features, nobody cares about your blog or self-promo posts, the only thing that really works is pouring money into advertising and that's a whole field of expertise too.",
+          "score": 0,
+          "time": 1791732743,
+          "parent": "50039114"
+        },
         {
           "id": "50041354",
           "author": "rogerfgay",
@@ -131,7 +199,7 @@
       "title": "Ask HN: Resources for best practices in software development with AI?",
       "subreddit": "ask-hn",
       "author": "sergio-gdr",
-      "score": 6,
+      "score": 7,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50038971",
       "url": "https://news.ycombinator.com/item?id=50038971",
