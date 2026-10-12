@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-12T07:13:08.231001+00:00",
+  "last_fetched": "2026-10-12T13:08:30.505292+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -45,7 +45,7 @@
       "title": "Show HN: BraiNOTES, handwritten notes on your lecture PDFs in a browser tab",
       "subreddit": "show-hn",
       "author": "swimmingbrain",
-      "score": 25,
+      "score": 32,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50049132",
       "url": "https://github.com/swimmingbrain/brainotes",
@@ -115,7 +115,7 @@
       "subreddit": "show-hn",
       "author": "patricknegri",
       "score": 8,
-      "num_comments": 20,
+      "num_comments": 21,
       "permalink": "https://news.ycombinator.com/item?id=50048731",
       "url": "https://www.shpyrd.io",
       "selftext": "",
@@ -141,19 +141,19 @@
           "parent": "50048731"
         },
         {
-          "id": "50050523",
-          "author": "patricknegri",
-          "body": "Please if you take a look at the product send me feedbacks here.",
-          "score": 0,
-          "time": 1791771491,
-          "parent": "50048731"
-        },
-        {
           "id": "50049123",
           "author": "xhampsme",
           "body": "I installed the Shpyrd plugin, the configuration in Claude Code was automatic, and I was able to deploy the application with a simple prompt. It automatically figured out how to build and deploy without needing any specifications.\nIs it possible to specify the memory and CPU to be provisioned for the app and the database?",
           "score": 0,
           "time": 1791760910,
+          "parent": "50048731"
+        },
+        {
+          "id": "50050523",
+          "author": "patricknegri",
+          "body": "Please if you take a look at the product send me feedbacks here.",
+          "score": 0,
+          "time": 1791771491,
           "parent": "50048731"
         },
         {
@@ -181,19 +181,19 @@
           "parent": "50048731"
         },
         {
-          "id": "50049091",
-          "author": "VitorCordeiro",
-          "body": "I was using vercel and supabase on my apps, will give you a try",
-          "score": 0,
-          "time": 1791760757,
-          "parent": "50048731"
-        },
-        {
           "id": "50048939",
           "author": "leidijardim",
           "body": "What does recovery look like if someone publishes a broken update?",
           "score": 0,
           "time": 1791759702,
+          "parent": "50048731"
+        },
+        {
+          "id": "50049091",
+          "author": "VitorCordeiro",
+          "body": "I was using vercel and supabase on my apps, will give you a try",
+          "score": 0,
+          "time": 1791760757,
           "parent": "50048731"
         },
         {
@@ -231,14 +231,24 @@
       "subreddit": "show-hn",
       "author": "rowbin",
       "score": 3,
-      "num_comments": 0,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50048027",
       "url": "https://github.com/beleon/rhci",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1791754338,
-      "created_at": "2026-10-11T21:32:18+00:00"
+      "created_at": "2026-10-11T21:32:18+00:00",
+      "comments_data": [
+        {
+          "id": "50052557",
+          "author": "rowbin",
+          "body": "GHCi is super useful for quick checks (is `round 3.5` 3 or 4, what is `(-9) div 2`, what's the type of `(.) . (.)`, ...). But its slow to start and a huge install. rhci is a small version of GHCi that exactly matches GHCi semantics.",
+          "score": 0,
+          "time": 1791789604,
+          "parent": "50048027"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -281,7 +291,7 @@
       "title": "Show HN: LLMxRay an open-source observability tool for LLMs",
       "subreddit": "show-hn",
       "author": "lognebudo",
-      "score": 5,
+      "score": 6,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50047905",
       "url": "https://github.com/LogneBudo/llmxray",
@@ -298,7 +308,7 @@
       "title": "Show HN: Doiter – Language where pointers and stack frames are Docker containers",
       "subreddit": "show-hn",
       "author": "simvux",
-      "score": 7,
+      "score": 8,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50047792",
       "url": "https://github.com/simvux/doiter",
@@ -309,19 +319,19 @@
       "created_at": "2026-10-11T21:03:53+00:00",
       "comments_data": [
         {
-          "id": "50051590",
-          "author": "bgs_",
-          "body": "> How good is the performance?\n> Currently samples/hello-world.dr takes about a minute to run on my machine. With the state of the industry, this isn't too bad in comparison\nHey, atleast it's better than Java!",
-          "score": 0,
-          "time": 1791781460,
-          "parent": "50047792"
-        },
-        {
           "id": "50047890",
           "author": "simvux",
           "body": "I'll share some fun issues I encountered in the making of this.\nWhen adding byte literals, the number `10` specifically did not work. Even though all other numbers did. Turns out; some component tries to be clever and automatically converts a file with just `\\n` into `\\r\\n`, and as `10` is the ascii code for `\\n` it would cause \"memory\" corruption.\nAt one point I got rate limited by the docker registry. This was because when using `docker:latest` it would check if there was an update for that image each time an allocation was made.\nFrom Haskell/Lisp I've been taught that linked lists are the superior data structure for representing strings. Thus; strings in doiter spawn one docker container for each character. Unsurprisingly this affects performance quite heavily as `hello-world.dr` takes over a minute to complete.",
           "score": 0,
           "time": 1791753400,
+          "parent": "50047792"
+        },
+        {
+          "id": "50051590",
+          "author": "bgs_",
+          "body": "> How good is the performance?\n> Currently samples/hello-world.dr takes about a minute to run on my machine. With the state of the industry, this isn't too bad in comparison\nHey, atleast it's better than Java!",
+          "score": 0,
+          "time": 1791781460,
           "parent": "50047792"
         }
       ]
@@ -333,8 +343,8 @@
       "title": "Show HN: I Cut my Agent Tokens By 50%",
       "subreddit": "show-hn",
       "author": "iohotspot",
-      "score": 4,
-      "num_comments": 3,
+      "score": 6,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50047627",
       "url": "https://news.ycombinator.com/item?id=50047627",
       "selftext": "This started by watching the built-in tool calls in Claude code. We noticed that a LOT of the time was being spent searching for lines of code with regex. This approach makes sense when you are working in an unknown environment, but we all work inside of some codebase structure and tracking. This took us down the rabbit hole of codebase indexing and led to us building Indexio.\nIndexio was built to eliminate the time and tokens agents waste rediscovering a codebase. Regex calls return lots of data each time to the context window which causes bloat over time with items that don't really matter. Since codebase work container mostly static files indexing them and quickly getting to data for discovery is what we were trying to solve.\nIndexio index's the codebase to its internal DB and then returns what is needed via MCP when asked. We ran into some fun issues when trying to force the session to use a tool call for lookups so there is some aggressive tool call logic which attempts to override built-in lookup tools. If something isn't in the index it will just fallback to regex lookups.\nThe whole system is a single binary written in Rust for performance. In our real world testing we are seeing about 50%-60% reduction in token usage compared to the built-in tools, and near instant lookup times compared to multiple seconds for each regex lookup. One place that indexio does come up shorter than then regex is when looking up symbols. We found that most of the agent's work was done looking at strings of words rather than symbols, but if you have a workflow that is heavy in this specific situation just know it may not fit.\nWe opened sourced everything and would love to hear feedback. Huge Shout out to CocoIndex who gave us the inspiration for this idea.\nhttps://github.com/IOServicesLabs/indexio (https://github.com/IOServicesLabs/indexio)",
@@ -343,6 +353,14 @@
       "time": 1791751374,
       "created_at": "2026-10-11T20:42:54+00:00",
       "comments_data": [
+        {
+          "id": "50053821",
+          "author": "fonrex",
+          "body": "Question: Does this work only for Claude Code? Can your project be connected via VSCode (or Antigravity SDK) ?",
+          "score": 0,
+          "time": 1791798213,
+          "parent": "50047627"
+        },
         {
           "id": "50047714",
           "author": "cudder",
@@ -560,8 +578,8 @@
       "title": "Show HN: BetterWispr – Free, open-source dictation for Mac",
       "subreddit": "show-hn",
       "author": "kartik017",
-      "score": 190,
-      "num_comments": 111,
+      "score": 196,
+      "num_comments": 117,
       "permalink": "https://news.ycombinator.com/item?id=50042333",
       "url": "https://betterwispr.com/",
       "selftext": "",
@@ -603,11 +621,11 @@
           "parent": "50042333"
         },
         {
-          "id": "50051742",
-          "author": "apparent",
-          "body": "Interested to give this a try. I've tried Wispr Flow and found it to be quite good, but a bit pricey for my taste. I guess I assumed there were equally good models that were cheaper, and I suppose this is one of them.\nI'll be curious to see how the existence / popularity of tools like this end up affecting the pricing of paid tools like Wispr Flow.",
+          "id": "50044696",
+          "author": "scosman",
+          "body": "If folks like local-AI dictation, but want it optimized for meetings recordings (like Granola/Otter/Notion) check out Biscotti. Free, local, separates voices, voice identification, AI summaries, etc.\nhttps://github.com/scosman/Biscotti (https://github.com/scosman/Biscotti)",
           "score": 0,
-          "time": 1791783126,
+          "time": 1791734567,
           "parent": "50042333"
         },
         {
@@ -616,14 +634,6 @@
           "body": "On MacOS, dictation was solved a while back with Parakeet V3, and I haven't seen anything that has a better speed/accuracy tradeoff when talking to AIs, where slight inaccuracies are ok since they can \"read between the lines\".\nI got annoyed by various UI and other things in tools like VoiceInk, Handy etc and Claude-Coded my own CLI dictation tool called VoxType that uses parakeet-mlx:\nhttps://pchalasani.github.io/claude-code-tools/tools/voxtype... (https://pchalasani.github.io/claude-code-tools/tools/voxtype/)\nInstall this skill for your coding agent and let it help you set it up, there are many config options:\n npx skills add pchalasani/claude-code-tools -s voxtype-install -g\n\nOr if you must do it yourself,\n uv tool install voxtype\n\nThis is just an example of where we are today with software today: people building their own tools, and not bothering to market it (or perhaps I'm contracting myself here ;).",
           "score": 0,
           "time": 1791761814,
-          "parent": "50042333"
-        },
-        {
-          "id": "50044696",
-          "author": "scosman",
-          "body": "If folks like local-AI dictation, but want it optimized for meetings recordings (like Granola/Otter/Notion) check out Biscotti. Free, local, separates voices, voice identification, AI summaries, etc.\nhttps://github.com/scosman/Biscotti (https://github.com/scosman/Biscotti)",
-          "score": 0,
-          "time": 1791734567,
           "parent": "50042333"
         },
         {
@@ -659,11 +669,19 @@
           "parent": "50042333"
         },
         {
-          "id": "50047774",
-          "author": "sajithdilshan",
-          "body": "Even though this looks really good I don’t see myself using this.\nMostly because I could use this only when I’m working from home, and even then after a few minutes I’ll get tired of speaking to myself and I actually type way faster than I speak.",
+          "id": "50051742",
+          "author": "apparent",
+          "body": "Interested to give this a try. I've tried Wispr Flow and found it to be quite good, but a bit pricey for my taste. I guess I assumed there were equally good models that were cheaper, and I suppose this is one of them.\nI'll be curious to see how the existence / popularity of tools like this end up affecting the pricing of paid tools like Wispr Flow.",
           "score": 0,
-          "time": 1791752475,
+          "time": 1791783126,
+          "parent": "50042333"
+        },
+        {
+          "id": "50044611",
+          "author": "jasonjmcghee",
+          "body": "The native / built-in API SpeechAnalyzer (introduced last generation on iOS and MacOS) works quite well.\nAre folks finding it lacking / needing alternatives?",
+          "score": 0,
+          "time": 1791734103,
           "parent": "50042333"
         }
       ]
