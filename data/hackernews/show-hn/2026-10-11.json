@@ -1,8 +1,438 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-11T18:39:58.916662+00:00",
+  "last_fetched": "2026-10-12T01:21:14.784129+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50049388",
+      "title": "Show HN: Plimsoll, a self-hosted sandbox for code your AI agent writes",
+      "subreddit": "show-hn",
+      "author": "cagster",
+      "score": 6,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50049388",
+      "url": "https://github.com/plimsollmark/plimsoll",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791762479,
+      "created_at": "2026-10-11T23:47:59+00:00",
+      "comments_data": [
+        {
+          "id": "50049760",
+          "author": "wanderingbit",
+          "body": "How does this compare to using something like exe.dev where you get remote isolated sandboxes over SSH, and assume you add in an http credential injection reverse proxy (bring your own)?\nI'm building something that will give me peace of mind that my agents will (whether maliciously or stupidly) not negatively read/write the personal data on my machine. To me, exe.dev (with possibly a reverse proxy to preclude the agent from ever having access to my API tokens) is sufficient.",
+          "score": 0,
+          "time": 1791765243,
+          "parent": "50049388"
+        },
+        {
+          "id": "50049389",
+          "author": "cagster",
+          "body": "I wrote plimsoll for my own projects. Several have an agent writing and running code, and they all needed the same things: a way for that code to call my APIs without holding a credential, a record of exactly what ran with checksums I can verify, and a way to tie each run to my own logs. I also wanted one place to use several sandboxes, local or cloud, so I can test on my machine and flip a switch for production.\nPlimsoll is a Go daemon you run yourself, and the switch is its configuration: WebAssembly or plain docker on a laptop; docker under gVisor, or E2B and Docker Cloud microVMs, in production. The client code doesn't change. Every result states its isolation tier (process, container, kernel or vm), and a request can set a minimum, so code that needs a VM can't quietly run on my test setup: below the floor, nothing runs. E2B and Docker Cloud bill by the second and agents never get bored, so each caller can get a daily allowance of microVM seconds. An agent that wants to loop forever loops until the allowance runs out; the next run is refused before it starts.\nSessions keep one sandbox across calls, with Python or JavaScript cells that keep their state like a notebook (on docker, E2B and NVIDIA's OpenShell). Every response carries a run record, SHA-256 hashes of the request and result that the clients recompute; in a session the records chain, and a separate tool, plimsoll-attest, signs them and refuses a chain with a call missing. Pass your own trace ID and it lands on the daemon's audit line.\nThe code gets no network by default. To call one of my APIs it goes through a broker outside the sandbox: the run's grant lists the exact routes allowed, and the broker adds a token minted for that run, which never enters the sandbox, and enforces call and size budgets. It traces each call by the route pattern it matched (/items/*, not /items/42), status, size and timing, never the body or token; the audit line gets the totals, and an optional advisor flags waste, like an agent fetching 200 items one at a time, which is the most agent thing an agent can do.\nTo try it you only need Go (process tier, so not for hostile code):\n git clone https://github.com/plimsollmark/plimsoll && cd plimsoll\n go run ./examples/minimal\n\nOn Linux with docker, the same example at the kernel tier:\n sudo ./docker/install-gvisor.sh && make docker-images\n SANDBOX_PROVIDER=docker SANDBOX_DOCKER_RUNTIME=runsc go run ./examples/minimal\n\nClients: Go, Python (tools for Agno, CrewAI and Google ADK) and TypeScript (Vercel AI SDK, Trigger.dev, Mastra).\nWhat it isn't yet: pre-1.0, no other users, no outside security audit, and it's just me: the bus factor is one, and I'm careful around buses. gVisor is Linux only, so a Mac gets the container tier. The tier is configuration plus startup smoke tests, not attestation.\nIf you run agent-written code today, what do you run it in? Would a tier label change what you trust?",
+          "score": 0,
+          "time": 1791762479,
+          "parent": "50049388"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50049132",
+      "title": "Show HN: BraiNOTES, handwritten notes on your lecture PDFs in a browser tab",
+      "subreddit": "show-hn",
+      "author": "swimmingbrain",
+      "score": 7,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50049132",
+      "url": "https://github.com/swimmingbrain/brainotes",
+      "selftext": "In August, I posted here about TeXbrain, a LaTeX editor that runs completely in the browser, with no need for an account or server. (I didn't excpect it to get that much feedback, bug reports and help from here!)\nThis is the same idea for the other half of my studies, the handwritten notes. I take them on a convertible laptop, and I've had a hard time with apps for that, taking notes from a device to another, exporting as PDF, needing an account for many of them, etc. So I've been working on the version of it that I always wanted. Open a tab, the slides of the lecture or multiple PDFs open next to the page or even become the page, write on them with my pen, and nothing ever leaves my browser.\nbraiNOTES is a static website and has no backend. Strokes are perfect-freehand outlines which support pen pressure, the PDF files are rendered by pdf.js in a worker, and for storage it uses IndexedDB a moment after every change. No account, no analytics, and completely offline and local-first. You can export notebooks as .brainotes files, which in the background is a zip with one json per page + the PDFs and pictures you import. It keeps the original pages and puts the vectorized ink on top, this way the text stays selectable in the slides.\nYou can try it here: https://notes.swimmingbrain.dev (https://notes.swimmingbrain.dev)\nGitHub Repo: https://github.com/swimmingbrain/brainotes (https://github.com/swimmingbrain/brainotes) (MIT)\nIn Study mode, the PDF opens on the side of the tab, you can read it simultaneously to the notes, snip a formula or diagrams directly into the notes with the snip tool, and then write around it. In Board mode, you have just a Whiteboard for tutoring or simply for more place for exercises, and can also highlight or draw things with the laser pointer tool while presenting.\nThe line of the ink appears the moment the pen moves, and a one euro filter calms shaky hands while you write + a light a refit when you lift the pen.\nI also have a video editor and an animation tool which are still a work in progress, on the same GitHub profile. I'm also working on a MCP server for each tool, so you can use your MCP client to do further things with your notes, automatically edit videos on the video editor, etc. That feature will of course be off unless you turn it on and will only be able to talk to localhost.\nI've used this tool for every lecture in the last few months and a few friends use it too. Bug reports, fixes, recommendations, feedback are all welcome!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791760949,
+      "created_at": "2026-10-11T23:22:29+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50049062",
+      "title": "Show HN: SecuBuzz – Factual 60-word cybersecurity briefs and CISA zero-day radar",
+      "subreddit": "show-hn",
+      "author": "nisarg-soni",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50049062",
+      "url": "https://secubuzz.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791760567,
+      "created_at": "2026-10-11T23:16:07+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50048892",
+      "title": "Show HN: Seodata.dev (1.1) Free search data for AI agents",
+      "subreddit": "show-hn",
+      "author": "alentodorov",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50048892",
+      "url": "https://www.seodata.dev/",
+      "selftext": "Updated API with faster responses and added MCP 2.0",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791759419,
+      "created_at": "2026-10-11T22:56:59+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50048731",
+      "title": "Show HN: Shpyrd – A new type of cloud for AI era",
+      "subreddit": "show-hn",
+      "author": "patricknegri",
+      "score": 7,
+      "num_comments": 18,
+      "permalink": "https://news.ycombinator.com/item?id=50048731",
+      "url": "https://www.shpyrd.io",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791758528,
+      "created_at": "2026-10-11T22:42:08+00:00",
+      "comments_data": [
+        {
+          "id": "50048765",
+          "author": "patricknegri",
+          "body": "After being in tech for about 25 years, I started to teach a lot of friends on how to use IA to create their sites and apps. A lot them started to create a lot of cool of personal and career boost apps that improved their lifes and productivity.\nThen I started to see a pattern. After a while, almost all of them started to text or call me for help on how to put those creations on Internet. I teached them on how to use vercel/netlify and supabase to make it happen. Some of them created apps better than a lot of developers that worked for me in previous businesses. So I decided to create a new type of cloud, aimed for the AI era, where instead of having a lot of tools and setup to put something online, you could just install a single tool and that tool would take care of everything, even intercepting your deploy in fly to fix it and put it online.\nMeet shpyrd.io, the \"vibe-cloud\" solution for this new awesome era.",
+          "score": 0,
+          "time": 1791758707,
+          "parent": "50048731"
+        },
+        {
+          "id": "50049703",
+          "author": "sseraphini",
+          "body": "This looks like this https://ai-apps-enterprise.vercel.app/ (https://ai-apps-enterprise.vercel.app/)\nAI apps for Enterprise\nEnable anybody to vibecode with safety",
+          "score": 0,
+          "time": 1791764876,
+          "parent": "50048731"
+        },
+        {
+          "id": "50049123",
+          "author": "xhampsme",
+          "body": "I installed the Shpyrd plugin, the configuration in Claude Code was automatic, and I was able to deploy the application with a simple prompt. It automatically figured out how to build and deploy without needing any specifications.\nIs it possible to specify the memory and CPU to be provisioned for the app and the database?",
+          "score": 0,
+          "time": 1791760910,
+          "parent": "50048731"
+        },
+        {
+          "id": "50048853",
+          "author": "paezao",
+          "body": "The simpler setup sounds appealing. What does publishing a typical Claude-built app look like?",
+          "score": 0,
+          "time": 1791759219,
+          "parent": "50048731"
+        },
+        {
+          "id": "50048942",
+          "author": "dsgn84",
+          "body": "This is exactly the sort of thing I was looking for! Is this application only for websites, or does it support web applications built using code?",
+          "score": 0,
+          "time": 1791759710,
+          "parent": "50048731"
+        },
+        {
+          "id": "50049091",
+          "author": "VitorCordeiro",
+          "body": "I was using vercel and supabase on my apps, will give you a try",
+          "score": 0,
+          "time": 1791760757,
+          "parent": "50048731"
+        },
+        {
+          "id": "50048901",
+          "author": "annabbbatista",
+          "body": "Making small personal projects easier to keep running seems like a useful niche.",
+          "score": 0,
+          "time": 1791759454,
+          "parent": "50048731"
+        },
+        {
+          "id": "50048939",
+          "author": "leidijardim",
+          "body": "What does recovery look like if someone publishes a broken update?",
+          "score": 0,
+          "time": 1791759702,
+          "parent": "50048731"
+        },
+        {
+          "id": "50049066",
+          "author": "GioAlves",
+          "body": "How easy is it to move an existing project over from another hosting provider?",
+          "score": 0,
+          "time": 1791760595,
+          "parent": "50048731"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50048129",
+      "title": "Show HN: Cachety – Watermark ID documents in the browser, nothing is uploaded",
+      "subreddit": "show-hn",
+      "author": "aminmoradi",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50048129",
+      "url": "https://cachety.com",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791755030,
+      "created_at": "2026-10-11T21:43:50+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50048027",
+      "title": "Show HN: Rhci – A Small GHCi in Ruby",
+      "subreddit": "show-hn",
+      "author": "rowbin",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50048027",
+      "url": "https://github.com/beleon/rhci",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791754338,
+      "created_at": "2026-10-11T21:32:18+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50048015",
+      "title": "Show HN: THX-01 – Open-source decision model, free API, 60M+ tokens processed",
+      "subreddit": "show-hn",
+      "author": "lebagetdefrance",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50048015",
+      "url": "https://twitter.com/reversedoofz/status/2109228322752471304",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791754279,
+      "created_at": "2026-10-11T21:31:19+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50047937",
+      "title": "Show HN: Moodi – A tiny 3D character for your app's loading states",
+      "subreddit": "show-hn",
+      "author": "itsk0rn3l",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50047937",
+      "url": "https://www.getmoodi.dev",
+      "selftext": "Your app has loading spinners. Boring.\nI built moodi, a tiny 3D character that lives in you UI and reacts to what's happening - loading, thinking, errors, success and more.\n11 moods, 6 shapes. React, Web Component or CDN. Free and open source.\nWould love to hear what you think.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791753686,
+      "created_at": "2026-10-11T21:21:26+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50047905",
+      "title": "Show HN: LLMxRay an open-source observability tool for LLMs",
+      "subreddit": "show-hn",
+      "author": "lognebudo",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50047905",
+      "url": "https://github.com/LogneBudo/llmxray",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791753465,
+      "created_at": "2026-10-11T21:17:45+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50047792",
+      "title": "Show HN: Doiter – Language where pointers and stack frames are Docker containers",
+      "subreddit": "show-hn",
+      "author": "simvux",
+      "score": 4,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50047792",
+      "url": "https://github.com/simvux/doiter",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791752633,
+      "created_at": "2026-10-11T21:03:53+00:00",
+      "comments_data": [
+        {
+          "id": "50047890",
+          "author": "simvux",
+          "body": "I'll share some fun issues I encountered in the making of this.\nWhen adding byte literals, the number `10` specifically did not work. Even though all other numbers did. Turns out; some component tries to be clever and automatically converts a file with just `\\n` into `\\r\\n`, and as `10` is the ascii code for `\\n` it would cause \"memory\" corruption.\nAt one point I got rate limited by the docker registry. This was because when using `docker:latest` it would check if there was an update for that image each time an allocation was made.\nFrom Haskell/Lisp I've been taught that linked lists are the superior data structure for representing strings. Thus; strings in doiter spawn one docker container for each character. Unsurprisingly this affects performance quite heavily as `hello-world.dr` takes over a minute to complete.",
+          "score": 0,
+          "time": 1791753400,
+          "parent": "50047792"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50047627",
+      "title": "Show HN: I Cut my Agent Tokens By 50%",
+      "subreddit": "show-hn",
+      "author": "iohotspot",
+      "score": 3,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50047627",
+      "url": "https://news.ycombinator.com/item?id=50047627",
+      "selftext": "This started by watching the built-in tool calls in Claude code. We noticed that a LOT of the time was being spent searching for lines of code with regex. This approach makes sense when you are working in an unknown environment, but we all work inside of some codebase structure and tracking. This took us down the rabbit hole of codebase indexing and led to us building Indexio.\nIndexio was built to eliminate the time and tokens agents waste rediscovering a codebase. Regex calls return lots of data each time to the context window which causes bloat over time with items that don't really matter. Since codebase work container mostly static files indexing them and quickly getting to data for discovery is what we were trying to solve.\nIndexio index's the codebase to its internal DB and then returns what is needed via MCP when asked. We ran into some fun issues when trying to force the session to use a tool call for lookups so there is some aggressive tool call logic which attempts to override built-in lookup tools. If something isn't in the index it will just fallback to regex lookups.\nThe whole system is a single binary written in Rust for performance. In our real world testing we are seeing about 50%-60% reduction in token usage compared to the built-in tools, and near instant lookup times compared to multiple seconds for each regex lookup. One place that indexio does come up shorter than then regex is when looking up symbols. We found that most of the agent's work was done looking at strings of words rather than symbols, but if you have a workflow that is heavy in this specific situation just know it may not fit.\nWe opened sourced everything and would love to hear feedback. Huge Shout out to CocoIndex who gave us the inspiration for this idea.\nhttps://github.com/IOServicesLabs/indexio (https://github.com/IOServicesLabs/indexio)",
+      "is_self": true,
+      "is_video": false,
+      "time": 1791751374,
+      "created_at": "2026-10-11T20:42:54+00:00",
+      "comments_data": [
+        {
+          "id": "50047714",
+          "author": "cudder",
+          "body": "I cut a lot of my tokens just by installing a language server plugin. What does this offer over that?",
+          "score": 0,
+          "time": 1791752086,
+          "parent": "50047627"
+        },
+        {
+          "id": "50047631",
+          "author": "iohotspot",
+          "body": "Happy to discuss any feedback here. Will be around for a couple of hours.",
+          "score": 0,
+          "time": 1791751435,
+          "parent": "50047627"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50047619",
+      "title": "Show HN: A Chromium browser you drive with HTTP requests (no Selenium)",
+      "subreddit": "show-hn",
+      "author": "nitikshkumar",
+      "score": 3,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50047619",
+      "url": "https://github.com/techxcelerate/browser-mini",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791751312,
+      "created_at": "2026-10-11T20:41:52+00:00",
+      "comments_data": [
+        {
+          "id": "50047879",
+          "author": "flecomet",
+          "body": "\"Open windows and tabs, navigate, read page HTML, and expose the API remotely with Cloudflare — from any language that can speak HTTP.\" What does that mean \"from any language that can speak HTTP\" ? Did you mean from any program that can make HTTP requests ? It seems pretty interesting and useful, though I'm no expert, but the README is hard to parse. A short GIF showcasing usage and capabilities wouldn't hurt. Also perhaps explaining which problem exactly is being solved compared to other existing solutions.",
+          "score": 0,
+          "time": 1791753361,
+          "parent": "50047619"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50047459",
+      "title": "Show HN: Inside-out analytics for product-led teams",
+      "subreddit": "show-hn",
+      "author": "vicngan05",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50047459",
+      "url": "https://www.invarhq.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791750337,
+      "created_at": "2026-10-11T20:25:37+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50046402",
+      "title": "Show HN: HarmoNova: A modern, customizable Hacker News reader for Chrome",
+      "subreddit": "show-hn",
+      "author": "chaosmanage",
+      "score": 3,
+      "num_comments": 5,
+      "permalink": "https://news.ycombinator.com/item?id=50046402",
+      "url": "https://github.com/chaosmanage/harmonova",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791744131,
+      "created_at": "2026-10-11T18:42:11+00:00",
+      "comments_data": [
+        {
+          "id": "50046413",
+          "author": "chaosmanage",
+          "body": "Author here. First of all, thank you to the Harmonic app by Simon Halvdansson (https://github.com/SimonHalvdansson/Harmonic-HN (https://github.com/SimonHalvdansson/Harmonic-HN)). I know many (most?) of you prefer to use the no frills layout of the hacker news wesite and I totally respect that. But I really enjoy using the Harmonic app on my android phone which has a much more modren layout and is visually appealing and easier to use for me. I disliked using the plain-old hacker news on my computer and found myself going back again to my phone to scroll HN.\nHarmoNova brings many of the features I love about Harmonic to the desktop browser, including a modern, card-based layout for stories and comments, color-coded comment threads, article preview images, favicons, and a bunch of customization options. It also has a split-pane layout, so you can browse stories and read discussions side by side.\nMy favorite is the AI summarization tool that summarizes the linked HN post article or the HN discussion. It currently uses openrouter using your own key.\nI built this to scratch my own itch to have a better HN layout on my computer. You may or may not like it. I thought I should opensource it in case there's anyone who would also prefer a more modern HN layout on their computer. Cheers!",
+          "score": 0,
+          "time": 1791744205,
+          "parent": "50046402"
+        },
+        {
+          "id": "50048105",
+          "author": "swesnow",
+          "body": "Very cool (I'm the developer of Harmonic) I'll be taking a look at this tomorrow for some inspiration and just to try it out :)",
+          "score": 0,
+          "time": 1791754929,
+          "parent": "50046402"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50046369",
+      "title": "Show HN: Kindlefall a 3D ARPG in the browser, built with Three.js",
+      "subreddit": "show-hn",
+      "author": "djbiccboii",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50046369",
+      "url": "https://kindlefall.com/play/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791743909,
+      "created_at": "2026-10-11T18:38:29+00:00",
+      "comments_data": [
+        {
+          "id": "50049190",
+          "author": "NishanStepak",
+          "body": "threejs.org is very easy to work with. It is a lot less complex than Unity. It is based on Javascript. I like the feel of it and the community that is built around it. Ethan Mollick used it to create his Library of Babel application and his Umberto Eco's library application. It has been used to create some very interesting book applications.",
+          "score": 0,
+          "time": 1791761314,
+          "parent": "50046369"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,7 +440,7 @@
       "title": "Show HN: OpenClear – Self-hosted check and ACH fraud screening for small banks",
       "subreddit": "show-hn",
       "author": "villson",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50044824",
       "url": "https://github.com/chaffed/OpenClear",
@@ -27,7 +457,7 @@
       "title": "Show HN: Let's Encrypt on an HP LaserJet M553, Renewed from a Proxmox Container",
       "subreddit": "show-hn",
       "author": "RyJones",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50044460",
       "url": "https://blog.ryjones.org/2026/10/09/hp-letsencrypt",
@@ -44,8 +474,8 @@
       "title": "Show HN: Quaesito: a self-hosted app for quiz nights with friends",
       "subreddit": "show-hn",
       "author": "ggirelli",
-      "score": 2,
-      "num_comments": 1,
+      "score": 3,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50043311",
       "url": "https://github.com/ggirelli/quaesito",
       "selftext": "Hi, I built Quaesito, a self-hosted quiz-night app for playing with friends. I thought it might be useful to others, so I wanted to share it here: https://github.com/ggirelli/quaesito (https://github.com/ggirelli/quaesito)\nIt runs on your laptop, which you can cast or screen-share on to a TV. Friends then connect and answer from their phones, as long as everyone is on the same local network. It support Windows, macOS, and Linux, although I have only tested it on Linux so far, so feedback on the other platforms would be very welcome.\nI was especially careful to make it work over your local network. No requests are sent to third-party services.\nI wanted something that made quiz nights more fun than just a slideshow or a PDF, with support for different types of question formats and multimedia. I have plenty of ideas for additional formats, but I wanted to keep the first release manageable.\nThe project was built entirely through vibe-coding, using Claude Code in an iterative process. I have released it under the MIT license and would appreciate any feedback, particularly from people who try running an actual quiz night with it.\nHope you find it useful, and have as much fun with it as I have!\nOriginal post from my blog: https://ggirelli.info/blog/2026/10/11/quaesito (https://ggirelli.info/blog/2026/10/11/quaesito)",
@@ -54,6 +484,14 @@
       "time": 1791726729,
       "created_at": "2026-10-11T13:52:09+00:00",
       "comments_data": [
+        {
+          "id": "50048580",
+          "author": "Pantera87",
+          "body": "That's so cool!Another idea/side project would be to offer also some lists of quiz questions spanning a lot of different fields",
+          "score": 0,
+          "time": 1791757632,
+          "parent": "50043311"
+        },
         {
           "id": "50045245",
           "author": "absake",
@@ -88,8 +526,8 @@
       "title": "Show HN: BetterWispr – Free, open-source dictation for Mac",
       "subreddit": "show-hn",
       "author": "kartik017",
-      "score": 91,
-      "num_comments": 63,
+      "score": 150,
+      "num_comments": 93,
       "permalink": "https://news.ycombinator.com/item?id=50042333",
       "url": "https://betterwispr.com/",
       "selftext": "",
@@ -107,11 +545,11 @@
           "parent": "50042333"
         },
         {
-          "id": "50046250",
-          "author": "GodelNumbering",
-          "body": "Just tried it out as I was looking for something that does this exact thing well (macbook). So far I dictated about 5 different things in different contexts, it worked without a single error! Good choice to use parakeet v3.\nNice work, thanks for building it!",
+          "id": "50043741",
+          "author": "Zizizizz",
+          "body": "This reminds me very much in terms of features as https://github.com/cjpais/Handy (https://github.com/cjpais/Handy) https://handy.computer (https://handy.computer) , what's the use case for this over that?",
           "score": 0,
-          "time": 1791743257,
+          "time": 1791729338,
           "parent": "50042333"
         },
         {
@@ -123,6 +561,14 @@
           "parent": "50042333"
         },
         {
+          "id": "50049269",
+          "author": "d4rkp4ttern",
+          "body": "On MacOS, dictation was solved a while back with Parakeet V3, and I haven't seen anything that has a better speed/accuracy tradeoff when talking to AIs, where slight inaccuracies are ok since they can \"read between the lines\".\nI got annoyed by various UI and other things in tools like VoiceInk, Handy etc and Claude-Coded my own CLI dictation tool called VoxType that uses parakeet-mlx:\nhttps://pchalasani.github.io/claude-code-tools/tools/voxtype... (https://pchalasani.github.io/claude-code-tools/tools/voxtype/)\nInstall this skill for your coding agent and let it help you set it up, there are many config options:\n npx skills add pchalasani/claude-code-tools -s voxtype-install -g\n\nOr if you must do it yourself,\n uv tool install voxtype\n\nThis is just an example of where we are today with software today: people building their own tools, and not bothering to market it (or perhaps I'm contracting myself here ;).",
+          "score": 0,
+          "time": 1791761814,
+          "parent": "50042333"
+        },
+        {
           "id": "50045439",
           "author": "Royce-CMR",
           "body": "What’s really shocking is this and many of the competitors are all using OpenAI whisper - which came out in 2022. (Once upon a time, OpenAI really did open research)\nIt’s surprising in 2026 this is still the default “best” all rounder. Kudos to the early OpenAI team and the open community efforts / improved models since then.",
@@ -131,19 +577,11 @@
           "parent": "50042333"
         },
         {
-          "id": "50043741",
-          "author": "Zizizizz",
-          "body": "This reminds me very much in terms of features as https://github.com/cjpais/Handy (https://github.com/cjpais/Handy) https://handy.computer (https://handy.computer) , what's the use case for this over that?",
+          "id": "50048770",
+          "author": "zalthor",
+          "body": "Interestingly enough, I was working on something very similar this past few of days[1]! A couple of things that I did differently -\nOne, in the post-transcription cleanup phase, instead of programmatically fixing the text, I just feed the text with a prompt + dictionary of words into an LLM. Initially tried doing this with the on-device model from Apple in macOS 27, but that was too slow. I've now been playing around with gpt-oss-20b on Groq, which appears to be fast and effective. Although I'm curious how well your programmatic approach works, I might try some sort of a bake off over the next few days. But in the long run, I think I might still stick with an LLM-based formatter because you can have far more interesting formatting considerations or formatting prompts based on the app that you are using or the style or tone of your dictated text.\nTwo - When building the dictionary of words to fix, I'm also including a recording of the word and having the transcription model just predict draft out variants to use as replacements.\n[1] https://github.com/goose42/TalkToMyMac (https://github.com/goose42/TalkToMyMac)",
           "score": 0,
-          "time": 1791729338,
-          "parent": "50042333"
-        },
-        {
-          "id": "50044193",
-          "author": "NJL3000",
-          "body": "This came up a month ago - I forked from something now gone -\nhttps://github.com/NickJLange/parrot (https://github.com/NickJLange/parrot)\nAnd if MacOS 26 does it right - all of this is no longer necessary for us to vibe fork/ code on weekends :-)\nP.S. Handy looks slick. May be able to ditch mine",
-          "score": 0,
-          "time": 1791731690,
+          "time": 1791758754,
           "parent": "50042333"
         },
         {
@@ -152,6 +590,14 @@
           "body": "If folks like local-AI dictation, but want it optimized for meetings recordings (like Granola/Otter/Notion) check out Biscotti. Free, local, separates voices, voice identification, AI summaries, etc.\nhttps://github.com/scosman/Biscotti (https://github.com/scosman/Biscotti)",
           "score": 0,
           "time": 1791734567,
+          "parent": "50042333"
+        },
+        {
+          "id": "50044193",
+          "author": "NJL3000",
+          "body": "This came up a month ago - I forked from something now gone -\nhttps://github.com/NickJLange/parrot (https://github.com/NickJLange/parrot)\nAnd if MacOS 26 does it right - all of this is no longer necessary for us to vibe fork/ code on weekends :-)\nP.S. Handy looks slick. May be able to ditch mine",
+          "score": 0,
+          "time": 1791731690,
           "parent": "50042333"
         },
         {
@@ -171,27 +617,19 @@
           "parent": "50042333"
         },
         {
+          "id": "50048845",
+          "author": "jayshah5696",
+          "body": "1 feature I want is using Llm local or cloud for cleaning. I like open whisper and typewispr for both.\nPlaying with anything that just works. Also allow for cleaning existing text. (Written not by speech) In some way.",
+          "score": 0,
+          "time": 1791759179,
+          "parent": "50042333"
+        },
+        {
           "id": "50044611",
           "author": "jasonjmcghee",
           "body": "The native / built-in API SpeechAnalyzer (introduced last generation on iOS and MacOS) works quite well.\nAre folks finding it lacking / needing alternatives?",
           "score": 0,
           "time": 1791734103,
-          "parent": "50042333"
-        },
-        {
-          "id": "50045557",
-          "author": "jakobov",
-          "body": "This is cool. I also built a dictation app that has advantage of using three state-of-the-art models in parallel. Which increases accuracy and reduces p95 significantly. You can check it out at https://zwhispr.com/ (https://zwhispr.com/)",
-          "score": 0,
-          "time": 1791739542,
-          "parent": "50042333"
-        },
-        {
-          "id": "50044781",
-          "author": "frenchie4111",
-          "body": "This is awesome. I really want to get something like this integrated directly into my agent IDE (https://getness.dev (https://getness.dev)).\nThe main thing I need is some way of auto-sending a \"end of message\" button (like a newline would do) at the end of the message so that it auto-sends the chat.\nNot sure the exact right way to implement that, but it seems like something that could be general purpose. Maybe a setting per-active app?",
-          "score": 0,
-          "time": 1791735018,
           "parent": "50042333"
         }
       ]
@@ -204,7 +642,7 @@
       "subreddit": "show-hn",
       "author": "Vidigoat",
       "score": 7,
-      "num_comments": 2,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50042240",
       "url": "https://titan-ai.co/",
       "selftext": "Hello HN! My name is Vidit, I am 14 years old and Titan is my first start-up.\nTitan is your personal team of AI agents. Give it a command via voice or desktop app and it will execute tasks: research, emails, plans, your apps, and your goals. The whole idea behind the product is to save you time and money and help you pursue what you really want to do.\nFirst 100 users get $5 worth of free credits. Free plan is there as well but, being a bootstrapper myself, it is quite constrained. Sorry for that!\nWorks only on Mac at the moment.\nShort video demo here: https://www.youtube.com/watch?v=SrAUXxzMWm4 (https://www.youtube.com/watch?v=SrAUXxzMWm4)",
@@ -213,6 +651,14 @@
       "time": 1791719415,
       "created_at": "2026-10-11T11:50:15+00:00",
       "comments_data": [
+        {
+          "id": "50047746",
+          "author": "aetherspawn",
+          "body": "Nice website. A piece of advice, put yourself in the position of the user when you’re trying to sell something. Would you buy it? Do they have a lot of other better options from bigger companies?\nMight be better to look for a “beach head market”, that is, a unique idea in a smaller niche market where there currently isn’t anything else.\nThis kind of AI assistant is quite overdone and there are probably more assistants than people who actually use them",
+          "score": 0,
+          "time": 1791752286,
+          "parent": "50042240"
+        },
         {
           "id": "50042945",
           "author": "shadab_khan_127",
@@ -334,8 +780,8 @@
       "title": "Show HN: WallHop – 12ft.io is gone, so I built a replacement",
       "subreddit": "show-hn",
       "author": "TheWaffleHax",
-      "score": 264,
-      "num_comments": 114,
+      "score": 271,
+      "num_comments": 118,
       "permalink": "https://news.ycombinator.com/item?id=50038634",
       "url": "https://wallhop.io/",
       "selftext": "Hi HN, I'm Josh. WallHop is a free paywall bypass: paste an article URL (or prefix any URL with wallhop.io/) and you get the readable article without the paywall popup, ads or clutter. No signup, no extension.\nI built it after 12ft.io went away. The News Media Alliance took it down in July 2025 and I missed having something I could hit from my phone.\nHow it works: it started as a fork of everywall/ladder (GPL-3.0) and I've modified it heavily since. Instead of relying on one trick, it chains several bypass methods per request and falls back to archive.is when they all fail, so one site blocking one technique doesn't break it.\nThings that might be interesting:\n- iOS Shortcut: on iPhone, tap Share > WallHop from any article in Safari or another app. This is how I use it 95% of the time.\n- It works on Medium member-only posts, which 12ft never handled.\n- Bookmarklet for desktop, plus /raw/<url> and /api/<url> endpoints if you want to script it.\nI've tested it against most major news outlets and a bunch of local papers. It won't work everywhere. There are SOME server-side paywalls that are out of reach, and I'd rather say that up front. If you find a site that breaks, I'd love the link, and I can likely figure out a way to bypass it!",
@@ -393,6 +839,14 @@
           "parent": "50038634"
         },
         {
+          "id": "50047571",
+          "author": "shmoil",
+          "body": "I do not see a way to report a bug on the page.",
+          "score": 0,
+          "time": 1791750980,
+          "parent": "50038634"
+        },
+        {
           "id": "50038702",
           "author": "armchairhacker",
           "body": "Why not open source? You modified GPL-3 ladder; I don’t know whether it’s legally required, but I feel it’s morally expected and important in practice (since yours may get taken down).",
@@ -430,14 +884,6 @@
           "body": "I wish it worked with www.irishexaminer.com. No luck :(",
           "score": 0,
           "time": 1791680422,
-          "parent": "50038634"
-        },
-        {
-          "id": "50039030",
-          "author": "Beijinger",
-          "body": "Install it now, thank me later: https://gitflic.ru/project/magnolia1234/bpc_uploads (https://gitflic.ru/project/magnolia1234/bpc_uploads)",
-          "score": 0,
-          "time": 1791683333,
           "parent": "50038634"
         }
       ]
