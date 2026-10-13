@@ -1,8 +1,230 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-12T18:43:00.358039+00:00",
+  "last_fetched": "2026-10-13T01:16:47.255569+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50064438",
+      "title": "Show HN: An experimental pattern-first DAW that supports MCP",
+      "subreddit": "show-hn",
+      "author": "androsynth89",
+      "score": 11,
+      "num_comments": 6,
+      "permalink": "https://news.ycombinator.com/item?id=50064438",
+      "url": "https://github.com/andrewfader/blokkily",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791847272,
+      "created_at": "2026-10-12T23:21:12+00:00",
+      "comments_data": [
+        {
+          "id": "50065316",
+          "author": "dmicah",
+          "body": "Looks interesting, but elements of the README could be improved. Things like \"CLAP is a required native plugin format, not a compatibility add-on.\" sound Claude-written and don't really make a lot of sense. CLAP isn't a \"compatibility add-on\" in any DAW, it is just one of many plug-in formats that could be supported.",
+          "score": 0,
+          "time": 1791854062,
+          "parent": "50064438"
+        },
+        {
+          "id": "50065303",
+          "author": "boomskats",
+          "body": "I sent you a docs PR, hope it helps.",
+          "score": 0,
+          "time": 1791853892,
+          "parent": "50064438"
+        },
+        {
+          "id": "50065153",
+          "author": "0gs",
+          "body": "yeeeeahh this is crazy confusing. i guess it's free so i should just try it, but like ... does it only do sequencing of soundfont instruments in its patterns? can it do audio clips? it seems like it ... but then what would i need soundfonts for lol\nto me, the readme is not so much impenetrable as it presumes people want to know how the backend works, but it is entirely unclear how the FRONTEND works, to the extent that calling it a DAW seems, like, suspicious\nall of that said, i totally want to try and use it and have a feeling i might be able to figure it out",
+          "score": 0,
+          "time": 1791852643,
+          "parent": "50064438"
+        },
+        {
+          "id": "50064936",
+          "author": "Ycros",
+          "body": "Mmm, the readme is an impenetrable unorganised wall of text that jumps between broad high level things, and tiny intricate internal technical details.\nAll in all this feels a bit early to really show off. A recorded demo video would be good. Also, imo, the demo song should be setup in a way that it just plays out of the box.",
+          "score": 0,
+          "time": 1791850997,
+          "parent": "50064438"
+        },
+        {
+          "id": "50065266",
+          "author": "oidar",
+          "body": "nobody is downloading this w/o a video showing how it works friend.",
+          "score": 0,
+          "time": 1791853638,
+          "parent": "50064438"
+        },
+        {
+          "id": "50064775",
+          "author": "danabramov",
+          "body": "Not sure if looking for README feedback, but I think a ~30 second video with sound would help get an idea a lot.",
+          "score": 0,
+          "time": 1791849733,
+          "parent": "50064438"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50064284",
+      "title": "Show HN: Explore Bay Area traffic trends and patterns",
+      "subreddit": "show-hn",
+      "author": "bkraz",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50064284",
+      "url": "https://benkrasnow.github.io/Bay_Area_traffic_data/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791846195,
+      "created_at": "2026-10-12T23:03:15+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50063600",
+      "title": "Show HN: Chkit – Schema, migrations and backfills for ClickHouse (like Drizzle)",
+      "subreddit": "show-hn",
+      "author": "keks0r",
+      "score": 6,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50063600",
+      "url": "https://github.com/obsessiondb/chkit",
+      "selftext": "Hey HN, im Marc, co-founder of ObsessionDB.\nWe are open sourcing ChKit, our tooling to manage schemas, migrations and backfills for clickhouse.\nI am a big fan of the type safety drizzle provides for the database. Manage the schema in typescript and generate migrations from it is a powerful workflow. I always wished something like it would exist for clickhouse, so we could manage our analytical workloads the same way. It didn't exist, so we build it.\nWe build it after running ClickHouse at petabyte scale in our previous company, were we managed hundreds of tables, MVs and endpoints reading from them.\nThe way it works:\n1. You define your schema in typescript, with typed helpers for tables, mv, column types etc..\n2. You generate the migration, that contains the DDL, to get your clickhouse instance from status quo to what your current typescript schema defines\n3. Your CI can check for drift\n4. You run the generated migration against production\n5. You use the defined types in your code, to ingest your data while making sure it has the correct type.\n Bonus: if your schema change was BC breaking, we generate the sequence on how to backfill the data, into the intermediate table to migrate (this is quite the hard problem with large tables and schema evolution)\nIn case you have already a clickhouse instance with a schema, you can pull it down and start using ChKit from where you are.\nRun our generator to setup the boilerplate:\n npm create chkit@latest\n\nIf you folks are running clickhouse in production, I am curious to hear what other challenges you are running into.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791842154,
+      "created_at": "2026-10-12T21:55:54+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50063385",
+      "title": "Show HN: News.txt – world news by region, from each region's own outlets",
+      "subreddit": "show-hn",
+      "author": "dd_xplore",
+      "score": 3,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50063385",
+      "url": "https://news.freestuffsthat.work",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791840997,
+      "created_at": "2026-10-12T21:36:37+00:00",
+      "comments_data": [
+        {
+          "id": "50064147",
+          "author": "O1111OOO",
+          "body": "This is a nice, clean format - zero clutter! External links open a new tab (my preference!), great categories for filtering, interesting/immersive articles are showing up (I've already clicked a few).\nYou did a nice job here.\nI'm going to bookmark this as a regular news source. Hopefully you can keep this running for a while - I quite like it.",
+          "score": 0,
+          "time": 1791845307,
+          "parent": "50063385"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50063042",
+      "title": "Show HN: Brickbrag – A multiplayer brick-building world in the browser",
+      "subreddit": "show-hn",
+      "author": "neuling",
+      "score": 25,
+      "num_comments": 9,
+      "permalink": "https://news.ycombinator.com/item?id=50063042",
+      "url": "https://brickbrag.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791839016,
+      "created_at": "2026-10-12T21:03:36+00:00",
+      "comments_data": [
+        {
+          "id": "50063973",
+          "author": "isawczuk",
+          "body": "Wow. It has build-in physics that checks your structure stability.",
+          "score": 0,
+          "time": 1791844206,
+          "parent": "50063042"
+        },
+        {
+          "id": "50063878",
+          "author": "emmelaich",
+          "body": "Mouse movement doesn't seem to work with Chrome on Mac.\nLooks good though!",
+          "score": 0,
+          "time": 1791843594,
+          "parent": "50063042"
+        },
+        {
+          "id": "50064101",
+          "author": "neuling",
+          "body": "BTW: Except in the city center and on the streets, you can build anywhere, and everyone can collaborate. If you’d like to build on your own, buy a lot with in-game coins. Then only you can place and remove bricks there.",
+          "score": 0,
+          "time": 1791844977,
+          "parent": "50063042"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50062461",
+      "title": "Show HN: Yagi, Rust DSP Library",
+      "subreddit": "show-hn",
+      "author": "brian-armstrong",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50062461",
+      "url": "https://github.com/brian-armstrong/yagi",
+      "selftext": "Hi HN,\nI'm a big fan of the liquid-dsp C library and thought it'd be fun to bring it over to Rust. I'm calling this library Yagi DSP. liquid-dsp has more than 1300 tests and yagi now has ported and passes more than 95% of them. I've just finished a major refactoring of the library with lots of API churn now behind me and I think it's now ready for external users.\nI've still got a lot more I'm hoping to do with it including a streaming graph/dataflow library that I'm building on top of yagi. My goal with that is to create something that's easily embeddable in applications.\nThe browser demo linked in the README is just a very basic example to show how different modems work in the presence of noise, but it really does use yagi via wasm-bindgen. I think it's a fun 5 minute diversion if you've heard terms like QPSK or QAM but aren't sure what they mean.\nYou can try out the demo here\nhttps://brian-armstrong.github.io/yagi/lab.html (https://brian-armstrong.github.io/yagi/lab.html)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791836525,
+      "created_at": "2026-10-12T20:22:05+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50060954",
+      "title": "Show HN: Use your phone as a Windows mouse and keyboard, without a phone app",
+      "subreddit": "show-hn",
+      "author": "mudit7",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50060954",
+      "url": "https://github.com/creationsofm7/localtv-remote",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791830805,
+      "created_at": "2026-10-12T18:46:45+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50060257",
+      "title": "Show HN: I bought a bunch of 'smart' devices. AI was able to hack most of them",
+      "subreddit": "show-hn",
+      "author": "Yenrabbit",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50060257",
+      "url": "https://hwrebench.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791827973,
+      "created_at": "2026-10-12T17:59:33+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,7 +232,7 @@
       "title": "Show HN: Two browser games set inside one real Gaussian-splat scan",
       "subreddit": "show-hn",
       "author": "empyreanite",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50059969",
       "url": "https://games.yanisfalaki.com/",
@@ -27,7 +249,7 @@
       "title": "Show HN: IHMT – Infinite Hierarchical Memory Tree for AI Agents",
       "subreddit": "show-hn",
       "author": "gonzar79",
-      "score": 5,
+      "score": 6,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50058903",
       "url": "https://github.com/gonzaroman/IHMT-MEMORY",
@@ -61,7 +283,7 @@
       "title": "Show HN: An Atlas of Applied AI",
       "subreddit": "show-hn",
       "author": "gravity13",
-      "score": 2,
+      "score": 4,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50056779",
       "url": "https://gravitypersists.github.io/atlas-of-applied-ai/",
@@ -185,19 +407,19 @@
       "created_at": "2026-10-12T10:42:44+00:00",
       "comments_data": [
         {
-          "id": "50054856",
-          "author": "sfpk",
-          "body": "I once had the idea to try to use talk-radio for language learning -- i did something like this and hooked it up to vosk, https://ccoreilly.github.io/vosk-browser/ (https://ccoreilly.github.io/vosk-browser/) . Since you've already categorized the talk-radio stations -- you could add this functionality -- I don't really think my idea was strong enough for a full SaaS business -- but it could complement your site.",
-          "score": 0,
-          "time": 1791804856,
-          "parent": "50054379"
-        },
-        {
           "id": "50054676",
           "author": "Rotundo",
           "body": "Looks a lot like https://radio.garden (https://radio.garden).",
           "score": 0,
           "time": 1791803733,
+          "parent": "50054379"
+        },
+        {
+          "id": "50054856",
+          "author": "sfpk",
+          "body": "I once had the idea to try to use talk-radio for language learning -- i did something like this and hooked it up to vosk, https://ccoreilly.github.io/vosk-browser/ (https://ccoreilly.github.io/vosk-browser/) . Since you've already categorized the talk-radio stations -- you could add this functionality -- I don't really think my idea was strong enough for a full SaaS business -- but it could complement your site.",
+          "score": 0,
+          "time": 1791804856,
           "parent": "50054379"
         },
         {
@@ -234,8 +456,8 @@
       "title": "Show HN: PS2 games statically recompiled to WebAssembly",
       "subreddit": "show-hn",
       "author": "deadxwarrior",
-      "score": 212,
-      "num_comments": 115,
+      "score": 268,
+      "num_comments": 140,
       "permalink": "https://news.ycombinator.com/item?id=50052251",
       "url": "https://github.com/snuri00/ps2-web-recomp",
       "selftext": "",
@@ -269,19 +491,11 @@
           "parent": "50052251"
         },
         {
-          "id": "50059029",
-          "author": "mamonoleechi",
-          "body": "- related thread:https://news.ycombinator.com/item?id=49991243 (https://news.ycombinator.com/item?id=49991243) (God of War on PSP, recompiled to WebAssembly and running in the browser)\n- might interest you, if you like the topic you're currently reading: https://thegamingemporium.com/recent/ (https://thegamingemporium.com/recent/)",
+          "id": "50053843",
+          "author": "eluusive",
+          "body": "Who would want to play Gran Turismo without long CD loading screens?",
           "score": 0,
-          "time": 1791823379,
-          "parent": "50052251"
-        },
-        {
-          "id": "50060584",
-          "author": "anonymous908213",
-          "body": "> This is the sibling of psp-web-recomp and follows the same method\nFucking amazing that this person can prompt to embed an emulator into a binary and call it \"no emulation recompilation\" and get not one but two threads on the front page. LLMs are such an amazing tool for liars to produce upvotable slop, nobody gives a fuck about verifying whether the claims are true.",
-          "score": 0,
-          "time": 1791829320,
+          "time": 1791798311,
           "parent": "50052251"
         },
         {
@@ -293,19 +507,11 @@
           "parent": "50052251"
         },
         {
-          "id": "50053843",
-          "author": "eluusive",
-          "body": "Who would want to play Gran Turismo without long CD loading screens?",
+          "id": "50059029",
+          "author": "mamonoleechi",
+          "body": "- related thread:https://news.ycombinator.com/item?id=49991243 (https://news.ycombinator.com/item?id=49991243) (God of War on PSP, recompiled to WebAssembly and running in the browser)\n- might interest you, if you like the topic you're currently reading: https://thegamingemporium.com/recent/ (https://thegamingemporium.com/recent/)",
           "score": 0,
-          "time": 1791798311,
-          "parent": "50052251"
-        },
-        {
-          "id": "50057345",
-          "author": "Hyperlisk",
-          "body": "Very cool! I'm working on something similar but am taking it much slower with a focus on accuracy. Mine recompiles into Golang to take advantage of built-in SIMD support.\nI've been building the tooling around the PS2 binaries and hope to have a standalone PSS player out soon that can play PSS files as they are encoded, via simulated renderer, and via in-game engine renderer. The future is so bright with LLMs!",
-          "score": 0,
-          "time": 1791816985,
+          "time": 1791823379,
           "parent": "50052251"
         },
         {
@@ -317,11 +523,11 @@
           "parent": "50052251"
         },
         {
-          "id": "50057782",
-          "author": "khalidkhair",
-          "body": "I wonder how \"legal\" hosting this would be given that it would require the host to basically distribute the game for free for everyone else",
+          "id": "50060584",
+          "author": "anonymous908213",
+          "body": "> This is the sibling of psp-web-recomp and follows the same method\nFucking amazing that this person can prompt to embed an emulator into a binary and call it \"no emulation recompilation\" and get not one but two threads on the front page. LLMs are such an amazing tool for liars to produce upvotable slop, nobody gives a fuck about verifying whether the claims are true.",
           "score": 0,
-          "time": 1791818665,
+          "time": 1791829320,
           "parent": "50052251"
         },
         {
@@ -330,6 +536,22 @@
           "body": "ah yes, another recomp that still emulates a core system component.\nhttps://github.com/snuri00/ps2-web-recomp/blob/1066c9eea78c2... (https://github.com/snuri00/ps2-web-recomp/blob/1066c9eea78c2adb0cb2b947a24f7f7d7a4117bc/runtime/src/iop/cpu.cpp#L61)",
           "score": 0,
           "time": 1791802621,
+          "parent": "50052251"
+        },
+        {
+          "id": "50057345",
+          "author": "Hyperlisk",
+          "body": "Very cool! I'm working on something similar but am taking it much slower with a focus on accuracy. Mine recompiles into Golang to take advantage of built-in SIMD support.\nI've been building the tooling around the PS2 binaries and hope to have a standalone PSS player out soon that can play PSS files as they are encoded, via simulated renderer, and via in-game engine renderer. The future is so bright with LLMs!",
+          "score": 0,
+          "time": 1791816985,
+          "parent": "50052251"
+        },
+        {
+          "id": "50057782",
+          "author": "khalidkhair",
+          "body": "I wonder how \"legal\" hosting this would be given that it would require the host to basically distribute the game for free for everyone else",
+          "score": 0,
+          "time": 1791818665,
           "parent": "50052251"
         },
         {
@@ -455,16 +677,24 @@
       "title": "Show HN: Atticus – Hold-to-talk voice assistant for macOS that runs on Claude -p",
       "subreddit": "show-hn",
       "author": "SaarthRanka",
-      "score": 35,
-      "num_comments": 5,
+      "score": 64,
+      "num_comments": 9,
       "permalink": "https://news.ycombinator.com/item?id=50049588",
       "url": "https://github.com/SaarthurR/atticus-mac",
-      "selftext": "Hi HN! I'm Saarth. I'm in 9th grade, and I built Atticus.\nAtticus is an incredibly fast and cheap Mac assistant that can do tasks for you. You hold down Control-Option-Space, speak or type your task, be it complex or a simple browser search, and Atticus will get on it.\nThe interesting part is that simple tasks, like opening apps, playing a Spotify playlist, or web queries, don't touch AI, and instead are processed locally and typically finish in under a second. For example, prompting Atticus to open apps takes around 0.08 seconds, sometimes even finishing before you finish your sentence, sort of like Jev.\nAny tasks that are more complicated will be sent to Claude via claude -p, meaning you never need an API key and Atticus will run on your existing Claude Pro or Max plan. By using this approach, costs are also cut down immensely, with, on average, tasks costing a fraction of a cent.\nTo achieve Atticus' speed, it remembers shortcuts from each task it completes. When it does a task right for the first time, it saves its steps and replays them the next time without AI. For example, a workflow of creating a new meeting took about 30 seconds the first time around. Atticus then logs the exact steps to memory and takes 5-8 seconds on the next pass. To add to this, Atticus also learns about you as you use it more and from what's on your computer, including your name, your apps, and things you want it to remember, personalizing its answers to you.\nTo combat the safety concerns over giving an AI unrestricted access to your device, Atticus has toggleable restrictions, so before anything is deleted, sent, bought, or written to a file, the user is prompted before that action.\nSome features I'm currently working on include a meeting copilot that capitalizes on Atticus' speed, allowing Atticus to listen in on meetings and answer questions in real time as they come in, personalized to the context of the meeting and what it knows about you.\nTo run Atticus, macOS 26 or higher is required for its voice transcription features. The voice transcription is also done locally by macOS.\nAtticus is free, open source, and also very fresh, and I'm completely aware of its many rough edges, which is why I'd love to hear from everyone about what breaks and what you guys would like to see Atticus do!",
+      "selftext": "Hi HN! I'm Saarth. I'm in 9th grade, and I built Atticus.\nAtticus is a fast and cheap Mac assistant that can do tasks for you. You hold down Control-Option-Space, speak or type your task, be it complex or a simple browser search, and Atticus will get on it.\nThe interesting part is that simple tasks, like opening apps, playing a Spotify playlist, or web queries, don't touch AI, and instead are processed locally and typically finish in under a second. For example, prompting Atticus to open apps takes around 0.08 seconds, sometimes even finishing before you finish your sentence, sort of like Jev.\nAny tasks that are more complicated will be sent to Claude via claude -p, meaning you never need an API key and Atticus will run on your existing Claude Pro or Max plan. By using this approach, costs are also cut down immensely, with, on average, tasks costing a fraction of a cent.\nTo achieve Atticus' speed, it remembers shortcuts from each task it completes. When it does a task right for the first time, it saves its steps and replays them the next time without AI. For example, a workflow of creating a new meeting took about 30 seconds the first time around. Atticus then logs the exact steps to memory and takes 5-8 seconds on the next pass. To add to this, Atticus also learns about you as you use it more and from what's on your computer, including your name, your apps, and things you want it to remember, personalizing its answers to you.\nTo combat the safety concerns over giving an AI unrestricted access to your device, Atticus has toggleable restrictions, so before anything is deleted, sent, bought, or written to a file, the user is prompted before that action.\nSome features I'm currently working on include a meeting copilot that capitalizes on Atticus' speed, allowing Atticus to listen in on meetings and answer questions in real time as they come in, personalized to the context of the meeting and what it knows about you.\nTo run Atticus, macOS 26 or higher is required for its voice transcription features. The voice transcription is also done locally by macOS.\nAtticus is free, open source, and also very fresh, and I'm completely aware of its many rough edges, which is why I'd love to hear from everyone about what breaks and what you guys would like to see Atticus do!",
       "is_self": false,
       "is_video": false,
       "time": 1791764112,
       "created_at": "2026-10-12T00:15:12+00:00",
       "comments_data": [
+        {
+          "id": "50064434",
+          "author": "car",
+          "body": "This looks and works great, super impressed. This is what Siri/Apple AI should be like.\nOne concern I have is about sending private info to Anthropic. So it would be great to have the option to use local AI.\nLocal options should support the OpenAI API that seemingly is the standard for these connections, as provided by Llama.app and Unsloth Studio for example. That way one could run against a local model and keep personal information private.\nThat of course begs the question if a local model is smart enough for the tasks at hand.\nI'm also trying out OOMU, a similar but closed source personal assistant app for MacOS. It emphasizes privacy with local models, and even has an 'Airplane' mode. The app has a built in llama.cpp server and uses Gemma-4-4B, their own router model plus a vision model.",
+          "score": 0,
+          "time": 1791847244,
+          "parent": "50049588"
+        },
         {
           "id": "50058964",
           "author": "blakeashleyjr",
@@ -490,11 +720,11 @@
           "parent": "50049588"
         },
         {
-          "id": "50054667",
-          "author": "aidiveyt",
-          "body": "If you want to back the fraction-of-a-cent number, claude -p --output-format json returns total_cost_usd with a per-model breakdown. Per the docs it is a client-side estimate, so it can drift from the bill, but it is enough to log cost per replayed task.",
+          "id": "50052949",
+          "author": "handfuloflight",
+          "body": "This is great, can we get OpenCode?",
           "score": 0,
-          "time": 1791803682,
+          "time": 1791792021,
           "parent": "50049588"
         }
       ]
