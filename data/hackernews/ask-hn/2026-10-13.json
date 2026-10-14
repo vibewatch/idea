@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-14T12:44:15.472368+00:00",
+  "last_fetched": "2026-10-14T18:41:09.350083+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -11,7 +11,7 @@
       "subreddit": "ask-hn",
       "author": "anjalibery",
       "score": 8,
-      "num_comments": 1,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50080125",
       "url": "https://news.ycombinator.com/item?id=50080125",
       "selftext": "We have WorkOS and are sending out activation emails for our beta product. They activation email (with the link) ends up in spam. We've tried so many different combos (plain text vs. html, vs. no hyperlink), and it seems like anything with a link is getting bounced. I'm worried about our domain health and curious if there's a better way to diagnose the problem",
@@ -27,6 +27,49 @@
           "score": 0,
           "time": 1791947766,
           "parent": "50080125"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50079786",
+      "title": "Ask HN: How long before someone reverse-engineers Windows?",
+      "subreddit": "ask-hn",
+      "author": "cromka",
+      "score": 6,
+      "num_comments": 5,
+      "permalink": "https://news.ycombinator.com/item?id=50079786",
+      "url": "https://news.ycombinator.com/item?id=50079786",
+      "selftext": "It just occurred to me that similar to Photoshop suite, someone is already working on getting Windows 10/11 reverse-engineered in a clean-room fashion.\nI don't want to get into the discussion over the whole Craft suite, it's already been the talk of past week, after all, but judging by the pure popularity and the number of merge requests created within those couple days for just their Photoshop equivalent app, I am guessing these projects are not* going away anytime soon and they will, in fact, polish-out majority of issues:\nhttps://github.com/storytold/photocraft/pulls\nAlso, while the original authors claim it was done without the debugger, I am absolutely certain thousands have their LLMs actively analyzing Adobe Suite now to get understand the knicks and crannies of it.\nSo if people hating on Adobe flocked to contribute to this project so enthusiastically, I guess we can only imagine the sheer amount of interest worldwide an open-source Windows would bring, and not only from the volunteers this time around..",
+      "is_self": true,
+      "is_video": false,
+      "time": 1791930420,
+      "created_at": "2026-10-13T22:27:00+00:00",
+      "comments_data": [
+        {
+          "id": "50080032",
+          "author": "paaloeye",
+          "body": "What's the point/value of a reverse-engineered Windows 10/11 reimplementation?\nWho in a right state of mind would approve using in it an enterprise environment?",
+          "score": 0,
+          "time": 1791931748,
+          "parent": "50079786"
+        },
+        {
+          "id": "50081517",
+          "author": "RiverCrochet",
+          "body": "You should have added \"with AI\" to your question. ReactOS and WINE have been around for a long time.",
+          "score": 0,
+          "time": 1791943752,
+          "parent": "50079786"
+        },
+        {
+          "id": "50079875",
+          "author": "roscas",
+          "body": "Oh so many backdoors will be found...",
+          "score": 0,
+          "time": 1791930863,
+          "parent": "50079786"
         }
       ]
     },
@@ -99,19 +142,19 @@
           "parent": "50076575"
         },
         {
-          "id": "50081311",
-          "author": "dgunay",
-          "body": "We still do code review but it does bottleneck how much we can ship.\nI'm looking at what we can do to alleviate this. Here's what I think the near future may look like, as far as getting more value per time spent out of human code review. I'm coming at this from the POV of an org that still mandates human code review and I think a lot of this advice doesn't hold if you are all-in on the black box software factory approach.\nIf you're reviewing code you're responsible for, your job now is to provide stewardship of its long term technical direction even if you are not personally reading and writing every line of code. This means preserving the coherence of designs past and present, and ensuring that they are not being worked around in service of a short-term goal.\nStop reading every line of every file to look for minor gotchas. Focus on core business logic and whether invariants are modeled well & to the fullest extent possible by the type system. Agents are better than most humans now at spotting insane gotchas. At least one frontier model should review most PRs.\nIn the before times, you could argue that TODO comments and small nits on PRs should be addressed, because most likely they'd never get attention again once the PR merges. Now, small issues should instead be automatically recorded and followed up on quickly by another agent. Minor code quality issues should become rules, and old code should be constantly revisited by agents to bring it up to par with new code.\nProvide the transcripts of the session with the PR. Look for evidence of thoughtful direction & solid premise behind the conversation that led to the PR being made. In addition to providing more mentorship opportunities to the author, this also discourages meat proxying/low-value-added uses of AI. Asking someone to rewrite or completely discard a PR that's just a bad idea should no longer be the ego bruising event it once was (at least with respect to the cost sunk to make the PR).\nRequire a higher bar for proving that code works and stays working. The testing pyramid IMO should now be more of a testing hourglass. Or an upside-down pyramid, even. Automated E2E tests should be abundant. Every feature should receive adequate manual testing by an agent, with proof of work.\nIn the vein of \"stays working,\" look for good observability and guardrails around a feature. If you're doing a good job of leveraging agents to keep code up to par, this means adding (and cycling out) feature flags, ensuring that there's adequate logging, having a cohesive monitoring solution with good coverage, and a plan for what to do if there's an issue in prod.",
-          "score": 0,
-          "time": 1791941653,
-          "parent": "50076575"
-        },
-        {
           "id": "50077960",
           "author": "jryan49",
           "body": "Mostly check \"is this actually solve the problem it's trying to solve\", skim it, then and use AI to review it.",
           "score": 0,
           "time": 1791922325,
+          "parent": "50076575"
+        },
+        {
+          "id": "50081311",
+          "author": "dgunay",
+          "body": "We still do code review but it does bottleneck how much we can ship.\nI'm looking at what we can do to alleviate this. Here's what I think the near future may look like, as far as getting more value per time spent out of human code review. I'm coming at this from the POV of an org that still mandates human code review and I think a lot of this advice doesn't hold if you are all-in on the black box software factory approach.\nIf you're reviewing code you're responsible for, your job now is to provide stewardship of its long term technical direction even if you are not personally reading and writing every line of code. This means preserving the coherence of designs past and present, and ensuring that they are not being worked around in service of a short-term goal.\nStop reading every line of every file to look for minor gotchas. Focus on core business logic and whether invariants are modeled well & to the fullest extent possible by the type system. Agents are better than most humans now at spotting insane gotchas. At least one frontier model should review most PRs.\nIn the before times, you could argue that TODO comments and small nits on PRs should be addressed, because most likely they'd never get attention again once the PR merges. Now, small issues should instead be automatically recorded and followed up on quickly by another agent. Minor code quality issues should become rules, and old code should be constantly revisited by agents to bring it up to par with new code.\nProvide the transcripts of the session with the PR. Look for evidence of thoughtful direction & solid premise behind the conversation that led to the PR being made. In addition to providing more mentorship opportunities to the author, this also discourages meat proxying/low-value-added uses of AI. Asking someone to rewrite or completely discard a PR that's just a bad idea should no longer be the ego bruising event it once was (at least with respect to the cost sunk to make the PR).\nRequire a higher bar for proving that code works and stays working. The testing pyramid IMO should now be more of a testing hourglass. Or an upside-down pyramid, even. Automated E2E tests should be abundant. Every feature should receive adequate manual testing by an agent, with proof of work.\nIn the vein of \"stays working,\" look for good observability and guardrails around a feature. If you're doing a good job of leveraging agents to keep code up to par, this means adding (and cycling out) feature flags, ensuring that there's adequate logging, having a cohesive monitoring solution with good coverage, and a plan for what to do if there's an issue in prod.",
+          "score": 0,
+          "time": 1791941653,
           "parent": "50076575"
         },
         {
