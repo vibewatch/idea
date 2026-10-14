@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-14T01:02:28.485515+00:00",
+  "last_fetched": "2026-10-14T06:49:16.603469+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,7 +10,7 @@
       "title": "Show HN: Jevcrawl – A web crawler for AI agents with no LLM in the crawl loop",
       "subreddit": "show-hn",
       "author": "rayenmlayeh",
-      "score": 4,
+      "score": 9,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50080450",
       "url": "https://github.com/RayenMlayeh/jevcrawl",
@@ -27,8 +27,8 @@
       "title": "Show HN: Pulse Local, a Mac budgeting app whose AI models run on your machine",
       "subreddit": "show-hn",
       "author": "niztk",
-      "score": 30,
-      "num_comments": 18,
+      "score": 99,
+      "num_comments": 54,
       "permalink": "https://news.ycombinator.com/item?id=50080275",
       "url": "https://pulseos.finance",
       "selftext": "Hi HN, I'm Niz. Pulse Local is a budgeting app for Mac (Apple Silicon, beta) that answers questions about your spending with models that run on your machine. Local mode needs no account. The ledger and your questions stay on the machine, and the app sends no analytics or crash logs.\nI felt there are not enough consumer apps that run locally with no calls to the outside world that help us manage sensitive corners of our lives. This app in its local variant only downloads a couple of models and occasional updates, it does not send any analytics nor data.\nFeatures-wise, Pulse local is a complete budgeting app that offers an assistant built on top of a fine-tuned model and thousands of rules embedded in the code itself. I'm sharing it for free with options to help me continue experimenting with fine-tuning and expanding along this direction.\nHow it works: you import a CSV from any bank, in any currency. When you ask a question, a tuned Qwen3 0.6B model reads it into a structured query, and code, not the model, does the money math against the ledger. A 4B checker model double-checks each money answer; when the two readings disagree, the app says it is not sure instead of guessing. That change took wrong answers from about one in five to 5 in 494 questions across our last three tests. The write-up covers how we test, the designs that failed, and the limits of the claim: https://pulseos.finance/pulse-local/writing/agree-or-not-sur... (https://pulseos.finance/pulse-local/writing/agree-or-not-sure)\nThe tuned weights are on Hugging Face (PulseOS/pulse-local-qwen3-0.6b).\nLimitations: the first start downloads about 2.9 GB of models. With the checker on, a money answer takes 12 to 14 seconds (you can turn the checker off). Small models can still misread an open-ended question. The app answers in English. Mac only for now; Windows is next.\nThe app is free. An optional Connected mode (Sync Pass, $29/year) syncs US banks through Plaid; transactions pass through our server's memory and are not stored.\nFeedback welcome, especially on wrong answers and on questions it should handle but does not.",
@@ -38,19 +38,11 @@
       "created_at": "2026-10-13T23:13:23+00:00",
       "comments_data": [
         {
-          "id": "50081052",
-          "author": "lathiat",
-          "body": "I love the idea of local only apps woth no network comms. I do wish macOS had some way you could enforce that out of the box though. Rather than trust the claims of the developer.\nAnother app I love that does the same. Queryable which lets you natural language search your photos on device on iOS and predates most of the current AI craze (2022) and also apple adding this themselves to photos:\nhttps://queryable.app/ (https://queryable.app/)",
+          "id": "50083391",
+          "author": "fionaswarovskij",
+          "body": "curious what ppl actually come back for after the first few days. do they keep asking questions about their spending? feels like a lot of the useful stuff would be things they wouldn't think to ask about",
           "score": 0,
-          "time": 1791939217,
-          "parent": "50080275"
-        },
-        {
-          "id": "50080535",
-          "author": "nico",
-          "body": "Very cool. What does it use the model for? Could you replace it with something lighter, like some classifiers[0]? Or do you need the chat? Besides the chat, what other tasks is the model used for? Thank you!\n0: https://jeffyclassify.com/blog/when-llms-fail-at-classificat... (https://jeffyclassify.com/blog/when-llms-fail-at-classification/)",
-          "score": 0,
-          "time": 1791935173,
+          "time": 1791960456,
           "parent": "50080275"
         },
         {
@@ -62,19 +54,83 @@
           "parent": "50080275"
         },
         {
-          "id": "50080911",
-          "author": "altmanaltman",
-          "body": "I use budgeting apps on a daily basis, and I'll just share my personal feedback: I'm absolutely not downloading ~3 gigs for a budget app. Everything I need to \"ask\" the app is already available to me in the form of reports, charts, and tables. I don't really have many open-ended questions about my budget because anything important to track is already handled deterministically.\nAlso yes, it's local but the data you're importing is already with a private organization on the cloud. In that sense, having a local copy of it does not really do anything for me in terms of privacy etc.\nAs I said, I use budgeting apps daily (one for personal use (self-made), another for business (very old freenium era software that has not failed me in the last 5+ years of self-hosting it)) and I do not see any need for generative AI in that workflow from my pov. YMMV",
+          "id": "50081963",
+          "author": "zyk_computer",
+          "body": "I'm curious why you built a full budgeting app instead of adding a local AI chat to an existing open source app like Actual Budget.",
           "score": 0,
-          "time": 1791937990,
+          "time": 1791947762,
           "parent": "50080275"
         },
         {
-          "id": "50080522",
-          "author": "arm32",
-          "body": "Your domain name is younger than 30 days old so my firewall blocks it. :/",
+          "id": "50082106",
+          "author": "codebje",
+          "body": "I gave it a go and imported a transaction CSV from my bank - National Australia Bank. 150 row CSV. The Description import column was assigned to the Merchant Name CSV column (the Merchant import column was also assigned to this CSV column) and as a result 25 rows were going to be ignored. Here's the CSV header row:\n Date,Amount,Account Number,,Transaction Type,Transaction Details,Balance,Category,Merchant Name,Processed On\n\nHand-picking the Description column to be assigned to the details column sorted it out; not sure how you're auto-selecting column mappings but maybe 'details' should be recognised as closer to 'description' than 'merchant name' is.",
           "score": 0,
-          "time": 1791935046,
+          "time": 1791949186,
+          "parent": "50080275"
+        },
+        {
+          "id": "50081052",
+          "author": "lathiat",
+          "body": "I love the idea of local only apps woth no network comms. I do wish macOS had some way you could enforce that out of the box though. Rather than trust the claims of the developer.\nAnother app I love that does the same. Queryable which lets you natural language search your photos on device on iOS and predates most of the current AI craze (2022) and also apple adding this themselves to photos:\nhttps://queryable.app/ (https://queryable.app/)",
+          "score": 0,
+          "time": 1791939217,
+          "parent": "50080275"
+        },
+        {
+          "id": "50081201",
+          "author": "seemaze",
+          "body": "Makes me want to play around with the nemotron finance[0] fine tune released a while back..\n[0]https://fastino.ai/blog/fastino-nemotron-3-5-lightning-finan... (https://fastino.ai/blog/fastino-nemotron-3-5-lightning-finance-and-healthcare)",
+          "score": 0,
+          "time": 1791940584,
+          "parent": "50080275"
+        },
+        {
+          "id": "50080535",
+          "author": "nico",
+          "body": "Very cool. What does it use the model for? Could you replace it with something lighter, like some classifiers[0]? Or do you need the chat? Besides the chat, what other tasks is the model used for? Thank you!\n0: https://jeffyclassify.com/blog/when-llms-fail-at-classificat... (https://jeffyclassify.com/blog/when-llms-fail-at-classification/)",
+          "score": 0,
+          "time": 1791935173,
+          "parent": "50080275"
+        },
+        {
+          "id": "50081196",
+          "author": "tantalor",
+          "body": "This is the most confusing product page I've ever seen. What is it even trying to tell me?",
+          "score": 0,
+          "time": 1791940545,
+          "parent": "50080275"
+        },
+        {
+          "id": "50082173",
+          "author": "haisin5555",
+          "body": "You have a free budgeting app for Mac? Can you have as an app so I can download it in my iPhone? Can Pulse Local connect to my bank app and automatically records my spendings?\nAlso am curious about your reasoning behind usage of Qwen3.0 model as well!",
+          "score": 0,
+          "time": 1791949814,
+          "parent": "50080275"
+        },
+        {
+          "id": "50082059",
+          "author": "herf",
+          "body": "Plaid is the main risk - if they were hacked, that's way worse than a log of my AI queries. What's exciting with LLMs is the possibility to do classification much better.",
+          "score": 0,
+          "time": 1791948852,
+          "parent": "50080275"
+        },
+        {
+          "id": "50082298",
+          "author": "LewisOrton",
+          "body": "after a “not sure,” how often does reprhasing get a correct answer on the next try/do users give up? retries could make a simple lookup surprisingly slow?",
+          "score": 0,
+          "time": 1791951130,
+          "parent": "50080275"
+        },
+        {
+          "id": "50081097",
+          "author": "snehesht",
+          "body": "Congrats on launching, I’m working on a similar idea with local models.",
+          "score": 0,
+          "time": 1791939745,
           "parent": "50080275"
         }
       ]
@@ -86,8 +142,8 @@
       "title": "Show HN: Wonderhop – A daily game: guess what most people say, or what none do",
       "subreddit": "show-hn",
       "author": "mtlduo",
-      "score": 2,
-      "num_comments": 1,
+      "score": 6,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50080246",
       "url": "https://wonderhop.io/en/",
       "selftext": "Hello HN!\nWonderhop is a small browser game with no account needed to play, everyday there are 4 rounds of 7 quesitons like \"Name a food that a lot of people hate\"\nThe goal depends on the mode: Either gives the answer most people would give, the one no one would give, the oldest answer or the most recent one and there's a leaderboard for the day.\nThe most interesting part of the project was understanding answers that are typed freely and in 10 languages, there was some typos, plurals, nickname, or even duplicate way of sayign the same thing.\nWe needed AI judge that checks it really existes conencted to some API like wikipedia to judge the veracity of each answer really quickly (less than 1s on average)\nThe percentage starts from an estimate but move really fast with the answers of real players. If the list missed a good answer, it gets added as soon as a few different players give it.\n(There are also a lot of secrets and pop culture references added in the game :) )\nA large part of the code was written with AI tools, but the artistic direction the concept and every choice design are human-made\nWe'd love to know if the goal is clear from the very first question while playing and were any good answers rejected unfairly\nWe are a couple of developers from Montreal that like guessing games so we built this in about two month.\nThanks a lot!",
@@ -188,8 +244,8 @@
       "title": "Show HN: Parsimony – an open-source benchmark for how much code AI models add",
       "subreddit": "show-hn",
       "author": "lasu",
-      "score": 41,
-      "num_comments": 3,
+      "score": 65,
+      "num_comments": 12,
       "permalink": "https://news.ycombinator.com/item?id=50077619",
       "url": "https://parsimony.lasu.dev/",
       "selftext": "Existing benchmarks measure solve rate and token output/cost, but don't punish excess code, which makes a codebase harder to work with in the long term. I wanted to measure this since it matters most for long-term projects.\nMethod: it takes the patches that benchmarks already publish (DeepSWE, SWE-bench Verified, SWE-bench Live) and counts \"coding units\": syntax elements like statements, calls, names and literals. I didn't use lines of code, so cramming code isn't rewarded. Deleted code is subtracted, so it measures net units.\nGPT-6 and Claude 5.5 have no public patches yet, so I ran them myself on 3–10 tasks on my own subscriptions (shown as faded circles, not ranked).\nAny feedback or model contributions are welcome, especially public patch exports for newer models.\nGitHub: https://github.com/La5u/Parsimony (https://github.com/La5u/Parsimony)\nNot affiliated with any of the benchmarks.",
@@ -199,11 +255,51 @@
       "created_at": "2026-10-13T19:50:31+00:00",
       "comments_data": [
         {
+          "id": "50081136",
+          "author": "Vakaiser",
+          "body": "Does anyone have ways to reduce the complexity and verbosity of code generated via agents?\nAnything that can increase code quality would help.",
+          "score": 0,
+          "time": 1791939968,
+          "parent": "50077619"
+        },
+        {
+          "id": "50081658",
+          "author": "smilekzs",
+          "body": "On a related note: Would love to see cyclomatic complexity as a supporting metric for readability. I increasingly find AI-adjacent and AI-written code suffering from this.",
+          "score": 0,
+          "time": 1791945142,
+          "parent": "50077619"
+        },
+        {
           "id": "50078803",
           "author": "fastball",
           "body": "On the one hand, I absolutely agree that we should try to measure and reduce verbosity that LLMs are slopping into our codebases.\nOn the other hand, the fact that Astra is \"winning\" this bench is not great signal for me, since imo Astra produces basically unreadable code. Astra plays code golf. My own revealed preference is that I'd rather have the excessive comments and tests of Claude rather than the inscrutability of Astra.",
           "score": 0,
           "time": 1791925756,
+          "parent": "50077619"
+        },
+        {
+          "id": "50082128",
+          "author": "chengjunsuger",
+          "body": "Nice project! But I wonder does less coding actually means less work for whoever reviews it?",
+          "score": 0,
+          "time": 1791949456,
+          "parent": "50077619"
+        },
+        {
+          "id": "50082228",
+          "author": "KasianFranks",
+          "body": "Nobody is going to care about how much code an AI system generates in the very near future, some even now, once everyone understands the scale at which a vector space truly operates at. Complexity is not much of an issue for an AI system.",
+          "score": 0,
+          "time": 1791950388,
+          "parent": "50077619"
+        },
+        {
+          "id": "50081234",
+          "author": "Xeoncross",
+          "body": "At this point, I really want all AI benchmarks to use the best coding/writing model that normal people can run locally.\nFor now that seems to be Qwen 3.8 27B that requires ~28GB of RAM (Q4) which is pretty doable for anyone with a beefy GPU or slightly-above-average mac.\nI want to know how close open weights (open models) are to all these leading commercial models. Yes, yes, local models aren't as good, but that distance is closing as local models are already better than what we had just over a year ago in many cases.\nSame with Text-to-Image generation (Flux 2, Z-Image-Turbo, etc..) or text-to-speech (Parakeet, Whisper, etc..).",
+          "score": 0,
+          "time": 1791940911,
           "parent": "50077619"
         }
       ]
@@ -300,8 +396,8 @@
       "title": "Show HN: Guitoro, a virtual guitar you strum with your keyboard",
       "subreddit": "show-hn",
       "author": "talccc",
-      "score": 243,
-      "num_comments": 78,
+      "score": 385,
+      "num_comments": 101,
       "permalink": "https://news.ycombinator.com/item?id=50077020",
       "url": "https://guitoro.com/",
       "selftext": "Guitoro is a free browser guitar using recordings of real instruments. You can strum with your keyboard, mouse, or touchscreen, choose acoustic, classical, electric guitar or bass, and see chord fingering and each stroke. Song practice can be slowed to 20%, and there are free chord tools and tuners. No signup or download.\n1 minute video demo: https://youtu.be/DtcluMLdSgs (https://youtu.be/DtcluMLdSgs)\nI would love feedback on how the strumming feels and sounds.",
@@ -311,35 +407,11 @@
       "created_at": "2026-10-13T19:11:48+00:00",
       "comments_data": [
         {
-          "id": "50079394",
-          "author": "pseudosavant",
-          "body": "Very well done. Looks and sounds great.\nA couple of UX thoughts I had while using it:\n1. Since the chords are all within a specific key, have you considered using the numbers 1 through 7 to play the respective chords? That way playing a 1-4-5 or a 2-5-1 would be very intuitive?\n2. Have you considered using modifier keys (shift, ctrl, alt) to control whether a chord is strummed down versus up (e.g. pressing A would be down, but Shift+A would be up) or major/minor (A would be major, Alt+A would be minor)? I guess Ctrl could be a 7th chord modifier too.\nJust some thoughts. Great tool!",
+          "id": "50083355",
+          "author": "xdertz",
+          "body": "Defaulting what is called \"player view\" on this page is a very odd choice. All learning material is displayed with the low string at the bottom (or \"tab view\" on the page). All guitar emulators I have ever used have that view as default.\nThis is also how it looks when you hold a guitar, so I have no idea where this \"player view\" comes from. If I take my guitar and lay it on the table in front of me, the low strings are closest to me not farthest.",
           "score": 0,
-          "time": 1791928347,
-          "parent": "50077020"
-        },
-        {
-          "id": "50080300",
-          "author": "vunderba",
-          "body": "Nice job! The stock arp patterns are a nice touch. I’m surprised no one in here mentioned the original Smart Guitar instrument in GarageBand on the iPad [1]. It actually works in a very similar way, and feels very satisfying to use.\nIt basically gives you the chords for a given key signature aligned verticall, and then you can use your finger to pick or strum - it even lets you do string bends.\nQuestion: OOC, where did you source the string sample recordings from?\n[1] - https://imgur.com/a/6jQiUJp (https://imgur.com/a/6jQiUJp)",
-          "score": 0,
-          "time": 1791933323,
-          "parent": "50077020"
-        },
-        {
-          "id": "50078477",
-          "author": "orliesaurus",
-          "body": "I just spent 30 minutes playing with this. It's incredible, well done to the author!",
-          "score": 0,
-          "time": 1791924374,
-          "parent": "50077020"
-        },
-        {
-          "id": "50080226",
-          "author": "talccc",
-          "body": "Thanks for all the amazing feedback, everyone. I really appreciate it, and I'm writing all your notes down.\nIt would really help if you mention whether you tested it on mobile or desktop.",
-          "score": 0,
-          "time": 1791932897,
+          "time": 1791960214,
           "parent": "50077020"
         },
         {
@@ -351,11 +423,51 @@
           "parent": "50077020"
         },
         {
-          "id": "50080162",
-          "author": "slinkydink",
-          "body": "I've been playing for years, and so happy to see an app so intuitive. The only thing is that I use several non standard tunings none of them are found in the drop down..... I was so looking to put my own custom tunings into this app, since its the best designed guitar app that I've seen in a while. I would love to use this over OOlimo (which allows your own tunings) I'll have to wait and see if this is actually a feature you would consider here. Thanks for sharing, it's great!",
+          "id": "50083213",
+          "author": "sensecall",
+          "body": "Amazing work! One of those things I wish I’d thought of.\nI’d love support for multi touch on tablet. Currently zooms out but I expected it to pick multiple strings.",
           "score": 0,
-          "time": 1791932490,
+          "time": 1791959257,
+          "parent": "50077020"
+        },
+        {
+          "id": "50082531",
+          "author": "animalrap",
+          "body": "I've been playing guitar for 20 years and this is incredible. Impressed by the feat of getting all this in browser, and the quality as a learning tool.\nMy dad had a stroke years ago and hasn't been able to hold a guitar, but I showed him this tonight and he thought it was awesome. Excited to see what he does with it.",
+          "score": 0,
+          "time": 1791953563,
+          "parent": "50077020"
+        },
+        {
+          "id": "50079394",
+          "author": "pseudosavant",
+          "body": "Very well done. Looks and sounds great.\nA couple of UX thoughts I had while using it:\n1. Since the chords are all within a specific key, have you considered using the numbers 1 through 7 to play the respective chords? That way playing a 1-4-5 or a 2-5-1 would be very intuitive?\n2. Have you considered using modifier keys (shift, ctrl, alt) to control whether a chord is strummed down versus up (e.g. pressing A would be down, but Shift+A would be up) or major/minor (A would be major, Alt+A would be minor)? I guess Ctrl could be a 7th chord modifier too.\nJust some thoughts. Great tool!",
+          "score": 0,
+          "time": 1791928347,
+          "parent": "50077020"
+        },
+        {
+          "id": "50081244",
+          "author": "Meleagris",
+          "body": "Holy smokes!!! It has just occurred to me that anyone who can type on a keyboard knows how to play an instrument. Your keyboard is the instrument.\nWith solo mode, I asked ChatGPT to translate the songs to keyboard notes, and I was just typing the notes as if I was doing a typing test, and I was playing songs. lol the easiest \"sight-reading\" I've ever done.\nIs this the every persons instrument?\nHere is Happy Birthday in solo mode:\nE E T E I U\nE E T E P I\nE E B X I U T\nC C X I P I\nCrazy unlock!",
+          "score": 0,
+          "time": 1791941028,
+          "parent": "50077020"
+        },
+        {
+          "id": "50082799",
+          "author": "rossant",
+          "body": "If you want to see the difference between vibe coding and masterful AI-assisted coding, this is it.",
+          "score": 0,
+          "time": 1791955931,
+          "parent": "50077020"
+        },
+        {
+          "id": "50080226",
+          "author": "talccc",
+          "body": "Thanks for all the amazing feedback, everyone. I really appreciate it, and I'm writing all your notes down.\nIt would really help if you mention whether you tested it on mobile or desktop.",
+          "score": 0,
+          "time": 1791932897,
           "parent": "50077020"
         },
         {
@@ -367,43 +479,27 @@
           "parent": "50077020"
         },
         {
-          "id": "50078229",
-          "author": "waerhert",
-          "body": "Very well done! When adding a chord on a key, I'm missing a small preview of the chords as they appear in the autocomplete list, or would be nice to be able to assemble a chord on a fretboard view. What made you start work on this app? And what is the logic behind how the chords are laid out on the keyboard?",
+          "id": "50078477",
+          "author": "orliesaurus",
+          "body": "I just spent 30 minutes playing with this. It's incredible, well done to the author!",
           "score": 0,
-          "time": 1791923353,
+          "time": 1791924374,
           "parent": "50077020"
         },
         {
-          "id": "50077918",
-          "author": "Rygian",
-          "body": "Why does it show a left-handed guitar on Player view, and a right-handed one on Audience view?",
+          "id": "50081607",
+          "author": "tibbon",
+          "body": "That's one of the best guitar UIs I've seen on a computer.",
           "score": 0,
-          "time": 1791922169,
+          "time": 1791944723,
           "parent": "50077020"
         },
         {
-          "id": "50079377",
-          "author": "MartijnBraam",
-          "body": "The chord names not matching the keys on my keyboard are throwing me off a lot on this, but that's difficult to get anything other than major chords. Maybe it would be playable by using modifiers to shift to minor and 7th etc.\nAnother idea I had was being able to bend by holding two keys like monophonic synths.",
+          "id": "50081684",
+          "author": "jdironman",
+          "body": "Looking forward to your acquihire by Guitar Center! Makes me want to dust off my old acoustic after work and practice some more.",
           "score": 0,
-          "time": 1791928234,
-          "parent": "50077020"
-        },
-        {
-          "id": "50079588",
-          "author": "hannofcart",
-          "body": "This is very nice. One suggestion based on a guitar related hobby webapp I built myself: fretboard renders in potrait probably makes for nicer ux.\nMy tool does not focus on strumming at all as this one does though.\nNice work. Am having fun with it.",
-          "score": 0,
-          "time": 1791929285,
-          "parent": "50077020"
-        },
-        {
-          "id": "50080326",
-          "author": "smnplk",
-          "body": "Looks great, but recordings are choppy for me, i dont know what is wrong. I am using Brave browser.",
-          "score": 0,
-          "time": 1791933585,
+          "time": 1791945300,
           "parent": "50077020"
         }
       ]
@@ -466,8 +562,8 @@
       "title": "Show HN: Deslop – Oxlint rules for AI-generated TypeScript",
       "subreddit": "show-hn",
       "author": "maharshi365",
-      "score": 25,
-      "num_comments": 6,
+      "score": 28,
+      "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=50075809",
       "url": "https://github.com/maharshi365/deslop",
       "selftext": "Catches unsafe types, duplicate code, and low-value tests.",
@@ -485,11 +581,11 @@
           "parent": "50075809"
         },
         {
-          "id": "50080801",
-          "author": "tmsh",
-          "body": "I agree https://github.com/dmmulroy/anti-slop (https://github.com/dmmulroy/anti-slop) is very cool (heard about it via https://www.youtube.com/watch?v=ix1qQK1IvmA (https://www.youtube.com/watch?v=ix1qQK1IvmA)).\nBut what does this add beyond that?",
+          "id": "50077565",
+          "author": "aleksiy123",
+          "body": "I really believe having good rules like this can make a big difference in llm quality. So this is awesome thanks.\nI’m personally using both oxlint for typescript and my own vibe coded tool for doing cross language rules ast rules and llm hook outputs.\nAnd recently added vale as well.",
           "score": 0,
-          "time": 1791937114,
+          "time": 1791920778,
           "parent": "50075809"
         },
         {
@@ -501,11 +597,11 @@
           "parent": "50075809"
         },
         {
-          "id": "50077565",
-          "author": "aleksiy123",
-          "body": "I really believe having good rules like this can make a big difference in llm quality. So this is awesome thanks.\nI’m personally using both oxlint for typescript and my own vibe coded tool for doing cross language rules ast rules and llm hook outputs.\nAnd recently added vale as well.",
+          "id": "50080801",
+          "author": "tmsh",
+          "body": "I agree https://github.com/dmmulroy/anti-slop (https://github.com/dmmulroy/anti-slop) is very cool (heard about it via https://www.youtube.com/watch?v=ix1qQK1IvmA (https://www.youtube.com/watch?v=ix1qQK1IvmA)).\nBut what does this add beyond that?",
           "score": 0,
-          "time": 1791920778,
+          "time": 1791937114,
           "parent": "50075809"
         }
       ]
@@ -517,8 +613,8 @@
       "title": "Show HN: XY Music Notation",
       "subreddit": "show-hn",
       "author": "jmole",
-      "score": 45,
-      "num_comments": 38,
+      "score": 66,
+      "num_comments": 50,
       "permalink": "https://news.ycombinator.com/item?id=50075665",
       "url": "https://music.xy.dev/",
       "selftext": "I've been playing around with a new kind of isomorphic music keyboard that uses a base-12 notation, and wanted some sheet music to learn some new music for it.\nThe idea is to represent each note in 12-TET as a number, so N ∈ (0,1,2,3,4,5,6,7,8,9,X,Y).\nI used codex to build a music score rendering backend based on MuseScore with custom note heads that display the pitch class of each note.\nI've found it pretty helpful for learning how to play my own instrument, so wanted to share in case anyone else was interested.",
@@ -528,11 +624,19 @@
       "created_at": "2026-10-13T17:43:05+00:00",
       "comments_data": [
         {
-          "id": "50077599",
-          "author": "munch-o-man",
-          "body": "I like the technical fun of it, but no musician is ever going to give a crap about this. We have hundreds of years of the evolution of music notation and it is pretty comprehensive. Just because there are only 12 unique notes in western music doesn't mean base-12 to notate it makes sense....that completely strips out context of what you are playing.\nFor example...in the key of aminor when you make the five chord major to create a resolution back to i (aminor) you raise the 7th scale degree. That means the G becomes G#...Ab is the same pitch but writing it that way is wrong. An EMajor chord is spelled E G# B, not E Ab B. Now if you spell that as 9 0 4 you have stripped all context out of the music. Musicians aren't just player pianos, they analyze the harmonic structure of the music the inform phrasing, shape, tone, volume, and pacing (acelarando, decelerando, ritardando, etc).\nWhenever I see something like this trying to reinvent standard notation I feel like it is usually from somebody who can kind of play an instrument but can't read music or can't read it well because they haven't put the years of work it takes to be a proficient sight reader and they haven't studied harmony/music-theory.\nOne of the most important things about musical standard notation is that it is - standard - you can hand it to any musician on any instrument and they can make sense of it quickly. It is a skill that takes a lot of practice but it is what allows musicians who have never met each other to be hired for a gig and show up and play together without ever rehearsing.\nThis approach won't teach you to \"see\" music either. It forces pure mechanical number memory....you won't see harmony and be able to quickly notice that - for example - a line is just moving the chord up in inversions and since you know harmony and your chords you can sight read that part without ever even reading every individual note.\nBut still a cool idea from a hobby perspective.",
+          "id": "50079212",
+          "author": "TonyTrapp",
+          "body": "Great video by Tantacrul about all the other previous attempts at \"fixing\" music notation, well worth a watch: https://www.youtube.com/watch?v=Eq3bUFgEcb4 (https://www.youtube.com/watch?v=Eq3bUFgEcb4)",
           "score": 0,
-          "time": 1791920948,
+          "time": 1791927504,
+          "parent": "50075665"
+        },
+        {
+          "id": "50079090",
+          "author": "altruios",
+          "body": "This is a system that indicates the lack of information about why the current system (which, admittedly is a mess) is the way it is. This is removing Chesterson's fence without understand why it's there.\nA point: one improvement to this system is if the tonic note is always 1. I don't hate the idea of number inside the notes, but as it is currently, its not only useless, but actively making things more difficult to parse.\nHaving the tonic, the 3rd, the 5th, the 7th... that might make things easier to sight-read. Might.\nThe current notation is a hodge-podge of compromises of rhythm, legibility, page to music ratio (efficiency of page turns), pitch range, and dynamics. Nothing in music can ever be 'perfect' (the cosmic joke). And without the history of how any why the current system came to be, 'disrupters' are just people who don't know their own ignorance. Even still, sometimes there is value added. Rare as that is.",
+          "score": 0,
+          "time": 1791926987,
           "parent": "50075665"
         },
         {
@@ -552,27 +656,11 @@
           "parent": "50075665"
         },
         {
-          "id": "50078188",
-          "author": "munificent",
-          "body": "So many software nerds get nerd-sniped into trying to invent their own music notation. I have almost succumbed to that temptation myself. Someone should make a version of https://www.mcmillen.dev/language_checklist.html (https://www.mcmillen.dev/language_checklist.html) for this.",
+          "id": "50082834",
+          "author": "vitaly-pavlenko",
+          "body": "I'm solving a similar problem: to build a 12-TET isomorphic music notation: https://rawl.rocks/ (https://rawl.rocks/)",
           "score": 0,
-          "time": 1791923204,
-          "parent": "50075665"
-        },
-        {
-          "id": "50079090",
-          "author": "altruios",
-          "body": "This is a system that indicates the lack of information about why the current system (which, admittedly is a mess) is the way it is. This is removing Chesterson's fence without understand why it's there.\nA point: one improvement to this system is if the tonic note is always 1. I don't hate the idea of number inside the notes, but as it is currently, its not only useless, but actively making things more difficult to parse.\nHaving the tonic, the 3rd, the 5th, the 7th... that might make things easier to sight-read. Might.\nThe current notation is a hodge-podge of compromises of rhythm, legibility, page to music ratio (efficiency of page turns), pitch range, and dynamics. Nothing in music can ever be 'perfect' (the cosmic joke). And without the history of how any why the current system came to be, 'disrupters' are just people who don't know their own ignorance. Even still, sometimes there is value added. Rare as that is.",
-          "score": 0,
-          "time": 1791926987,
-          "parent": "50075665"
-        },
-        {
-          "id": "50079212",
-          "author": "TonyTrapp",
-          "body": "Great video by Tantacrul about all the other previous attempts at \"fixing\" music notation, well worth a watch: https://www.youtube.com/watch?v=Eq3bUFgEcb4 (https://www.youtube.com/watch?v=Eq3bUFgEcb4)",
-          "score": 0,
-          "time": 1791927504,
+          "time": 1791956266,
           "parent": "50075665"
         },
         {
@@ -584,11 +672,19 @@
           "parent": "50075665"
         },
         {
-          "id": "50076615",
-          "author": "skybrian",
-          "body": "I think you’d be better off with something compatible with an existing system. Perhaps start with nashville numbering and add accidentals?\nhttps://en.wikipedia.org/wiki/Nashville_Number_System (https://en.wikipedia.org/wiki/Nashville_Number_System)",
+          "id": "50081330",
+          "author": "jessetemp",
+          "body": "I really enjoy all the alternative music notation projects that popup on HN. Based on the comments, I think this one could use a page explaining the notation and instrument before diving into sheet music. Also looks pretty difficult to use with pen and paper but I'm probably in the minority there",
           "score": 0,
-          "time": 1791917106,
+          "time": 1791941852,
+          "parent": "50075665"
+        },
+        {
+          "id": "50078188",
+          "author": "munificent",
+          "body": "So many software nerds get nerd-sniped into trying to invent their own music notation. I have almost succumbed to that temptation myself. Someone should make a version of https://www.mcmillen.dev/language_checklist.html (https://www.mcmillen.dev/language_checklist.html) for this.",
+          "score": 0,
+          "time": 1791923204,
           "parent": "50075665"
         },
         {
@@ -600,19 +696,19 @@
           "parent": "50075665"
         },
         {
+          "id": "50076615",
+          "author": "skybrian",
+          "body": "I think you’d be better off with something compatible with an existing system. Perhaps start with nashville numbering and add accidentals?\nhttps://en.wikipedia.org/wiki/Nashville_Number_System (https://en.wikipedia.org/wiki/Nashville_Number_System)",
+          "score": 0,
+          "time": 1791917106,
+          "parent": "50075665"
+        },
+        {
           "id": "50077355",
           "author": "sfpk",
           "body": "I was working on a similar idea, I grabbed 2x PartyKeys and I was going to map each key to a finger ( left-pinky = orange ), but the API is such that -- if you have two boards (72 keys) and send a msg to a single board ( 1st key = orange ) -- it lights up both 1st keys (there's no way to address a single board). Was disappointing.",
           "score": 0,
           "time": 1791920055,
-          "parent": "50075665"
-        },
-        {
-          "id": "50079904",
-          "author": "JennyWeston",
-          "body": "I love this video and it's explanation of music notation, attempts to improve music notation, and a long history of failure. TL;DR Efficiency, high context, and compact notation.\nhttps://www.youtube.com/watch?v=Eq3bUFgEcb4 (https://www.youtube.com/watch?v=Eq3bUFgEcb4)\nThe video is excellent.",
-          "score": 0,
-          "time": 1791931056,
           "parent": "50075665"
         },
         {
@@ -629,11 +725,11 @@
       "source": "hackernews",
       "stream": "show-hn",
       "id": "50074909",
-      "title": "Show HN: How Random Are You?",
+      "title": "Show HN: How random are you?",
       "subreddit": "show-hn",
       "author": "vunderba",
-      "score": 70,
-      "num_comments": 40,
+      "score": 132,
+      "num_comments": 71,
       "permalink": "https://news.ycombinator.com/item?id=50074909",
       "url": "https://lab.specr.net/rigged-draw/",
       "selftext": "",
@@ -651,11 +747,27 @@
           "parent": "50074909"
         },
         {
+          "id": "50081810",
+          "author": "m463",
+          "body": "Dilbert\n\"Over here we have our random number generator.\"\nhttps://web.archive.org/web/20230305130159im_/https://assets... (https://web.archive.org/web/20230305130159im_/https://assets.amuniversal.com/321a39e06d6401301d80001dd8b71c47)",
+          "score": 0,
+          "time": 1791946258,
+          "parent": "50074909"
+        },
+        {
           "id": "50077108",
           "author": "steve_adams_86",
           "body": "Rather than attempt to be random, knowing that I'm not, I wanted to see how well it can predict Math.random:\n setInterval(() => {\n const num = Math.round(Math.random() * 10);\n const ball = document.querySelector(`.typed-pad .ball-${num}`);\n if (ball) {\n ball.click();\n }\n }, 1000);\n\nThis isn't very interesting, but it scratched an itch I had to see what would happen.\n The house's record\n\n The house called 18 of your 190 scored numbers: 9%.\n\n Blind guessing would average about 21.1 of them (11%).\n\n Only 1 of the 206 people in a psychology study was more random than you. The house found you extremely hard to read.\n\nI really want to know who was more random than a RNG",
           "score": 0,
           "time": 1791919072,
+          "parent": "50074909"
+        },
+        {
+          "id": "50082972",
+          "author": "riffraff",
+          "body": "> The house called 3 of your 27 scored numbers: 11%.\n> Blind guessing would average about 3.0 of them (11%).\nAdmittedly I gave up before the 30 threshold but I think I did well enough at \"beating the house\"\nEdit: tried again, 14/118, which is 12%. Maybe it's because I'm typing, and that's easier to do that speaking up.",
+          "score": 0,
+          "time": 1791957275,
           "parent": "50074909"
         },
         {
@@ -667,6 +779,14 @@
           "parent": "50074909"
         },
         {
+          "id": "50082080",
+          "author": "tibbar",
+          "body": "Many years ago, as a side project to help me apply to tech companies, I made this little site [0] where the premise is trying to pick the number that you think other people won't pick very often. I still think it's pretty neat.\nAlso, in part because of this project, I got to go from being unemployed in my hometown in the South to working in SF on some pretty neat projects. It's a good memory.\n[0] https://www.humanrandomness.com/ (https://www.humanrandomness.com/)",
+          "score": 0,
+          "time": 1791948988,
+          "parent": "50074909"
+        },
+        {
           "id": "50075513",
           "author": "pavel_lishin",
           "body": "Is anyone sufficiently paranoid that their first thought was, \"Are you going to train a model on my voice?\"\n(Yes, I saw the \"type the numbers\" option.)",
@@ -675,11 +795,11 @@
           "parent": "50074909"
         },
         {
-          "id": "50080266",
-          "author": "tchalla",
-          "body": "> The house called 1 of your 32 scored numbers: 3%. Blind guessing would average about 3.6 of them (11%). Only 1 of the 206 people in a psychology study was more random than you. The house found you extremely hard to read.",
+          "id": "50083080",
+          "author": "DylanMerigaud",
+          "body": "Too many alternations is exactly how people give themselves away.",
           "score": 0,
-          "time": 1791933142,
+          "time": 1791958293,
           "parent": "50074909"
         },
         {
@@ -691,11 +811,11 @@
           "parent": "50074909"
         },
         {
-          "id": "50080239",
-          "author": "christophilus",
-          "body": "> Only 7 of the 206 people in a psychology study were more random than you. The house found you extremely hard to read.\nI started just lagging the guesses of the machine, and it never seemed to catch on.",
+          "id": "50081947",
+          "author": "ehwa37",
+          "body": "The house called 9 of your 117 scored numbers: 8%.\nBlind guessing would average about 13.0 of them (11%).\nNone of the 206 people in a psychology study were more random than you. The house found you extremely hard to read.\nNice!",
           "score": 0,
-          "time": 1791932958,
+          "time": 1791947561,
           "parent": "50074909"
         },
         {
@@ -707,35 +827,11 @@
           "parent": "50074909"
         },
         {
-          "id": "50075971",
-          "author": "alwa",
-          "body": "I found it interesting when I felt my focus shift from the number-generating task to noticing (and responding to) the house’s guesses.\nAs soon as I noticed it repeating its guess, I had a good long run of adversarially avoiding that number… it’s kind of fun being on the machine side of the slot-machine-type racket!",
+          "id": "50080266",
+          "author": "tchalla",
+          "body": "> The house called 1 of your 32 scored numbers: 3%. Blind guessing would average about 3.6 of them (11%). Only 1 of the 206 people in a psychology study was more random than you. The house found you extremely hard to read.",
           "score": 0,
-          "time": 1791914648,
-          "parent": "50074909"
-        },
-        {
-          "id": "50076441",
-          "author": "maidaman",
-          "body": "The first time I did badly. But the second time I got really far by deciding on a number instinctively and then picking something next to it. Maybe we instinctively pick similar numbers, but if we fight our instincts we end up with something truly random.",
-          "score": 0,
-          "time": 1791916484,
-          "parent": "50074909"
-        },
-        {
-          "id": "50076912",
-          "author": "akshitgaur2005",
-          "body": "Alternating and advancing from both ends seems to work, it calls n-1, and n+1 correctly if the previous guess was n, but got no calls in a sequence like - 1, 8, 3, 7, 4, 7, 1, 7, 3, 8, etc",
-          "score": 0,
-          "time": 1791918267,
-          "parent": "50074909"
-        },
-        {
-          "id": "50078171",
-          "author": "Francute",
-          "body": "The house called 19 of your 190 scored numbers and only 2 people were more random than me.... Hmmm",
-          "score": 0,
-          "time": 1791923144,
+          "time": 1791933142,
           "parent": "50074909"
         }
       ]
@@ -764,7 +860,7 @@
       "title": "Show HN: Sayso, free open source dictation for Mac, Windows, and Linux",
       "subreddit": "show-hn",
       "author": "watzon",
-      "score": 14,
+      "score": 18,
       "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=50073755",
       "url": "https://github.com/watzon/sayso",
@@ -799,7 +895,7 @@
       "title": "Show HN: Knitting – A shared-memory concurrency runtime for Node.js,Bun,and Deno",
       "subreddit": "show-hn",
       "author": "mimiMonads",
-      "score": 8,
+      "score": 10,
       "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50073112",
       "url": "https://js.knitting.run/",
@@ -928,7 +1024,7 @@
       "title": "Show HN: Stream live open data in two commands",
       "subreddit": "show-hn",
       "author": "gardensalad",
-      "score": 9,
+      "score": 12,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50071200",
       "url": "https://docs.hypermass.io/docs/cli/",
@@ -1193,8 +1289,8 @@
       "title": "Show HN: Spotatui, a Spotify TUI/GUI without web API rate limits",
       "subreddit": "show-hn",
       "author": "LargeModGames",
-      "score": 45,
-      "num_comments": 8,
+      "score": 68,
+      "num_comments": 14,
       "permalink": "https://news.ycombinator.com/item?id=50070010",
       "url": "https://github.com/LargeModGames/spotatui",
       "selftext": "About 11 months ago i revived the amazing but unfortunately unmaintained spotify-tui. Since then I have been working on it almost non stop, finding a lot of problems on the way.\nOne of the main issues I ran into were the Spotify web API rate limits. Third party clients like spotatui are dependent on a developer app made in the Spotify developer dashboard, which get rate limited a lot and Spotify has slowly been deprecating endpoints from it. The workaround for this used to be using a shared client id from ncspot but unfortunately that got rate limited too. This is when i started adding other playback sources, including YouTube, Navidrome/Subsonic, Internet radio with +- 30.000 stations, local files, Qobuz for lossless audio and Apple Music for macOS only where it controls the music app remotely.\nI fixed both the deprecated endpoints and the rate limits with one solution. It still uses librespot in the back, my spotatui specific fork, but gets all data from it instead of only playback. The data comes from the internal API of the official clients, that API gives metadata, playlists, the user library, devices, lyrics and audio analysis. For searching it uses Pathfinder, the internal GraphQL API.\nThere are no web API rate limits because there is no shared app quota. Every user uses their own session as if it was the official client. The only potential problem is that Spotify does not document this API so any change on their side would break it. I intend to fix any of those issues as soon as they pop up.\nIt all started as a TUI back in 2019 but since then I've added a GUI to it too. The GUI is still a bit behind the TUI in terms of features, it only ships Spotify for now, but full parity between the TUI and GUI is coming soon. After that full parity with the official client is next. That is also why I made the GUI looks almost the same as the official client. That way its easier for me and users to find missing features.\nSpotatui also has lua scripting support, a optional Web companion on spotatui.com, and if you have a AI coding agent like ChatGPT codex or Claude Code you can enable the MCP tools, which lets AI become your personal DJ just by talking to it.\nIts written in Rust, uses ratatui for the terminal UI and Tauri 2 for the GUI. The Rust core starts a small web server with localhost that only your pc can reach which the GUI then serves. Both frontends share the same playback logic, the same login and the same Spotify code. The only difference is how you interact with it.\nOn first launch it opens a web browser where you need to login with your Spotify premium account (premium is not optional), that is the whole setup done. I would love any feedback about bugs you encounter or features you would like to see.\nGitHub: https://github.com/LargeModGames/spotatui (https://github.com/LargeModGames/spotatui)\nReleases: https://github.com/LargeModGames/spotatui/releases/latest (https://github.com/LargeModGames/spotatui/releases/latest)\nWebsite: https://spotatui.com/ (https://spotatui.com/)\nThanks to librespot for making this all possible",
@@ -1203,6 +1299,30 @@
       "time": 1791891120,
       "created_at": "2026-10-13T11:32:00+00:00",
       "comments_data": [
+        {
+          "id": "50081580",
+          "author": "epsteingpt",
+          "body": "Upvoting for the name only. Great name.",
+          "score": 0,
+          "time": 1791944450,
+          "parent": "50070010"
+        },
+        {
+          "id": "50081673",
+          "author": "saintfire",
+          "body": "I intend to try this out later in the week, but are you aware ncspot exists?\nI've been using it for a few years now and it solves similar issues, using librespot as well. Never had an issue with rate limiting and such. I do have issues where Spotify breaks the client all the time, which I'd imagine this suffers from as well.",
+          "score": 0,
+          "time": 1791945210,
+          "parent": "50070010"
+        },
+        {
+          "id": "50082703",
+          "author": "fouc",
+          "body": "I bet all the new Omarchy users will really appreciate this one!",
+          "score": 0,
+          "time": 1791955068,
+          "parent": "50070010"
+        },
         {
           "id": "50080072",
           "author": "Retr0id",
@@ -1245,8 +1365,8 @@
       "title": "Show HN: Use your OpenAI subscription to create audiobooks",
       "subreddit": "show-hn",
       "author": "janpmz",
-      "score": 159,
-      "num_comments": 80,
+      "score": 161,
+      "num_comments": 82,
       "permalink": "https://news.ycombinator.com/item?id=50069337",
       "url": "https://pdftomp3.com/connect-ai/",
       "selftext": "",
@@ -1277,14 +1397,6 @@
           "body": "I love using https://convert.to.it/ (https://convert.to.it/) for all of my converting needs; everything is client-side in the browser with over 400 file extension options to choose from.\nSource: https://github.com/p2r3/convert (https://github.com/p2r3/convert)",
           "score": 0,
           "time": 1791898888,
-          "parent": "50069337"
-        },
-        {
-          "id": "50080265",
-          "author": "mier",
-          "body": "I use my hobby app PageHum to read short to medium articles in devices using MLX and Kokoro instead of.\nGive it a try if anyone interested in https://github.com/Mieraidihaimu/pagehum (https://github.com/Mieraidihaimu/pagehum) (Xcode 27+)",
-          "score": 0,
-          "time": 1791933115,
           "parent": "50069337"
         },
         {
@@ -1320,11 +1432,11 @@
           "parent": "50069337"
         },
         {
-          "id": "50071568",
-          "author": "cj00",
-          "body": "How well does it handle pronunciation, especially of things like proper nouns? This has been one of the harder parts I've found. On a financial web site I saw one example where the generated audio pronounced initiates as a noun instead of a verb. It's a subtle difference but can significantly change the meaning if worded wrong.\nI was trying to use TTS to regenerate some old audiobooks and getting names pronounced correctly is pretty hard unless the model supports something like SSML.",
+          "id": "50080265",
+          "author": "mier",
+          "body": "I use my hobby app PageHum to read short to medium articles in devices using MLX and Kokoro instead of.\nGive it a try if anyone interested in https://github.com/Mieraidihaimu/pagehum (https://github.com/Mieraidihaimu/pagehum) (Xcode 27+)",
           "score": 0,
-          "time": 1791898681,
+          "time": 1791933115,
           "parent": "50069337"
         },
         {
@@ -1333,6 +1445,14 @@
           "body": "> Use the AI you already pay for\nI thought this would mean I could use my subscription, as OpenAI/Codex supports this kind of authentication flow, and it's very easy to integrate with that as a service, and users login with the OpenAI authentication flow, or via device codes.\nInstead this asks for an API key, which is very different from \"Use your OpenAI subscription\" and to be honest, I'm not sure how anyone who has a OpenAI subscription could mistake this for such. Has this even been tested once?\nMaybe I missed something obvious, I had a five second look and closed it when it seemed to be outright intentionally misleading.",
           "score": 0,
           "time": 1791888607,
+          "parent": "50069337"
+        },
+        {
+          "id": "50071568",
+          "author": "cj00",
+          "body": "How well does it handle pronunciation, especially of things like proper nouns? This has been one of the harder parts I've found. On a financial web site I saw one example where the generated audio pronounced initiates as a noun instead of a verb. It's a subtle difference but can significantly change the meaning if worded wrong.\nI was trying to use TTS to regenerate some old audiobooks and getting names pronounced correctly is pretty hard unless the model supports something like SSML.",
+          "score": 0,
+          "time": 1791898681,
           "parent": "50069337"
         },
         {
@@ -1644,7 +1764,7 @@
       "title": "Show HN: SolidCraft – Open-Source Parametric CAD in Rust (With MCP Support)",
       "subreddit": "show-hn",
       "author": "bherbruck",
-      "score": 133,
+      "score": 134,
       "num_comments": 45,
       "permalink": "https://news.ycombinator.com/item?id=50064840",
       "url": "https://github.com/bherbruck/solidcraft",
@@ -1687,19 +1807,19 @@
           "parent": "50064840"
         },
         {
-          "id": "50073194",
-          "author": "phkahler",
-          "body": "About a year ago I challenged folks to move solvespace from GTK3 to GTK4. People here were highly skeptical as I was. A couple people tried and the PRs I got were terrible. A few months ago someone did it with Claude and we now have a very nice GTK4 branch which I hope to merge soon. AI has come a long way.",
-          "score": 0,
-          "time": 1791905078,
-          "parent": "50064840"
-        },
-        {
           "id": "50070941",
           "author": "Fabricio20",
           "body": "Interesting, I thought this was part of the *Craft family but that one is called CadCraft. I do prefer the take on using Fusion as the UI base.",
           "score": 0,
           "time": 1791896169,
+          "parent": "50064840"
+        },
+        {
+          "id": "50073194",
+          "author": "phkahler",
+          "body": "About a year ago I challenged folks to move solvespace from GTK3 to GTK4. People here were highly skeptical as I was. A couple people tried and the PRs I got were terrible. A few months ago someone did it with Claude and we now have a very nice GTK4 branch which I hope to merge soon. AI has come a long way.",
+          "score": 0,
+          "time": 1791905078,
           "parent": "50064840"
         },
         {
