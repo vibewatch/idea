@@ -9,6 +9,7 @@ from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
+import yaml
 
 from idea_pipeline.translator.zh import (
     DEFAULT_EFFORT,
@@ -37,6 +38,25 @@ from idea_pipeline.translator.zh import (
     translate_job,
     validate_translation,
 )
+
+
+def test_translation_workflow_keeps_remaining_model_choices() -> None:
+    workflow_path = Path(__file__).resolve().parents[3] / ".github/workflows/translate_zh.yml"
+    workflow = yaml.load(workflow_path.read_text(), Loader=yaml.BaseLoader)
+    model = workflow["on"]["workflow_dispatch"]["inputs"]["model"]
+    assert model["options"] == ["gpt-6-luna", "gpt-6-sol", "grok-4.7", "gpt-5.6-terra"]
+    assert model["default"] == model["options"][0]
+    translate = next(
+        step
+        for step in workflow["jobs"]["translate"]["steps"]
+        if step["name"] == "Translate published reports"
+    )
+    assert "gpt-6-luna) COPILOT_EFFORT=medium ;;" in translate["run"]
+    checked = subprocess.run(
+        ["bash", "-n"], input=translate["run"], text=True, capture_output=True, check=False
+    )
+    assert checked.returncode == 0, checked.stderr
+
 
 SOURCE_REPORT = """# Builder Intelligence Report - 2026-08-05
 
