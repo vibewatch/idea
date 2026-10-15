@@ -1,8 +1,188 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-15T01:01:09.083093+00:00",
+  "last_fetched": "2026-10-15T06:49:39.783954+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50099136",
+      "title": "Show HN: Flipflop, iroh-powered persistent tunnels for filesharing",
+      "subreddit": "show-hn",
+      "author": "andunie",
+      "score": 17,
+      "num_comments": 5,
+      "permalink": "https://news.ycombinator.com/item?id=50099136",
+      "url": "https://github.com/andunieee/flipflop",
+      "selftext": "This is a project that spun from my frustrations of using LocalSend and DashBeam to transfer stuff between devices, and with the extra goal of being fast, trying out the Slint framework and, most importantly, establishing a communication channel with trusted external people that can be left always on.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792038328,
+      "created_at": "2026-10-15T04:25:28+00:00",
+      "comments_data": [
+        {
+          "id": "50100025",
+          "author": "synctext",
+          "body": "Interesting project, towards a phone-2-phone Internet where citizens rule!\nThis Flipflop project relies on the Iroh library for NAT/Firewall puncturing and external address discovery. Connecting two 5G devices, without a coordinating central server is possible, but very hard. Iroh simply relies on a server which you could self-host. Cool stuff, we stress tested it a while ago and it somewhat worked.\nNAT connectivity is unsolved. My university lab conducted one of the bigger puncturing studies a decade ago [1]. Recently, we also bought 40+ or something 4G and 5G SIM cards in Europe for puncturing [2]. My master student traveled Europe by bus to get these local SIM cards. He worked day-and-night to connect these weird symmetric 5G NAT filter boxes and got it working. Simple sync collision and birthday paradox brute force... It all works sometimes, but insufficiently reliable for mass-adoption. You can't build a decentralized social media ecosystem on top. Like Iroh, best to use a central server. So then you have legal liability for your users. Unless an AI agent buys the server fully autonomously using Bitcoin, next years students got that working[3] :-)\n[1] UDP NAT and Firewall Puncturing in the Wild, https://inria.hal.science/hal-01597969v1/document (https://inria.hal.science/hal-01597969v1/document)\n[2] Mass Adoption of NATs: Survey and experiments on carrier-grade NATs, https://arxiv.org/html/2311.04658v2 (https://arxiv.org/html/2311.04658v2)\n[3] Self-replicating seedbox servers using programmable money, https://arxiv.org/abs/2609.05431 (https://arxiv.org/abs/2609.05431)",
+          "score": 0,
+          "time": 1792046112,
+          "parent": "50099136"
+        },
+        {
+          "id": "50100002",
+          "author": "mcoliver",
+          "body": "Can you talk a bit about the performance characteristics? What's the max throughput? How does that change with latency and jitter?",
+          "score": 0,
+          "time": 1792045904,
+          "parent": "50099136"
+        },
+        {
+          "id": "50099862",
+          "author": "cold_boot",
+          "body": "Keeping the tunnel available between sends is the nice part. Once it's set up with someone, you can just use it.",
+          "score": 0,
+          "time": 1792044661,
+          "parent": "50099136"
+        },
+        {
+          "id": "50099872",
+          "author": "StartingAbusine",
+          "body": "Why native code?\nI would think this could be done completely in the browser using WebRTC?",
+          "score": 0,
+          "time": 1792044796,
+          "parent": "50099136"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50098454",
+      "title": "Show HN: My Terminal Themes Web App",
+      "subreddit": "show-hn",
+      "author": "bado",
+      "score": 13,
+      "num_comments": 5,
+      "permalink": "https://news.ycombinator.com/item?id=50098454",
+      "url": "https://news.ycombinator.com/item?id=50098454",
+      "selftext": "Well, after 15 years of saying \"Someday I'll turn this into a web app,\" I finally did it!\nI've been maintaining a popular repo of terminal themes at https://github.com/mbadolato/iTerm2-Color-Schemes (https://github.com/mbadolato/iTerm2-Color-Schemes), and it was finally time to build the app with all the features I wanted!\nSo, the next-gen version is live at https://terminalthemes.com (https://terminalthemes.com)! It currently has over 800 themes, and provides downloads for close to 40 different formats (iTerm, Ghostty, Windows, and many more)\nIt's free for everyone. An account is not needed to browse and download, but registering for an account (free) allows you to vote, bookmark, submit themes, etc.\nI focused on a11y features for those who need it, in addition to adding Find My Theme and other tools to make it easy to find something you like!\nLive terminal and code previews help show a more realistic view of the terminal, as opposed to the ANSI screenshots used at the GitHub repository. Those are still there, for those who like them.\nI would love for you guys to check it out and provide feedback, feature suggestions, whatever!\nAnd a huge thanks to the community of people that have contributed themes, ports to other terminals, and tools to provide conversions between formats over the years.\nOh! And if you've ever contributed themes to the GitHub repo, please register for an account, find your theme(s), and hit the Claim Authorship button!",
+      "is_self": true,
+      "is_video": false,
+      "time": 1792031622,
+      "created_at": "2026-10-15T02:33:42+00:00",
+      "comments_data": [
+        {
+          "id": "50099590",
+          "author": "blackfawn",
+          "body": "Very neat! One thing I noticed is the \"remember\" function doesn't seem to work properly. It seems functional when defaulted to iTerm but when I deselect that and pick some I actually use, the button seems to be disabled as it is unclickable. I imagine the account-based version would help but I haven't tried that yet.",
+          "score": 0,
+          "time": 1792042349,
+          "parent": "50098454"
+        },
+        {
+          "id": "50099292",
+          "author": "manu29d",
+          "body": "Oh my. I have been using that repo and the themes on any new computer I have setup in the past 8-10 years at least (can't remember exactly, this repo is older than my career). I tried finding alternatives. While some worked, I have seen myself coming back to this repo again and again. Thank you for maintaining it for so long.",
+          "score": 0,
+          "time": 1792039860,
+          "parent": "50098454"
+        },
+        {
+          "id": "50099340",
+          "author": "d0utone",
+          "body": "Awesome. I would make the themes much more visible on the main feed so that you can scroll through them on the phone and get a good impression. For me they were way too small so you end up entering every page to get a better glimpse.",
+          "score": 0,
+          "time": 1792040215,
+          "parent": "50098454"
+        },
+        {
+          "id": "50099714",
+          "author": "BaudouinVH",
+          "body": "my humble effort in that direction : https://terminal-theme-studio.pages.dev/ (https://terminal-theme-studio.pages.dev/)",
+          "score": 0,
+          "time": 1792043500,
+          "parent": "50098454"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50098245",
+      "title": "Show HN: TowerPanic – a family party game on a small FastAPI realtime engine",
+      "subreddit": "show-hn",
+      "author": "ms209495",
+      "score": 2,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50098245",
+      "url": "https://towerpanic.com/",
+      "selftext": "I want to show you the game I created recently and tell you whole the story/experience - including backend/latency/scalability.\nYou can try it quickly without an account - I created game demo rooms (EU/US/JP) - links below - just be aware that anyone with a link can access join the game.\nLet's start with short description of the game itself:\nThis is the TowerPanic game - you are standing on one of four towers, during each round some of towers crack, and some of these lean, and finally one of these colapse - you need to watch out to not be on the failing one.\nIt's a multiplayer game for whole family.\nThis can be also used as an icebreaking game - for people in any age.\nThe game is safe for children - no violence, no strangers, no chat, no ads.\nParent creates an account (free 14-day trial, then a paid pass) and starts the game - others join using a QR code or a link.\nBehind the game there is an interesting backend engine - I willdescribe it in a moment.\nLet's start with the history of this whole project:\n- I was playing with asyncio and fastapi\n- As an exercise I created a reliable chat application (multiple rooms, in each room each user can reliably broadcast a message to all other users)\n- I extracted communication to separate layer - creating network/application layer interfaces - 'reliable client' interface for client and 'state machine' interface for the service on server.\n- With these interfaces - I was able to create other service - an 'sgame' (simple game). With verified interfaces and created services (chat, sgame) I was able to ask AI to generate other tools/games - I was impressed by these results\n- the games/tools worked well - I deployed them on a remote server - I was surprised that the latency was very good - almost everything worked smoothly\nI tested the tools and games with my children and one of the game was really great.\nI decided to make this game public - I chose 'TowerPanic' name for it.\nI prepared an account/payment server for this game (as a separate FastAPI application).\nThis was very good choice:\n- the game servers keep rooms only in memory - nothing persistent (rooms have expiration date)\n- the account server keeps all persistent data (it uses database)\nBecause of this split I was able to figure out how to upgrade and scale frontend and backend independently - without significantly impacting users.\nI optimized the communication layer - so that it works in finite memory - only finite number of recent messages is kept, and I sent a full service snapshot (full state) to the lagging clients.\nThe backend process (FastAPI/python) is limited by python GIL (only one core can be utilized) - to utilize all server cores I used HAProxy with consistent hashing to distribute rooms - so that users can be redirected to proper backend process.\nI tested how many rooms a single server can handle - it handles hundreds of active rooms in parallel with no significant latency drop.\nBefore making it public I noticed that latency in other region of world might be higher and this could influence UX - I confirmed this using artificial delay on my remote server.\nI decided to deploy the application in three regions - EU, US, JP - to ensure low latency (below 150ms) in most of the world.\nThe room is created in region closest to the user (best latency from the browser to backend).\nI needed also to prepare some legal documents (terms, privacy, refunds) - thanks to AI this was much easier.\nI'm a backend engineer, frontend/UI/UX were designed by me but code was generated by AI.\nTo summerize all this work:\n- I'm happy that I was able to deliver complete game/complete product\n- I think the whole work took me about 20 evenings - I'm impressed that it was so short - I think this is because the technology I used is popular and all fits well \n- AI was great as a peer (to discuss the options for distributing the load, discuss were to locate servers, or discuss how auth/payments work under the hood, ... - based on this I could choose the best option)\n- AI was great for doing the non work which I'm doing ineffectively (frontend/UI/legal docs).\nThe game is available at https://towerpanic.com/?ref=hn (https://towerpanic.com/?ref=hn)\nI will appreciate your comments/feedback:\nProduct:\n - did you meet any obstacles to play ?\n - how smoothly it worked ? - please specify your location if it didn't work well \n - most important thing/things to improve ?\n - anything else ...\nSolution/Engineering:\n - one thing you will change in the architecture / approach ?\n - anything else ...\nIf you don't want to register you can play directly using below links (2 rooms for each location, max 10 players in each room/board). Choose best location:\nDEMO ROOMS (expire: 19 October 2026 at 22:00 UTC):\nEU:\nhttps://engine.prod-de-1.towerpanic.com/b/hn1/join/AUB3lS3Y_... (https://engine.prod-de-1.towerpanic.com/b/hn1/join/AUB3lS3Y_OgNjOTgIPW-gmT9eL2OENrGKL-EnTRj43dk5YoqEm7nSvu4NsIoRv4vrn0arNX0Jfcqi5SBDCf1grr-2e38H5CwGx9PZKWv1AjTFsmH_FbyguZyelTGEPdx1j36OCKm1Hw)\nhttps://engine.prod-de-1.towerpanic.com/b/hn4/join/ASlA3J43U... (https://engine.prod-de-1.towerpanic.com/b/hn4/join/ASlA3J43Ucjbg0NG3r3AcDjAHiN22get0BmtWbQ-etLMYpLGVBCpUOHqirTJFTZhVo2mtCPj8cM5jNyoV5BQ_aO5HwoalFpiPPM9-yZ3t23HWP7lmwZ5EvXkDMgsk-khMF9TY2cQWb8)\nUS:\nhttps://engine.prod-us-1.towerpanic.com/b/hn2/join/AUCCS_x9d... (https://engine.prod-us-1.towerpanic.com/b/hn2/join/AUCCS_x9dcXsGvvgRRLBfnOzqmPuZbZS5UWCh4InVBZ3X1PF985HDHe9EhQNO56mmcXcKlyE1jZD5CauwzweuEuCtMZu1_5Rba-XnCiVWICHsOfLHCIL-QUqV-uBQi2M5a03FaK_qD8)\nhttps://engine.prod-us-1.towerpanic.com/b/hn5/join/AVQbs_01N... (https://engine.prod-us-1.towerpanic.com/b/hn5/join/AVQbs_01N_sCaDumnrfsEdabzH1Ix4nW_TaLmfN-0FffOsKWBoEcugjtglTOnxg49psdPfA_a_D_FU1EB04q6Hu_qaG1HosdvAS_6586tVsdDIViXMA1tThzljpewJUJ6K2BtMiCEjk)\nJP:\nhttps://engine.prod-jp-1.towerpanic.com/b/hn3/join/Afj600qp5... (https://engine.prod-jp-1.towerpanic.com/b/hn3/join/Afj600qp5jUrC7w2k0h2RuBRYJeqqOCigdw36VfvDBL_a0bCxsTMkot93jmcrkOBHqALZoN28PZZOzdHlv9hw6G7pjweEwGtmk1iVLxf9hNIXLsoPko2coUz5o2KFduQa4PnaqA5tGM)\nhttps://engine.prod-jp-1.towerpanic.com/b/hn6/join/AUpDUuB1W... (https://engine.prod-jp-1.towerpanic.com/b/hn6/join/AUpDUuB1WsSq2GaNUHkRCDdqi1xYmzyKBGqmGpYg7CzsRjI4LyH8xsbWgSuOoE95kaGdRsyah-ImtmzKjkCaONXjNOfsihm9BuroOsLjfIHqPuOoMGtZ6X72qj4e7SRPvkyZuw1EF7o)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792029746,
+      "created_at": "2026-10-15T02:02:26+00:00",
+      "comments_data": [
+        {
+          "id": "50098311",
+          "author": "alparamo",
+          "body": "Works good, I noticed that edge towers are more likely to fall. Maybe just statistic insignificance, maybe the rand algorithm",
+          "score": 0,
+          "time": 1792030323,
+          "parent": "50098245"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50098198",
+      "title": "Show HN: Give (low vRAM) local sLLMs codebase-wide context with SQLite (attempt)",
+      "subreddit": "show-hn",
+      "author": "iamgovindg",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50098198",
+      "url": "https://github.com/govindgcoder/arcKode",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792029369,
+      "created_at": "2026-10-15T01:56:09+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50098087",
+      "title": "Show HN: I'll Call You Later, an interactive 3D browser short film",
+      "subreddit": "show-hn",
+      "author": "Jashwanth_13",
+      "score": 3,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50098087",
+      "url": "https://film.jashtechno.com",
+      "selftext": "I'm Jas (Jashwanth Palleti), and this is a solo project: a short night-time story in a car on a city street, with a red light, traffic, and a phone call. It runs in the browser with no install, built with React and Three.js via React Three Fiber.\nFor the character's movement, I filmed myself on my phone, used AI pose estimation to turn the footage into SMPL-X body motion, then retargeted that onto a 3D character. The movement is my performance, and the voice is mine. The face is a 3D character model, not a scan of me.\nAt the end, you can talk to the character live with your voice, and he answers in character using LiveKit and OpenAI realtime voice. There's also a guide mode at https://film.jashtechno.com/?director (https://film.jashtechno.com/?director) where you can ask how it was made. Talk directly at https://film.jashtechno.com/?talk (https://film.jashtechno.com/?talk). Quality tiers adapt to the device; best on desktop Chrome with headphones. I'd appreciate feedback on the motion, performance on lower-end devices, and the voice conversation.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792028481,
+      "created_at": "2026-10-15T01:41:21+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50097549",
+      "title": "Show HN: GitVolt, open source fast Git GUI (Tauri/CEF)",
+      "subreddit": "show-hn",
+      "author": "francislavoie",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50097549",
+      "url": "https://gitvolt.com/",
+      "selftext": "Hi HN!\nI've been working on this for the past few weeks. I've been using GitKraken for a whole 10 years now, and I've always loved it, but lately I've found it to be a bottleneck, and I haven't seen it improve the features I really care about. So, as many others have done recently, I took a shot at using Opus 5.5 to help me build my dream Git GUI app.\nI did take massive inspiration from GitKraken (the look and feel is a close match since it's what I feel comfortable with) but everything is built from scratch. I made lots of different UX choices that I think help streamline things.\nMost importantly, performance was the key thing to get right at the start. I daily-drive Linux so that was first. I went with Tauri to have a really fast Rust core, and after doing performance testing with WebKitGTK it wasn't good enough. So I'm using Tauri's v3 alpha with CEF (Chromium) which made it easy to get a butter smooth 60fps for scrolling a huge list of commits (whereas I would barely get 10fps in my large repo with GitKraken, with tons of hitching). Everything feels so much faster.\nThe website is best viewed on desktop, I included a fully functional web-only version of the app (mocked git and gitlab) so you can try it out!\nSome cost numbers: ~16 billion tokens, ~$5.4k at API rates, 5.2 full weekly quotas (spread over two 5x plans), ~$120 of subsidized plan cost.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792023959,
+      "created_at": "2026-10-15T00:25:59+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -11,7 +191,7 @@
       "subreddit": "show-hn",
       "author": "zacattackjuice",
       "score": 2,
-      "num_comments": 1,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50097490",
       "url": "https://copytap.netlify.app/",
       "selftext": "Built this little tool a while ago and shared it with a few friends. The feedback I got was great that I decided to release it publicly. It's not just another 'clipboard'... Honestly, would love you guys to try it out! This is my first public release of a product with a price tag! I have 0 expectations for it... but I genuinely love using it myself.",
@@ -21,11 +201,27 @@
       "created_at": "2026-10-15T00:18:21+00:00",
       "comments_data": [
         {
+          "id": "50098019",
+          "author": "teovall",
+          "body": "Right below the blue Download Now button, it says \"Available on Windows too\" but then in a box hovering at the bottom of the window, it says \"CopyTap is only available for MacOS Desktop.\" Which is it?",
+          "score": 0,
+          "time": 1792027880,
+          "parent": "50097490"
+        },
+        {
           "id": "50097665",
           "author": "yodon",
           "body": "You'll probably get more interest if you say something about what it is and what it does.",
           "score": 0,
           "time": 1792024920,
+          "parent": "50097490"
+        },
+        {
+          "id": "50098339",
+          "author": "rekabis",
+          "body": "I have been a computer user since 1982, and a heavy computer user since 1992. I’ve yet to think of a frequent use case where more than one clipboard is needed at a time.\nWhat I do find very useful, is handoff. Being able to copy and paste across Apple devices is immensely useful.\nWhat I would love to see is clipboard timeouts. Where you can set in the operating system itself a timeout beyond which the clipboard gets automatically cleared.",
+          "score": 0,
+          "time": 1792030644,
           "parent": "50097490"
         }
       ]
