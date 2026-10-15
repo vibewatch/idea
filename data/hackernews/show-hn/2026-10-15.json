@@ -1,8 +1,300 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-15T12:45:34.295990+00:00",
+  "last_fetched": "2026-10-15T18:39:48.533527+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50107729",
+      "title": "Show HN: RDST – A local agent that watches Postgres/MySQL for query regressions",
+      "subreddit": "show-hn",
+      "author": "gvsg",
+      "score": 5,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50107729",
+      "url": "https://github.com/readysettech/rdst",
+      "selftext": "We noticed during the course of many many years of DBA related work that fixes to database issues and queries are always reactive. An entire database can fall over extremely quickly when an unbounded query grows without warning.\nTraditionally, DBAs hear complaints of slowness and follow a methodical process: \n- manually browse pg_stats or other database related performance internal tables \n- see which queries are slowest\n- figure out what indexes are missing\n- figure out which indexes are actually bad and slowing down writes\n- painstakingly implement a fix\nIn the age of cheap intelligence, we decided that there is no reason we can’t have an always-on agent that is designed to do this job for you. Databases need something or someone that is always watching with a massive amount of contextual understanding to be able to take quick actions. We’ve watched the alternative play out repeatedly. One of our users’s checkout page went from loading instantly to taking 11 seconds in a single night with no code change. How? Well somehow their order table grew by 40M rows because BI team had injected historical data and suddenly postgres started doing full table scans. Sometimes routine operations have unintended results and can easily destroy your database. We wanted to catch these kinds of regressions instantly. So we built RDST.\nRDST is a desktop agent that runs on your PC and connects to PostgreSQL / MYSQL (read only) and compares every query against its own performance every minute. Every expensive query is automatically EXPLAIN ANALYZED, stripped of PII and sent to U.S. based frontier or open model providers to analyze which indexes are missing, how the query could be rewritten, and provides the fix. We then run a classifier model (JEV) to decide if you should be notified (is this standard behavior for this particular query?), and the full history of the query performance is kept for years. RDST also keeps track of your entire database health in general, and recommends more fixes than simply bad queries.\nSince it runs locally we can keep the database credentials stored in your OS Keychain (RDST never keeps them in its own storage layer), and the connection goes straight to your database (using a jump host or SSH tunnel for private connections). You can read more about how we handle data especially as it pertains to LLM use here.\nhttps://readyset.io/docs/readyset-ai/rdst/desktop/privacy (https://readyset.io/docs/readyset-ai/rdst/desktop/privacy)\nWe really want feedback from the community from people running Postgres and MySQL in production. We are giving inference away completely for free.\nJust as a reminder, RDST will NOT run any updates or indexes against your database at this time. We are considering a fully autonomous auto-pilot mode in the future, but for now we are leaving the actual fixes in your hands.\nLet us know what you think!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792087741,
+      "created_at": "2026-10-15T18:09:01+00:00",
+      "comments_data": [
+        {
+          "id": "50108237",
+          "author": "Frone125",
+          "body": "This is really interesting. I'm almost at the point where I'd be fully ready to let the agent just apply the indexes and database fixes for me. I'd say i don't fully trust AI on that level yet, but I could see that being an awesome feature for this tool. Regardless, I love the suggestions that it gives. Even if i don't create every single index it suggests im glad that it looks at ones you should drop too.",
+          "score": 0,
+          "time": 1792089506,
+          "parent": "50107729"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50106895",
+      "title": "Show HN: BitRun v0.2 – Run 8B ternary LLMs on CPU with live wattage telemetry",
+      "subreddit": "show-hn",
+      "author": "ishekofficial",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50106895",
+      "url": "https://github.com/IshekKhal/bitrun",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792084508,
+      "created_at": "2026-10-15T17:15:08+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50106850",
+      "title": "Show HN: An animated explainer on how TCP handles packet loss",
+      "subreddit": "show-hn",
+      "author": "eyadnour",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50106850",
+      "url": "https://eyad.com/handshake/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792084345,
+      "created_at": "2026-10-15T17:12:25+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50106776",
+      "title": "Show HN: VX – I got tired of Turbo and Nx, so I built vx",
+      "subreddit": "show-hn",
+      "author": "exelord",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50106776",
+      "url": "https://vznjs.github.io/vx/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792084042,
+      "created_at": "2026-10-15T17:07:22+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50106062",
+      "title": "Show HN: BlastLoop, a structure-first coding method for AI agents",
+      "subreddit": "show-hn",
+      "author": "rossleeshaw",
+      "score": 6,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50106062",
+      "url": "https://github.com/rlshaw-ml/BlastLoop",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792081599,
+      "created_at": "2026-10-15T16:26:39+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50106054",
+      "title": "Show HN: Sygal – Convert PDFs, scans and web pages to Markdown, locally",
+      "subreddit": "show-hn",
+      "author": "cyrillsemah",
+      "score": 16,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50106054",
+      "url": "https://sygal.app",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792081576,
+      "created_at": "2026-10-15T16:26:16+00:00",
+      "comments_data": [
+        {
+          "id": "50107127",
+          "author": "cameronbedard",
+          "body": "How does this differ from open source cli tools such as Marker (https://github.com/datalab-to/marker (https://github.com/datalab-to/marker))?\nAlso, it seems disingenuous to have “locally” in the title when your default is cloud inference providers and I don't see you naming a recommended LLM that could be hosted locally and is proven to work well for this task. You list “Your files” under “Stays on your machine” and then require an API key for a cloud provider.",
+          "score": 0,
+          "time": 1792085478,
+          "parent": "50106054"
+        },
+        {
+          "id": "50106746",
+          "author": "Benard-dev",
+          "body": "I am also building an app that converts web pages to Markdown.\nHow do you handle messy scans and tables?",
+          "score": 0,
+          "time": 1792083947,
+          "parent": "50106054"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50105945",
+      "title": "Show HN: I built a 3D semiconductor fab in the browser – design your own terafab",
+      "subreddit": "show-hn",
+      "author": "jinjiefan2018",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50105945",
+      "url": "https://semiconfab.org/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792081194,
+      "created_at": "2026-10-15T16:19:54+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50105935",
+      "title": "Show HN: Council AI. Spot biases / hallucinations in top AI models",
+      "subreddit": "show-hn",
+      "author": "phinnutz",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50105935",
+      "url": "https://councilai.app",
+      "selftext": "Examples:\n\"The best and worst of AI in 2026\". https://councilai.app/s/e305b362-2835-4ac3-94e4-6a7c935f948c (https://councilai.app/s/e305b362-2835-4ac3-94e4-6a7c935f948c)\n\"The best and worst of Trump 2026\". https://councilai.app/s/9b4ca3f0-ee7e-47ed-9585-e5ab1b37a541 (https://councilai.app/s/9b4ca3f0-ee7e-47ed-9585-e5ab1b37a541)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792081159,
+      "created_at": "2026-10-15T16:19:19+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50105467",
+      "title": "Show HN: Proa – A Rust web framework with fast SSR and multi-target rendering",
+      "subreddit": "show-hn",
+      "author": "burnrate",
+      "score": 37,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50105467",
+      "url": "https://proa.so/",
+      "selftext": "Video: https://youtu.be/-CfCyvIKYyo?si=hCLuStkXxanCUJD1 (https://youtu.be/-CfCyvIKYyo?si=hCLuStkXxanCUJD1)\nVideo on multi-target rendering: https://youtu.be/pJx84jdBDKU?si=HRRd6dgUWXiqeWhq (https://youtu.be/pJx84jdBDKU?si=HRRd6dgUWXiqeWhq)\nBenchmarks: https://github.com/Proa-Labs/proa-benchmarks (https://github.com/Proa-Labs/proa-benchmarks)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792079528,
+      "created_at": "2026-10-15T15:52:08+00:00",
+      "comments_data": [
+        {
+          "id": "50108004",
+          "author": "egeozcan",
+          "body": "Very cool idea, I'm going to test this!\nOne nit: Forgive me if I'm missing something but why do you have pro components? Won't people vibe-code clones anyway? I'd rather have a donate button these days.",
+          "score": 0,
+          "time": 1792088683,
+          "parent": "50105467"
+        },
+        {
+          "id": "50107227",
+          "author": "kianN",
+          "body": "This looks really cool! I’ve been really appreciating the revival of old-school server side rendering and foundational web components, but with modern tools or approaches.",
+          "score": 0,
+          "time": 1792085947,
+          "parent": "50105467"
+        },
+        {
+          "id": "50107660",
+          "author": "airstrike",
+          "body": "Why does `fn render` need to borrow WebContext mutably?",
+          "score": 0,
+          "time": 1792087518,
+          "parent": "50105467"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50103445",
+      "title": "Show HN: Arneb – A Trino-compatible distributed SQL engine in Rust",
+      "subreddit": "show-hn",
+      "author": "jackypan1989",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50103445",
+      "url": "https://arneb.io",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792071134,
+      "created_at": "2026-10-15T13:32:14+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50103434",
+      "title": "Show HN: Mordiem – OpenAI-compatible API with multi-network failover",
+      "subreddit": "show-hn",
+      "author": "mordiem",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50103434",
+      "url": "https://mordiem.com",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792071099,
+      "created_at": "2026-10-15T13:31:39+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50103055",
+      "title": "Show HN: Textfold – a native Mac text expander with plain text snippets",
+      "subreddit": "show-hn",
+      "author": "jeyanth",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50103055",
+      "url": "https://textfold.app",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792069345,
+      "created_at": "2026-10-15T13:02:25+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50103048",
+      "title": "Show HN: Pi subagents Lite – keep your system prompt clean",
+      "subreddit": "show-hn",
+      "author": "alparamo",
+      "score": 5,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50103048",
+      "url": "https://github.com/AlexParamonov/pi-subagents-lite",
+      "selftext": "Sub-agents for Pi.dev harness. Schema-first, minimal token overhead.\nIt gives user the controll of what gets into the agent's system prompt with detailed configuration and minimal impact on the prompt size.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792069322,
+      "created_at": "2026-10-15T13:02:02+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50102404",
+      "title": "Show HN: BookPress, a WordPress core in C/C++ (Live Demo)",
+      "subreddit": "show-hn",
+      "author": "squareys",
+      "score": 5,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50102404",
+      "url": "https://bookpress.io/",
+      "selftext": "Since ~40% of all websites supposedly still run on WordPress (WP), I thought it might be useful to run it faster. BookPress is about 50% faster than a performance-tuned WP setup with Elementor and WooCommerce.\nEvery time I used WordPress in the past, I got frustrated how slow it was, even with just a few plugins. So I wrote an light-weight C/C++ core and an embeddable PHP engine to run plugins and themes, with most of the WP API surface covered.\nTry the live demo, including wp-admin!\nThe embeddable PHP runtime that covers most of Zend PHP's features runs 2x slower than Zend, but BookPress is still faster than a performance-tuned WP instance with OPCache, page cache and object caches.\nBookPress runs alongside a traditional WP installation on Linux arm64 and x86_64.\nLooking forward to what you all think.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792065413,
+      "created_at": "2026-10-15T11:56:53+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,7 +302,7 @@
       "title": "Show HN: server-noonien – conflict-free agent memory across machines, no server",
       "subreddit": "show-hn",
       "author": "sequico",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50102258",
       "url": "https://github.com/sequico/server-noonien",
@@ -27,7 +319,7 @@
       "title": "Show HN: Rails-preflight, a static check of what blocks your next Rails upgrade",
       "subreddit": "show-hn",
       "author": "aslamsha",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50102252",
       "url": "https://github.com/aslam/rails-preflight",
@@ -44,8 +336,8 @@
       "title": "Show HN: Unfenced – Land for sale that borders public land",
       "subreddit": "show-hn",
       "author": "otherwatersflow",
-      "score": 27,
-      "num_comments": 6,
+      "score": 190,
+      "num_comments": 139,
       "permalink": "https://news.ycombinator.com/item?id=50102247",
       "url": "https://unfenced.land/",
       "selftext": "",
@@ -63,11 +355,35 @@
           "parent": "50102247"
         },
         {
-          "id": "50102813",
-          "author": "bko",
-          "body": "This is cool, but isn't owning property bordering public land undesirable?\nSure, there's the ability to hike directly from your home, but I imagine you'll regularly have people wander on to your property. And if something illegal happens on your property by a different party, you might be liable.\nSeems like the cons outweigh the pros. Or is there something I'm missing?",
+          "id": "50103868",
+          "author": "kyleblarson",
+          "body": "I owned a house on 60 acres in Washington State that was bordered on 2 sides by state land (WA DNR). It was generally great and the only time I closed my gate was actually these two weeks of every year for regular rifle deer season. I never had issues with hunters coming on my property (I did give some friends permission to bow hunt). My driveway was about a mile long and had to cross DNR land to reach my property, but I had an easement. The easements typically have a 35 year expiration and it would take extreme circumstances for the state not to renew an existing easement. Complete and total privacy is really nice, but it's certainly a lot of effort and money to maintain a remote property of that size with a large house. I had to travel to SF a lot for work and that was certainly not ideal: 2.5 hour drive minimum to a tiny airport that only served Seattle, then on to SF.",
           "score": 0,
-          "time": 1792068138,
+          "time": 1792073052,
+          "parent": "50102247"
+        },
+        {
+          "id": "50102873",
+          "author": "hasbot",
+          "body": "This is interesting though not really for me. I know that without trails, I won't be walking past the end of my property onto other property. I've probably spent a year of my life building trails on my own property.\nWhen I look for a parcel of land, I'm also interested in proximity to healthcare, groceries, airports (bad!), motor sports, shooting ranges; general steepness of the property particularly at the roadway (too steep makes the property unusable), topography in general (any flat spots to build a house?); availability of power; water features; bikability (checked by looking at Strava's heatmap); average number of days temperature > 85F; average number of days temperature < 30F. There's more but this list is long enough already.",
+          "score": 0,
+          "time": 1792068486,
+          "parent": "50102247"
+        },
+        {
+          "id": "50104163",
+          "author": "windowshopping",
+          "body": "This is super unreliable. I clicked through a few of the listings and none of them were what this site seemed to think they were. In one case it said a unit had 50 acres of land, and when I clicked through it was a two-bedroom condo with no land. Another said it had 1400 acres of land and when I clicked through it was 0.14.",
+          "score": 0,
+          "time": 1792074390,
+          "parent": "50102247"
+        },
+        {
+          "id": "50103003",
+          "author": "Anon1096",
+          "body": "If you have public land do you just have people walking over the property boundary onto your parcel all the time? Especially in the more populous states like NJ some of them I'd expect that to be pretty common, interesting idea as a thing that people search out specifically for though.\nRegardless, neat site. Couple things, first maybe a disclaimer on why you would want this on the home page? And on the state page itself I can't tell how bordering is different than adjacent. IMO just calling it \"within 75m\" would be better, and since this is for the US consider making it based on feet :p. Also, I would recommend that at least for user facing strings though you give it a little TLC and remove the really really obvious Claudisms\n> official boundary maps, not listing descriptions.\n> An analysis of publicly available boundary data — not a survey, and not a listing service\nplus everything on the How It Works page is extremely obviously LLM.",
+          "score": 0,
+          "time": 1792069124,
           "parent": "50102247"
         },
         {
@@ -79,11 +395,51 @@
           "parent": "50102247"
         },
         {
-          "id": "50102251",
-          "author": "otherwatersflow",
-          "body": "Hi HN, I built this. Listings that say \"borders state land\" can't easily be checked: you open the county's GIS viewer and line up parcel lines against public-land maps by hand. I did that a lot while looking for land of my own, then automated it.\nHow it works, once a week:\n1. About 700,000 active U.S. listings come in from a licensed listings API.\n2. Each listing near public land gets its county parcel boundary, from state and county GIS services where they publish them and from a licensed parcel provider elsewhere. With no boundary, the page says so and measures from the listing point, but never claims a shared edge.\n3. Public land is USGS PAD-US 4.1, narrowed to land an agency actually owns (Category = Fee, so no conservation easements), that's open to the public, and that's at least 50 acres.\n4. Parcel and public land are compared in a local metric projection (shapely/geopandas): within (an inholding), bordering (the boundaries touch, and the shared edge is measured in feet), or adjacent (within 75 m, about a road's width).\nEach property also gets the size of the connected public land behind it, its elevation (USGS 3DEP), road access (Census TIGER roads), FEMA flood zone and Forest Service wildfire hazard. The output is about 16,000 static pages with Leaflet maps on Cloudflare Pages, rebuilt every Monday on a Mac mini. ZIP search looks the ZIP up in your browser from Census centroids, so nothing you type is sent anywhere.\nThings that were harder than expected:\n- Lot sizes sometimes arrive in square feet in the acres field. A Birmingham, AL listing came through at 7,000 acres. Sizes are now checked against price, property type and the parcel itself, and corrected or withheld with a note.\n- Condo and subdivision listings often resolve to the association's common tract, so a single town lot can appear to share miles of boundary. Those are flagged as shared parcels.\n- PAD-US stores some units as one multipart polygon. My first \"connected public land\" figure for one Montana property was 69.7 million acres, about three-quarters of the state. Units are now split into pieces and joined only where they actually touch.\n- Road centerlines and lot lines come from different agencies and are often tens of meters apart, so \"does a road touch this parcel\" needs a tolerance, and frontage only counts where the boundary runs along the road.\nIt's free, with no account and no cookies. There are free weekly email alerts for any search, starting Monday. I'd especially like to hear from anyone who has bought rural land: what should it measure that it doesn't?",
+          "id": "50106600",
+          "author": "ggreer",
+          "body": "It seems to not find quite a few properties that border public land. For example, if I scroll around Zillow to find stuff that borders the Gifford Pinchot national forest, I can find properties like this one.[1] But I don't see anything matching it on the Unfenced map.\nI bought 20 acres bordering the national forest a couple years ago. The seller made sure I had some idea of what I was getting into. Due to the isolation and terrain, everything is more difficult. It's been a lot of work to build a road, level an area to build on, construct a shed, and set up off-grid solar power. But it's also very rewarding. The views are spectacular, and at night you can see the milky way. There's still a lot more work to do before it's worthy of being called a vacation spot, but I'm very happy with my decision.\n1. https://www.zillow.com/homedetails/Snag-Mountain-Rd-110-Wash... (https://www.zillow.com/homedetails/Snag-Mountain-Rd-110-Washougal-WA-98671/2062991170_zpid/)",
           "score": 0,
-          "time": 1792064392,
+          "time": 1792083445,
+          "parent": "50102247"
+        },
+        {
+          "id": "50102813",
+          "author": "bko",
+          "body": "This is cool, but isn't owning property bordering public land undesirable?\nSure, there's the ability to hike directly from your home, but I imagine you'll regularly have people wander on to your property. And if something illegal happens on your property by a different party, you might be liable.\nSeems like the cons outweigh the pros. Or is there something I'm missing?",
+          "score": 0,
+          "time": 1792068138,
+          "parent": "50102247"
+        },
+        {
+          "id": "50104369",
+          "author": "MeetingsBrowser",
+          "body": "A price filter would be useful.\nMost of the listings near me are for tens of acres and >$5 million",
+          "score": 0,
+          "time": 1792075249,
+          "parent": "50102247"
+        },
+        {
+          "id": "50105199",
+          "author": "runtime_terror",
+          "body": "Cool concept!\nOne big issue: not having a price and acreage range selectors means you see a lot of 0.2acre lots and $8mm parcels which I'm assuming most of us wouldn't be looking for",
+          "score": 0,
+          "time": 1792078478,
+          "parent": "50102247"
+        },
+        {
+          "id": "50102861",
+          "author": "ltsSmitty",
+          "body": "This is super cool. I love this use of public data to do something cool. The page seems like it's biggest value is to help potential property buyers find property they wouldn't easily be able to otherwise (that's what I like about it). Given that, seems like being able to filter on cost and size of lot would be useful filters on top.",
+          "score": 0,
+          "time": 1792068418,
+          "parent": "50102247"
+        },
+        {
+          "id": "50105878",
+          "author": "caseyf7",
+          "body": "Very cool project. One of my favorite Show HN posts. It’s interesting to see how hard it is to line up the maps from different sources, but in most cases it is close enough to dig further. A really useful tool. Thank you",
+          "score": 0,
+          "time": 1792081000,
           "parent": "50102247"
         }
       ]
@@ -129,8 +485,8 @@
       "title": "Show HN: Flipflop, Iroh-powered persistent tunnels for filesharing",
       "subreddit": "show-hn",
       "author": "andunie",
-      "score": 52,
-      "num_comments": 22,
+      "score": 85,
+      "num_comments": 42,
       "permalink": "https://news.ycombinator.com/item?id=50099136",
       "url": "https://github.com/andunieee/flipflop",
       "selftext": "This is a project that spun from my frustrations of using LocalSend and DashBeam to transfer stuff between devices, and with the extra goal of being fast, trying out the Slint framework and, most importantly, establishing a communication channel with trusted external people that can be left always on.",
@@ -145,6 +501,14 @@
           "body": "Interesting project, towards a decentralized Internet!\nThe heavy lifting is done in this function, pairing. You link your personal devices together, solid idea [0].\nThis Flipflop project relies on the Iroh library for NAT/Firewall puncturing, external address discovery and overlay networking. Connecting two 5G devices, without a coordinating central server is possible, but very hard. Iroh simply relies on a server which you could self-host. Cool stuff, we stress tested it a while ago and it somewhat worked.\nNAT connectivity is unsolved. My university lab conducted one of the bigger puncturing studies a decade ago [1]. Recently, we also bought 40+ or something 4G and 5G SIM cards in Europe for puncturing [2]. My master student traveled Europe by bus to get these local SIM cards. He worked day-and-night to connect these weird symmetric 5G NAT filter boxes and got it working. Simple sync collision and birthday paradox brute force... It all works sometimes, but insufficiently reliable for mass-adoption. You can't build a decentralized social media ecosystem on top. Like Iroh, best to use a central server. So then you have legal liability for your users. Unless an AI agent buys the server fully autonomously using Bitcoin, next years students got that working[3] :-)\n[0] https://github.com/andunieee/flipflop/blob/62bb498520aacb60e... (https://github.com/andunieee/flipflop/blob/62bb498520aacb60ec4e101cdfbb94f9bab0cdf8/src/protocol/pairing_auth.rs#L13)\n[1] UDP NAT and Firewall Puncturing in the Wild, https://inria.hal.science/hal-01597969v1/document (https://inria.hal.science/hal-01597969v1/document)\n[2] Mass Adoption of NATs: Survey and experiments on carrier-grade NATs, https://arxiv.org/html/2311.04658v2 (https://arxiv.org/html/2311.04658v2)\n[3] Self-replicating seedbox servers using programmable money, https://arxiv.org/abs/2609.05431 (https://arxiv.org/abs/2609.05431)",
           "score": 0,
           "time": 1792046112,
+          "parent": "50099136"
+        },
+        {
+          "id": "50104692",
+          "author": "akavel",
+          "body": "Cool! I'll have to look deeper to see if I could use it as a base for porting https://github.com/akavel/catation (https://github.com/akavel/catation) to Rust+Iroh! (EDIT: related, do you maybe have plans to merge flipflop with https://github.com/andunieee/my-beloved-rubble (https://github.com/andunieee/my-beloved-rubble) ?)\nMay I ask, was it vibed/LLM-assisted to some extent, or is it purely human-made?",
+          "score": 0,
+          "time": 1792076461,
           "parent": "50099136"
         },
         {
@@ -164,11 +528,11 @@
           "parent": "50099136"
         },
         {
-          "id": "50102397",
-          "author": "fartfeatures",
-          "body": "I'm working on something similar, could you please turn on discussions so we can chat directly?",
+          "id": "50104087",
+          "author": "ramoz",
+          "body": "Iroh released something similar awhile back\nhttps://www.iroh.computer/sendme (https://www.iroh.computer/sendme)",
           "score": 0,
-          "time": 1792065354,
+          "time": 1792074054,
           "parent": "50099136"
         },
         {
@@ -188,11 +552,27 @@
           "parent": "50099136"
         },
         {
+          "id": "50102397",
+          "author": "fartfeatures",
+          "body": "I'm working on something similar, could you please turn on discussions so we can chat directly?",
+          "score": 0,
+          "time": 1792065354,
+          "parent": "50099136"
+        },
+        {
           "id": "50100811",
           "author": "exe34",
           "body": "Nice idea, but for personal sharing between my devices, I have a syncthing folder that's synced between my laptop, phone and media center/NAS, and I've been finding that most of my day to day files have been migrating into it, and I hardly ever use things outside of it.",
           "score": 0,
           "time": 1792052465,
+          "parent": "50099136"
+        },
+        {
+          "id": "50103843",
+          "author": "tamimio",
+          "body": "Looks very interesting, I have been building few things on top of iroh past few weeks and I love it, from the ability to run it on some iot all the way to be rf agnostic (almost, can’t use LoRa with iroh due to its datagram limit), and best part, MoQ runs natively on iroh where on wireguard you will need to encrypt twice so more cpu, but i found kernel wireguard performs better at bulk throughput, and layer 3 isn’t by default unless you have TUN like added.\nA list of iroh based tools are also found here https://github.com/n0-computer/awesome-iroh (https://github.com/n0-computer/awesome-iroh)",
+          "score": 0,
+          "time": 1792072943,
           "parent": "50099136"
         },
         {
@@ -229,8 +609,8 @@
       "title": "Show HN: My Terminal Themes Web App",
       "subreddit": "show-hn",
       "author": "bado",
-      "score": 20,
-      "num_comments": 6,
+      "score": 23,
+      "num_comments": 14,
       "permalink": "https://news.ycombinator.com/item?id=50098454",
       "url": "https://news.ycombinator.com/item?id=50098454",
       "selftext": "Well, after 15 years of saying \"Someday I'll turn this into a web app,\" I finally did it!\nI've been maintaining a popular repo of terminal themes at https://github.com/mbadolato/iTerm2-Color-Schemes (https://github.com/mbadolato/iTerm2-Color-Schemes), and it was finally time to build the app with all the features I wanted!\nSo, the next-gen version is live at https://terminalthemes.com (https://terminalthemes.com)! It currently has over 800 themes, and provides downloads for close to 40 different formats (iTerm, Ghostty, Windows, and many more)\nIt's free for everyone. An account is not needed to browse and download, but registering for an account (free) allows you to vote, bookmark, submit themes, etc.\nI focused on a11y features for those who need it, in addition to adding Find My Theme and other tools to make it easy to find something you like!\nLive terminal and code previews help show a more realistic view of the terminal, as opposed to the ANSI screenshots used at the GitHub repository. Those are still there, for those who like them.\nI would love for you guys to check it out and provide feedback, feature suggestions, whatever!\nAnd a huge thanks to the community of people that have contributed themes, ports to other terminals, and tools to provide conversions between formats over the years.\nOh! And if you've ever contributed themes to the GitHub repo, please register for an account, find your theme(s), and hit the Claim Authorship button!",
@@ -245,6 +625,22 @@
           "body": "Very nice site.\nOut of interest, are they automatically classed as light or dark? For instance by some heuristic or algorithm. I saw it's reporting some contrast measures which is handy.\nI wonder how feasible it might be to use some colour distance heuristics to find similar themes: then if you find one you mostly like but it's slightly off due to some preference, you can still easily browse that \"neighborhood\"",
           "score": 0,
           "time": 1792054018,
+          "parent": "50098454"
+        },
+        {
+          "id": "50104249",
+          "author": "bado",
+          "body": "I forgot to mention, themes added to TT do sync back to the GitHub repository, and vice versa!",
+          "score": 0,
+          "time": 1792074719,
+          "parent": "50098454"
+        },
+        {
+          "id": "50103224",
+          "author": "boltzmann64",
+          "body": "https://terminal.sexy/ (https://terminal.sexy/)",
+          "score": 0,
+          "time": 1792070183,
           "parent": "50098454"
         },
         {
@@ -277,6 +673,14 @@
           "body": "my humble effort in that direction : https://terminal-theme-studio.pages.dev/ (https://terminal-theme-studio.pages.dev/)",
           "score": 0,
           "time": 1792043500,
+          "parent": "50098454"
+        },
+        {
+          "id": "50103608",
+          "author": "ravsg",
+          "body": "keep going",
+          "score": 0,
+          "time": 1792071772,
           "parent": "50098454"
         }
       ]
