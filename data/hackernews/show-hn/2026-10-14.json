@@ -1,8 +1,60 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-14T18:40:59.668199+00:00",
+  "last_fetched": "2026-10-15T01:01:09.083093+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50096513",
+      "title": "Show HN: Ask a technical question, get an animated explainer you can interrupt",
+      "subreddit": "show-hn",
+      "author": "shadaba",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50096513",
+      "url": "https://openlume.com/examples/3f65f6ce-87bf-4c81-a34b-3a1ec82f0ed1",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792017641,
+      "created_at": "2026-10-14T22:40:41+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50094005",
+      "title": "Show HN: Dub Anything – Dub videos in each actor's own voice",
+      "subreddit": "show-hn",
+      "author": "swax",
+      "score": 4,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50094005",
+      "url": "https://github.com/swax/dub-anything",
+      "selftext": "There are many movies and shows out there with neither subtitles or dubs in English (or any other language). Pretty much impossible to watch.\nWith SOTA AI now directing the process, you can do it locally on your machine. You basically just clone the repo, open up Codex or Claude and tell it to dub the video you want in the language you want.\nThe repo contains all the scripts and guidance I've developed over the past few weeks to create dubs that are watchable, as an added bonus the voices in the dub are the actors own voices which is really nice.\nAlso it's self improving, each dub may modify the scripts for better fidelity. So feel free to push them back to the repo so everyone benefits. Thanks.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792007395,
+      "created_at": "2026-10-14T19:49:55+00:00",
+      "comments_data": [
+        {
+          "id": "50095203",
+          "author": "xyxc",
+          "body": "This is fantastic. I wonder would it be possible to have a Czech voice?\nI am working on translating world of warcraft classic into czech and there is a voice over game addon that makes quest givers speak, instead of you having to read the quest text. I wonder if I could use something like this.",
+          "score": 0,
+          "time": 1792011702,
+          "parent": "50094005"
+        },
+        {
+          "id": "50096839",
+          "author": "drivingmenuts",
+          "body": "> Only dub media you have the rights to, and only clone voices with the consent the use requires. A dub made from someone else's film or voice is for private use unless you have permission.\nI wonder how long that will last?",
+          "score": 0,
+          "time": 1792019286,
+          "parent": "50094005"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,15 +62,113 @@
       "title": "Show HN: Petal, open-source CoScreen/ScreenHero finally free",
       "subreddit": "show-hn",
       "author": "thedracle",
-      "score": 4,
-      "num_comments": 1,
+      "score": 110,
+      "num_comments": 29,
       "permalink": "https://news.ycombinator.com/item?id=50092470",
       "url": "https://petal.live/",
       "selftext": "Hi HN!\nI’m Jason Thomas, one of the founders of CoScreen.\nAs some of you may know, Datadog sunset the CoScreen service on July 31st.\nFour of us from the original CoScreen team have spent the last couple months building a free and open source pair programming tool inspired by those that came before us: It’s called Petal (https://github.com/kiruna-labs/petal (https://github.com/kiruna-labs/petal))\nSome history first, because when we started CoScreen we had hoped to break the sad and established pattern of this industry.\nScreenhero was an exceptional tool that a lot of us loved for pairing. Multiple cursors, low latency, you could click your partner’s editor, and just start typing. It felt like magic while we had it. Then Slack bought it in 2015, and shut down the standalone app in December 2017.\nWhen Till, Max, and I started CoScreen, we were aware of this history, and wanted to build an even more magical collaboration and screen sharing experience: the entire concept was “throw a window from your laptop up on someone else’s screen, and start collaborating with zero friction.”\nDatadog acquired us in 2022, and thus began the great adventure of adapting our real-time technology into Datadog products, while also continue developing CoScreen as a standalone tool from the Datadog ecosystem. Datadog invested in the product for years and we’re thankful for that. But CoScreen itself proved, like so many other screen sharing tool acquisitions, to be too tangential from the customer base and core mission. We instead built other communication features in Datadog, the integrations with other video platforms, and also its wildly successful MCP server.\nWe weren't the only ones. Around was bought by Miro and shut down in March 2025. Multi (formerly Remotion) was acqui-hired by OpenAI in 2024 and shut down about a month later. It's nearly always the same story: a small team builds something hard that people love, a platform buys it for the team or the feature, and the standalone product doesn't survive the integration.\nSo we decided firmly to do things differently this time. Petal is completely free and open source and we aren't monetizing it. If we lose interest or get hit by a bus, you can self-host it or fork it, and nobody can sunset it on you. Honestly it's a love letter to everyone in this community that supported us, believed in us, and to liberate collaborative screen sharing from this vicious cycle.\nWe hope through this we can help foster a large and vibrant community around innovating in this product sector.\nWhat Petal does: shared windows show up as real windows on your desktop, movable and resizable, not tiles in a grid. Several people can share at once, everyone gets a labeled cursor, and you can click into any shared window to type and scroll. Rooms are persistent, so you click once to join \"eng-sync\" instead of passing links around.\nIt runs on macOS and Windows (Linux is next, this time for real and you can help us!), plus a web app. Media goes over LiveKit. You can use our hosted instance with zero config, or point the app at your own LiveKit server with one docker-compose if you want the traffic to stay on your network or even use an entirely different video backend if you want to.\nThe part that still feels strange to us: CoScreen took almost six years to build. The first version of Petal took under eight weeks, from scratch, with frontier models like Fable and Astra doing a lot of the work. Real-time video and window capture is some of the most unforgiving code we have ever written, so we didn't expect that. We will do a proper writeup on what worked and what didn't, and are happy to answer questions about it here.\nTill, Darren, Max and I will be in the thread.",
       "is_self": false,
       "is_video": false,
       "time": 1792002194,
-      "created_at": "2026-10-14T18:23:14+00:00"
+      "created_at": "2026-10-14T18:23:14+00:00",
+      "comments_data": [
+        {
+          "id": "50094088",
+          "author": "jsherwani",
+          "body": "Screenhero co-founder/CEO here — this is really great! It looks like we had similar feelings after leaving our acquiring companies with our products being sunset.\nSince leaving Slack, I've been building Pop with a new team. The first product we launched in 2020 is essentially Screenhero 2.0 (pop.com). Since then, we've been building an expanded product: a virtual office for remote teams, which is now almost ready for launch (there's a waitlist at https://new.pop.com (https://new.pop.com)). We've even got Wayland support in! We have plans to open source a part of the Wayland piece, which Petal could potentially use too.\nI do love this space, and wish more tools were about live collaboration — it feels so much more human and fun than single-player mode. I hope Petal becomes a growing community that thrives for the long haul!",
+          "score": 0,
+          "time": 1792007669,
+          "parent": "50092470"
+        },
+        {
+          "id": "50092660",
+          "author": "coscreen",
+          "body": "Till here, another co-founder of CoScreen. Like Jason wrote, our launches on HN and the feedback by many of you in 2019 were really important all the way back to the earliest days of our small and fancy tool. We did a lot of things since we're proud of but a few plans remained unfulfilled, like support for Linux, until now.\nWe'd love to work with you and see what you'll build, now that Petal is out in the open for anyone to use, jam on, and make it your own.",
+          "score": 0,
+          "time": 1792002758,
+          "parent": "50092470"
+        },
+        {
+          "id": "50097516",
+          "author": "ripley12",
+          "body": "Very very happy to see this!\nI was lucky to work with Till+Jason on CoScreen (I came in late); they're really exceptional people and CoScreen had a great collaboration UX that still hasn't been matched by Zoom and friends. Really keen to see what they'll be able to build this time around.",
+          "score": 0,
+          "time": 1792023661,
+          "parent": "50092470"
+        },
+        {
+          "id": "50095983",
+          "author": "lochnessduck",
+          "body": "Thank you for this, I am a big fan of pair programming, and even jetbrains is getting rid of their code-with-me service! It’s so Frustrating to see a useful feature/tool get abandoned due to low usage. But those of us who use pair programming absolutely love it :)\nIt’s a tool that helps further human connection, imo. And we could all use a little more of that atm.",
+          "score": 0,
+          "time": 1792015071,
+          "parent": "50092470"
+        },
+        {
+          "id": "50095294",
+          "author": "joshuat",
+          "body": "Reminds me of Tuple (https://tuple.app/ (https://tuple.app/)), which was also billed as a Screenhero replacement",
+          "score": 0,
+          "time": 1792012058,
+          "parent": "50092470"
+        },
+        {
+          "id": "50094634",
+          "author": "citizenfishy",
+          "body": "This is just what we need in our small startup. It solves problems we have when working remotely and joint debugging along with walking our customers through tricky issues. Can't wait to give it a spin",
+          "score": 0,
+          "time": 1792009613,
+          "parent": "50092470"
+        },
+        {
+          "id": "50095807",
+          "author": "joeblau",
+          "body": "Thanks for making this. We used co-screen so much that when you shut down, we had to build our own.",
+          "score": 0,
+          "time": 1792014293,
+          "parent": "50092470"
+        },
+        {
+          "id": "50096872",
+          "author": "smw",
+          "body": "Just want to say thank you!! Screenhero was invaluable. Pop is pretty good, but open source is a game changer!",
+          "score": 0,
+          "time": 1792019450,
+          "parent": "50092470"
+        },
+        {
+          "id": "50095268",
+          "author": "yokto",
+          "body": "Will give it a try! How is LiveKit working for you in terms of achieving low input2video latency? Did it lend itself to getting tuned for this application?",
+          "score": 0,
+          "time": 1792011986,
+          "parent": "50092470"
+        },
+        {
+          "id": "50095889",
+          "author": "weakfish",
+          "body": "I really wonder if it’s just me, but I have a deeply visceral reaction to AI copywriting that is largely irrational I’m willing to admit.\n> The media server — traffic stays yours\nThe product looks cool! It’s just… reading that sentence makes me __immediately__ lose all interest.",
+          "score": 0,
+          "time": 1792014659,
+          "parent": "50092470"
+        },
+        {
+          "id": "50093031",
+          "author": "therealbithead",
+          "body": "Thank you for your work, looking forward to the Linux version!",
+          "score": 0,
+          "time": 1792004118,
+          "parent": "50092470"
+        },
+        {
+          "id": "50093394",
+          "author": "iovrthoughtthis",
+          "body": "i loved screen hero but this is probably 10 years too late",
+          "score": 0,
+          "time": 1792005410,
+          "parent": "50092470"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -44,15 +194,113 @@
       "title": "Show HN: I wrote an email app that accepts only one sender per inbox",
       "subreddit": "show-hn",
       "author": "edpin2000",
-      "score": 12,
-      "num_comments": 6,
+      "score": 77,
+      "num_comments": 57,
       "permalink": "https://news.ycombinator.com/item?id=50090932",
       "url": "https://clova.email/",
       "selftext": "Infinite inboxes, including prefixes where you don't have to create inboxes before you use them -- they self create when you add a suffix.\nThree types of inboxes:\n- One sender. Locks to the first domain to send email (except gmail, outlook, etc where it locks to an email account for obivous reasons. It bounces everyone else.\n- Temporary. Lasts for a while (24h, 7days, etc) then bounces. Received messages stay or go as per your choice.\n- Prefix. The most powerful. Declare a prefix like \"service\" and then invent any suffix, like \"service-netflix\" or \"service$bank\" and it creates a new one-sender inbox locked to whoever wrote first.\nBring you own domain. Bring your own AI (MCP server ready). Forwarding.\nPlease help me test it.",
       "is_self": false,
       "is_video": false,
       "time": 1791997259,
-      "created_at": "2026-10-14T17:00:59+00:00"
+      "created_at": "2026-10-14T17:00:59+00:00",
+      "comments_data": [
+        {
+          "id": "50093861",
+          "author": "zatkin",
+          "body": "How does it handle the scenario where the sender changes the domain they originate from? It may seem a bit unusual, like when a company rebrands (think of like Facebook originally sending from facebook.com, but then sending from meta.com later on).",
+          "score": 0,
+          "time": 1792006895,
+          "parent": "50090932"
+        },
+        {
+          "id": "50093239",
+          "author": "drayfield",
+          "body": "For context I'm sleep deprived so sorry if I've missed something obvious, but what differentiates this with something like Fastmail's masked email offering? I use unique emails for every service I use and it works beautifully. This seems... more complicated? I under there's a price difference, but little else.",
+          "score": 0,
+          "time": 1792004831,
+          "parent": "50090932"
+        },
+        {
+          "id": "50097096",
+          "author": "gerdesj",
+          "body": "I've run email for several decades and I'd like to see: \"problem I want to solve\" first, rather than \"I did this\".\nEmail does work rather well compared to anything else on the internet. Spam (UBE) is a bit of a problem but not insurmountable.\nYour second para starting \"Three types of inboxes\" doesn't make much sense. It looks like grey listing ... and stuff ... and plus prefixing.\nThank you for diving in on making email safer in some way.",
+          "score": 0,
+          "time": 1792020738,
+          "parent": "50090932"
+        },
+        {
+          "id": "50092507",
+          "author": "jlm66",
+          "body": "Email, snail mail, text messages etc. all need, IMO, options for ONLY allowing incoming messages from known sources. This seems like it is really aiming to do that for Email and I applaud the effort. Hopefully, it will take off in a big, big way.",
+          "score": 0,
+          "time": 1792002297,
+          "parent": "50090932"
+        },
+        {
+          "id": "50096454",
+          "author": "gavinray",
+          "body": "Just an FYI: You can do this with an email\nEmail allows \"+<suffix>\" to be appended to any email.\nThe usual case is something like \"user+testing@site.com\", or \"user+bills@site.com\".\nIt's a way to auto-tag your incoming mail. You can use one of these \"+\" suffixes on a per-app basis and then add a spam filter to permanently burn one of them if you get spammed.",
+          "score": 0,
+          "time": 1792017348,
+          "parent": "50090932"
+        },
+        {
+          "id": "50097140",
+          "author": "cornell532",
+          "body": "SimpleLogin.io is a great disposable email service I’ve been using for years.\nI have no association with the company besides being a happy customer.",
+          "score": 0,
+          "time": 1792021027,
+          "parent": "50090932"
+        },
+        {
+          "id": "50093880",
+          "author": "another-dave",
+          "body": "this sounds really clever.\nOne suggestion - external contacts won't know that this address will bounce for anyone they add in CC. Maybe have an option where if I include the original whitelisted domain/person in the chain then it will let the mail through even if it's from a non-whitelisted person.\nJust thinking of scenarios like, you give out your email address to <your-neighbour@gmail.com> who then emails you about a 5-a-side game with a few friends but any messages from any of the other friends bounce.\nOr you apply for a job at ACME Inc and then you get a message back from `alice@acme.com` saying, please coordinate with `bob@our-recruiter-consultancy.com` who'll arrange the interview but Bob can't contact you",
+          "score": 0,
+          "time": 1792006937,
+          "parent": "50090932"
+        },
+        {
+          "id": "50095818",
+          "author": "rikkipitt",
+          "body": "Very cool. Love the idea. Wish I'd thought of it as an option on my products: https://www.paced.email (https://www.paced.email) and/or https://www.vend.email (https://www.vend.email)\nGreat innovation, hope it goes well for you.",
+          "score": 0,
+          "time": 1792014341,
+          "parent": "50090932"
+        },
+        {
+          "id": "50094092",
+          "author": "aleksiy123",
+          "body": "I wanted to build this for phone numbers at some point but it was way outside of my skill level at the time.\nI feel like unique address per sender, receiver pair could cut down on so much spam.\nAnd you can see exactly who is leaking your info.",
+          "score": 0,
+          "time": 1792007676,
+          "parent": "50090932"
+        },
+        {
+          "id": "50094606",
+          "author": "popupeyecare",
+          "body": "I have my personal domain (let's say johndoe.com) and I have set it up so all (catch-all) emails go to one email. chase@johndoe.com, att@johndoe.com. Pretty easy.",
+          "score": 0,
+          "time": 1792009508,
+          "parent": "50090932"
+        },
+        {
+          "id": "50093406",
+          "author": "ssivark",
+          "body": "Nice idea! JFYI, in case you ever run into design questions when extending this, you seem to be implementing a version of Object Capabilities (specifically revocable forwarders / caretaker pattern), specialized for the SMTP situation -- as you want to share with someone the capability to send you messages, but you want that capability to not be shared recursively.\nSince you're also thinking about a user giving their agent access to their inbox -- any thoughts on what are the right capability primitives for that situation, and how the API & access tokens can represent that?",
+          "score": 0,
+          "time": 1792005448,
+          "parent": "50090932"
+        },
+        {
+          "id": "50096704",
+          "author": "fg137",
+          "body": "Been paying $12/yr for Firefox Relay Premium and have been happy with it so far. You get a dedicated (non customizable) subdomain.",
+          "score": 0,
+          "time": 1792018594,
+          "parent": "50090932"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -61,7 +309,7 @@
       "title": "Show HN: Aside – Mac app that suggests what to say next during calls",
       "subreddit": "show-hn",
       "author": "yoelgal",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50090818",
       "url": "https://asidehq.app/",
@@ -78,15 +326,57 @@
       "title": "Show HN: AxiomCode Graph, Reducing coding agent rework with formal methods",
       "subreddit": "show-hn",
       "author": "HaoleiZ",
-      "score": 8,
-      "num_comments": 7,
+      "score": 10,
+      "num_comments": 8,
       "permalink": "https://news.ycombinator.com/item?id=50090514",
       "url": "https://github.com/AxiomCodeAI/axiomcodegraph",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1791995796,
-      "created_at": "2026-10-14T16:36:36+00:00"
+      "created_at": "2026-10-14T16:36:36+00:00",
+      "comments_data": [
+        {
+          "id": "50090515",
+          "author": "HaoleiZ",
+          "body": "AxiomCode Graph turns any codebase into a formal-methods-grounded knowledge graph, giving coding agents precise answers to code-related questions. It helps agents make more complete, correct changes while reducing rework, time, and token usage.\nWe're now building the next layer and will release soon: translating engineering specs and constraints into formal rules on top of the code graph to verify agent-generated changes.",
+          "score": 0,
+          "time": 1791995796,
+          "parent": "50090514"
+        },
+        {
+          "id": "50092858",
+          "author": "Whua33",
+          "body": "I tried on my TS codebase (80k LoC), it seems similar performance compare with other graph builders (better call depth correctness). Wonder how's others' performance? I will try another larger codebase to see the difference.",
+          "score": 0,
+          "time": 1792003471,
+          "parent": "50090514"
+        },
+        {
+          "id": "50091797",
+          "author": "math93",
+          "body": "How are you using formal methods? How is it different from other similar graphs for agents?",
+          "score": 0,
+          "time": 1791999941,
+          "parent": "50090514"
+        },
+        {
+          "id": "50090801",
+          "author": "spaliwal26",
+          "body": "Formal verification code graphs are the need of the hour",
+          "score": 0,
+          "time": 1791996769,
+          "parent": "50090514"
+        },
+        {
+          "id": "50091656",
+          "author": "skipplegend",
+          "body": "I'm going to check it out!",
+          "score": 0,
+          "time": 1791999474,
+          "parent": "50090514"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -108,12 +398,29 @@
     {
       "source": "hackernews",
       "stream": "show-hn",
+      "id": "50089901",
+      "title": "Show HN: Sonia. Local AI Assistant Linux. 13Gb RAM, No GPU, Skills Supported",
+      "subreddit": "show-hn",
+      "author": "grigio",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50089901",
+      "url": "https://github.com/grigio/sonia-assistant",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1791994089,
+      "created_at": "2026-10-14T16:08:09+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
       "id": "50088713",
       "title": "Show HN: Graphicle, a Rust port of Graphify with memory for coding agents",
       "subreddit": "show-hn",
       "author": "KarLexAI",
-      "score": 29,
-      "num_comments": 7,
+      "score": 41,
+      "num_comments": 11,
       "permalink": "https://news.ycombinator.com/item?id=50088713",
       "url": "https://github.com/graphicle-ai/graphicle",
       "selftext": "",
@@ -131,11 +438,27 @@
           "parent": "50088713"
         },
         {
+          "id": "50094261",
+          "author": "dmos62",
+          "body": "The memory invalidation based on tying memories to pieces of code (e.g. functions) is the big thing here, I think, though I see why it wouldn't be front and center.\nI've always found memory systems icky, because it's difficult to tell whether a memory is still valid. Also, discoverability is always a concern (when is a memory relevant). This being both a code-graph and a memory system (seemingly unrelated things), actually addresses this in a novel way.",
+          "score": 0,
+          "time": 1792008238,
+          "parent": "50088713"
+        },
+        {
           "id": "50090406",
           "author": "pjm331",
           "body": "who out there is running evals of giving agents these kinds of tools and how are you doing it?",
           "score": 0,
           "time": 1791995494,
+          "parent": "50088713"
+        },
+        {
+          "id": "50092837",
+          "author": "blackspacx",
+          "body": "How is the benchmarks of this tool? Did you programm the tool within help of AI?",
+          "score": 0,
+          "time": 1792003404,
           "parent": "50088713"
         }
       ]
@@ -164,7 +487,7 @@
       "title": "Show HN: T0: We trained a 256M SOTA open-weights time-series forecasting model",
       "subreddit": "show-hn",
       "author": "LTMeyer",
-      "score": 11,
+      "score": 12,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50088582",
       "url": "https://github.com/theforecastingcompany/tfc-t0",
@@ -189,7 +512,17 @@
       "is_self": false,
       "is_video": false,
       "time": 1791989199,
-      "created_at": "2026-10-14T14:46:39+00:00"
+      "created_at": "2026-10-14T14:46:39+00:00",
+      "comments_data": [
+        {
+          "id": "50088599",
+          "author": "smashah",
+          "body": "Hi all,\nI came up with cve.earth (https://github.com/cve-earth/.github/blob/main/profile/READM... (https://github.com/cve-earth/.github/blob/main/profile/README.md)) a few years ago as a standard way (based on CVEs in tech) to track environmental destruction for research purposes (not a place for whistleblowing). It is basically a Github Issue template:\nhttps://github.com/cve-earth/disclosures/issues/new?template... (https://github.com/cve-earth/disclosures/issues/new?template=evd.yml)\nIf you are interested in standardising this space and doing something to save our planet, please get in touch\nhttps://txta.dev/smashah (https://txta.dev/smashah)",
+          "score": 0,
+          "time": 1791989554,
+          "parent": "50088522"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -199,14 +532,24 @@
       "subreddit": "show-hn",
       "author": "ajaygoel",
       "score": 2,
-      "num_comments": 0,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50088290",
       "url": "https://news.ycombinator.com/item?id=50088290",
       "selftext": "Mobile carriers have long supported email-to-SMS functionality, but in the United States, the big three (Verizon, T-Mobile, and AT&T) have deprecated these services. So a crop of commercial email-to-SMS services have sprung up, and one of my SaaS tools is exactly that.\nBut because SMS is so regulated now, and the 10DLC process is such a pain, and because I wanted to support international numbers, I embarked on making email-to-iMessage work, and I finally figured it out.\nTry it now: \nSend an email to your-number@i.text.email.\nIf you have a non-U.S., non-Canadian number, be sure to include the country code.\nU.S. Example: 2125551234@i.text.email\nU.K. Example: 447700900000@i.text.email\nIndia Example: 919876543210@i.text.email\nWhatever you do, don't forget the \"i\"!\nWebsite: https://text.email (https://text.email)",
       "is_self": true,
       "is_video": false,
       "time": 1791988148,
-      "created_at": "2026-10-14T14:29:08+00:00"
+      "created_at": "2026-10-14T14:29:08+00:00",
+      "comments_data": [
+        {
+          "id": "50094478",
+          "author": "depworker",
+          "body": "Love the technical achievement but genuinely wonder why you would send a message to another kind of inbox?",
+          "score": 0,
+          "time": 1792009052,
+          "parent": "50088290"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -232,7 +575,7 @@
       "title": "Show HN: Every open government tender in the world (Over 250k)",
       "subreddit": "show-hn",
       "author": "interstellarish",
-      "score": 8,
+      "score": 9,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50087641",
       "url": "https://tenderportal.io/",
@@ -240,7 +583,17 @@
       "is_self": false,
       "is_video": false,
       "time": 1791985183,
-      "created_at": "2026-10-14T13:39:43+00:00"
+      "created_at": "2026-10-14T13:39:43+00:00",
+      "comments_data": [
+        {
+          "id": "50087735",
+          "author": "arpsyndicate",
+          "body": "crazy crazy.",
+          "score": 0,
+          "time": 1791985556,
+          "parent": "50087641"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -334,8 +687,8 @@
       "title": "Show HN: A guided 3D Leonardo da Vinci museum, built in code",
       "subreddit": "show-hn",
       "author": "micstradev",
-      "score": 82,
-      "num_comments": 33,
+      "score": 85,
+      "num_comments": 34,
       "permalink": "https://news.ycombinator.com/item?id=50085022",
       "url": "https://museumofages.org/w/vinci",
       "selftext": "Hello HN,\nI am the founder of a small nonprofit which built Museum of Ages. We opened its first wing last week, a digital Leonardo da Vinci museum. It is a virtual tour with 17 stops, his works and then his last house in Amboise. The entrance is free.\nAt the different stops you can see for example his paintings close to their real size, or 15 of his machines rebuilt in code, and you can have a look at 29 of his anatomy sheets. We also selected 207 of his manuscript pages which you can read in a virtual reading table, mirror the view to read his writing and 131 of the 207 are translated. We also rebuilt his last house in Amboise on the later stops of the walk. The museum is available in seven languages.\nEach stop has one of four grades as a label, documented, reconstructed, conjectural and not known. In a detailed view the user can have a closer look at the sources.\nThe materials of the rooms and machines are created in Three.js. The museum runs with WebGPU. If the browser doesn’t support it, the fallback is WebGL2. To create the textures we used Creative Commons Zero photo scans (CC0) and for a few small objects we use free 3D models (CC0).\nOur mission is to create digital museums you can walk as not everyone can get to a museum, because illness or disability keeps them away. Some cannot afford the trip or just reside far away. So our goal is also to make our digital museums as accessible as possible. Therefore we also pre-rendered the walk so that it also works on older phones and is easy to use for older people.\nWe released the code under AGPL-3.0. The texts and pictures are CC BY-SA 4.0. Reproductions have their own licenses. \nhttps://github.com/chipmates/museumofages (https://github.com/chipmates/museumofages)\nWe put a lot of time and passion into the museum and hope you like it. We are happy about any feedback. Which digital museum would you like to see next?",
@@ -361,27 +714,11 @@
           "parent": "50085022"
         },
         {
-          "id": "50091847",
-          "author": "andrearitossa",
-          "body": "I love it! Would be great to double down on the experience, I'd add immersive experiences: audio / visuals to guide the discovery / interactiveness",
-          "score": 0,
-          "time": 1792000138,
-          "parent": "50085022"
-        },
-        {
           "id": "50088140",
           "author": "tiborsaas",
           "body": "I don't understand why I can't just walk around the museum and discover things for myself.\nI can't even navigate to the devices and inventions section with a single click on the listing page. The 3D scene is really well done, it would be nice if you just let people walk around freely instead of animating the camera.\nAnd I also think you shouldn't automatically display the image in 2D, breaks my immersion immediately.",
           "score": 0,
           "time": 1791987446,
-          "parent": "50085022"
-        },
-        {
-          "id": "50087572",
-          "author": "Kim_Bruning",
-          "body": "The UI design might need some work.\nIt starts with no controls, just a picture. I hit esc. Things start moving. It keeps moving, I keep hitting esc, it doesn't stop. I try ctrl-c , no dice. I look around the frame for buttons. I try one of the buttons, it moves faster. I hold down esc. It doesn't respond to holding down esc either . I see no way to gain control. At no point do I gain control.\nUltimately it stops. Fine. Ok, no response to WASD. No response to drag motion. I click \"Instruments\" , I get a side-bar \"instruments of the museum\" with no contents. I click in the side bar. Now I can't close it, and other controls are gone. I try hitting esc. Multiple random clicks later i'm back where I started.\nI try the \"more\" button\", I am now looking at a painting sideways, and an anodyne text which explains very little. I click on a painting. Things start moving. I hit Esc. Suddenly the painting is full screen. GREAT. Ok, and now how do I get out? Esc? Oh esc. Ok NOW ESC... oh no, things are moving again. I didn't mean for things to move. Esc shouldn't cause things to START moving. hit esc again. The esc is ignored.\nI end up at another painting. I try some buttons. Most don't work. I hit esc again. Things start moving. I didn't mean to move away from the painting, I just had it in front of me!\nI am very confused.\nI'm not in control here.\nedit: \"Esc shouldn't cause things to START moving\"",
-          "score": 0,
-          "time": 1791984901,
           "parent": "50085022"
         },
         {
@@ -393,11 +730,11 @@
           "parent": "50085022"
         },
         {
-          "id": "50091637",
-          "author": "hn_submit",
-          "body": "Amazing. I'd wish more museums like this would exist so you can visit them from the comfort of your home.",
+          "id": "50087572",
+          "author": "Kim_Bruning",
+          "body": "The UI design might need some work.\nIt starts with no controls, just a picture. I hit esc. Things start moving. It keeps moving, I keep hitting esc, it doesn't stop. I try ctrl-c , no dice. I look around the frame for buttons. I try one of the buttons, it moves faster. I hold down esc. It doesn't respond to holding down esc either . I see no way to gain control. At no point do I gain control.\nUltimately it stops. Fine. Ok, no response to WASD. No response to drag motion. I click \"Instruments\" , I get a side-bar \"instruments of the museum\" with no contents. I click in the side bar. Now I can't close it, and other controls are gone. I try hitting esc. Multiple random clicks later i'm back where I started.\nI try the \"more\" button\", I am now looking at a painting sideways, and an anodyne text which explains very little. I click on a painting. Things start moving. I hit Esc. Suddenly the painting is full screen. GREAT. Ok, and now how do I get out? Esc? Oh esc. Ok NOW ESC... oh no, things are moving again. I didn't mean for things to move. Esc shouldn't cause things to START moving. hit esc again. The esc is ignored.\nI end up at another painting. I try some buttons. Most don't work. I hit esc again. Things start moving. I didn't mean to move away from the painting, I just had it in front of me!\nI am very confused.\nI'm not in control here.\nedit: \"Esc shouldn't cause things to START moving\"",
           "score": 0,
-          "time": 1791999421,
+          "time": 1791984901,
           "parent": "50085022"
         },
         {
@@ -409,11 +746,27 @@
           "parent": "50085022"
         },
         {
+          "id": "50091847",
+          "author": "andrearitossa",
+          "body": "I love it! Would be great to double down on the experience, I'd add immersive experiences: audio / visuals to guide the discovery / interactiveness",
+          "score": 0,
+          "time": 1792000138,
+          "parent": "50085022"
+        },
+        {
           "id": "50087917",
           "author": "WillAdams",
           "body": "c.f.,\nhttps://en.wikipedia.org/wiki/Codex_Leicester (https://en.wikipedia.org/wiki/Codex_Leicester)\nwhich really needs to escape off the platter and be more accessible.",
           "score": 0,
           "time": 1791986423,
+          "parent": "50085022"
+        },
+        {
+          "id": "50091637",
+          "author": "hn_submit",
+          "body": "Amazing. I'd wish more museums like this would exist so you can visit them from the comfort of your home.",
+          "score": 0,
+          "time": 1791999421,
           "parent": "50085022"
         },
         {
@@ -433,11 +786,11 @@
           "parent": "50085022"
         },
         {
-          "id": "50089900",
-          "author": "FSchaider",
-          "body": "How did you get this idea? This is so cool",
+          "id": "50086092",
+          "author": "auggierose",
+          "body": "> We rebuild what was. You walk through it.\nClosing the page right there.",
           "score": 0,
-          "time": 1791994088,
+          "time": 1791978028,
           "parent": "50085022"
         }
       ]
@@ -678,7 +1031,7 @@
       "title": "Show HN: I built a tool to track what AI leaders say and how their views change",
       "subreddit": "show-hn",
       "author": "gcsydney",
-      "score": 114,
+      "score": 115,
       "num_comments": 76,
       "permalink": "https://news.ycombinator.com/item?id=50081151",
       "url": "https://blumify.io/people",
@@ -713,19 +1066,19 @@
           "parent": "50081151"
         },
         {
-          "id": "50087534",
-          "author": "Otterly99",
-          "body": "I noticed that there are a few duplicates, which seem to point to different transcripts of the same source.\nFor instance if you go to Marc Andreessen's page, at the top there are 2 quotes which are basically the same THEN/NOW with one quote from JRECentral and one from PowerfulJRE.",
-          "score": 0,
-          "time": 1791984727,
-          "parent": "50081151"
-        },
-        {
           "id": "50082737",
           "author": "Lerc",
           "body": "I think this would be a good thing to have, but it has to be comprehensive.\nSelective ommission and reduction of context would allow any narrative you chose to write.\nIn other words for this to work you really need to cover enought scope that it would be surprising to find a public statement that was not covered here.\nThat's quite a lot of work, but anything else would be susceptible to cherry picking.",
           "score": 0,
           "time": 1791955361,
+          "parent": "50081151"
+        },
+        {
+          "id": "50087534",
+          "author": "Otterly99",
+          "body": "I noticed that there are a few duplicates, which seem to point to different transcripts of the same source.\nFor instance if you go to Marc Andreessen's page, at the top there are 2 quotes which are basically the same THEN/NOW with one quote from JRECentral and one from PowerfulJRE.",
+          "score": 0,
+          "time": 1791984727,
           "parent": "50081151"
         },
         {
@@ -737,19 +1090,19 @@
           "parent": "50081151"
         },
         {
-          "id": "50086251",
-          "author": "xtiansimon",
-          "body": "This is interesting and obviously applies to a host of public people (and prolly some annoying clients)",
-          "score": 0,
-          "time": 1791978932,
-          "parent": "50081151"
-        },
-        {
           "id": "50081763",
           "author": "toobulkeh",
           "body": "Speaking nothing of the implementation, this is a very valuable concept. I’m curious if statistically there are trends to identify in beliefs or how beliefs spread over societies. You could likely use that data to determine thought leadership and information diets and measure things like distribution, how far the Bay Area is ahead, and other meaningful data for investments, etc.",
           "score": 0,
           "time": 1791945968,
+          "parent": "50081151"
+        },
+        {
+          "id": "50086251",
+          "author": "xtiansimon",
+          "body": "This is interesting and obviously applies to a host of public people (and prolly some annoying clients)",
+          "score": 0,
+          "time": 1791978932,
           "parent": "50081151"
         },
         {
@@ -769,19 +1122,19 @@
           "parent": "50081151"
         },
         {
-          "id": "50085967",
-          "author": "KellyCriterion",
-          "body": "you could somehow add the current stock chart somehow and pin it to their statements/dates? :-D",
-          "score": 0,
-          "time": 1791977316,
-          "parent": "50081151"
-        },
-        {
           "id": "50083941",
           "author": "wartywhoa23",
           "body": "The AI Wall of Shame.",
           "score": 0,
           "time": 1791964288,
+          "parent": "50081151"
+        },
+        {
+          "id": "50085967",
+          "author": "KellyCriterion",
+          "body": "you could somehow add the current stock chart somehow and pin it to their statements/dates? :-D",
+          "score": 0,
+          "time": 1791977316,
           "parent": "50081151"
         }
       ]
@@ -810,7 +1163,7 @@
       "title": "Show HN: Mosh-rs, Mosh rewritten in Rust with scrollback and Windows support",
       "subreddit": "show-hn",
       "author": "Arunjay__",
-      "score": 19,
+      "score": 20,
       "num_comments": 9,
       "permalink": "https://news.ycombinator.com/item?id=50080836",
       "url": "https://github.com/Arunjay4213/mosh-rs",
