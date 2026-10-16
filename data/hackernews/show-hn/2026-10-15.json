@@ -1,8 +1,59 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-15T18:39:48.533527+00:00",
+  "last_fetched": "2026-10-16T01:00:35.156004+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50110907",
+      "title": "Show HN: Guess the LLM – read an answer and guess which model wrote it",
+      "subreddit": "show-hn",
+      "author": "aravindnatch",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50110907",
+      "url": "https://guessthellm.com/",
+      "selftext": "Hi HN, I made a game to test if people can really tell AI models apart.\nModels from all the frontier labs answer the same question. You read one answer and guess who wrote it. You can also pick just the models you want to compare.\nI made it and still only get 5/10 lol. Curious how you all do.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792101234,
+      "created_at": "2026-10-15T21:53:54+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50110614",
+      "title": "Show HN: Endo – A Higher-Order Harness",
+      "subreddit": "show-hn",
+      "author": "Warren93",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50110614",
+      "url": "https://github.com/longsurf-ai/endo",
+      "selftext": "Endo is a Higher-Order Harness (HOH).\nFrom the easiest concept to understand to the more complex ones, Endo gives you:\n* A single, simple UI to use any agent provider with your existing subscriptions, and hot-swap agents right in the middle of a session.\n* An orchestration layer, which I call HOH, allowing arbitrary composition of agents to achieve any workflow. A fun case I tried was asking Fable and Astra to mock a presidential debate.\n* An agent protocol that abstracts any agent. The key insight here is that every LLM is an agent—instead of treating the LLM as just one node inside an external ReAct loop.\nEndo was a concept formed while I was building OpenChart (https://github.com/longsurf-ai/openchart (https://github.com/longsurf-ai/openchart)). To power trading workflows, I needed to support scenarios where strict determinism is required, while still keeping the flexibility of an agent's inference-time decision-making capability. A new form factor was needed between rigid n8n-style workflows and open-ended ReAct loop agents.\nThus the creation of Endo. Endo is short for Endomorphism, a term rooted in category theory and functional programming. An endomorphism is a function that transforms an object into another object of the same type. Similarly, Endo itself is built purely on functional programming principles, relying heavily on Effect (https://github.com/Effect-TS/effect (https://github.com/Effect-TS/effect)).\n..And if you have patience to speak technical jargons, Endo is:\n* An agent orchestration layer—Higher-Order Harness (HOH)—where an entire agent is treated the same as a single LLM call, enabling arbitrary composition of extremely complex workflows.\n* A way to abstract any harness into a standardized protocol, where raw models and agents behave the exact same way, in a KV-cache-friendly manner.\n* A workflow engine that enables arbitrary composition of agents with a single workflow language.\nIt's completely open source, and if you think this idea is cool, let's build together. Just for the fun of it.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792099930,
+      "created_at": "2026-10-15T21:32:10+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50108386",
+      "title": "Show HN: Forwarder.cc – Static-site forms sent to your inbox, pay per message",
+      "subreddit": "show-hn",
+      "author": "calyhre",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50108386",
+      "url": "https://forwarder.cc",
+      "selftext": "TL;DR: 12 years ago I built a service that forwards simple HTML forms to an email address. I've been procrastinating on finishing it ever since, until today. You point your form at it and every submission lands in your inbox. It runs on credits, 1 credit = 1 message, no subscription. Perfect for static websites.\n—\nHey folks, back around 2014, alongside my job as a software engineer, I was building a lot of static websites for my own clients, mostly small businesses that just wanted a simple site. To avoid headaches, I went fully static, often hosted on GitHub Pages and similar.\nBut most clients also wanted a contact form, and a form needs a server running somewhere. I had my own weekend-hacked service for this, which literally just forwarded the form to the client's email.\nI didn't invent anything here: one service I particularly remember was FormKeep by thoughtbot, that I really liked.\nSo I started building my own, mostly because I loved losing myself in side projects like this, and also because I was a cheap ass and thought I could do something similar for less, and without a subscription.\nBy 2016 I had done about 90% of what I'm showing you today. I called it \"The Great Forwarder\". Everything was ready: backend, frontend, hosting, Stripe, landing page. I even had a designer friend help with the design (sorry, Valentin, if I've botched it since). Then I started another project, which took off right away and took all my attention for a while. Fun fact: that project has been using this service ever since, and almost every message ever sent through it came from there.\nSo for years, I kept Forwarder.cc up to date, upgrading libraries and trying new ones: axios, got, Redux, Zustand, create-react-app, webpack, Vite… It became my laboratory for everything I wanted to explore, while always staying up and maintained (again, for my own use only).\nThe only thing that ever held me back from launching it was a missing help center, and, more honestly, the fear of putting it in front of people.\nSo today's the day: after 12 years of procrastination, I finally finished the help center.\nI know there are a ton of similar services nowadays, but anyway, what do you think of that help center?",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792090067,
+      "created_at": "2026-10-15T18:47:47+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,7 +61,7 @@
       "title": "Show HN: RDST – A local agent that watches Postgres/MySQL for query regressions",
       "subreddit": "show-hn",
       "author": "gvsg",
-      "score": 5,
+      "score": 6,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50107729",
       "url": "https://github.com/readysettech/rdst",
@@ -88,15 +139,25 @@
       "title": "Show HN: BlastLoop, a structure-first coding method for AI agents",
       "subreddit": "show-hn",
       "author": "rossleeshaw",
-      "score": 6,
-      "num_comments": 0,
+      "score": 12,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50106062",
       "url": "https://github.com/rlshaw-ml/BlastLoop",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1792081599,
-      "created_at": "2026-10-15T16:26:39+00:00"
+      "created_at": "2026-10-15T16:26:39+00:00",
+      "comments_data": [
+        {
+          "id": "50109116",
+          "author": "shmoil",
+          "body": "Looks interesting. I will try it.",
+          "score": 0,
+          "time": 1792093014,
+          "parent": "50106062"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -105,8 +166,8 @@
       "title": "Show HN: Sygal – Convert PDFs, scans and web pages to Markdown, locally",
       "subreddit": "show-hn",
       "author": "cyrillsemah",
-      "score": 16,
-      "num_comments": 3,
+      "score": 32,
+      "num_comments": 9,
       "permalink": "https://news.ycombinator.com/item?id=50106054",
       "url": "https://sygal.app",
       "selftext": "",
@@ -115,6 +176,22 @@
       "time": 1792081576,
       "created_at": "2026-10-15T16:26:16+00:00",
       "comments_data": [
+        {
+          "id": "50108362",
+          "author": "axm997",
+          "body": "https://github.com/amitxm/AIDocPrep (https://github.com/amitxm/AIDocPrep) is the one I built that is true local OCR. I made sure there is NO internet use, even accidentally. Also, added redaction.",
+          "score": 0,
+          "time": 1792089982,
+          "parent": "50106054"
+        },
+        {
+          "id": "50109513",
+          "author": "kennywinker",
+          "body": "Seems like it sends your documents to the LLM of your choice. In what world is that “locally”??",
+          "score": 0,
+          "time": 1792094798,
+          "parent": "50106054"
+        },
         {
           "id": "50107127",
           "author": "cameronbedard",
@@ -129,6 +206,14 @@
           "body": "I am also building an app that converts web pages to Markdown.\nHow do you handle messy scans and tables?",
           "score": 0,
           "time": 1792083947,
+          "parent": "50106054"
+        },
+        {
+          "id": "50108773",
+          "author": "cachius",
+          "body": "As a service: https://into.md/ (https://into.md/)",
+          "score": 0,
+          "time": 1792091579,
           "parent": "50106054"
         }
       ]
@@ -174,8 +259,8 @@
       "title": "Show HN: Proa – A Rust web framework with fast SSR and multi-target rendering",
       "subreddit": "show-hn",
       "author": "burnrate",
-      "score": 37,
-      "num_comments": 3,
+      "score": 90,
+      "num_comments": 25,
       "permalink": "https://news.ycombinator.com/item?id=50105467",
       "url": "https://proa.so/",
       "selftext": "Video: https://youtu.be/-CfCyvIKYyo?si=hCLuStkXxanCUJD1 (https://youtu.be/-CfCyvIKYyo?si=hCLuStkXxanCUJD1)\nVideo on multi-target rendering: https://youtu.be/pJx84jdBDKU?si=HRRd6dgUWXiqeWhq (https://youtu.be/pJx84jdBDKU?si=HRRd6dgUWXiqeWhq)\nBenchmarks: https://github.com/Proa-Labs/proa-benchmarks (https://github.com/Proa-Labs/proa-benchmarks)",
@@ -184,6 +269,30 @@
       "time": 1792079528,
       "created_at": "2026-10-15T15:52:08+00:00",
       "comments_data": [
+        {
+          "id": "50111425",
+          "author": "farmeroy",
+          "body": "This might be a silly question, but why 2 views for html and markdown? isn't there a broad base of cases where one can just be inferred from the other?\nAlso, I think it's exciting to see so many rust web frameworks popping up but I'm in total decision paralysis. If I want to build something with rust now there are at least 3 complete frameworks: loco, topcoat and now proa... plus actix, rocket, axum, and ...more?",
+          "score": 0,
+          "time": 1792104267,
+          "parent": "50105467"
+        },
+        {
+          "id": "50111815",
+          "author": "jakswa",
+          "body": "I was recently scanning for newer, more-batteries-included options and this looks well-scoped at first bluff. Thanks for spreading it, might end up in my next experiment!",
+          "score": 0,
+          "time": 1792107129,
+          "parent": "50105467"
+        },
+        {
+          "id": "50110277",
+          "author": "trnvll",
+          "body": "Damn, projects like these really spark my curiosity about Rust. I guess it's time to try it out, fomo is getting too big haha",
+          "score": 0,
+          "time": 1792098546,
+          "parent": "50105467"
+        },
         {
           "id": "50108004",
           "author": "egeozcan",
@@ -201,11 +310,43 @@
           "parent": "50105467"
         },
         {
+          "id": "50111544",
+          "author": "yieldcrv",
+          "body": "I would be mostly curious about CI/CD and build and deployment times on underpowered compute instances\nI could drop the react ecosystem given considerable improvement over it at the deployment part\nEspecially since years of experience with frameworks doesnt matter anymore and won’t matter with recruitment soon",
+          "score": 0,
+          "time": 1792105048,
+          "parent": "50105467"
+        },
+        {
           "id": "50107660",
           "author": "airstrike",
           "body": "Why does `fn render` need to borrow WebContext mutably?",
           "score": 0,
           "time": 1792087518,
+          "parent": "50105467"
+        },
+        {
+          "id": "50111139",
+          "author": "contingencies",
+          "body": "So... Multi-target = {chat, web, markdown}; Audience = {human, bot}; USPs = {speed, unified model}\nSince I don't believe the maintenance challenges of a non-unified model are particularly high-friction in the LLM era (even if they may be error-prone, since that is usually solved with CI/CD or TDD), the nominal utility of this angle of architectural enhancement is considered dubious.\nWith regard to speed, there is no hardware shortage at present for any of these simple rendering tasks.\nOverall, a nice efficient codebase but suffering a bit from NIH syndrome solving no particularly acute problem. Unless a community forms rapidly, this will probably die.\nI'd like to see the benchmark compared to, eg. static files served with binserve.",
+          "score": 0,
+          "time": 1792102427,
+          "parent": "50105467"
+        },
+        {
+          "id": "50110825",
+          "author": "canadiantim",
+          "body": "This looks amazing, really appreciate your minimal JavaScript approach. I’ll definitely try it out, could see myself potentially doing pro version in future.",
+          "score": 0,
+          "time": 1792100873,
+          "parent": "50105467"
+        },
+        {
+          "id": "50108682",
+          "author": "lwhsiao",
+          "body": "Can I get a TLDR of why Proa is seemingly so much faster tha existing Rust web frameworks (Dioxus, Leptos, Topcoat)?",
+          "score": 0,
+          "time": 1792091210,
           "parent": "50105467"
         }
       ]
@@ -336,8 +477,8 @@
       "title": "Show HN: Unfenced – Land for sale that borders public land",
       "subreddit": "show-hn",
       "author": "otherwatersflow",
-      "score": 190,
-      "num_comments": 139,
+      "score": 254,
+      "num_comments": 181,
       "permalink": "https://news.ycombinator.com/item?id=50102247",
       "url": "https://unfenced.land/",
       "selftext": "",
@@ -379,11 +520,11 @@
           "parent": "50102247"
         },
         {
-          "id": "50103003",
-          "author": "Anon1096",
-          "body": "If you have public land do you just have people walking over the property boundary onto your parcel all the time? Especially in the more populous states like NJ some of them I'd expect that to be pretty common, interesting idea as a thing that people search out specifically for though.\nRegardless, neat site. Couple things, first maybe a disclaimer on why you would want this on the home page? And on the state page itself I can't tell how bordering is different than adjacent. IMO just calling it \"within 75m\" would be better, and since this is for the US consider making it based on feet :p. Also, I would recommend that at least for user facing strings though you give it a little TLC and remove the really really obvious Claudisms\n> official boundary maps, not listing descriptions.\n> An analysis of publicly available boundary data — not a survey, and not a listing service\nplus everything on the How It Works page is extremely obviously LLM.",
+          "id": "50112102",
+          "author": "SwellJoe",
+          "body": "Neat idea, but literally every property I looked at, a half dozen of them, was:\na. Not for sale.\nb. Wildly incorrectly priced, according to the Zestimate and most recent sold price, when sold recently. I mean, like, $59k vs $470k.",
           "score": 0,
-          "time": 1792069124,
+          "time": 1792109706,
           "parent": "50102247"
         },
         {
@@ -395,19 +536,19 @@
           "parent": "50102247"
         },
         {
-          "id": "50106600",
-          "author": "ggreer",
-          "body": "It seems to not find quite a few properties that border public land. For example, if I scroll around Zillow to find stuff that borders the Gifford Pinchot national forest, I can find properties like this one.[1] But I don't see anything matching it on the Unfenced map.\nI bought 20 acres bordering the national forest a couple years ago. The seller made sure I had some idea of what I was getting into. Due to the isolation and terrain, everything is more difficult. It's been a lot of work to build a road, level an area to build on, construct a shed, and set up off-grid solar power. But it's also very rewarding. The views are spectacular, and at night you can see the milky way. There's still a lot more work to do before it's worthy of being called a vacation spot, but I'm very happy with my decision.\n1. https://www.zillow.com/homedetails/Snag-Mountain-Rd-110-Wash... (https://www.zillow.com/homedetails/Snag-Mountain-Rd-110-Washougal-WA-98671/2062991170_zpid/)",
+          "id": "50111084",
+          "author": "ramses0",
+          "body": "Apologies if this is somewhere else, but \"price per acre\" as a sorting mechanism would be really helpful. In the Dallas area, there's a few like $350k/0.2 acres (eg: a typical house on a lot).\nPrice per acre could suss out whether it's developed or in demand vs more rural (less price per acre).\nOther than that, bravo! Great idea, well implemented!",
           "score": 0,
-          "time": 1792083445,
+          "time": 1792102114,
           "parent": "50102247"
         },
         {
-          "id": "50102813",
-          "author": "bko",
-          "body": "This is cool, but isn't owning property bordering public land undesirable?\nSure, there's the ability to hike directly from your home, but I imagine you'll regularly have people wander on to your property. And if something illegal happens on your property by a different party, you might be liable.\nSeems like the cons outweigh the pros. Or is there something I'm missing?",
+          "id": "50103003",
+          "author": "Anon1096",
+          "body": "If you have public land do you just have people walking over the property boundary onto your parcel all the time? Especially in the more populous states like NJ some of them I'd expect that to be pretty common, interesting idea as a thing that people search out specifically for though.\nRegardless, neat site. Couple things, first maybe a disclaimer on why you would want this on the home page? And on the state page itself I can't tell how bordering is different than adjacent. IMO just calling it \"within 75m\" would be better, and since this is for the US consider making it based on feet :p. Also, I would recommend that at least for user facing strings though you give it a little TLC and remove the really really obvious Claudisms\n> official boundary maps, not listing descriptions.\n> An analysis of publicly available boundary data — not a survey, and not a listing service\nplus everything on the How It Works page is extremely obviously LLM.",
           "score": 0,
-          "time": 1792068138,
+          "time": 1792069124,
           "parent": "50102247"
         },
         {
@@ -419,11 +560,19 @@
           "parent": "50102247"
         },
         {
-          "id": "50105199",
-          "author": "runtime_terror",
-          "body": "Cool concept!\nOne big issue: not having a price and acreage range selectors means you see a lot of 0.2acre lots and $8mm parcels which I'm assuming most of us wouldn't be looking for",
+          "id": "50102813",
+          "author": "bko",
+          "body": "This is cool, but isn't owning property bordering public land undesirable?\nSure, there's the ability to hike directly from your home, but I imagine you'll regularly have people wander on to your property. And if something illegal happens on your property by a different party, you might be liable.\nSeems like the cons outweigh the pros. Or is there something I'm missing?",
           "score": 0,
-          "time": 1792078478,
+          "time": 1792068138,
+          "parent": "50102247"
+        },
+        {
+          "id": "50106600",
+          "author": "ggreer",
+          "body": "It seems to not find quite a few properties that border public land. For example, if I scroll around Zillow to find stuff that borders the Gifford Pinchot national forest, I can find properties like this one.[1] But I don't see anything matching it on the Unfenced map.\nI bought 20 acres bordering the national forest a couple years ago. The seller made sure I had some idea of what I was getting into. Due to the isolation and terrain, everything is more difficult. It's been a lot of work to build a road, level an area to build on, construct a shed, and set up off-grid solar power. But it's also very rewarding. The views are spectacular, and at night you can see the milky way. There's still a lot more work to do before it's worthy of being called a vacation spot, but I'm very happy with my decision.\n1. https://www.zillow.com/homedetails/Snag-Mountain-Rd-110-Wash... (https://www.zillow.com/homedetails/Snag-Mountain-Rd-110-Washougal-WA-98671/2062991170_zpid/)",
+          "score": 0,
+          "time": 1792083445,
           "parent": "50102247"
         },
         {
@@ -432,14 +581,6 @@
           "body": "This is super cool. I love this use of public data to do something cool. The page seems like it's biggest value is to help potential property buyers find property they wouldn't easily be able to otherwise (that's what I like about it). Given that, seems like being able to filter on cost and size of lot would be useful filters on top.",
           "score": 0,
           "time": 1792068418,
-          "parent": "50102247"
-        },
-        {
-          "id": "50105878",
-          "author": "caseyf7",
-          "body": "Very cool project. One of my favorite Show HN posts. It’s interesting to see how hard it is to line up the maps from different sources, but in most cases it is close enough to dig further. A really useful tool. Thank you",
-          "score": 0,
-          "time": 1792081000,
           "parent": "50102247"
         }
       ]
@@ -482,11 +623,11 @@
       "source": "hackernews",
       "stream": "show-hn",
       "id": "50099136",
-      "title": "Show HN: Flipflop, Iroh-powered persistent tunnels for filesharing",
+      "title": "Show HN: Flipflop – Iroh-powered persistent tunnels for filesharing",
       "subreddit": "show-hn",
       "author": "andunie",
-      "score": 85,
-      "num_comments": 42,
+      "score": 107,
+      "num_comments": 60,
       "permalink": "https://news.ycombinator.com/item?id=50099136",
       "url": "https://github.com/andunieee/flipflop",
       "selftext": "This is a project that spun from my frustrations of using LocalSend and DashBeam to transfer stuff between devices, and with the extra goal of being fast, trying out the Slint framework and, most importantly, establishing a communication channel with trusted external people that can be left always on.",
@@ -496,27 +637,19 @@
       "created_at": "2026-10-15T04:25:28+00:00",
       "comments_data": [
         {
+          "id": "50109819",
+          "author": "dimfisch",
+          "body": "\"Because Microsoft hates the world, they will show a \"Windows protected your PC\" warning when you try.\nBecause Apple hates the world even more, I can't publish it for iOS.\"\nGold",
+          "score": 0,
+          "time": 1792096454,
+          "parent": "50099136"
+        },
+        {
           "id": "50100025",
           "author": "synctext",
           "body": "Interesting project, towards a decentralized Internet!\nThe heavy lifting is done in this function, pairing. You link your personal devices together, solid idea [0].\nThis Flipflop project relies on the Iroh library for NAT/Firewall puncturing, external address discovery and overlay networking. Connecting two 5G devices, without a coordinating central server is possible, but very hard. Iroh simply relies on a server which you could self-host. Cool stuff, we stress tested it a while ago and it somewhat worked.\nNAT connectivity is unsolved. My university lab conducted one of the bigger puncturing studies a decade ago [1]. Recently, we also bought 40+ or something 4G and 5G SIM cards in Europe for puncturing [2]. My master student traveled Europe by bus to get these local SIM cards. He worked day-and-night to connect these weird symmetric 5G NAT filter boxes and got it working. Simple sync collision and birthday paradox brute force... It all works sometimes, but insufficiently reliable for mass-adoption. You can't build a decentralized social media ecosystem on top. Like Iroh, best to use a central server. So then you have legal liability for your users. Unless an AI agent buys the server fully autonomously using Bitcoin, next years students got that working[3] :-)\n[0] https://github.com/andunieee/flipflop/blob/62bb498520aacb60e... (https://github.com/andunieee/flipflop/blob/62bb498520aacb60ec4e101cdfbb94f9bab0cdf8/src/protocol/pairing_auth.rs#L13)\n[1] UDP NAT and Firewall Puncturing in the Wild, https://inria.hal.science/hal-01597969v1/document (https://inria.hal.science/hal-01597969v1/document)\n[2] Mass Adoption of NATs: Survey and experiments on carrier-grade NATs, https://arxiv.org/html/2311.04658v2 (https://arxiv.org/html/2311.04658v2)\n[3] Self-replicating seedbox servers using programmable money, https://arxiv.org/abs/2609.05431 (https://arxiv.org/abs/2609.05431)",
           "score": 0,
           "time": 1792046112,
-          "parent": "50099136"
-        },
-        {
-          "id": "50104692",
-          "author": "akavel",
-          "body": "Cool! I'll have to look deeper to see if I could use it as a base for porting https://github.com/akavel/catation (https://github.com/akavel/catation) to Rust+Iroh! (EDIT: related, do you maybe have plans to merge flipflop with https://github.com/andunieee/my-beloved-rubble (https://github.com/andunieee/my-beloved-rubble) ?)\nMay I ask, was it vibed/LLM-assisted to some extent, or is it purely human-made?",
-          "score": 0,
-          "time": 1792076461,
-          "parent": "50099136"
-        },
-        {
-          "id": "50100269",
-          "author": "kkapelon",
-          "body": "Is it better/different than https://tailscale.com/docs/features/taildrop (https://tailscale.com/docs/features/taildrop) ?",
-          "score": 0,
-          "time": 1792047972,
           "parent": "50099136"
         },
         {
@@ -528,19 +661,51 @@
           "parent": "50099136"
         },
         {
-          "id": "50104087",
-          "author": "ramoz",
-          "body": "Iroh released something similar awhile back\nhttps://www.iroh.computer/sendme (https://www.iroh.computer/sendme)",
-          "score": 0,
-          "time": 1792074054,
-          "parent": "50099136"
-        },
-        {
           "id": "50099862",
           "author": "cold_boot",
           "body": "Keeping the tunnel available between sends is the nice part. Once it's set up with someone, you can just use it.",
           "score": 0,
           "time": 1792044661,
+          "parent": "50099136"
+        },
+        {
+          "id": "50110101",
+          "author": "smusamashah",
+          "body": "Loosely related list of browser based and CLI tools to send files p2p https://gist.github.com/SMUsamaShah/fd6e275e44009b72f64d0570... (https://gist.github.com/SMUsamaShah/fd6e275e44009b72f64d0570256bb3b2)",
+          "score": 0,
+          "time": 1792097818,
+          "parent": "50099136"
+        },
+        {
+          "id": "50110746",
+          "author": "rickcarlino",
+          "body": "I wish someone would revisit the idea of a single, global, P2P file search mesh like Gnutella/Gnutella2 but using a modern P2P stack (or WebRTC) instead of raw TCP/UDP like the old days.",
+          "score": 0,
+          "time": 1792100585,
+          "parent": "50099136"
+        },
+        {
+          "id": "50104692",
+          "author": "akavel",
+          "body": "Cool! I'll have to look deeper to see if I could use it as a base for porting https://github.com/akavel/catation (https://github.com/akavel/catation) to Rust+Iroh! (EDIT: related, do you maybe have plans to merge flipflop with https://github.com/andunieee/my-beloved-rubble (https://github.com/andunieee/my-beloved-rubble) ?)\nMay I ask, was it vibed/LLM-assisted to some extent, or is it purely human-made?",
+          "score": 0,
+          "time": 1792076461,
+          "parent": "50099136"
+        },
+        {
+          "id": "50110240",
+          "author": "combyn8tor",
+          "body": "How do you get 50 contributors on a project with 116 stars that's 3 months old? There are no PR's? Only one issue?",
+          "score": 0,
+          "time": 1792098373,
+          "parent": "50099136"
+        },
+        {
+          "id": "50104087",
+          "author": "ramoz",
+          "body": "Iroh released something similar awhile back\nhttps://www.iroh.computer/sendme (https://www.iroh.computer/sendme)",
+          "score": 0,
+          "time": 1792074054,
           "parent": "50099136"
         },
         {
@@ -552,35 +717,19 @@
           "parent": "50099136"
         },
         {
-          "id": "50102397",
-          "author": "fartfeatures",
-          "body": "I'm working on something similar, could you please turn on discussions so we can chat directly?",
+          "id": "50110251",
+          "author": "davidcollantes",
+          "body": "Doesn’t Iroh rely on relays? If so, is it possible to run my own?",
           "score": 0,
-          "time": 1792065354,
+          "time": 1792098427,
           "parent": "50099136"
         },
         {
-          "id": "50100811",
-          "author": "exe34",
-          "body": "Nice idea, but for personal sharing between my devices, I have a syncthing folder that's synced between my laptop, phone and media center/NAS, and I've been finding that most of my day to day files have been migrating into it, and I hardly ever use things outside of it.",
+          "id": "50100269",
+          "author": "kkapelon",
+          "body": "Is it better/different than https://tailscale.com/docs/features/taildrop (https://tailscale.com/docs/features/taildrop) ?",
           "score": 0,
-          "time": 1792052465,
-          "parent": "50099136"
-        },
-        {
-          "id": "50103843",
-          "author": "tamimio",
-          "body": "Looks very interesting, I have been building few things on top of iroh past few weeks and I love it, from the ability to run it on some iot all the way to be rf agnostic (almost, can’t use LoRa with iroh due to its datagram limit), and best part, MoQ runs natively on iroh where on wireguard you will need to encrypt twice so more cpu, but i found kernel wireguard performs better at bulk throughput, and layer 3 isn’t by default unless you have TUN like added.\nA list of iroh based tools are also found here https://github.com/n0-computer/awesome-iroh (https://github.com/n0-computer/awesome-iroh)",
-          "score": 0,
-          "time": 1792072943,
-          "parent": "50099136"
-        },
-        {
-          "id": "50099872",
-          "author": "StartingAbusine",
-          "body": "Why native code?\nI would think this could be done completely in the browser using WebRTC?",
-          "score": 0,
-          "time": 1792044796,
+          "time": 1792047972,
           "parent": "50099136"
         }
       ]
@@ -609,8 +758,8 @@
       "title": "Show HN: My Terminal Themes Web App",
       "subreddit": "show-hn",
       "author": "bado",
-      "score": 23,
-      "num_comments": 14,
+      "score": 31,
+      "num_comments": 16,
       "permalink": "https://news.ycombinator.com/item?id=50098454",
       "url": "https://news.ycombinator.com/item?id=50098454",
       "selftext": "Well, after 15 years of saying \"Someday I'll turn this into a web app,\" I finally did it!\nI've been maintaining a popular repo of terminal themes at https://github.com/mbadolato/iTerm2-Color-Schemes (https://github.com/mbadolato/iTerm2-Color-Schemes), and it was finally time to build the app with all the features I wanted!\nSo, the next-gen version is live at https://terminalthemes.com (https://terminalthemes.com)! It currently has over 800 themes, and provides downloads for close to 40 different formats (iTerm, Ghostty, Windows, and many more)\nIt's free for everyone. An account is not needed to browse and download, but registering for an account (free) allows you to vote, bookmark, submit themes, etc.\nI focused on a11y features for those who need it, in addition to adding Find My Theme and other tools to make it easy to find something you like!\nLive terminal and code previews help show a more realistic view of the terminal, as opposed to the ANSI screenshots used at the GitHub repository. Those are still there, for those who like them.\nI would love for you guys to check it out and provide feedback, feature suggestions, whatever!\nAnd a huge thanks to the community of people that have contributed themes, ports to other terminals, and tools to provide conversions between formats over the years.\nOh! And if you've ever contributed themes to the GitHub repo, please register for an account, find your theme(s), and hit the Claim Authorship button!",
@@ -620,27 +769,19 @@
       "created_at": "2026-10-15T02:33:42+00:00",
       "comments_data": [
         {
+          "id": "50112061",
+          "author": "joshka",
+          "body": "Love your work on this and the previous site. Thanks!!!\nOne comment I had (I think I may have posted something like this on a github issue too) is that the site has that feel a bit of the sort of UI from the early 2000s - like helm, or cold fusion dashboards. There's something about it that screams developer generated UI rather than designer influenced. The light mode looks ok, but the greys on the dark mode don't feel particularly scream well suited to a theme website. (Obv. just my purely subjective opinion here).\nThe swatches preview on the search results pages probably should be much smaller swatches - similar to the copy embed perhaps. And the background of the top part of the card should match the background of the theme.",
+          "score": 0,
+          "time": 1792109442,
+          "parent": "50098454"
+        },
+        {
           "id": "50100984",
           "author": "nmstoker",
           "body": "Very nice site.\nOut of interest, are they automatically classed as light or dark? For instance by some heuristic or algorithm. I saw it's reporting some contrast measures which is handy.\nI wonder how feasible it might be to use some colour distance heuristics to find similar themes: then if you find one you mostly like but it's slightly off due to some preference, you can still easily browse that \"neighborhood\"",
           "score": 0,
           "time": 1792054018,
-          "parent": "50098454"
-        },
-        {
-          "id": "50104249",
-          "author": "bado",
-          "body": "I forgot to mention, themes added to TT do sync back to the GitHub repository, and vice versa!",
-          "score": 0,
-          "time": 1792074719,
-          "parent": "50098454"
-        },
-        {
-          "id": "50103224",
-          "author": "boltzmann64",
-          "body": "https://terminal.sexy/ (https://terminal.sexy/)",
-          "score": 0,
-          "time": 1792070183,
           "parent": "50098454"
         },
         {
@@ -660,11 +801,27 @@
           "parent": "50098454"
         },
         {
+          "id": "50104249",
+          "author": "bado",
+          "body": "I forgot to mention, themes added to TT do sync back to the GitHub repository, and vice versa!",
+          "score": 0,
+          "time": 1792074719,
+          "parent": "50098454"
+        },
+        {
           "id": "50099340",
           "author": "d0utone",
           "body": "Awesome. I would make the themes much more visible on the main feed so that you can scroll through them on the phone and get a good impression. For me they were way too small so you end up entering every page to get a better glimpse.",
           "score": 0,
           "time": 1792040215,
+          "parent": "50098454"
+        },
+        {
+          "id": "50103224",
+          "author": "boltzmann64",
+          "body": "https://terminal.sexy/ (https://terminal.sexy/)",
+          "score": 0,
+          "time": 1792070183,
           "parent": "50098454"
         },
         {
