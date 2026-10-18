@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-18T12:39:33.343328+00:00",
+  "last_fetched": "2026-10-18T18:36:05.707668+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -208,8 +208,8 @@
       "title": "Show HN: Esp32sim – Run ESP32 firmware in the browser",
       "subreddit": "show-hn",
       "author": "joakimeriksson",
-      "score": 180,
-      "num_comments": 33,
+      "score": 189,
+      "num_comments": 39,
       "permalink": "https://news.ycombinator.com/item?id=50131189",
       "url": "https://github.com/mikroverk/esp32sim",
       "selftext": "Hi HN,\nI’ve been working on esp32sim, an open-source ESP32 emulator that runs in the browser.\nThe fun part of the demo is that there is no ESP32 involved — the firmware is executing in the emulator.\nThe goal is to make ESP32 software easier to experiment with, test and simulate without always needing physical hardware connected.\nSource:\nhttps://github.com/mikroverk/esp32sim (https://github.com/mikroverk/esp32sim)\nI made a short video showing it in action:\nhttps://youtu.be/waoWFilTWEc (https://youtu.be/waoWFilTWEc)\nI’m particularly interested in feedback from embedded developers: what would an emulator like this need to support before you’d actually use it for development, testing or CI?",
@@ -218,6 +218,22 @@
       "time": 1792245068,
       "created_at": "2026-10-17T13:51:08+00:00",
       "comments_data": [
+        {
+          "id": "50142154",
+          "author": "beachy",
+          "body": "We're building an esp-32 based hardware golf product.\nEsp32 emulation in the browser is an incredible superpower for hardware manufacturers.\nYou can put your hardware product, with a pixel perfect display and sound, directly into users (virtual) hands so they can try before they buy.\nThere's no real cost to you, since their web browser and computer provide all the horse power, you just serve it up as a static web page.\nIn the age of AI, a moat for hardware companies can be network effects through providing an AI friendly base that your users/players can build on.\nFor us that takes the form of an open source app store where players can extend their device using AI (\"Hey Claude, make me a game like this one, except that a giant bowling ball with our company logo embossed on it should drop and roll down an Indiana Jones styled marble run\").\nIt's hard to overstate how powerful it is to have users trying your device, navigating the menus, extending it's functionality themselves with AI, all on their own computer, creating games for others, all without even buying your device.",
+          "score": 0,
+          "time": 1792338698,
+          "parent": "50131189"
+        },
+        {
+          "id": "50142431",
+          "author": "noahnathan25",
+          "body": "A fantastic project. I've used velxio.dev it also runs in a browser with ESP32 and other microcontroller emulation, circuit simulation, and AI-assisted development",
+          "score": 0,
+          "time": 1792340342,
+          "parent": "50131189"
+        },
         {
           "id": "50135498",
           "author": "mrtksn",
@@ -235,19 +251,19 @@
           "parent": "50131189"
         },
         {
-          "id": "50138793",
-          "author": "snakeman",
-          "body": "Very nice! Are you planning P4 support?\nHave lots of S3 units and some C6, but P4 are the ones getting the most attentation at the moment.",
+          "id": "50140869",
+          "author": "ThePinion",
+          "body": "This is the first thing I started looking for when I started gathering ESP32s. I will definitely be checking this out! My main thought for it was experimenting with Meshtastic firmware without potentially bricking one of my devices.",
           "score": 0,
-          "time": 1792308648,
+          "time": 1792329609,
           "parent": "50131189"
         },
         {
-          "id": "50140461",
-          "author": "_mehbish_",
-          "body": "so cool!!",
+          "id": "50141134",
+          "author": "noah_buddy",
+          "body": "Any plans to support H2?\nThis is awesome, I will certainly use it for some of my recent embedded work. Will try and contribute back as well.",
           "score": 0,
-          "time": 1792326178,
+          "time": 1792331826,
           "parent": "50131189"
         },
         {
@@ -256,6 +272,22 @@
           "body": "This emulator is actually pretty cool — especially since it’s based on an ESP32; you can do all sorts of neat things with it, even simple ones:)",
           "score": 0,
           "time": 1792266759,
+          "parent": "50131189"
+        },
+        {
+          "id": "50138793",
+          "author": "snakeman",
+          "body": "Very nice! Are you planning P4 support?\nHave lots of S3 units and some C6, but P4 are the ones getting the most attentation at the moment.",
+          "score": 0,
+          "time": 1792308648,
+          "parent": "50131189"
+        },
+        {
+          "id": "50142486",
+          "author": "westurner",
+          "body": "One weekend, on a branch that isn't merged, I built a rudimentary SDL-based simulator for (InkHUD) ePaper GUI development that works on x86 without ESP32 emulation because Meshtastic compiles for x86, too. https://github.com/westurner/firmware/commits/add_weather_ht... (https://github.com/westurner/firmware/commits/add_weather_http_json_protobufs/)\nThe SPI display driver that records screencasts to MAV (Mu Animation Video) format - just like a fax - might be useful.\nIn another project, teact.sim, I've developed another similarly limited simulator for eZ80 and Python but we don't need to emulate the ARM processor because Python works on x86. So we emulate the ez80 in plain Python; and someday that might compile to WASM with Pyodide.\nIIRC there's Qemu in WASM. Would ESP32 work in Qemu in WASM? Is this faster?\n\"Babe32 – Barely Adequate Browser ESP32\" https://news.ycombinator.com/item?id=49104559 (https://news.ycombinator.com/item?id=49104559)",
+          "score": 0,
+          "time": 1792340647,
           "parent": "50131189"
         },
         {
@@ -281,14 +313,6 @@
           "score": 0,
           "time": 1792300226,
           "parent": "50131189"
-        },
-        {
-          "id": "50132088",
-          "author": "turbine401",
-          "body": "How is this different from Wokwi.com? They’ve been doing for years, and have a large number of microcontrollers emulated.",
-          "score": 0,
-          "time": 1792251866,
-          "parent": "50131189"
         }
       ]
     },
@@ -299,8 +323,8 @@
       "title": "Show HN: High-quality duck audio synthesizer",
       "subreddit": "show-hn",
       "author": "celphase",
-      "score": 147,
-      "num_comments": 31,
+      "score": 161,
+      "num_comments": 39,
       "permalink": "https://news.ycombinator.com/item?id=50131006",
       "url": "https://celphase.github.io/duck-pond/",
       "selftext": "",
@@ -309,6 +333,14 @@
       "time": 1792243726,
       "created_at": "2026-10-17T13:28:46+00:00",
       "comments_data": [
+        {
+          "id": "50143754",
+          "author": "riedel",
+          "body": "And I thought this was something like rubber duck synthesizer revival [0].\n[0] https://www.youtube.com/watch?v=ukVC6mJOWtA (https://www.youtube.com/watch?v=ukVC6mJOWtA)",
+          "score": 0,
+          "time": 1792347307,
+          "parent": "50131006"
+        },
         {
           "id": "50135784",
           "author": "codeulike",
@@ -323,6 +355,22 @@
           "body": "I don't know who came up with idea that bread is bad for ducks but it ruined one fishing spot for me. There was a place where people were feeding bread to sucks and fly fishing there was awesome. Carps, chubs, crucians, rudds and roaches, even nases! All on dry flies. Then someone put out sign that bread harms ducks so people stopped feeding them and after a while all fish just disappeared.",
           "score": 0,
           "time": 1792263366,
+          "parent": "50131006"
+        },
+        {
+          "id": "50140671",
+          "author": "andai",
+          "body": "More info at the repo:\nhttps://github.com/celphase/duck-pond (https://github.com/celphase/duck-pond)\nAlso replies by author in this sub thread below:\nhttps://news.ycombinator.com/item?id=50131006#50135405 (https://news.ycombinator.com/item?id=50131006#50135405)",
+          "score": 0,
+          "time": 1792327957,
+          "parent": "50131006"
+        },
+        {
+          "id": "50136408",
+          "author": "HoldOnAMinute",
+          "body": "It doesn't fool Merlin Bird ID app on my iPhone",
+          "score": 0,
+          "time": 1792281611,
           "parent": "50131006"
         },
         {
@@ -342,11 +390,11 @@
           "parent": "50131006"
         },
         {
-          "id": "50136408",
-          "author": "HoldOnAMinute",
-          "body": "It doesn't fool Merlin Bird ID app on my iPhone",
+          "id": "50140996",
+          "author": "cainxinth",
+          "body": "I have nothing to add other than this is very relaxing and I love duck’s names.",
           "score": 0,
-          "time": 1792281611,
+          "time": 1792330625,
           "parent": "50131006"
         },
         {
@@ -379,30 +427,6 @@
           "body": "Do androids feed electric ducks\nbtw i found it works very well as white noise",
           "score": 0,
           "time": 1792269294,
-          "parent": "50131006"
-        },
-        {
-          "id": "50133681",
-          "author": "RonanSoleste",
-          "body": "I love it. However i would love to walk around the pool and the ducks seem to stay with me a lot. But minor issues :)",
-          "score": 0,
-          "time": 1792261674,
-          "parent": "50131006"
-        },
-        {
-          "id": "50133770",
-          "author": "bigtech",
-          "body": "Finally!",
-          "score": 0,
-          "time": 1792262320,
-          "parent": "50131006"
-        },
-        {
-          "id": "50135668",
-          "author": "hypfer",
-          "body": "A while back I played around with the clanker and got it to build a fully synthesized woodcock peent as a standalone html file.\nThat then became embedded as an easter egg into some other software.\nDucks were too hard for it though, unfortunately.\nLately, I again threw a clanker at something like that and got it to recreate some MGS codec sound effects.",
-          "score": 0,
-          "time": 1792275338,
           "parent": "50131006"
         }
       ]
@@ -618,8 +642,8 @@
       "title": "Show HN: Llmspeed – feel how fast a local LLM runs before you buy the hardware",
       "subreddit": "show-hn",
       "author": "albinstman",
-      "score": 307,
-      "num_comments": 84,
+      "score": 313,
+      "num_comments": 86,
       "permalink": "https://news.ycombinator.com/item?id=50127979",
       "url": "https://llmspeed.dev/",
       "selftext": "",
@@ -645,11 +669,19 @@
           "parent": "50127979"
         },
         {
-          "id": "50140351",
-          "author": "riobits",
-          "body": "It would be cool if I could just search for a GPU instead of scrolling through the whole list. Overall, great website!",
+          "id": "50134730",
+          "author": "kgeist",
+          "body": "It says 46 tok/sec for Qwen3.6-27b 4 bit on RTX5090, but I get 60-70 tok/sec on a small context like that (5 bit weights with 8 bit KV cache), although it does slow down to 40 tok/sec on large contexts. If I add ngram speculation, then it can increase to 100+ tok/sec on code.\nThere are many knobs to tweak to make it faster, which the site ignores.",
           "score": 0,
-          "time": 1792325147,
+          "time": 1792268316,
+          "parent": "50127979"
+        },
+        {
+          "id": "50134971",
+          "author": "montroser",
+          "body": "Prices for everything are all in flux at this moment. Consumer cards like RTX 5090 are bonkers. Even 3090s have like doubled in the last six months. Meanwhile, prices for renting this class of hardware on vast.ai are spiking too, with rates increasing like 50% in September alone.\nIt's hard to know if we're at the beginning or the end of this trend. If manufacturing continues to focus on high end datacenter gpus at $40k a pop, and we continue to have supply constraints, this could last a while.\nOn the other hand, if Chinese models continue to nip at the tails of the frontier, cheaper by 20x, running on new Chinese chips, the whole bottom could fall out of the US market, and things could get very weird.",
+          "score": 0,
+          "time": 1792269858,
           "parent": "50127979"
         },
         {
@@ -661,11 +693,11 @@
           "parent": "50127979"
         },
         {
-          "id": "50134730",
-          "author": "kgeist",
-          "body": "It says 46 tok/sec for Qwen3.6-27b 4 bit on RTX5090, but I get 60-70 tok/sec on a small context like that (5 bit weights with 8 bit KV cache), although it does slow down to 40 tok/sec on large contexts. If I add ngram speculation, then it can increase to 100+ tok/sec on code.\nThere are many knobs to tweak to make it faster, which the site ignores.",
+          "id": "50140699",
+          "author": "voxleone",
+          "body": "I suspect we're going to see a resurgence of local computing because of LLMs, although not in exactly the same way as before.",
           "score": 0,
-          "time": 1792268316,
+          "time": 1792328247,
           "parent": "50127979"
         },
         {
@@ -674,14 +706,6 @@
           "body": "Projects like Strata show that this sort of thing will become outdated very fast (unless they can start including estimations for stuff like that as well).\nIncreasingly, people are finding clever technical solutions to get the most out of whatever hardware you have.",
           "score": 0,
           "time": 1792281959,
-          "parent": "50127979"
-        },
-        {
-          "id": "50134971",
-          "author": "montroser",
-          "body": "Prices for everything are all in flux at this moment. Consumer cards like RTX 5090 are bonkers. Even 3090s have like doubled in the last six months. Meanwhile, prices for renting this class of hardware on vast.ai are spiking too, with rates increasing like 50% in September alone.\nIt's hard to know if we're at the beginning or the end of this trend. If manufacturing continues to focus on high end datacenter gpus at $40k a pop, and we continue to have supply constraints, this could last a while.\nOn the other hand, if Chinese models continue to nip at the tails of the frontier, cheaper by 20x, running on new Chinese chips, the whole bottom could fall out of the US market, and things could get very weird.",
-          "score": 0,
-          "time": 1792269858,
           "parent": "50127979"
         },
         {
@@ -701,14 +725,6 @@
           "parent": "50127979"
         },
         {
-          "id": "50130918",
-          "author": "tom_alexander",
-          "body": "This is great. It solves two of my issues:\n 1. It is difficult to figure out if dropping $10k+ on hardware will make a meaningful difference for running local models.\n 2. Downloading each model and each quantization of that model to see the speed seems rude to free services like hugging face, so now I can see things like \"with my hardware, going to a Q8 only results in 3 more tokens per second\"\n\nMy one complaint is picking my hardware (9070XT) and Qwen3.6 27B FP16 results in the message:\n> This combination won't run. Qwen 3.6/3.8 27B at FP16 needs 54.6 GB — the AMD RX 9070 XT 16GB has 14.9 GB usable. No quantization of this model fits; pick a smaller model or more memory.\nWhile it is true that it won't fit in your GPU memory, it demonstrably does run on my hardware. Llama.cpp supports putting some layers on the GPU and running others on the CPU.\nAlso, that message says \"No quantization of this model fits\" but switching to a different quantization of that model (for example, Q8_0) makes the message go away?",
-          "score": 0,
-          "time": 1792243078,
-          "parent": "50127979"
-        },
-        {
           "id": "50128569",
           "author": "hbogert",
           "body": "Shame they are not including old crap like my RX580 which is doing some impressive stuff with Qwen 9B Models.",
@@ -717,11 +733,19 @@
           "parent": "50127979"
         },
         {
-          "id": "50128915",
-          "author": "gitowiec",
-          "body": "I would like to see in such simulators:\n- multi GPU configuration (hetero and homo)\n- PCIe gen chooser (3.0/4.0/5.0)\n- is nvlink enabled (2 cards, 2 x 2 cards, 3 x 2 cards)\n- is PCIe bifurcated or CPU native (threadripper pro for example)",
+          "id": "50130918",
+          "author": "tom_alexander",
+          "body": "This is great. It solves two of my issues:\n 1. It is difficult to figure out if dropping $10k+ on hardware will make a meaningful difference for running local models.\n 2. Downloading each model and each quantization of that model to see the speed seems rude to free services like hugging face, so now I can see things like \"with my hardware, going to a Q8 only results in 3 more tokens per second\"\n\nMy one complaint is picking my hardware (9070XT) and Qwen3.6 27B FP16 results in the message:\n> This combination won't run. Qwen 3.6/3.8 27B at FP16 needs 54.6 GB — the AMD RX 9070 XT 16GB has 14.9 GB usable. No quantization of this model fits; pick a smaller model or more memory.\nWhile it is true that it won't fit in your GPU memory, it demonstrably does run on my hardware. Llama.cpp supports putting some layers on the GPU and running others on the CPU.\nAlso, that message says \"No quantization of this model fits\" but switching to a different quantization of that model (for example, Q8_0) makes the message go away?",
           "score": 0,
-          "time": 1792223642,
+          "time": 1792243078,
+          "parent": "50127979"
+        },
+        {
+          "id": "50140351",
+          "author": "riobits",
+          "body": "It would be cool if I could just search for a GPU instead of scrolling through the whole list. Overall, great website!",
+          "score": 0,
+          "time": 1792325147,
           "parent": "50127979"
         }
       ]

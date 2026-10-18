@@ -1,8 +1,331 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-18T12:39:33.343328+00:00",
+  "last_fetched": "2026-10-18T18:36:05.707668+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50143041",
+      "title": "Show HN: CLI for your financial data (and Costco and Amazon)",
+      "subreddit": "show-hn",
+      "author": "kilianciuffolo",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50143041",
+      "url": "https://kilianc.github.io/fin/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792343484,
+      "created_at": "2026-10-18T17:11:24+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50142886",
+      "title": "Show HN: Chest – a tiny, open-source menu bar manager for macOS 27",
+      "subreddit": "show-hn",
+      "author": "a-ve",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50142886",
+      "url": "https://chest.boringbar.app/",
+      "selftext": "Hi HN!\nOne of my favorite apps on macOS, Ice, stopped working when I updated to macOS 27 because the trick it relied on doesn't work anymore. The only thing I really needed from the app was the ability to hide menu bar items to the left of it, so I built Chest to do just that.\nThere are other apps like this as well that try to use the menu bar part of macOS's exam mode to hide items, but that approach has some issues with the screen sharing, microphone, and camera indicators in the menu bar, which is rather troublesome for me.\nChest works by emulating the \"Allow in the Menu Bar\" switches in System Settings rather than relying on the old trick of pushing menu bar items off-screen.\nIt just needs Accessibility permission and access to two files that let it control which items are shown in the menu bar and where they're placed.\nYou can hide items in two ways: by ⌘-dragging them to the left of a small dot in the menu bar, or by dropping them into a separate \"Chest\" that keeps them out of the menu bar entirely. Clicking the dot brings the hidden items back.\nI think our approach is rather cleaner, and the app itself sits at ~2 MB, so it's small enough to not matter while providing a clutter-free menu bar.\nYou can view the source at https://github.com/boringbar/chest (https://github.com/boringbar/chest)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792342705,
+      "created_at": "2026-10-18T16:58:25+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50142648",
+      "title": "Show HN: Correct Hooks – Easy webhook auth with asymmetric signatures",
+      "subreddit": "show-hn",
+      "author": "pdiffles",
+      "score": 4,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50142648",
+      "url": "https://github.com/handlewithcarecollective/correct-hooks",
+      "selftext": "A while back, I needed to make a webhook system for a project I was working on. I pretty quickly found out that webhook auth is not an entirely solved problem with people frequently implementing DIY solutions. I also found out that while using some form of asymmetric signature (eg. oauth tokens) is common with regular api auth, most webhook producers use symmetric signatures (HMAC) instead.\nThis bugged the hell out of me because the webhook functionality I needed was pretty basic, but using symmetric signatures, which requires the webhook producer to hold onto a secret for every endpoint they send webhooks to, introduced a major secret management problem. Designing and implementing novel secret management techniques for my web app felt like a bad idea, so I started looking into why so many people use symmetric signatures instead of asymmetric signatures.\nI frequently saw performance listed as a problem with asymmetric signatures, so I thought this might be why they weren't more broadly used, but a quick benchmark proved that wrong (HMAC signing is much faster, but ed25519 is still fast enough that it doesn't matter).\nIt seemed like the biggest barrier to using asymmetric signatures was added development complexity. There are small but important details that need to be included in an asymmetric signature, getting asymmetric keys into the right format is more complicated than for symmetric keys, and the crypto libraries you're working with can have sharp edges.\nThat complexity makes it more difficult for a webhook producer to implement (and document) asymmetric signatures, but then all of their consumers also have to implement the verification step (hopefully correctly). Building a library that does these steps for you is difficult because it has to be available in any language a webhook consumer might be using, not just the language the webhook producer uses.\nBut it kept bugging me that we're all using a less good form of authentication just because we haven't packaged up the steps to sign and verify an asymmetric signature that is secure for webhooks, so now I've built that library. With a few language implementations to serve as a template, replicating this in enough languages that the large majority of developers can use it feels totally doable, and I am hoping to get several more languages implemented over the next few weeks.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792341579,
+      "created_at": "2026-10-18T16:39:39+00:00",
+      "comments_data": [
+        {
+          "id": "50142712",
+          "author": "kburym",
+          "body": "A set of cross-language libraries that perform asymmetric signing, verification, and key management for webhook authentication.\nCorrect Hooks makes one of the most secure authentication mechanisms for webhooks the easiest to implement for both webhook producers and consumers.",
+          "score": 0,
+          "time": 1792341869,
+          "parent": "50142648"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50142343",
+      "title": "Show HN: Wordchute – a word game where every word changes the board",
+      "subreddit": "show-hn",
+      "author": "codercolin",
+      "score": 4,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50142343",
+      "url": "https://wordchute.com",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792339851,
+      "created_at": "2026-10-18T16:10:51+00:00",
+      "comments_data": [
+        {
+          "id": "50142779",
+          "author": "codercolin",
+          "body": "Hi HN, I'm Colin.\nI have always enjoyed NYT style 'daily' word games (Crossword, Spelling Bee, Wordle) so I decided to create my own. I never loved the luck element of Wordle, and spelling bee while enjoyable, is ultimately very simplistic and lacking in strategy.\nYou can think of Wordchutes game play basically as Boggle - find 3+ letter words from a 4x4 grid including diagonals - but also with Tetris style gravity and look ahead planning. Everyone gets the same board each day and the goal is to fully clear all 32 tiles, with a secondary goal of maximizing your score via using longer words.\nBrowser game is free, including the archive, and I just released Android and iOS native apps this week which also include free daily play. There's a one time unlock for offline play, and additional features like the ability to play 3x3 and 5x5 grids.\nEarly reception from friends, family and reddit has all been super encouraging, would love any feedback!",
+          "score": 0,
+          "time": 1792342135,
+          "parent": "50142343"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50142277",
+      "title": "Show HN: Pi-cowboy – use Codex, Claude Code, OpenCode as subagents",
+      "subreddit": "show-hn",
+      "author": "suoloordi",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50142277",
+      "url": "https://github.com/electric-dragon-80000v/pi-cowboy",
+      "selftext": "pi-cowboy is an agent orchestrator for Pi(https://pi.dev (https://pi.dev)) and Herdr(https://github.com/herdrdev/herdr (https://github.com/herdrdev/herdr)). Break large jobs into focused subtasks, hand them off to background agents running in parallel, and consolidate the results when they finish. Each agent runs in an isolated copy-on-write Git work-tree, minimising disk overhead.\npi-cowboy can orchestrate foreign harnesses too, including Claude Code, Codex, OpenCode and more.\nFeature highlights:\n- Foreign harnesses: \n pi-cowboy agents can run in Claude Code, Codex, OpenCode, Pig and Pi-Bolt, as well as Pi. This gives you great flexibility in choosing how to spend your tokens. Running out of Codex usage? Switch your pi-cowboy harness to OpenCode, select one of its free models, and let it handle the rest.\n Pig and Pi-Bolt are pi variants that are more efficient, with a lower memory footprint and faster performance than pi. Because pi-cowboy is designed to run multiple agents in parallel, having a lower per-agent footprint is crucial. It prevents your machine from running out of resources and lets you have higher concurrency without choking your system.\n- Concurrency limits: \n You can configure concurrency limits at every level. Running a local model with limited resources? If a simple task already takes hours to complete, the last thing you want is to overload your machine by running too many of them at once. Set concurrency limits for that model specifically to keep resource usage under control.\nYou can install it on Pi as a package:\n pi install npm:pi-cowboy #(requires `herdr` 0.8+)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792339497,
+      "created_at": "2026-10-18T16:04:57+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50142248",
+      "title": "Show HN: Kramena – Classic books, 20 minutes a day, with spoiler-safe recaps",
+      "subreddit": "show-hn",
+      "author": "raahelb",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50142248",
+      "url": "https://read.kramena.app",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792339347,
+      "created_at": "2026-10-18T16:02:27+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50141859",
+      "title": "Show HN: Gecit, share a Windows PC's keyboard and mouse with a Mac over QUIC",
+      "subreddit": "show-hn",
+      "author": "kasparovabi",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50141859",
+      "url": "https://kasparovabi.github.io/gecit/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792336903,
+      "created_at": "2026-10-18T15:21:43+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50141365",
+      "title": "Show HN: DocuMemory – Persistent memory and context for AI coding tools",
+      "subreddit": "show-hn",
+      "author": "veryslowcode",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50141365",
+      "url": "https://www.documemory.dev/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792333374,
+      "created_at": "2026-10-18T14:22:54+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50141081",
+      "title": "Show HN:MockForge – Lightweight, zero-dependency Python API and Webhook",
+      "subreddit": "show-hn",
+      "author": "AlessioDev",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50141081",
+      "url": "https://github.com/alessio1999xx-debug/pyforge-task-Mockforge",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792331354,
+      "created_at": "2026-10-18T13:49:14+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50140769",
+      "title": "Show HN: The Zelda timeline to catch up before the Ocarina of Time remake",
+      "subreddit": "show-hn",
+      "author": "jsomau",
+      "score": 103,
+      "num_comments": 53,
+      "permalink": "https://news.ycombinator.com/item?id=50140769",
+      "url": "https://legendofhyrule.com/",
+      "selftext": "I made this ahead of the Ocarina of Time remake which comes out in 17 days. I remember the feeling of playing it as a kid but I hadn’t kept up with the story so I built a timeline to catch up before the Door of Time reopens.\nNintendo’s own timeline is the authority here (Hyrule Historia and their chronicle page). The fun part was rethinking how to visualize it. It branches at the end of Ocarina into three eras depending on whether Link wins or loses, so each era is its own thread on the cloth. The threads meet again much later with Breath of the Wild.\nI had a lot of help from Claude. I’d often thought about building things like this but never found the time between the day job and the rest of life.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792328814,
+      "created_at": "2026-10-18T13:06:54+00:00",
+      "comments_data": [
+        {
+          "id": "50143958",
+          "author": "hmokiguess",
+          "body": "I just wanted to say thank you, you made my day brighter because you reminded me the remake comes out in 17 days and you got me to reconnect with one of my favourite games.\nSeems like a lot of folks here are eager to discuss about interpretation and opinion, I take that as Nintendo did a great job providing enough to keep everyone engaged into the dream and fantasy behind it.\nCheers To more Zelda!",
+          "score": 0,
+          "time": 1792348483,
+          "parent": "50140769"
+        },
+        {
+          "id": "50143038",
+          "author": "ranger207",
+          "body": "I don't think most Japanese media is as concerned with fitting things into a canon as much as American media is. Like, in Gundam, you have 0079, Thunderbolt, and Origin all allegedly in the UC canon, but there's pretty significant deviations in Thunderbolt and Origin from 0079 so they're not really the same timelines. American comics will also have multiple timelines or universes, but they'll make it clear which one each individual series goes with, and have crossover events explicitly acknowledging the existence of the different canons. Japanese media doesn't tend to do that, and I think trying to fit it into a coherent timeline is a fool's errand",
+          "score": 0,
+          "time": 1792343470,
+          "parent": "50140769"
+        },
+        {
+          "id": "50143851",
+          "author": "collinmcnulty",
+          "body": "I do not want to rain on your parade, but I find attempts to impose a coherent timeline on Zelda miss the opportunity to engage with it as a legend, a story told over and over with certain essential parts but many changing interpretations. How our very familiarity with the story creates the opportunity for surprise. There are so many fictional worlds with sprawling lore, and so few that engage with the retelling of stories and myths like Zelda does.",
+          "score": 0,
+          "time": 1792347841,
+          "parent": "50140769"
+        },
+        {
+          "id": "50141829",
+          "author": "hyperhello",
+          "body": "What’s the word for trying to do cluster analysis on what is actually randomly distributed data? The games do have obvious similarities and sometimes refer to each other, but they’re independent events.",
+          "score": 0,
+          "time": 1792336677,
+          "parent": "50140769"
+        },
+        {
+          "id": "50143832",
+          "author": "gradus_ad",
+          "body": "I prefer to think of LoZ without a coherent timeline. Just 3 archetypal souls finding each other again and again and again...",
+          "score": 0,
+          "time": 1792347728,
+          "parent": "50140769"
+        },
+        {
+          "id": "50143910",
+          "author": "gliiics",
+          "body": "<rant>\nI'm gonna be the annoying guy and ask... Why? There's an official timeline page and if you want more details there's a page on a community maintained wiki (even independent from the hell that is wikia/fandom/whatever their current name is). I understand there's sense of accomplishment in personal projects... But a lot of this seems to be done by AI anyway, and that's my main gripe. Why are we wasting computing like this? To me this feels on par to using AI for things that can otherwise be easily looked up on a search engine (as long as your SE lets you filter through the slop)\nI'm sorry if this feels like a personal attack - it really isn't my intention, but why are we pretending that things like this have no impact?\nAnd yes I know massive AI usage in corporate environments, slop image/video generation, etc have much more impact and that even that is still small compared to the amount of compute used from training. But that argument feels a lot like \"my single vote doesn't count\". Could we try to not make it worse?\nSorry for being a party pooper i guess.\n</rant>",
+          "score": 0,
+          "time": 1792348191,
+          "parent": "50140769"
+        },
+        {
+          "id": "50143265",
+          "author": "groundzeros2015",
+          "body": "Zelda is not a continuous story. It’s a retelling of the same stories over and over with new elements.\nWestern audiences just love literalism.",
+          "score": 0,
+          "time": 1792344687,
+          "parent": "50140769"
+        },
+        {
+          "id": "50142041",
+          "author": "bovermyer",
+          "body": "I played Legend of Zelda, Adventure of Link, A Link to the Past, and Ocarina of Time to conclusion. I haven't really played any Zelda games since then, except maybe for a few minutes for a few of them.\nI'm a little surprised to hear that Ocarina of Time is getting a remake. I take it it's going to be a Switch 2 exclusive?",
+          "score": 0,
+          "time": 1792338105,
+          "parent": "50140769"
+        },
+        {
+          "id": "50141629",
+          "author": "sharkbot",
+          "body": "Don't forget to include:\n- Link: The Faces of Evil\n- Zelda: The Wand of Gamelon\n- Link's Crossbow Training\n- the various Hyrule Warriors games\nGood luck! :)",
+          "score": 0,
+          "time": 1792335316,
+          "parent": "50140769"
+        },
+        {
+          "id": "50143963",
+          "author": "irishcoffee",
+          "body": "Sorry everyone here is dumping on you, I think kids these days say some like “go touch grass” when this kind of thing happens.\nI think this is neat and honestly the perfect use of an LLM, just some for-fun project to visualize something completely inconsequential and nostalgic.\nSomehow is devolved into dunking on the west and other unfortunate “better than thou” comments.",
+          "score": 0,
+          "time": 1792348513,
+          "parent": "50140769"
+        },
+        {
+          "id": "50143066",
+          "author": "phforms",
+          "body": "I enjoyed it, but for things like this, I would actually like to know what your genuine contribution was and what Claude did for you. It just makes me appreciate it more when I know that a human made the effort of investing their own creativity and thought into the writing or design.",
+          "score": 0,
+          "time": 1792343589,
+          "parent": "50140769"
+        },
+        {
+          "id": "50142905",
+          "author": "delecti",
+          "body": "This is a lovely website, but the premise is entirely incorrect (that there's anything you need to know going in), and also spoils details from the game which this is supposedly background for.\nNobody should be discussing the timeline before playing the games. And not from some kind of purity perspective, but just because it's nerd shit that you won't get anything out of until you do. I really enjoy thinking and talking about the timeline, but I'm under no illusion that it's anything more than after-the-fact fanfiction.",
+          "score": 0,
+          "time": 1792342810,
+          "parent": "50140769"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50140472",
+      "title": "Show HN: CallSitter – bot that answers my calls and wastes scammers' time",
+      "subreddit": "show-hn",
+      "author": "szert",
+      "score": 7,
+      "num_comments": 9,
+      "permalink": "https://news.ycombinator.com/item?id=50140472",
+      "url": "https://github.com/szerintedmi/callsitter",
+      "selftext": "Anyone else get a lot of dumb scam calls?\nThese days I mostly get them on my mobile. I used to just ignore them, but then I got fed up and built a bot that answers my calls and wastes their time.\nIt runs on OpenAI Live 1. Jev classifies each call as spam, scam or genuine and steers the bot accordingly.\nWorks like a charm. All my calls go to the bot now.\nI can also steer it from Telegram mid-call.\nIn this one the bot ended up accusing the scammer of being an AI :)\nhttps://www.youtube.com/watch?v=SpuTzRg8_fU (https://www.youtube.com/watch?v=SpuTzRg8_fU)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792326293,
+      "created_at": "2026-10-18T12:24:53+00:00",
+      "comments_data": [
+        {
+          "id": "50141818",
+          "author": "BorisMelnik",
+          "body": "if you pick these calls up it proves you are a real number and will get more calls\ninstead, have your AI answer as \"jacks Pzza\" or \"office depot headquarters boise ID\" and they will re-classify your number.\nif you want to fight for your number you have to start thinking of your phone number as part of a giant global database and convince the big data brokers you are not who you say you are",
+          "score": 0,
+          "time": 1792336598,
+          "parent": "50140472"
+        },
+        {
+          "id": "50140744",
+          "author": "orionblastar",
+          "body": "Good video, but the Callsitter repository returns a 404.",
+          "score": 0,
+          "time": 1792328653,
+          "parent": "50140472"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -54,7 +377,7 @@
       "title": "Show HN: Fast, secure JSON Formatter with side-by-side JSON diffing",
       "subreddit": "show-hn",
       "author": "UmangPawar",
-      "score": 4,
+      "score": 7,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50138745",
       "url": "https://instantjsonformatter.com",
@@ -116,8 +439,8 @@
       "title": "Show HN: Sphinx – A hook that quizzes you on your AI's code before shipping",
       "subreddit": "show-hn",
       "author": "critiquebrowser",
-      "score": 165,
-      "num_comments": 48,
+      "score": 219,
+      "num_comments": 74,
       "permalink": "https://news.ycombinator.com/item?id=50137950",
       "url": "https://sphinx-six-theta.vercel.app/",
       "selftext": "FOSS, Basically it plugs into your existing coding agent workflow and every time you push to prod it'll throw up a questionnaire that checks if you understand how the code you're pushing works.",
@@ -126,14 +449,6 @@
       "time": 1792298029,
       "created_at": "2026-10-18T04:33:49+00:00",
       "comments_data": [
-        {
-          "id": "50140525",
-          "author": "lowkeyokay",
-          "body": "I actually made this as a skill last week. It is helpful. Especially when reviewing a PR with 1500 LOC from a non-dev. It keeps me focused an helps me do a structured review. But it does not catch poor decisions, like calling the wring endpoint a such.",
-          "score": 0,
-          "time": 1792326748,
-          "parent": "50137950"
-        },
         {
           "id": "50140483",
           "author": "fwlr",
@@ -151,11 +466,11 @@
           "parent": "50137950"
         },
         {
-          "id": "50140179",
-          "author": "pjmlp",
-          "body": "The gimmicks we come around to justify existing practices being pushed into the industry never stops surprising me.\nOne would expect the actual answer would be to write the code ourselves.",
+          "id": "50143673",
+          "author": "alexwrich",
+          "body": "Nice idea. I like that it tests whether the person understands the change instead of adding another AI reviewer. We added the tests before we switch to fully agentic AI development using automo - ie we tested every member of staff and now trust them to be the eyes.\nDisclosure: I’m building automo.build fully to fix this.",
           "score": 0,
-          "time": 1792323715,
+          "time": 1792346888,
           "parent": "50137950"
         },
         {
@@ -167,19 +482,27 @@
           "parent": "50137950"
         },
         {
-          "id": "50139509",
-          "author": "maximg68",
-          "body": "After noticing a drop in my understanding of the code I ship, I built and started using a similar skill (\"Quiz me on the PR or the current branch\"). I didn't tie it to a specific commit, though - to me it makes more sense to look at the PR as a whole.\nSo far I was positively surprised with the questions it could come up with.",
+          "id": "50140179",
+          "author": "pjmlp",
+          "body": "The gimmicks we come around to justify existing practices being pushed into the industry never stops surprising me.\nOne would expect the actual answer would be to write the code ourselves.",
           "score": 0,
-          "time": 1792316631,
+          "time": 1792323715,
           "parent": "50137950"
         },
         {
-          "id": "50138154",
-          "author": "jamienk",
-          "body": "I can kinda understand the motivation here: you push a bunch of slop (or is it deep, genius code?) but you have a kind of nagging suspicion that you should get to know it more familiarly, like back in the good old days a few months back when you sort of understood what was going on. I... don't... think this is going to work...? Remember Confirmation Fatigue? Soon we will have agents that interact with Sphinx for us.",
+          "id": "50143192",
+          "author": "Crowberry",
+          "body": "Where is that quote from, dis you just make it up?\n> You can outsource your thinking,\nbut not your understanding.\n— Sun Tzu",
           "score": 0,
-          "time": 1792301253,
+          "time": 1792344320,
+          "parent": "50137950"
+        },
+        {
+          "id": "50142498",
+          "author": "bluerooibos",
+          "body": "What's with Claude preferring cursive and italic font in landing page hero sections?\nLooks absolutely awful.",
+          "score": 0,
+          "time": 1792340703,
           "parent": "50137950"
         },
         {
@@ -191,35 +514,35 @@
           "parent": "50137950"
         },
         {
-          "id": "50138385",
-          "author": "nkmnz",
-          "body": "It’s ironic that all negative comments on here are dismissive because “slop’s baaaaad”. Yes, slop is bad. Carelessness is bad. Lack of understanding is bad. It always has been. Code has been copied from stackoverflow. Built-in methods or std libraries have been used in a wrong way. Edge cases haven’t been covered. Rate-limiting and other hardening tasks haven’t been taken care of until the system broke. The code wasn’t DRY.\nNow, people are building tools that not only hide the solutions to these problems in some obscure coding tool, markdown file, or agent harness, but they build gates that help developers to elevate themselves from the darkness of not knowing better. The number of developers roughly doubles every ~3 years, so at any given time, half of the people building software have less than 3 years of experience. Most of them didn’t even study CS before starting their careers. Tools like this will be the new warning voice that told people like us 5 to 10 years ago to never copy code from stackoverflow that you didn’t understand. It’s great.",
+          "id": "50140525",
+          "author": "lowkeyokay",
+          "body": "I actually made this as a skill last week. It is helpful. Especially when reviewing a PR with 1500 LOC from a non-dev. It keeps me focused an helps me do a structured review. But it does not catch poor decisions, like calling the wring endpoint a such.",
           "score": 0,
-          "time": 1792304480,
+          "time": 1792326748,
           "parent": "50137950"
         },
         {
-          "id": "50138219",
-          "author": "gandhiandy69",
-          "body": "We went from micromanaging code to micromanaging tools and markdowns.",
+          "id": "50139509",
+          "author": "maximg68",
+          "body": "After noticing a drop in my understanding of the code I ship, I built and started using a similar skill (\"Quiz me on the PR or the current branch\"). I didn't tie it to a specific commit, though - to me it makes more sense to look at the PR as a whole.\nSo far I was positively surprised with the questions it could come up with.",
           "score": 0,
-          "time": 1792302012,
+          "time": 1792316631,
           "parent": "50137950"
         },
         {
-          "id": "50138236",
-          "author": "sshah03",
-          "body": "I considered doing this with an open source app I have that let's you get a visual summary on a PR + get quizzed on it, but ultimately decided it's better to keep it an optional thing for people that want to understand AI PRs rather than force it as a gate, the volume is slowly becoming too high for even that. I agree with the sentiment behind this though as I felt this was needed as well.",
+          "id": "50142536",
+          "author": "SDeniz",
+          "body": "I think this could be really useful. Any chance you could add native Windows support?",
           "score": 0,
-          "time": 1792302283,
+          "time": 1792340924,
           "parent": "50137950"
         },
         {
-          "id": "50138527",
-          "author": "thomask1995",
-          "body": "I think this would be killer for OSS maintainers.",
+          "id": "50138154",
+          "author": "jamienk",
+          "body": "I can kinda understand the motivation here: you push a bunch of slop (or is it deep, genius code?) but you have a kind of nagging suspicion that you should get to know it more familiarly, like back in the good old days a few months back when you sort of understood what was going on. I... don't... think this is going to work...? Remember Confirmation Fatigue? Soon we will have agents that interact with Sphinx for us.",
           "score": 0,
-          "time": 1792306228,
+          "time": 1792301253,
           "parent": "50137950"
         }
       ]
@@ -231,8 +554,8 @@
       "title": "Show HN: 500 clocks in one 6.3 MB HTML file by Opus 5.5",
       "subreddit": "show-hn",
       "author": "tkgally",
-      "score": 53,
-      "num_comments": 19,
+      "score": 59,
+      "num_comments": 21,
       "permalink": "https://news.ycombinator.com/item?id=50137820",
       "url": "https://tkgally.github.io/500-clocks/",
       "selftext": "Lately I've been testing frontier models by having them create self-contained web pages that display clocks--sort of my personal version of Simon Willison’s pelican-on-a-bicycle metric.\nI have been particularly impressed by the variety, interest, and quality of the clocks created by Claude Opus 5.5. Over the course of several sessions in the Claude chat interface, I had it build a total of 500 clocks.\nClaude’s summary of the prompting process and page design is here:\nhttps://github.com/tkgally/500-clocks/tree/main (https://github.com/tkgally/500-clocks/tree/main)",
@@ -271,6 +594,14 @@
           "body": "Gosh, these are so enticing yet such a let down.\nFor example, the Lorenz Attractor which, apparently, doesn't have anything to do with the clock.",
           "score": 0,
           "time": 1792304185,
+          "parent": "50137820"
+        },
+        {
+          "id": "50141836",
+          "author": "BorisMelnik",
+          "body": "tell your AI they did a good job!",
+          "score": 0,
+          "time": 1792336733,
           "parent": "50137820"
         },
         {

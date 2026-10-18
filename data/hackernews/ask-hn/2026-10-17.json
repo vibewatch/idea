@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-18T12:39:37.023629+00:00",
+  "last_fetched": "2026-10-18T18:36:11.741497+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,8 +10,8 @@
       "title": "How do you deal with AI Output of your boss?",
       "subreddit": "ask-hn",
       "author": "okr",
-      "score": 9,
-      "num_comments": 8,
+      "score": 12,
+      "num_comments": 9,
       "permalink": "https://news.ycombinator.com/item?id=50135854",
       "url": "https://news.ycombinator.com/item?id=50135854",
       "selftext": "So, my boss goes on a rampage. You can clearly see the joy and at the same time the rage and impatience. AI is the tool he always wanted. We are too slow. Process is out of the window. No need for sprints anymore. No planning, just doing. All people downstream must somehow adapt.\nWhenever i see now his automated messages in slack, my natural reaction is: why do i even bother reading that? Thats for machines to read. He does not need me? Clearly i am not made for that. What is he expecting me to do? To confirm how great the AI did the job? Should i remember all these perfect presentations AI has created and integrate it into my doings into the coming weeks?\nI am torn. Should i really free my AI and deal with all this incoming text? Is this the way to react on this perfection?\nI am not mad at him, it clearly frees him of all the burder of dealing with people.\nI just dont know how to deal with this output personally. It is not for humans.\nI feel left alone. This is not a company anymore. Everyone is talking to AI now. This feels like chaos. Where everyone can do everything and stepping into each other's domain and it is perfect. The only way AI is stopped at are the ACLs.\nAnd because AI does everything for me, i don't remember things anymore, as i have no emotion connected with it. Feels like bad schooling and memoizing and get through it and you can't as it so dry and lifeless.\nSo, how people deal with it in a company context? How have they setup their machines to react and still be up to date without reading the constant stream of changes coming from others?",
@@ -21,19 +21,19 @@
       "created_at": "2026-10-17T22:42:47+00:00",
       "comments_data": [
         {
+          "id": "50141235",
+          "author": "ahmedehab_01",
+          "body": "Reply with AI as well. And make it obvious. Then ask AI for a very brief and concise summary of your communications at the end of every day.\nThis is bad, but you have to deal with it one way or another that will keep you sane. And you can always communicate with the rest of your colleagues to not feel alone.\nFor him, it's a new fun toy to play with, and he also thinks that makes him very AI-forward or AI-native or whatever the current corporate jargon is.\nHe is doing this because he thinks this will net him another promotion, and that's the way forward because big shot CEO are doing.\nThat's how most corporate managers think. It seems they know what they are doing, but they mostly try to blend in as much as possible and be the most \"forward-thinking\" and \"raising the bar\" and \"leading by example\".",
+          "score": 0,
+          "time": 1792332619,
+          "parent": "50135854"
+        },
+        {
           "id": "50137355",
           "author": "BLKNSLVR",
           "body": "I practiced this a long time ago when the food if email became too much. I just don't read most of it. If it's important, someone will speak to me about it. This has worked for me ~10 years (I do skim my email, but not often).\nFind the minimal number of critical things you feel you should be working on, and work on them. Use what resources are practical to use and ignore the rest. I've got a relatively complex problem to figure out over the next week or two, and one of the developers has been asking Claude and posting much of the output to Confluence pages, but even he says it's too much information to process and, as a result of a few things we've learned along the way so far, much of the AI summarized information is now out of date.\nI just try to concentrate on doing a good job with the information I am able to process.",
           "score": 0,
           "time": 1792291206,
-          "parent": "50135854"
-        },
-        {
-          "id": "50138053",
-          "author": "mindwok",
-          "body": "I think unfortunately this is a stage people have to go through when they're first exposed to AI. You just have to let it play out for them to realize actually they still need to cooperate with humans to get anything meaningful done.",
-          "score": 0,
-          "time": 1792299803,
           "parent": "50135854"
         },
         {
@@ -45,11 +45,11 @@
           "parent": "50135854"
         },
         {
-          "id": "50136711",
-          "author": "1over137",
-          "body": "I don't have any advice, but I sure do feel bad for you!",
+          "id": "50138053",
+          "author": "mindwok",
+          "body": "I think unfortunately this is a stage people have to go through when they're first exposed to AI. You just have to let it play out for them to realize actually they still need to cooperate with humans to get anything meaningful done.",
           "score": 0,
-          "time": 1792284202,
+          "time": 1792299803,
           "parent": "50135854"
         },
         {
@@ -58,6 +58,14 @@
           "body": "Just ignore it and they'll get bored and move on to the next thing",
           "score": 0,
           "time": 1792277862,
+          "parent": "50135854"
+        },
+        {
+          "id": "50136711",
+          "author": "1over137",
+          "body": "I don't have any advice, but I sure do feel bad for you!",
+          "score": 0,
+          "time": 1792284202,
           "parent": "50135854"
         },
         {
@@ -89,6 +97,41 @@
     {
       "source": "hackernews",
       "stream": "ask-hn",
+      "id": "50135186",
+      "title": "Ask HN: What Got You into Rust?",
+      "subreddit": "ask-hn",
+      "author": "cloaky233",
+      "score": 2,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50135186",
+      "url": "https://news.ycombinator.com/item?id=50135186",
+      "selftext": "Back in 2024 I was experimenting with prosthetic arms and trying to figure out how to build one with an EMG sensor. The problem I kept running into was that the EMG sensor kept crashing the Arduino IDE. It spat out data at an extremely high rate, and my RAM couldn't keep up with it, being on a potato laptop.\nThat's when I thought, \"Okay, maybe let's try Rust. What's the worst that can happen?\" This is the first thing I ever built in Rust: https://github.com/CLoaKY233/serial-plotter\nI used a sliding window: keep deleting the oldest values and keep pushing the newer ones onto the graph. It looked a bit like a snake chasing its tail, but it's what actually worked for us later at the Smart India Hackathon 2024 Hardware finals (we didn't win).\nSharing something from back when trying something new and building something new felt exciting. Maybe we'll never get to build things quite the same way again :D So I'd love to hear what got you into Rust, what your first Rust project looked like, and what you've cooked since :>",
+      "is_self": true,
+      "is_video": false,
+      "time": 1792271582,
+      "created_at": "2026-10-17T21:13:02+00:00",
+      "comments_data": [
+        {
+          "id": "50141778",
+          "author": "dcminter",
+          "body": "I have the dumbest reason I'm sure. As a mostly Java guy for years and years and a C++ guy before that, I happened to be looking around to see if there was a language out there where immutability (final) was the default for variables. That was it, nothing more. Found Rust and liked the ideas, but didn't do anything very much with it - though I even went to one of the early (2016) Rust conferences - and have slowly done more and more with it on personal projects.\nIt's been interesting seeing how coding agents take to it - candidly they're much better at Rust than me :)\nHandcoded projects are mostly a bunch of trivial conversion tools⁰ that I don't bother to share, but I have a little dictionary tool¹ and a UI for my webcam² that went up on my Github. From Agent-coded stuff I have a container manager³ and a VM (QEMU) manager⁴ that I found useful and figured why not share them. All for Linux as I'm a happy Linux user for both business and pleasure.\nI haven't found much use for Rust professionally, but it's definitely my language of choice when hand-coding stuff for fun and I seem to get better results with it for agent coding on complex backend and UI stuff too.\n---\n⁰ For example one of them took some text and an outline truetype font as input and then spat out the GCode to drive my 3D printer with a pen strapped to the print head to \"hand\" draw text. I screwed something up somewhere, though and always had to hand edit some stuff before it was usable - not interesting for anyone without my own very DIY setup.\n¹ https://github.com/dcminter/rs-define (https://github.com/dcminter/rs-define)\n² https://github.com/dcminter/zoomies (https://github.com/dcminter/zoomies)\n³ https://github.com/dcminter/lave-station (https://github.com/dcminter/lave-station)\n⁴ https://github.com/dcminter/vm-manager (https://github.com/dcminter/vm-manager)",
+          "score": 0,
+          "time": 1792336343,
+          "parent": "50135186"
+        },
+        {
+          "id": "50135345",
+          "author": "qubex",
+          "body": "Nothing: I couldn’t care less about it.",
+          "score": 0,
+          "time": 1792272769,
+          "parent": "50135186"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
       "id": "50132747",
       "title": "Why the Creators of AI Do Not Understand Their Own Creations",
       "subreddit": "ask-hn",
@@ -111,7 +154,7 @@
       "subreddit": "ask-hn",
       "author": "saonnet",
       "score": 7,
-      "num_comments": 7,
+      "num_comments": 8,
       "permalink": "https://news.ycombinator.com/item?id=50132727",
       "url": "https://news.ycombinator.com/item?id=50132727",
       "selftext": "Couldn't users just turn off their computers(via the shutdown option) and use the physical button to turn it on again ? Why did they added an extra button ? It's not saving too much time or anything.",
@@ -177,7 +220,7 @@
       "title": "Triplet of 'Ghostly' Galaxies Hints at What Dark Matter Is – and Isn't",
       "subreddit": "ask-hn",
       "author": "gumby",
-      "score": 4,
+      "score": 5,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50131997",
       "url": "https://news.ycombinator.com/item?id=50131997",
@@ -232,7 +275,7 @@
       "subreddit": "ask-hn",
       "author": "asen",
       "score": 5,
-      "num_comments": 10,
+      "num_comments": 11,
       "permalink": "https://news.ycombinator.com/item?id=50130833",
       "url": "https://news.ycombinator.com/item?id=50130833",
       "selftext": "This is the entire contents of my home dir AGENTS.md file now.\nDoes it help reduce the slop you have to read for you the same way it feels like it does it for me?",
