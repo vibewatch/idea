@@ -1,8 +1,114 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-18T06:44:59.289615+00:00",
+  "last_fetched": "2026-10-18T12:39:33.343328+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50140372",
+      "title": "Show HN: A forest's wildlife, synthesized live in Rust, playable in the browser",
+      "subreddit": "show-hn",
+      "author": "zaghaghi",
+      "score": 5,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50140372",
+      "url": "https://zaghaghi.github.io/spore-and-skog-dev-log/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792325371,
+      "created_at": "2026-10-18T12:09:31+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50139549",
+      "title": "Show HN: Benchmarking LLM ability to code in an adversarial language",
+      "subreddit": "show-hn",
+      "author": "dom96",
+      "score": 3,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50139549",
+      "url": "https://bench.killswitch-lang.org/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792317186,
+      "created_at": "2026-10-18T09:53:06+00:00",
+      "comments_data": [
+        {
+          "id": "50139570",
+          "author": "dom96",
+          "body": "I recently built KillSwitch[1], a brand new esoteric programming language which includes features designed to confuse/mislead/break LLMs, including:\n * certain constructs designed to trigger safety guardrails in models\n\n * counting of letters in identifiers as a language feature, hopefully triggering model's inability to accurately do so\n\n * the language spec containing hidden meaning and lies (designed to be invisible for humans but not LLMs)\n\nI was curious how well models would do on a brand new language that they haven't seen before and decided to make it even harder for them by creating a language that is specifically designed against them.\nThe benchmark suite I built for it ends up creating a pretty nice leaderboard for models. The standout results are that Opus 5 beats 5.5 and that MiMo V2.6 Pro is the best performing open-weight model. Though none of the models get everything right (and this is for a very simple set of tasks, like hello-world).\nI'd be interested to hear if you have thoughts on language features that might break LLMs even more.\n1 - https://killswitch-lang.org (https://killswitch-lang.org)",
+          "score": 0,
+          "time": 1792317512,
+          "parent": "50139549"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50138745",
+      "title": "Show HN: Fast, secure JSON Formatter with side-by-side JSON diffing",
+      "subreddit": "show-hn",
+      "author": "UmangPawar",
+      "score": 4,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50138745",
+      "url": "https://instantjsonformatter.com",
+      "selftext": "I wanted a simple clean looking website for all my JSON related work that is why I built this site . Here I built a side-by-side diffing which you should try!! Well I would like you to test the site and give me some feedback on how it is!!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792308216,
+      "created_at": "2026-10-18T07:23:36+00:00",
+      "comments_data": [
+        {
+          "id": "50138779",
+          "author": "nikolqy",
+          "body": "Thank you! I was literally on a site that did similar things like 30 mins ago, but I will definitely bookmark this! Much less fussy than the others.",
+          "score": 0,
+          "time": 1792308500,
+          "parent": "50138745"
+        },
+        {
+          "id": "50138881",
+          "author": "prantosmss",
+          "body": "Looks good",
+          "score": 0,
+          "time": 1792309710,
+          "parent": "50138745"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50138558",
+      "title": "Show HN: JSynth – Visual Programming Editor for Julia",
+      "subreddit": "show-hn",
+      "author": "ozanbora",
+      "score": 3,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50138558",
+      "url": "https://github.com/ozanbora/JSynth",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792306511,
+      "created_at": "2026-10-18T06:55:11+00:00",
+      "comments_data": [
+        {
+          "id": "50139051",
+          "author": "neronuser",
+          "body": "Looks interesting! What do you see as the main use case for this editor?",
+          "score": 0,
+          "time": 1792311393,
+          "parent": "50138558"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,8 +116,8 @@
       "title": "Show HN: Sphinx – A hook that quizzes you on your AI's code before shipping",
       "subreddit": "show-hn",
       "author": "critiquebrowser",
-      "score": 63,
-      "num_comments": 17,
+      "score": 165,
+      "num_comments": 48,
       "permalink": "https://news.ycombinator.com/item?id=50137950",
       "url": "https://sphinx-six-theta.vercel.app/",
       "selftext": "FOSS, Basically it plugs into your existing coding agent workflow and every time you push to prod it'll throw up a questionnaire that checks if you understand how the code you're pushing works.",
@@ -21,19 +127,35 @@
       "created_at": "2026-10-18T04:33:49+00:00",
       "comments_data": [
         {
-          "id": "50138503",
-          "author": "compounding-err",
-          "body": "This is cute and novel, but practically useless. For those who use AI efficiently and effectively, this is useless. For those who don't, this becomes friction they don't want. Who really needs this?",
+          "id": "50140525",
+          "author": "lowkeyokay",
+          "body": "I actually made this as a skill last week. It is helpful. Especially when reviewing a PR with 1500 LOC from a non-dev. It keeps me focused an helps me do a structured review. But it does not catch poor decisions, like calling the wring endpoint a such.",
           "score": 0,
-          "time": 1792305836,
+          "time": 1792326748,
           "parent": "50137950"
         },
         {
-          "id": "50138500",
-          "author": "sailorganymede",
-          "body": "Honestly I love to see people working on this problem ! I actually built a similar project myself (https://github.com/bhurghundii/vibecheck.dev (https://github.com/bhurghundii/vibecheck.dev)) except it prevents you from merging on the PR level. I’d love to get in touch to talk about it sometime.",
+          "id": "50140483",
+          "author": "fwlr",
+          "body": "It’s a neat idea, i think it’ll really take off if you change “before pushing to prod” to “before requesting another human’s time or attention”. If something like this was gatekeeping the “submit PR” and “update PR” buttons it would prevent a lot of waste.",
           "score": 0,
-          "time": 1792305806,
+          "time": 1792326405,
+          "parent": "50137950"
+        },
+        {
+          "id": "50138690",
+          "author": "theParadox42",
+          "body": "I certainly feel like certain AI coding practices I have leave me with nothing learned in a frustrating way. Sometimes the most effective way to getting what I want is just describing a goal really clearly, and then bashing the AI until it gets there. That bashing process can take a lot of energy and yet I don’t gain useful skills or a “better way” that I would if I was still coding. I generate more training data for BigAI corp, but that’s a slow return cycle.\nNot sure if this is the right solution, but I would like to learn/understand/grow more as I pursue reckless efficiency.",
+          "score": 0,
+          "time": 1792307644,
+          "parent": "50137950"
+        },
+        {
+          "id": "50140179",
+          "author": "pjmlp",
+          "body": "The gimmicks we come around to justify existing practices being pushed into the industry never stops surprising me.\nOne would expect the actual answer would be to write the code ourselves.",
+          "score": 0,
+          "time": 1792323715,
           "parent": "50137950"
         },
         {
@@ -45,19 +167,11 @@
           "parent": "50137950"
         },
         {
-          "id": "50138385",
-          "author": "nkmnz",
-          "body": "It’s ironic that all negative comments on here are dismissive because “slop’s baaaaad”. Yes, slop is bad. Carelessness is bad. Lack of understanding is bad. It always has been. Code has been copied from stackoverflow. Built-in methods or std libraries have been used in a wrong way. Edge cases haven’t been covered. Rate-limiting and other hardening tasks haven’t been taken care of until the system broke. The code wasn’t DRY.\nNow, people are building tools that not only hide the solutions to these problems in some obscure coding tool, markdown file, or agent harness, but they build gates that help developers to elevate themselves from the darkness of not knowing better. The number of developers roughly doubles every ~3 years, so at any given time, half of the people building software have less than 3 years of experience. Most of them didn’t even study CS before starting their careers. Tools like this will be the new warning voice that told people like us 5 to 10 years ago to never copy code from stackoverflow that you didn’t understand. It’s great.",
+          "id": "50139509",
+          "author": "maximg68",
+          "body": "After noticing a drop in my understanding of the code I ship, I built and started using a similar skill (\"Quiz me on the PR or the current branch\"). I didn't tie it to a specific commit, though - to me it makes more sense to look at the PR as a whole.\nSo far I was positively surprised with the questions it could come up with.",
           "score": 0,
-          "time": 1792304480,
-          "parent": "50137950"
-        },
-        {
-          "id": "50138236",
-          "author": "sshah03",
-          "body": "I considered doing this with an open source app I have that let's you get a visual summary on a PR + get quizzed on it, but ultimately decided it's better to keep it an optional thing for people that want to understand AI PRs rather than force it as a gate, the volume is slowly becoming too high for even that. I agree with the sentiment behind this though as I felt this was needed as well.",
-          "score": 0,
-          "time": 1792302283,
+          "time": 1792316631,
           "parent": "50137950"
         },
         {
@@ -69,11 +183,19 @@
           "parent": "50137950"
         },
         {
-          "id": "50138424",
-          "author": "man_luke",
-          "body": "So who is the master of whom?",
+          "id": "50138688",
+          "author": "chacha-bong",
+          "body": "Lol I built this and immediately got frustrated with it and stopped using it. I think I don't like being questioned by someone who I expect to work like magic.",
           "score": 0,
-          "time": 1792304969,
+          "time": 1792307637,
+          "parent": "50137950"
+        },
+        {
+          "id": "50138385",
+          "author": "nkmnz",
+          "body": "It’s ironic that all negative comments on here are dismissive because “slop’s baaaaad”. Yes, slop is bad. Carelessness is bad. Lack of understanding is bad. It always has been. Code has been copied from stackoverflow. Built-in methods or std libraries have been used in a wrong way. Edge cases haven’t been covered. Rate-limiting and other hardening tasks haven’t been taken care of until the system broke. The code wasn’t DRY.\nNow, people are building tools that not only hide the solutions to these problems in some obscure coding tool, markdown file, or agent harness, but they build gates that help developers to elevate themselves from the darkness of not knowing better. The number of developers roughly doubles every ~3 years, so at any given time, half of the people building software have less than 3 years of experience. Most of them didn’t even study CS before starting their careers. Tools like this will be the new warning voice that told people like us 5 to 10 years ago to never copy code from stackoverflow that you didn’t understand. It’s great.",
+          "score": 0,
+          "time": 1792304480,
           "parent": "50137950"
         },
         {
@@ -85,35 +207,19 @@
           "parent": "50137950"
         },
         {
-          "id": "50138244",
-          "author": "hypfer",
-          "body": "I mean I see the idea, but at least I use LLMs for code generation in two distinct ways.\nThe first is when I care about the code. That's when I actually read what it produces and force it to use my mental model of how things should be.\nThe second is when I just need a solution that sorta fits the requirements provided. Then I don't read the code because I really do not care.\nSo this hook would either ask me things I know, or it would ask me things I do not care about.\nBut I guess this is very workflow-dependent.",
+          "id": "50138236",
+          "author": "sshah03",
+          "body": "I considered doing this with an open source app I have that let's you get a visual summary on a PR + get quizzed on it, but ultimately decided it's better to keep it an optional thing for people that want to understand AI PRs rather than force it as a gate, the volume is slowly becoming too high for even that. I agree with the sentiment behind this though as I felt this was needed as well.",
           "score": 0,
-          "time": 1792302372,
+          "time": 1792302283,
           "parent": "50137950"
         },
         {
-          "id": "50138116",
-          "author": "totallykvothe",
-          "body": "\"Outsource your thinking\"\nI'm sorry, what?",
+          "id": "50138527",
+          "author": "thomask1995",
+          "body": "I think this would be killer for OSS maintainers.",
           "score": 0,
-          "time": 1792300572,
-          "parent": "50137950"
-        },
-        {
-          "id": "50138198",
-          "author": "altmanaltman",
-          "body": "People who care about the problem will definitely not be using this as a method to \"understand\" their code. People who don't care about this problem will continue to not care.\nSo, who is this for?",
-          "score": 0,
-          "time": 1792301754,
-          "parent": "50137950"
-        },
-        {
-          "id": "50138164",
-          "author": "linkdd",
-          "body": "https://www.sphinx-doc.org/ (https://www.sphinx-doc.org/)\nYour slop generator should check if a name exist before claiming it.",
-          "score": 0,
-          "time": 1792301387,
+          "time": 1792306228,
           "parent": "50137950"
         }
       ]
@@ -125,8 +231,8 @@
       "title": "Show HN: 500 clocks in one 6.3 MB HTML file by Opus 5.5",
       "subreddit": "show-hn",
       "author": "tkgally",
-      "score": 32,
-      "num_comments": 8,
+      "score": 53,
+      "num_comments": 19,
       "permalink": "https://news.ycombinator.com/item?id=50137820",
       "url": "https://tkgally.github.io/500-clocks/",
       "selftext": "Lately I've been testing frontier models by having them create self-contained web pages that display clocks--sort of my personal version of Simon Willison’s pelican-on-a-bicycle metric.\nI have been particularly impressed by the variety, interest, and quality of the clocks created by Claude Opus 5.5. Over the course of several sessions in the Claude chat interface, I had it build a total of 500 clocks.\nClaude’s summary of the prompting process and page design is here:\nhttps://github.com/tkgally/500-clocks/tree/main (https://github.com/tkgally/500-clocks/tree/main)",
@@ -136,11 +242,11 @@
       "created_at": "2026-10-18T04:04:58+00:00",
       "comments_data": [
         {
-          "id": "50138491",
-          "author": "userbinator",
-          "body": "Claude’s summary of the prompting process and page design is here:\nWas the README written by Claude too? I was expecting the usual Claudish, but it looks far more like normal human English.\nand a helper library U\nPerhaps Utility library would fit the name better.",
+          "id": "50138029",
+          "author": "vunderba",
+          "body": "Nice job. The Pong one was a nice touch where the ball traveled within a second from each paddle. I also enjoyed the interactive fiction game clock. It doesn’t really have much to do with time, but I still appreciated how the little descriptions changed over time.\nLooking through all of these, you can definitely start to see patterns in themes. For example, it’s a clock but in a different language. Or it’s a clock but wrapped around a classic game - I think I saw Nine Men's Morris, Mancala and Scrabble among others.\nI made the Chamber of Clocks [1] about half a year back which is a set of 12 different clockwork visualizations that I came up with so I was curious (and a bit trepidatious) when I saw this post. I was rather relieved to see that Opus 5.5 left to its own devices didn't create a single thing that resembled any of the ones I came up with.\nThe closest might be the Ctesibian water clock, but mine is significantly more elaborate, modeled as a 3D physical water wheel.\nThere’s another one I’ve seen floating around on HN — the Triclock [2] — which is particularly nice as well and worth checking out!\n[1] - https://clocks.specr.net (https://clocks.specr.net)\n[2] - https://triclock.franzai.com (https://triclock.franzai.com)",
           "score": 0,
-          "time": 1792305663,
+          "time": 1792299276,
           "parent": "50137820"
         },
         {
@@ -152,11 +258,11 @@
           "parent": "50137820"
         },
         {
-          "id": "50138029",
-          "author": "vunderba",
-          "body": "Nice job. The Pong one was a nice touch where the ball traveled within a second from each paddle. I also enjoyed the interactive fiction game clock. It doesn’t really have much to do with time, but I still appreciated how the little descriptions changed over time.\nLooking through all of these, you can definitely start to see patterns in themes. For example, it’s a clock but in a different language. Or it’s a clock but wrapped around a classic game - I think I saw Nine Men's Morris, Mancala and Scrabble among others.\nI made the Chamber of Clocks [1] about half a year back which is a set of 12 different clockwork visualizations that I came up with so I was curious (and a bit trepidatious) when I saw this post. I was rather relieved to see that Opus 5.5 left to its own devices didn't create a single thing that resembled any of the ones I came up with.\nThe closest might be the Ctesibian water clock, but mine is significantly more elaborate, modeled as a 3D physical water wheel.\nThere’s another one I’ve seen floating around on HN — the Triclock [2] — which is particularly nice as well and worth checking out!\n[1] - https://clocks.specr.net (https://clocks.specr.net)\n[2] - https://triclock.franzai.com (https://triclock.franzai.com)",
+          "id": "50138491",
+          "author": "userbinator",
+          "body": "Claude’s summary of the prompting process and page design is here:\nWas the README written by Claude too? I was expecting the usual Claudish, but it looks far more like normal human English.\nand a helper library U\nPerhaps Utility library would fit the name better.",
           "score": 0,
-          "time": 1792299276,
+          "time": 1792305663,
           "parent": "50137820"
         },
         {
@@ -165,6 +271,22 @@
           "body": "Gosh, these are so enticing yet such a let down.\nFor example, the Lorenz Attractor which, apparently, doesn't have anything to do with the clock.",
           "score": 0,
           "time": 1792304185,
+          "parent": "50137820"
+        },
+        {
+          "id": "50138542",
+          "author": "ozanbora",
+          "body": "490,000–670,000 tokens each session a bit much, no?",
+          "score": 0,
+          "time": 1792306332,
+          "parent": "50137820"
+        },
+        {
+          "id": "50138342",
+          "author": "kromokromo",
+          "body": "Once again, impressed by Opus 5.5 for a job well done. How much did this cost you?",
+          "score": 0,
+          "time": 1792303718,
           "parent": "50137820"
         },
         {
@@ -184,11 +306,11 @@
           "parent": "50137820"
         },
         {
-          "id": "50138342",
-          "author": "kromokromo",
-          "body": "Once again, impressed by Opus 5.5 for a job well done. How much did this cost you?",
+          "id": "50138602",
+          "author": "compounding-err",
+          "body": "this was almost interesting",
           "score": 0,
-          "time": 1792303718,
+          "time": 1792306862,
           "parent": "50137820"
         }
       ]
@@ -201,7 +323,7 @@
       "subreddit": "show-hn",
       "author": "SftwareRenderer",
       "score": 2,
-      "num_comments": 1,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50137043",
       "url": "https://github.com/SoftwareRenderer/MIKE",
       "selftext": "Hi everyone,\nThis started as an exploration into harnesses and locally hostable LLMs (the kind that uses less power than a small electric heater), and I used it as an opportunity to retool. I've tried popular ones like Cline, Claude Code, and Pi, but wanted a different UX and integrated sandboxes.\nThe solution that I've landed on is a responsive web interface where I can quickly drive progress. It feels like a microcosm of my day job: define and delegate tasks, organize using kanban, then review deliverables. And it also feels like the time I used to spend coding is now spent in code review with the agent, so I tried to optimize the UX to make review feel nicer.\nOne of my (maybe a bit niche) benchmark use-cases is how pleasant it is to make progress on hobby software projects while also out on a hike. This meant specifying low bandwidth usage and offline mode.\nNow I can jot down an idea, start the task, and at some point down the trail: get a notification* that either clarification is needed, a decision needs to be made, or the code is ready for review. I've been having a good time with this.\nTo build MIKE, I exclusively used locally hostable LLMs (from Google, Meta, Qwen, Poolside, and DeepSeek) hosted with llama.cpp on my machines at home (Strix Halo and a 5090) to \"compile\" the code. The experience has gotten substantially better ever since DeepSeek’s release in July. Side note: I have a soft spot for llama.cpp since it was one of the first that made it possible to run this new tech at home, and its maintainers accepted a tiny improvement I made to error reporting. Oh the joys of having a PR get approved.\nI plan on maintaining this, at least until similar features are supported by better tools. Until then, hope you find this useful!\n5 minute demo: https://youtu.be/jexzLkZ50FU (https://youtu.be/jexzLkZ50FU)\np.s.\nI didn't mention details about the sandbox earlier since most people seem to find this a bit boring. It was one of my critical requirements, and I opted to use an existing battle-tested sandbox. I'm not an expert on how the Linux kernel works, but seeing all the VM escape exploits recently is a bit scary, and I liked gVisor’s approach to the problem.\nI'm also using Git worktrees to provision the agent’s workspace, as well as a read-only repository mount to provide relevant context when the agent looks for it.\n*off by default",
