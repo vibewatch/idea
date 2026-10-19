@@ -1,8 +1,381 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-19T12:47:00.483857+00:00",
+  "last_fetched": "2026-10-19T18:41:20.139782+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50155647",
+      "title": "Show HN: Open-source early-reading reader with phonics help",
+      "subreddit": "show-hn",
+      "author": "zoozla",
+      "score": 5,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50155647",
+      "url": "https://github.com/finereli/yarareads",
+      "selftext": "My kid is 6 y/o and she is learning to read. She's moved through the basic phonics with Teach Your Monster to Read but was struggling with how repetitive it was. I wanted to give her some stories to read, but she still needed help sounding words out - and I wanted her to have the experience of sitting and reading by herself.\nSo I built this book reader app to allow her to click on the words, sound out the phonemes, and read by herself.\nMy 12 year old son wrote the first story, there's a cliffhanger at the end and he's working on the next section.\nWe're going to release more chapters and more stories in the near future.\nAnd there's one other thing -\nThe reader has an MCP connection, so you can connect your Claude or ChatGPT or Grok, give them a PDF of a book you like (or even a set of scans done quickly with a phone camera) and have them import your favorite books into the app (private to your account, for your own kid, if you own the book of course).\nThe reader is free to use on its website and open source if you want to tinker and create your own version.\nThe included stories are under Creative Commons.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792432734,
+      "created_at": "2026-10-19T17:58:54+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50152963",
+      "title": "Show HN: ECG Signal Processing Starter Kit – Python, SciPy, and FastAPI",
+      "subreddit": "show-hn",
+      "author": "banisond",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50152963",
+      "url": "https://github.com/banisond/ecg-signal-processing-python",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792420236,
+      "created_at": "2026-10-19T14:30:36+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50152541",
+      "title": "Show HN: KiviDB, a faster Redis-compatible memory database and vector cache",
+      "subreddit": "show-hn",
+      "author": "murtazayusuf",
+      "score": 56,
+      "num_comments": 32,
+      "permalink": "https://news.ycombinator.com/item?id=50152541",
+      "url": "https://github.com/kividbio/kividb",
+      "selftext": "Hi all,\nSo I have been working on this project KiviDB from February 2026. It started as a project for me to understand rust, having a product with no GC pauses, memory blow up after snapshots and getting OOM on running pods, and that was actually an issue I faced with Dragonfly. I wanted to have something picking the best of Rust, but also picking the best parts of other alternatives like Garnet and Dragonfly. I used AI a lot, but I was the one making the design decisions based on the tests that claude picked from my history of troubleshooting sessions as part of my job. KiviDB supports both RESP2 and RESP3 protocol. I had some founders credits on my AWS account which helped me with the infra, and running instances I could perform benchmark on.\nIts keyspace is sharded across threads, it is multi-threaded in nature, and performs best on Linux due to io_uring, I used the tokio_uring crate for this. It also has tokio fallback for other OS's. I hadn't open sourced it until recently as I felt it was not ready yet, the best way to learn it was to build a cloud managed service for it across all three widely used cloud providers i.e AWS, GCP and azure. Since I used to mainly work with cloud, I had some insights on what would be the best ways for the deployments, how to conduct failovers, manage SLAs, etc. And that's what I took help from claude to fast pace it. The website does look like AI slop but it works for now, given my limited resources, that's all I had. You may check it out at : https://kividb.io (https://kividb.io), I open sourced the core engine under AGPLv3, didn't want to have just source available, because that is available with other tools too. It supports apprx 98-99% of the redis 8.10 commands, few have issues and you can find them at https://github.com/kividbio/kividb/issues (https://github.com/kividbio/kividb/issues), contributors are welcome.\nNow the numbers, for the final benchmark, I used 2 c7gn.metal servers, in the same placement group in us-east1, and I used memtier-benchmark tool for this. The setting was : 10M keys, 100B each, 32 cores in use with both pipeline and un-pipelined runs.\npipeline 16 GET: KiviDB 21.2M ops/sec vs Dragonfly 2.0 9.1M, Redis 8.10 2.4M, Redis Cluster 32 shards 4.7M\nWhen not pipelined, Dragonfly performed slightly better at 3.35M ops/sec vs kividb at 3.07M ops/sec. Memory per key was also slightly worse than dragonfly and almost same as Redis, 177B (kividb) vs 134B (dragonfly) vs 178B (redis).\nWith vector ingestion times it was slower but when querying, it was faster than most alternatives at lower ef, however slower than dragonfly at high ef. Most of the technical details are mentioned here so you can check it out: https://kividb.io/benchmarks (https://kividb.io/benchmarks).\neasiest way to try it: docker run -d -p 6380:6380 kividb/kividb\nI am looking forward to building a community around this, provide better rust based tools, I am open to constructive criticism and value informed opinion. Thanks",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792418032,
+      "created_at": "2026-10-19T13:53:52+00:00",
+      "comments_data": [
+        {
+          "id": "50155630",
+          "author": "romange",
+          "body": "Kudos on the project launch! I can share my experience from when I was evaluating multi-threaded architectures for Dragonfly back in 2022.\nAt the time, I had a choice: go down the KeyDB path and suffer from lock contention in real-world use cases, or go with a shared-nothing approach. The latter paid a somewhat heavy price for inter-thread communication, but when combined with a carefully chosen transactional framework could truly become a seamless Redis drop-in replacement. I chose the shared-nothing model.\n\"Dragonfly removes locks and pays the cost of message passing; KiviDB keeps locks but makes them so fine-grained that they rarely collide and never need to move a request between threads.\"\nReading this sentence, I immediately saw where it fits into the broader taxonomy of in-memory store architectures. KeyDB, Garnet, and KiviDB share the same foundation: employing fine-grained locks. The choice of programming language (Rust, C#, C++) is less important as it's the underlying architecture that dictates the trade-offs.\nWith lock-based approaches, features like MULTI/EXEC, Lua scripts, and multi-key operations introduce severe contention that becomes hard to manage. Furthermore, background tasks such as snapshotting, full replication sync, and memory defragmentation are more difficult to implement efficiently when relying on low-level locks.\nOn the other hand, I would definitely opt for a shared-everything architecture like KiviDB's if I were designing Memcached today - a minimalist key-value store without complex multi-key commands, replication, or snapshotting requirements.\nIn any case, best of luck with the project!",
+          "score": 0,
+          "time": 1792432678,
+          "parent": "50152541"
+        },
+        {
+          "id": "50155368",
+          "author": "yawniek",
+          "body": "Congrats, very cool Project!\nAnd impressive benchmarks.will have to try it.\nShameless plug:\nDid something similar but with on disk storage as an experiment ( https://github.com/yannick/marekvs (https://github.com/yannick/marekvs) ). Mostly geared towards testing interesting datastructures.",
+          "score": 0,
+          "time": 1792431445,
+          "parent": "50152541"
+        },
+        {
+          "id": "50153931",
+          "author": "edoceo",
+          "body": "Could you add Valkey to the benchmark? Curious about different key-types too, like list and hash. Also, big values (2KB) and small values (<256B)",
+          "score": 0,
+          "time": 1792425136,
+          "parent": "50152541"
+        },
+        {
+          "id": "50154344",
+          "author": "ghm2180",
+          "body": "Nice. I am curious if you would seek to maintain this with some kind of a foundation(apache)\nbased funding or keep it internal to your work?\n> I used AI a lot, but I was the one making the design decisions based on the tests that claude picked from my history of troubleshooting sessions as part of my job.\nCool, this seemed like a good learning experience, learning from testing it in a real world. I wonder if you plan to write up some of the experience in a blog or something?",
+          "score": 0,
+          "time": 1792427120,
+          "parent": "50152541"
+        },
+        {
+          "id": "50155311",
+          "author": "porker",
+          "body": "Congratulations on the project!\nI haven't run into problems with Dragonfly yet, was it only OOM you encountered with it? Garnet I had GC pauses causing problems, so I dropped that.",
+          "score": 0,
+          "time": 1792431140,
+          "parent": "50152541"
+        },
+        {
+          "id": "50154950",
+          "author": "shepardrtc",
+          "body": "I don't care about AI being used to build it, or to write the site, but I do care about why its so much faster than redis. Antirez is pretty performance-obsessed. But outside of that, this looks like a fun project.",
+          "score": 0,
+          "time": 1792429678,
+          "parent": "50152541"
+        },
+        {
+          "id": "50152605",
+          "author": "murtazayusuf",
+          "body": "Just adding my benchmarking repo, that contains terraform code and scripts using which I performed the benchmarks, helpful for re-evaluating and verifying the numbers published on our website. And possibly to learn where we might have gone wrong.\nhttps://github.com/kividbio/kivi-benchmark (https://github.com/kividbio/kivi-benchmark)",
+          "score": 0,
+          "time": 1792418365,
+          "parent": "50152541"
+        },
+        {
+          "id": "50154366",
+          "author": "kingcauchy",
+          "body": "How did overall memory footprint look during ingestion vs Redis? Have any tradeoff graphs as the dataset gets larger and with mixed workloads?",
+          "score": 0,
+          "time": 1792427202,
+          "parent": "50152541"
+        },
+        {
+          "id": "50153768",
+          "author": "syepes",
+          "body": "How does this compare and benchmark with https://github.com/apache/kvrocks (https://github.com/apache/kvrocks)",
+          "score": 0,
+          "time": 1792424384,
+          "parent": "50152541"
+        },
+        {
+          "id": "50154783",
+          "author": "6622331623",
+          "body": "I thought this project was interesting so I went to the blog and noticed I was reading AI. I am sure the same amount of effort was put into this project.",
+          "score": 0,
+          "time": 1792428997,
+          "parent": "50152541"
+        },
+        {
+          "id": "50153410",
+          "author": "falconBrisk47",
+          "body": "Pipelined throughput that high usually means the loadgen is the thing you're measuring. Past ~5M ops/sec we needed 3 separate memtier hosts to keep the client off the critical path. Any p99 numbers alongside it?",
+          "score": 0,
+          "time": 1792422482,
+          "parent": "50152541"
+        },
+        {
+          "id": "50153560",
+          "author": "saurilabs",
+          "body": "Has there been heavy usage of AI in building this?",
+          "score": 0,
+          "time": 1792423287,
+          "parent": "50152541"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50152241",
+      "title": "Show HN: Semantics to SQL in Rust, ~70µs per query",
+      "subreddit": "show-hn",
+      "author": "allenjiji",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50152241",
+      "url": "https://github.com/stratasite/0sql",
+      "selftext": "0sql is an open-source semantic layer engine written in Rust.\nCompared to Cube and Metricflow, here are the major differences:\nPartition aware, agg aware, and compute engine aware semantic routing.\nComprehensive suite of measures out of the box.\nSnapshot, LOD, compound, ratios, calculations, cross-domain, and run time measure transformations.\n Automatic data blending across fact domains.\n Row level security built-in.\nWebsite: https://0sql.io/ (https://0sql.io/)\nBlog post: https://blog.strata.do/p/0sql-is-open-source-now (https://blog.strata.do/p/0sql-is-open-source-now)\nPlease send feedbacks and issues on Github.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792416585,
+      "created_at": "2026-10-19T13:29:45+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50151980",
+      "title": "Show HN: I built a task system to handle the drudgery so I could focus on tasks",
+      "subreddit": "show-hn",
+      "author": "dmayle",
+      "score": 25,
+      "num_comments": 22,
+      "permalink": "https://news.ycombinator.com/item?id=50151980",
+      "url": "https://3anddoneapp.com/try",
+      "selftext": "I'm a software engineer from the east coast (who has lived in Boston, NY, the bay area, UK, France), and I built a task system called 3 & Done. It's the place you trust to store everything you need to do. It accepts voice input for rapid entry, as well as text (it stores the audio locally so you can listen to jog your memory) and emails you every morning with the three most important things for you to do that day, and why, based on what you've said about the task: deadlines, urgency, sitting too long.\nI've been at software engineering for about 44 years now... Grew up with it, which was unusual when I started, and I was always good about getting into the zone and doing things. The career started small, small company, then back office, the dot com startups, then smaller companies again after the bust, a non-profit, and eventually YouTube (Google at the time, but just barely) and Meta (just Facebook when I was there).\nWhen I hit the startups, and later big tech, it was no longer enough to just be an engineer, to have drive, to be good, you had to be organized, you had to follow through, get stuff done, and that's where the task systems started. Twenty-five over the years (and yes, I've actually counted), from Moleskine notebooks with Getting Things Done, evernote (remember evernote?), bug trackers, todoist, asana, google keep, among others.\nWhen I managed on the Facebook News Feed, I got into gantt charts (for me and my team), spreadsheets, OmniPlan... I remember apologizing to my director for being so disorganized (because I felt I was making a mess of it), and he told me that I was the most organized engineer he knew.\nThat was because I was doing all of the work in the background, the trimming, the sorting, the reviews, but it was just so much work. Which was why I changed from system to system. Each time it built up, and I had to spend more time looking at things I couldn't or didn't get done, when I was rushed and couldn't put time into today's review, it would pile up, and then using it was so much work that I would start taking mini-notes, just emailing myself a few things to do the next day.\nThat's actually the thesis of the app (but not where it started), that if I could just have a few things to do emailed to me each day, I could get it done.\nThis app actually started when I described my previous startup failures into a Claude web session, and it repeated back to me what I had just said. My previous failures were because I spent too much time building the stuff I needed, and not building what I was supposed to be building.\nI decided that the app would email me three things to do every day (which matches best practices for attention), but that the day was always yours to decide. We won't overload you, but you can add more, if you're feeling up to it, or cut back, and we never shame and try our best not to nag (I often only finish two). If we get it wrong, you can tell us, and we'll re-rank it once a day, or you can set it manually, and if you do, we never override that choice. The web app is live, and native for both platforms is coming. In the meantime, on Android, you can use gestures to quick launch into the voice input so saving a task is only a gesture away (e.g. double-tap the back of a Pixel, double-press the power button on Motorola).\nNow let's talk about the dirty parts. I used AI to help me build this. Anthropic models mostly, and the brains of the app come from Anthropic models (I like the quality, I like the privacy, absolutely no training on customer data, and the stance of the company). This app is not some one-shot wonder where I asked frontier models to build a task system and then I put it on a server to show you.\nI have prompts for the various features (e.g. ranking, generating suggestions, task extractions), I have eval sets of task lists (not anyone's real tasks, but constructed from patterns in my tasks, or the tasks of testers who allowed me to fix the problems they were having), with the three I expect to come out. I store the eval outputs, and re-test whenever I add a new rule to a prompt, or whenever testing a new model version. The great thing about having this eval set is that it catches when I get it wrong. When I introspect a failed run, sometimes it's because I need to tune a prompt, but sometimes it's because I missed something in my own ranking.\nI did the same thing with my infrastructure as well, so this time, instead of setting up servers, and building login systems, and managing databases, I built on Vercel (git push to serving Next.js), Neon (hosted postgres).\nI started getting emails mailed to me by mid-June, but started getting usable suggestions on June 26, and I've been using it every morning since. I wanted it to be easy to get started, and easy to use, so the input handles mess (you can add multiple tasks in the same run-on sentence, and a friend who helped me test it just pasted his entire obsidian todo list in wholesale to get started).\nI wanted to make sure that anyone could try it out, so I built a trial feature that uses the real in-app ranking with a list of items you provide.\nIf you want to try the service, there's a free 14-day trial (card required), and then it's $99/year or $9.99/month after that (plus sales tax). We warn you seven days before your card is charged and if you cancel, you keep access through the term (either the trial, or our last paid period). Online, through settings -> billing, no email, no call.\nI really hope you'll try it out. If you do, please tell me if we did a good job picking out your day.\nhttps://3anddoneapp.com/try (https://3anddoneapp.com/try)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792415227,
+      "created_at": "2026-10-19T13:07:07+00:00",
+      "comments_data": [
+        {
+          "id": "50155161",
+          "author": "harshalizee",
+          "body": "App monetization is wild these days. \n$9.99/month for a todo app with email that was generated with AI.\nMeanwhile, an AI subscription starts at $20/month and you can vibe code your own version to suit your preferences and free forever.",
+          "score": 0,
+          "time": 1792430419,
+          "parent": "50151980"
+        },
+        {
+          "id": "50155613",
+          "author": "RGS1811",
+          "body": "I converted my post-it based task tracker to an iOS app. It has no subscription, no data leaves your phone, and it costs 2 USD. It’s got no AI features but you can add tasks with siri by way of a shortcut.\nMuch less ambitious than what 3anddone is trying to do. But If you’re interested, check it out. It’s called “Grask”.",
+          "score": 0,
+          "time": 1792432619,
+          "parent": "50151980"
+        },
+        {
+          "id": "50156042",
+          "author": "gillesbertheau",
+          "body": "I kind of like the idea because it gives you a different angle of using AI specifically for one area. I think that's the key for a lot of products instead of being extremely broad. However just by intuition I would argue that its to simple and to expensive for this. Do you have plans of building it out to make it the best in this area?",
+          "score": 0,
+          "time": 1792434499,
+          "parent": "50151980"
+        },
+        {
+          "id": "50155904",
+          "author": "F7F7F7",
+          "body": "What happens when my ADD riddled brain dumps 500 tasks that are either artifacts of procrastination or a new shiny problem that I want to solve but shouldn't be in this thing?",
+          "score": 0,
+          "time": 1792433907,
+          "parent": "50151980"
+        },
+        {
+          "id": "50155317",
+          "author": "tra3",
+          "body": "With respect, that's a wall of text.",
+          "score": 0,
+          "time": 1792431193,
+          "parent": "50151980"
+        },
+        {
+          "id": "50152141",
+          "author": "cjimesh",
+          "body": "This is super cool. But there's a very high likelihood that your past self would not have used this tool. For the simple reason that you wouldn't want company information going out to a third party.\nAny plans to open source the harness/skill?",
+          "score": 0,
+          "time": 1792416155,
+          "parent": "50151980"
+        },
+        {
+          "id": "50154615",
+          "author": "privacyishuman",
+          "body": "Nah, I'm not paying to give away my data. But I do really want a good tasks app that is self hostable, end to end encrypted, with great client side apps. Maybe I'll reverse engineer things 3 and make an Android version.",
+          "score": 0,
+          "time": 1792428272,
+          "parent": "50151980"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50151928",
+      "title": "Show HN: Qwen3-4B with the AI writing tics trained out",
+      "subreddit": "show-hn",
+      "author": "erikkannike",
+      "score": 135,
+      "num_comments": 97,
+      "permalink": "https://news.ycombinator.com/item?id=50151928",
+      "url": "https://100toolkit.com/blog/deslop-model/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792414847,
+      "created_at": "2026-10-19T13:00:47+00:00",
+      "comments_data": [
+        {
+          "id": "50156103",
+          "author": "rahulb0802",
+          "body": "Since you wrote the detector using a particular style guide, are there other indicators of AI writing you are still uncovering and adding to this? Or do the ones mentioned mostly encompass everything?",
+          "score": 0,
+          "time": 1792434787,
+          "parent": "50151928"
+        },
+        {
+          "id": "50156162",
+          "author": "vorticalbox",
+          "body": "Are there plans to release the detector?",
+          "score": 0,
+          "time": 1792435148,
+          "parent": "50151928"
+        },
+        {
+          "id": "50152434",
+          "author": "chmod775",
+          "body": "Models have proclivities, and many people use the same model.\nImagine all books on earth were written by just 5 people - and worse, they could not remember what they had written yesterday. You would quickly get tired of reading the same flourishes and patterns over and over.\nWhatever style models currently in use have, that's what people are going to be tired of, and it's what they're going to recognize as \"AI\".",
+          "score": 0,
+          "time": 1792417534,
+          "parent": "50151928"
+        },
+        {
+          "id": "50154726",
+          "author": "gobdovan",
+          "body": "In before: Goomba fallacy. But I can't notice how there's claims that: LLMs are nondeterministic and cannot be relied upon to produce the same thing AND they produce the same texts, same UIs, in the same styles. It frustrates me too, but what a solution for both problems would look like?\nAlso, if all LLMs would write in the style from the article, in how much time that would be the recognised LLM style people would get sick of? I suppose longer? But even the current style of LLMs was palatable when they first came out.",
+          "score": 0,
+          "time": 1792428700,
+          "parent": "50151928"
+        },
+        {
+          "id": "50152850",
+          "author": "jwr",
+          "body": "Why kill the em dashes? They are a legitimate mark — one that I have been using for years. On a Mac, you quickly get used to pressing shift-option-hyphen. Em dashes are typographically correct and should be used.",
+          "score": 0,
+          "time": 1792419632,
+          "parent": "50151928"
+        },
+        {
+          "id": "50152842",
+          "author": "bschwarz",
+          "body": "and needs no system prompt\n\nA human would write \"and doesn't need a system prompt.\"",
+          "score": 0,
+          "time": 1792419577,
+          "parent": "50151928"
+        },
+        {
+          "id": "50152659",
+          "author": "BoredomIsFun",
+          "body": "This is not the first deslop. The true pioneer is this dude: https://huggingface.co/sam-paech/gemma-3-27b-it-antislop (https://huggingface.co/sam-paech/gemma-3-27b-it-antislop). This model is a perfectly usable, full size not-toyish model.",
+          "score": 0,
+          "time": 1792418571,
+          "parent": "50151928"
+        },
+        {
+          "id": "50152793",
+          "author": "BSOhealth",
+          "body": "for https://slopwash.com (https://slopwash.com) I’ve started approaching this more as an eval problem than something to go post-training for. I’m excited to be trying these new Jev-type models in more of a harnessed approach. maybe some heavy LLM to measure preservation of intent",
+          "score": 0,
+          "time": 1792419290,
+          "parent": "50151928"
+        },
+        {
+          "id": "50152633",
+          "author": "JustSkyfall",
+          "body": "It's definitely a slight improvement, but it is still rather obvious that the output is AI-written :(",
+          "score": 0,
+          "time": 1792418498,
+          "parent": "50151928"
+        },
+        {
+          "id": "50152755",
+          "author": "f311a",
+          "body": "Why would you support this sort of projects?\nLLM text should be spottable for as long as possible, otherwise human communication and expression on the internet will be killed.",
+          "score": 0,
+          "time": 1792419107,
+          "parent": "50151928"
+        },
+        {
+          "id": "50152587",
+          "author": "charv",
+          "body": "Side note but the multi-user cursors was a super cool feature, not sure it was relevant to this article but would love to see it on more interactive pieces (a la The Pudding, etc.)",
+          "score": 0,
+          "time": 1792418271,
+          "parent": "50151928"
+        },
+        {
+          "id": "50152250",
+          "author": "ac2u",
+          "body": "Is it still capable of writing an essay about AI writing tics or has the very means of producing said tics, even when the model is asked to do so to demonstrate, now abitterated?",
+          "score": 0,
+          "time": 1792416641,
+          "parent": "50151928"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50151373",
+      "title": "Show HN: A biotech catalyst calendar that links every date to the SEC sentence",
+      "subreddit": "show-hn",
+      "author": "orionbiotech",
+      "score": 5,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50151373",
+      "url": "https://www.orionbiotechai.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792411547,
+      "created_at": "2026-10-19T12:05:47+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -11,7 +384,7 @@
       "subreddit": "show-hn",
       "author": "kinduff",
       "score": 6,
-      "num_comments": 2,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50148662",
       "url": "https://github.com/kinduff/TLKRecomp",
       "selftext": "",
@@ -80,8 +453,8 @@
       "title": "Show HN: Trmnl-cards – Turn an XTEINK X4 into a tiny frame for rare cards",
       "subreddit": "show-hn",
       "author": "mdni007",
-      "score": 3,
-      "num_comments": 0,
+      "score": 4,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50148526",
       "url": "https://github.com/mdnahian/trmnl-cards",
       "selftext": "",
@@ -116,6 +489,14 @@
           "parent": "50148356"
         },
         {
+          "id": "50148791",
+          "author": "kraemate",
+          "body": "What LLM backend does it use?",
+          "score": 0,
+          "time": 1792388587,
+          "parent": "50148356"
+        },
+        {
           "id": "50149444",
           "author": "cjimesh",
           "body": "How is this different from what most frontier models can do?",
@@ -129,14 +510,6 @@
           "body": "Prospects look grim for these kind of light agent wrappers …?",
           "score": 0,
           "time": 1792388527,
-          "parent": "50148356"
-        },
-        {
-          "id": "50148791",
-          "author": "kraemate",
-          "body": "What LLM backend does it use?",
-          "score": 0,
-          "time": 1792388587,
           "parent": "50148356"
         }
       ]

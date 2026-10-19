@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-19T12:47:00.483857+00:00",
+  "last_fetched": "2026-10-19T18:41:20.139782+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -44,8 +44,8 @@
       "title": "Show HN: WhatsApp MCP running free on Cloudflare",
       "subreddit": "show-hn",
       "author": "zoozla",
-      "score": 121,
-      "num_comments": 67,
+      "score": 144,
+      "num_comments": 76,
       "permalink": "https://news.ycombinator.com/item?id=50145715",
       "url": "https://github.com/finereli/whatsapp-mcp",
       "selftext": "I wanted my humble Claude on mobile to access my WhatsApp messages but the only options I could find either required WhatsApp Business or an actual server to run Baileys on.\nI wanted to run it for free on ClaudeFlare and with my personal WhatsApp account, so I built this.\nImportant feature - it connects to your Google account as well as WhatsApp to grab the names of all your WhatsApp contacts, otherwise you get only phone numbers for many of them and search doesn't work properly.\nThis is a single user install because it's both gray area and very private - so point your agent at the repo and let it set things up.",
@@ -54,6 +54,14 @@
       "time": 1792359370,
       "created_at": "2026-10-18T21:36:10+00:00",
       "comments_data": [
+        {
+          "id": "50156096",
+          "author": "zoozla",
+          "body": "Made it encrypt the data at rest and support multiple users and published it on https://whatsapp.finereli.com (https://whatsapp.finereli.com) if you don't want to install your own and just want access to your WhatsApp messages (groups included!) with your agents.\nLimited to the first 100 logins for now so I can figure out how much this costs and if I can support this at scale.\nEnjoy!",
+          "score": 0,
+          "time": 1792434749,
+          "parent": "50145715"
+        },
         {
           "id": "50146403",
           "author": "SchemaLoad",
@@ -79,22 +87,6 @@
           "parent": "50145715"
         },
         {
-          "id": "50146508",
-          "author": "taldo",
-          "body": "I've experimented with some of these whatsapp-web-esque hacks (whatsappweb.js, whatsmeow, ...) and every now and then I'll get banned. It's quite inconvenient if you live in a country where WA is the universal contact channel for pretty much everything.",
-          "score": 0,
-          "time": 1792365614,
-          "parent": "50145715"
-        },
-        {
-          "id": "50149127",
-          "author": "meherabhossain",
-          "body": "This is alright until you understand that the data is going through a 3rd party AI provider for their data training, but this is not what a user intentionally wants",
-          "score": 0,
-          "time": 1792392266,
-          "parent": "50145715"
-        },
-        {
           "id": "50147097",
           "author": "pizzafeelsright",
           "body": "AI built me an Android gateway that can send/read text messages along with connectivity to my local AI over wireguard.\nIf a bot needs to text me it sends an API request or it can read whatever I allow with full visibility as I have the logs and limit the access.\nThe amount of effort was minimal. About 4 prompts to get it all working and zero SaaS, 3rd party, or purchases after the software was built.",
@@ -103,11 +95,11 @@
           "parent": "50145715"
         },
         {
-          "id": "50149319",
-          "author": "cjimesh",
-          "body": "Whatsapp chats can contain lots of confidential stuff. Theoretically a cool project, but I won't be using this for sure.",
+          "id": "50146508",
+          "author": "taldo",
+          "body": "I've experimented with some of these whatsapp-web-esque hacks (whatsappweb.js, whatsmeow, ...) and every now and then I'll get banned. It's quite inconvenient if you live in a country where WA is the universal contact channel for pretty much everything.",
           "score": 0,
-          "time": 1792394044,
+          "time": 1792365614,
           "parent": "50145715"
         },
         {
@@ -119,35 +111,43 @@
           "parent": "50145715"
         },
         {
-          "id": "50150547",
-          "author": "iamronaldo",
-          "body": "Is there a risk to your WhatsApp account getting banned?",
+          "id": "50149127",
+          "author": "meherabhossain",
+          "body": "This is alright until you understand that the data is going through a 3rd party AI provider for their data training, but this is not what a user intentionally wants",
           "score": 0,
-          "time": 1792404967,
+          "time": 1792392266,
           "parent": "50145715"
         },
         {
-          "id": "50148653",
-          "author": "neuropacabra",
-          "body": "Free messaging MCP. What could possibly go wrong?",
+          "id": "50153625",
+          "author": "olalonde",
+          "body": "\"ClaudeFlare\"... nice typo.",
           "score": 0,
-          "time": 1792387178,
+          "time": 1792423672,
           "parent": "50145715"
         },
         {
-          "id": "50148975",
-          "author": "calmingsolitude",
-          "body": "This post is quite disingenuous. Both the title and body talk about it being free, but the actual readme on the repo says:\n> […] default CPU limit on Workers is too small for it. wrangler.jsonc raises it, and raising it needs the paid plan, which is a few dollars a month. I haven't tried the free plan.\nhttps://github.com/finereli/whatsapp-mcp/tree/64f1b3017931e4... (https://github.com/finereli/whatsapp-mcp/tree/64f1b3017931e4f6fe33eec4f95999a10f839b99#the-workers-paid-note)",
+          "id": "50149319",
+          "author": "cjimesh",
+          "body": "Whatsapp chats can contain lots of confidential stuff. Theoretically a cool project, but I won't be using this for sure.",
           "score": 0,
-          "time": 1792390592,
+          "time": 1792394044,
           "parent": "50145715"
         },
         {
-          "id": "50148313",
-          "author": "fantasticwaddle",
-          "body": "I've always regarded WhatsApp as a very private thing and if on the other side of things, if somebody's using repos like these and uploading my messages, you know, which as far as we know are being read by Claude and all these AI companies, the more data you put in, the more data they get inside and for their training and they could use it for, I don't know, God knows what. But I never consented to this. So the more trouble here is not that you're using it or people are using it. The trouble is that there are a lot of people in the world who have not consented to this. There are people on the other side of WhatsApp who have not consented to this. Why would you build something like that? I mean, it's just unfair for a lot of people.",
+          "id": "50153843",
+          "author": "blockway-dev",
+          "body": "Sounds like the free plan might not be enough",
           "score": 0,
-          "time": 1792383325,
+          "time": 1792424733,
+          "parent": "50145715"
+        },
+        {
+          "id": "50146413",
+          "author": "jrecyclebin",
+          "body": "I've been using Baileys - but it's not ideal. (Periodically you have to go manually log the bot back in.) Is there no platform that's friendly to personal bots? Or is that what Telegram is for? Discord I suppose...",
+          "score": 0,
+          "time": 1792364860,
           "parent": "50145715"
         }
       ]
@@ -160,7 +160,7 @@
       "subreddit": "show-hn",
       "author": "bobbycoleman-de",
       "score": 14,
-      "num_comments": 3,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50145628",
       "url": "https://github.com/omnipty-terminal/omnipty",
       "selftext": "",
@@ -483,8 +483,8 @@
       "title": "Show HN: Ranet3 – High performance policy routed IPsec mesh SD-WAN",
       "subreddit": "show-hn",
       "author": "StepBroBD",
-      "score": 34,
-      "num_comments": 7,
+      "score": 39,
+      "num_comments": 11,
       "permalink": "https://news.ycombinator.com/item?id=50141436",
       "url": "https://ranet3.com/",
       "selftext": "btw this is already running on all my machines (including a macbook), and i've configured all of them to have routable public ip addresses ;)\nespecially for the mac, my ISP is SFR (over coaxial connection) with only dynamic ipv4, i can use this to get stable v4/v6 addresses very easily for all my devices behind the router\nios/android app soon^{TM}",
@@ -493,6 +493,14 @@
       "time": 1792333912,
       "created_at": "2026-10-18T14:31:52+00:00",
       "comments_data": [
+        {
+          "id": "50152438",
+          "author": "mintflow",
+          "body": "Why you want to do this on mobile or end device? If all the node is controlled by yourself I guess srv6 is indeed okay to use\nBut for ordinary user and mobile, and given the jitter of wireless network, seems it may cause unnecessary changes\nBut overall this is a neat project combine of technology I was fiddling and enjoy",
+          "score": 0,
+          "time": 1792417556,
+          "parent": "50141436"
+        },
         {
           "id": "50145058",
           "author": "evanjrowley",
@@ -523,6 +531,14 @@
           "body": "ranet3 is in the yc winter batch application pool, if you happen to be an investor, lmk i’d be happy to give you a demo!",
           "score": 0,
           "time": 1792355569,
+          "parent": "50141436"
+        },
+        {
+          "id": "50151802",
+          "author": "palisade",
+          "body": "ipsec is compromised, but ok, spread your net wide",
+          "score": 0,
+          "time": 1792414216,
           "parent": "50141436"
         },
         {
@@ -576,8 +592,8 @@
       "title": "Show HN: The Zelda timeline to catch up before the Ocarina of Time remake",
       "subreddit": "show-hn",
       "author": "jsomau",
-      "score": 198,
-      "num_comments": 116,
+      "score": 209,
+      "num_comments": 124,
       "permalink": "https://news.ycombinator.com/item?id=50140769",
       "url": "https://legendofhyrule.com/",
       "selftext": "I made this ahead of the Ocarina of Time remake which comes out in 17 days. I remember the feeling of playing it as a kid but I hadn’t kept up with the story so I built a timeline to catch up before the Door of Time reopens.\nNintendo’s own timeline is the authority here (Hyrule Historia and their chronicle page). The fun part was rethinking how to visualize it. It branches at the end of Ocarina into three eras depending on whether Link wins or loses, so each era is its own thread on the cloth. The threads meet again much later with Breath of the Wild.\nI had a lot of help from Claude. I’d often thought about building things like this but never found the time between the day job and the rest of life.",
@@ -611,6 +627,14 @@
           "parent": "50140769"
         },
         {
+          "id": "50152914",
+          "author": "everdrive",
+          "body": "There's not really a Zelda timeline. Interestingly, it's a bit like religion.\nOriginally, there was barely a story, and it existed just to give some motivation and context for the various video games. This encompasses Zelda 1 - 5. ie, NES, SNES, Gameboy Zeldas, and Ocarina of Time. When Majora's Mask came out, it was a direct sequel, which hadn't really happened before, and moreover, you carry on as Child Link rather than Adult Link. (recall that you end OoT as Child Link in the credits)\nBy the time Wind Waker came out, Nintendo had officially started talking and thinking about Zelda timelines, although I think you can argue that they had already started down this path in Majora's mask. Wind Waker is the first game to formalize the idea that there are many Links, and it's more of a status or title than a person. The person who saves Hyrule. At some point (I really stopped following Zelda closely after Twilight Princess) Nintendo seems to have bowed to the pressure on the internet, and released the \"official\" Zelda timelines. ie, Nintendo followed the trend of trying to formalize the timeline, but did not really invent it)\nThe \"official timeline\" is convoluted because (much like religious stories) much of it was never planned in advance, and the current understanding is something of a retcon that would have been unrecognizable back in the old NES / SNES Zelda days.",
+          "score": 0,
+          "time": 1792419969,
+          "parent": "50140769"
+        },
+        {
           "id": "50141829",
           "author": "hyperhello",
           "body": "What’s the word for trying to do cluster analysis on what is actually randomly distributed data? The games do have obvious similarities and sometimes refer to each other, but they’re independent events.",
@@ -619,11 +643,11 @@
           "parent": "50140769"
         },
         {
-          "id": "50151140",
-          "author": "mherkender",
-          "body": "The \"Zelda timeline\" is a solution looking for a problem -- Nintendo generally builds gameplay and adds a story as an afterthought. Outside of the occasional direct sequel (and even then, only just) everything that happened in every other Zelda game is completely irrelevant.\nYes I know Hyrule Historia has a timeline. It's an afterthought too, it's not like they had books of deep Zelda lore to compile, they just put something together to sell a book.",
+          "id": "50152693",
+          "author": "chrisgd",
+          "body": "Well, despite all the negativity about trying to fit something, I find the outline inter sting and appreciate you creating it. I like trying to see all the potential fits plus I was not aware of the number of games available that I never played.",
           "score": 0,
-          "time": 1792409995,
+          "time": 1792418745,
           "parent": "50140769"
         },
         {
@@ -635,11 +659,11 @@
           "parent": "50140769"
         },
         {
-          "id": "50148918",
-          "author": "wise_blood",
-          "body": "If I may: let's ignore the timeline entirely.\nIf you want to sample the Zelda series, I'd propose:\n- Link's Awakening for the 2d experience\n- Ocarina of Time for the 3d experience\n- Breath of the Wild for the open world experience\nas a starting point. The remakes are all new, so you get some QoL.",
+          "id": "50151140",
+          "author": "mherkender",
+          "body": "The \"Zelda timeline\" is a solution looking for a problem -- Nintendo generally builds gameplay and adds a story as an afterthought. Outside of the occasional direct sequel (and even then, only just) everything that happened in every other Zelda game is completely irrelevant.\nYes I know Hyrule Historia has a timeline. It's an afterthought too, it's not like they had books of deep Zelda lore to compile, they just put something together to sell a book.",
           "score": 0,
-          "time": 1792390011,
+          "time": 1792409995,
           "parent": "50140769"
         },
         {
@@ -651,14 +675,6 @@
           "parent": "50140769"
         },
         {
-          "id": "50143832",
-          "author": "gradus_ad",
-          "body": "I prefer to think of LoZ without a coherent timeline. Just 3 archetypal souls finding each other again and again and again...",
-          "score": 0,
-          "time": 1792347728,
-          "parent": "50140769"
-        },
-        {
           "id": "50141629",
           "author": "sharkbot",
           "body": "Don't forget to include:\n- Link: The Faces of Evil\n- Zelda: The Wand of Gamelon\n- Link's Crossbow Training\n- the various Hyrule Warriors games\nGood luck! :)",
@@ -667,19 +683,19 @@
           "parent": "50140769"
         },
         {
-          "id": "50142041",
-          "author": "bovermyer",
-          "body": "I played Legend of Zelda, Adventure of Link, A Link to the Past, and Ocarina of Time to conclusion. I haven't really played any Zelda games since then, except maybe for a few minutes for a few of them.\nI'm a little surprised to hear that Ocarina of Time is getting a remake. I take it it's going to be a Switch 2 exclusive?",
+          "id": "50143832",
+          "author": "gradus_ad",
+          "body": "I prefer to think of LoZ without a coherent timeline. Just 3 archetypal souls finding each other again and again and again...",
           "score": 0,
-          "time": 1792338105,
+          "time": 1792347728,
           "parent": "50140769"
         },
         {
-          "id": "50149875",
-          "author": "Tepix",
-          "body": "Is there a list of WASM ports of these games so we can play them in the browser?",
+          "id": "50148918",
+          "author": "wise_blood",
+          "body": "If I may: let's ignore the timeline entirely.\nIf you want to sample the Zelda series, I'd propose:\n- Link's Awakening for the 2d experience\n- Ocarina of Time for the 3d experience\n- Breath of the Wild for the open world experience\nas a starting point. The remakes are all new, so you get some QoL.",
           "score": 0,
-          "time": 1792399059,
+          "time": 1792390011,
           "parent": "50140769"
         }
       ]
@@ -691,8 +707,8 @@
       "title": "Show HN: CallSitter – bot that answers my calls and wastes scammers' time",
       "subreddit": "show-hn",
       "author": "szert",
-      "score": 13,
-      "num_comments": 10,
+      "score": 14,
+      "num_comments": 11,
       "permalink": "https://news.ycombinator.com/item?id=50140472",
       "url": "https://github.com/szerintedmi/callsitter",
       "selftext": "Anyone else get a lot of dumb scam calls?\nThese days I mostly get them on my mobile. I used to just ignore them, but then I got fed up and built a bot that answers my calls and wastes their time.\nIt runs on OpenAI Live 1. Jev classifies each call as spam, scam or genuine and steers the bot accordingly.\nWorks like a charm. All my calls go to the bot now.\nI can also steer it from Telegram mid-call.\nIn this one the bot ended up accusing the scammer of being an AI :)\nhttps://www.youtube.com/watch?v=SpuTzRg8_fU (https://www.youtube.com/watch?v=SpuTzRg8_fU)",
@@ -858,8 +874,8 @@
       "title": "Show HN: Sphinx – A hook that quizzes you on your AI's code before shipping",
       "subreddit": "show-hn",
       "author": "critiquebrowser",
-      "score": 248,
-      "num_comments": 87,
+      "score": 249,
+      "num_comments": 89,
       "permalink": "https://news.ycombinator.com/item?id=50137950",
       "url": "https://sphinx-six-theta.vercel.app/",
       "selftext": "FOSS, Basically it plugs into your existing coding agent workflow and every time you push to prod it'll throw up a questionnaire that checks if you understand how the code you're pushing works.",
@@ -882,14 +898,6 @@
           "body": "It’s a neat idea, i think it’ll really take off if you change “before pushing to prod” to “before requesting another human’s time or attention”. If something like this was gatekeeping the “submit PR” and “update PR” buttons it would prevent a lot of waste.",
           "score": 0,
           "time": 1792326405,
-          "parent": "50137950"
-        },
-        {
-          "id": "50151642",
-          "author": "I-A-S",
-          "body": "This is a very neat project!",
-          "score": 0,
-          "time": 1792413346,
           "parent": "50137950"
         },
         {
@@ -933,19 +941,19 @@
           "parent": "50137950"
         },
         {
-          "id": "50143192",
-          "author": "Crowberry",
-          "body": "Where is that quote from, dis you just make it up?\n> You can outsource your thinking,\nbut not your understanding.\n— Sun Tzu",
-          "score": 0,
-          "time": 1792344320,
-          "parent": "50137950"
-        },
-        {
           "id": "50138154",
           "author": "jamienk",
           "body": "I can kinda understand the motivation here: you push a bunch of slop (or is it deep, genius code?) but you have a kind of nagging suspicion that you should get to know it more familiarly, like back in the good old days a few months back when you sort of understood what was going on. I... don't... think this is going to work...? Remember Confirmation Fatigue? Soon we will have agents that interact with Sphinx for us.",
           "score": 0,
           "time": 1792301253,
+          "parent": "50137950"
+        },
+        {
+          "id": "50143192",
+          "author": "Crowberry",
+          "body": "Where is that quote from, dis you just make it up?\n> You can outsource your thinking,\nbut not your understanding.\n— Sun Tzu",
+          "score": 0,
+          "time": 1792344320,
           "parent": "50137950"
         },
         {
@@ -963,6 +971,14 @@
           "score": 0,
           "time": 1792340703,
           "parent": "50137950"
+        },
+        {
+          "id": "50139509",
+          "author": "maximg68",
+          "body": "After noticing a drop in my understanding of the code I ship, I built and started using a similar skill (\"Quiz me on the PR or the current branch\"). I didn't tie it to a specific commit, though - to me it makes more sense to look at the PR as a whole.\nSo far I was positively surprised with the questions it could come up with.",
+          "score": 0,
+          "time": 1792316631,
+          "parent": "50137950"
         }
       ]
     },
@@ -974,7 +990,7 @@
       "subreddit": "show-hn",
       "author": "tkgally",
       "score": 72,
-      "num_comments": 28,
+      "num_comments": 29,
       "permalink": "https://news.ycombinator.com/item?id=50137820",
       "url": "https://tkgally.github.io/500-clocks/",
       "selftext": "Lately I've been testing frontier models by having them create self-contained web pages that display clocks--sort of my personal version of Simon Willison’s pelican-on-a-bicycle metric.\nI have been particularly impressed by the variety, interest, and quality of the clocks created by Claude Opus 5.5. Over the course of several sessions in the Claude chat interface, I had it build a total of 500 clocks.\nClaude’s summary of the prompting process and page design is here:\nhttps://github.com/tkgally/500-clocks/tree/main (https://github.com/tkgally/500-clocks/tree/main)",
@@ -992,19 +1008,19 @@
           "parent": "50137820"
         },
         {
-          "id": "50138029",
-          "author": "vunderba",
-          "body": "Nice job. The Pong one was a nice touch where the ball traveled within a second from each paddle. I also enjoyed the interactive fiction game clock. It doesn’t really have much to do with time, but I still appreciated how the little descriptions changed over time.\nLooking through all of these, you can definitely start to see patterns in themes. For example, it’s a clock but in a different language. Or it’s a clock but wrapped around a classic game - I think I saw Nine Men's Morris, Mancala and Scrabble among others.\nI made the Chamber of Clocks [1] about half a year back which is a set of 12 different clockwork visualizations that I came up with so I was curious (and a bit trepidatious) when I saw this post. I was rather relieved to see that Opus 5.5 left to its own devices didn't create a single thing that resembled any of the ones I came up with.\nThe closest might be the Ctesibian water clock, but mine is significantly more elaborate, modeled as a 3D physical water wheel.\nThere’s another one I’ve seen floating around on HN — the Triclock [2] — which is particularly nice as well and worth checking out!\n[1] - https://clocks.specr.net (https://clocks.specr.net)\n[2] - https://triclock.franzai.com (https://triclock.franzai.com)",
-          "score": 0,
-          "time": 1792299276,
-          "parent": "50137820"
-        },
-        {
           "id": "50146124",
           "author": "pradn",
           "body": "There was a time when coming up with a new JS clock, at least a novel one, would be fun to look into. When confronted with 500 of these, the inclination to care about this problem at all vanishes.",
           "score": 0,
           "time": 1792362425,
+          "parent": "50137820"
+        },
+        {
+          "id": "50138029",
+          "author": "vunderba",
+          "body": "Nice job. The Pong one was a nice touch where the ball traveled within a second from each paddle. I also enjoyed the interactive fiction game clock. It doesn’t really have much to do with time, but I still appreciated how the little descriptions changed over time.\nLooking through all of these, you can definitely start to see patterns in themes. For example, it’s a clock but in a different language. Or it’s a clock but wrapped around a classic game - I think I saw Nine Men's Morris, Mancala and Scrabble among others.\nI made the Chamber of Clocks [1] about half a year back which is a set of 12 different clockwork visualizations that I came up with so I was curious (and a bit trepidatious) when I saw this post. I was rather relieved to see that Opus 5.5 left to its own devices didn't create a single thing that resembled any of the ones I came up with.\nThe closest might be the Ctesibian water clock, but mine is significantly more elaborate, modeled as a 3D physical water wheel.\nThere’s another one I’ve seen floating around on HN — the Triclock [2] — which is particularly nice as well and worth checking out!\n[1] - https://clocks.specr.net (https://clocks.specr.net)\n[2] - https://triclock.franzai.com (https://triclock.franzai.com)",
+          "score": 0,
+          "time": 1792299276,
           "parent": "50137820"
         },
         {
@@ -1016,19 +1032,19 @@
           "parent": "50137820"
         },
         {
-          "id": "50144408",
-          "author": "Benjaminsen",
-          "body": "Really cool result, in your own assessment how much will you say you as a human provided the creative direction?",
-          "score": 0,
-          "time": 1792351481,
-          "parent": "50137820"
-        },
-        {
           "id": "50138491",
           "author": "userbinator",
           "body": "Claude’s summary of the prompting process and page design is here:\nWas the README written by Claude too? I was expecting the usual Claudish, but it looks far more like normal human English.\nand a helper library U\nPerhaps Utility library would fit the name better.",
           "score": 0,
           "time": 1792305663,
+          "parent": "50137820"
+        },
+        {
+          "id": "50144408",
+          "author": "Benjaminsen",
+          "body": "Really cool result, in your own assessment how much will you say you as a human provided the creative direction?",
+          "score": 0,
+          "time": 1792351481,
           "parent": "50137820"
         },
         {
@@ -1048,19 +1064,19 @@
           "parent": "50137820"
         },
         {
-          "id": "50141836",
-          "author": "BorisMelnik",
-          "body": "tell your AI they did a good job!",
-          "score": 0,
-          "time": 1792336733,
-          "parent": "50137820"
-        },
-        {
           "id": "50138542",
           "author": "ozanbora",
           "body": "490,000–670,000 tokens each session a bit much, no?",
           "score": 0,
           "time": 1792306332,
+          "parent": "50137820"
+        },
+        {
+          "id": "50141836",
+          "author": "BorisMelnik",
+          "body": "tell your AI they did a good job!",
+          "score": 0,
+          "time": 1792336733,
           "parent": "50137820"
         },
         {

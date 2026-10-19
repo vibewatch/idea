@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-19T12:47:04.042532+00:00",
+  "last_fetched": "2026-10-19T18:41:25.234240+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,8 +10,8 @@
       "title": "Ask HN: How to deal with shipping AI-written code you don't understand?",
       "subreddit": "ask-hn",
       "author": "rzk",
-      "score": 3,
-      "num_comments": 10,
+      "score": 15,
+      "num_comments": 26,
       "permalink": "https://news.ycombinator.com/item?id=50151036",
       "url": "https://news.ycombinator.com/item?id=50151036",
       "selftext": "I saw this LinkedIn post from a Meta engineer and it resonated with me:\nhttps://www.linkedin.com/posts/ali-hamie_im-an-engineer-at-meta-and-i-never-felt-share-7517317918666211328-7C8N\n> I'm an engineer at Meta and I never felt this uncomfortable doing my job. I'm writing code these days and it all feels like a black box. This new standard of shipping with AI is moving so fast that if we're going to spend our time checking each line of code, it's going to take forever. That means you can end up with systems you've built where you don't truly understand how all the code works. You understand the high level, but not every detail. And maybe this is becoming the new standard. It goes against every instinct of being a software engineer. I'm used to understanding what I'm building. Now I'm trying to figure out how much I need to understand before I'm comfortable moving forward. Are other engineers feeling this too?\nHow are you handling this?",
@@ -21,11 +21,19 @@
       "created_at": "2026-10-19T11:24:34+00:00",
       "comments_data": [
         {
-          "id": "50151160",
-          "author": "spacedcowboy",
-          "body": "I’m slowly coming around to the idea that if it works, I’m good with that. I never used to personally check all my colleagues work, either, I just trusted that they’d done a good job.\nThat’s not to say I blindly trust an LLM - my project is an autovectorising compiler. I have it write a bazillion tests, and I have real, non-trivial programs that it compiled. I have it run a ‘gate’ before releases that takes literally hours on 5 different architectures. To say this code is tested is … masterful understatement.\nI think what helps is a long planning session, going into details, working out corner cases, designing test-cases, you know work and effort. Once that’s done it’s easier to let it work through the night and do a major production feature.\nI still review the code, but hand on heart I couldn’t say I’d reviewed everything, sometimes I miss something in a complicated check-in. I try to keep checkins small and contained, but sometimes that’s not easy to manage alongside the “don’t break stuff” rule as well.\nSo it comes down to: I’ve been working on this for 6 months or so, and so far this has worked out for me. You know, kind of like getting used to a colleague’s idiosyncrasies over a period of time.\nI will say that in my experience the code quality is fairly high. Maybe that’s down to the effort put in ahead of time in the planning stages, I don’t know, but I don’t seem to suffer from the ‘slop’ that people complain of. YMMV.",
+          "id": "50154869",
+          "author": "webarchitect",
+          "body": "I can think of so many times this has happened before. People getting used to MVC, Dependency Injection, ORMs. Sometimes the code is so large you only work on a part of it, so you have to get used to a lot of not knowing.\nSo how do we build confidence anyhow when we can't know everything?\nI think first, standard checks - does it compile? What do static analysis tools say - code quality, passes SAST analysis? Linters? Style checkers?\nDo the tests run? I'm not comfortable with the tests I write let alone the AI.. by adding fault injection (fuzzing, chaos), and mutation testing, I have a better degree of confidence in the tests and code.\nSpend even more time getting to know the product instead. Maybe I don't know the code as well as I used to, but I know the product backwards and forwards. That helps me have some new confidence that I didn't really have before. Knowing the greater whole.",
           "score": 0,
-          "time": 1792410132,
+          "time": 1792429388,
+          "parent": "50151036"
+        },
+        {
+          "id": "50154019",
+          "author": "lp92",
+          "body": "I'm currently working on a combined Aero sim/CAD/CAM software for designing, simulating, and performing DFM optimization specifically for Group 1 to 3 winged UAVs.\nWhat I do is ask Opus/Gemini to explain the parts I don't understand. And I do some of my own research to verify accuracy of the explanations.\nIn addition:\n* Every new feature has a Feature Design document which I review, modify, and approve. And a corresponding Implementation Plan which I also review and approve.\n* Every fix has a RCA document and fix Implementation Doc which I review, modify, and approve.\n* There's a global high level Architecture and Design document with additional sub component design documents which are always kept in synch after a new feature or bug fix is done. Synching it is always a step in the Implementation plan.\nThis does adds some overhead but it allows me to have have check point gates. This has often allowed me to catch misunderstandings and align properly before any code gets edited by the AI agent.\nHaving the above docs also helps when it comes to referencing them as context to properly ground new features or bug fixes.",
+          "score": 0,
+          "time": 1792425591,
           "parent": "50151036"
         },
         {
@@ -37,11 +45,75 @@
           "parent": "50151036"
         },
         {
+          "id": "50153483",
+          "author": "benfidge",
+          "body": "Generally speaking I brain storm the feature first and produce a dev plan. This includes asking it to reuse code/libraries we’ve already got! After it’s gone off ah done its thing we go back over and do a QA on what it’s built, why that approach, what can we do better etc etc?",
+          "score": 0,
+          "time": 1792422873,
+          "parent": "50151036"
+        },
+        {
+          "id": "50152868",
+          "author": "sdevonoes",
+          "body": "Product doesn’t care. And most of us will get replaced by agents. I guess around 30% of the engineering workforce will keep their jobs which will be mainly to keep the product up and running, doing whatever it takes (so using agents to fix stuff basically).\nThe ones who get to keep their jobs will be rebranded as Maintenance engineers with a lower salary. VPs and Heads of will keep their cozy job (bc there are not so many of them), and they are not that dumb to fire themselves.\nCode understanding doesn’t matter anymore (or won’t matter soon)",
+          "score": 0,
+          "time": 1792419736,
+          "parent": "50151036"
+        },
+        {
+          "id": "50151160",
+          "author": "spacedcowboy",
+          "body": "I’m slowly coming around to the idea that if it works, I’m good with that. I never used to personally check all my colleagues work, either, I just trusted that they’d done a good job.\nThat’s not to say I blindly trust an LLM - my project is an autovectorising compiler. I have it write a bazillion tests, and I have real, non-trivial programs that it compiled. I have it run a ‘gate’ before releases that takes literally hours on 5 different architectures. To say this code is tested is … masterful understatement.\nI think what helps is a long planning session, going into details, working out corner cases, designing test-cases, you know work and effort. Once that’s done it’s easier to let it work through the night and do a major production feature.\nI still review the code, but hand on heart I couldn’t say I’d reviewed everything, sometimes I miss something in a complicated check-in. I try to keep checkins small and contained, but sometimes that’s not easy to manage alongside the “don’t break stuff” rule as well.\nSo it comes down to: I’ve been working on this for 6 months or so, and so far this has worked out for me. You know, kind of like getting used to a colleague’s idiosyncrasies over a period of time.\nI will say that in my experience the code quality is fairly high. Maybe that’s down to the effort put in ahead of time in the planning stages, I don’t know, but I don’t seem to suffer from the ‘slop’ that people complain of. YMMV.",
+          "score": 0,
+          "time": 1792410132,
+          "parent": "50151036"
+        },
+        {
+          "id": "50152829",
+          "author": "billylo",
+          "body": "I spend time to add extra observability, cross-checking and alerting at runtime to offset the risk.",
+          "score": 0,
+          "time": 1792419500,
+          "parent": "50151036"
+        },
+        {
           "id": "50151085",
           "author": "pluc",
           "body": "The solution is more AI. Throw another agent in to watch your logs, then throw in another agent to watch that agent.\nQuality is no longer an objective. If it breaks, rebuild it and tell it not to break.",
           "score": 0,
           "time": 1792409518,
+          "parent": "50151036"
+        },
+        {
+          "id": "50152401",
+          "author": "mattbrewsbytes",
+          "body": "It feels like another layer of \"conceptual compression\". I'm not sure who/when that phrase came around but in context of Rails is where I heard it and its things like ActiveRecord or really any ORM. You aren't writing the SQL directly, something else is and for the most part it works. Then it doesn't work or your database grows too much and you need to optimize table structures with indexes, etc.\nMy point is if you don't understand the fundamentals of the underlying code (SQL in the example above), you're more likely to have issues in the future. Or maybe not if that app doesn't reach a usage pattern or complexity where the nuances under the hood matter.\nIt really depends on what you're shipping. Meta ships social media apps where in the grand scheme of things if something is broken software wise it largely doesn't matter. What's the worst case? lost ad revenue? Users can't do things? If that were software for MRI machines or aerospace where software issues/bugs can result in lives lost then it matters much more in understanding what is going on at all levels of the software and potentially hardware.",
+          "score": 0,
+          "time": 1792417347,
+          "parent": "50151036"
+        },
+        {
+          "id": "50154121",
+          "author": "bitbasher",
+          "body": "> How to deal with shipping AI-written code you don't understand?\nStop shipping code you don't understand.\nIs there really any other solution? You can either ignore it and pretend like it's the new era of software like half the other commenters are, or you can sit down and understand the code and what you're shipping.",
+          "score": 0,
+          "time": 1792426023,
+          "parent": "50151036"
+        },
+        {
+          "id": "50154265",
+          "author": "ex-aws-dude",
+          "body": "We just don't do that, I don't know why people talk like that is a given\nIs it a company culture thing or a domain specific thing?",
+          "score": 0,
+          "time": 1792426699,
+          "parent": "50151036"
+        },
+        {
+          "id": "50152838",
+          "author": "ulfw",
+          "body": "It's Meta. Shipping crap is par for the course. \nYou're fine.",
+          "score": 0,
+          "time": 1792419548,
           "parent": "50151036"
         }
       ]
@@ -53,8 +125,8 @@
       "title": "Ask HN: New Outlook` sends everything through Microsoft Servers",
       "subreddit": "ask-hn",
       "author": "NicoJuicy",
-      "score": 2,
-      "num_comments": 3,
+      "score": 4,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50148226",
       "url": "https://news.ycombinator.com/item?id=50148226",
       "selftext": "Did anyone knew about this?\nI'm honestly suprised I only found out about this today.",
@@ -63,6 +135,14 @@
       "time": 1792382338,
       "created_at": "2026-10-19T03:58:58+00:00",
       "comments_data": [
+        {
+          "id": "50153770",
+          "author": "runjake",
+          "body": "Yep, it's been like that for many years. Well before the pandemic. First noticed when it started triggering our automated incident response systems. Everything is proxied through distributed MSFT proxies.\nAs far as I know, there is no way to turn it off and \"regular\" functionality doesn't even exist in the mobile apps anymore. The Outlook mobile app itself is a basic proxy client. I believe the new Outlook is now, or is in the process of becoming the same.",
+          "score": 0,
+          "time": 1792424394,
+          "parent": "50148226"
+        },
         {
           "id": "50148384",
           "author": "gnabgib",
