@@ -1,8 +1,51 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-19T07:03:18.883970+00:00",
+  "last_fetched": "2026-10-19T12:47:04.042532+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50151036",
+      "title": "Ask HN: How to deal with shipping AI-written code you don't understand?",
+      "subreddit": "ask-hn",
+      "author": "rzk",
+      "score": 3,
+      "num_comments": 10,
+      "permalink": "https://news.ycombinator.com/item?id=50151036",
+      "url": "https://news.ycombinator.com/item?id=50151036",
+      "selftext": "I saw this LinkedIn post from a Meta engineer and it resonated with me:\nhttps://www.linkedin.com/posts/ali-hamie_im-an-engineer-at-meta-and-i-never-felt-share-7517317918666211328-7C8N\n> I'm an engineer at Meta and I never felt this uncomfortable doing my job. I'm writing code these days and it all feels like a black box. This new standard of shipping with AI is moving so fast that if we're going to spend our time checking each line of code, it's going to take forever. That means you can end up with systems you've built where you don't truly understand how all the code works. You understand the high level, but not every detail. And maybe this is becoming the new standard. It goes against every instinct of being a software engineer. I'm used to understanding what I'm building. Now I'm trying to figure out how much I need to understand before I'm comfortable moving forward. Are other engineers feeling this too?\nHow are you handling this?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1792409074,
+      "created_at": "2026-10-19T11:24:34+00:00",
+      "comments_data": [
+        {
+          "id": "50151160",
+          "author": "spacedcowboy",
+          "body": "I’m slowly coming around to the idea that if it works, I’m good with that. I never used to personally check all my colleagues work, either, I just trusted that they’d done a good job.\nThat’s not to say I blindly trust an LLM - my project is an autovectorising compiler. I have it write a bazillion tests, and I have real, non-trivial programs that it compiled. I have it run a ‘gate’ before releases that takes literally hours on 5 different architectures. To say this code is tested is … masterful understatement.\nI think what helps is a long planning session, going into details, working out corner cases, designing test-cases, you know work and effort. Once that’s done it’s easier to let it work through the night and do a major production feature.\nI still review the code, but hand on heart I couldn’t say I’d reviewed everything, sometimes I miss something in a complicated check-in. I try to keep checkins small and contained, but sometimes that’s not easy to manage alongside the “don’t break stuff” rule as well.\nSo it comes down to: I’ve been working on this for 6 months or so, and so far this has worked out for me. You know, kind of like getting used to a colleague’s idiosyncrasies over a period of time.\nI will say that in my experience the code quality is fairly high. Maybe that’s down to the effort put in ahead of time in the planning stages, I don’t know, but I don’t seem to suffer from the ‘slop’ that people complain of. YMMV.",
+          "score": 0,
+          "time": 1792410132,
+          "parent": "50151036"
+        },
+        {
+          "id": "50151443",
+          "author": "pinscope_dev",
+          "body": "I had same problem, but after a while I just accepted that is inevitable",
+          "score": 0,
+          "time": 1792411997,
+          "parent": "50151036"
+        },
+        {
+          "id": "50151085",
+          "author": "pluc",
+          "body": "The solution is more AI. Throw another agent in to watch your logs, then throw in another agent to watch that agent.\nQuality is no longer an objective. If it breaks, rebuild it and tell it not to break.",
+          "score": 0,
+          "time": 1792409518,
+          "parent": "50151036"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -11,7 +54,7 @@
       "subreddit": "ask-hn",
       "author": "NicoJuicy",
       "score": 2,
-      "num_comments": 2,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50148226",
       "url": "https://news.ycombinator.com/item?id=50148226",
       "selftext": "Did anyone knew about this?\nI'm honestly suprised I only found out about this today.",
@@ -21,19 +64,19 @@
       "created_at": "2026-10-19T03:58:58+00:00",
       "comments_data": [
         {
-          "id": "50149088",
-          "author": "bigfatkitten",
-          "body": "This is not a novel situation for Microsoft. From 2015:\nhttps://www.securityweek.com/researcher-calls-out-microsoft-... (https://www.securityweek.com/researcher-calls-out-microsoft-over-outlook-ios-security/)",
-          "score": 0,
-          "time": 1792391785,
-          "parent": "50148226"
-        },
-        {
           "id": "50148384",
           "author": "gnabgib",
           "body": "We talked about it in 2023\nWindows 11 Update 23H2 is stealing users' IMAP credentials (666 points, 278 comments) https://news.ycombinator.com/item?id=38212453 (https://news.ycombinator.com/item?id=38212453)\nAnd 2024\nMicrosoft's new Outlook client moves your email to the cloud (2023) (162 points, 131 comments) https://news.ycombinator.com/item?id=41666945 (https://news.ycombinator.com/item?id=41666945)\n### Inflammatory too (2023):\nMicrosoft lays hands on login data: Beware of the new Outlook (231 points, 113 comments) https://news.ycombinator.com/item?id=38219568 (https://news.ycombinator.com/item?id=38219568)\nNew Outlook sends passwords, mails and other data to Microsoft (150 points, 25 comments) https://news.ycombinator.com/item?id=38233694 (https://news.ycombinator.com/item?id=38233694)\nMicrosoft steals access data: Beware of the new Outlook (161 points, 40 comments) https://news.ycombinator.com/item?id=38217457 (https://news.ycombinator.com/item?id=38217457)",
           "score": 0,
           "time": 1792384167,
+          "parent": "50148226"
+        },
+        {
+          "id": "50149088",
+          "author": "bigfatkitten",
+          "body": "This is not a novel situation for Microsoft. From 2015:\nhttps://www.securityweek.com/researcher-calls-out-microsoft-... (https://www.securityweek.com/researcher-calls-out-microsoft-over-outlook-ios-security/)",
+          "score": 0,
+          "time": 1792391785,
           "parent": "50148226"
         }
       ]
