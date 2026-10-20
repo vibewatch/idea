@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-20T06:49:39.415860+00:00",
+  "last_fetched": "2026-10-20T12:45:39.562887+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -55,7 +55,7 @@
       "subreddit": "ask-hn",
       "author": "0-bad-sectors",
       "score": 4,
-      "num_comments": 1,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50158285",
       "url": "https://news.ycombinator.com/item?id=50158285",
       "selftext": "It takes me 30 to 40 minutes to reach the office every day and would love to listen to a technical podcast if such a thing exists.\nSomething that is thorough and not hype based.",
@@ -139,8 +139,8 @@
       "title": "Ask HN: Why HN dosen't have bot problem?",
       "subreddit": "ask-hn",
       "author": "solarpunk_enthu",
-      "score": 6,
-      "num_comments": 6,
+      "score": 7,
+      "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=50153479",
       "url": "https://news.ycombinator.com/item?id=50153479",
       "selftext": "I always admired simplicity of this website. With that simplicity, I am wondering how they protect against bots spamming?",
@@ -149,6 +149,14 @@
       "time": 1792422849,
       "created_at": "2026-10-19T15:14:09+00:00",
       "comments_data": [
+        {
+          "id": "50162882",
+          "author": "bheadmaster",
+          "body": "Survivorship bias. The bots that go through are so human-like you don't even register them as bots.",
+          "score": 0,
+          "time": 1792484452,
+          "parent": "50153479"
+        },
         {
           "id": "50153555",
           "author": "PaulHoule",
@@ -183,7 +191,7 @@
       "subreddit": "ask-hn",
       "author": "rstagi",
       "score": 3,
-      "num_comments": 1,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50153451",
       "url": "https://news.ycombinator.com/item?id=50153451",
       "selftext": "I keep going back and forth on this.\nTraces and logs tell me what the agent did: every tool call, retry, token, and step.\nThat's useful when something breaks. What I'm less sure about is whether that tells me the agent actually did the right thing.\nA run can look clean and still miss what I wanted. Or it can \"finish\" without the outcome really being done. So finished and succeeded aren't the same thing.\nI haven't made up my mind how to check for that, but I'm experimenting a lot with extracting intents from my agent and correlating among them.\nCurious how you do it:\n- Do you capture intent and outcome explicitly (e.g. giving a tool to the agent to \"declare\" it), or infer them after the fact from the traces?\n- What kind of \"questions\" do you \"ask\" your traces?",
@@ -199,8 +207,8 @@
       "title": "Ask HN: How to deal with shipping AI-written code you don't understand?",
       "subreddit": "ask-hn",
       "author": "rzk",
-      "score": 379,
-      "num_comments": 527,
+      "score": 512,
+      "num_comments": 631,
       "permalink": "https://news.ycombinator.com/item?id=50151036",
       "url": "https://news.ycombinator.com/item?id=50151036",
       "selftext": "I saw this LinkedIn post from a Meta engineer and it resonated with me:\nhttps://www.linkedin.com/posts/ali-hamie_im-an-engineer-at-m... (https://www.linkedin.com/posts/ali-hamie_im-an-engineer-at-meta-and-i-never-felt-share-7517317918666211328-7C8N)\n> I'm an engineer at Meta and I never felt this uncomfortable doing my job. I'm writing code these days and it all feels like a black box. This new standard of shipping with AI is moving so fast that if we're going to spend our time checking each line of code, it's going to take forever. That means you can end up with systems you've built where you don't truly understand how all the code works. You understand the high level, but not every detail. And maybe this is becoming the new standard. It goes against every instinct of being a software engineer. I'm used to understanding what I'm building. Now I'm trying to figure out how much I need to understand before I'm comfortable moving forward. Are other engineers feeling this too?\nHow are you handling this?",
@@ -218,6 +226,14 @@
           "parent": "50151036"
         },
         {
+          "id": "50163786",
+          "author": "koliber",
+          "body": "I was once employee nr. 1 at a startup and the lead engineer. For a number of years I understood every nook and cranny of the system and knew what every line of code did.\nThe company got successful. At some point I had a team, and then multiple teams. Gradually, I had to let go of that level of understanding and delegate it to others. When I was overseeing 50+ engineers, I only had a high level understanding of most the systems, and only got involved in lower-level decisions rarely. All the new code was created by my team, and it varied in quality.\nIf I had AI tools back then I could ask it to explain things to me that my team did and have a 2nd set of eyes which had a different set of biases and abilities.\nThat's how I deal with it right now. I ask one AI to gen the code based on a design. I work with the AI tool and see how it builds the system out. I intervene where it starts doing things I don't want it to do. I ask another AI to review the PR after the code is written. I sometimes dig into design choices and ask it to explain them, rate them, and offer other alternatives. I sometimes change things, and occasionally scrap the whole thing and start again with better guidance.\nSo far I've written more code without an outage this way than ever before with a team of human developers. AI screws up too. But right now, at Opus / ChatGPT Sol and higher models, on average, it makes fewer mistakes than humans did. Any time they slip through is because I am rushing too quickly. In a pre-AI human dev team we would call this a process or management failure.\nThe more dangerous a decision and the harder it is to roll back, the more time I spend reviewing it. This has served me well when managing people who write code, and seems to work well with AI.\nAI is a tool that needs to be managed. It won't do all the work for you, but it can speed you up greatly.",
+          "score": 0,
+          "time": 1792491031,
+          "parent": "50151036"
+        },
+        {
           "id": "50158909",
           "author": "jedberg",
           "body": "I've been a Principal Engineer for a while, so this is how I've worked for a while. Sometimes when you're a PE, you either design something and then junior engineers implement the details, or you're dropped into a project that was already designed and built by more junior engineers, and you have to quickly understand the design an as many details as you can.\nWith AI, everyone now gets to act like a PE. Your job is to design, the AI builds like the junior engineers. Then you review their work. You may never understand the details, and that's ok, as long as you know the main ideas and where to ask for the details (in this case the LLM instead of a human).",
@@ -226,19 +242,11 @@
           "parent": "50151036"
         },
         {
-          "id": "50162153",
-          "author": "OlivOnTech",
-          "body": "Here's my strategy:\nThe codebase I work on was designed to be split by features. Architecture is well thought and each feature has the same high level abstractions, all code is in one folder. This bring several interesting guarantees: code is scoped to this folder, each feature is \"not too big\" and fits in the llm context easily, and a design document explains architecture choices, that is well respected by the llm.\nWhen the llm works on a feature, it is instructed to do several things to help me catch errors before shipping. Write a templated description of the change: interactions with external systems, sequence diagram, happy path, corner cases, deploy checklist, settings change, etc. I review high level choices, and not the code.\nFinally, the llm add review threads to the code everywhere it made suppositions and related to untested assumptions. Each of this comment says: what could not be teste, what the llm thinks, what happens if I don't change anything and release the code.\nFinally, on parts where I want to be sure, I do llm-instructed testing. It can build complex test benchs in no time, fetch data from production \"provide me the command to fetch data, and a script to anonymise it\", do a before/after comparison, ... It costs few tokens but it buys the peace of mind.\nThis way I have a workflow where the code is fully written by the llm and I don't go crazy reading its code.",
+          "id": "50165130",
+          "author": "suralind",
+          "body": "I work for a company that’s all in on AI right now. For all intents and purposes - I have unlimited budget, but I’m spending may only $50 per day on the busier days.\nRight now I have 8 agents open in my terminal and I know I'm on the more-sceptic end of AI users. Some folks here pull thousands of lines of changes, day after day.\nWith this many agents I don't even have time to read what they output, not talking about the code - just their output. My work today has been (sadly) degraded to:\n1. Ask AI to explore the repo.\n2. Pick a solution that works for the 3 solutions that AI proposed.\n3. Maybe do few rounds of follow ups.\n4. Create PRs.\n5. Ask agent to verify if everything works post merge.\nSome of my colleagues apparently skim through the code. I pretty much don't look at the code anymore.\nIt's just sad. I'm self taught programmer, hobbyist. I always liked working on my stuff and always were trying to deliver high quality. I no longer can't say that, despite my best efforts.\nI literally have tasks right now where not only I don't understand what the agent is doing, I don't fully understand the problem either. I could invest time to understand it and agents do a pretty good job themselves, but remember, I don't read the damn output.\nThat said, I work in the infra team, not in the product team, so there's that.",
           "score": 0,
-          "time": 1792478037,
-          "parent": "50151036"
-        },
-        {
-          "id": "50156740",
-          "author": "ChrisMarshallNY",
-          "body": "Testing.\nLots and lots of testing. I usually interactively test with the LLM. Now that I'm spending less time, coding, I get to spend more time, testing.\nIn my experience, I test more, with an LLM, than I did, with my own code. I don't find coding errors, but I do find implementation errors.\nOn another note: I ran an LLM on a bunch of really mature code that I wrote, and could swear was \"perfect,\" and it found a number of issues.\nNobody's perfect. Trust; but verify.",
-          "score": 0,
-          "time": 1792437537,
+          "time": 1792498309,
           "parent": "50151036"
         },
         {
@@ -250,11 +258,27 @@
           "parent": "50151036"
         },
         {
+          "id": "50156740",
+          "author": "ChrisMarshallNY",
+          "body": "Testing.\nLots and lots of testing. I usually interactively test with the LLM. Now that I'm spending less time, coding, I get to spend more time, testing.\nIn my experience, I test more, with an LLM, than I did, with my own code. I don't find coding errors, but I do find implementation errors.\nOn another note: I ran an LLM on a bunch of really mature code that I wrote, and could swear was \"perfect,\" and it found a number of issues.\nNobody's perfect. Trust; but verify.",
+          "score": 0,
+          "time": 1792437537,
+          "parent": "50151036"
+        },
+        {
           "id": "50160436",
           "author": "plastic041",
           "body": "The comments are horrifying. They do everything they can to avoid reading the code they are responsible for.\nYou must read the code before shipping it to production.\n\"But I don't have time!\" That's not even an excuse. At least one person in your company should be able to explain the code! How would you answer when reviewer asks why did you use this very algorithm?\n\"We have tests.\" They could help. But don't rely on them entirely because there's a high possibility that the tests are wrong.\nI can't believe how many people proudly admit that they don't read code. I'm not entirely against using LLMs to write or review code, but not even trying to read it should be prohibited. Someone responsible have to review it.\nEdit: I know that LLMs are very good at writing code these days. My point is that this is less a matter of quality and more a matter of responsibility.",
           "score": 0,
           "time": 1792461418,
+          "parent": "50151036"
+        },
+        {
+          "id": "50165312",
+          "author": "busch_j",
+          "body": "At our company hackathon I led a team focused on this issue. What we landed on is in the future looking at code diffs is going to continue to go down. AI can write the code and AI can review the code and we are going to see bug rates go down at a \"tactics\" level.\nWhat matters are the high level decisions in the code such as \"Deleting an account removes the row for good\", \"Email becomes the user’s permanent ID\", etc.\nWe imagined a completely new concept for code reviews where you review the decisions not the code diffs. Also if you want to review the code it is grouped by concept not by random file diffs.\nThis is coming from someone that likes manually coding btw but our PR size and velocity is increasing too fast to meaningfully review all the diffs forever.",
+          "score": 0,
+          "time": 1792499150,
           "parent": "50151036"
         },
         {
@@ -282,27 +306,11 @@
           "parent": "50151036"
         },
         {
-          "id": "50162004",
-          "author": "yokto",
-          "body": "One of the approaches I'm taking is to try hard to simplify the code generated by LLMs. If you can reduce its complexity, it usually means you have a fairly good idea of what's going on in the code change. I consider which edge cases are getting unnecessarily handled, which new vocabulary was introduced where existing or simpler vocabulary would be fine, etc. etc.\nI also have a /simplification-check skill I run after pretty much every large change, and that already helps surface the murky areas of the code and sometimes remove complexity before I even start reviewing, thus accelerating the review.",
-          "score": 0,
-          "time": 1792476933,
-          "parent": "50151036"
-        },
-        {
           "id": "50156513",
           "author": "solatic",
           "body": "It's not too dissimilar to life as a Principal level engineer pre-AI. You technically oversee the work of many engineers on their own systems, but you couldn't possibly review all the code yourself. You appreciate that human code review reduces, but does not eliminate, the number and severity of bugs shipped to production. You don't have the low-level details in your head, just the high-level ones. You design how all these engineers interact with each other, without stepping on any toes.\nTime will tell whether we were right to move from a system where we trusted humans to understand the low-level system, to one where we trust fancy calculators. But so far, it's working.",
           "score": 0,
           "time": 1792436575,
-          "parent": "50151036"
-        },
-        {
-          "id": "50159059",
-          "author": "tptacek",
-          "body": "These threads kind of rule. Lots of different answers!\nFor my part: I've put some of my tooling energy into code comprehension tools. You can get remarkably far quickly by just replacing the Github PR viewer! I started with a (native SwiftUI) read-only front end for tree-sitter and SCIP (the code-indexing standard). Then: as I reviewed PRs, I tried to catch myself doing annoying repetitive things and just building out additional features, like \"show me all the knowable call chains for this function\", or \"show me every implementation of this trait\".\nYou can get a fair ways just by thinking of things to hide in a PR viewer, just to clear space for the things you need to comprehend.",
-          "score": 0,
-          "time": 1792449948,
           "parent": "50151036"
         }
       ]
@@ -384,7 +392,7 @@
       "subreddit": "ask-hn",
       "author": "tha_infra_guy",
       "score": 7,
-      "num_comments": 12,
+      "num_comments": 13,
       "permalink": "https://news.ycombinator.com/item?id=50148925",
       "url": "https://news.ycombinator.com/item?id=50148925",
       "selftext": "What are you working on? What have you been curious about lately?",
@@ -393,6 +401,14 @@
       "time": 1792390122,
       "created_at": "2026-10-19T06:08:42+00:00",
       "comments_data": [
+        {
+          "id": "50164947",
+          "author": "mscarpino",
+          "body": "FlowCompute is an open-source, cross-platform user interface for OpenFOAM. The goal is to make computational fluid dynamics (CFD) as straightforward as possible.\nMain site: https://flowcompute.com (https://flowcompute.com)\nLinux demo: https://www.youtube.com/watch?v=2V0Cg_nVLG0 (https://www.youtube.com/watch?v=2V0Cg_nVLG0)",
+          "score": 0,
+          "time": 1792497365,
+          "parent": "50148925"
+        },
         {
           "id": "50161629",
           "author": "jtap",
@@ -407,14 +423,6 @@
           "body": "Am working on Blackbird Finance, am pretty sure you will understand and relate with the product better if you are from india, so what blackbird does is basically invoicing and tax compliance for global businesses. uh more on what am curious about is that learning about LLM and ai agents that is even what we are trying to implement in blackbird finance aswell. heres our site: https://www.blackbirdfinance.net/ (https://www.blackbirdfinance.net/)",
           "score": 0,
           "time": 1792474508,
-          "parent": "50148925"
-        },
-        {
-          "id": "50161937",
-          "author": "sahinyanlik",
-          "body": "I am working on a local developer, analysts tool corekits.dev",
-          "score": 0,
-          "time": 1792476268,
           "parent": "50148925"
         },
         {
@@ -450,6 +458,14 @@
           "parent": "50148925"
         },
         {
+          "id": "50161937",
+          "author": "sahinyanlik",
+          "body": "I am working on a local developer, analysts tool corekits.dev",
+          "score": 0,
+          "time": 1792476268,
+          "parent": "50148925"
+        },
+        {
           "id": "50149539",
           "author": "liviux",
           "body": "An AI orchestrator for anybody - https://github.com/looptroop-ai/LoopTroop (https://github.com/looptroop-ai/LoopTroop)\nAn workout tracker based on Bryan Johnson workouts, but at home - for me, but anyone can use it - https://github.com/liviux/Bryan-Johnson-workout-tracker (https://github.com/liviux/Bryan-Johnson-workout-tracker)\nA startup tracker - claude is working between usage limits.\nSky is the limit these days",
@@ -479,14 +495,6 @@
           "body": "Voiden, an open-source API client where every request is a Markdown file in your repo, with the environment, tests and docs in the same file. It runs locally with no account, works in CI, and agents can run the same requests over MCP. We open-sourced it this year. https://voiden.md/ (https://voiden.md/)",
           "score": 0,
           "time": 1792394713,
-          "parent": "50148925"
-        },
-        {
-          "id": "50149348",
-          "author": "DangerousYams",
-          "body": "I've been building Splorbit for about a year (pretty much since Claude got good at coding). The demo is live now for Steam Next Fest! If you like horde survival games like Vampire Survivors and Brotato you will like it. https://splorbit.vercel.app/ (https://splorbit.vercel.app/)",
-          "score": 0,
-          "time": 1792394287,
           "parent": "50148925"
         }
       ]

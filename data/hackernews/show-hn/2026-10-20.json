@@ -1,8 +1,218 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-20T06:49:35.963924+00:00",
+  "last_fetched": "2026-10-20T12:45:33.931894+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50165257",
+      "title": "Show HN: Vibe Prospecting – B2B Prospecting from Claude and Claude Code via MCP",
+      "subreddit": "show-hn",
+      "author": "zivnadil",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50165257",
+      "url": "https://github.com/explorium-ai/vibeprospecting-mcp",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792498840,
+      "created_at": "2026-10-20T12:20:40+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50165146",
+      "title": "Show HN: Snitch – my Mac talked to 347 servers in one idle hour, so I built this",
+      "subreddit": "show-hn",
+      "author": "aiXis",
+      "score": 5,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50165146",
+      "url": "https://github.com/aixisstudio/Snitch",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792498371,
+      "created_at": "2026-10-20T12:12:51+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50165144",
+      "title": "Show HN: Proxium – Self-hosted HTTP/SOCKS5 proxy with a web admin UI",
+      "subreddit": "show-hn",
+      "author": "koldakov",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50165144",
+      "url": "https://github.com/koldakov/proxium",
+      "selftext": "With the team we are building a network management tool: switch upgrades, data\ncollection/analytics, etc. With the write operations on production switches we've\nbeen requested to add an AAA flow so we have only 1 entry point for all\nmicroservices. For that reason we decided to add a proxy in the first place, so\neach request goes through the proxy, authenticates with External Authentication\n(the first A), then proceeds to the next step etc.\nFirst we thought about squid/envoy, but these proxies were declined by our\ndevops as planned for the future. For sure we found a workaround, but then I\nthought why there are almost no proxies with UI/ACLs/limits/quotas/speed\nlimits etc.\nSo I decided to create my own solution that works out of the box with 1 simple\ncommand:\n docker run -d --name proxium -p 80:80 -p 8080:8080 -v proxium:/var/lib/proxium \\\n -e SUPERUSER_CREATE=true -e SUPERUSER_EMAIL=admin@example.com \\\n -e SUPERUSER_PASSWORD=change-me ikoldakov/proxium\n\nThen open http://localhost, log in, create a proxy account and use it:\n curl -x http://username:password@localhost:8080 https://ifconfig.me (https://ifconfig.me)\n curl -x socks5h://username:password@localhost:8080 https://ifconfig.me (https://ifconfig.me)\nAlso, proxium supports https for the admin panel with self-signed\ncertificates, let's encrypt certificates or your own uploaded ones. The proxy\nitself supports TLS too (self-signed, uploaded or imported from certbot).\nExternal auth is not supported yet, but it's next in the roadmap: an HTTP hook\nin nginx auth_request style first, then JWTs from your identity provider. SSO\nover OIDC for the admin panel is planned as well.\nI used AI for some parts of the code\nFeedback is welcome!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792498365,
+      "created_at": "2026-10-20T12:12:45+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50165087",
+      "title": "Show HN: Cliqqe – Meet 4 new people over a video call every week",
+      "subreddit": "show-hn",
+      "author": "bilyas509",
+      "score": 4,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50165087",
+      "url": "https://cliqqe.com/",
+      "selftext": "I am involved in a community that acts as an accountability group.\nSo every morning, we have a daily meeting where we share our goals, what was planned and achieved yesterday, and today's agenda.\nWhat I like the most is what sometimes happens after the daily meeting. We stay and have an open conversation about anything: entrepreneurship, the latest trendy product, personal subjects…\nIt feels like the genuine discussion that you can have when you are invited to someone's home or you are at a nice event (not the kind where there is networking).\nStarting from this vision, I wanted to create the ingredients for that genuine discussion to happen: I've made a first version of Cliqqe.\nA platform where you are matched with a group of 4 people to have a virtual dinner.\nThe first session is to happen tomorrow.\nHappy to answer your questions and get your feedback.\nAlso curious to know if the landing page conveys the vision or if it sounds more like \"networking\".",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792498139,
+      "created_at": "2026-10-20T12:08:59+00:00",
+      "comments_data": [
+        {
+          "id": "50165423",
+          "author": "asafel",
+          "body": "How do you choose the 4 people each week, at random or by interests? The first call with a stranger is the hard part. What do you do to make it feel less awkward?",
+          "score": 0,
+          "time": 1792499820,
+          "parent": "50165087"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50163743",
+      "title": "Show HN: Family quality-of-life score for every US county (108 indicators)",
+      "subreddit": "show-hn",
+      "author": "tiagoantunespt",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50163743",
+      "url": "https://tryanalisa.com/explore",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792490758,
+      "created_at": "2026-10-20T10:05:58+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50163258",
+      "title": "Show HN: I built an AI tool that turns two photos into a dance video",
+      "subreddit": "show-hn",
+      "author": "fourfire",
+      "score": 3,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50163258",
+      "url": "https://a2oliteai.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792487202,
+      "created_at": "2026-10-20T09:06:42+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50163253",
+      "title": "Show HN: Civ 1 period accurate decompilation",
+      "subreddit": "show-hn",
+      "author": "crc32",
+      "score": 7,
+      "num_comments": 4,
+      "permalink": "https://news.ycombinator.com/item?id=50163253",
+      "url": "https://github.com/sjmelia/civd",
+      "selftext": "I've used LLMs to decompile Civ 1 and put the reconstructed C source on GitHub, along with a technical book and story.\nThe reconstructed source builds with what i'm pretty sure is the original Microsoft C compiler and toolchain. It produces a byte-for-byte match with the original executable, aside from a four-byte correction for what appears to be a patch applied after linking. So it should be pretty close to how the original game was made; although it can't be said that this is the \"original source code\".\nI've also used that source to create a modern build of the game, in the `reciv` repository.\nLike most people, I'm in two minds about the benefits and downsides of LLMs. This work also builds on OpenCiv1, which probably deserves most of the credit - not only did I direct the LLM to use that work; but it was almost certainly in the training data.\nQualms aside - I couldn't resist having a look inside one of my all-time favourite games. There's a few attempts at Civ 1 including recent LLM ones. But i'm not aware of any that publicise the resulting source code.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792487158,
+      "created_at": "2026-10-20T09:05:58+00:00",
+      "comments_data": [
+        {
+          "id": "50163352",
+          "author": "tuomas2",
+          "body": "Cool! Is this an approach that you could in theory use to other games / programs too? What about license, is this legal?",
+          "score": 0,
+          "time": 1792487852,
+          "parent": "50163253"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50163224",
+      "title": "Show HN: FlexChords – chords for any YouTube song, from a model I trained",
+      "subreddit": "show-hn",
+      "author": "amits97",
+      "score": 8,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50163224",
+      "url": "https://www.flexchords.com/",
+      "selftext": "I play guitar, and chord charts online were often wrong or oversimplified for the songs I wanted to learn, so I built FlexChords. You can edit the detected chords, transpose, and export to MIDI.\n1-minute demo: https://youtu.be/-cbL3L3UnGs (https://youtu.be/-cbL3L3UnGs)\nIt's still a work in progress. I'd love to hear where it gets chords wrong and any other feedback.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792486960,
+      "created_at": "2026-10-20T09:02:40+00:00",
+      "comments_data": [
+        {
+          "id": "50164876",
+          "author": "insiderprint",
+          "body": "Good",
+          "score": 0,
+          "time": 1792496937,
+          "parent": "50163224"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50163117",
+      "title": "Show HN: Axes Test – Client-side multi-axis political spectrum mapper",
+      "subreddit": "show-hn",
+      "author": "Darwin233",
+      "score": 4,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50163117",
+      "url": "https://12axestest.org",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792486166,
+      "created_at": "2026-10-20T08:49:26+00:00",
+      "comments_data": [
+        {
+          "id": "50163427",
+          "author": "alixaxel",
+          "body": "The page is getting hijacked by ad redirects it seems.",
+          "score": 0,
+          "time": 1792488427,
+          "parent": "50163117"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50163100",
+      "title": "Show HN: Ruralcheck.eu – geospatial property analyis in rural Europe",
+      "subreddit": "show-hn",
+      "author": "raptor111",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50163100",
+      "url": "https://ruralcheck.eu/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792486030,
+      "created_at": "2026-10-20T08:47:10+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,7 +220,7 @@
       "title": "Show HN: I made the most simple pie chart maker",
       "subreddit": "show-hn",
       "author": "atharvtathe",
-      "score": 2,
+      "score": 5,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50161940",
       "url": "https://www.createpiechart.com/",
@@ -27,8 +237,8 @@
       "title": "Show HN: Death Plan Switch, a self-hosted dead man's switch for solo devs",
       "subreddit": "show-hn",
       "author": "romeo19361",
-      "score": 38,
-      "num_comments": 25,
+      "score": 76,
+      "num_comments": 56,
       "permalink": "https://news.ycombinator.com/item?id=50161408",
       "url": "https://deathplanswitch.com/",
       "selftext": "Hi HN,\nI'm Peter Bishop and I've been working in graphics and web tech for over 25yrs.\nI've recently launched Death Plan Switch to solve a major problem in my succession plan. What if I go missing or die? The right people are told and my business can continue to operate for my clients.\nThere's a backstory to this project, I was hospitalised in 2012 and lost my business back then and I couldn't get the data to my technical 2IC in time without frustrating my clients.\nDeath Plan Switch solves this problem, it's free to download and use or study under the MIT license.\nI've been using it for the last few weeks. It was authored with the help of Claude Code after writing an extensive MD document and it passed 42 unit tests.\nI hope you get some use out of it, or it inspires your own succession plans. My clients are telling me this is a strong sales feature when they trust me with their hosting and technology accounts.\nHappy to answer any questions.\nKind regards,\nPeter Bishop.",
@@ -38,11 +248,35 @@
       "created_at": "2026-10-20T04:37:43+00:00",
       "comments_data": [
         {
+          "id": "50165416",
+          "author": "asafel",
+          "body": "Solo dev here, with a mobile app that has paying subscribers. The part that worries me most is not the server but the app store accounts. Apple and Google developer accounts are tied to me personally, so even if the right people get the message, I'm not sure they could take over. Did anyone here solve the store account side?",
+          "score": 0,
+          "time": 1792499782,
+          "parent": "50161408"
+        },
+        {
           "id": "50162033",
           "author": "Shank",
           "body": "This is an area of planning known as \"business continuity planning\" and as part of this process, you should have a document and written procedures that are executed by humans, not computers, and tested as part of this. For example, your BCP should include people who are already trusted and know how your infrastructure works, and you should do a dress rehearsal on a yearly basis at least. A notification tool is one thing, but realistically this should be just one of your tools.",
           "score": 0,
           "time": 1792477162,
+          "parent": "50161408"
+        },
+        {
+          "id": "50164706",
+          "author": "justauserid",
+          "body": "Configurable gaps would be great and also multiple instances (somehow in sync? maybe?). In case someone chose a longer gap and then one instance went down. I personally wouldn't want anything below multiple weeks (at least; 2-3 months would be ideal for me).\nThis will be a good e2ee'd hosted service though (at least for someone like me). The problem is how to de-e2ee when the person is gone. Might be workable if the dependent receipient might also be well versed with encryption and had an open public key or so. Yeah, this is tricky.\nBut either way, it's kinda weird to setup something that will be sued after they are dead and that something is supposed to be maintained and kept up by them.",
+          "score": 0,
+          "time": 1792495997,
+          "parent": "50161408"
+        },
+        {
+          "id": "50162955",
+          "author": "nirui",
+          "body": "> independent web developers\nHmmm... the market is kinda narrow.\nBut more importantly, say I self-hosted this service, then, I have to answering emails for the rest of my life telling a program I'm still alive. It's kinda high maintenance all on it's own.\nThat is assuming this service continuous to run without upkeep, at very least keeping it powered, and connected to the Internet. I'm not really sure what comes first, the end of my life or I got bored of doing it.\nI know it sounded inapplicable for a lot of people especially who do remote works, but still if you're thinking about letting a machine run your death plan, maybe it's also the time to start make people connections, such as with lawyers, partners etc, people you can trust and have the capability of handling issues.\nAlso, if you do remote work, maybe setup an account inheritance plan if the platform supports it, assuming the account is dedicated for working for the effected team of course.\nAlso also, just an idea, what if you make the check passive? Instead of having to answer emails, some automated procedure will send keepalives to tell the program to not trigger? That will massively lower the cost of using it.",
+          "score": 0,
+          "time": 1792484931,
           "parent": "50161408"
         },
         {
@@ -54,19 +288,19 @@
           "parent": "50161408"
         },
         {
-          "id": "50162231",
-          "author": "altmanaltman",
-          "body": "> What if I go missing or die? The right people are told and my business can continue to operate for *my clients*... I was hospitalised in 2012 and lost my business back then and I couldn't get the data to my technical 2IC in time without frustrating *my clients*... *My clients* are telling me this is a strong sales feature when they trust me with their hosting and technology accounts.\nI am not sure why this focus on clients in a context like this feels unsettling to me, but it does.",
+          "id": "50162578",
+          "author": "stevekemp",
+          "body": "I notice that your github README says that you don't accept pull-requests, that's fine, but you've still got them enabled upon the project. Perhaps you should go to your repository settings, and disable them?",
           "score": 0,
-          "time": 1792478794,
+          "time": 1792481834,
           "parent": "50161408"
         },
         {
-          "id": "50162102",
-          "author": "mococa",
-          "body": "You’d use temporal workflows, this operation should never fail",
+          "id": "50162288",
+          "author": "jen729w",
+          "body": "Hi Peter. This is advice I give to every AI product now, not just yours. Nothing personal.\nIt's fine to use AI to create the product – but please, for the love of god, write your own copy. When someone can't be bothered writing their own landing page, I assume they're just not that bothered about the product.",
           "score": 0,
-          "time": 1792477735,
+          "time": 1792479408,
           "parent": "50161408"
         },
         {
@@ -75,6 +309,22 @@
           "body": "Nice, although it seems likely that I would overlook replying to the email and everyone will panic when they get notified.",
           "score": 0,
           "time": 1792474976,
+          "parent": "50161408"
+        },
+        {
+          "id": "50162480",
+          "author": "mortmeter",
+          "body": "Fun base rate: at 45 your odds of dying in a given week are about 1 in 16,000. So basically every missed check-in is going to be a holiday or a full inbox.",
+          "score": 0,
+          "time": 1792480933,
+          "parent": "50161408"
+        },
+        {
+          "id": "50162330",
+          "author": "y42",
+          "body": "From my experience, there is no everlasting digital system, no matter how many fallbacks you add. So I wonder, how can you ensure, this still works after e. g. 1 year?",
+          "score": 0,
+          "time": 1792479764,
           "parent": "50161408"
         },
         {
@@ -92,46 +342,6 @@
           "score": 0,
           "time": 1792477669,
           "parent": "50161408"
-        },
-        {
-          "id": "50161907",
-          "author": "AndrewKemendo",
-          "body": "I would make it monthly or quarterly not weekly\nBy the way Google has had this for a while and I signed up for it back in 2018 or so.\nthey check in it feels like quarterly at most\nhttps://support.google.com/accounts/answer/3036546?hl=en (https://support.google.com/accounts/answer/3036546?hl=en)",
-          "score": 0,
-          "time": 1792475911,
-          "parent": "50161408"
-        },
-        {
-          "id": "50162170",
-          "author": "egamirorrim",
-          "body": "People still write things in PHP?",
-          "score": 0,
-          "time": 1792478203,
-          "parent": "50161408"
-        },
-        {
-          "id": "50162025",
-          "author": "aabhay",
-          "body": "> I’ve been testing it for one week\nSo, you haven’t had enough time to even encounter most edge cases :)",
-          "score": 0,
-          "time": 1792477095,
-          "parent": "50161408"
-        },
-        {
-          "id": "50162006",
-          "author": "matt3210",
-          "body": "> Happy to answer any questions\nAre you OK bro?",
-          "score": 0,
-          "time": 1792476939,
-          "parent": "50161408"
-        },
-        {
-          "id": "50162035",
-          "author": "vasco",
-          "body": "Why do people share projects that can be made in 10 prompts?",
-          "score": 0,
-          "time": 1792477186,
-          "parent": "50161408"
         }
       ]
     },
@@ -142,7 +352,7 @@
       "title": "Show HN: Yana – A local-first, human-governed AI runtime and IDE in Rust",
       "subreddit": "show-hn",
       "author": "vutam",
-      "score": 4,
+      "score": 5,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50160774",
       "url": "https://github.com/yanacuti1121/yana-ai",
@@ -159,15 +369,33 @@
       "title": "Show HN: Lights-on software factory boilerplate for Claude Code",
       "subreddit": "show-hn",
       "author": "gojkoa",
-      "score": 11,
-      "num_comments": 0,
+      "score": 15,
+      "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=50160198",
       "url": "https://github.com/gojko/lights-on-software-factory",
       "selftext": "A starting point for running a lights-on software factory with Claude Code. Based on the setup developed for Votito, where the orchestrator reduced token cost compared to bare-bones Claude workflow execution by around 80%.",
       "is_self": false,
       "is_video": false,
       "time": 1792459320,
-      "created_at": "2026-10-20T01:22:00+00:00"
+      "created_at": "2026-10-20T01:22:00+00:00",
+      "comments_data": [
+        {
+          "id": "50162390",
+          "author": "radim_h",
+          "body": "Quite interesting setup. How are you handling credentials and external API access for the agents, when different agents do need different access?\nAre they running with the same permissions as the host, or do you isolate them and give each workflow its own access?",
+          "score": 0,
+          "time": 1792480268,
+          "parent": "50160198"
+        },
+        {
+          "id": "50162988",
+          "author": "zacharyvoase",
+          "body": "What does lights-on mean?",
+          "score": 0,
+          "time": 1792485171,
+          "parent": "50160198"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -176,7 +404,7 @@
       "title": "Show HN: Self-hosted AI spend attribution",
       "subreddit": "show-hn",
       "author": "0set0set",
-      "score": 4,
+      "score": 5,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50160102",
       "url": "https://demo.costura.ai/overview",
@@ -203,7 +431,7 @@
       "title": "Show HN: Resourcedeck, free and open source resource and portfolio planning",
       "subreddit": "show-hn",
       "author": "Gshaheen",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50159902",
       "url": "https://resourcedeck.app/",
@@ -220,7 +448,7 @@
       "title": "Show HN: OpenFlow – AI Agent Workflow Builder",
       "subreddit": "show-hn",
       "author": "searay112023",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50159710",
       "url": "https://github.com/SeeRay11/OpenFlow",
