@@ -1,8 +1,51 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-19T18:41:25.234240+00:00",
+  "last_fetched": "2026-10-20T01:03:13.541483+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50156330",
+      "title": "Ask HN: Why can't Ukraine use LoRA instead of Starshield?",
+      "subreddit": "ask-hn",
+      "author": "xrd",
+      "score": 4,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50156330",
+      "url": "https://news.ycombinator.com/item?id=50156330",
+      "selftext": "https://en.wikipedia.org/wiki/LoRa\nLoRA supports 320 km.\nIt feels like this could be established in an ad-hoc way.\nIf Ukraine can't trust Elon Musk and DJT to provide reliable Starshield access, isn't this a better decentralized network for drones?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1792435859,
+      "created_at": "2026-10-19T18:50:59+00:00",
+      "comments_data": [
+        {
+          "id": "50156442",
+          "author": "clipsy",
+          "body": "Literally from the Wikipedia page you linked: It's limited to 27kb/s at best, and in practical conditions reaches more like 10km.",
+          "score": 0,
+          "time": 1792436277,
+          "parent": "50156330"
+        },
+        {
+          "id": "50156952",
+          "author": "wmf",
+          "body": "Besides what others said, it's very easy to jam.",
+          "score": 0,
+          "time": 1792438425,
+          "parent": "50156330"
+        },
+        {
+          "id": "50156608",
+          "author": "verdverm",
+          "body": "bandwidth, security, range",
+          "score": 0,
+          "time": 1792436997,
+          "parent": "50156330"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,54 +53,46 @@
       "title": "Ask HN: How to deal with shipping AI-written code you don't understand?",
       "subreddit": "ask-hn",
       "author": "rzk",
-      "score": 15,
-      "num_comments": 26,
+      "score": 247,
+      "num_comments": 389,
       "permalink": "https://news.ycombinator.com/item?id=50151036",
       "url": "https://news.ycombinator.com/item?id=50151036",
-      "selftext": "I saw this LinkedIn post from a Meta engineer and it resonated with me:\nhttps://www.linkedin.com/posts/ali-hamie_im-an-engineer-at-meta-and-i-never-felt-share-7517317918666211328-7C8N\n> I'm an engineer at Meta and I never felt this uncomfortable doing my job. I'm writing code these days and it all feels like a black box. This new standard of shipping with AI is moving so fast that if we're going to spend our time checking each line of code, it's going to take forever. That means you can end up with systems you've built where you don't truly understand how all the code works. You understand the high level, but not every detail. And maybe this is becoming the new standard. It goes against every instinct of being a software engineer. I'm used to understanding what I'm building. Now I'm trying to figure out how much I need to understand before I'm comfortable moving forward. Are other engineers feeling this too?\nHow are you handling this?",
+      "selftext": "I saw this LinkedIn post from a Meta engineer and it resonated with me:\nhttps://www.linkedin.com/posts/ali-hamie_im-an-engineer-at-m... (https://www.linkedin.com/posts/ali-hamie_im-an-engineer-at-meta-and-i-never-felt-share-7517317918666211328-7C8N)\n> I'm an engineer at Meta and I never felt this uncomfortable doing my job. I'm writing code these days and it all feels like a black box. This new standard of shipping with AI is moving so fast that if we're going to spend our time checking each line of code, it's going to take forever. That means you can end up with systems you've built where you don't truly understand how all the code works. You understand the high level, but not every detail. And maybe this is becoming the new standard. It goes against every instinct of being a software engineer. I'm used to understanding what I'm building. Now I'm trying to figure out how much I need to understand before I'm comfortable moving forward. Are other engineers feeling this too?\nHow are you handling this?",
       "is_self": true,
       "is_video": false,
       "time": 1792409074,
       "created_at": "2026-10-19T11:24:34+00:00",
       "comments_data": [
         {
-          "id": "50154869",
-          "author": "webarchitect",
-          "body": "I can think of so many times this has happened before. People getting used to MVC, Dependency Injection, ORMs. Sometimes the code is so large you only work on a part of it, so you have to get used to a lot of not knowing.\nSo how do we build confidence anyhow when we can't know everything?\nI think first, standard checks - does it compile? What do static analysis tools say - code quality, passes SAST analysis? Linters? Style checkers?\nDo the tests run? I'm not comfortable with the tests I write let alone the AI.. by adding fault injection (fuzzing, chaos), and mutation testing, I have a better degree of confidence in the tests and code.\nSpend even more time getting to know the product instead. Maybe I don't know the code as well as I used to, but I know the product backwards and forwards. That helps me have some new confidence that I didn't really have before. Knowing the greater whole.",
+          "id": "50157475",
+          "author": "bitwizeshift",
+          "body": "I’m surprised I haven’t see anyone say this yet, but I don’t let the LLM design the code at all, I let it implement a design I have created.\nBy that I mean that, rather than let the LLM do the entire structure, I take the time to create the full hierarchy of abstractions and actors that I want my code to do. I decide, at the UML level, how abstractions will sit and interact — and then I make the LLM implement those gaps.\nThe key thing here is that, by doing this, I DO know how the code works. I may not know how each unit is implemented, but I know each unit’s responsibilities and how they interact with one another. I’ve found that LLMs are HORRIBLE at writing decent abstractions, regardless of how much prompting and skills I’ve given it. It will always get the job done, but it will often be unmaintainable and require bigger and heavier refactors as I introduce more and more requirement changes.\nBut by flexing my basic design skills, I don’t have those issues. Future refactoring fit into easy abstractions that I’ve designed. And by documenting it up front, I also have what becomes a living document on how this work will turn out.\nIt takes a few hours up front to plan ahead, but it makes the LLMs job easier and use less tokens, and it makes the code better long term. I don’t care if one unit is suboptimal, as long as the abstraction is right — because at worst I can change an implementation for a better one later.",
           "score": 0,
-          "time": 1792429388,
+          "time": 1792440873,
           "parent": "50151036"
         },
         {
-          "id": "50154019",
-          "author": "lp92",
-          "body": "I'm currently working on a combined Aero sim/CAD/CAM software for designing, simulating, and performing DFM optimization specifically for Group 1 to 3 winged UAVs.\nWhat I do is ask Opus/Gemini to explain the parts I don't understand. And I do some of my own research to verify accuracy of the explanations.\nIn addition:\n* Every new feature has a Feature Design document which I review, modify, and approve. And a corresponding Implementation Plan which I also review and approve.\n* Every fix has a RCA document and fix Implementation Doc which I review, modify, and approve.\n* There's a global high level Architecture and Design document with additional sub component design documents which are always kept in synch after a new feature or bug fix is done. Synching it is always a step in the Implementation plan.\nThis does adds some overhead but it allows me to have have check point gates. This has often allowed me to catch misunderstandings and align properly before any code gets edited by the AI agent.\nHaving the above docs also helps when it comes to referencing them as context to properly ground new features or bug fixes.",
+          "id": "50158909",
+          "author": "jedberg",
+          "body": "I've been a Principal Engineer for a while, so this is how I've worked for a while. Sometimes when you're a PE, you either design something and then junior engineers implement the details, or you're dropped into a project that was already designed and built by more junior engineers, and you have to quickly understand the design an as many details as you can.\nWith AI, everyone now gets to act like a PE. Your job is to design, the AI builds like the junior engineers. Then you review their work. You may never understand the details, and that's ok, as long as you know the main ideas and where to ask for the details (in this case the LLM instead of a human).",
           "score": 0,
-          "time": 1792425591,
+          "time": 1792448912,
           "parent": "50151036"
         },
         {
-          "id": "50151443",
-          "author": "pinscope_dev",
-          "body": "I had same problem, but after a while I just accepted that is inevitable",
+          "id": "50156740",
+          "author": "ChrisMarshallNY",
+          "body": "Testing.\nLots and lots of testing. I usually interactively test with the LLM. Now that I'm spending less time, coding, I get to spend more time, testing.\nIn my experience, I test more, with an LLM, than I did, with my own code. I don't find coding errors, but I do find implementation errors.\nOn another note: I ran an LLM on a bunch of really mature code that I wrote, and could swear was \"perfect,\" and it found a number of issues.\nNobody's perfect. Trust; but verify.",
           "score": 0,
-          "time": 1792411997,
+          "time": 1792437537,
           "parent": "50151036"
         },
         {
-          "id": "50153483",
-          "author": "benfidge",
-          "body": "Generally speaking I brain storm the feature first and produce a dev plan. This includes asking it to reuse code/libraries we’ve already got! After it’s gone off ah done its thing we go back over and do a QA on what it’s built, why that approach, what can we do better etc etc?",
+          "id": "50160011",
+          "author": "linsomniac",
+          "body": "Maybe what makes me more comfortable with it is that I'm in Operations. 95% of what I ship to production is not code I've written, and a huge part of what I ship to production is not code I even understand. Day in and day out I'm responsible for tens of millions of lines of code involved in running a service: Linux kernels, userspace, application servers, databases, monitoring. I'm responsible for reliably running this whole stack.\nSo, for me, end of the day, it's all about testing, monitoring, soaking in staging and promoting to production.\nThis might be why I'm fairly comfortable shipping AI generated code.",
           "score": 0,
-          "time": 1792422873,
-          "parent": "50151036"
-        },
-        {
-          "id": "50152868",
-          "author": "sdevonoes",
-          "body": "Product doesn’t care. And most of us will get replaced by agents. I guess around 30% of the engineering workforce will keep their jobs which will be mainly to keep the product up and running, doing whatever it takes (so using agents to fix stuff basically).\nThe ones who get to keep their jobs will be rebranded as Maintenance engineers with a lower salary. VPs and Heads of will keep their cozy job (bc there are not so many of them), and they are not that dumb to fire themselves.\nCode understanding doesn’t matter anymore (or won’t matter soon)",
-          "score": 0,
-          "time": 1792419736,
+          "time": 1792457754,
           "parent": "50151036"
         },
         {
@@ -69,51 +104,59 @@
           "parent": "50151036"
         },
         {
-          "id": "50152829",
-          "author": "billylo",
-          "body": "I spend time to add extra observability, cross-checking and alerting at runtime to offset the risk.",
+          "id": "50158780",
+          "author": "bob1029",
+          "body": "The closer the code gets to the user's eyeballs the less I care about anything specific.\nHTML/JS/CSS is basically entirely vibe coded. I won't even try to reorg the 4000 line ui.js file. I can just redo the whole thing from a new prompt in a few minutes.\nFor things like the SQL schema I am still doing things entirely by hand. The consequences of getting this part wrong tend to be far more catastrophic than something in the UI layer.",
           "score": 0,
-          "time": 1792419500,
+          "time": 1792448088,
           "parent": "50151036"
         },
         {
-          "id": "50151085",
-          "author": "pluc",
-          "body": "The solution is more AI. Throw another agent in to watch your logs, then throw in another agent to watch that agent.\nQuality is no longer an objective. If it breaks, rebuild it and tell it not to break.",
+          "id": "50159059",
+          "author": "tptacek",
+          "body": "These threads kind of rule. Lots of different answers!\nFor my part: I've put some of my tooling energy into code comprehension tools. You can get remarkably far quickly by just replacing the Github PR viewer! I started with a (native SwiftUI) read-only front end for tree-sitter and SCIP (the code-indexing standard). Then: as I reviewed PRs, I tried to catch myself doing annoying repetitive things and just building out additional features, like \"show me all the knowable call chains for this function\", or \"show me every implementation of this trait\".\nYou can get a fair ways just by thinking of things to hide in a PR viewer, just to clear space for the things you need to comprehend.",
           "score": 0,
-          "time": 1792409518,
+          "time": 1792449948,
           "parent": "50151036"
         },
         {
-          "id": "50152401",
-          "author": "mattbrewsbytes",
-          "body": "It feels like another layer of \"conceptual compression\". I'm not sure who/when that phrase came around but in context of Rails is where I heard it and its things like ActiveRecord or really any ORM. You aren't writing the SQL directly, something else is and for the most part it works. Then it doesn't work or your database grows too much and you need to optimize table structures with indexes, etc.\nMy point is if you don't understand the fundamentals of the underlying code (SQL in the example above), you're more likely to have issues in the future. Or maybe not if that app doesn't reach a usage pattern or complexity where the nuances under the hood matter.\nIt really depends on what you're shipping. Meta ships social media apps where in the grand scheme of things if something is broken software wise it largely doesn't matter. What's the worst case? lost ad revenue? Users can't do things? If that were software for MRI machines or aerospace where software issues/bugs can result in lives lost then it matters much more in understanding what is going on at all levels of the software and potentially hardware.",
+          "id": "50160025",
+          "author": "thraway3837",
+          "body": "I don't understand how my residence was built. I don't understand how my car was built. I don't understand how politics works. I barely even understand how humans work.\nI am perfectly comfortable prompting AI and then seeing the end result and not questioning any of the code. I've looked at code for nearly 20 years or longer, I can't even keep track how long anymore. Started with QBasic and DOS scripts. I just always accepted it as an annoying necessity, and then the world changed two times. Once when they started paying us good of money for it.\nA second time when programmers became an insufferable bunch. It wasn't about the art of the product anymore. It wasn't about working with the other parts of business to understand the customer's needs and building to that. It became this weird gatekeeping bullshit where we turned on each other and started asking people to reverse binary trees and implementing search on a white board after 2 weeks of interviewing. And then rejecting them because \"culture fit\". Add in all the other misogynistic racist stuff, and yeah, this industry is messed up and it's rotten from the inside.\nEver software is a \"I don't know what those previous engineers were doing, it's poop, so we have to refactor and rebuild with this new tech\", and repeat endlessly. And quite honestly, every piece of code (mine especially) is garbage.\nSo I think this is great. Programming was a means to an end. It became over glorified. Now it's dying. I'm here for it and I support it. Now anyone can build an application no matter how complex, and the only thing that really decides success from failure is the actual business around it.",
           "score": 0,
-          "time": 1792417347,
+          "time": 1792457855,
           "parent": "50151036"
         },
         {
-          "id": "50154121",
-          "author": "bitbasher",
-          "body": "> How to deal with shipping AI-written code you don't understand?\nStop shipping code you don't understand.\nIs there really any other solution? You can either ignore it and pretend like it's the new era of software like half the other commenters are, or you can sit down and understand the code and what you're shipping.",
+          "id": "50156430",
+          "author": "4ndrewl",
+          "body": "This is how every product manager feels every day.\nIf you're an LLM prompter shipping products, you're outputs are more akin to a product managers, not an software engineer's.",
           "score": 0,
-          "time": 1792426023,
+          "time": 1792436245,
           "parent": "50151036"
         },
         {
-          "id": "50154265",
-          "author": "ex-aws-dude",
-          "body": "We just don't do that, I don't know why people talk like that is a given\nIs it a company culture thing or a domain specific thing?",
+          "id": "50156513",
+          "author": "solatic",
+          "body": "It's not too dissimilar to life as a Principal level engineer pre-AI. You technically oversee the work of many engineers on their own systems, but you couldn't possibly review all the code yourself. You appreciate that human code review reduces, but does not eliminate, the number and severity of bugs shipped to production. You don't have the low-level details in your head, just the high-level ones. You design how all these engineers interact with each other, without stepping on any toes.\nTime will tell whether we were right to move from a system where we trusted humans to understand the low-level system, to one where we trust fancy calculators. But so far, it's working.",
           "score": 0,
-          "time": 1792426699,
+          "time": 1792436575,
           "parent": "50151036"
         },
         {
-          "id": "50152838",
-          "author": "ulfw",
-          "body": "It's Meta. Shipping crap is par for the course. \nYou're fine.",
+          "id": "50157164",
+          "author": "skeledrew",
+          "body": "Technically it's just a role change. You're now the project manager or something, not the developer. It isn't a project manager's job to understand the code, only to ensure it does what it should and doesn't do what it shouldn't. And to ensure the developers, etc str unblocked and doing well. Embrace the new role.",
           "score": 0,
-          "time": 1792419548,
+          "time": 1792439373,
+          "parent": "50151036"
+        },
+        {
+          "id": "50156532",
+          "author": "gavinray",
+          "body": "I lost my ability to fully explain the systems I work on around the time I transitioned from next-edit-prediction AI running in my IDE (early Copilot) and working primarily via Codex/Claude CLI's.\nThe further away I got from the implementation details, the fuzzier the semantics became. To the point that now I could not in good faith say I understand the system I have built from the ground-up and worked on the last ~4-5 years.\nThe solution to this, in my mind, is not to revert back to reviewing implementation details. The economics of that from a business/productivity perspective don't play out well.\nThe only viable solution in my mind is adapting code/languages themselves to the shift by making programs formally verifiable. That way you can be sure that the code \"does what it says on the tin\", and provably so.\nI feel so strongly about this I've written on it:\nhttps://gavinray97.github.io/blog/design-by-contract-and-eff... (https://gavinray97.github.io/blog/design-by-contract-and-effects-for-llms)",
+          "score": 0,
+          "time": 1792436631,
           "parent": "50151036"
         }
       ]
