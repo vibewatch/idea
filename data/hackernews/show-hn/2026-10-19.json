@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-20T12:45:33.931894+00:00",
+  "last_fetched": "2026-10-20T18:39:12.724730+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,8 +10,8 @@
       "title": "Show HN: RoadRash ported to Three.js to run in the browser",
       "subreddit": "show-hn",
       "author": "olucurious",
-      "score": 25,
-      "num_comments": 7,
+      "score": 31,
+      "num_comments": 8,
       "permalink": "https://news.ycombinator.com/item?id=50158684",
       "url": "https://roadrash.pages.dev",
       "selftext": "Road Rash was one of my favourite PC games growing up. I wanted to play it again, but the browser emulators I tried felt sluggish, so I decided to build a browser version using Three.js.\nThis started mostly out of nostalgia. I wanted to be able to open a link and get back to racing and knocking people off their bikes.",
@@ -21,11 +21,11 @@
       "created_at": "2026-10-19T22:01:54+00:00",
       "comments_data": [
         {
-          "id": "50164902",
-          "author": "insiderprint",
-          "body": "Thank you for this!",
+          "id": "50165853",
+          "author": "bsenftner",
+          "body": "As a person that worked on the game at EA, I want to see credits. I recognize people in the artwork, they are caricatures of EA staff. It would be nice to see everyone's names, and then include the names of who ported this too.",
           "score": 0,
-          "time": 1792497096,
+          "time": 1792501839,
           "parent": "50158684"
         },
         {
@@ -34,6 +34,14 @@
           "body": "Wow super impressive. It works so well from mobile as well! Bookmarking this :)",
           "score": 0,
           "time": 1792489590,
+          "parent": "50158684"
+        },
+        {
+          "id": "50164902",
+          "author": "insiderprint",
+          "body": "Thank you for this!",
+          "score": 0,
+          "time": 1792497096,
           "parent": "50158684"
         },
         {
@@ -408,7 +416,7 @@
       "subreddit": "show-hn",
       "author": "dmayle",
       "score": 56,
-      "num_comments": 50,
+      "num_comments": 51,
       "permalink": "https://news.ycombinator.com/item?id=50151980",
       "url": "https://3anddoneapp.com/try",
       "selftext": "I'm a software engineer from the east coast (who has lived in Boston, NY, the bay area, UK, France), and I built a task system called 3 & Done. It's the place you trust to store everything you need to do. It accepts voice input for rapid entry, as well as text (it stores the audio locally so you can listen to jog your memory) and emails you every morning with the three most important things for you to do that day, and why, based on what you've said about the task: deadlines, urgency, sitting too long.\nI've been at software engineering for about 44 years now... Grew up with it, which was unusual when I started, and I was always good about getting into the zone and doing things. The career started small, small company, then back office, the dot com startups, then smaller companies again after the bust, a non-profit, and eventually YouTube (Google at the time, but just barely) and Meta (just Facebook when I was there).\nWhen I hit the startups, and later big tech, it was no longer enough to just be an engineer, to have drive, to be good, you had to be organized, you had to follow through, get stuff done, and that's where the task systems started. Twenty-five over the years (and yes, I've actually counted), from Moleskine notebooks with Getting Things Done, evernote (remember evernote?), bug trackers, todoist, asana, google keep, among others.\nWhen I managed on the Facebook News Feed, I got into gantt charts (for me and my team), spreadsheets, OmniPlan... I remember apologizing to my director for being so disorganized (because I felt I was making a mess of it), and he told me that I was the most organized engineer he knew.\nThat was because I was doing all of the work in the background, the trimming, the sorting, the reviews, but it was just so much work. Which was why I changed from system to system. Each time it built up, and I had to spend more time looking at things I couldn't or didn't get done, when I was rushed and couldn't put time into today's review, it would pile up, and then using it was so much work that I would start taking mini-notes, just emailing myself a few things to do the next day.\nThat's actually the thesis of the app (but not where it started), that if I could just have a few things to do emailed to me each day, I could get it done.\nThis app actually started when I described my previous startup failures into a Claude web session, and it repeated back to me what I had just said. My previous failures were because I spent too much time building the stuff I needed, and not building what I was supposed to be building.\nI decided that the app would email me three things to do every day (which matches best practices for attention), but that the day was always yours to decide. We won't overload you, but you can add more, if you're feeling up to it, or cut back, and we never shame and try our best not to nag (I often only finish two). If we get it wrong, you can tell us, and we'll re-rank it once a day, or you can set it manually, and if you do, we never override that choice. The web app is live, and native for both platforms is coming. In the meantime, on Android, you can use gestures to quick launch into the voice input so saving a task is only a gesture away (e.g. double-tap the back of a Pixel, double-press the power button on Motorola).\nNow let's talk about the dirty parts. I used AI to help me build this. Anthropic models mostly, and the brains of the app come from Anthropic models (I like the quality, I like the privacy, absolutely no training on customer data, and the stance of the company). This app is not some one-shot wonder where I asked frontier models to build a task system and then I put it on a server to show you.\nI have prompts for the various features (e.g. ranking, generating suggestions, task extractions), I have eval sets of task lists (not anyone's real tasks, but constructed from patterns in my tasks, or the tasks of testers who allowed me to fix the problems they were having), with the three I expect to come out. I store the eval outputs, and re-test whenever I add a new rule to a prompt, or whenever testing a new model version. The great thing about having this eval set is that it catches when I get it wrong. When I introspect a failed run, sometimes it's because I need to tune a prompt, but sometimes it's because I missed something in my own ranking.\nI did the same thing with my infrastructure as well, so this time, instead of setting up servers, and building login systems, and managing databases, I built on Vercel (git push to serving Next.js), Neon (hosted postgres).\nI started getting emails mailed to me by mid-June, but started getting usable suggestions on June 26, and I've been using it every morning since. I wanted it to be easy to get started, and easy to use, so the input handles mess (you can add multiple tasks in the same run-on sentence, and a friend who helped me test it just pasted his entire obsidian todo list in wholesale to get started).\nI wanted to make sure that anyone could try it out, so I built a trial feature that uses the real in-app ranking with a list of items you provide.\nIf you want to try the service, there's a free 14-day trial (card required), and then it's $99/year or $9.99/month after that (plus sales tax). We warn you seven days before your card is charged and if you cancel, you keep access through the term (either the trial, or our last paid period). Online, through settings -> billing, no email, no call.\nI really hope you'll try it out. If you do, please tell me if we did a good job picking out your day.\nhttps://3anddoneapp.com/try (https://3anddoneapp.com/try)",
@@ -417,14 +425,6 @@
       "time": 1792415227,
       "created_at": "2026-10-19T13:07:07+00:00",
       "comments_data": [
-        {
-          "id": "50165429",
-          "author": "asafel",
-          "body": "I like that it gives back only three things, with the reason for each. The reason is the part that would make me trust the list. I run a freemium app myself, so I'm curious how you chose $99 a year. Did you try other prices first?",
-          "score": 0,
-          "time": 1792499871,
-          "parent": "50151980"
-        },
         {
           "id": "50152141",
           "author": "cjimesh",
@@ -439,6 +439,14 @@
           "body": "I tried to build a todo app a few years ago with a similar thesis -- that the problem with todo apps was triaging the list.\nSo we built an app that did it for you, just like yours, using machine learning and AI (and some simple rules based on due date and expected time to do the task).\nTurns out people don't want to pay for that, even at $2/mo. We even had group features, so that a parent could put tasks on their kid's list, or a group of students could use it for a group project, or a team at work could use it to coordinate team tasks.\nWe also had templates -- tell us you're a single person who lives alone, and we would auto-add tasks like washing the sheets and cleaning the toilets. Or we could add a daily exercise routine or even a daily bible study if you told us you were a religious Christian.\nFeel free to take these features. I hope you have better luck than I did.",
           "score": 0,
           "time": 1792444703,
+          "parent": "50151980"
+        },
+        {
+          "id": "50165429",
+          "author": "asafel",
+          "body": "I like that it gives back only three things, with the reason for each. The reason is the part that would make me trust the list. I run a freemium app myself, so I'm curious how you chose $99 a year. Did you try other prices first?",
+          "score": 0,
+          "time": 1792499871,
           "parent": "50151980"
         },
         {
@@ -466,6 +474,14 @@
           "parent": "50151980"
         },
         {
+          "id": "50156042",
+          "author": "gillesbertheau",
+          "body": "I kind of like the idea because it gives you a different angle of using AI specifically for one area. I think that's the key for a lot of products instead of being extremely broad. However just by intuition I would argue that its to simple and to expensive for this. Do you have plans of building it out to make it the best in this area?",
+          "score": 0,
+          "time": 1792434499,
+          "parent": "50151980"
+        },
+        {
           "id": "50154615",
           "author": "privacyishuman",
           "body": "Nah, I'm not paying to give away my data. But I do really want a good tasks app that is self hostable, end to end encrypted, with great client side apps. Maybe I'll reverse engineer things 3 and make an Android version.",
@@ -482,14 +498,6 @@
           "parent": "50151980"
         },
         {
-          "id": "50156042",
-          "author": "gillesbertheau",
-          "body": "I kind of like the idea because it gives you a different angle of using AI specifically for one area. I think that's the key for a lot of products instead of being extremely broad. However just by intuition I would argue that its to simple and to expensive for this. Do you have plans of building it out to make it the best in this area?",
-          "score": 0,
-          "time": 1792434499,
-          "parent": "50151980"
-        },
-        {
           "id": "50155613",
           "author": "RGS1811",
           "body": "I converted my post-it based task tracker to an iOS app. It has no subscription, no data leaves your phone, and it costs 2 USD. It’s got no AI features but you can add tasks with siri by way of a shortcut.\nMuch less ambitious than what 3anddone is trying to do. But If you’re interested, check it out. It’s called “Grask”.",
@@ -498,19 +506,19 @@
           "parent": "50151980"
         },
         {
-          "id": "50160748",
-          "author": "deterministic",
-          "body": "I've managed everything from large-scale software projects to small personal projects using a simple, prioritized to-do list. Sometimes in a .txt file, sometimes in Excel. The format really doesn't matter.\nIt works beautifully, and I've never felt the need for anything more complicated.",
-          "score": 0,
-          "time": 1792464259,
-          "parent": "50151980"
-        },
-        {
           "id": "50158271",
           "author": "nekooooo",
           "body": "why, oh why, is everyone's first llm-assisted AI app a todo list? why are we obsessed with these productivity tools?",
           "score": 0,
           "time": 1792445103,
+          "parent": "50151980"
+        },
+        {
+          "id": "50160748",
+          "author": "deterministic",
+          "body": "I've managed everything from large-scale software projects to small personal projects using a simple, prioritized to-do list. Sometimes in a .txt file, sometimes in Excel. The format really doesn't matter.\nIt works beautifully, and I've never felt the need for anything more complicated.",
+          "score": 0,
+          "time": 1792464259,
           "parent": "50151980"
         }
       ]

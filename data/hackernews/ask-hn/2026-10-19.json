@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-20T12:45:39.562887+00:00",
+  "last_fetched": "2026-10-20T18:39:17.621625+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -72,7 +72,7 @@
       "subreddit": "ask-hn",
       "author": "xrd",
       "score": 4,
-      "num_comments": 4,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50156330",
       "url": "https://news.ycombinator.com/item?id=50156330",
       "selftext": "https://en.wikipedia.org/wiki/LoRa (https://en.wikipedia.org/wiki/LoRa)\nLoRA supports 320 km.\nIt feels like this could be established in an ad-hoc way.\nIf Ukraine can't trust Elon Musk and DJT to provide reliable Starshield access, isn't this a better decentralized network for drones?",
@@ -81,6 +81,14 @@
       "time": 1792435859,
       "created_at": "2026-10-19T18:50:59+00:00",
       "comments_data": [
+        {
+          "id": "50169221",
+          "author": "Zigurd",
+          "body": "LoRa is both low bit rate and low duty cycle. Perfect for widely dispersed vending machines where you can't count on cheap 4G. Useless for drones or missiles.",
+          "score": 0,
+          "time": 1792515116,
+          "parent": "50156330"
+        },
         {
           "id": "50161491",
           "author": "eimrine",
@@ -150,19 +158,19 @@
       "created_at": "2026-10-19T15:14:09+00:00",
       "comments_data": [
         {
-          "id": "50162882",
-          "author": "bheadmaster",
-          "body": "Survivorship bias. The bots that go through are so human-like you don't even register them as bots.",
-          "score": 0,
-          "time": 1792484452,
-          "parent": "50153479"
-        },
-        {
           "id": "50153555",
           "author": "PaulHoule",
           "body": "Turn on the \"showdead\" flag in your profile -- you'll see a lot of articles get [dead] the instant they are submitted. That's one countermeasure. If somebody starts at zero karma and submits nothing but links to one site everything they quickly have that happen to their posts.",
           "score": 0,
           "time": 1792423276,
+          "parent": "50153479"
+        },
+        {
+          "id": "50162882",
+          "author": "bheadmaster",
+          "body": "Survivorship bias. The bots that go through are so human-like you don't even register them as bots.",
+          "score": 0,
+          "time": 1792484452,
           "parent": "50153479"
         },
         {
@@ -190,7 +198,7 @@
       "title": "Ask HN: Beyond traces, how do you know your agent did the job?",
       "subreddit": "ask-hn",
       "author": "rstagi",
-      "score": 3,
+      "score": 5,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50153451",
       "url": "https://news.ycombinator.com/item?id=50153451",
@@ -207,8 +215,8 @@
       "title": "Ask HN: How to deal with shipping AI-written code you don't understand?",
       "subreddit": "ask-hn",
       "author": "rzk",
-      "score": 512,
-      "num_comments": 631,
+      "score": 567,
+      "num_comments": 678,
       "permalink": "https://news.ycombinator.com/item?id=50151036",
       "url": "https://news.ycombinator.com/item?id=50151036",
       "selftext": "I saw this LinkedIn post from a Meta engineer and it resonated with me:\nhttps://www.linkedin.com/posts/ali-hamie_im-an-engineer-at-m... (https://www.linkedin.com/posts/ali-hamie_im-an-engineer-at-meta-and-i-never-felt-share-7517317918666211328-7C8N)\n> I'm an engineer at Meta and I never felt this uncomfortable doing my job. I'm writing code these days and it all feels like a black box. This new standard of shipping with AI is moving so fast that if we're going to spend our time checking each line of code, it's going to take forever. That means you can end up with systems you've built where you don't truly understand how all the code works. You understand the high level, but not every detail. And maybe this is becoming the new standard. It goes against every instinct of being a software engineer. I'm used to understanding what I'm building. Now I'm trying to figure out how much I need to understand before I'm comfortable moving forward. Are other engineers feeling this too?\nHow are you handling this?",
@@ -234,19 +242,19 @@
           "parent": "50151036"
         },
         {
+          "id": "50170621",
+          "author": "lacker",
+          "body": "I remember when I first became an engineering manager. It felt pretty strange at first to be standing up in front of an audience, describing what our team's code did, how it worked, and how we ensured it was high quality. Being the final approver who decided whether the new service was ready to go into production or not. Because I didn't really understand it, the way that I had when I was writing all the code myself.\nWith AI, now every software engineer gets to feel this way.",
+          "score": 0,
+          "time": 1792521111,
+          "parent": "50151036"
+        },
+        {
           "id": "50158909",
           "author": "jedberg",
           "body": "I've been a Principal Engineer for a while, so this is how I've worked for a while. Sometimes when you're a PE, you either design something and then junior engineers implement the details, or you're dropped into a project that was already designed and built by more junior engineers, and you have to quickly understand the design an as many details as you can.\nWith AI, everyone now gets to act like a PE. Your job is to design, the AI builds like the junior engineers. Then you review their work. You may never understand the details, and that's ok, as long as you know the main ideas and where to ask for the details (in this case the LLM instead of a human).",
           "score": 0,
           "time": 1792448912,
-          "parent": "50151036"
-        },
-        {
-          "id": "50165130",
-          "author": "suralind",
-          "body": "I work for a company that’s all in on AI right now. For all intents and purposes - I have unlimited budget, but I’m spending may only $50 per day on the busier days.\nRight now I have 8 agents open in my terminal and I know I'm on the more-sceptic end of AI users. Some folks here pull thousands of lines of changes, day after day.\nWith this many agents I don't even have time to read what they output, not talking about the code - just their output. My work today has been (sadly) degraded to:\n1. Ask AI to explore the repo.\n2. Pick a solution that works for the 3 solutions that AI proposed.\n3. Maybe do few rounds of follow ups.\n4. Create PRs.\n5. Ask agent to verify if everything works post merge.\nSome of my colleagues apparently skim through the code. I pretty much don't look at the code anymore.\nIt's just sad. I'm self taught programmer, hobbyist. I always liked working on my stuff and always were trying to deliver high quality. I no longer can't say that, despite my best efforts.\nI literally have tasks right now where not only I don't understand what the agent is doing, I don't fully understand the problem either. I could invest time to understand it and agents do a pretty good job themselves, but remember, I don't read the damn output.\nThat said, I work in the infra team, not in the product team, so there's that.",
-          "score": 0,
-          "time": 1792498309,
           "parent": "50151036"
         },
         {
@@ -274,27 +282,11 @@
           "parent": "50151036"
         },
         {
-          "id": "50165312",
-          "author": "busch_j",
-          "body": "At our company hackathon I led a team focused on this issue. What we landed on is in the future looking at code diffs is going to continue to go down. AI can write the code and AI can review the code and we are going to see bug rates go down at a \"tactics\" level.\nWhat matters are the high level decisions in the code such as \"Deleting an account removes the row for good\", \"Email becomes the user’s permanent ID\", etc.\nWe imagined a completely new concept for code reviews where you review the decisions not the code diffs. Also if you want to review the code it is grouped by concept not by random file diffs.\nThis is coming from someone that likes manually coding btw but our PR size and velocity is increasing too fast to meaningfully review all the diffs forever.",
-          "score": 0,
-          "time": 1792499150,
-          "parent": "50151036"
-        },
-        {
           "id": "50161452",
           "author": "i2km",
           "body": "What I don't understand is that for most SE jobs on mature codebases, writing code is maybe 5-10% of the work. And it's that 5-10% coding that keeps you 'grounded' in the code and keeps your tacit understanding up to date.\nGet rid of that and you get a basically invisible productivity increase (call it 10% to be generous) but you've now lost tacit understanding. No amount of half-assed code review (or getting the LLM to generate \"code quizzes\" etc for you) is ever going to substitute for the tacit understanding you get from doing the 10% of coding yourself.\nI really just don't get it. I mean, I can believe that using coding agents gives people a rush of power and fleeting illusions of increased productivity, but it's a mirage.\nA lot of the comments here are trying to find some middle ground, i.e. trying to find some way to preserve tacit knowledge. But it seems to me that it's a waste of time. You either need to write the code yourself or completely give up on even reading or attempting to understand it. I just don't think there's any middle ground. Any well-intentioned attempt to preserve understanding of the code will fall afoul of human laziness and understanding drift",
           "score": 0,
           "time": 1792471392,
-          "parent": "50151036"
-        },
-        {
-          "id": "50158780",
-          "author": "bob1029",
-          "body": "The closer the code gets to the user's eyeballs the less I care about anything specific.\nHTML/JS/CSS is basically entirely vibe coded. I won't even try to reorg the 4000 line ui.js file. I can just redo the whole thing from a new prompt in a few minutes.\nFor things like the SQL schema I am still doing things entirely by hand. The consequences of getting this part wrong tend to be far more catastrophic than something in the UI layer.",
-          "score": 0,
-          "time": 1792448088,
           "parent": "50151036"
         },
         {
@@ -306,11 +298,27 @@
           "parent": "50151036"
         },
         {
+          "id": "50165130",
+          "author": "suralind",
+          "body": "I work for a company that’s all in on AI right now. For all intents and purposes - I have unlimited budget, but I’m spending may only $50 per day on the busier days.\nRight now I have 8 agents open in my terminal and I know I'm on the more-sceptic end of AI users. Some folks here pull thousands of lines of changes, day after day.\nWith this many agents I don't even have time to read what they output, not talking about the code - just their output. My work today has been (sadly) degraded to:\n1. Ask AI to explore the repo.\n2. Pick a solution that works for the 3 solutions that AI proposed.\n3. Maybe do few rounds of follow ups.\n4. Create PRs.\n5. Ask agent to verify if everything works post merge.\nSome of my colleagues apparently skim through the code. I pretty much don't look at the code anymore.\nIt's just sad. I'm self taught programmer, hobbyist. I always liked working on my stuff and always were trying to deliver high quality. I no longer can't say that, despite my best efforts.\nI literally have tasks right now where not only I don't understand what the agent is doing, I don't fully understand the problem either. I could invest time to understand it and agents do a pretty good job themselves, but remember, I don't read the damn output.\nThat said, I work in the infra team, not in the product team, so there's that.",
+          "score": 0,
+          "time": 1792498309,
+          "parent": "50151036"
+        },
+        {
           "id": "50156513",
           "author": "solatic",
           "body": "It's not too dissimilar to life as a Principal level engineer pre-AI. You technically oversee the work of many engineers on their own systems, but you couldn't possibly review all the code yourself. You appreciate that human code review reduces, but does not eliminate, the number and severity of bugs shipped to production. You don't have the low-level details in your head, just the high-level ones. You design how all these engineers interact with each other, without stepping on any toes.\nTime will tell whether we were right to move from a system where we trusted humans to understand the low-level system, to one where we trust fancy calculators. But so far, it's working.",
           "score": 0,
           "time": 1792436575,
+          "parent": "50151036"
+        },
+        {
+          "id": "50158780",
+          "author": "bob1029",
+          "body": "The closer the code gets to the user's eyeballs the less I care about anything specific.\nHTML/JS/CSS is basically entirely vibe coded. I won't even try to reorg the 4000 line ui.js file. I can just redo the whole thing from a new prompt in a few minutes.\nFor things like the SQL schema I am still doing things entirely by hand. The consequences of getting this part wrong tend to be far more catastrophic than something in the UI layer.",
+          "score": 0,
+          "time": 1792448088,
           "parent": "50151036"
         }
       ]
@@ -323,7 +331,7 @@
       "subreddit": "ask-hn",
       "author": "mcrmonkey",
       "score": 3,
-      "num_comments": 0,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50150824",
       "url": "https://news.ycombinator.com/item?id=50150824",
       "selftext": "Bitbucket have decided that changing their ssh endpoint from `bitbucket.org` to `ssh.bitbucket.org` is now a thing because security.\nMore info can be found on their community pages here: https://community.atlassian.com/forums/discussion/3234032/upcoming-change-to-bitbucket-cloud-ssh-access-move-from-bitbucket-org-to-ssh-bitbucket-org#M2952\nDespite the date on the community post it only seems to have been noticed within the last few weeks which has caused a little bit of panic as \"bitbucket.org\" has been effectively hard coded in to pipelines and other places.\nAdditionally non of the documentation and support material have been updated. The API and clone buttons still return the old bitbucket.org address instead of the new ssh.bitbucket.org.\nWhat's your plan for fixing this on your systems before the 12th of November 2026 ?",
@@ -339,8 +347,8 @@
       "title": "Ask HN: How do you cap what your coding agents can spend?",
       "subreddit": "ask-hn",
       "author": "Twirled",
-      "score": 2,
-      "num_comments": 0,
+      "score": 3,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50149426",
       "url": "https://news.ycombinator.com/item?id=50149426",
       "selftext": "I run autonomous coding agents and I'm trying to understand how other people handle money when an agent needs to pay for things (API credits, cloud, domains, SaaS). I've read the earlier \"agents that spend real money\" thread and the stories about auto-recharge surprises.\nQuestions, for people who've actually done this:\nHave you let an agent spend money, or nearly, in the last few months? What was bought, and how did payment work?\nWhat do you use to limit it (provider hard caps, a particular card, something you built)? What does it miss?\nDid anything go wrong, or did you give up on a task because of payment?\nDisclosure: I'm Tom, based in Australia. I'm exploring whether a service in this area is worth building. It's early research. I have no product, customers, partners or security claims to show, and I'm not selling anything. If you're willing to chat for 15 minutes about what you've actually done, reply here and I'll message back; I'll keep notes anonymous.",
@@ -391,8 +399,8 @@
       "title": "Ask HN: What are you working on?",
       "subreddit": "ask-hn",
       "author": "tha_infra_guy",
-      "score": 7,
-      "num_comments": 13,
+      "score": 8,
+      "num_comments": 15,
       "permalink": "https://news.ycombinator.com/item?id=50148925",
       "url": "https://news.ycombinator.com/item?id=50148925",
       "selftext": "What are you working on? What have you been curious about lately?",
@@ -418,19 +426,27 @@
           "parent": "50148925"
         },
         {
-          "id": "50161742",
-          "author": "maheshmil",
-          "body": "Am working on Blackbird Finance, am pretty sure you will understand and relate with the product better if you are from india, so what blackbird does is basically invoicing and tax compliance for global businesses. uh more on what am curious about is that learning about LLM and ai agents that is even what we are trying to implement in blackbird finance aswell. heres our site: https://www.blackbirdfinance.net/ (https://www.blackbirdfinance.net/)",
-          "score": 0,
-          "time": 1792474508,
-          "parent": "50148925"
-        },
-        {
           "id": "50150768",
           "author": "josters",
           "body": "HNowledge[1], a free iOS app for browsing the HN stories and comments I've upvoted. Made it to fit the way I browse HN, which is upvoting mainly what I find interesting and may want to come back to. The app lets you browse by date, domain or score, add notes and export. Apart from syncing your upvotes from HN, everything stays local without any tracking.\n[1]: https://apps.apple.com/us/app/hnowledge/id6813417548 (https://apps.apple.com/us/app/hnowledge/id6813417548)\nWanes[2], an Apple Health logging interface for tracking how long symptoms last. I tend to have headaches quite often and the way Apple lets you enter that data is pretty limited, so I created an app which starts a Live Activity for one or more symptoms using widgets, Control Center or Siri. You can change the severity rating while it runs and stop it from wherever you are on your phone (Home Screen, Lock Screen, Dynamic Island, Siri).\n[2]: https://apps.apple.com/us/app/wanes/id6811679904 (https://apps.apple.com/us/app/wanes/id6811679904)",
           "score": 0,
           "time": 1792406849,
+          "parent": "50148925"
+        },
+        {
+          "id": "50167318",
+          "author": "segmondy",
+          "body": "Fiddling and tooling around with AI locally.",
+          "score": 0,
+          "time": 1792507883,
+          "parent": "50148925"
+        },
+        {
+          "id": "50166159",
+          "author": "sanjusdhr",
+          "body": "I’m building Puggy (https://puggy.dev (https://puggy.dev)), a bug recorder made so a coding agent can debug from the recording.",
+          "score": 0,
+          "time": 1792503207,
           "parent": "50148925"
         },
         {
@@ -442,6 +458,14 @@
           "parent": "50148925"
         },
         {
+          "id": "50161742",
+          "author": "maheshmil",
+          "body": "Am working on Blackbird Finance, am pretty sure you will understand and relate with the product better if you are from india, so what blackbird does is basically invoicing and tax compliance for global businesses. uh more on what am curious about is that learning about LLM and ai agents that is even what we are trying to implement in blackbird finance aswell. heres our site: https://www.blackbirdfinance.net/ (https://www.blackbirdfinance.net/)",
+          "score": 0,
+          "time": 1792474508,
+          "parent": "50148925"
+        },
+        {
           "id": "50151335",
           "author": "netshade",
           "body": "I'm working on documentation for zshot[1][2]. Kinda like \"what if browser automation had curl-like ergonomics, but also was extremely agent friendly, but also could turn into your headless browser infrastructure\". I've been working on it for a while now and have incurred a hell of a debt of \"explain what it is and how to do it\", so working that debt off bit by bit.\n[1]: Mac app, https://zshot-app.com/ (https://zshot-app.com/)\n[2]: Linux / Mac CLI, https://zshot-cli.com/ (https://zshot-cli.com/)",
@@ -450,27 +474,19 @@
           "parent": "50148925"
         },
         {
-          "id": "50151536",
-          "author": "feliixh",
-          "body": "I have been building https://www.accessmrf.com/ (https://www.accessmrf.com/) to make healthcare price transparency files easy to access to researchers. I index the healthcare pricing files published by more than 180 different insurers in one place, to make them easier to find, and I am developing on ways to make the data even more digestible.",
-          "score": 0,
-          "time": 1792412641,
-          "parent": "50148925"
-        },
-        {
-          "id": "50161937",
-          "author": "sahinyanlik",
-          "body": "I am working on a local developer, analysts tool corekits.dev",
-          "score": 0,
-          "time": 1792476268,
-          "parent": "50148925"
-        },
-        {
           "id": "50149539",
           "author": "liviux",
           "body": "An AI orchestrator for anybody - https://github.com/looptroop-ai/LoopTroop (https://github.com/looptroop-ai/LoopTroop)\nAn workout tracker based on Bryan Johnson workouts, but at home - for me, but anyone can use it - https://github.com/liviux/Bryan-Johnson-workout-tracker (https://github.com/liviux/Bryan-Johnson-workout-tracker)\nA startup tracker - claude is working between usage limits.\nSky is the limit these days",
           "score": 0,
           "time": 1792396008,
+          "parent": "50148925"
+        },
+        {
+          "id": "50151536",
+          "author": "feliixh",
+          "body": "I have been building https://www.accessmrf.com/ (https://www.accessmrf.com/) to make healthcare price transparency files easy to access to researchers. I index the healthcare pricing files published by more than 180 different insurers in one place, to make them easier to find, and I am developing on ways to make the data even more digestible.",
+          "score": 0,
+          "time": 1792412641,
           "parent": "50148925"
         },
         {
@@ -487,14 +503,6 @@
           "body": "Im working on professional advanced datagrid and Pivot table for React and Js. \nMany feautures are completely free.\ntry this:\nhttps://kanunilabs.com/demos/sales-analytics (https://kanunilabs.com/demos/sales-analytics)\nhttps://kanunilabs.com/demos/customer-management (https://kanunilabs.com/demos/customer-management)",
           "score": 0,
           "time": 1792403144,
-          "parent": "50148925"
-        },
-        {
-          "id": "50149401",
-          "author": "nikolasdimi",
-          "body": "Voiden, an open-source API client where every request is a Markdown file in your repo, with the environment, tests and docs in the same file. It runs locally with no account, works in CI, and agents can run the same requests over MCP. We open-sourced it this year. https://voiden.md/ (https://voiden.md/)",
-          "score": 0,
-          "time": 1792394713,
           "parent": "50148925"
         }
       ]
