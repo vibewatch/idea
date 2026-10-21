@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-21T12:45:42.688701+00:00",
+  "last_fetched": "2026-10-21T18:39:40.840232+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -80,19 +80,19 @@
           "parent": "50170094"
         },
         {
-          "id": "50171314",
-          "author": "platevoltage",
-          "body": "Respectfully, I don't understand this way of thinking. You learn and get better at programming by programming. Now we are using LLMs to write the code to the point where we need to assign ourselves homework to keep our skills?\nWhy not just use the LLM in a way that doesn't prevent us from absorbing the knowledge?",
-          "score": 0,
-          "time": 1792523896,
-          "parent": "50170094"
-        },
-        {
           "id": "50170677",
           "author": "vegnus",
           "body": "obligatory SICP",
           "score": 0,
           "time": 1792521325,
+          "parent": "50170094"
+        },
+        {
+          "id": "50171314",
+          "author": "platevoltage",
+          "body": "Respectfully, I don't understand this way of thinking. You learn and get better at programming by programming. Now we are using LLMs to write the code to the point where we need to assign ourselves homework to keep our skills?\nWhy not just use the LLM in a way that doesn't prevent us from absorbing the knowledge?",
+          "score": 0,
+          "time": 1792523896,
           "parent": "50170094"
         }
       ]
@@ -104,7 +104,7 @@
       "title": "Ask HN: My Gemini bill shot up suddenly to 2500 USD in one day",
       "subreddit": "ask-hn",
       "author": "kinj28",
-      "score": 8,
+      "score": 9,
       "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50168795",
       "url": "https://news.ycombinator.com/item?id=50168795",
@@ -139,8 +139,8 @@
       "title": "Tell HN: 2x PHP RCE CVEs with CVSS 10.0 Incoming",
       "subreddit": "ask-hn",
       "author": "petecooper",
-      "score": 236,
-      "num_comments": 36,
+      "score": 263,
+      "num_comments": 60,
       "permalink": "https://news.ycombinator.com/item?id=50167754",
       "url": "https://news.ycombinator.com/item?id=50167754",
       "selftext": "A reliable source has indicated an announcement is scheduled for 22 October 2026 at 18:00 CEST regarding 2x PHP RCEs with a CVSS score of 10.0.\nI have no evidence beyond \"source: trust me, bro\", but if you're running PHP in production, be ready to update as a priority.\nThese CVEs reportedly relate to remote code execution in all affected PHP versions from PHP 5 onwards.\nThese are the two reserved CVEs for the reported upcoming announcement:\nCVE-2026-109618\nCVE-2026-109619",
@@ -158,19 +158,11 @@
           "parent": "50167754"
         },
         {
-          "id": "50178762",
-          "author": "Amsozzer",
-          "body": "Hey guys,\nI have a long day tomorrow auditing all our php websites and so I wrote a simple CLI tool that finds every place php version is mentioned in a repo eg (Dockerfile tags, compose/k8s images, setup-php in CI, .tool-versions, distro php packages, composer) and flags the end of life branches now.\nFloating tags and distro packages can't be labelled deterministically since the tool only reads the files right now so they get labelled \"check manually\"\nI will also update the package as soon as the fixes drop with the updated versioning which will not require anything on the users end (no updates required)\nTill then check out\nnpx php2shell-repo-audit .\nhttps://github.com/Amsozzer1/php2shell-repo-audit (https://github.com/Amsozzer1/php2shell-repo-audit)",
+          "id": "50174857",
+          "author": "devttyeu",
+          "body": "@dang if the speculations circulating around are anything to go by this is apocalyptic and deserves to be amplified such that the right people see this before it’s too late.\nCERT-EU even suggests isolating any systems that may be exposed and can’t be patched quickly.\nSpeculation is that the affected subsystem runs before any application code and affects all default installs.",
           "score": 0,
-          "time": 1792579655,
-          "parent": "50167754"
-        },
-        {
-          "id": "50176717",
-          "author": "vincent_s",
-          "body": "Two things you can do now:\n1. Turn off session upload progress\n2. Block multipart requests at the web server\nMore info:\nhttps://www.vincentschmalbach.com/cve-2026-109618-and-cve-20... (https://www.vincentschmalbach.com/cve-2026-109618-and-cve-2026-109619-what-you-should-do-now/)",
-          "score": 0,
-          "time": 1792563343,
+          "time": 1792545048,
           "parent": "50167754"
         },
         {
@@ -182,11 +174,35 @@
           "parent": "50167754"
         },
         {
-          "id": "50174955",
-          "author": "potaytopotahto",
-          "body": "Looks like details about the exploits have already leaked on twitter, if the info is correct then it can be mitigated by setting session.upload_progress.enabled = Off until you get the opportunity to update",
+          "id": "50176717",
+          "author": "vincent_s",
+          "body": "Two things you can do now:\n1. Turn off session upload progress\n2. Block multipart requests at the web server\nMore info:\nhttps://www.vincentschmalbach.com/cve-2026-109618-and-cve-20... (https://www.vincentschmalbach.com/cve-2026-109618-and-cve-2026-109619-what-you-should-do-now/)",
           "score": 0,
-          "time": 1792546054,
+          "time": 1792563343,
+          "parent": "50167754"
+        },
+        {
+          "id": "50172076",
+          "author": "samueloph",
+          "body": "Deciding to announce it like this is wild, it's an invitation for everyone to put their agents to work in order to find out what the vulnerability is and exploit it, while nobody is allowed to patch it until tomorrow.",
+          "score": 0,
+          "time": 1792527557,
+          "parent": "50167754"
+        },
+        {
+          "id": "50173697",
+          "author": "unreal37",
+          "body": "This was supposed to be embargoed.\nSo your reliable source can't keep a secret.",
+          "score": 0,
+          "time": 1792536228,
+          "parent": "50167754"
+        },
+        {
+          "id": "50178762",
+          "author": "Amsozzer",
+          "body": "Hey guys,\nI have a long day tomorrow auditing all our php websites and so I wrote a simple CLI tool that finds every place php version is mentioned in a repo eg (Dockerfile tags, compose/k8s images, setup-php in CI, .tool-versions, distro php packages, composer) and flags the end of life branches now.\nFloating tags and distro packages can't be labelled deterministically since the tool only reads the files right now so they get labelled \"check manually\"\nI will also update the package as soon as the fixes drop with the updated versioning which will not require anything on the users end (no updates required)\nTill then check out\nnpx php2shell-repo-audit .\nhttps://github.com/Amsozzer1/php2shell-repo-audit (https://github.com/Amsozzer1/php2shell-repo-audit)",
+          "score": 0,
+          "time": 1792579655,
           "parent": "50167754"
         },
         {
@@ -198,11 +214,19 @@
           "parent": "50167754"
         },
         {
-          "id": "50173697",
-          "author": "unreal37",
-          "body": "This was supposed to be embargoed.\nSo your reliable source can't keep a secret.",
+          "id": "50174955",
+          "author": "potaytopotahto",
+          "body": "Looks like details about the exploits have already leaked on twitter, if the info is correct then it can be mitigated by setting session.upload_progress.enabled = Off until you get the opportunity to update",
           "score": 0,
-          "time": 1792536228,
+          "time": 1792546054,
+          "parent": "50167754"
+        },
+        {
+          "id": "50183801",
+          "author": "consocio",
+          "body": "https://github.com/consocio/php2shell-audit/ (https://github.com/consocio/php2shell-audit/) GLM 5.3 just wrote it to audit all my php sites. I hope it is useful to you",
+          "score": 0,
+          "time": 1792600746,
           "parent": "50167754"
         },
         {
@@ -219,30 +243,6 @@
           "body": "https://www.php.net/archive/2026.php#2026-10-20-1 (https://www.php.net/archive/2026.php#2026-10-20-1)",
           "score": 0,
           "time": 1792532696,
-          "parent": "50167754"
-        },
-        {
-          "id": "50173055",
-          "author": "ShowalkKama",
-          "body": "Those CVEs refer to vulnerabilities in wordpress plugins (not php) and the vulnerabilities are not RCEs.\nAm I missing something?\nhttps://nvd.nist.gov/vuln/detail/cve-2026-9618 (https://nvd.nist.gov/vuln/detail/cve-2026-9618)\nhttps://nvd.nist.gov/vuln/detail/cve-2026-9619 (https://nvd.nist.gov/vuln/detail/cve-2026-9619)",
-          "score": 0,
-          "time": 1792532306,
-          "parent": "50167754"
-        },
-        {
-          "id": "50171097",
-          "author": "SchizoDuckie",
-          "body": "Well great thanks.\nI need details now. Where, core? Extensions? What config?\nMy guess is on some request filtering thing",
-          "score": 0,
-          "time": 1792523038,
-          "parent": "50167754"
-        },
-        {
-          "id": "50174623",
-          "author": "archon810",
-          "body": "Here's the alleged demo video. It's called php2shell https://x.com/k_firsov/status/2112641845926989944 (https://x.com/k_firsov/status/2112641845926989944) and it's scary as hell.",
-          "score": 0,
-          "time": 1792543083,
           "parent": "50167754"
         }
       ]
@@ -306,8 +306,8 @@
       "title": "Ask HN: What do you hate the most about GitHub Actions?",
       "subreddit": "ask-hn",
       "author": "Bnjoroge",
-      "score": 2,
-      "num_comments": 1,
+      "score": 4,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50167146",
       "url": "https://news.ycombinator.com/item?id=50167146",
       "selftext": "I imagine uptime, and reliability probably top the list, but i'm curious to know what about the design/features you would change. Some of the ideas around composability were right in theory but the execution has been less than ideal.\nWhat would you do to improve it if you could?",
@@ -392,6 +392,23 @@
           "parent": "50166914"
         }
       ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50165398",
+      "title": "TI C66X / Ad Sharc+ Decompilers",
+      "subreddit": "ask-hn",
+      "author": "kavinsky777",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50165398",
+      "url": "https://news.ycombinator.com/item?id=50165398",
+      "selftext": "Hello!\nMoving forward with my VST3 project I'm trying to find anyone who could help me to tackle one of these DSPs. Any ideas for tools for these? there are some mentions of IDA Pro plugins for C66X but I couldnt find anything in the public space yet\nAny suggestions would be appreciated",
+      "is_self": true,
+      "is_video": false,
+      "time": 1792499655,
+      "created_at": "2026-10-20T12:34:15+00:00"
     },
     {
       "source": "hackernews",
@@ -618,8 +635,8 @@
       "title": "Ask HN: What's your SSH terminal workflow like?",
       "subreddit": "ask-hn",
       "author": "otherayden",
-      "score": 2,
-      "num_comments": 7,
+      "score": 4,
+      "num_comments": 8,
       "permalink": "https://news.ycombinator.com/item?id=50161254",
       "url": "https://news.ycombinator.com/item?id=50161254",
       "selftext": "I recently transitioned into doing most of my work via SSH running on an old server I've had lying around my house. Currently using tmux, ssh, neovim for file editing, and switching between claude code and codex for terminal coding agents. Is this as good of a setup as one can get? Anything I'm missing out on?",
@@ -787,8 +804,8 @@
       "title": "Ask HN: What have you built privately with AI that you'd like to share?",
       "subreddit": "ask-hn",
       "author": "erelong",
-      "score": 8,
-      "num_comments": 21,
+      "score": 9,
+      "num_comments": 22,
       "permalink": "https://news.ycombinator.com/item?id=50159886",
       "url": "https://news.ycombinator.com/item?id=50159886",
       "selftext": "An idea has circulated that a lot of us are just privately building software for our own projects without sharing the build\nWe could however share the ideas of what we're building so that other people could build sometime similar to fill their own needs or the ideas could be incorporated in to other projects\nA lot of random things come to mind for me, like I started (but for now abandoned) some kind of picture icon viewer by date on Linux desktop. A lot of smartphone file viewers display pics this way automatically and it lets you look at what pics you've accumulated day by day, but I didn't see this feature on different Linux file viewers (and it was apparently a requested feature others were looking for).\nSo what have you built privately with AI that you might like to share ideas about?\nedit: alternatively, are there any things you'd like to see others create (and I suppose a comment about what holds you back from creating them)?",
@@ -797,6 +814,14 @@
       "time": 1792456665,
       "created_at": "2026-10-20T00:37:45+00:00",
       "comments_data": [
+        {
+          "id": "50183992",
+          "author": "softwarewright",
+          "body": "I built an experimental extensible typed array programming language (with tools, libraries, demos, etc. actively under development). Via meta-programming (macros) and Rust shared library extensions it lets you write code that runs on CPU or GPUs (Apple, NVIDIA so far).\n> https://blog.softwarewrighter.com/2026/10/16/array-languages... (https://blog.softwarewrighter.com/2026/10/16/array-languages-xetal-mojo-metal/)\nI originally wrote gpu extensions that use OpenCL/CUDA. I more recently added a modular mojo backend that allows me to use Metal instead of OpenCL on Apple Silicon.",
+          "score": 0,
+          "time": 1792601412,
+          "parent": "50159886"
+        },
         {
           "id": "50163001",
           "author": "bartleeanderson",
@@ -846,11 +871,11 @@
           "parent": "50159886"
         },
         {
-          "id": "50174911",
-          "author": "flippant",
-          "body": "I go down Wikipedia rabbit holes frequently. I thought it would be cool to see diffs of articles over time.\nhttps://memoryhole.app/wiki-timeline/compare?title=Theranos&... (https://memoryhole.app/wiki-timeline/compare?title=Theranos&year=2015&snapshot=2015-11-01)",
+          "id": "50160457",
+          "author": "hacky_engineer",
+          "body": "I don't feel like I made it, but I asked AI to build a cashflow manager chart thing for me. I can upload CSVs from my bank statements, and it displays my cashflow as a graph over time, and then I can put in upcoming and recurring expenses, so to see how much money I'm going to have to borrow over the next six months until my revenue catches up with all my pending liabilities. It feels like I'm in control if I can see the graph of my money, even if it goes pretty far negative.",
           "score": 0,
-          "time": 1792545629,
+          "time": 1792461555,
           "parent": "50159886"
         },
         {
@@ -862,11 +887,11 @@
           "parent": "50159886"
         },
         {
-          "id": "50160457",
-          "author": "hacky_engineer",
-          "body": "I don't feel like I made it, but I asked AI to build a cashflow manager chart thing for me. I can upload CSVs from my bank statements, and it displays my cashflow as a graph over time, and then I can put in upcoming and recurring expenses, so to see how much money I'm going to have to borrow over the next six months until my revenue catches up with all my pending liabilities. It feels like I'm in control if I can see the graph of my money, even if it goes pretty far negative.",
+          "id": "50174911",
+          "author": "flippant",
+          "body": "I go down Wikipedia rabbit holes frequently. I thought it would be cool to see diffs of articles over time.\nhttps://memoryhole.app/wiki-timeline/compare?title=Theranos&... (https://memoryhole.app/wiki-timeline/compare?title=Theranos&year=2015&snapshot=2015-11-01)",
           "score": 0,
-          "time": 1792461555,
+          "time": 1792545629,
           "parent": "50159886"
         },
         {
@@ -883,14 +908,6 @@
           "body": "I made an iOS app. It is a metronome and tuner in one screen, useful for me learning violin, so I can play a scale at 60bpm and check pitch. The tuner has to eliminate the tick of the metronome.\nI can publish to iOS store if anyone is interested or share source, but you can vibe code your own in an hour for a couple bucks.",
           "score": 0,
           "time": 1792480507,
-          "parent": "50159886"
-        },
-        {
-          "id": "50164117",
-          "author": "RestartKernel",
-          "body": "I built a SuperDisplay alternative for MacOS to use my Samsung tablet as a secondary display — feels just like plugging in a monitor now. I also put together an extremely specialised video streaming host and client to get better quality and stability than Discord's screenshare, alongside an Android TV app to cast this video stream. (It has a bunch of features like media control passthrough and display/window selection on the receiver side; things no existing application implements because of how intrusive it'd be for the sender.)",
-          "score": 0,
-          "time": 1792492680,
           "parent": "50159886"
         }
       ]
