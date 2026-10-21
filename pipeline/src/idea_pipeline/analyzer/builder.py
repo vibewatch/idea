@@ -1978,6 +1978,7 @@ Operational constraints:
 - Cite only Reddit or Hacker News discussions present in the listed snapshots, plus public external URLs found in their content.
 - Write a complete Markdown report with the value-focused required sections 1 through 5 to the exact output candidate path.
 - Every Section 2 case must contain the exact eight labeled paragraphs from instructions.md: Primary link, Stage, User or problem, Build, test, or event, Evidence, Visual proof, Limitation or next proof, and Source.
+- Every Section 4 theme must use the exact labels **Evidence:**, **Interpretation:**, and **Missing proof:**. Put analysis and connection qualifiers in the paragraph value, not inside the bold label.
 - The Visual proof fields in Section 2 must cite actual media URLs and report only information learned from visual inspection. Use `Not inspected` or `None` when no useful visual proof exists.
 - Display each informative direct image as a linked Markdown image with descriptive alt text: `[![visible finding](exact-image-url)](exact-image-url)`. Format videos and galleries as descriptive Markdown links. Never wrap a media URL in backticks or leave it as bare text.
 - Do not use P/R/G/C, opportunity scores, rankings, or confidence arithmetic. Reddit and Hacker News engagement are attention, not demand.
@@ -2022,11 +2023,11 @@ def build_copilot_command(
         "--autopilot",
     ]
     if usage_output_file is not None:
-        command.extend(["--usage-output-file", str(usage_output_file)])
+        command.extend(["--usage-output-file", str(usage_output_file.resolve())])
     if max_ai_credits is not None:
         command.extend(["--max-ai-credits", str(max_ai_credits)])
     for attachment in attachments:
-        command.extend(["--attachment", str(attachment)])
+        command.extend(["--attachment", str(attachment.resolve())])
     return command
 
 
@@ -2326,14 +2327,23 @@ def normalize_report_structure(path: Path) -> list[str]:
 
         for label in plain_labels:
             plain = label.replace("**", "")
+            annotation_pattern = (
+                r"(?:[ \t]+(?P<annotation>\([^)\n]+\)))?"
+                if label in SYNTHESIS_LABELS
+                else ""
+            )
             label_match = re.match(
                 rf"^\s*(?:[-*]\s+|#{{4,6}}\s+)?"
-                rf"(?:{re.escape(label)}|{re.escape(plain)})\s*(.*)$",
+                rf"(?:\*\*{re.escape(plain[:-1])}{annotation_pattern}:\*\*"
+                rf"|{re.escape(plain)})\s*(?P<value>.*)$",
                 body,
                 flags=re.IGNORECASE,
             )
             if label_match:
-                value = label_match.group(1).strip()
+                annotation = label_match.groupdict().get("annotation")
+                value = label_match.group("value").strip()
+                if annotation:
+                    value = f"{annotation} {value}".rstrip()
                 repaired = f"{label} {value}" if value else label
                 if body != repaired:
                     body = repaired

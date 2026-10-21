@@ -877,6 +877,21 @@ class TestPromptAndCommand:
 
         assert command[-2:] == ["--attachment", str(attachment)]
 
+    def test_resolves_file_arguments_before_entering_sandbox(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        monkeypatch.chdir(tmp_path)
+        sandbox = Path("artifacts/builder-fallback/builder-intelligence/2026-10-19")
+        attachment = sandbox / "media-assets/demo.png"
+        usage_path = sandbox / "copilot-usage.json"
+
+        command = build_copilot_command(
+            "prompt", attachments=[attachment], usage_output_file=usage_path
+        )
+
+        assert command[command.index("--attachment") + 1] == str(tmp_path / attachment)
+        assert command[command.index("--usage-output-file") + 1] == str(tmp_path / usage_path)
+
     def test_adds_usage_telemetry_and_credit_limit_to_copilot_command(
         self, tmp_path: Path
     ) -> None:
@@ -1457,6 +1472,34 @@ Three current streams are represented; the evidence is limited to one account pe
 
         assert report.read_text(encoding="utf-8") == "# Report\n"
         assert messages == ["normalized report line endings and trailing whitespace"]
+
+    @pytest.mark.parametrize("qualifier", ["analysis, Partial", "analysis, Unconnected"])
+    def test_normalizes_annotated_synthesis_labels_without_losing_qualifiers(
+        self, tmp_path: Path, qualifier: str
+    ) -> None:
+        report = tmp_path / "report.md"
+        content = valid_report()
+        report.write_text(
+            content.replace("**Interpretation:**", f"**Interpretation ({qualifier}):**"),
+            encoding="utf-8",
+        )
+        assert any(
+            "each synthesis theme" in error
+            for error in validate_report(
+                report, expected_title="# Builder Intelligence Report - 2026-08-02"
+            )
+        )
+
+        messages = normalize_report_structure(report)
+
+        assert report.read_text(encoding="utf-8") == content.replace(
+            "**Interpretation:**", f"**Interpretation:** ({qualifier})"
+        )
+        assert any("field label: Interpretation:" in message for message in messages)
+        assert validate_report(
+            report, expected_title="# Builder Intelligence Report - 2026-08-02"
+        ) == []
+        assert normalize_report_structure(report) == []
 
     def test_upgrades_schemeless_linked_image_urls(self, tmp_path: Path) -> None:
         report = tmp_path / "report.md"
@@ -2436,6 +2479,7 @@ class TestAnalysisBoundary:
         assert generation["usage"]["ai_credits"] == 1.5
         assert generation["usage"]["cost_usd"] == 0.015
 
+    @pytest.mark.parametrize("relative_artifacts", [False, True])
     @patch("idea_pipeline.analyzer.builder._download_image_asset")
     @patch("idea_pipeline.analyzer.builder.subprocess.run")
     def test_visual_audit_is_normalized_and_included_in_generation_telemetry(
@@ -2443,7 +2487,10 @@ class TestAnalysisBoundary:
         mock_run: MagicMock,
         mock_download: MagicMock,
         tmp_path: Path,
+        monkeypatch: pytest.MonkeyPatch,
+        relative_artifacts: bool,
     ) -> None:
+        monkeypatch.chdir(tmp_path)
         target = make_report_target(tmp_path)
         image_url = "https://i.redd.it/demo.png"
         retained_image_url = "https://i.redd.it/retained.png"
@@ -2477,7 +2524,12 @@ class TestAnalysisBoundary:
         def run(command: list[str], **_kwargs: object) -> subprocess.CompletedProcess[str]:
             nonlocal call_count
             call_count += 1
+            sandbox = Path(str(_kwargs["cwd"]))
+            for index, argument in enumerate(command[:-1]):
+                if argument == "--attachment":
+                    assert (sandbox / command[index + 1]).is_file()
             usage_path = Path(command[command.index("--usage-output-file") + 1])
+            assert usage_path.is_absolute()
             if call_count == 1:
                 usage_path.write_text(
                     json.dumps(
@@ -2637,7 +2689,8 @@ class TestAnalysisBoundary:
         mock_download.side_effect = download
         mock_run.side_effect = run
 
-        result = analyze_job(job, artifacts_dir=tmp_path / "artifacts")
+        artifacts_dir = Path("artifacts") if relative_artifacts else tmp_path / "artifacts"
+        result = analyze_job(job, artifacts_dir=artifacts_dir)
 
         assert result.status == "published", result.message
         assert call_count == 2
