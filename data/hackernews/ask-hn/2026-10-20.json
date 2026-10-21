@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-21T06:50:46.770093+00:00",
+  "last_fetched": "2026-10-21T12:45:42.688701+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -37,8 +37,8 @@
       "title": "Ask HN: Time to read those programming books?",
       "subreddit": "ask-hn",
       "author": "blinkbat",
-      "score": 4,
-      "num_comments": 9,
+      "score": 5,
+      "num_comments": 10,
       "permalink": "https://news.ycombinator.com/item?id=50170094",
       "url": "https://news.ycombinator.com/item?id=50170094",
       "selftext": "As llm usage becomes the way we all program and reading code becomes more valuable than writing it, what programming books would you recommend to boost this particular skill?",
@@ -47,14 +47,6 @@
       "time": 1792518816,
       "created_at": "2026-10-20T17:53:36+00:00",
       "comments_data": [
-        {
-          "id": "50176387",
-          "author": "vismit2000",
-          "body": "'Code' by Charles Petzold",
-          "score": 0,
-          "time": 1792560167,
-          "parent": "50170094"
-        },
         {
           "id": "50170410",
           "author": "jjice",
@@ -69,6 +61,14 @@
           "body": "Will we even read code once AI just generates platform native executable binaries using a blackbox AI optimized compiler we have no access to?\nSeems we will be writing programs using some kind of logical formal methods[1] and generating the code without ever looking at it and testing the system properties. I imagine AI will make its own intermediate programming language that benefits it the most instead of human readability\n[1] https://forge-fm.github.io/book/2026/ (https://forge-fm.github.io/book/2026/)",
           "score": 0,
           "time": 1792522336,
+          "parent": "50170094"
+        },
+        {
+          "id": "50176387",
+          "author": "vismit2000",
+          "body": "'Code' by Charles Petzold",
+          "score": 0,
+          "time": 1792560167,
           "parent": "50170094"
         },
         {
@@ -139,8 +139,8 @@
       "title": "Tell HN: 2x PHP RCE CVEs with CVSS 10.0 Incoming",
       "subreddit": "ask-hn",
       "author": "petecooper",
-      "score": 195,
-      "num_comments": 30,
+      "score": 236,
+      "num_comments": 36,
       "permalink": "https://news.ycombinator.com/item?id=50167754",
       "url": "https://news.ycombinator.com/item?id=50167754",
       "selftext": "A reliable source has indicated an announcement is scheduled for 22 October 2026 at 18:00 CEST regarding 2x PHP RCEs with a CVSS score of 10.0.\nI have no evidence beyond \"source: trust me, bro\", but if you're running PHP in production, be ready to update as a priority.\nThese CVEs reportedly relate to remote code execution in all affected PHP versions from PHP 5 onwards.\nThese are the two reserved CVEs for the reported upcoming announcement:\nCVE-2026-109618\nCVE-2026-109619",
@@ -155,6 +155,14 @@
           "body": "There comes at point at which it is better for everyone to just disclose the details and pursue Full Disclosure. I think we reached that point hours ago.\nIt has been incredibly frustrating watching Twitter and that (potentially, I don't know how reliable the leaks are) being a better information source than anything else, at least so that those of us hosting stuff ourselves can try and explore if there are any defensive measures that can be put in place in lieu of any actual fixed builds being released.\nI suspect this is already being actively exploited now.\nhttps://x.com/J4ck3LSyN/status/2112703096443097263 (https://x.com/J4ck3LSyN/status/2112703096443097263)\nThey've now posted a proof of concept as well.",
           "score": 0,
           "time": 1792546590,
+          "parent": "50167754"
+        },
+        {
+          "id": "50178762",
+          "author": "Amsozzer",
+          "body": "Hey guys,\nI have a long day tomorrow auditing all our php websites and so I wrote a simple CLI tool that finds every place php version is mentioned in a repo eg (Dockerfile tags, compose/k8s images, setup-php in CI, .tool-versions, distro php packages, composer) and flags the end of life branches now.\nFloating tags and distro packages can't be labelled deterministically since the tool only reads the files right now so they get labelled \"check manually\"\nI will also update the package as soon as the fixes drop with the updated versioning which will not require anything on the users end (no updates required)\nTill then check out\nnpx php2shell-repo-audit .\nhttps://github.com/Amsozzer1/php2shell-repo-audit (https://github.com/Amsozzer1/php2shell-repo-audit)",
+          "score": 0,
+          "time": 1792579655,
           "parent": "50167754"
         },
         {
@@ -190,19 +198,19 @@
           "parent": "50167754"
         },
         {
-          "id": "50173207",
-          "author": "reddalo",
-          "body": "Official statement released by PHP: https://www.php.net/archive/2026.php#2026-10-20-1 (https://www.php.net/archive/2026.php#2026-10-20-1)\nStatement by CERT-EU: https://cert.europa.eu/publications/security-advisories/2026... (https://cert.europa.eu/publications/security-advisories/2026-018/) :\n>Where immediate patching is not feasible, organisations should consider isolating internet-facing applications from public networks until a fix is available.\nIt seems serious. Well, good luck isolating all PHP applications from the public internet...",
-          "score": 0,
-          "time": 1792533184,
-          "parent": "50167754"
-        },
-        {
           "id": "50173697",
           "author": "unreal37",
           "body": "This was supposed to be embargoed.\nSo your reliable source can't keep a secret.",
           "score": 0,
           "time": 1792536228,
+          "parent": "50167754"
+        },
+        {
+          "id": "50173207",
+          "author": "reddalo",
+          "body": "Official statement released by PHP: https://www.php.net/archive/2026.php#2026-10-20-1 (https://www.php.net/archive/2026.php#2026-10-20-1)\nStatement by CERT-EU: https://cert.europa.eu/publications/security-advisories/2026... (https://cert.europa.eu/publications/security-advisories/2026-018/) :\n>Where immediate patching is not feasible, organisations should consider isolating internet-facing applications from public networks until a fix is available.\nIt seems serious. Well, good luck isolating all PHP applications from the public internet...",
+          "score": 0,
+          "time": 1792533184,
           "parent": "50167754"
         },
         {
@@ -236,14 +244,6 @@
           "score": 0,
           "time": 1792543083,
           "parent": "50167754"
-        },
-        {
-          "id": "50174354",
-          "author": "kevinday",
-          "body": "Quick correction to the text above, PHP says the patch/announcement will be available Wednesday, 21 October 2026 at 14:00 UTC.\nhttps://www.php.net/archive/2026.php#2026-10-20-1 (https://www.php.net/archive/2026.php#2026-10-20-1)",
-          "score": 0,
-          "time": 1792540781,
-          "parent": "50167754"
         }
       ]
     },
@@ -254,7 +254,7 @@
       "title": "Ask HN: Can LeetCode (or similar) keep critical thinking sharp in the AI era?",
       "subreddit": "ask-hn",
       "author": "ML0037",
-      "score": 5,
+      "score": 6,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50167633",
       "url": "https://news.ycombinator.com/item?id=50167633",
@@ -334,7 +334,7 @@
       "subreddit": "ask-hn",
       "author": "marcAKAmarc",
       "score": 4,
-      "num_comments": 6,
+      "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=50166914",
       "url": "https://news.ycombinator.com/item?id=50166914",
       "selftext": "I have heard lots of discussion lately about people who are interested in programming and not at all interested in prompt engineering or managing AI agents. What career options are available for those people? Or in other words, what programming related positions exist that involve minimal use of AI agents and are expected to stay that way (if any)?",
@@ -343,6 +343,14 @@
       "time": 1792506209,
       "created_at": "2026-10-20T14:23:29+00:00",
       "comments_data": [
+        {
+          "id": "50178189",
+          "author": "ckx",
+          "body": "There aren't many professional careers left, however you can always program your own website/app without using AI, and make money through that.",
+          "score": 0,
+          "time": 1792576138,
+          "parent": "50166914"
+        },
         {
           "id": "50174048",
           "author": "vibe_that_works",
@@ -368,19 +376,19 @@
           "parent": "50166914"
         },
         {
-          "id": "50167751",
-          "author": "yonkykong",
-          "body": "You have to be someone with good taste.\nBut if you have good taste, you don't need a paid job.",
-          "score": 0,
-          "time": 1792509632,
-          "parent": "50166914"
-        },
-        {
           "id": "50167514",
           "author": "diamondDrill",
           "body": "no",
           "score": 0,
           "time": 1792508692,
+          "parent": "50166914"
+        },
+        {
+          "id": "50167751",
+          "author": "yonkykong",
+          "body": "You have to be someone with good taste.\nBut if you have good taste, you don't need a paid job.",
+          "score": 0,
+          "time": 1792509632,
           "parent": "50166914"
         }
       ]
@@ -409,7 +417,7 @@
       "title": "GCP Europe-West2 Outage",
       "subreddit": "ask-hn",
       "author": "jack7e",
-      "score": 30,
+      "score": 31,
       "num_comments": 12,
       "permalink": "https://news.ycombinator.com/item?id=50162712",
       "url": "https://news.ycombinator.com/item?id=50162712",
@@ -452,19 +460,19 @@
           "parent": "50162712"
         },
         {
-          "id": "50162831",
-          "author": "stephenheron",
-          "body": "Yup, a few of our services are having \"difficulties\".....",
-          "score": 0,
-          "time": 1792483955,
-          "parent": "50162712"
-        },
-        {
           "id": "50162783",
           "author": "bvshbaby",
           "body": "Yes it's dead, DPD IT confirmed it was down as their services aren't running due to it but no status reports from google yet, weird",
           "score": 0,
           "time": 1792483607,
+          "parent": "50162712"
+        },
+        {
+          "id": "50162831",
+          "author": "stephenheron",
+          "body": "Yup, a few of our services are having \"difficulties\".....",
+          "score": 0,
+          "time": 1792483955,
           "parent": "50162712"
         }
       ]
@@ -704,7 +712,7 @@
       "title": "Ask HN: Dark mode for HN please? (2026)",
       "subreddit": "ask-hn",
       "author": "Stitch4223",
-      "score": 22,
+      "score": 23,
       "num_comments": 11,
       "permalink": "https://news.ycombinator.com/item?id=50160116",
       "url": "https://news.ycombinator.com/item?id=50160116",
@@ -723,19 +731,19 @@
           "parent": "50160116"
         },
         {
-          "id": "50174197",
-          "author": "skunkworker",
-          "body": "I went and used claude a few months ago to resurrect the work on HNES and add more quality of life improvements, formatting, collapsing. All of the work done is out in the open and free for anyone to grab and modify.\nhttps://github.com/skunkworker/HNES/tree/aug_2026_rework (https://github.com/skunkworker/HNES/tree/aug_2026_rework)",
-          "score": 0,
-          "time": 1792539480,
-          "parent": "50160116"
-        },
-        {
           "id": "50160713",
           "author": "leoprctmp",
           "body": "I wrote a simple Tampermonkey script:\n(function() {\n 'use strict';\n // Background Color\n let el = document.querySelector(\"#hnmain\")\n el.style.backgroundColor = \"#1A1B16\"\n el.style.color = \"lightgrey\"\n document.querySelector(\"body\").style.backgroundColor = \"#1A1B16\"\n\n // Font Color\n document.querySelectorAll(\"a\").forEach(one => { one.style.color = \"lightgrey\" })\n document.querySelectorAll(\".c00\").forEach(one => { one.style.color = \"lightgrey\" })\n})();",
           "score": 0,
           "time": 1792463896,
+          "parent": "50160116"
+        },
+        {
+          "id": "50174197",
+          "author": "skunkworker",
+          "body": "I went and used claude a few months ago to resurrect the work on HNES and add more quality of life improvements, formatting, collapsing. All of the work done is out in the open and free for anyone to grab and modify.\nhttps://github.com/skunkworker/HNES/tree/aug_2026_rework (https://github.com/skunkworker/HNES/tree/aug_2026_rework)",
+          "score": 0,
+          "time": 1792539480,
           "parent": "50160116"
         },
         {
@@ -779,7 +787,7 @@
       "title": "Ask HN: What have you built privately with AI that you'd like to share?",
       "subreddit": "ask-hn",
       "author": "erelong",
-      "score": 7,
+      "score": 8,
       "num_comments": 21,
       "permalink": "https://news.ycombinator.com/item?id=50159886",
       "url": "https://news.ycombinator.com/item?id=50159886",
@@ -798,14 +806,6 @@
           "parent": "50159886"
         },
         {
-          "id": "50175602",
-          "author": "unix1",
-          "body": "Few weekend micro-projects\n1. https://umoji.org/ (https://umoji.org/) - find, compose and pick emoji text that you can copy, share or bookmark (I got tired of tracking, popups, ads from various emoji picker websites).\n2. https://blug.blog/ (https://blug.blog/) - generate static blog and deploy on Cloudflare (I got tired of wrestling with Wordpress and more involved machinery for a very simple task).\n3. https://bartist.app/ (https://bartist.app/) - real time BART (SF Bay Area) train departure times iOS app.\nThere are more, some not so micro. Ask again in few weeks/months.",
-          "score": 0,
-          "time": 1792552106,
-          "parent": "50159886"
-        },
-        {
           "id": "50164955",
           "author": "joshstrange",
           "body": "Here are some of the things I’ve build recently, all currently private but mostly because I’m scratching my own itch\n- Macros: MyFitnessPal replacement, track my macros, meals/presets/custom food items, also pulls from OpenFoodFacts. MCP support so I can tell an agent “Log my normal breakfast” or “log the sweet potato beef meal for dinner with 2 tortillas”\n- Foreman: My software factory (https://joshstrange.com/2026/10/12/there-are-many-like-it-bu... (https://joshstrange.com/2026/10/12/there-are-many-like-it-but-this-one-is-mine/)). Every one of these is highly custom/personal so it probably won’t be interesting for me to go into a lot of detail. But suffice to say, I am successfully shipping code through my factory for both my side business and my day job.\n- Quartermaster: tool to scrape (via a browser extension) my purchase history at various retailers, including Amazon and Kroger (grocery store). Small web UI to view/filter the data, MCP to interact. I can see purchase price over time, quantity over time, and even things like “price per TB over time” for things like hard drives due to a tagging system that lets me slice and dice the data however I want.\n- Vendors: a small web app for my mom to track the vendors she recommends (she’s a real estate agent) to clients so that when they ask for a painter, she can go filter down to the painters, select the people she wants to recommend, and copy all of their contact information into a text/email.\n- Amdi: my catch-all app/platform for things small enough to not warrant (yet) their own project. This contains my own little chat interface that hooks into all the data sources above and provides rich UI for certain operations. It’s incredibly custom to me and how I think/work. My favorite features are all around my plex library, letting me cut a clip, find a clip (smart subtitle search), find out what else I’ve seen an actor in for the show I’m watching (using my watch history), and a bunch of metadata around my media exposed to the LLM.",
@@ -814,11 +814,11 @@
           "parent": "50159886"
         },
         {
-          "id": "50174911",
-          "author": "flippant",
-          "body": "I go down Wikipedia rabbit holes frequently. I thought it would be cool to see diffs of articles over time.\nhttps://memoryhole.app/wiki-timeline/compare?title=Theranos&... (https://memoryhole.app/wiki-timeline/compare?title=Theranos&year=2015&snapshot=2015-11-01)",
+          "id": "50175602",
+          "author": "unix1",
+          "body": "Few weekend micro-projects\n1. https://umoji.org/ (https://umoji.org/) - find, compose and pick emoji text that you can copy, share or bookmark (I got tired of tracking, popups, ads from various emoji picker websites).\n2. https://blug.blog/ (https://blug.blog/) - generate static blog and deploy on Cloudflare (I got tired of wrestling with Wordpress and more involved machinery for a very simple task).\n3. https://bartist.app/ (https://bartist.app/) - real time BART (SF Bay Area) train departure times iOS app.\nThere are more, some not so micro. Ask again in few weeks/months.",
           "score": 0,
-          "time": 1792545629,
+          "time": 1792552106,
           "parent": "50159886"
         },
         {
@@ -843,6 +843,14 @@
           "body": "Been working on a self hosted discord alternative for the past 6 months. Comes with most features you would expect of chat software (and a few more). Testing native clients right now https://github.com/Chatter-Org/Chatter (https://github.com/Chatter-Org/Chatter)",
           "score": 0,
           "time": 1792505444,
+          "parent": "50159886"
+        },
+        {
+          "id": "50174911",
+          "author": "flippant",
+          "body": "I go down Wikipedia rabbit holes frequently. I thought it would be cool to see diffs of articles over time.\nhttps://memoryhole.app/wiki-timeline/compare?title=Theranos&... (https://memoryhole.app/wiki-timeline/compare?title=Theranos&year=2015&snapshot=2015-11-01)",
+          "score": 0,
+          "time": 1792545629,
           "parent": "50159886"
         },
         {
