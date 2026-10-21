@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-21T01:03:39.472615+00:00",
+  "last_fetched": "2026-10-21T06:50:46.770093+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -38,7 +38,7 @@
       "subreddit": "ask-hn",
       "author": "blinkbat",
       "score": 4,
-      "num_comments": 8,
+      "num_comments": 9,
       "permalink": "https://news.ycombinator.com/item?id=50170094",
       "url": "https://news.ycombinator.com/item?id=50170094",
       "selftext": "As llm usage becomes the way we all program and reading code becomes more valuable than writing it, what programming books would you recommend to boost this particular skill?",
@@ -48,11 +48,11 @@
       "created_at": "2026-10-20T17:53:36+00:00",
       "comments_data": [
         {
-          "id": "50170924",
-          "author": "hackermailman",
-          "body": "Will we even read code once AI just generates platform native executable binaries using a blackbox AI optimized compiler we have no access to?\nSeems we will be writing programs using some kind of logical formal methods[1] and generating the code without ever looking at it and testing the system properties. I imagine AI will make its own intermediate programming language that benefits it the most instead of human readability\n[1] https://forge-fm.github.io/book/2026/ (https://forge-fm.github.io/book/2026/)",
+          "id": "50176387",
+          "author": "vismit2000",
+          "body": "'Code' by Charles Petzold",
           "score": 0,
-          "time": 1792522336,
+          "time": 1792560167,
           "parent": "50170094"
         },
         {
@@ -61,6 +61,14 @@
           "body": "I find that LLMs can write poorly structured code if not given a good foundation to do so. The existing code in a repo is what the LLM will see and generally output similar code to.\nGiven that, I'd recommend the mainstays on good general software design. One of my favorites is \"A Philosophy of Software Design\" by John Ousterhout. Good general design practices.\nOther than that, I think a lot of books generally stay relevant. If it's topic specific, it'll give you a good background on understanding of that topic so you can make sure you or an agent are making sound decisions. Architecture of course is more valuable than ever.",
           "score": 0,
           "time": 1792520237,
+          "parent": "50170094"
+        },
+        {
+          "id": "50170924",
+          "author": "hackermailman",
+          "body": "Will we even read code once AI just generates platform native executable binaries using a blackbox AI optimized compiler we have no access to?\nSeems we will be writing programs using some kind of logical formal methods[1] and generating the code without ever looking at it and testing the system properties. I imagine AI will make its own intermediate programming language that benefits it the most instead of human readability\n[1] https://forge-fm.github.io/book/2026/ (https://forge-fm.github.io/book/2026/)",
+          "score": 0,
+          "time": 1792522336,
           "parent": "50170094"
         },
         {
@@ -127,12 +135,127 @@
     {
       "source": "hackernews",
       "stream": "ask-hn",
+      "id": "50167754",
+      "title": "Tell HN: 2x PHP RCE CVEs with CVSS 10.0 Incoming",
+      "subreddit": "ask-hn",
+      "author": "petecooper",
+      "score": 195,
+      "num_comments": 30,
+      "permalink": "https://news.ycombinator.com/item?id=50167754",
+      "url": "https://news.ycombinator.com/item?id=50167754",
+      "selftext": "A reliable source has indicated an announcement is scheduled for 22 October 2026 at 18:00 CEST regarding 2x PHP RCEs with a CVSS score of 10.0.\nI have no evidence beyond \"source: trust me, bro\", but if you're running PHP in production, be ready to update as a priority.\nThese CVEs reportedly relate to remote code execution in all affected PHP versions from PHP 5 onwards.\nThese are the two reserved CVEs for the reported upcoming announcement:\nCVE-2026-109618\nCVE-2026-109619",
+      "is_self": true,
+      "is_video": false,
+      "time": 1792509635,
+      "created_at": "2026-10-20T15:20:35+00:00",
+      "comments_data": [
+        {
+          "id": "50175009",
+          "author": "lol768",
+          "body": "There comes at point at which it is better for everyone to just disclose the details and pursue Full Disclosure. I think we reached that point hours ago.\nIt has been incredibly frustrating watching Twitter and that (potentially, I don't know how reliable the leaks are) being a better information source than anything else, at least so that those of us hosting stuff ourselves can try and explore if there are any defensive measures that can be put in place in lieu of any actual fixed builds being released.\nI suspect this is already being actively exploited now.\nhttps://x.com/J4ck3LSyN/status/2112703096443097263 (https://x.com/J4ck3LSyN/status/2112703096443097263)\nThey've now posted a proof of concept as well.",
+          "score": 0,
+          "time": 1792546590,
+          "parent": "50167754"
+        },
+        {
+          "id": "50176717",
+          "author": "vincent_s",
+          "body": "Two things you can do now:\n1. Turn off session upload progress\n2. Block multipart requests at the web server\nMore info:\nhttps://www.vincentschmalbach.com/cve-2026-109618-and-cve-20... (https://www.vincentschmalbach.com/cve-2026-109618-and-cve-2026-109619-what-you-should-do-now/)",
+          "score": 0,
+          "time": 1792563343,
+          "parent": "50167754"
+        },
+        {
+          "id": "50174624",
+          "author": "phab",
+          "body": "Tweet allegedly showing exploit at work:\nhttps://x.com/k_firsov/status/2112641845926989944 (https://x.com/k_firsov/status/2112641845926989944)\n(video). Yikes",
+          "score": 0,
+          "time": 1792543085,
+          "parent": "50167754"
+        },
+        {
+          "id": "50174955",
+          "author": "potaytopotahto",
+          "body": "Looks like details about the exploits have already leaked on twitter, if the info is correct then it can be mitigated by setting session.upload_progress.enabled = Off until you get the opportunity to update",
+          "score": 0,
+          "time": 1792546054,
+          "parent": "50167754"
+        },
+        {
+          "id": "50175031",
+          "author": "lioeters",
+          "body": "This vulnerability has already been reproduced by a third party with LLM assist. And of course they posted the details on Twitter - and someone else posted the link here just now. So the cat's out of the bag.\nThat means roughly 70% of all websites (WordPress, Laravel, Drupal, Joomla, Magento) are currently open to remote code execution. About half of that is running an older PHP 5 and 7 that apparently will not receive the urgent security patch.\n> Two heap use-after-free primitives in PHP's `session.upload_progress` handler\nGuess it's time to rewrite PHP in Rust. Claude, make no mistakes, you can do it!",
+          "score": 0,
+          "time": 1792546825,
+          "parent": "50167754"
+        },
+        {
+          "id": "50173207",
+          "author": "reddalo",
+          "body": "Official statement released by PHP: https://www.php.net/archive/2026.php#2026-10-20-1 (https://www.php.net/archive/2026.php#2026-10-20-1)\nStatement by CERT-EU: https://cert.europa.eu/publications/security-advisories/2026... (https://cert.europa.eu/publications/security-advisories/2026-018/) :\n>Where immediate patching is not feasible, organisations should consider isolating internet-facing applications from public networks until a fix is available.\nIt seems serious. Well, good luck isolating all PHP applications from the public internet...",
+          "score": 0,
+          "time": 1792533184,
+          "parent": "50167754"
+        },
+        {
+          "id": "50173697",
+          "author": "unreal37",
+          "body": "This was supposed to be embargoed.\nSo your reliable source can't keep a secret.",
+          "score": 0,
+          "time": 1792536228,
+          "parent": "50167754"
+        },
+        {
+          "id": "50173117",
+          "author": "HotGarbage",
+          "body": "https://www.php.net/archive/2026.php#2026-10-20-1 (https://www.php.net/archive/2026.php#2026-10-20-1)",
+          "score": 0,
+          "time": 1792532696,
+          "parent": "50167754"
+        },
+        {
+          "id": "50173055",
+          "author": "ShowalkKama",
+          "body": "Those CVEs refer to vulnerabilities in wordpress plugins (not php) and the vulnerabilities are not RCEs.\nAm I missing something?\nhttps://nvd.nist.gov/vuln/detail/cve-2026-9618 (https://nvd.nist.gov/vuln/detail/cve-2026-9618)\nhttps://nvd.nist.gov/vuln/detail/cve-2026-9619 (https://nvd.nist.gov/vuln/detail/cve-2026-9619)",
+          "score": 0,
+          "time": 1792532306,
+          "parent": "50167754"
+        },
+        {
+          "id": "50171097",
+          "author": "SchizoDuckie",
+          "body": "Well great thanks.\nI need details now. Where, core? Extensions? What config?\nMy guess is on some request filtering thing",
+          "score": 0,
+          "time": 1792523038,
+          "parent": "50167754"
+        },
+        {
+          "id": "50174623",
+          "author": "archon810",
+          "body": "Here's the alleged demo video. It's called php2shell https://x.com/k_firsov/status/2112641845926989944 (https://x.com/k_firsov/status/2112641845926989944) and it's scary as hell.",
+          "score": 0,
+          "time": 1792543083,
+          "parent": "50167754"
+        },
+        {
+          "id": "50174354",
+          "author": "kevinday",
+          "body": "Quick correction to the text above, PHP says the patch/announcement will be available Wednesday, 21 October 2026 at 14:00 UTC.\nhttps://www.php.net/archive/2026.php#2026-10-20-1 (https://www.php.net/archive/2026.php#2026-10-20-1)",
+          "score": 0,
+          "time": 1792540781,
+          "parent": "50167754"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
       "id": "50167633",
       "title": "Ask HN: Can LeetCode (or similar) keep critical thinking sharp in the AI era?",
       "subreddit": "ask-hn",
       "author": "ML0037",
-      "score": 4,
-      "num_comments": 1,
+      "score": 5,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50167633",
       "url": "https://news.ycombinator.com/item?id=50167633",
       "selftext": "These days, at least in my current situation, LC feels less like interview preparation and more like a mental gym for technical thinking, i don't like the LC grind, so i just do 1/2 problems per week just for fun. Have you felt this too, or are there better ways to develop (don't lose) this way of thinking?",
@@ -141,6 +264,14 @@
       "time": 1792509178,
       "created_at": "2026-10-20T15:12:58+00:00",
       "comments_data": [
+        {
+          "id": "50176406",
+          "author": "vismit2000",
+          "body": "Advent of Code: https://adventofcode.com/ (https://adventofcode.com/)\nEverybody Codes: https://everybody.codes/events (https://everybody.codes/events)",
+          "score": 0,
+          "time": 1792560298,
+          "parent": "50167633"
+        },
         {
           "id": "50169300",
           "author": "hackermailman",
@@ -413,7 +544,7 @@
       "subreddit": "ask-hn",
       "author": "thechairman12",
       "score": 9,
-      "num_comments": 15,
+      "num_comments": 16,
       "permalink": "https://news.ycombinator.com/item?id=50161627",
       "url": "https://news.ycombinator.com/item?id=50161627",
       "selftext": "I often find chatgpt.com has greater \"intelligence\" than codex.\nI've found this to be true for the past year or two now, and I was wondering if anyone has found a better solution than copying context to and from chatgpt.com. The \"Pro\" level (or whatever the max level is at the time) consistently has better insights than the agent, but immensely limited tool calling compared to the agent. Marrying the two of these together unlocks a lot of potential, but I really just want this intelligence to live on my laptop, instead of me being the intermediary.",
@@ -422,6 +553,14 @@
       "time": 1792473368,
       "created_at": "2026-10-20T05:16:08+00:00",
       "comments_data": [
+        {
+          "id": "50162082",
+          "author": "mickeyp",
+          "body": "One thing you can try is to build specialised subagents to help tease out more thinking when you're stuck with a model with limited reasoning budget as all the codex sub models seem to be (compared to API) --- but I have no firm, hard evidence of this so treat it as guesswork on my part.\nLet me explain.\nCreat a subagent that is told to just mull about a subject. This can be a simple file.\nHave the agent expound on it with its own thoughts and additions.\nNow rinse and repeat: give the file to another blank 'reasoning' subagent; then another; and so on.\nThis will eventually reach a point where they are unlikely to add more real value.\nI believe they've locked down temperature and other sampling parameters so you cannot tweak these to get it to consider more unusual approaches.\nThe absolute best approach is a second model that is of a different family. Try Deepseek, GLM, Qwen, etc. and have it add its own thoughts. As a bonus, these models do not hide their reasoning. Put that in a file also.",
+          "score": 0,
+          "time": 1792477506,
+          "parent": "50161627"
+        },
         {
           "id": "50166831",
           "author": "heylittlepan",
@@ -439,19 +578,19 @@
           "parent": "50161627"
         },
         {
-          "id": "50162082",
-          "author": "mickeyp",
-          "body": "One thing you can try is to build specialised subagents to help tease out more thinking when you're stuck with a model with limited reasoning budget as all the codex sub models seem to be (compared to API) --- but I have no firm, hard evidence of this so treat it as guesswork on my part.\nLet me explain.\nCreat a subagent that is told to just mull about a subject. This can be a simple file.\nHave the agent expound on it with its own thoughts and additions.\nNow rinse and repeat: give the file to another blank 'reasoning' subagent; then another; and so on.\nThis will eventually reach a point where they are unlikely to add more real value.\nI believe they've locked down temperature and other sampling parameters so you cannot tweak these to get it to consider more unusual approaches.\nThe absolute best approach is a second model that is of a different family. Try Deepseek, GLM, Qwen, etc. and have it add its own thoughts. As a bonus, these models do not hide their reasoning. Put that in a file also.",
-          "score": 0,
-          "time": 1792477506,
-          "parent": "50161627"
-        },
-        {
           "id": "50165780",
           "author": "speedwayus",
           "body": "I made a shared memory that put memories related to the conversation and topic in each turn with hooks in claude code, that way my agents always have frees memories, no matter if im in claude, cursor or grok, it always remember my stuff",
           "score": 0,
           "time": 1792501512,
+          "parent": "50161627"
+        },
+        {
+          "id": "50175074",
+          "author": "4lx87",
+          "body": "In case you're not aware, Codex lets you set the reasoning effort in the model picker or with codex --config 'model_reasoning_effort=\"high\"'.",
+          "score": 0,
+          "time": 1792547299,
           "parent": "50161627"
         },
         {
@@ -472,7 +611,7 @@
       "subreddit": "ask-hn",
       "author": "otherayden",
       "score": 2,
-      "num_comments": 6,
+      "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=50161254",
       "url": "https://news.ycombinator.com/item?id=50161254",
       "selftext": "I recently transitioned into doing most of my work via SSH running on an old server I've had lying around my house. Currently using tmux, ssh, neovim for file editing, and switching between claude code and codex for terminal coding agents. Is this as good of a setup as one can get? Anything I'm missing out on?",
@@ -481,6 +620,14 @@
       "time": 1792469414,
       "created_at": "2026-10-20T04:10:14+00:00",
       "comments_data": [
+        {
+          "id": "50175814",
+          "author": "ecesena",
+          "body": "I have a tmux split in 4. Personally I just use claude, but in any 4th you can run whatever you pref.\nEach agent has its own workspace (run in a diff dir), but they all share memory, skills, and can of course read each other work.\nFour is nothing special, just easy to still read in a 13” screen, easy to switch each pane to full screen and so on.\nEdit: forgot the ssh part. Same setup on my mac, on my server, at work. So my UX is pretty much always the same. Most of the time it’s via ssh, yes, only rarely I use my mac.",
+          "score": 0,
+          "time": 1792554069,
+          "parent": "50161254"
+        },
         {
           "id": "50163161",
           "author": "artemave",
@@ -568,14 +715,6 @@
       "created_at": "2026-10-20T01:09:40+00:00",
       "comments_data": [
         {
-          "id": "50174197",
-          "author": "skunkworker",
-          "body": "I went and used claude a few months ago to resurrect the work on HNES and add more quality of life improvements, formatting, collapsing. All of the work done is out in the open and free for anyone to grab and modify.\nhttps://github.com/skunkworker/HNES/tree/aug_2026_rework (https://github.com/skunkworker/HNES/tree/aug_2026_rework)",
-          "score": 0,
-          "time": 1792539480,
-          "parent": "50160116"
-        },
-        {
           "id": "50160152",
           "author": "Bender",
           "body": "I think the easiest option for now will have to be this [1] assuming one already has uBlock Origin. Adjust as desired.\n[1] - https://news.ycombinator.com/item?id=49686631 (https://news.ycombinator.com/item?id=49686631)",
@@ -584,11 +723,11 @@
           "parent": "50160116"
         },
         {
-          "id": "50172600",
-          "author": "ernsheong",
-          "body": "This isn't a direct solution, but here is a HN mirror with dark mode support: https://hnmirror.com/ (https://hnmirror.com/)\nUse it if you like it ;)",
+          "id": "50174197",
+          "author": "skunkworker",
+          "body": "I went and used claude a few months ago to resurrect the work on HNES and add more quality of life improvements, formatting, collapsing. All of the work done is out in the open and free for anyone to grab and modify.\nhttps://github.com/skunkworker/HNES/tree/aug_2026_rework (https://github.com/skunkworker/HNES/tree/aug_2026_rework)",
           "score": 0,
-          "time": 1792530015,
+          "time": 1792539480,
           "parent": "50160116"
         },
         {
@@ -597,6 +736,14 @@
           "body": "I wrote a simple Tampermonkey script:\n(function() {\n 'use strict';\n // Background Color\n let el = document.querySelector(\"#hnmain\")\n el.style.backgroundColor = \"#1A1B16\"\n el.style.color = \"lightgrey\"\n document.querySelector(\"body\").style.backgroundColor = \"#1A1B16\"\n\n // Font Color\n document.querySelectorAll(\"a\").forEach(one => { one.style.color = \"lightgrey\" })\n document.querySelectorAll(\".c00\").forEach(one => { one.style.color = \"lightgrey\" })\n})();",
           "score": 0,
           "time": 1792463896,
+          "parent": "50160116"
+        },
+        {
+          "id": "50172600",
+          "author": "ernsheong",
+          "body": "This isn't a direct solution, but here is a HN mirror with dark mode support: https://hnmirror.com/ (https://hnmirror.com/)\nUse it if you like it ;)",
+          "score": 0,
+          "time": 1792530015,
           "parent": "50160116"
         },
         {
@@ -632,8 +779,8 @@
       "title": "Ask HN: What have you built privately with AI that you'd like to share?",
       "subreddit": "ask-hn",
       "author": "erelong",
-      "score": 6,
-      "num_comments": 19,
+      "score": 7,
+      "num_comments": 21,
       "permalink": "https://news.ycombinator.com/item?id=50159886",
       "url": "https://news.ycombinator.com/item?id=50159886",
       "selftext": "An idea has circulated that a lot of us are just privately building software for our own projects without sharing the build\nWe could however share the ideas of what we're building so that other people could build sometime similar to fill their own needs or the ideas could be incorporated in to other projects\nA lot of random things come to mind for me, like I started (but for now abandoned) some kind of picture icon viewer by date on Linux desktop. A lot of smartphone file viewers display pics this way automatically and it lets you look at what pics you've accumulated day by day, but I didn't see this feature on different Linux file viewers (and it was apparently a requested feature others were looking for).\nSo what have you built privately with AI that you might like to share ideas about?\nedit: alternatively, are there any things you'd like to see others create (and I suppose a comment about what holds you back from creating them)?",
@@ -651,11 +798,27 @@
           "parent": "50159886"
         },
         {
+          "id": "50175602",
+          "author": "unix1",
+          "body": "Few weekend micro-projects\n1. https://umoji.org/ (https://umoji.org/) - find, compose and pick emoji text that you can copy, share or bookmark (I got tired of tracking, popups, ads from various emoji picker websites).\n2. https://blug.blog/ (https://blug.blog/) - generate static blog and deploy on Cloudflare (I got tired of wrestling with Wordpress and more involved machinery for a very simple task).\n3. https://bartist.app/ (https://bartist.app/) - real time BART (SF Bay Area) train departure times iOS app.\nThere are more, some not so micro. Ask again in few weeks/months.",
+          "score": 0,
+          "time": 1792552106,
+          "parent": "50159886"
+        },
+        {
           "id": "50164955",
           "author": "joshstrange",
           "body": "Here are some of the things I’ve build recently, all currently private but mostly because I’m scratching my own itch\n- Macros: MyFitnessPal replacement, track my macros, meals/presets/custom food items, also pulls from OpenFoodFacts. MCP support so I can tell an agent “Log my normal breakfast” or “log the sweet potato beef meal for dinner with 2 tortillas”\n- Foreman: My software factory (https://joshstrange.com/2026/10/12/there-are-many-like-it-bu... (https://joshstrange.com/2026/10/12/there-are-many-like-it-but-this-one-is-mine/)). Every one of these is highly custom/personal so it probably won’t be interesting for me to go into a lot of detail. But suffice to say, I am successfully shipping code through my factory for both my side business and my day job.\n- Quartermaster: tool to scrape (via a browser extension) my purchase history at various retailers, including Amazon and Kroger (grocery store). Small web UI to view/filter the data, MCP to interact. I can see purchase price over time, quantity over time, and even things like “price per TB over time” for things like hard drives due to a tagging system that lets me slice and dice the data however I want.\n- Vendors: a small web app for my mom to track the vendors she recommends (she’s a real estate agent) to clients so that when they ask for a painter, she can go filter down to the painters, select the people she wants to recommend, and copy all of their contact information into a text/email.\n- Amdi: my catch-all app/platform for things small enough to not warrant (yet) their own project. This contains my own little chat interface that hooks into all the data sources above and provides rich UI for certain operations. It’s incredibly custom to me and how I think/work. My favorite features are all around my plex library, letting me cut a clip, find a clip (smart subtitle search), find out what else I’ve seen an actor in for the show I’m watching (using my watch history), and a bunch of metadata around my media exposed to the LLM.",
           "score": 0,
           "time": 1792497430,
+          "parent": "50159886"
+        },
+        {
+          "id": "50174911",
+          "author": "flippant",
+          "body": "I go down Wikipedia rabbit holes frequently. I thought it would be cool to see diffs of articles over time.\nhttps://memoryhole.app/wiki-timeline/compare?title=Theranos&... (https://memoryhole.app/wiki-timeline/compare?title=Theranos&year=2015&snapshot=2015-11-01)",
+          "score": 0,
+          "time": 1792545629,
           "parent": "50159886"
         },
         {
@@ -667,19 +830,19 @@
           "parent": "50159886"
         },
         {
-          "id": "50166744",
-          "author": "sphyrna-029",
-          "body": "Been working on a self hosted discord alternative for the past 6 months. Comes with most features you would expect of chat software (and a few more). Testing native clients right now https://github.com/Chatter-Org/Chatter (https://github.com/Chatter-Org/Chatter)",
-          "score": 0,
-          "time": 1792505444,
-          "parent": "50159886"
-        },
-        {
           "id": "50163042",
           "author": "illwrks",
           "body": "I’ve built an SVG animation tool. Something akin to a basic Flash tool. \nIt was originally a rudimentary tool I coded by hand, then used AI to tighten up, fix issues and evolve into something I’m happier with, it’s probably 90% AI now, with features created bit by bit rather than one-shot prompted.\nIt’s a niche tool for my use; to create animated image assets in a fraction of the file size to a comparable GIF.\nThere are still issues with preparing work in Illustrator so my next step will be to work ok some form of plug-in that can export prepared artwork for use in the animator.",
           "score": 0,
           "time": 1792485594,
+          "parent": "50159886"
+        },
+        {
+          "id": "50166744",
+          "author": "sphyrna-029",
+          "body": "Been working on a self hosted discord alternative for the past 6 months. Comes with most features you would expect of chat software (and a few more). Testing native clients right now https://github.com/Chatter-Org/Chatter (https://github.com/Chatter-Org/Chatter)",
+          "score": 0,
+          "time": 1792505444,
           "parent": "50159886"
         },
         {
@@ -720,22 +883,6 @@
           "body": "I built a SuperDisplay alternative for MacOS to use my Samsung tablet as a secondary display — feels just like plugging in a monitor now. I also put together an extremely specialised video streaming host and client to get better quality and stability than Discord's screenshare, alongside an Android TV app to cast this video stream. (It has a bunch of features like media control passthrough and display/window selection on the receiver side; things no existing application implements because of how intrusive it'd be for the sender.)",
           "score": 0,
           "time": 1792492680,
-          "parent": "50159886"
-        },
-        {
-          "id": "50162141",
-          "author": "jmathai",
-          "body": "I built this for my own private use but it’s since become public.\nFree to use, no accounts, no subscriptions.\nhttps://trysojourn.app (https://trysojourn.app)\nI was using Claude to bounce ideas for parenting with a focus on biblical principals. Trying to really understand how to discipline my children without provoking them, for example.\nI was pleased with the experience but Claude did not make it easy for me to dive deeper into scripture. I wanted a different LLM chatbot experience that was focused on less chatting and more scripture reading.\nI TestFlighted it out and friends liked it so I ended up publishing it.",
-          "score": 0,
-          "time": 1792477985,
-          "parent": "50159886"
-        },
-        {
-          "id": "50161066",
-          "author": "CableNinja",
-          "body": "I just picked up a project car, and have decided to use AI as my side-mechanic and helper. I had it build a local site, which has a checklist with subtasks, note and photo abilities and parts tracker. The checklist was built up by ai based on what ive been telling it, etc. I have tuned the project ai to handle part searches, identification, and general help. I just added a trigger for things like adding notes and photos, so that when i add them, a request is fired off to the ai, and it will analyze, id, etc. Ive also given myself a way to directly prompt the ai from the site for help, instructions, diagrams, whatever. Ive got a little thinkcentre pc in the garage where the site is accessible, and its also available on my phone for pictures. Its still early in the car project itself but its already been helpful in identifying the engine, and found 2 issues i overlooked.\nAlso ai helped me build an offgrid setup for said garage because the garage has no power. Helped me size things out, gave me diagrams, etc. Also has already provided me with a way to setup an automatic generator startup when the battery is low. I havent set that up yet, but its in the pipeline.\nI started and then abandoned a really deep circuit simulator, which was going to be able to emulate full actions and code eventually.\naaaand lastly, ive spent the last 2 months in the evenings with ai building a complex rts game in godot, its almost 1.0 ready. Sadly the ai im using has been really struggling to turn out quality 3d models, so thats probably going to be on me, which will delay significantly.",
-          "score": 0,
-          "time": 1792467584,
           "parent": "50159886"
         }
       ]
