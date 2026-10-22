@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-22T06:50:32.273636+00:00",
+  "last_fetched": "2026-10-22T12:46:02.729485+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,8 +10,8 @@
       "title": "Show HN: I built a Markdown and raw HTML blog platform scoring 99 on PageSpeed",
       "subreddit": "show-hn",
       "author": "textlanes33",
-      "score": 18,
-      "num_comments": 14,
+      "score": 23,
+      "num_comments": 21,
       "permalink": "https://news.ycombinator.com/item?id=50189175",
       "url": "https://bloffy.co/en",
       "selftext": "Hello. I built a blogging platform on my own over two years.\nI like running my blog, but I couldn't find a blogging platform I really liked.\nFirst. I thought a blog had to be really lightweight.\nFortunately, after a lot of effort, I was able to achieve satisfactory results. (99 to 100 score)\nHere is a sample blog: https://bloffy.bloffy.blog/en (https://bloffy.bloffy.blog/en)\nYou can check it with PageSpeed Insights: https://pagespeed.web.dev/analysis?url=https://bloffy.bloffy... (https://pagespeed.web.dev/analysis?url=https://bloffy.bloffy.blog/en)\nSEO score of the sample blog is low because I blocked it from search engine indexing (noindex).\nSecond. I think bloggers should have control over their own blog. The blogging platforms I used had several problems.\nUnnecessary JavaScript chunks. Ads that the platform inserted into my blog, not my own ads. Cannot manage multiple blogs. An editor that makes it hard to write semantic markup. Limited customization options. I was dissatisfied with the difficulty of placing my own ads.\nAnd to solve this, I spent quite a long time researching and developing it on my own, and finally created it. I'm glad to share this launch with HN. I would appreciate any criticism, feedback, and interest.",
@@ -20,6 +20,14 @@
       "time": 1792626095,
       "created_at": "2026-10-21T23:41:35+00:00",
       "comments_data": [
+        {
+          "id": "50194005",
+          "author": "umershaukat67",
+          "body": "nice work man in bringing a raw page to 99 pagespeed. As you are letting bloggers pace their own ads, this will kill your scores.\nToday my own website cmoowls.com hit an LCP of 5.8s with a score of 70. But the LCP element was just a line of text, not an image.\nThe proble, was the element render delay. The first frame actually arrived after the load even, so our analytics already had started loading. Lighthouse counted this in the LCP and it was bad. Then. I fixed this by loading analytics after first paint instead of on loading. And then the next three runs gave me 99, 99, and a 100 (LCP 1.8, 1.8, 1.7).\nBut one small point here: CWV usually comes from Chrome's 28 days of visitors. 99 is just a lab score.",
+          "score": 0,
+          "time": 1792669310,
+          "parent": "50189175"
+        },
         {
           "id": "50191123",
           "author": "YmFzZTY0ZGFkZHk",
@@ -37,6 +45,14 @@
           "parent": "50189175"
         },
         {
+          "id": "50190637",
+          "author": "textlanes33",
+          "body": "There's currently a bug that breaks sign-up on every language version of the site except English. If you'd like to sign up now, please use the English sign-up page and keep the site in English until you're done:\nhttps://bloffy.co/en/workspace/sign-up (https://bloffy.co/en/workspace/sign-up)\nI'm fixing this right now.",
+          "score": 0,
+          "time": 1792638012,
+          "parent": "50189175"
+        },
+        {
           "id": "50191086",
           "author": "CWhiting",
           "body": "The timing on this, given the PHP vulnerability news couldn't be better if you tried.",
@@ -45,11 +61,11 @@
           "parent": "50189175"
         },
         {
-          "id": "50190637",
-          "author": "textlanes33",
-          "body": "There's currently a bug that breaks sign-up on every language version of the site except English. If you'd like to sign up now, please use the English sign-up page and keep the site in English until you're done:\nhttps://bloffy.co/en/workspace/sign-up (https://bloffy.co/en/workspace/sign-up)\nI'm fixing this right now.",
+          "id": "50192449",
+          "author": "martinliucn",
+          "body": "Congrats on the launch! would you pls add a about us page let us know who are building this site.",
           "score": 0,
-          "time": 1792638012,
+          "time": 1792655383,
           "parent": "50189175"
         },
         {
@@ -77,7 +93,7 @@
       "title": "Show HN: CertAvert – Free SSL/TLS tools and certificate expiry alerts",
       "subreddit": "show-hn",
       "author": "asiliev20",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50189110",
       "url": "https://certavert.com",
@@ -189,8 +205,8 @@
       "title": "Show HN: Overdesigned Simple Solitaire",
       "subreddit": "show-hn",
       "author": "fsloth",
-      "score": 4,
-      "num_comments": 6,
+      "score": 5,
+      "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=50187380",
       "url": "https://defaultsolitaire.app/",
       "selftext": "I got irritated by the maximalism and lack of aesthetics present in modern software when trying to find a nice solitaire.\nA solitaire does not need a score, levels - and most of all it does not need to download anything, have user log in or do anything else except maintain game state.\nSo since software comes automatically nowadays, I decided as a weekend project to create the last solitaire I'll ever need.\nThe application is built on Rust so I can compile it to native. But it runs just as well as web app!\nI geeked out completely on design (it may look like \"default\" but that's the point) to create as non-intruding yet aesthetically pleasing experience as I could.\nI might have accidentally put in a complete card design system with a content pipeline (maybe I'll do default blackjack next) - but as a player you only see the one pack of cards.\nAnyway, hope someone here appreciates the minimalistic aesthetics.\nThe game state is saved in the url so if you want to save a nice game you can do it by copypasting the link.\nThe game engine is versioned so if I ever change the engine or state schema there will be support for the current version as well.\nThere _is_ a novelty.\nIf you click the \"teach\" button it shows all the available free moves as arrows.\nHope this is fun for someone!",
@@ -200,6 +216,14 @@
       "created_at": "2026-10-21T20:45:22+00:00",
       "comments_data": [
         {
+          "id": "50193639",
+          "author": "Benjaminsen",
+          "body": "I have made 20+ solitaire games in different contexts since 1999 with the latest version being https://dailyplay.com/play/solitaire (https://dailyplay.com/play/solitaire)\nHere is cheat sheet to make a game people will actually play\n1. The vast majority of players prefer flip one, not flip three.\n2. You want the text on your cards so large as you can.\n3. People expect that if they click a card, it moves to where it can go.\n4. People do not like hard games, give people games that can all be won.\n5. You want your pile to sit on the right - at-least for mobile players, reaching across the screen is annoying.\n6. People WANT the score. I A/B tested this, people hate when there is no scores.\n7. People do not care about sounds.\nThings I like from your versions I am totally going to steal.\n1. Teach is amazing\n2. Showing cards left in the pile\nSuggestions\n1. The teach arrows are to small, people who play this game have bad eyesight on average.\n2. Make teach only show moves that drives the game towards \nthe win state.\n3. Add animations, I have AB tested this and the game performs better if you have the basic set\n4. Make it load faster, people have industrial attention deficit disorder, you loose 8% of users for each second your game takes to start.\nBugs\n1. Reloading the page I can't seem to undo back to the start of the game.",
+          "score": 0,
+          "time": 1792666170,
+          "parent": "50187380"
+        },
+        {
           "id": "50189787",
           "author": "insiderprint",
           "body": "I am getting an error.",
@@ -208,6 +232,23 @@
           "parent": "50187380"
         }
       ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50186988",
+      "title": "Show HN: QAmcp – Automated test runner for MCP servers in your terminal",
+      "subreddit": "show-hn",
+      "author": "Abhiramreddykal",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50186988",
+      "url": "https://github.com/QAmcp/qamcp-cli",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792613677,
+      "created_at": "2026-10-21T20:14:37+00:00"
     },
     {
       "source": "hackernews",
@@ -319,8 +360,8 @@
       "title": "Show HN: Omnara – Open-source alternative to Claude Managed Agents",
       "subreddit": "show-hn",
       "author": "kmansm27",
-      "score": 62,
-      "num_comments": 21,
+      "score": 90,
+      "num_comments": 27,
       "permalink": "https://news.ycombinator.com/item?id=50183892",
       "url": "https://github.com/omnara-ai/omnara",
       "selftext": "Hey all, Kartik from Omnara (https://omnara.com (https://omnara.com)) here. We're building an open-source API for running durable agents. You create an agent with an API call, and Omnara runs the agent loop, gives the agent sandboxes to run commands in, and handles secrets, permissions, and RBAC. Each agent's state is stored in Postgres, so agents survive restarts and cost nothing while idle. You can message them and stream their events over the API.\nYou may remember us from our early days, when we made a remote-control phone app for Claude Code and Codex. Since the harness ran on a laptop back then, we had to build a relay to reach it, it stopped when the laptop closed, and moving it to a cloud sandbox meant syncing code and agent state between machines. We didn't think remote-controlling a local agent was end-game for how people would run agents, so we built a new product where the agent runs in the cloud, any client can talk to it through an API, and it can still use your laptop as one of its machines.\nAnthropic and OpenAI are building hosted versions of this, like Claude Managed Agents and the OpenAI Agents API. Omnara is an open-source version you can run on your own servers and use your own models. It's basically a harness server like the opencode or codex servers, but durable, scalable, with the usual harness features like file and shell tools, subagents, compaction, permission prompts, MCP, skills, memory, yada yada yada.\nHere's some interesting architectural decisions we made while building this out:\nMost harnesses, like Claude Code, Codex, OpenCode, Pi, Goose, etc, run the agent loop in one long-lived process that keeps its log in a JSONL or SQLite file. In Omnara, the log is an append-only event log in Postgres, with inputs, model outputs and tool calls stored as typed rows in their own tables. The loop runs on stateless workers in the control plane. A worker runs one iteration of the loop, either a model call or the tool calls it produced, then releases the agent and puts the next iteration on a queue in Postgres. Whichever worker is free picks it up, so each iteration of an agent's loop can run in a different process on a different machine. Each iteration's result commits in one transaction, so the model output, its tool calls, usage and the next wakeup are saved together or not at all. If a worker dies mid-iteration, nothing commits, its lease expires, and another worker retries it. Agents waiting on a user, a tool or a retry don't hold a worker, so one worker can multiplex thousands of agents.\nAlso unlike other harnesses, the machines that the workers (our agent loop) run on aren't where the agent runs its commands. Instead, any macOS or Linux machine with an internet connection, like your laptop or any cloud sandbox, can run a small daemon (omnarad) that connects out to Omnara, so it doesn't need any open inbound ports. The agent then gets tools for that machine, like running a command or editing a file. An agent can have any number of machines connected to it. A fun thing I like to do is I have my laptop and a cloud sandbox connected to the same agent, so when my laptop is on, my agent codes there and I can interact with it, and I have it often push to Github. When I close my laptop, my agent sees the laptop went offline, pulls the latest changes to its cloud sandbox, and continues there.\nThe entire codebase is open source at https://github.com/omnara-ai/omnara (https://github.com/omnara-ai/omnara), and it’s self hostable, even on a single machine with docker compose. You can also use the hosted version at https://omnara.com (https://omnara.com). Let me know what you think!",
@@ -330,11 +371,19 @@
       "created_at": "2026-10-21T16:44:53+00:00",
       "comments_data": [
         {
-          "id": "50192027",
-          "author": "barries11",
-          "body": "How does this interact with / take advantage of context caching?",
+          "id": "50194528",
+          "author": "e12e",
+          "body": "Congratulations on the launch - looks interesting, and matches some thoughts I've had regarding herding LLMs in a sensible and secure manner.\nWhat's the product? Can I buy anything right now?\nA detailed I noted on permissions - looks like they're all prefixed with \"always\" - I think allow/deny/ask make more sense ?",
           "score": 0,
-          "time": 1792651573,
+          "time": 1792672821,
+          "parent": "50183892"
+        },
+        {
+          "id": "50194097",
+          "author": "naribe",
+          "body": "The two concepts of Durable Agents and Distributed Tools pair really well together.\n- At work, I don't want to run agents on our overworked and unstable on-prem infra, but there is data we need to access there, so I build agents in the cloud and have on-prem services that listen for work.\n- At home, I want to access my agents from the internet, but I don't want to punch holes in my network, so I build agents in the cloud and have at-home services that listen for work.\nOf course, it's a bit slower than a single process with local tools, but it can still be a very productive user experience.\nAnd then I think... we're not really inventing something new with Durable Agents and Distributed Tools, we're just moving closer to the event driven architectures that we already know. I can build a durable agent with Lambda Durable Functions and waitForCallback or Lambda Step Functions and waitForTaskToken. Or any pool of compute with a queue or two and persistent state.\nSo I guess my thought is... you don't need to learn a harness to build an agent. Use what you know. If a harness helps you conceptualize, use it.",
+          "score": 0,
+          "time": 1792669968,
           "parent": "50183892"
         },
         {
@@ -354,22 +403,6 @@
           "parent": "50183892"
         },
         {
-          "id": "50191438",
-          "author": "renegat0x0",
-          "body": "There is so much stuff in AI space. AI orchestrators, automations, harnesses. I often can't tell what is the difference between projects.\nI started thinking is it something like 'ruflo', or 'mirofish', or is it something else totally",
-          "score": 0,
-          "time": 1792645908,
-          "parent": "50183892"
-        },
-        {
-          "id": "50191189",
-          "author": "asar",
-          "body": "I've built sth similar that acts as a mobile interface to your desktop setup via the multiplexer of your choice (herdr/tmux/zellij). \nhttps://github.com/AltanS/collie (https://github.com/AltanS/collie)\nThere's also a typescript SDK to connect a durable agent/harness to the app, still experimental though.",
-          "score": 0,
-          "time": 1792643414,
-          "parent": "50183892"
-        },
-        {
           "id": "50189111",
           "author": "asherdale1",
           "body": "feels like everyone is converging on durable agents lately: pi durable, cloudflare agents on durable objects, vercel's durable harness",
@@ -386,11 +419,27 @@
           "parent": "50183892"
         },
         {
-          "id": "50191464",
-          "author": "aquark",
-          "body": "It's late, but I'm not grokking this:\n> The loop runs on stateless workers in the control plane. A worker runs one iteration\n> of the loop, either a model call or the tool calls it produced, then releases the \n> agent and puts the next iteration on a queue in Postgres.\n...\n> Also unlike other harnesses, the machines that the workers (our agent loop) run on aren't \n> where the agent runs its commands.\nIt's late but don't think I am grokking this.\nIsn't running the commands the heavier part of the work? The agent loop itself is mostly waiting for a remote model and then running the commands?\nWhy would I need a pool of workers for the loop when the constraining resource is likely to be the machines I am running the commands against (which can't be stateless like the workers are?)",
+          "id": "50191189",
+          "author": "asar",
+          "body": "I've built sth similar that acts as a mobile interface to your desktop setup via the multiplexer of your choice (herdr/tmux/zellij). \nhttps://github.com/AltanS/collie (https://github.com/AltanS/collie)\nThere's also a typescript SDK to connect a durable agent/harness to the app, still experimental though.",
           "score": 0,
-          "time": 1792646185,
+          "time": 1792643414,
+          "parent": "50183892"
+        },
+        {
+          "id": "50191438",
+          "author": "renegat0x0",
+          "body": "There is so much stuff in AI space. AI orchestrators, automations, harnesses. I often can't tell what is the difference between projects.\nI started thinking is it something like 'ruflo', or 'mirofish', or is it something else totally",
+          "score": 0,
+          "time": 1792645908,
+          "parent": "50183892"
+        },
+        {
+          "id": "50192027",
+          "author": "barries11",
+          "body": "How does this interact with / take advantage of context caching?",
+          "score": 0,
+          "time": 1792651573,
           "parent": "50183892"
         },
         {
@@ -402,19 +451,19 @@
           "parent": "50183892"
         },
         {
+          "id": "50191464",
+          "author": "aquark",
+          "body": "It's late, but I'm not grokking this:\n> The loop runs on stateless workers in the control plane. A worker runs one iteration\n> of the loop, either a model call or the tool calls it produced, then releases the \n> agent and puts the next iteration on a queue in Postgres.\n...\n> Also unlike other harnesses, the machines that the workers (our agent loop) run on aren't \n> where the agent runs its commands.\nIt's late but don't think I am grokking this.\nIsn't running the commands the heavier part of the work? The agent loop itself is mostly waiting for a remote model and then running the commands?\nWhy would I need a pool of workers for the loop when the constraining resource is likely to be the machines I am running the commands against (which can't be stateless like the workers are?)",
+          "score": 0,
+          "time": 1792646185,
+          "parent": "50183892"
+        },
+        {
           "id": "50189684",
           "author": "rohan_joshi",
           "body": "i was looking for good self-hostable durable agents to automate a persistent keyword watcher across sm. gonna give this a go. any pointers you recommend?",
           "score": 0,
           "time": 1792630194,
-          "parent": "50183892"
-        },
-        {
-          "id": "50190197",
-          "author": "divamgupta",
-          "body": "Wow Literally what I was looking for.",
-          "score": 0,
-          "time": 1792634139,
           "parent": "50183892"
         }
       ]
@@ -635,8 +684,8 @@
       "title": "Show HN: Sumi.css – CSS Framework",
       "subreddit": "show-hn",
       "author": "bepero",
-      "score": 85,
-      "num_comments": 20,
+      "score": 88,
+      "num_comments": 27,
       "permalink": "https://news.ycombinator.com/item?id=50180039",
       "url": "https://github.com/vladocar/Sumi.css",
       "selftext": "",
@@ -678,11 +727,11 @@
           "parent": "50180039"
         },
         {
-          "id": "50190442",
-          "author": "bepero",
-          "body": "Here is also: https://www.designinspiration.info/sumi-css-tutorial-build-a... (https://www.designinspiration.info/sumi-css-tutorial-build-a-clean-website-with-plain-html/)",
+          "id": "50192252",
+          "author": "delbronski",
+          "body": "Honest question. Not trying to offend any css fans here.\nWhy would someone use this nowadays instead of just using AI? To me the purpose of these small css frameworks was to have a nice consistent UI quickly. What is the value of these frameworks now?",
           "score": 0,
-          "time": 1792636159,
+          "time": 1792653704,
           "parent": "50180039"
         },
         {
@@ -694,11 +743,19 @@
           "parent": "50180039"
         },
         {
-          "id": "50184548",
-          "author": "codazoda",
-          "body": "Looks good!\nI created a similar alternative, Neat CSS, a while back. I use it for tons of projects. It could probably use a fresh look from me to see if there's anything I want to update but it's been a stable \"framework\" for me. I didn't intend it to be classless, though it's mostly semantic, but I instead focused on keeping it small and tight. It's only 3KB.\nAnyway, thought I'd share it here too.\nhttps://neat.joeldare.com (https://neat.joeldare.com)",
+          "id": "50193075",
+          "author": "cincaalex",
+          "body": "Really clean aesthetic and great timing with Pico stepping back",
           "score": 0,
-          "time": 1792603631,
+          "time": 1792660489,
+          "parent": "50180039"
+        },
+        {
+          "id": "50190442",
+          "author": "bepero",
+          "body": "Here is also: https://www.designinspiration.info/sumi-css-tutorial-build-a... (https://www.designinspiration.info/sumi-css-tutorial-build-a-clean-website-with-plain-html/)",
+          "score": 0,
+          "time": 1792636159,
           "parent": "50180039"
         },
         {
@@ -707,6 +764,14 @@
           "body": "I like the look of it!\nSmall bug, opened an issue here: https://github.com/vladocar/Sumi.css/issues/1 (https://github.com/vladocar/Sumi.css/issues/1)",
           "score": 0,
           "time": 1792595316,
+          "parent": "50180039"
+        },
+        {
+          "id": "50184548",
+          "author": "codazoda",
+          "body": "Looks good!\nI created a similar alternative, Neat CSS, a while back. I use it for tons of projects. It could probably use a fresh look from me to see if there's anything I want to update but it's been a stable \"framework\" for me. I didn't intend it to be classless, though it's mostly semantic, but I instead focused on keeping it small and tight. It's only 3KB.\nAnyway, thought I'd share it here too.\nhttps://neat.joeldare.com (https://neat.joeldare.com)",
+          "score": 0,
+          "time": 1792603631,
           "parent": "50180039"
         },
         {
@@ -723,14 +788,6 @@
           "body": "similar, no-class framework titled \"No Class\": https://noclass.madebysnacks.com/ (https://noclass.madebysnacks.com/)",
           "score": 0,
           "time": 1792618952,
-          "parent": "50180039"
-        },
-        {
-          "id": "50186766",
-          "author": "amanzi",
-          "body": "Oat is another new, minimal framework that has just reached v1: https://oat.ink/ (https://oat.ink/)",
-          "score": 0,
-          "time": 1792612792,
           "parent": "50180039"
         }
       ]
@@ -759,8 +816,8 @@
       "title": "Show HN:Odd Orbit, live 3D globe of quakes, weather, satellites and UFO reports",
       "subreddit": "show-hn",
       "author": "oddorbitapp",
-      "score": 4,
-      "num_comments": 2,
+      "score": 7,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50179168",
       "url": "https://oddorbit.app/",
       "selftext": "I made a site that put alot of odd layers on a 3d interactive globe, all the neat google earth light night spooky or interesting things id want just on one earth to see all together. For example ufo reports, cryptid reports, sea floor map, earth flood scaling, haunted places, weather and tornado forecasting, sea temps, satelite tracking, etc. Id like to know what you all think and maybe what i could add or remove?",
@@ -769,6 +826,14 @@
       "time": 1792582481,
       "created_at": "2026-10-21T11:34:41+00:00",
       "comments_data": [
+        {
+          "id": "50192580",
+          "author": "ivanvanderbyl",
+          "body": "Why is it in Fahrenheit with no obvious way to change it? Only 5 countries use F unit of measurement. It should default to Celsius or at least the prominent units of your current location.",
+          "score": 0,
+          "time": 1792656516,
+          "parent": "50179168"
+        },
         {
           "id": "50191610",
           "author": "luis_cho",
