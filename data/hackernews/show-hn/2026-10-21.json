@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-22T12:46:02.729485+00:00",
+  "last_fetched": "2026-10-22T18:39:15.948261+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,8 +10,8 @@
       "title": "Show HN: I built a Markdown and raw HTML blog platform scoring 99 on PageSpeed",
       "subreddit": "show-hn",
       "author": "textlanes33",
-      "score": 23,
-      "num_comments": 21,
+      "score": 25,
+      "num_comments": 23,
       "permalink": "https://news.ycombinator.com/item?id=50189175",
       "url": "https://bloffy.co/en",
       "selftext": "Hello. I built a blogging platform on my own over two years.\nI like running my blog, but I couldn't find a blogging platform I really liked.\nFirst. I thought a blog had to be really lightweight.\nFortunately, after a lot of effort, I was able to achieve satisfactory results. (99 to 100 score)\nHere is a sample blog: https://bloffy.bloffy.blog/en (https://bloffy.bloffy.blog/en)\nYou can check it with PageSpeed Insights: https://pagespeed.web.dev/analysis?url=https://bloffy.bloffy... (https://pagespeed.web.dev/analysis?url=https://bloffy.bloffy.blog/en)\nSEO score of the sample blog is low because I blocked it from search engine indexing (noindex).\nSecond. I think bloggers should have control over their own blog. The blogging platforms I used had several problems.\nUnnecessary JavaScript chunks. Ads that the platform inserted into my blog, not my own ads. Cannot manage multiple blogs. An editor that makes it hard to write semantic markup. Limited customization options. I was dissatisfied with the difficulty of placing my own ads.\nAnd to solve this, I spent quite a long time researching and developing it on my own, and finally created it. I'm glad to share this launch with HN. I would appreciate any criticism, feedback, and interest.",
@@ -21,11 +21,11 @@
       "created_at": "2026-10-21T23:41:35+00:00",
       "comments_data": [
         {
-          "id": "50194005",
-          "author": "umershaukat67",
-          "body": "nice work man in bringing a raw page to 99 pagespeed. As you are letting bloggers pace their own ads, this will kill your scores.\nToday my own website cmoowls.com hit an LCP of 5.8s with a score of 70. But the LCP element was just a line of text, not an image.\nThe proble, was the element render delay. The first frame actually arrived after the load even, so our analytics already had started loading. Lighthouse counted this in the LCP and it was bad. Then. I fixed this by loading analytics after first paint instead of on loading. And then the next three runs gave me 99, 99, and a 100 (LCP 1.8, 1.8, 1.7).\nBut one small point here: CWV usually comes from Chrome's 28 days of visitors. 99 is just a lab score.",
+          "id": "50197232",
+          "author": "stemonteduro",
+          "body": "\"I like running my blog, but I couldn't find a blogging platform I really liked.\"\n- Every indie hacker in the world\nNice work tho, but now the real question: where is the MCP?",
           "score": 0,
-          "time": 1792669310,
+          "time": 1792684907,
           "parent": "50189175"
         },
         {
@@ -34,6 +34,22 @@
           "body": "Congrats on the launch! It takes courage to build something and share it publicly.\nSome feedback:\n1. Let me build a blog post and let me see what it would look like before asking me to sign up.\n2. Landing page is very technical. Most bloggers won't understand it.\n3. From the landing page, it is unclear how your platform differs from your competitors.\n4. You mention accessibility but your gif moves at the speed of a Tik Tok video. I personally find it jarring (maybe I'm old). Users with motion sensitivity will feel worse.\n5. Sample page has leaked css. https://bloffy.bloffy.blog/en (https://bloffy.bloffy.blog/en)",
           "score": 0,
           "time": 1792642732,
+          "parent": "50189175"
+        },
+        {
+          "id": "50194729",
+          "author": "textlanes33",
+          "body": "Someone asked how it holds up with a long post and large images, so I made a sample: https://bloffy.bloffy.blog/en/a-heavy-post-long-text-and-lar... (https://bloffy.bloffy.blog/en/a-heavy-post-long-text-and-large-photos)\nAnd here's the PageSpeed Insights result: https://pagespeed.web.dev/analysis/https-bloffy-bloffy-blog-... (https://pagespeed.web.dev/analysis/https-bloffy-bloffy-blog-en-a-heavy-post-long-text-and-large-photos/vg44dyaye6?form_factor=desktop)\nIt's a long post with lots of images in different sizes, plus diagrams and math.\nImages uploaded in the editor get a srcset with 4 widths, and the CDN compresses them to suit each browser. Since we know each image's original width and height, the layout doesn't shift.\nDiagrams and math are rendered to SVG and MathML when you publish, so readers can load them quite fast.\nI actually wanted to talk about this too, so I'm glad I got the chance to answer. Thanks.\n(The SEO score there is low only because the sample blog is noindexed.)",
+          "score": 0,
+          "time": 1792674004,
+          "parent": "50189175"
+        },
+        {
+          "id": "50194005",
+          "author": "umershaukat67",
+          "body": "nice work man in bringing a raw page to 99 pagespeed. As you are letting bloggers pace their own ads, this will kill your scores.\nToday my own website cmoowls.com hit an LCP of 5.8s with a score of 70. But the LCP element was just a line of text, not an image.\nThe proble, was the element render delay. The first frame actually arrived after the load even, so our analytics already had started loading. Lighthouse counted this in the LCP and it was bad. Then. I fixed this by loading analytics after first paint instead of on loading. And then the next three runs gave me 99, 99, and a 100 (LCP 1.8, 1.8, 1.7).\nBut one small point here: CWV usually comes from Chrome's 28 days of visitors. 99 is just a lab score.",
+          "score": 0,
+          "time": 1792669310,
           "parent": "50189175"
         },
         {
@@ -360,8 +376,8 @@
       "title": "Show HN: Omnara – Open-source alternative to Claude Managed Agents",
       "subreddit": "show-hn",
       "author": "kmansm27",
-      "score": 90,
-      "num_comments": 27,
+      "score": 105,
+      "num_comments": 31,
       "permalink": "https://news.ycombinator.com/item?id=50183892",
       "url": "https://github.com/omnara-ai/omnara",
       "selftext": "Hey all, Kartik from Omnara (https://omnara.com (https://omnara.com)) here. We're building an open-source API for running durable agents. You create an agent with an API call, and Omnara runs the agent loop, gives the agent sandboxes to run commands in, and handles secrets, permissions, and RBAC. Each agent's state is stored in Postgres, so agents survive restarts and cost nothing while idle. You can message them and stream their events over the API.\nYou may remember us from our early days, when we made a remote-control phone app for Claude Code and Codex. Since the harness ran on a laptop back then, we had to build a relay to reach it, it stopped when the laptop closed, and moving it to a cloud sandbox meant syncing code and agent state between machines. We didn't think remote-controlling a local agent was end-game for how people would run agents, so we built a new product where the agent runs in the cloud, any client can talk to it through an API, and it can still use your laptop as one of its machines.\nAnthropic and OpenAI are building hosted versions of this, like Claude Managed Agents and the OpenAI Agents API. Omnara is an open-source version you can run on your own servers and use your own models. It's basically a harness server like the opencode or codex servers, but durable, scalable, with the usual harness features like file and shell tools, subagents, compaction, permission prompts, MCP, skills, memory, yada yada yada.\nHere's some interesting architectural decisions we made while building this out:\nMost harnesses, like Claude Code, Codex, OpenCode, Pi, Goose, etc, run the agent loop in one long-lived process that keeps its log in a JSONL or SQLite file. In Omnara, the log is an append-only event log in Postgres, with inputs, model outputs and tool calls stored as typed rows in their own tables. The loop runs on stateless workers in the control plane. A worker runs one iteration of the loop, either a model call or the tool calls it produced, then releases the agent and puts the next iteration on a queue in Postgres. Whichever worker is free picks it up, so each iteration of an agent's loop can run in a different process on a different machine. Each iteration's result commits in one transaction, so the model output, its tool calls, usage and the next wakeup are saved together or not at all. If a worker dies mid-iteration, nothing commits, its lease expires, and another worker retries it. Agents waiting on a user, a tool or a retry don't hold a worker, so one worker can multiplex thousands of agents.\nAlso unlike other harnesses, the machines that the workers (our agent loop) run on aren't where the agent runs its commands. Instead, any macOS or Linux machine with an internet connection, like your laptop or any cloud sandbox, can run a small daemon (omnarad) that connects out to Omnara, so it doesn't need any open inbound ports. The agent then gets tools for that machine, like running a command or editing a file. An agent can have any number of machines connected to it. A fun thing I like to do is I have my laptop and a cloud sandbox connected to the same agent, so when my laptop is on, my agent codes there and I can interact with it, and I have it often push to Github. When I close my laptop, my agent sees the laptop went offline, pulls the latest changes to its cloud sandbox, and continues there.\nThe entire codebase is open source at https://github.com/omnara-ai/omnara (https://github.com/omnara-ai/omnara), and it’s self hostable, even on a single machine with docker compose. You can also use the hosted version at https://omnara.com (https://omnara.com). Let me know what you think!",
@@ -371,11 +387,11 @@
       "created_at": "2026-10-21T16:44:53+00:00",
       "comments_data": [
         {
-          "id": "50194528",
-          "author": "e12e",
-          "body": "Congratulations on the launch - looks interesting, and matches some thoughts I've had regarding herding LLMs in a sensible and secure manner.\nWhat's the product? Can I buy anything right now?\nA detailed I noted on permissions - looks like they're all prefixed with \"always\" - I think allow/deny/ask make more sense ?",
+          "id": "50191836",
+          "author": "piterrro",
+          "body": "My setup is Hermes on a beefy machine with running a swarm of pi.devs - connects to GH issues via bot app so I can call it @xxxx in the issue. It can create PR, run actions and all. If I want to see the code I just run kilo code in VS locally.\nThis setup is so plain and simple that it just works, and it works wonders. I feel like I’ve been running a dev team who actually communicates through issuess and keeps it up to date!",
           "score": 0,
-          "time": 1792672821,
+          "time": 1792649957,
           "parent": "50183892"
         },
         {
@@ -387,19 +403,19 @@
           "parent": "50183892"
         },
         {
-          "id": "50191836",
-          "author": "piterrro",
-          "body": "My setup is Hermes on a beefy machine with running a swarm of pi.devs - connects to GH issues via bot app so I can call it @xxxx in the issue. It can create PR, run actions and all. If I want to see the code I just run kilo code in VS locally.\nThis setup is so plain and simple that it just works, and it works wonders. I feel like I’ve been running a dev team who actually communicates through issuess and keeps it up to date!",
-          "score": 0,
-          "time": 1792649957,
-          "parent": "50183892"
-        },
-        {
           "id": "50189081",
           "author": "swyx",
           "body": "with a great related talk! https://ai.engineer/talks/UPwGaM2MKHY-log-is-agent (https://ai.engineer/talks/UPwGaM2MKHY-log-is-agent)",
           "score": 0,
           "time": 1792625350,
+          "parent": "50183892"
+        },
+        {
+          "id": "50197279",
+          "author": "mandeepj",
+          "body": "Can you shed some light on orchestration? I don't want to babysit them. Do you have a concept of roles and hierarchies, like team lead, tester, engineer, etc?",
+          "score": 0,
+          "time": 1792685141,
           "parent": "50183892"
         },
         {
@@ -411,11 +427,11 @@
           "parent": "50183892"
         },
         {
-          "id": "50190991",
-          "author": "Nischalj10",
-          "body": "been following you guys from distance over x. congrats on the launch! excited to see where this goes",
+          "id": "50194528",
+          "author": "e12e",
+          "body": "Congratulations on the launch - looks interesting, and matches some thoughts I've had regarding herding LLMs in a sensible and secure manner.\nWhat's the product? Can I buy anything right now?\nA detailed I noted on permissions - looks like they're all prefixed with \"always\" - I think allow/deny/ask make more sense ?",
           "score": 0,
-          "time": 1792641257,
+          "time": 1792672821,
           "parent": "50183892"
         },
         {
@@ -427,19 +443,19 @@
           "parent": "50183892"
         },
         {
+          "id": "50190991",
+          "author": "Nischalj10",
+          "body": "been following you guys from distance over x. congrats on the launch! excited to see where this goes",
+          "score": 0,
+          "time": 1792641257,
+          "parent": "50183892"
+        },
+        {
           "id": "50191438",
           "author": "renegat0x0",
           "body": "There is so much stuff in AI space. AI orchestrators, automations, harnesses. I often can't tell what is the difference between projects.\nI started thinking is it something like 'ruflo', or 'mirofish', or is it something else totally",
           "score": 0,
           "time": 1792645908,
-          "parent": "50183892"
-        },
-        {
-          "id": "50192027",
-          "author": "barries11",
-          "body": "How does this interact with / take advantage of context caching?",
-          "score": 0,
-          "time": 1792651573,
           "parent": "50183892"
         },
         {
@@ -451,19 +467,19 @@
           "parent": "50183892"
         },
         {
+          "id": "50192027",
+          "author": "barries11",
+          "body": "How does this interact with / take advantage of context caching?",
+          "score": 0,
+          "time": 1792651573,
+          "parent": "50183892"
+        },
+        {
           "id": "50191464",
           "author": "aquark",
           "body": "It's late, but I'm not grokking this:\n> The loop runs on stateless workers in the control plane. A worker runs one iteration\n> of the loop, either a model call or the tool calls it produced, then releases the \n> agent and puts the next iteration on a queue in Postgres.\n...\n> Also unlike other harnesses, the machines that the workers (our agent loop) run on aren't \n> where the agent runs its commands.\nIt's late but don't think I am grokking this.\nIsn't running the commands the heavier part of the work? The agent loop itself is mostly waiting for a remote model and then running the commands?\nWhy would I need a pool of workers for the loop when the constraining resource is likely to be the machines I am running the commands against (which can't be stateless like the workers are?)",
           "score": 0,
           "time": 1792646185,
-          "parent": "50183892"
-        },
-        {
-          "id": "50189684",
-          "author": "rohan_joshi",
-          "body": "i was looking for good self-hostable durable agents to automate a persistent keyword watcher across sm. gonna give this a go. any pointers you recommend?",
-          "score": 0,
-          "time": 1792630194,
           "parent": "50183892"
         }
       ]
@@ -637,12 +653,71 @@
     {
       "source": "hackernews",
       "stream": "show-hn",
+      "id": "50180257",
+      "title": "Show HN: Uberblok – an interactive museum of ZFS internals",
+      "subreddit": "show-hn",
+      "author": "storagebits",
+      "score": 36,
+      "num_comments": 7,
+      "permalink": "https://news.ycombinator.com/item?id=50180257",
+      "url": "https://uberblok.storagebits.workers.dev/",
+      "selftext": "I've worked for a long time in the storage field during my career and ZFS is the piece of engineering I admire most in that space. I wanted a way to pay homage to it and to explore and better understand its internals. So I built Uberblok: a museum of ZFS. A deep dive into copy-on-write, txgs, vdevs, RAID-Z, snapshots, the ARC, metaslabs, the ZIL, send/receive with explanations and animated diagrams.\nI'm sure people here know these internals better than I do, so corrections are very welcome.\nI built it with my agent swarm organization, Algotitan.\nI hope you'll enjoy the deep dive into Uberblok as much as I do.\nMuseum: https://uberblok.storagebits.workers.dev (https://uberblok.storagebits.workers.dev)\nRepo: https://github.com/algotitanhq/uberblok (https://github.com/algotitanhq/uberblok)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1792587865,
+      "created_at": "2026-10-21T13:04:25+00:00",
+      "comments_data": [
+        {
+          "id": "50198452",
+          "author": "QuantumNomad_",
+          "body": "I absolutely love ZFS. I use it on FreeBSD for all disks on the whole system, including the ones that FreeBSD itself is installed on, and I use it with some disks on Linux and with most of my external disks with macOS.\nIn an alternative universe, Mac OS X would have gotten ZFS shipped with the base install back in 2007, and presumably we’d then still have that to this day. In our universe that ended up not happening even though it was supposed to :/ https://mjtsai.com/blog/2025/04/28/revisiting-zfs-for-mac/ (https://mjtsai.com/blog/2025/04/28/revisiting-zfs-for-mac/)\nI really would have loved to have the whole of macOS running on ZFS. But at least using ZFS from homebrew on macOS to have ZFS on external disks is the next best thing after that, and which we do have.",
+          "score": 0,
+          "time": 1792690160,
+          "parent": "50180257"
+        },
+        {
+          "id": "50198924",
+          "author": "drewg123",
+          "body": "I'd love ZFS a lot more if it weren't for the ARC. Using ARC means that ZFS caches stuff outside the kernel page cache. That in turn means that sendfile is no longer zero-copy when data originates on ZFS, making it a non-starter for content drives for our CDN workload.",
+          "score": 0,
+          "time": 1792692091,
+          "parent": "50180257"
+        },
+        {
+          "id": "50198928",
+          "author": "ghm2180",
+          "body": "One small suggestion: Make the code open to the right instead of a new window, that makes it easy to keep context without distraction.",
+          "score": 0,
+          "time": 1792692118,
+          "parent": "50180257"
+        },
+        {
+          "id": "50199189",
+          "author": "AyyEye",
+          "body": "> I built\nYou keep using those words. I don't think it means what you think it means.",
+          "score": 0,
+          "time": 1792693506,
+          "parent": "50180257"
+        },
+        {
+          "id": "50198204",
+          "author": "unethical_ban",
+          "body": "As a mere operator, I've been fascinated by ZFS ever since I first heard of it 15+ years ago. It seems so elegant, like it really is the last generalist filesystem one would ever need. Performant, reliable, fundamentals easy to comprehend. I've never tried managing LVM configs because zpools and raidz are just so damned easy. Native encryption. Datasets can be as simple or as complicated as you need them to be. send/recv dataset syncing at the block level vs having to decrypt and sync files individually.\nA lot of this goes over my head as someone who isn't familiar with filesystem internals, but I appreciate the effort and the homage to a great tool.",
+          "score": 0,
+          "time": 1792688954,
+          "parent": "50180257"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
       "id": "50180190",
       "title": "Show HN: Computer use on the phone itself: a 2B model that operates Android apps",
       "subreddit": "show-hn",
       "author": "erikkannike",
       "score": 15,
-      "num_comments": 3,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50180190",
       "url": "https://getopposable.com/blog/computer-use-on-the-phone",
       "selftext": "",
@@ -684,7 +759,7 @@
       "title": "Show HN: Sumi.css – CSS Framework",
       "subreddit": "show-hn",
       "author": "bepero",
-      "score": 88,
+      "score": 93,
       "num_comments": 27,
       "permalink": "https://news.ycombinator.com/item?id=50180039",
       "url": "https://github.com/vladocar/Sumi.css",
@@ -727,14 +802,6 @@
           "parent": "50180039"
         },
         {
-          "id": "50192252",
-          "author": "delbronski",
-          "body": "Honest question. Not trying to offend any css fans here.\nWhy would someone use this nowadays instead of just using AI? To me the purpose of these small css frameworks was to have a nice consistent UI quickly. What is the value of these frameworks now?",
-          "score": 0,
-          "time": 1792653704,
-          "parent": "50180039"
-        },
-        {
           "id": "50182400",
           "author": "elicash",
           "body": "I used a classless CSS framework once, for a project where I wanted a non-technical coworker to update an HTML file repeatedly throughout the week and then upload it to AWS/s3. I wanted it to be as simple for them as possible, to minimize errors, and it worked great.\nI'm not sure what other use cases are, but it's also just true that limitations can be fun.",
@@ -743,19 +810,11 @@
           "parent": "50180039"
         },
         {
-          "id": "50193075",
-          "author": "cincaalex",
-          "body": "Really clean aesthetic and great timing with Pico stepping back",
+          "id": "50192252",
+          "author": "delbronski",
+          "body": "Honest question. Not trying to offend any css fans here.\nWhy would someone use this nowadays instead of just using AI? To me the purpose of these small css frameworks was to have a nice consistent UI quickly. What is the value of these frameworks now?",
           "score": 0,
-          "time": 1792660489,
-          "parent": "50180039"
-        },
-        {
-          "id": "50190442",
-          "author": "bepero",
-          "body": "Here is also: https://www.designinspiration.info/sumi-css-tutorial-build-a... (https://www.designinspiration.info/sumi-css-tutorial-build-a-clean-website-with-plain-html/)",
-          "score": 0,
-          "time": 1792636159,
+          "time": 1792653704,
           "parent": "50180039"
         },
         {
@@ -772,6 +831,22 @@
           "body": "Looks good!\nI created a similar alternative, Neat CSS, a while back. I use it for tons of projects. It could probably use a fresh look from me to see if there's anything I want to update but it's been a stable \"framework\" for me. I didn't intend it to be classless, though it's mostly semantic, but I instead focused on keeping it small and tight. It's only 3KB.\nAnyway, thought I'd share it here too.\nhttps://neat.joeldare.com (https://neat.joeldare.com)",
           "score": 0,
           "time": 1792603631,
+          "parent": "50180039"
+        },
+        {
+          "id": "50190442",
+          "author": "bepero",
+          "body": "Here is also: https://www.designinspiration.info/sumi-css-tutorial-build-a... (https://www.designinspiration.info/sumi-css-tutorial-build-a-clean-website-with-plain-html/)",
+          "score": 0,
+          "time": 1792636159,
+          "parent": "50180039"
+        },
+        {
+          "id": "50193075",
+          "author": "cincaalex",
+          "body": "Really clean aesthetic and great timing with Pico stepping back",
+          "score": 0,
+          "time": 1792660489,
           "parent": "50180039"
         },
         {
