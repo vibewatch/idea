@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-23T01:05:40.339713+00:00",
+  "last_fetched": "2026-10-23T06:50:24.006689+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,7 +10,7 @@
       "title": "Show HN: Impossible Machines: declaratively program the physical world",
       "subreddit": "show-hn",
       "author": "bhaprayan",
-      "score": 2,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50202746",
       "url": "https://www.impossiblemachines.xyz",
@@ -27,7 +27,7 @@
       "title": "Show HN: Walkman – turn-by-turn routing in the browser, built from vector tiles",
       "subreddit": "show-hn",
       "author": "sardor_r1",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50202182",
       "url": "https://walkman.uz/",
@@ -44,15 +44,25 @@
       "title": "Show HN: CATT 0.2.1: Test agents/services against a Muse/Instinct-alike, in CI",
       "subreddit": "show-hn",
       "author": "botacode",
-      "score": 5,
-      "num_comments": 0,
+      "score": 7,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50201860",
       "url": "https://github.com/Coverage-Cat/consumer-agent-testing-tool",
       "selftext": "Hey HN, we recently open sourced our Consumer Agent Testing Tool to help teams iterate against proprietary assistants like Muse and Instinct. We built this to reduce our own frustrations with building an MCP/API for these agents to consume.\nThe problem: testing against these tools is hard! Agent memory + account statefulness make reproducibility, in the ways required for repeatable/reliable outcomes, between agents and the APIs/MCPs they interact with very challenging.\nThe solution: CATT lets devs test their services against a surrogate Muse or Instinct agent (not affiliated with either of these companies). Testers define starting conditions, approvals, and success conditions for their service's state. CATT then records the full interaction (incl. tool calls, responses) so it can diff what happened from what the agent reports. Runs can be tested in local builds or via CI, with or without LLM backing.\nCATT is designed to emulate the important parts of personal assistant interactions. Its got:\n- Tool calls and command-line tool access\n- Simulated approvals for service actions\n- Outcomes tracking and comparison\n- Optional MCP profile based on an unofficial Muse template\nThere are limitations to how much we know about different assistant specific behaviors so the tool labels its assumptions as `documented`, `unofficial`, `assumed` or `unknown` for developer review. We'll do our best to keep the tool updated as new insights about the internal workings of these assistants come to light. It is an area of active research and interest, a good example is this recent report on how Instinct uses Exa for web search [0].\nAre you building a connector or MCP? If yes, we'd like to hear from you! Have you had assistants behave incoherently, use stale information, or procalim success without evidence? What else should we add tests for?\nThe best way to get started is...to point your coding assistant at the repo and ask it to integrate the tool with your CI or local testing pipeline!\nHope it's helpful!\n[0]: https://www.sunbeam.ai/thoughts/instinct-is-using-exa-for-we... (https://www.sunbeam.ai/thoughts/instinct-is-using-exa-for-web-search)",
       "is_self": false,
       "is_video": false,
       "time": 1792707520,
-      "created_at": "2026-10-22T22:18:40+00:00"
+      "created_at": "2026-10-22T22:18:40+00:00",
+      "comments_data": [
+        {
+          "id": "50203412",
+          "author": "lucagiftzek",
+          "body": "That sound's pretty useful but also pretty technical. I'm juilding an DaaS so I'll evaluate to implement it, i'm really discussing it with my AI agent. So, thank you <3",
+          "score": 0,
+          "time": 1792718788,
+          "parent": "50201860"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -78,7 +88,7 @@
       "title": "Show HN: Linear A decipherment open-sourced",
       "subreddit": "show-hn",
       "author": "NatalieTrono",
-      "score": 4,
+      "score": 5,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50200278",
       "url": "https://www.plasma.ai/research/linear-a",
@@ -129,8 +139,8 @@
       "title": "Show HN: Build a world on your phone, explore it in XR on Vision Pro and Quest",
       "subreddit": "show-hn",
       "author": "suejunghuh0",
-      "score": 11,
-      "num_comments": 2,
+      "score": 13,
+      "num_comments": 6,
       "permalink": "https://news.ycombinator.com/item?id=50199349",
       "url": "https://3d.camilleworld.com/play/",
       "selftext": "",
@@ -139,6 +149,14 @@
       "time": 1792694379,
       "created_at": "2026-10-22T18:39:39+00:00",
       "comments_data": [
+        {
+          "id": "50203582",
+          "author": "MiroslavPokorny",
+          "body": "Free air, No head spins, nice wind, clean air vs fake ?\nI wonder which is better...",
+          "score": 0,
+          "time": 1792720079,
+          "parent": "50199349"
+        },
         {
           "id": "50200984",
           "author": "zmmmmm",
@@ -181,7 +199,7 @@
       "title": "Show HN: UI micro interactions prompts for AI",
       "subreddit": "show-hn",
       "author": "elwingo1",
-      "score": 68,
+      "score": 77,
       "num_comments": 42,
       "permalink": "https://news.ycombinator.com/item?id=50199290",
       "url": "https://www.typeui.sh/micro-interactions",
@@ -224,19 +242,19 @@
           "parent": "50199290"
         },
         {
+          "id": "50199715",
+          "author": "pftburger",
+          "body": "Some of these are genuinely nice. I really like the action slide-out, the wall reveal, and the slide-off reveal.\nUnfortunately for a thing whose core job is polished UI, there's still quite a lot of polish needed before I would be willing to implement any of this in my UI\nTo name a few :\n- the swap icon state theme preview switcher cascades the element brightness rather than fading them together.\n- The confirm reveal has something wrong with the spring every third or fourth click, which is strange \n- Cards: the stacked deck cycle. When you click Next, it doesn't draw the top card.\n- The shared element expand option: when you minimize, the spring dampening pushes the components outside of the container.\n- Swipe to dismiss causes the container to temporarily show a scroll bar.",
+          "score": 0,
+          "time": 1792696223,
+          "parent": "50199290"
+        },
+        {
           "id": "50201092",
           "author": "matsemann",
           "body": "Can you explain a bit what it is one is buying? A prompt? I don't get why it can't be the component, isn't it better to use that than a prompt?",
           "score": 0,
           "time": 1792703451,
-          "parent": "50199290"
-        },
-        {
-          "id": "50202767",
-          "author": "mas42",
-          "body": "I really enjoy seeing showcases like this. From a user’s perspective, when I need a micro-interaction, my requirements are usually quite clear. I tried using the text search, but I didn’t get good results for the keywords I expected. I hope the search experience will be improved.",
-          "score": 0,
-          "time": 1792713405,
           "parent": "50199290"
         },
         {
@@ -248,11 +266,11 @@
           "parent": "50199290"
         },
         {
-          "id": "50199715",
-          "author": "pftburger",
-          "body": "Some of these are genuinely nice. I really like the action slide-out, the wall reveal, and the slide-off reveal.\nUnfortunately for a thing whose core job is polished UI, there's still quite a lot of polish needed before I would be willing to implement any of this in my UI\nTo name a few :\n- the swap icon state theme preview switcher cascades the element brightness rather than fading them together.\n- The confirm reveal has something wrong with the spring every third or fourth click, which is strange \n- Cards: the stacked deck cycle. When you click Next, it doesn't draw the top card.\n- The shared element expand option: when you minimize, the spring dampening pushes the components outside of the container.\n- Swipe to dismiss causes the container to temporarily show a scroll bar.",
+          "id": "50199573",
+          "author": "jonshariat",
+          "body": "Love these but curious: they sell access to this UI but can't I point an agent at this and have it copy these? Or is it better quality outputs to use the MCP?",
           "score": 0,
-          "time": 1792696223,
+          "time": 1792695553,
           "parent": "50199290"
         },
         {
@@ -264,6 +282,14 @@
           "parent": "50199290"
         },
         {
+          "id": "50200115",
+          "author": "cosmotic",
+          "body": "Some feedback on the first few\n* toggle animation on the heart moves the same direction for add and subtract (confusing)\n* hold-to-trigger indicator is covered by finger on touch screen\n* remove button confirmation can be accidentally confirmed by double click\n(I stopped looking after this)",
+          "score": 0,
+          "time": 1792698497,
+          "parent": "50199290"
+        },
+        {
           "id": "50201998",
           "author": "elxr",
           "body": "Nice examples, definitely lots I'll be copying. I do wish there was an option to set the number grid columns on the page though: a sort of zoom-out feature with added column counts.\nI feel having a lot more items visible without scrolling would be perfect for a site like this. Especially with the focus being entirely on the rendered components (and not typical UI library docs).",
@@ -272,19 +298,11 @@
           "parent": "50199290"
         },
         {
-          "id": "50199573",
-          "author": "jonshariat",
-          "body": "Love these but curious: they sell access to this UI but can't I point an agent at this and have it copy these? Or is it better quality outputs to use the MCP?",
+          "id": "50202767",
+          "author": "mas42",
+          "body": "I really enjoy seeing showcases like this. From a user’s perspective, when I need a micro-interaction, my requirements are usually quite clear. I tried using the text search, but I didn’t get good results for the keywords I expected. I hope the search experience will be improved.",
           "score": 0,
-          "time": 1792695553,
-          "parent": "50199290"
-        },
-        {
-          "id": "50200115",
-          "author": "cosmotic",
-          "body": "Some feedback on the first few\n* toggle animation on the heart moves the same direction for add and subtract (confusing)\n* hold-to-trigger indicator is covered by finger on touch screen\n* remove button confirmation can be accidentally confirmed by double click\n(I stopped looking after this)",
-          "score": 0,
-          "time": 1792698497,
+          "time": 1792713405,
           "parent": "50199290"
         }
       ]
@@ -330,8 +348,8 @@
       "title": "Show HN: agent-usage-guard – a Claude Code mod to protect your usage window",
       "subreddit": "show-hn",
       "author": "zzyyxx332211",
-      "score": 20,
-      "num_comments": 7,
+      "score": 23,
+      "num_comments": 9,
       "permalink": "https://news.ycombinator.com/item?id=50198936",
       "url": "https://github.com/rbartoli/agent-usage-guard",
       "selftext": "",
@@ -365,7 +383,7 @@
       "title": "Show HN: Light captured – An interractive workshop on photography",
       "subreddit": "show-hn",
       "author": "baalimago",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50198593",
       "url": "https://light-captured.wasmer.app/#s1",
@@ -382,7 +400,7 @@
       "title": "Show HN: I made new search engine with DeepSeek's search API",
       "subreddit": "show-hn",
       "author": "bayramn",
-      "score": 2,
+      "score": 3,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50198572",
       "url": "https://seekpeek.pages.dev",
@@ -600,8 +618,8 @@
       "title": "Show HN: OnKey – I'm a bad singer, so I built an app to show where I'm off-key",
       "subreddit": "show-hn",
       "author": "dsmurrell",
-      "score": 6,
-      "num_comments": 3,
+      "score": 14,
+      "num_comments": 6,
       "permalink": "https://news.ycombinator.com/item?id=50195488",
       "url": "https://github.com/dsmurrell/onkey",
       "selftext": "Hi all\nI was pretty terrible at singing, now I’d say I’m bad but not terrible. This is because I’ve been using a singing app (won’t name it here) that scores me on my pitch and timing throughout the song so that I can improve.\nLately however, the app I’ve been using has flooded their song list with songs that aren’t originals. I didn’t like this at all as for me, it’s easier to try to improve when you’re singing along to the original.\nSo, I asked an agent (Claude Code) if it could write some code to listen to Spotify and also listen to me and see if it could detect both pitches and score me. It impressed me by writing some Python and showing me my pitch in the terminal!\nIt couldn’t go all the way though and detect the singer’s pitch in real time.\nSo I found the next best setup and built OnKey, a Mac app that needs to listen to the song once (it doesn’t save it) and then when it’s learnt the song (takes a couple of minutes), you can sing along to the pitch track that it’s learnt. OnKey is free to use and open source under the MIT license.\nIt can listen to Spotify, Apple Music, and YouTube playing in your browser with the right permissions.\nDuring the build I found that someone had done something similar in Nightingale, but this requires a library of songs exported to disk and who has this in 2026 (maybe some of you ;) - but we need to help the normies too).\nYou can check out a demo video on the site of me singing (warning given) here: https://singonkey.app (https://singonkey.app)\nThe app sends out to find the song info (short Shazam fingerprint, and looks up song details), lyrics (from LRCLIB), and checks for updates.\nThe app never sends the music (it doesn’t save this to disk) and your voice. Everything you’d expect to stay private does.\nIt’s still weak in a few places:\n- when the song’s backing is noisy it’s hard to pick the pitch track out\n- sometimes it gets a note an octave off\n- it’s limited to Apple Silicon Macs, M1 or later, and only macOS 14.2 up because extra drivers aren’t required past this point\n- the scoring is built for beginners like me so it’s fairly easy on you\nWould love for people to try it out and let me know what works and what doesn’t for them!",
@@ -610,6 +628,14 @@
       "time": 1792677884,
       "created_at": "2026-10-22T14:04:44+00:00",
       "comments_data": [
+        {
+          "id": "50205233",
+          "author": "nopurpose",
+          "body": "Didn't know that external apps can interact with Youtube in a tab in Safari.\nLooks nice, I sing so badly that I never dare to try if not alone. Maybe this app will help me to improve just little that I can sing along happy birthday quietrly in a corner without anyone turning heads.",
+          "score": 0,
+          "time": 1792737696,
+          "parent": "50195488"
+        },
         {
           "id": "50202551",
           "author": "wnissen",
@@ -686,8 +712,8 @@
       "title": "Show HN: Replacing CAPTCHAs with adaptive proof-of-work in WordPress",
       "subreddit": "show-hn",
       "author": "MatthiasNordwig",
-      "score": 8,
-      "num_comments": 7,
+      "score": 10,
+      "num_comments": 8,
       "permalink": "https://news.ycombinator.com/item?id=50194762",
       "url": "https://wordpress.org/plugins/gdpr-compliant-recaptcha-for-all-forms/",
       "selftext": "When I founded my business a whistle-blowing-service for enterprises, I’ve seeked for a working solution to block spam bots on that home page. The solution was intended to comply with EU data privacy law, no cookies, no sniffing, light-weight-size, on my webserver only, beeing invisible for my site visitors and no running costs at all.\nI came across Hashcash, a proof-of-work approach, to block spam. When I implemented it, it worked immediately and blocked 100 percent without blocking any incoming real posts.\nI was astonished, that no solution existed in the ecosystem allready that covered all forms and was for free. Therefore I‘ve turned it into a free wordpress-plugin.\nIt is not only a technical solution, but starts with the business model of spam (mass spamming at low cost), by producing a calculation effort for every single post, that unavoidable. And therefore is not exactly unbreakable but becomes very expensive for the spammer and therefore alows only for targeted high quality approaches that need other treatment. Up to now my own page remains spam free and users report the same.\nNow, running since 2022 on 4000+ active installations, it is working with almost every webform and plugin combination that is running on any wordpress instance, using pattern recognition on http-post-level instead of specific proprietary integration for single specific form builders. It ships with 80+ starting patterns for the most relevant form builders and themes, but can be enhanced with any pattern by the user.\nThe plugin can be previewed directly and immediately on wordpress.org. It ships with14 KB compressed under a GPL-2.0 license.\nI’m looking forward to discuss about the proof-of-work approach, form detection, privacy implications, and tradeoffs.",
@@ -696,6 +722,14 @@
       "time": 1792674194,
       "created_at": "2026-10-22T13:03:14+00:00",
       "comments_data": [
+        {
+          "id": "50204749",
+          "author": "throwaway89201",
+          "body": "In the short term I'm sure the approach works, but the proof of work part of it is just theatrics and doesn't stand up to scrutiny. Using an uncommon CAPTCHA with some alternative heuristics is enough to deter spammers (until it isn't).\nAny back of the napkin calculation will show you that if spammers actually start solving the challenge, they will either pay a ridiculously low amount of server CPU time, or regular users on relatively underpowered devices (i.e. smartphones) will have to wait forever for a pageload.\nYou'll never see that basic calculation being spelled out on product pages, because it will show its mostly smoke and mirrors.",
+          "score": 0,
+          "time": 1792732295,
+          "parent": "50194762"
+        },
         {
           "id": "50202336",
           "author": "drfuchs",
@@ -713,19 +747,19 @@
           "parent": "50194762"
         },
         {
-          "id": "50202826",
-          "author": "amanzi",
-          "body": "Looks good - thanks for sharing.",
-          "score": 0,
-          "time": 1792713976,
-          "parent": "50194762"
-        },
-        {
           "id": "50202349",
           "author": "fennecbutt",
           "body": "Hmmmm. Is this the compute economy that Altman was going on about.",
           "score": 0,
           "time": 1792710493,
+          "parent": "50194762"
+        },
+        {
+          "id": "50202826",
+          "author": "amanzi",
+          "body": "Looks good - thanks for sharing.",
+          "score": 0,
+          "time": 1792713976,
           "parent": "50194762"
         },
         {
