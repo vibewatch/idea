@@ -1,8 +1,69 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-23T06:50:27.792561+00:00",
+  "last_fetched": "2026-10-23T12:44:16.581130+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50207807",
+      "title": "Ask HN: Apple rejected my dev account enrollment with no reason, what do I do?",
+      "subreddit": "ask-hn",
+      "author": "Mutinix",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50207807",
+      "url": "https://news.ycombinator.com/item?id=50207807",
+      "selftext": "I lived in the US for about 10 years and moved back to India this year. My Apple Account was set to the US region and I switched it to India before enrolling in the Apple Developer Program as an individual. I verified with my passport and paid with an Indian card.\nThe enrollment was declined. I called support and followed up by email, and got the same template: \"For one or more reasons, your enrollment in the Apple Developer Program couldn't be completed. We can't continue with your enrollment at this time.\"\nThere's no reason given, no appeal process, and nothing to fix. The Apple Developer Forums are full of identical threads going back years, and almost none of them end with a resolution.\nThey hold a complete monopoly over the App Store, I tried emailing them with 2 different accounts (initially with firstname@company.app, then with name@gmail.com) with no replies for up to 10 days. I've been at this for over 2 months with them. I find it preposterous that this is acceptable behaviour.\nI'm sure the advice that's stated on forums will be restated - Try again with a new email account and a new Apple ID. But why? Why is this acceptable for a multi-trillion dollar corporation?\nI had a similar experience with trying to get Google support for a different matter and it took me a couple of months to get it resolved.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1792757999,
+      "created_at": "2026-10-23T12:19:59+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50207196",
+      "title": "Tell HN: Steamcmd doesn't work on Apple Silicon",
+      "subreddit": "ask-hn",
+      "author": "stdc105",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50207196",
+      "url": "https://news.ycombinator.com/item?id=50207196",
+      "selftext": "steamcmd is the official command line tool from Steam. Gamedevs work with it to get builds uploaded to Steamworks. And it doesn't support Apple Silicon.\nTo upload games to Steam, devs either go through Steamworks website, or use steamcmd. The web upload on Steamworks website mostly works for small zips, just it is unreliable. At bad times one can stare at the web upload for 10 minutes of failure, errors, \"did not receive the entire file\" after timeout.\nI have finally decided to migrate to upload using steamcmd today. I usually work on a Windows machine and build my game for Windows and Linux. The build and the upload worked flawlessly. It seems steamcmd compares my local build with contents in the depot and only upload some deltas. Saves time and bandwidth.\nUntil I try to set it up on my Mac. Because of the hellish codesign and notarization, it is better (or less bad) to build everything macOS on a Mac. Then this hits me.\n> ./steamcmd\nzsh: bad CPU type in executable: ./steamcmd\n> file steamcmd\nsteamcmd: Mach-O 64-bit executable x86_64\nIn comparison, this is Godot:\n> file /Applications/Godot.app/Contents/MacOS/Godot\n/Applications/Godot.app/Contents/MacOS/Godot: Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64]\nI've cursed Apple because Xcode, codesign, notarization are all hell of a maze to navigate, but the expectations of developing a game on a Mac has always been low (at least when you're not developing exclusively for macOS and latest iPhone). I just never thought I'd be mad at Steam. A developer tool, at 2026, under folder `builder_osx`, doesn't support Apple Silicon.\nMy disappointment is immeasurable and my day is ruined.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1792753927,
+      "created_at": "2026-10-23T11:12:07+00:00",
+      "comments_data": [
+        {
+          "id": "50208034",
+          "author": "komon",
+          "body": "Can't you just run it under Rosetta?",
+          "score": 0,
+          "time": 1792759063,
+          "parent": "50207196"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50206531",
+      "title": "Ask HN: What do you think about lightweight default games on Linux distros?",
+      "subreddit": "ask-hn",
+      "author": "abakh",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50206531",
+      "url": "https://news.ycombinator.com/item?id=50206531",
+      "selftext": "Is it a good idea? I am working on these 21 games for this purpose https://github.com/abakh/nbsdgames\nNow that most repos host the package, I think that including them in distros could be considered. I also wrote a text which takes 2-minutes to read and describes why I think it is a good and important decision to include them https://raw.githubusercontent.com/abakh/nbsdgames/refs/heads/master/mail.txt\nI think this is a zero-cost decision and it serves much more important purposes and has a lot of more positive impact, compared to a lot of much heavier stuff commonly bundled with various distros. (the games are just 500 KBs, 90 KBs if compressed, while giving endless and varied gameplay)\nIf you read the text, can you tell me if it looks reasonable? Is it readable? If you have any agreeing opinion, suggestions for improvement or questions I would like to see your comment.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1792748798,
+      "created_at": "2026-10-23T09:46:38+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,8 +71,8 @@
       "title": "Median product \"lifespan\" has fallen from ~4y down to ~1.5y",
       "subreddit": "ask-hn",
       "author": "stanislavb",
-      "score": 44,
-      "num_comments": 23,
+      "score": 65,
+      "num_comments": 28,
       "permalink": "https://news.ycombinator.com/item?id=50204125",
       "url": "https://news.ycombinator.com/item?id=50204125",
       "selftext": "The \"product graveyard\" of SaaSHub has been tracking the status (and lifespan) of hundreds of thousands of products. It's been hovering around 4y for quite some time. However, there's a sharp decline in 2026 leading to about 1.5y these days. https://www.saashub.com/product-graveyard (https://www.saashub.com/product-graveyard) That's a huge drop. And, it matches my \"human\" observations. A lot of products are being vibe coded, released, and soon after that abandoned. It's become too cheap to produce software. So, a lot of people have been experimenting for 'free' with their ideas - only to find out that they weren't viable... or that they couldn't bring customers in. Distribution and marketing have become much more important than before - within the context that everyone can build \"features\" for free.\nAnyhow, I expect this trend of shortening product lifespan to continue even further down. Or maybe, at some point people will realised that there are no users for their products as every user can \"build\" their own and custom product. Leaving us with a dozen huge platforms that host and help you build those apps. Until then - it's a crazy gold rush and a lot of makers are abandoning their empty buckets.",
@@ -45,11 +106,43 @@
           "parent": "50204125"
         },
         {
+          "id": "50207999",
+          "author": "mattbrewsbytes",
+          "body": "I think another element the cost of maintaining it, supporting it, marketing, etc. hasn't been commoditized like producing brand new software. Those things take time to do properly and there are lots of people churning out a SaaS and then they get abandoned because its not fun anymore to do all the administrative/sales stuff.\nI seriously don't think non-technical people are pumping out apps, probably never will. They simply don't have an interest and would rather just pay for a service. A HVAC, plumbing, or electrician company isn't going to write their own CRM system. Now they will price hunt those services so as software production becomes cheaper, I would expect SaaS margins to also be going down.",
+          "score": 0,
+          "time": 1792758871,
+          "parent": "50204125"
+        },
+        {
+          "id": "50207341",
+          "author": "codingdave",
+          "body": "The problem I'm seeing is not with vibe coding itself, although it is absolutely the LLMs that empower people to fall into the actual trap: Failing to do any research whatsoever into their market and subject area. They see one surface-level problem and instead of digging into the problem space to gain a deep understanding of what would make a solution good or bad... they just code. Vibe code, code by hand, somewhere in the middle, whatever - the current trend is to code first and ask questions later. Some people always did that, but these days it seems like everyone who has not built products before is doing it.\nWe're seeing it more and more. Someone whips out an app independently, launches it, then says, \"How do I find users?\", \"Why does nobody use my app?\" With the answer always being the same - they skipped the step of actually talking to potential users before coding.\nSo we see what is being described - lots of throwaway projects.",
+          "score": 0,
+          "time": 1792755179,
+          "parent": "50204125"
+        },
+        {
           "id": "50204746",
           "author": "ibn_khaldun",
           "body": "Software is in its SoundCloud rap era.",
           "score": 0,
           "time": 1792732262,
+          "parent": "50204125"
+        },
+        {
+          "id": "50206378",
+          "author": "featwanz",
+          "body": "I find myself pushed to develop tools of my own because even market incumbents can't meet my niche use cases for certain things.\nIn the same vein, I am trying not to feel dismayed as I venture into the SaaS landscape in a bid to decouple myself from employment and you cannot help but feel your product is doomed before it even launches given people can build their own solutions.\nYou just need to remember, not everyone is as technical as the people here and those individuals still require solutions to problems.\nIt's tiring hearing people say \"oh well I'll just build it instead\" yeah but is it maintainable? Does it scale? Do you know how your data is handled and saved?",
+          "score": 0,
+          "time": 1792747418,
+          "parent": "50204125"
+        },
+        {
+          "id": "50204404",
+          "author": "snarky-comments",
+          "body": "This could signal a healthy fail fast competitive market. Maybe?",
+          "score": 0,
+          "time": 1792728337,
           "parent": "50204125"
         },
         {
@@ -69,14 +162,6 @@
           "parent": "50204125"
         },
         {
-          "id": "50205121",
-          "author": "Maxzrco",
-          "body": "I would 100% agree on that. Now REA comes in again and in a few years everybody could clone big and complex software. I think a software will need more than features in the future.\nIt will need licences, or content others could not deliver. Really something you can’t clone that fast.\nI think about Netflix, Spotify, Amazon. You can clone all this platforms but will never have the rights, artists or the logistics for example.",
-          "score": 0,
-          "time": 1792736655,
-          "parent": "50204125"
-        },
-        {
           "id": "50205082",
           "author": "hebetude",
           "body": "However, my ability to produce a lot of really useful software for myself has gone way up. None of them are over a year yet but I use them more than the non personalized apps they replaced",
@@ -85,35 +170,11 @@
           "parent": "50204125"
         },
         {
-          "id": "50205136",
+          "id": "50205121",
           "author": "Maxzrco",
-          "body": "I would 100% agree on that. Now REA comes in again and in the future everyone can clone complex software.\nI think distribution become more important than ever. And having something you can’t clone on day 1. I think about Amazon, Netflix, Spotify.\nYou can clone the platforms but not the licences, artists logistic etc…",
+          "body": "I would 100% agree on that. Now REA comes in again and in a few years everybody could clone big and complex software. I think a software will need more than features in the future.\nIt will need licences, or content others could not deliver. Really something you can’t clone that fast.\nI think about Netflix, Spotify, Amazon. You can clone all this platforms but will never have the rights, artists or the logistics for example.",
           "score": 0,
-          "time": 1792736805,
-          "parent": "50204125"
-        },
-        {
-          "id": "50204404",
-          "author": "snarky-comments",
-          "body": "This could signal a healthy fail fast competitive market. Maybe?",
-          "score": 0,
-          "time": 1792728337,
-          "parent": "50204125"
-        },
-        {
-          "id": "50205043",
-          "author": "kristopolous",
-          "body": "Testing products, getting a feel for them, thinking about them, talking and exploring, I mean this is still there and it's long been the actual time-consuming part of making great software; where the soft skills intersect with the hard.\nMaybe the technical stuff is more accessible then it was beforehand but the thousands of hours of the other stuff that leads to good software is still thousands of hours.\nQuality has become less work, but only by a little.\nBut this doesn't mean people value the craftsmanship because they never did before...\nIt's always been simply a popularity contest and now it's that more than ever.\nThe question is, why are you spending your time building things? Is it to make things that are finely crafted? Is it the road to wealth? As a tool to get other work done? Just make sure you have an answer.\nIt's your time after all...",
-          "score": 0,
-          "time": 1792735825,
-          "parent": "50204125"
-        },
-        {
-          "id": "50205066",
-          "author": "keiferski",
-          "body": "Distribution and marketing have always been more important. The hard part has always been being consistent, not having a half-baked prototype.\nFrankly AI is making people even lazier than before, which means that anyone willing to stick around and be consistent is probably the winner.",
-          "score": 0,
-          "time": 1792735995,
+          "time": 1792736655,
           "parent": "50204125"
         }
       ]
