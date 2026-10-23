@@ -7,8 +7,8 @@
       "title": "Lost a 2,400 chargeback after providing signed delivery receipts. When did merchant processors become judge and jury?",
       "subreddit": "smallbusiness",
       "author": "Plus-Listen-1356",
-      "score": 233,
-      "num_comments": 82,
+      "score": 280,
+      "num_comments": 89,
       "created_utc": 1792653043.0,
       "permalink": "/r/smallbusiness/comments/1xcbqm0/lost_a_2400_chargeback_after_providing_signed/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1xcbqm0/lost_a_2400_chargeback_after_providing_signed/",
@@ -22,55 +22,49 @@
           "id": "19rh1cfj25k4g",
           "author": "TautReviewer",
           "body": "chargebacks are a racket, plain and simple. the banks don't care about your proof because they make money on the fees either way\n\n  \nfor anything over a grand we switched to ACH and wire transfers only, haven't had a headache since",
-          "score": 251
+          "score": 275
         },
         {
           "id": "19rh1pd5xr480",
           "author": "BackDatSazzUp",
           "body": "File in small claims court and include court costs and the $15 fee. A judge has more power to get your money back than the bank does. I only use PayPal to process payments and have never lost a dispute with them, fwiw. I know not everyone has my expletive though, so def see if others have good experiences with PP too.",
-          "score": 164
+          "score": 177
         },
         {
           "id": "19rh2awmup3c2",
           "author": "LouieValkhof",
           "body": "Find out which reason code the customer's bank used, because that decides whether your evidence even counted. A signed delivery slip answers \"item not received.\" It does almost nothing against a fraud/unauthorized code, where the cardholder says they never placed the order and it doesn't matter who signed at the door, or against \"not as described.\"\n\nIf it turns out to be a fraud code, you don't necessarily have to drop cards on big orders. Running card-not-present orders through 3D Secure, or taking the card on a terminal with chip or tap, moves fraud liability to the issuing bank. Ask your processor which one this was before you change anything.",
-          "score": 63
-        },
-        {
-          "id": "19rhdq4cn90rl",
-          "author": "Key-Following-5171",
-          "body": "The reason code advice above is right, so let me add the part that actually decides fraud disputes: liability shift.\n\nIf the customer's bank codes this as fraud or unauthorized use, your signed delivery slip is close to irrelevant unless the transaction was authenticated. Three things determine whether you had a chance:\n\n1. 3DS / Verified by Visa on the transaction. If it was authenticated, fraud liability shifts to the issuer and you win by default. If your processor is not forcing 3DS on card-not-present orders over some threshold, that is the single change worth making this week.\n\n2. AVS and CVV match results on the original authorization. A pass on both, plus delivery to the billing address with the cardholder's name on the signature, is the only evidence bundle that consistently survives a fraud code.\n\n3. Prior order history from the same card and the same email, with the customer's own messages. Banks weight \"this cardholder has ordered from this merchant four times\" far more than a signature photo.\n\nTwo mechanics people miss: you usually have a short representment window (often 7 to 10 days, and the clock starts before support tells you), and after a lost representment the next step is pre-arbitration, which for $2,400 is rarely worth the network fee. Ask support for the exact reason code, the issuing bank, and the response deadline in writing - it is your right as the merchant and it is the difference between guessing and building the right file.\n\nStructurally: card for deposits only, balance by ACH or wire, and 3DS forced for anything over a few hundred. That gets you out of the business of proving delivery after the fact.",
-          "score": 40
-        },
-        {
-          "id": "19rhem14tw944",
-          "author": "the_divide_et_impera",
-          "body": "File theft charges ",
-          "score": 38
+          "score": 69
         },
         {
           "id": "19ri0vxowia02",
           "author": "DontRememberOldPass",
           "body": "A chargeback should be treated just like the customers card being declined. The payment failed, but the customer still owes a balance. \n\nSend them an invoice for the amount due, and then send it to collections. ",
-          "score": 30
+          "score": 50
+        },
+        {
+          "id": "19rhdq4cn90rl",
+          "author": "Key-Following-5171",
+          "body": "The reason code advice above is right, so let me add the part that actually decides fraud disputes: liability shift.\n\nIf the customer's bank codes this as fraud or unauthorized use, your signed delivery slip is close to irrelevant unless the transaction was authenticated. Three things determine whether you had a chance:\n\n1. 3DS / Verified by Visa on the transaction. If it was authenticated, fraud liability shifts to the issuer and you win by default. If your processor is not forcing 3DS on card-not-present orders over some threshold, that is the single change worth making this week.\n\n2. AVS and CVV match results on the original authorization. A pass on both, plus delivery to the billing address with the cardholder's name on the signature, is the only evidence bundle that consistently survives a fraud code.\n\n3. Prior order history from the same card and the same email, with the customer's own messages. Banks weight \"this cardholder has ordered from this merchant four times\" far more than a signature photo.\n\nTwo mechanics people miss: you usually have a short representment window (often 7 to 10 days, and the clock starts before support tells you), and after a lost representment the next step is pre-arbitration, which for $2,400 is rarely worth the network fee. Ask support for the exact reason code, the issuing bank, and the response deadline in writing - it is your right as the merchant and it is the difference between guessing and building the right file.\n\nStructurally: card for deposits only, balance by ACH or wire, and 3DS forced for anything over a few hundred. That gets you out of the business of proving delivery after the fact.",
+          "score": 42
+        },
+        {
+          "id": "19rhem14tw944",
+          "author": "the_divide_et_impera",
+          "body": "File theft charges ",
+          "score": 40
         },
         {
           "id": "19rh1b46rokyp",
           "author": "meow_goes_woof",
           "body": "Same situation but not the same big amount. I strictly restrict ordering to my home country. Some Aussie lady decided to bypass the country selection and just checking out with a Australia address but different country selection. \n\nEnded up she filed for dispute and we lost the processing fees for no reason. Provided every evidence that she bypassed our safeguards and checked out to a country we don’t support.  \n\nStripe told us the same thing, customer’s bank refunded the full amount so nothing they could do. ",
-          "score": 19
+          "score": 20
         },
         {
           "id": "19rhvggwwq9ls",
           "author": "noname20-23",
           "body": "Since you have proof of delivery, I'd look into taking that client to small claims court. Sounds like they may have committed fraud.",
-          "score": 16
-        },
-        {
-          "id": "19rh1a3fjgysl",
-          "author": "doublebagger45",
-          "body": "Wooow! That’s awful! I’m SO sorry. For 2,400, I would be fighting the urge to pay them a personal visit. \n\nCan you take them to court?",
-          "score": 14
+          "score": 22
         }
       ]
     },
@@ -80,8 +74,8 @@
       "title": "2027 health insurance rates :(",
       "subreddit": "smallbusiness",
       "author": "abrosaur",
-      "score": 63,
-      "num_comments": 68,
+      "score": 85,
+      "num_comments": 73,
       "created_utc": 1792673322.0,
       "permalink": "/r/smallbusiness/comments/1xchn4b/2027_health_insurance_rates/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1xchn4b/2027_health_insurance_rates/",
@@ -95,13 +89,13 @@
           "id": "19rhhdm1x1ns2",
           "author": "MrPandaOverlord",
           "body": "Insurance for my family is going to be $2700/mo next year if we keep the same plans, up from $1300/mo 2 years ago..\n\nWe’re handling it by getting worse insurance coverage and voting for those campaigning on universal healthcare, or at least not gutting socialized medicine ",
-          "score": 85
+          "score": 97
         },
         {
           "id": "19rhk8nuxozol",
           "author": "avacod",
           "body": "Hey! I am in this same boat. We covered 100% for employees and their families, but with a 21% increase we couldn’t sustain it (with out 8 guys and their families we were looking at a 200k bill) so we offered two plans: a high deductible (3500 so not hat high) fully covered for the employee and 70% for their families or the same plan we had before (platinum plan) at 80% for employee 70% for their family. \n\nWe also offered a $500 monthly cash bonus per employee and $100 for each family member if they chose to leave the plan. Everyone was super understanding and chose a mix ",
-          "score": 47
+          "score": 53
         },
         {
           "id": "19rhhibwgzr1d",
@@ -119,18 +113,18 @@
           "id": "19ri6r14bnr1c",
           "author": "the_ai_wizard",
           "body": "This is not sustainable. I get the sense in the US there is truly a war on small business.",
-          "score": 9
-        },
-        {
-          "id": "19rhjb8w8u36o",
-          "author": "Slpy_gry",
-          "body": "My business employees are me and my spouse. We canceled the insurance and went to a shareable program. Overall our insurance and medicine is just under $1000/mth. If i could cancel the shareable program, I would. Medical bankruptcy seems to be the only option. ",
-          "score": 6
+          "score": 19
         },
         {
           "id": "19rhr1yzeew0x",
           "author": "elcheapodeluxe",
           "body": "We had an increase of $35k/yr for ten enrolled employees 😬\n\nAfter discussing priorities we are switching to a $1800 deductible HSA-compatible gold plan from our $500 deductible platinum plan. Still a $7000/yr increase. I cover 99% of employee premium, still.",
+          "score": 5
+        },
+        {
+          "id": "19rhjb8w8u36o",
+          "author": "Slpy_gry",
+          "body": "My business employees are me and my spouse. We canceled the insurance and went to a shareable program. Overall our insurance and medicine is just under $1000/mth. If i could cancel the shareable program, I would. Medical bankruptcy seems to be the only option. ",
           "score": 2
         }
       ]
@@ -141,8 +135,8 @@
       "title": "What age where you when you started your first business and what made you start it?",
       "subreddit": "smallbusiness",
       "author": "Da-up-and-downer",
-      "score": 29,
-      "num_comments": 30,
+      "score": 35,
+      "num_comments": 31,
       "created_utc": 1792651732.0,
       "permalink": "/r/smallbusiness/comments/1xcbdvc/what_age_where_you_when_you_started_your_first/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1xcbdvc/what_age_where_you_when_you_started_your_first/",
@@ -150,7 +144,81 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "19rh0emz4o8ed",
+          "author": "Den_er_da_hvid",
+          "body": "I was propably 7 or 8. Bought soda/soft drinks when one of the local stores had them on sale. Then sold them to my brother's friends.\n",
+          "score": 12
+        },
+        {
+          "id": "19rhhk4lzsl1d",
+          "author": "EmploymentNo7485",
+          "body": "I was 34, after 10 years in corporate. Did it because I wanted to be my own boss, live life on my own terms. And, honestly, wanted to see if I can pull it off. Would have never forgiven myself had I not tried back then.",
+          "score": 7
+        },
+        {
+          "id": "19rhj7yn6dll0",
+          "author": "Abroad-Kindly",
+          "body": "Poverty made me start it. I was 24yo, full time right out the gate profitable first month in business made $7,600 revenue paid myself about 5k. Used FAFSA student loans money to start. 8 years later we do 10-12x that revenue monthly. Still haven't breached 1 million in annual revenue but the road is clear on how to get there just not sure if I care enough to do it. Yes hard work works but not forever work hard then figure out how to work easy. ",
+          "score": 6
+        },
+        {
+          "id": "19rh290gfpgu9",
+          "author": "ShakeithaLewis",
+          "body": "It’s been long enough that I honestly don’t remember my exact age when I started! \n\nI’m a full-time entrepreneur now, still building toward full-time income. There’s always something new to learn about working for yourself.",
+          "score": 3
+        },
+        {
+          "id": "19rh7hsctzb7l",
+          "author": "Reason_He_Wins_Again",
+          "body": "14 or so. Started a \"computer repair business\" with my buddy. Made fliers but we were too scared to hand them out so we ended up just ended up fixing a few friend / relatives computer and forgot about it.\n\nSince then it's been failure after failure until I found one that kind of worked.",
+          "score": 3
+        },
+        {
+          "id": "19rh1wfafd1ms",
+          "author": "richxxiv",
+          "body": "13, made $2,000 total selling vip membership on a game server. ",
+          "score": 2
+        },
+        {
+          "id": "19rh4qk37b81s",
+          "author": "chrismcelroyseo",
+          "body": "12. Mowing lawns, running errands on my bike, and collecting glass soda bottles to sell back at a nickel a piece. Then just as I turned 13 I got a job keeping a small gas station and grocery store stocked and pumping gas that was 36 cents a gallon.",
+          "score": 1
+        },
+        {
+          "id": "19rh5nxbqp2te",
+          "author": "Thin_Ice_5738",
+          "body": "I am 22 started my energy healing and tarot business. Learning various skills along the way ",
+          "score": 1
+        },
+        {
+          "id": "19rh8l3er7z42",
+          "author": "Substantial_Job_8369",
+          "body": "Selling sea shells i got myself by diving, got me tons of icecream would recommend to any kid kindergarten to elementary.",
+          "score": 1
+        },
+        {
+          "id": "19rh9dainzdz8",
+          "author": "Box-Office-Guy",
+          "body": "Did it work out? ",
+          "score": 1
+        },
+        {
+          "id": "19rhbj9ud1wn7",
+          "author": "_DaddieDaddie_",
+          "body": "34. I was laid off from work. ",
+          "score": 1
+        },
+        {
+          "id": "19rhdi3rsahs2",
+          "author": "LectureMoney513",
+          "body": "What business did you start at 27? ",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1xcmkpe",
@@ -158,8 +226,8 @@
       "title": "We are struggling getting morning traffic coming to the coffee shop.",
       "subreddit": "smallbusiness",
       "author": "Inside_Childhood5916",
-      "score": 26,
-      "num_comments": 45,
+      "score": 32,
+      "num_comments": 54,
       "created_utc": 1792684842.0,
       "permalink": "/r/smallbusiness/comments/1xcmkpe/we_are_struggling_getting_morning_traffic_coming/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1xcmkpe/we_are_struggling_getting_morning_traffic_coming/",
@@ -173,43 +241,49 @@
           "id": "19rhp4scfwjet",
           "author": "Ocidar",
           "body": "Do you have an a-frame or something outside to let people know you have coffee in there? If I walked past a bar in the morning and saw the door open, I wouldn't assume I could go inside and get a coffee.",
-          "score": 57
+          "score": 61
         },
         {
           "id": "19rhp2daesta8",
           "author": "MagicLampAdvertising",
           "body": "Since people already know you as a bar, I'd make the morning offer unmistakable from the street: coffee and breakfast, opening time, and a couple of clearly priced items. A daytime entrance photo and the actual breakfast menu would also help someone checking you online picture a morning visit.\n\n\n\nI'd test one audience first. For commuters, can they see where to stop, order and collect quickly? For neighbours on foot, does the entrance look open and welcoming at 7am? Those are different obstacles, even on the same busy street.\n\n\n\nFor two weeks, ask first-time coffee customers how they found out you serve breakfast and tally morning transactions and return visits. That gives you something more useful than total sales alone when deciding whether awareness is improving or people try it once and don't return.",
-          "score": 15
+          "score": 18
         },
         {
           "id": "19rhqotyfmhj5",
           "author": "mladyhawke",
           "body": "Are you posting on social media? I would go in your neighborhood groups. And just every day post a delicious looking picture of a breakfast sandwich and a coffee at a cute table and just say, enjoying this fantastic breakfast. ",
-          "score": 9
-        },
-        {
-          "id": "19rhrxvd9dumb",
-          "author": "trailerbang",
-          "body": "I think the branding problem is right in your title. You are not a coffee bar, you are a breakfast cafe. Market affordable breakfast and the coffee will flow in tangent. I agree with A-frame ideas for sidewalk marketing, post flyers up around the U campus, do a small meta ads buy geo-targeting the local area. Update your signage outside “Breakfast, Lunch and Dinner”, update your google listing, etc. ",
-          "score": 4
+          "score": 12
         },
         {
           "id": "19rhrskp3nps0",
           "author": "Optimal_Brief9764",
           "body": "Can people order online?  I appreciate being able to order a quick breakfast ahead of time that I can pop in and grab instead of waiting for 10 min of line and prep. I also like punch cards for coffees and pastries, good luck!",
-          "score": 5
+          "score": 6
+        },
+        {
+          "id": "19rhrxvd9dumb",
+          "author": "trailerbang",
+          "body": "I think the branding problem is right in your title. You are not a coffee bar, you are a breakfast cafe. Market affordable breakfast and the coffee will flow in tangent. I agree with A-frame ideas for sidewalk marketing, post flyers up around the U campus, do a small meta ads buy geo-targeting the local area. Update your signage outside “Breakfast, Lunch and Dinner”, update your google listing, etc. ",
+          "score": 7
         },
         {
           "id": "19rhu2an5z5ts",
           "author": "bojangleschikin",
           "body": "I travel for work a lot. On Google Maps. Make sure you have a photo of your espresso machine prominently displayed (in some photos showing shit in the space) It should look like a $5-10k machine. \n\nIf it looks like a half ass machine, I assume it’s half ass coffee. If you don’t show it, I assume you didn’t make the investment so I don’t stop. ",
-          "score": 3
+          "score": 6
         },
         {
           "id": "19rhzeurknku9",
           "author": "AIPanicRoom",
           "body": "The Google point you raised is probably a bigger part of this than it looks. Commuters and students deciding where to grab coffee mostly search \"coffee near me\" or \"breakfast near me\" in Maps, and if Google files you as a bar, you may not show up for those searches at all. A few things to check in your Google Business Profile:\n\n- Categories: if the primary category is Bar, add Coffee shop and Breakfast restaurant as additional categories, or make Cafe the primary one while mornings are the priority. Categories decide a lot of which searches you appear in.\n- Hours: make sure the listed hours start at 7am on weekdays. If the listing reads like a bar that opens in the afternoon, people who look you up on the drive in will assume there's no morning menu. You can also add breakfast hours under \"More hours\" so the morning service shows separately.\n- Photos and menu: upload daytime photos of the coffee bar, the pastries and a drink with the housemade syrups, and add the breakfast menu with prices. Right now the photos people see are probably evening bar shots, and a batch of fresh morning ones helps change that first impression.\n- Reviews: your reviews are about the afternoon because those are the customers who've been leaving them. For the next few weeks, put a small card or QR code at the register asking morning customers for a review, and ask your regulars directly. Even 10-15 reviews that mention lattes, pastries or breakfast change how the listing reads.\n- Google posts: a weekly post (this week's syrup flavor, a student deal) keeps the profile active and shows up right on the listing.\n\nThen do the same everywhere else people check: Yelp, Apple Maps and your Instagram bio should say something like \"Cafe 7am-12pm, bar from 4pm\".\n\nOn the numbers: $200 between 7am and noon is roughly 30-40 orders, depending on your average ticket. I'd write down the order count every morning for 4 weeks after the sign and listing changes, so you can see whether it's moving before you decide on the program. Asking new morning customers \"how did you find out we do coffee?\" for a couple of weeks will also tell you whether it was the sign, Google or word of mouth.",
           "score": 5
+        },
+        {
+          "id": "19rhq7ir3uvd0",
+          "author": "TheNewGuy13",
+          "body": "What’s the name? What’s the bar vibes in the evening? If it’s a dive bar type of spot you’re fighting an uphill battle I think. If the name reflects that’s it’s a bar then that’s also an uphill battle. \n\nAlso if you didn’t offer it at the beginning it’s going to take a while for it to ‘hit’. We are a Mexican spot that at first only offered dinner/lunch and breakfast on weekends only. After a year we started opening earlier in other days and now we open early during the season 4 days a week with a pretty steady breakfast crowd. But that was after a ton of marketing and finding those customers. There’s still room for improvement in my opinion so it’s never really enough.",
+          "score": 3
         },
         {
           "id": "19rhqegy881fp",
@@ -228,18 +302,6 @@
           "author": "HATDOGUSERNi",
           "body": "maybe promote the coffee and breakfast more on Google, adn try a morning coffee deal to bring people in",
           "score": 2
-        },
-        {
-          "id": "19rhq7ir3uvd0",
-          "author": "TheNewGuy13",
-          "body": "What’s the name? What’s the bar vibes in the evening? If it’s a dive bar type of spot you’re fighting an uphill battle I think. If the name reflects that’s it’s a bar then that’s also an uphill battle. \n\nAlso if you didn’t offer it at the beginning it’s going to take a while for it to ‘hit’. We are a Mexican spot that at first only offered dinner/lunch and breakfast on weekends only. After a year we started opening earlier in other days and now we open early during the season 4 days a week with a pretty steady breakfast crowd. But that was after a ton of marketing and finding those customers. There’s still room for improvement in my opinion so it’s never really enough.",
-          "score": 2
-        },
-        {
-          "id": "19rhqjsnlopqa",
-          "author": "bobby_pablo",
-          "body": "Everything magiclampadvertising said + I always like giving out samples, hanging out outside and passing out free coffee samples in tiny cups to people walking by.  ",
-          "score": 2
         }
       ]
     },
@@ -249,7 +311,7 @@
       "title": "How can I not be shy selling",
       "subreddit": "smallbusiness",
       "author": "Cheezey5531",
-      "score": 10,
+      "score": 11,
       "num_comments": 28,
       "created_utc": 1792662502.0,
       "permalink": "/r/smallbusiness/comments/1xce73c/how_can_i_not_be_shy_selling/",
@@ -258,7 +320,57 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "19rh8fj9rlm5e",
+          "author": "BrilliantSafety8870",
+          "body": "just start quiet, no one expects you to be a carnival barker on day one. stand there with a little smile and a sign that says \"ice pops\" in nice lettering, people will come. the first few times you say it out loud it'll feel weird but after a handful of sales you'll stop caring so much",
+          "score": 5
+        },
+        {
+          "id": "19rh8fxjggw2q",
+          "author": "123Fake_St",
+          "body": "Honestly, doing it so much that you eventually don't give an ounce of energy to what people think of you. Because in reality, they don't anyway and will never remember who was trying to sell them ice pops.",
+          "score": 4
+        },
+        {
+          "id": "19rhbjbnqn8th",
+          "author": "it_diedinhermouth",
+          "body": "Believe that people want what you are selling",
+          "score": 3
+        },
+        {
+          "id": "19rh8r3xadmqq",
+          "author": "JeffArnold1",
+          "body": "You don't have to yell, just try to politely approach people and tell them you are selling something. If you are selling ice pops, it's better to sell during a hot weather. ",
+          "score": 1
+        },
+        {
+          "id": "19rh8v557d7j4",
+          "author": "Jock_Horror",
+          "body": "You don't have to be confident to start. Just start small. The more people you talk to, the easier it gets. Some will say no, and that's fine. You only need a few to say yes. Don't let being shy stop you before you've even started.",
+          "score": 1
+        },
+        {
+          "id": "19rhcgnavm3j8",
+          "author": "sizup00",
+          "body": "Reframe the way you are looking at this.\n\nYou aren't selling ice pops. \n\nYou are giving the people you meet an opportunity to BUY ice pops if they want. \n\nBUT, they won't know they have this chance until you communicate that.  It could be with a sign, it could be talking to people, it could be with a megaphone, or it could just be holding a bunch of ice pops and waiting for someone to come to you. \n\nYou can be shy and still sell things. Some of the best salespeople are introverted. \n\nThe other thing that works for people who are selling something is \"fake it til you make it\".  You can pretend to be a pro seller until you become one. \n\nThat said, if someone says they don't want to buy an ice pop, don't hassle them.  Move on to the next prospect. ",
+          "score": 1
+        },
+        {
+          "id": "19rhd1bcqs868",
+          "author": "realpeople_4u",
+          "body": "Act like you know everyone and everyone knows you (and if they don't they should) see everyone as a friend and yell it like you haven't seen them in a while. They don't know you're shy so be for long everyone will know you and confidence starts to show. ",
+          "score": 1
+        },
+        {
+          "id": "19rhdosi906lg",
+          "author": "Few-Boysenberry-7826",
+          "body": "I remember starting out after college getting into an internet business with an old-school salesman. Think: Willie Loman. One day he threw his arm around my shoulder and hugged me after we closed a big sale, \"Davey-boy, you know what I love about sales? Its the **Law of the Jungle**! You eat what you kill!\"\n\nAnother time, I was working for an ISP and one of their salesmen had a cross-stitch from his wife in his office that read, *\"Nothing happens until somebody sells something.\"*\n\nSales is finding someone whose needs or wants align with what you have to offer. Thing is, they don't know you're offering it until you offer it to them. Then the answer's either Yes, or No, or Not No but Not Now. But you have to put yourself out there in a semi-vulnerable state to determine that.",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1xc8rxo",
@@ -339,8 +451,8 @@
       "title": "When do I quit my job?",
       "subreddit": "smallbusiness",
       "author": "ButttererFingers",
-      "score": 9,
-      "num_comments": 20,
+      "score": 10,
+      "num_comments": 21,
       "created_utc": 1792679413.0,
       "permalink": "/r/smallbusiness/comments/1xck5qm/when_do_i_quit_my_job/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1xck5qm/when_do_i_quit_my_job/",
@@ -356,8 +468,8 @@
       "title": "If your spouse runs the office side of your business, how do you keep work from taking over the house?",
       "subreddit": "smallbusiness",
       "author": "Legitimate_Bet3803",
-      "score": 5,
-      "num_comments": 9,
+      "score": 9,
+      "num_comments": 10,
       "created_utc": 1792702191.0,
       "permalink": "/r/smallbusiness/comments/1xcuf2x/if_your_spouse_runs_the_office_side_of_your/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1xcuf2x/if_your_spouse_runs_the_office_side_of_your/",
@@ -374,7 +486,7 @@
       "subreddit": "smallbusiness",
       "author": "Prestigious-Ruin-850",
       "score": 8,
-      "num_comments": 11,
+      "num_comments": 18,
       "created_utc": 1792695401.0,
       "permalink": "/r/smallbusiness/comments/1xcrduv/cpa_never_registered_s_corp_with_state/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1xcrduv/cpa_never_registered_s_corp_with_state/",
@@ -390,8 +502,8 @@
       "title": "Favorite business phone number setup that goes to personal phone, but is not your personal phone number?",
       "subreddit": "smallbusiness",
       "author": "23andburnside",
-      "score": 6,
-      "num_comments": 14,
+      "score": 8,
+      "num_comments": 17,
       "created_utc": 1792684191.0,
       "permalink": "/r/smallbusiness/comments/1xcma6d/favorite_business_phone_number_setup_that_goes_to/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1xcma6d/favorite_business_phone_number_setup_that_goes_to/",
@@ -408,7 +520,7 @@
       "subreddit": "smallbusiness",
       "author": "YMoose19",
       "score": 6,
-      "num_comments": 29,
+      "num_comments": 31,
       "created_utc": 1792681328.0,
       "permalink": "/r/smallbusiness/comments/1xckztb/is_it_a_bad_idea_to_purchase_a_business/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1xckztb/is_it_a_bad_idea_to_purchase_a_business/",
@@ -416,7 +528,63 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "19rhmazvlx005",
+          "author": "Grand_Eye_7985",
+          "body": "Buying is not a bad idea by itself, and in some ways it is more honest than starting from zero: there are already customers, records, and a way the work gets done that you can inspect before you pay. Starting gives you a clean sheet, but you then have to prove demand while paying the bills. Buying lets you check demand first, if you do the checking properly.\n\nThe part people underprice is what they are actually buying after the owner leaves. Recalculate the profit after paying someone a market wage to do the owner's job, including the selling, the bookkeeping, and the awkward customer calls. If the numbers only work because the owner works long hours for little pay, you are buying a job, not a business. Then look at how much work comes from the top few customers, how long they have stayed, and whether they are tied to the business or to the owner personally.\n\nAsk for records that agree with each other, not just a summary the seller prepared for the sale: tax filings, bank deposits, and sales records for several years should tell roughly the same story. Set aside money for the first months as well as the purchase price. Even a healthy business dips during a handover, licenses, stock, and staff questions all take cash and attention, and sellers rarely stay as available as they promise once the sale closes.\n\nOn the fear point, some of the deals you passed on may have been good, and some may have looked good only with hindsight. A useful test is to write down, before you decide, what would have to be true for the purchase to be a mistake and what you can check now about each one. That turns a vague fear into a short list, and it also gives you a reason to walk away that is not just nerves.\n\nThe unexpected challenge most buyers mention is not the work itself. It is inheriting habits and promises: pricing that was never raised, a key employee who does things their own way, customers who were promised extras that were never written down. Spend time in the business before you buy if you can, and talk to staff as part of the handover plan, not after it.",
+          "score": 5
+        },
+        {
+          "id": "19rhnmrbzpa9s",
+          "author": "MilestoneFranchising",
+          "body": "There is never a perfect, ideal time to start a business. My first business was during the Great Recession and my current business started during the height of the pandemic. \n\nThere are always reasons not to do it. Work with candidates everyday looking to leave their corporate life behind. Those that take the leap always say that their biggest regret was not doing it sooner. ",
+          "score": 4
+        },
+        {
+          "id": "19rhmwde0bw3o",
+          "author": "estagingapp",
+          "body": "It's not a bad idea to buy business, but have you ever run a business? I would recommend trying to start your own small business to get experience.",
+          "score": 2
+        },
+        {
+          "id": "19rhvkmnz2zi9",
+          "author": "Bob-Roman",
+          "body": "There is big difference between starting a business and buying a going concern.\n\nHowever, before taking that decision on is best fit.\n\nMost folks usually choose to do something for which they have experience, skill, and/or credentials.  Arguably, you have formal education but do you have other skills or expertise besides data analysis.\n\nFor example, assume you wanted to start up data analysis consulting business.\n\nI took a peak.  Ideal target zone for independent or mid-market firms is $200K to $250K revenue per employee.\n\nIn my industry, it’s $150K.  It took me almost two years to ramp up.  As solo, I managed gross net 80 percent.\n\nBuying known entity carries a lot less risk but it is more expensive.\n\nFor example, to acquire that net 80 percent, I would have needed $200K capital, collateral, and personal guarantee.\n\nI started consulting gig for $20k.\n\n ",
+          "score": 2
+        },
+        {
+          "id": "19rhq2p5fetdv",
+          "author": "CryDue3918",
+          "body": "if the numbers are solid and due diligence checks out, buying an existing business can be a great shortcut. you're acquiring customers, cash flow, and systems not just an idea",
+          "score": 1
+        },
+        {
+          "id": "19rhqksi1zl8g",
+          "author": "AlreadyHereNow",
+          "body": "I would buy my next business rather than start one. Buying has a MUCH higher chance of success. I would maybe look up YouTube videos or find a business coach. What sort of business is it?",
+          "score": 1
+        },
+        {
+          "id": "19rhqxhimg8xt",
+          "author": "Impressive_Train_893",
+          "body": "I can relate to this from a slightly different perspective. I spent over 20 years working in the same industry before taking the leap into business ownership in 2022. Rather than starting from scratch, my business partner and I purchased the assets of an existing business, which gave us a foundation to build on.\n\nFor me, it wasn’t necessarily about making more money. It was about taking the knowledge, experience and relationships I had developed over the years and having the opportunity to build something of my own. I knew the industry, understood the clients and felt confident in the service we could provide.\n\nWhat I underestimated was just how many hats you have to wear as a business owner. You’re no longer just doing the work you’re good at. \n\nYou’re responsible for marketing, sales, finances, staffing, client relationships and making sure there’s enough work coming in to keep everyone busy. And just because you’re good at what you do doesn’t automatically mean you’re good at running a business. That’s a whole different learning curve!\n\nOne of the biggest surprises for me was realizing that even after more than 20 years of experience, there was still so much to learn.\n\nWould I do it again? Absolutely. \n\nWould I do some things differently? \n\nWithout question!\n\nMy advice would be to seriously consider purchasing an established business, particularly if it has a solid reputation, existing clients and a proven track record. But do your homework. Understand the financials, why the owner is selling and how dependent the business is on that owner’s personal relationships.\n\nAnd one last thing. At 27, you have plenty of time. Don’t let fear stop you, but don’t let the fear of missing an opportunity push you into the wrong one either.\n\nI’m curious, are you looking at businesses related to your current experience as a data analyst, or are you considering something completely different?",
+          "score": 1
+        },
+        {
+          "id": "19rhw50ts85s0",
+          "author": "whoisdude69",
+          "body": "If you are considering buying a business, please consider giving “Buy then build” by Walker Deibel a read. It’s a great book on the process of buying a business and how it is better than starting one in fact, I’m actually rereading it again right now.",
+          "score": 1
+        },
+        {
+          "id": "19rhw752wvzuo",
+          "author": "BobbyBizScout",
+          "body": "The odds of success when you purchase a business are much higher than starting one from scratch.",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1xcg3xz",
@@ -458,7 +626,7 @@
       "title": "Do I stay or buy out need actually advice and what you would do as a business owner",
       "subreddit": "smallbusiness",
       "author": "cxris12",
-      "score": 6,
+      "score": 7,
       "num_comments": 7,
       "created_utc": 1792702909.0,
       "permalink": "/r/smallbusiness/comments/1xcupz4/do_i_stay_or_buy_out_need_actually_advice_and/",
@@ -475,8 +643,8 @@
       "title": "Coffee shop investment",
       "subreddit": "smallbusiness",
       "author": "Ordinary_Brief4089",
-      "score": 4,
-      "num_comments": 19,
+      "score": 7,
+      "num_comments": 27,
       "created_utc": 1792700185.0,
       "permalink": "/r/smallbusiness/comments/1xctjql/coffee_shop_investment/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1xctjql/coffee_shop_investment/",
@@ -492,8 +660,8 @@
       "title": "Nobody talks enough about how hard it is to build something of your own.",
       "subreddit": "smallbusiness",
       "author": "Unique_Marketing_697",
-      "score": 4,
-      "num_comments": 6,
+      "score": 11,
+      "num_comments": 11,
       "created_utc": 1792696137.0,
       "permalink": "/r/smallbusiness/comments/1xcrprn/nobody_talks_enough_about_how_hard_it_is_to_build/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1xcrprn/nobody_talks_enough_about_how_hard_it_is_to_build/",
@@ -526,8 +694,8 @@
       "title": "Internet phone recommendations",
       "subreddit": "smallbusiness",
       "author": "oncall66",
-      "score": 6,
-      "num_comments": 21,
+      "score": 5,
+      "num_comments": 22,
       "created_utc": 1792670097.0,
       "permalink": "/r/smallbusiness/comments/1xcgi32/internet_phone_recommendations/",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1xcgi32/internet_phone_recommendations/",
@@ -647,8 +815,8 @@
       "title": "eMudhra to Exit global SSL/TLS Certificate Business",
       "subreddit": "sysadmin",
       "author": "Additional_Dog_680",
-      "score": 554,
-      "num_comments": 132,
+      "score": 765,
+      "num_comments": 188,
       "created_utc": 1792692181.0,
       "permalink": "/r/sysadmin/comments/1xcpxmw/emudhra_to_exit_global_ssltls_certificate_business/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1xcpxmw/emudhra_to_exit_global_ssltls_certificate_business/",
@@ -659,15 +827,15 @@
       "stickied": false,
       "comments_data": [
         {
-          "id": "19rhuftoaa279",
-          "author": "sole-it",
-          "body": "`eMudhra handled the recent incident diligently, revoking the affected CAs within 14 hours of discovery and disclosing promptly`, LOL, 14 hrs to revoking CA with private key of single digits like `4`? ",
-          "score": 1
-        },
-        {
           "id": "19rhv3aafsc6c",
           "author": "iceph03nix",
           "body": ">However, the level of social media amplification around this incident has brought scrutiny that is out of proportion to SSL/TLS’s place in our business.\n\n4",
+          "score": 1
+        },
+        {
+          "id": "19rhuftoaa279",
+          "author": "sole-it",
+          "body": "`eMudhra handled the recent incident diligently, revoking the affected CAs within 14 hours of discovery and disclosing promptly`, LOL, 14 hrs to revoking CA with private key of single digits like `4`? ",
           "score": 1
         },
         {
@@ -693,12 +861,6 @@
           "author": "retornam",
           "body": "This part of the post is really funny\n\n\\>  eMudhra handled the recent incident diligently,  \n\\>  revoking the affected CAs within 14 hours of  \n\\>  discovery and disclosing promptly. There were  \n\\>  no end entity certificates issued out of the  \n\\>  affected CA’s.\n\nCheck the  number of 1 day certificates issued to we-are-lost.com with google.com as the SAN by  eMudhra yesterday\n\n[https://ctlogs.dev/ca/579480aea166290bd3c643589e795fc0d0e54e86505d180f1dff99efd3199512](https://ctlogs.dev/ca/579480aea166290bd3c643589e795fc0d0e54e86505d180f1dff99efd3199512)",
           "score": 1
-        },
-        {
-          "id": "19rhvrm5331ya",
-          "author": "beren0073",
-          "body": "“After screwing up something that represents 1% of our revenue, we have decided to focus on not screwing up the other 99%.”",
-          "score": 1
         }
       ]
     },
@@ -708,8 +870,8 @@
       "title": "Adding fuel to this weeks fire, several Linux Kernel Vulnerabilities Accidentally Posted To Public Kernel Mailing List",
       "subreddit": "sysadmin",
       "author": "segagamer",
-      "score": 507,
-      "num_comments": 76,
+      "score": 583,
+      "num_comments": 89,
       "created_utc": 1792687631.0,
       "permalink": "/r/sysadmin/comments/1xcnufc/adding_fuel_to_this_weeks_fire_several_linux/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1xcnufc/adding_fuel_to_this_weeks_fire_several_linux/",
@@ -750,6 +912,12 @@
           "score": 1
         },
         {
+          "id": "19rhs3t2do0rp",
+          "author": "flecom",
+          "body": "so which AI are we going to blame for posting it to the public list instead of the private one?",
+          "score": 1
+        },
+        {
           "id": "19rht434s5a79",
           "author": "Jacksharkben",
           "body": "Jk who else is going to update the servers.\n\n![gif](giphy|3XiQswSmbjBiU)",
@@ -759,12 +927,6 @@
           "id": "19rhtzndpdvqd",
           "author": "0RGASMIK",
           "body": "To be fair AI companies tried to warn us it was about to get bad. It’s probably going to get a lot worse before it gets better. Someone else theorized that we may learn that there is no such thing as a perfectly secure system as larger and larger exploit chains come to light. ",
-          "score": 1
-        },
-        {
-          "id": "19rhs3t2do0rp",
-          "author": "flecom",
-          "body": "so which AI are we going to blame for posting it to the public list instead of the private one?",
           "score": 1
         }
       ]
@@ -836,8 +998,8 @@
       "title": "Support to all those university sysadmins renewing eMudhra certs this weekend",
       "subreddit": "sysadmin",
       "author": "certkit",
-      "score": 190,
-      "num_comments": 54,
+      "score": 239,
+      "num_comments": 59,
       "created_utc": 1792677610.0,
       "permalink": "/r/sysadmin/comments/1xcjdfs/support_to_all_those_university_sysadmins/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1xcjdfs/support_to_all_those_university_sysadmins/",
@@ -885,7 +1047,7 @@
       "title": "Thanks to all the sysadmins!",
       "subreddit": "sysadmin",
       "author": "jak74",
-      "score": 138,
+      "score": 143,
       "num_comments": 15,
       "created_utc": 1792659795.0,
       "permalink": "/r/sysadmin/comments/1xcdh2p/thanks_to_all_the_sysadmins/",
@@ -902,8 +1064,8 @@
       "title": "Do all MSPs micromanage like this?",
       "subreddit": "sysadmin",
       "author": "VancyGeek",
-      "score": 84,
-      "num_comments": 111,
+      "score": 102,
+      "num_comments": 134,
       "created_utc": 1792701239.0,
       "permalink": "/r/sysadmin/comments/1xcu0i2/do_all_msps_micromanage_like_this/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1xcu0i2/do_all_msps_micromanage_like_this/",
@@ -928,7 +1090,7 @@
         {
           "id": "19ri16rbabyhs",
           "author": "MetaVulture",
-          "body": "I would rather be ground into human meat burger patties than ever work for an MSP again.\n\nI am glad you tasted hell and left instead of saying  ",
+          "body": "I would rather be ground into human meat burger patties than ever work for an MSP again.\n\nI am glad you tasted hell and left instead of staying",
           "score": 1
         },
         {
@@ -956,15 +1118,9 @@
           "score": 1
         },
         {
-          "id": "19ri16wqnn23m",
-          "author": "heartofyourtempest",
-          "body": "In short, most do. Not to 1min, the worst I heard of is 5. \nYou are their revenue generating asset. They bill directly against the time you spent against that specific project. \nThe realest ones bill when they are thinking about a solution, either driving or laying in bed. \n\nMore billable hours = more better to most rubber stamped MSP. Especially in project work. If it scope creeps, it's a levage tool to get more out of the client. \n\n",
-          "score": 1
-        },
-        {
-          "id": "19ri2pg4m7kh0",
-          "author": "skruis",
-          "body": "No, not every MSP is like that... but most are. I recently switched to one where their focus is on providing value and building long term relationships over bleeding their customers dry, and it's been refreshing. Regardless, living in the MSP world is very different from being in Internal IT. If you like something new every day, MSP work is fantastic and you're exposed to lots of different environments. If you like to chill, dot all the i's, cross all the t's, and get a lot of experience in specific areas, Internal IT may be better for you.",
+          "id": "19ri9rm9pu3c3",
+          "author": "Altruistic-Map5605",
+          "body": "I did 11 years of MSP Project work and the number 1 thing I hated was time sheets. It felt like a way of punishing me for getting good at my job.\n\nSecond is help desk who refused to do networking tickets and everyone we brought in who “understood networking” couldn’t even give me the first 3 layers of the OSI model. They would call me at 2:00am with no triage or basic troubleshooting only for me to find out a domain controller is shut down. I can’t tell you how many training I did just to explain subnets and vlans only to get blank stares. God forbid someone need to add a port to an existing firewall policy, that ticket gets escalated tier 3.\n\nUgh and the clients/vendors. I think 50% of my job was just gathering proof that a problem wasn’t on my end just to be met with zero proof it wasn’t the other end and a “figure it out”. “I did you need to add a route back to me  you idiot!, oh look it’s working now! That only took two weeks… fiserve…cough cough”\n\nLong story short I’m trying to move into enterprise.",
           "score": 1
         }
       ]
@@ -975,8 +1131,8 @@
       "title": "Is AI causing impatience and removal of troubleshooting skills? Leading to burnout of sysadmins.",
       "subreddit": "sysadmin",
       "author": "UnleashedArchers",
-      "score": 86,
-      "num_comments": 81,
+      "score": 91,
+      "num_comments": 84,
       "created_utc": 1792658930.0,
       "permalink": "/r/sysadmin/comments/1xcd912/is_ai_causing_impatience_and_removal_of/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1xcd912/is_ai_causing_impatience_and_removal_of/",
@@ -1017,15 +1173,15 @@
           "score": 1
         },
         {
-          "id": "19rhatmnvirab",
-          "author": "buy_chocolate_bars",
-          "body": "AI helped me finish my to-do-list, cleaned up my backlog, quality and total output are so much higher. It's the first time I'm fully enjoying my job because I have capable coworkers that never misunderstand me like the human ones do.",
-          "score": 1
-        },
-        {
           "id": "19rhfjl64krs0",
           "author": "Feral_Nerd_22",
           "body": "You would be surprised how cocky and confident developers get when they throw Claude at an issue.\n\nWe have been getting so many people instead of asking for help they post the **FULL** Claude output and tell us to implement it.\n\n9/10 times Claude doesn't have enough context to the environment or setup and it will just make shit up.\n\nWhat I find more rude is pasting the entire fucking output.\n\nI got so pissed one day I asked CoPilot to \"rewrite my response so it sounds like an enthusiastic LLM\" and replies with that.",
+          "score": 1
+        },
+        {
+          "id": "19rhatmnvirab",
+          "author": "buy_chocolate_bars",
+          "body": "AI helped me finish my to-do-list, cleaned up my backlog, quality and total output are so much higher. It's the first time I'm fully enjoying my job because I have capable coworkers that never misunderstand me like the human ones do.",
           "score": 1
         }
       ]
@@ -1036,12 +1192,12 @@
       "title": "Current IT job market",
       "subreddit": "sysadmin",
       "author": "steventx",
-      "score": 81,
-      "num_comments": 144,
+      "score": 95,
+      "num_comments": 164,
       "created_utc": 1792676330.0,
       "permalink": "/r/sysadmin/comments/1xciu7d/current_it_job_market/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1xciu7d/current_it_job_market/",
-      "selftext": "What’s the current job market like out there?\n\nI know they are still hiring for the “AI” jobs but what about the others.\n\nI seems like a lot of these companies just aren’t hiring or are sending jobs overseas. There are a lot of jobs where they just don’t want to pay, is that because it’s their market right now and there is a lot of talent without jobs?\n\nIt seems like historically IT is always short-staffed, but I think it has gotten worse. I also noticed a lot of people just getting so frustrated that they are retiring. Companies don’t seem to want employees (honestly they never did but they didn’t have a choice).\n\nIt seems to be getting worse? Thoughts?\n\n**A lot of people have a good point that it depends on where you live. I was talking about the US because this is my job market but it is interesting to see how the other countries are doing**",
+      "selftext": "What’s the current job market like out there?\n\nI know they are still hiring for the “AI” jobs but what about the others.\n\nI seems like a lot of these companies just aren’t hiring or are sending jobs overseas. There are a lot of jobs where they just don’t want to pay, is that because it’s their market right now and there is a lot of talent without jobs?\n\nIt seems like historically IT is always short-staffed, but I think it has gotten worse. I also noticed a lot of people just getting so frustrated that they are retiring. Companies don’t seem to want employees (honestly they never did but they didn’t have a choice).\n\nIt seems to be getting worse? Thoughts?\n\n**A lot of people have a good point that it depends on where you live. I was talking about the US because this is my job market but it is interesting to see how the other countries are doing.**\n\n**WOW, super soul-crushing to hear what my IT brothers and sisters are going through and pretty sure that I am not far behind. It looks like my company is going to be moving everything to India here soon (good for you India folks), regardless of what they are saying I can see the writing. I was hoping things were better because I want to get in front of this. I just hope there is a path forward somehow. I really feel for all of you and even the ones of you that finally got jobs it must still take time to recover because this is crushing. What has happened to our humanity? Who have we become as people? How much profit is enough? I guess this is a first-world problem, and others probably have it far worse. I’m not against any country but I think it is up to each person’s country to resolve their workforce issues. I want our country to stop outsourcing jobs. Those jobs should be for our citizens and if we have an abundance of labor, a labor shortage or a skillset problem I understand going external. That is not the issue. This is greed and profit. They are not sending these jobs to India because the skillset is better than that in the US (I know you have skills). They are doing it because it is cheap labor and they will work crazy hours? By the way, these companies are hiring FTE (full-time employees) in India (overseas) to replace the workforce. This allows them to work around (loopholes) laws that prevent foreign workers from working with specific data.**\n\n**Not trying to be political, really trying to understand the IT landscape and job market better.**",
       "is_self": true,
       "over_18": false,
       "is_video": false,
@@ -1097,8 +1253,8 @@
       "title": "GoDaddy Starfield Certificates Revoked",
       "subreddit": "sysadmin",
       "author": "BrickMyPhone",
-      "score": 48,
-      "num_comments": 17,
+      "score": 53,
+      "num_comments": 18,
       "created_utc": 1792653140.0,
       "permalink": "/r/sysadmin/comments/1xcbri8/godaddy_starfield_certificates_revoked/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1xcbri8/godaddy_starfield_certificates_revoked/",
@@ -1114,8 +1270,8 @@
       "title": "Do you or your org use Signal?",
       "subreddit": "sysadmin",
       "author": "MisconfigMonday",
-      "score": 49,
-      "num_comments": 10,
+      "score": 60,
+      "num_comments": 11,
       "created_utc": 1792674169.0,
       "permalink": "/r/sysadmin/comments/1xchz33/do_you_or_your_org_use_signal/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1xchz33/do_you_or_your_org_use_signal/",
@@ -1131,8 +1287,8 @@
       "title": "Has installing USB printers changed?!",
       "subreddit": "sysadmin",
       "author": "JJRtree81",
-      "score": 40,
-      "num_comments": 78,
+      "score": 51,
+      "num_comments": 84,
       "created_utc": 1792667567.0,
       "permalink": "/r/sysadmin/comments/1xcfoxh/has_installing_usb_printers_changed/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1xcfoxh/has_installing_usb_printers_changed/",
@@ -1198,8 +1354,8 @@
       "title": "SSL Certificates",
       "subreddit": "sysadmin",
       "author": "Th3Highlander",
-      "score": 34,
-      "num_comments": 100,
+      "score": 41,
+      "num_comments": 116,
       "created_utc": 1792684244.0,
       "permalink": "/r/sysadmin/comments/1xcmb1w/ssl_certificates/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1xcmb1w/ssl_certificates/",
@@ -1256,12 +1412,6 @@
           "author": "furtive",
           "body": "Full automation is the only solution. We just invalidated our last wildcard cert on Monday and found one more thing that wasn't switched over, but now were good. It was a slow, steady chore over a two year period. ",
           "score": 1
-        },
-        {
-          "id": "19rhp9bk12dvp",
-          "author": "thewunderbar",
-          "body": "ACME is the answer.  That's what I'll be spending a couple of months of my life doing pretty shortly.",
-          "score": 1
         }
       ]
     },
@@ -1271,7 +1421,7 @@
       "title": "Regarding older post of Lenovo dock Ethernet issues. SOLVED",
       "subreddit": "sysadmin",
       "author": "ntrsbandit",
-      "score": 27,
+      "score": 32,
       "num_comments": 6,
       "created_utc": 1792665536.0,
       "permalink": "/r/sysadmin/comments/1xcf2p0/regarding_older_post_of_lenovo_dock_ethernet/",
@@ -1288,7 +1438,7 @@
       "title": "PHP Into GoDaddy Certs",
       "subreddit": "sysadmin",
       "author": "KforKerosene",
-      "score": 24,
+      "score": 26,
       "num_comments": 38,
       "created_utc": 1792674291.0,
       "permalink": "/r/sysadmin/comments/1xci0xu/php_into_godaddy_certs/",
@@ -1349,8 +1499,8 @@
       "title": "Yay!!! Tamper Protection is now on.",
       "subreddit": "sysadmin",
       "author": "No_Sport4225",
-      "score": 22,
-      "num_comments": 8,
+      "score": 26,
+      "num_comments": 9,
       "created_utc": 1792699493.0,
       "permalink": "/r/sysadmin/comments/1xct8pz/yay_tamper_protection_is_now_on/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1xct8pz/yay_tamper_protection_is_now_on/",
@@ -1439,8 +1589,8 @@
       "title": "How are you figuring out which servers are running vulnerable PHP after this week's critical patch?",
       "subreddit": "sysadmin",
       "author": "CoryKellis",
-      "score": 20,
-      "num_comments": 35,
+      "score": 24,
+      "num_comments": 36,
       "created_utc": 1792692310.0,
       "permalink": "/r/sysadmin/comments/1xcpzq6/how_are_you_figuring_out_which_servers_are/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1xcpzq6/how_are_you_figuring_out_which_servers_are/",
@@ -1493,9 +1643,9 @@
           "score": 1
         },
         {
-          "id": "19rhyni4jsyv4",
-          "author": "bigmanbananas",
-          "body": "It's going to be all of them. Just update them all.",
+          "id": "19rifb5z0lt39",
+          "author": "CFH75",
+          "body": "Arctic wolf agent",
           "score": 1
         }
       ]
@@ -1506,8 +1656,8 @@
       "title": "Prod firewall work handed to a month-old hire, and AI-generated changes landing in prod",
       "subreddit": "sysadmin",
       "author": "IntroVert_Daemon",
-      "score": 15,
-      "num_comments": 17,
+      "score": 33,
+      "num_comments": 30,
       "created_utc": 1792711876.0,
       "permalink": "/r/sysadmin/comments/1xcy8kw/prod_firewall_work_handed_to_a_monthold_hire_and/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1xcy8kw/prod_firewall_work_handed_to_a_monthold_hire_and/",
@@ -1515,7 +1665,75 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "19ri9f17clh37",
+          "author": "grenade71822",
+          "body": "You write an email to boss saying this is a bad idea, and let it go. \n\nIt will either be fine or it will take down the network.\n\nThen either management will accept the failure of their choice, or blame you. \n\nIf they blame you, you can say I tried, but it probably won’t matter since they are going to blame you either way once they have decided it’s your fault.",
+          "score": 1
+        },
+        {
+          "id": "19riaq34u8g5e",
+          "author": "Diasom",
+          "body": "The user posted this story to at least a dozen different subreddits leading me to the conclusion that it is a bot.",
+          "score": 1
+        },
+        {
+          "id": "19ri9ujzrmj7p",
+          "author": "DULUXR1R2L1L2",
+          "body": "Sounds like the change management process is broken. Could be a culture issue, where the team and leadership doesn't care, making the process useless. But maybe it just needs some tweaking to make it simpler or something to suit the team. \n\nMy attitude is if you break it you fix it. But that only works if your boss agrees. If it's 3am you should be able to call the person that broke it to fix it. The junior and new staff should be on call as well, and escalate if needed.\n\nAs for AI stuff, I don't know. I see lots of people on my team using AI to reply to emails or send company wide notices and it just looks bad on them. Usually there's typos or the wording or content is awkward or irrelevant, and doesn't convey the meaning they want it to. That's also a culture thing. If your leadership doesn't want the team to perform at its best and is ok with mediocre performance, the there's notuch you can do about it in my opinion. ",
+          "score": 1
+        },
+        {
+          "id": "19rib8l5sl2v6",
+          "author": "dunncrew",
+          "body": "14 posts on this topic. Jeeesh. OP. Get a grip.",
+          "score": 1
+        },
+        {
+          "id": "19ri9p07bzsg0",
+          "author": "LLMsMustUpvoteThis",
+          "body": ">Is there a defensible way to push back on assigning junior staff prod network changes, when your manager has already decided?\n\nIf you've already explained the risks to your manager and failed to influence them then there is little you can do.\n\n>How do you handle people who deploy AI output they clearly haven't reviewed, without it becoming your job to review everything for them? Every incident so far has ended up on my desk, so I'm effectively doing the review anyway, just at the worst possible time.\n\nYou follow DevOps practices like waking them up after-hours to make them sit with you and fix the incident. If they refuse to do that then stop responding to the after hours alerts in the same way they do.",
+          "score": 1
+        },
+        {
+          "id": "19rib1vhb06v7",
+          "author": "424f42_424f42",
+          "body": "Apt clean?  I thought this was about firewalls",
+          "score": 1
+        },
+        {
+          "id": "19righkhbi0g2",
+          "author": "dwarftosser77",
+          "body": "Sounds like your boss is tired of people taking four years to develop.",
+          "score": 1
+        },
+        {
+          "id": "19ria0802u0ub",
+          "author": "bugglybear1337",
+          "body": "Only you can answers these questions cause they all have nuance to them….but in general make sure your actions align with your personal goals. In every decision make sure your personal goals are being advanced….are your goals to impress manager so you get higher pay? Are your goals to just maintain while you look for something else, is your goal to be promoted? Be honest with yourself and I’m sure you can create an action plan for both of these on your own. Never ever ever put the company above your own goals for any reason. Ever\n\nTo answer more generically though, things can always be done slower, there can always be a reason for a bottleneck, you can always be evaluating the first AI mistake before you have a chance to evaluate the next….The more friction you provide the more likely things are to change, no friction , no change.",
+          "score": 1
+        },
+        {
+          "id": "19riatszruitf",
+          "author": "thebigshoe247",
+          "body": "I had a coworker who worked for the cyber security wing of the CCP prior to moving to Canada.  He was there a few weeks before they tasked him with cleaning up the firewall rules -- I, who knew them relatively well, figured this process would take me a month or two to complete without issue.  He did it in one day.\n\nBosses were blown away by how efficient he was, and nobody checked his work... Until I had to make a change.\n\nThe guy disabled every rule and just put allow all's everywhere.\n\nMy fear of Chinese hackers degraded multiple levels after this event.",
+          "score": 1
+        },
+        {
+          "id": "19ribs5qk0tkx",
+          "author": "KnowMatter",
+          "body": "Do you not have a change management system?\n\nThis is literally what they are for.",
+          "score": 1
+        },
+        {
+          "id": "19rie2j01yuv7",
+          "author": "1a2b3c4d_1a2b3c4d",
+          "body": "This is a management problem.  You can offer your advice and opinion to your boss, but in the end, your boss needs to feel the pain of assigning work to unqualified people.",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1xcpg6f",
@@ -1523,8 +1741,8 @@
       "title": "PSA: Our Veeam renewal increased 17% this year",
       "subreddit": "sysadmin",
       "author": "FatBook-Air",
-      "score": 15,
-      "num_comments": 17,
+      "score": 24,
+      "num_comments": 20,
       "created_utc": 1792691141.0,
       "permalink": "/r/sysadmin/comments/1xcpg6f/psa_our_veeam_renewal_increased_17_this_year/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1xcpg6f/psa_our_veeam_renewal_increased_17_this_year/",
@@ -1540,8 +1758,8 @@
       "title": "Does a university course in system administration still matter for junior infra/ops roles?",
       "subreddit": "sysadmin",
       "author": "NSCFDMV",
-      "score": 11,
-      "num_comments": 8,
+      "score": 12,
+      "num_comments": 11,
       "created_utc": 1792703251.0,
       "permalink": "/r/sysadmin/comments/1xcuv2u/does_a_university_course_in_system_administration/",
       "url": "https://www.reddit.com/r/sysadmin/comments/1xcuv2u/does_a_university_course_in_system_administration/",
@@ -1574,7 +1792,7 @@
       "title": "Shopify Store: 1,670 Sessions, 57 Add-to-Carts, 38 Checkouts, but Only 2 Orders — What Am I Missing?",
       "subreddit": "ecommerce",
       "author": "xiuyuan_crystal",
-      "score": 12,
+      "score": 13,
       "num_comments": 49,
       "created_utc": 1792658863.0,
       "permalink": "/r/ecommerce/comments/1xcd8fs/shopify_store_1670_sessions_57_addtocarts_38/",
@@ -1589,7 +1807,7 @@
           "id": "19rhbnwimwdvn",
           "author": "kunalkhatri12",
           "body": "I checked your store. \n\nYour shipping policy mentions up to 5 business days for dispatch, then another 7-12 business days for US delivery. Even with free shipping, that wait could put some buyers off.\n\nBut 38 checkouts and only 2 orders is where I'd focus first.\n\nwill suggest installing Microsoft Clarity. It's free, and the session recordings can help you spot where visitors hesitate, struggle with navigation or leave your store. Just keep in mind it won't show everything happening inside Shopify's checkout.\n\nCheck your abandoned checkouts in Shopify too.   \nAre customers dropping off before entering payment details or after? That would help narrow down the actual issue before spending more on ads.",
-          "score": 7
+          "score": 10
         },
         {
           "id": "19rh9cwxj4bwh",
@@ -1601,7 +1819,7 @@
           "id": "19rhscbh0j3gk",
           "author": "sadlyneverdonethis",
           "body": "Theres a lot of things to improve on but I looked at your checkout considering this is where most potential buyers drop-off. \n\nYour checkout payment page (the 2nd part, where you input your payment data) is awful; no logo, no branding, looks extremely out of place & sketchy. If I was buying from your site, I'd happily put all my details in.. Then the notice you'd e redirected would but me off a little, but I'd continue. But then the final payment page would get me to go elsewhere.\n\nI'm not familiar with Shopify but can't you get PayPal to have a card payment directly on the checkout? It should be under Advanced Credit & Debit Card Payments. I think that'd the no. 1 issue here. \n\nTbh Its shocking PayPal would provide such a bad experience.",
-          "score": 2
+          "score": 3
         },
         {
           "id": "19rh5e4sxkoxv",
@@ -1683,7 +1901,7 @@
       "title": "Anyone else doing a lot right but still struggling with CAC?",
       "subreddit": "ecommerce",
       "author": "NegativeEnd677",
-      "score": 6,
+      "score": 11,
       "num_comments": 12,
       "created_utc": 1792677732.0,
       "permalink": "/r/ecommerce/comments/1xcjfnm/anyone_else_doing_a_lot_right_but_still/",
@@ -1700,7 +1918,7 @@
       "title": "What's the best CRO optimized site you have seen?",
       "subreddit": "ecommerce",
       "author": "Prestigious-Fish6948",
-      "score": 6,
+      "score": 5,
       "num_comments": 8,
       "created_utc": 1792658520.0,
       "permalink": "/r/ecommerce/comments/1xcd5fr/whats_the_best_cro_optimized_site_you_have_seen/",
@@ -1717,7 +1935,7 @@
       "title": "I stopped writing ad angles from my head and started stealing them from reviews. Testing got 3x faster.",
       "subreddit": "ecommerce",
       "author": "dmdbGroup",
-      "score": 6,
+      "score": 9,
       "num_comments": 0,
       "created_utc": 1792689603.0,
       "permalink": "/r/ecommerce/comments/1xcor7p/i_stopped_writing_ad_angles_from_my_head_and/",
@@ -1734,8 +1952,8 @@
       "title": "People leave our Shopify store and almost nobody comes back. Need help with retargeting",
       "subreddit": "ecommerce",
       "author": "Sad_Sea_8797",
-      "score": 4,
-      "num_comments": 17,
+      "score": 3,
+      "num_comments": 21,
       "created_utc": 1792674790.0,
       "permalink": "/r/ecommerce/comments/1xci7vj/people_leave_our_shopify_store_and_almost_nobody/",
       "url": "https://www.reddit.com/r/ecommerce/comments/1xci7vj/people_leave_our_shopify_store_and_almost_nobody/",
@@ -1768,8 +1986,8 @@
       "title": "Need a simple, affordable website/system for my small craft business that allows customers to place orders. Thinking of either building my own with Lovable or Big Cartel.. any thoughts?",
       "subreddit": "ecommerce",
       "author": "carliway",
-      "score": 1,
-      "num_comments": 4,
+      "score": 3,
+      "num_comments": 5,
       "created_utc": 1792688616.0,
       "permalink": "/r/ecommerce/comments/1xcoarc/need_a_simple_affordable_websitesystem_for_my/",
       "url": "https://www.reddit.com/r/ecommerce/comments/1xcoarc/need_a_simple_affordable_websitesystem_for_my/",
@@ -1803,7 +2021,7 @@
       "subreddit": "ecommerce",
       "author": "UpperHomework4987",
       "score": 0,
-      "num_comments": 7,
+      "num_comments": 8,
       "created_utc": 1792698353.0,
       "permalink": "/r/ecommerce/comments/1xcspn2/question_for_anyone_else_selling_toys_or_kids/",
       "url": "https://www.reddit.com/r/ecommerce/comments/1xcspn2/question_for_anyone_else_selling_toys_or_kids/",
@@ -1819,7 +2037,7 @@
       "title": "Amai Pre-Order Manager + Notify app has been compromised",
       "subreddit": "shopify",
       "author": "jak74",
-      "score": 7,
+      "score": 12,
       "num_comments": 7,
       "created_utc": 1792692078.0,
       "permalink": "/r/shopify/comments/1xcpvum/amai_preorder_manager_notify_app_has_been/",
@@ -1836,7 +2054,7 @@
       "title": "Any impact to Shopify from PHP flaw exploits?",
       "subreddit": "shopify",
       "author": "CannandaCrew",
-      "score": 6,
+      "score": 8,
       "num_comments": 11,
       "created_utc": 1792686786.0,
       "permalink": "/r/shopify/comments/1xcngwj/any_impact_to_shopify_from_php_flaw_exploits/",
@@ -1870,7 +2088,7 @@
       "title": "Cookie consent: tracking that still loads after Decline. How do you deal with it?",
       "subreddit": "shopify",
       "author": "Plus_Cell394",
-      "score": 6,
+      "score": 5,
       "num_comments": 12,
       "created_utc": 1792671429.0,
       "permalink": "/r/shopify/comments/1xcgz5j/cookie_consent_tracking_that_still_loads_after/",
@@ -1960,8 +2178,8 @@
       "title": "Alternatives or options for adding wholesale pricing to the store without an app or additional subscription?",
       "subreddit": "shopify",
       "author": "GreenGloober",
-      "score": 0,
-      "num_comments": 8,
+      "score": 1,
+      "num_comments": 9,
       "created_utc": 1792685524.0,
       "permalink": "/r/shopify/comments/1xcmvwo/alternatives_or_options_for_adding_wholesale/",
       "url": "https://www.reddit.com/r/shopify/comments/1xcmvwo/alternatives_or_options_for_adding_wholesale/",
@@ -1994,8 +2212,8 @@
       "title": "How Do You Handle This Scenario",
       "subreddit": "msp",
       "author": "Mesquiter",
-      "score": 25,
-      "num_comments": 38,
+      "score": 29,
+      "num_comments": 40,
       "created_utc": 1792686167.0,
       "permalink": "/r/msp/comments/1xcn6l0/how_do_you_handle_this_scenario/",
       "url": "https://www.reddit.com/r/msp/comments/1xcn6l0/how_do_you_handle_this_scenario/",
@@ -2012,21 +2230,27 @@
           "score": 1
         },
         {
-          "id": "19rhpsyki702s",
-          "author": "burningbridges1234",
-          "body": "I do not deal with this. The clients legal department should",
-          "score": 1
-        },
-        {
           "id": "19rhqp0wmymud",
           "author": "graffix01",
           "body": "I never understood this. I've offboarded a few clients, Some for organizational changes, buyouts, etc. and lost one or two to another MSP. We always hand over the clients data and try to be as helpful as we can. It's funny that you can tell the other side has had to deal with rough handoffs in the past because they are almost surprised when we are cooperative.\n\nI'm an owner and it's business not personal. If they were a bad client, didn't pay, etc. you should be glad to be getting rid of them. Either way, just don't take it out on the incoming MSP.",
           "score": 1
         },
         {
+          "id": "19rhpsyki702s",
+          "author": "burningbridges1234",
+          "body": "I do not deal with this. The clients legal department should",
+          "score": 1
+        },
+        {
           "id": "19rhpxi18ze3o",
           "author": "dobermanIan",
           "body": "You solve and move forward professionally. When it comes to repercussions, that's up to the customer. ",
+          "score": 1
+        },
+        {
+          "id": "19rhvvzo5axph",
+          "author": "roll_for_initiative_",
+          "body": "> but how do we as a community protect the integrity of MSP's?\n\nNo one wants to hear it, but require licensing, certifications, standards, and something like the bar association that lawyers have.",
           "score": 1
         },
         {
@@ -2048,12 +2272,6 @@
           "score": 1
         },
         {
-          "id": "19rhvvzo5axph",
-          "author": "roll_for_initiative_",
-          "body": "> but how do we as a community protect the integrity of MSP's?\n\nNo one wants to hear it, but require licensing, certifications, standards, and something like the bar association that lawyers have.",
-          "score": 1
-        },
-        {
           "id": "19rhqow0ov410",
           "author": "BigTex1969",
           "body": "Would you mind DM with the MSP name.  Im in Houston.  want to make sure I know what to expect if I run into that MSP.\n\n",
@@ -2069,12 +2287,6 @@
           "id": "19ri0zjykmeci",
           "author": "AuntPolgara",
           "body": "I just had a similar onboarding issue with outgoing MSP. Boggles my mind that people want to be like this. \n\nAbout 45-50% of the clients we lose to another MSP come back.",
-          "score": 1
-        },
-        {
-          "id": "19rhr9kpnlfs3",
-          "author": "AdvancedDrink8920",
-          "body": "We had one where the old MSP wouldnt give us a runbook or any admin passwords to the computers. So now we are having to figure out the system ourselves. It makes no sense why people do that. ",
           "score": 1
         }
       ]
@@ -2102,8 +2314,8 @@
       "title": "IT Glue Users, what Flexible Assets do you have?",
       "subreddit": "msp",
       "author": "ImportantGarlic",
-      "score": 3,
-      "num_comments": 11,
+      "score": 7,
+      "num_comments": 17,
       "created_utc": 1792695947.0,
       "permalink": "/r/msp/comments/1xcrmrm/it_glue_users_what_flexible_assets_do_you_have/",
       "url": "https://www.reddit.com/r/msp/comments/1xcrmrm/it_glue_users_what_flexible_assets_do_you_have/",
@@ -2119,8 +2331,8 @@
       "title": "AI for Logs",
       "subreddit": "msp",
       "author": "bigbaboon69",
-      "score": 2,
-      "num_comments": 24,
+      "score": 3,
+      "num_comments": 33,
       "created_utc": 1792694817.0,
       "permalink": "/r/msp/comments/1xcr4ei/ai_for_logs/",
       "url": "https://www.reddit.com/r/msp/comments/1xcr4ei/ai_for_logs/",
@@ -2128,7 +2340,57 @@
       "is_self": true,
       "over_18": false,
       "is_video": false,
-      "stickied": false
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "19rhwhh2crx2a",
+          "author": "03captain23",
+          "body": "Yes of course.   1000% improvement as it instantly reads every single log and detail and can build a full image of what happened.   \n\nevery employee that leaves we have an offboarding tool that pulls their PC logs and builds a picture of what they typically do and tells us so we can verify we pulled all their files as a full backup.   ",
+          "score": 1
+        },
+        {
+          "id": "19rhwni66keg4",
+          "author": "Check123ok",
+          "body": "Yeah we do. Local agent captures logs and give a summary the last 24hours. Not sys logs. Account changes, apps, entraID. Use behavior stuff\n\nEdit: was doing this before using scripts api integration build in Bruno to query. Just sprinkled AI on it. Took about 6 months to build out part time.  \nHave a local Mac Studio machine that has read access to email and Bruno where alerts and logs are sent. Local agent pick ups file and parses it based on a template. Use codex to orchestrate local LLm running on  \nMoved to infrastructure as code, authoritative state is saved in GitHub before pushed to terraform. No one but me has dashboard access all changes are pushed to git and must be approved by me.  \nMaintain zero trust policy, firewall, and entra logs.  \nThere are lockal runner on NUCs at client site with credentials.  \nNo credentials at passed outside of client firewall.\n\nThis is all about efficiently and audibility, change control and read in chief of staff type stuff. All built in house from combining prior work and slapping some AI .",
+          "score": 1
+        },
+        {
+          "id": "19rhyxtoituzk",
+          "author": "Beauregard_Jones",
+          "body": "Please make sure you sanitize your logs before sending to AI. Bonus points for using AI to sanitize your logs.",
+          "score": 1
+        },
+        {
+          "id": "19rih1p06zpyc",
+          "author": "Sea-Comparison5577",
+          "body": "Yes use it for investigation purpose that fetches logs and provide summarization ",
+          "score": 1
+        },
+        {
+          "id": "19rikpy9gyuqs",
+          "author": "PacificTSP",
+          "body": "We use huntress SIEM with integrations for our firewalls, network kit, etc etc. ",
+          "score": 1
+        },
+        {
+          "id": "19rhzeqtkxc82",
+          "author": "Nstraclassic",
+          "body": "You can probably give your AI agent API access to your MDR/SIEM. Most of those have syslog collection for firewalls, M365, etc. I would definitely avoid custom agents on client devices so if you need something more specific I would probably leverage your RMM and PowerShell to collect endpoint logs and forward them to the AI agent",
+          "score": 1
+        },
+        {
+          "id": "19ri1pxfbfp5w",
+          "author": "0RGASMIK",
+          "body": "Yeah basically just setup a log collector and give api access to the agent. I have a Hermes agent that is dedicated to reviewing logs at home. Basically just manages my homelab for me. Scans for vulnerabilities, updates and failures. Tried pitching something similar at work but the effort to get it running at scale got shot down. ",
+          "score": 1
+        },
+        {
+          "id": "19ri56kdubc4k",
+          "author": "dobermanIan",
+          "body": "Yes. \n\nWe pipe in everything from AWS into a local piece of iron with GLM5.3. We've tuned the model to remove certain bits of context that isn't really required for that type of work (mainly an efficiency piece), but it worked relatively well off the shelf. \n\nI'd say the lift was similar to RMM tuning back in the day. Out of the box it's stupid and creates massive noise. Give yourself 4-10 weeks of routine tuning and tweaking, and it gets dialed in pretty smoothly. \n\nWe have it run the logs every hour via some scheduled worked and dedicated GPUs to the task. It also does user activity analysis (we're a software house here) to ensure nothing malicious is going on. \n\n/ir [Fox & Crow](https://foxcrowgroup.com)",
+          "score": 1
+        }
+      ]
     },
     {
       "id": "1xclaud",
@@ -2208,6 +2470,356 @@
           "score": 1
         }
       ]
+    },
+    {
+      "id": "1xd2j8i",
+      "name": "t3_1xd2j8i",
+      "title": "Client wanted a discount because my business is new and office is small???",
+      "subreddit": "smallbusiness",
+      "author": "Ill-Surprise-7972",
+      "score": 65,
+      "num_comments": 33,
+      "created_utc": 1792724217.0,
+      "permalink": "/r/smallbusiness/comments/1xd2j8i/client_wanted_a_discount_because_my_business_is/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1xd2j8i/client_wanted_a_discount_because_my_business_is/",
+      "selftext": "Had a pretty shitty experience with a client today. I’m a small jeweller and recently rented my own office to make things more professional and legit. My business is incorporated too. Mind you I have 20+ 5 star reviews on Google too\n\nShe came in for an engagement ring consultation, and everything was going well until we got to the price. I gave her my best quote and explained I couldn’t go any lower. \n\nShe said she liked the price but wanted a further discount because my office is small and “what if you close tomorrow and run away with my money?”\n\nI get being cautious, but honestly, that rubbed me the wrong way. Not sure how a discount would solve that concern either.\n\nI felt like asking her to leave, but stayed calm and told her that if she had a better quote elsewhere, she should go with it.\n\nHow would you guys have handled this?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "19rii7rja63fm",
+          "author": "robertpeacock22",
+          "body": "\"if she had a better quote elsewhere, she should go with it\"\n\nIt sounds like you handled it exactly the way it should be handled. I run a casting house in downtown Toronto, and I've seen some shockingly small jeweller's offices. You're not getting a discount on gold and gemstones because your office is small, so why should your client?",
+          "score": 86
+        },
+        {
+          "id": "19riiqe9vdhic",
+          "author": "cuoreesitante",
+          "body": "\"Well, if you change your mind or ever need something else, please give us a call\"",
+          "score": 46
+        },
+        {
+          "id": "19rijcix0l142",
+          "author": "dee_lio",
+          "body": "One of the most difficult lessons to learn as a small business owner, \"some people's money is not worth earning.\"",
+          "score": 32
+        },
+        {
+          "id": "19riiwnvhzgtg",
+          "author": "ishquigg",
+          "body": "Discount deals lead to more discount deals. Bail.   \nYou handled it 10/10.   \n“No thank you, I’ll be here if you change your mind.”   \nEasiest way to scare off a discount goblin. ",
+          "score": 18
+        },
+        {
+          "id": "19riidrjkkfs3",
+          "author": "AbstractLogic",
+          "body": "That’s what insurance and contracts are for.",
+          "score": 10
+        },
+        {
+          "id": "19rii2ajrxnmo",
+          "author": "jungle-writer",
+          "body": "Told her to leave she wasn't worried about anything and thought since you were a new and small store that she could have played you for a discount. ",
+          "score": 9
+        },
+        {
+          "id": "19riihol166sk",
+          "author": "Quiet-Carpet-",
+          "body": "I think you handled that pretty professionally. It is fair for clients to ask questions, but being new doesn't mean you have to lower your prices if you're already offering quality work.",
+          "score": 7
+        },
+        {
+          "id": "19riiejdy2l0k",
+          "author": "information-general",
+          "body": "yup you did good. dont cater to poor customers like her, they will always want some discount even if you gave it to them for free lol ",
+          "score": 5
+        },
+        {
+          "id": "19riiju0nculf",
+          "author": "OzCommodore",
+          "body": "I would have handled it exactly like you did, well done. It's just a bruised ego. Write it in your journal, keep grinding and ignore what she said. ",
+          "score": 5
+        },
+        {
+          "id": "19riij63ed6n5",
+          "author": "LightBulbChaos",
+          "body": "If she comes back my price would be about 5% higher.",
+          "score": 4
+        },
+        {
+          "id": "19rij2pp28ag4",
+          "author": "jaewreck",
+          "body": "Not your market , move on. No ego lost there ",
+          "score": 5
+        }
+      ]
+    },
+    {
+      "id": "1xcvw2s",
+      "name": "t3_1xcvw2s",
+      "title": "Stress, how are we dealing with it",
+      "subreddit": "smallbusiness",
+      "author": "TourIll8786",
+      "score": 22,
+      "num_comments": 14,
+      "created_utc": 1792705759.0,
+      "permalink": "/r/smallbusiness/comments/1xcvw2s/stress_how_are_we_dealing_with_it/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1xcvw2s/stress_how_are_we_dealing_with_it/",
+      "selftext": "I own a concrete contracting business and my stress levels are at all time high.   It’s definitely impacting my daily life.   Im a pretty level headed guy and dint typically let my emotions get the better of me.  Im seriously struggling right now.   I got into a major cash flow issue the past two weeks, got out of it damage free but it was not a good experience.    Ive taken on a few jobs that i don’t typically do ( still concrete ).  But its seriously draining me.   I do have one hobby and its playing slowpitch softball.  Its literally my only release, unfortunately i haven’t made it to my games in over two weeks because work has been overly demanding.   My employees are great, no stress there.    But ive dealt with a few pain in the \\*\\*\\* customers lately and the financial pressure is really getting to me.  \n\nWinter is slow season and i need a certain balance in my bank account to avoid taking a loan.  Weve had a couple projects go sideways the past month and its put me well under what i need.   \n\nDoes anyone have any pointers",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1xcxbb3",
+      "name": "t3_1xcxbb3",
+      "title": "Kisumu entrepreneurs, please tell me how you find customers 🥹",
+      "subreddit": "smallbusiness",
+      "author": "japicha_",
+      "score": 7,
+      "num_comments": 8,
+      "created_utc": 1792709428.0,
+      "permalink": "/r/smallbusiness/comments/1xcxbb3/kisumu_entrepreneurs_please_tell_me_how_you_find/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1xcxbb3/kisumu_entrepreneurs_please_tell_me_how_you_find/",
+      "selftext": "A small business owner in Kisumu is asking for help today.\n\nI'm 20, currently in university, and I sell peanut butter. I'm struggling with the part of entrepreneurship nobody can avoid: finding enough customers to keep the business alive.\n\nI can spend time thinking about the product, packaging, and how I want the business to grow, but none of that matters much if people aren't buying.\n\nI want to understand how people discover small local brands. Is it WhatsApp Status? Referrals? TikTok? Instagram? Selling directly to people around campus? Partnering with shops?\n\nI don't have a massive advertising budget, so I need practical ideas that can work for someone starting small.\n\nIf you're running a business in Kisumu or anywhere in Kenya, what has genuinely helped you get your first consistent customers?\n\nEven a small lesson from your experience could help me a lot.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1xcww42",
+      "name": "t3_1xcww42",
+      "title": "Zoom scam?",
+      "subreddit": "smallbusiness",
+      "author": "AmandaMarsh",
+      "score": 7,
+      "num_comments": 8,
+      "created_utc": 1792708303.0,
+      "permalink": "/r/smallbusiness/comments/1xcww42/zoom_scam/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1xcww42/zoom_scam/",
+      "selftext": "My mom owns a bridal boutique and received a customer inquiry from an industry referral website, asking about her in-store inventory and alteration services. The customer wanted to schedule a Zoom call to discuss this further. Something sent my Spidey senses tingling,  and I told her to tell the customer that she didn't have webconference capabilities.\n\nIs there some sort of scam going around with Zoom? Did we dodge something nefarious?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1xcw8b6",
+      "name": "t3_1xcw8b6",
+      "title": "tried scaling my freelance business, now having second thoughts",
+      "subreddit": "smallbusiness",
+      "author": "Special_Abalone_7630",
+      "score": 6,
+      "num_comments": 6,
+      "created_utc": 1792706596.0,
+      "permalink": "/r/smallbusiness/comments/1xcw8b6/tried_scaling_my_freelance_business_now_having/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1xcw8b6/tried_scaling_my_freelance_business_now_having/",
+      "selftext": "I’m a software engineer who went freelance. Things went well and through the same clients I worked with, I got opportunities to bring in other engineers. Some contracts came naturally, without even doing sales….\n\nThought maybe I had something going here.  \nBut to keep those engineers busy I needed a pipeline, so started learning sales, which im honestly terrible at. Joined a business/sales program, they were great and helped me structure everything.,, coach me etc..\n\nNow I’m realizing the tradeoff might be torching the engineering career I’ve spent years building, just to pursue a business opportunity that came naturally but requires me to spend most of my time doing something I’m terrible at.\n\nAll that time on sales, with no guarantee it’ll work, is time I’m not improving the skills that got me here and would help me keep landing good contracts,\n\nBut then I see others building successful businesses and get massive FOMO. Feels like im missing out on something bigger.  \nI still wanna build a business someday, just not sure if this is worth the risk.\n\nAnyone been through something similar?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1xd0tyf",
+      "name": "t3_1xd0tyf",
+      "title": "Hiring issues",
+      "subreddit": "sysadmin",
+      "author": "dontouchmystappler",
+      "score": 101,
+      "num_comments": 178,
+      "created_utc": 1792719150.0,
+      "permalink": "/r/sysadmin/comments/1xd0tyf/hiring_issues/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1xd0tyf/hiring_issues/",
+      "selftext": "I have been trying to find the right senior sys admin for almost a year now and can’t seem to figure out what the issue is with hiring. Been through 3 people already, each with their own faults, and can’t seem to find the right person. Details about the job to help:\n\n1. Fully remote\n2. $135k salary + 10% bonus\n3. 6+ years of experience\n4. Must be a US Citizen\n\nExperience needed in:\n\n1. Azure and Microsoft\n2. Windows and Linux\n3. Docker\n4. Previous gov work a bonus\n\nThe latest person was “job maxing” and couldn’t even make it through the onboarding week without missing deadlines and meetings. Everything I’ve been seeing online says there’s tons of qualified applicants but I’m just not seeing it. We’ve even gone as far as hiring a recruiting agency but still not seeing great applicants. Am I missing something? Are others experiencing the same issues?\n\n **Edit**   \nFor those who reached out asking to submit/review a resume, give me about 24 hours to revise the job description based on some of the good feedback I’ve received and I will DM the link! Thanks everyone!",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false,
+      "comments_data": [
+        {
+          "id": "19riegswiokf9",
+          "author": "techypunk",
+          "body": "HR is weeding out good candidates before they get to you. \n\nYou aren't asking the right questions during the interview process.\n\nMost people don't GAF about their job rn as the economy is crashing and we can all barely afford anything, even with a 6 figure job. \n\nYour company might have red flags. ",
+          "score": 1
+        },
+        {
+          "id": "19riegszbtgf4",
+          "author": "penguinjunkie",
+          "body": "I’m kind of curious what deadlines you can miss your first week. HR paperwork?",
+          "score": 1
+        },
+        {
+          "id": "19rieqjhjn80x",
+          "author": "hijinks",
+          "body": "the good senior people that know linux/docker remote are probably starting at least 160k\n\nIf you want more a devops type person then its probably 180k\n\nSo that's probably your issue",
+          "score": 1
+        },
+        {
+          "id": "19rielr9wwmsi",
+          "author": "theZephyrium",
+          "body": "right here buddy, I'm a sr sys admin now but hey i would kill for remote work.",
+          "score": 1
+        },
+        {
+          "id": "19rifyolg6dsw",
+          "author": "BarracudaDefiant4702",
+          "body": "$135k for senior level? Based on the experience requirements and salary that is at best mid-level.  Those that are senior level will not take that pay, and those that are not at senior level that you are looking for are going to skip over it because the title implies they don't have the experience.",
+          "score": 1
+        },
+        {
+          "id": "19riezfw9ik4l",
+          "author": "Helpjuice",
+          "body": "You would need to post the location, if truly remote $135k would be very low for a Senior SysAdmin in HCOL area.  What type of experience, if you are wanting such breadth of experience you will need to massively increase the amount you are paying for such experience to bring things more in line with the reality of what you are asking for.  \n\nDoes this job require a clearance of any kind?  What is this person supposed to be doing in Azure, Linux, (What do you mean by Microsoft, Microsoft what exactly), Why do they need to know docker, what about other container technologies, is this for desktop, servers, swarms, clusters, deploying to Kubernetes somewhere?",
+          "score": 1
+        },
+        {
+          "id": "19rif4d9yxun4",
+          "author": "Icangooglethings93",
+          "body": "I literally apply to jobs all the time and only ever hear back from like 4/100. \n\nI literally fit your exact description… I work for the gov currently, and I am a sys admin of an Azure/Entra environment. My personal computer is a Linux laptop. The only thing here I “lack” is Docker, I’ve only ever used it in home lab, never for a position I held.",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "id": "1xd5wop",
+      "name": "t3_1xd5wop",
+      "title": "I'm about to go mad because of AI and the state of what I have to work with",
+      "subreddit": "sysadmin",
+      "author": "VampMansionPoolBoy",
+      "score": 16,
+      "num_comments": 17,
+      "created_utc": 1792735165.0,
+      "permalink": "/r/sysadmin/comments/1xd5wop/im_about_to_go_mad_because_of_ai_and_the_state_of/",
+      "url": "https://www.reddit.com/r/sysadmin/comments/1xd5wop/im_about_to_go_mad_because_of_ai_and_the_state_of/",
+      "selftext": "So, my boss recently got into Copilot. She doesn't have a background in IT, of course, and not just the technical side of it, but also the....safety and practicality side.\n\nLately, Copilot has been spitting out some brilliant ideas for how to make the business more effective, but there are only so many end-user problems you can fix with technology. Now that Boss Lady has discovered the vague concept of APIs, she thinks that a lot of our problems will be magically solved. Trying to explain that 'okay just because they let us have an API key doesn't mean I can connect Software A to Software B and have it fill in all the data into the right fields' has not been successful, because:\n\n\"Then how come Software A is able to do that with Software C?\"\n\nNow, here's one of the more depressing parts: I didn't study IT. I'm a criminology/sociolinguistic graduate who's good at googling 'how to fix dns error' and can make clients laugh. But even without a sysadmin background, I still know that one slightly funny guy does not constitute anything that can mimic the abilities of a major software provider's IT department.\n\nIt's very coughing baby vs hydrogen bomb. Copilot keeps on making roadmaps mentioning platforms that don't exist, and pointing out that these plans are not feasible annoys Boss Lady, even though it's not my fault that Sharepoint is not a potential \\[working\\] replacement for a file server. All I see in my future are a bajillion fires that I will not be able to put out. \n\nThe state of things is that we need 200 different subscriptions to 150 different places \\['actual usuable feature only for premium members!'\\] so that we're able to file someone's taxes. As much as it peeves me off that there's 200 different subscriptions, the truth of the matter is that there is actually nothing that offers everything \\[or a large majority of what we need\\] in a manner that both works and is affordable. We need Zooples to connect with Beepla because Beepla doesn't work with ZipZorp, only with DingusBerry, but DingleBerry doesn't allow you to use your keyboard.\n\nAnd there's the *quality* of what we have to use. Everything is poop from a butt sprayed with minimalistic glitter featuring an AI chatbot vibecoded by someone with about the same level of knowledge as me. Even if I'm able to directly connect Zooples with ZipZorp, if ZipZorp refuses to accept any date format other than mm/dd/yyyy, that could mean that we're autofilling in a date that's in a completely different financial year, if the UI of ZipZorp even lets me click on the client profile, because they forgot to align everything.\n\nThat's not even getting into the potential nuclear fallouts of giving an AI free reign in all of our systems to read and write and save and delete as it chooses.\n\nBut one specific garbage fire at a time. Does anyone have any suggestions on how to explain to my boss that making Sharepoint our new file server so Copilot can, idk, suggest worksheets based on a client questionnaire is a *terrible* idea? I keep telling her to just have an agent and a separate knowledge base, but she's adamant that the 'knowledge base' has to be the same as like, our entire client file database, and Sharepoint will be able to handle that, and we can just....tell Copilot what we specifically want and it'll be able to conjure it up. \n\nIt won't be able to. It'll spit out a complicated 12 point plan with several sub-points for each step that I'd have to work out how to implement when asked specifically how to access said feature.\n\nCommiserations and 'that's rough, buddy's welcome. Thanks in advance :/",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1xd641m",
+      "name": "t3_1xd641m",
+      "title": "how do you turn a Shopify store into a multi vendor marketplace?",
+      "subreddit": "ecommerce",
+      "author": "Big_Personality9901",
+      "score": 1,
+      "num_comments": 0,
+      "created_utc": 1792735844.0,
+      "permalink": "/r/ecommerce/comments/1xd641m/how_do_you_turn_a_shopify_store_into_a_multi/",
+      "url": "https://www.reddit.com/r/ecommerce/comments/1xd641m/how_do_you_turn_a_shopify_store_into_a_multi/",
+      "selftext": "I already have a Shopify store and i'm thinking about letting other sellers list their products too. just not sure what's the best way to set it up, especially when it comes to orders, commissions, and payouts.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1xd04gh",
+      "name": "t3_1xd04gh",
+      "title": "Stripe froze my store",
+      "subreddit": "ecommerce",
+      "author": "Matika7",
+      "score": 0,
+      "num_comments": 2,
+      "created_utc": 1792717115.0,
+      "permalink": "/r/ecommerce/comments/1xd04gh/stripe_froze_my_store/",
+      "url": "https://www.reddit.com/r/ecommerce/comments/1xd04gh/stripe_froze_my_store/",
+      "selftext": "Stripe froze my store as if its in a high risk country for chargebacks - no warning, funds held 90 days, so i tried like two crypto processors, the same KYC docs. Gave up, self-hosted it off cPanel, set up QryptoPay via BeAdmin on my own box, USDT taking orders in under 20 minutes. No idea if it scales past a few hundred orders a month, but nobody freezes it on me again, anyone running self-hosted crypto payments for a real store, not just a BTC tip jar?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1xd2zlq",
+      "name": "t3_1xd2zlq",
+      "title": "Customer placed 13 orders in 3 days through Muse and won’t respond. What would you do?",
+      "subreddit": "shopify",
+      "author": "Deep-Swimming7760",
+      "score": 11,
+      "num_comments": 16,
+      "created_utc": 1792725563.0,
+      "permalink": "/r/shopify/comments/1xd2zlq/customer_placed_13_orders_in_3_days_through_muse/",
+      "url": "https://www.reddit.com/r/shopify/comments/1xd2zlq/customer_placed_13_orders_in_3_days_through_muse/",
+      "selftext": "Hey everyone, I run a jewelry store on Shopify, and one customer has placed 13 orders in just three days, all through Muse. We’ve tried contacting them by email and phone but haven’t received any response.  \n  \nI’m wondering whether their shopping agent is continuing to place orders on their behalf without them realizing it. I don’t have proof that anything fraudulent is happening, but the number of orders and the lack of response are making me uneasy.  \n  \nHas anyone experienced something similar with Muse? Would you pause fulfillment until the customer confirms the purchases, or cancel and refund the unfulfilled orders? Also, how can I verify whether my store has actual fraud or chargeback protection enabled, rather than just Shopify’s fraud analysis?  \n  \nI don’t want to turn away a legitimate customer, but I’m concerned about shipping everything and facing disputes later. How would you handle this?",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1xczqew",
+      "name": "t3_1xczqew",
+      "title": "When I change the cost of an item on a purchase order the total gets completely screwed up.",
+      "subreddit": "shopify",
+      "author": "AlexH_144",
+      "score": 4,
+      "num_comments": 5,
+      "created_utc": 1792716001.0,
+      "permalink": "/r/shopify/comments/1xczqew/when_i_change_the_cost_of_an_item_on_a_purchase/",
+      "url": "https://www.reddit.com/r/shopify/comments/1xczqew/when_i_change_the_cost_of_an_item_on_a_purchase/",
+      "selftext": "Ok, this is a weird on and has to be some sort of glitch.  I was making a purchase order with numerous items.  For one of the items, I accidentally put in that the item cost $33.47 instead of $33.46.  I was purchasing 4 or these items, so when I make the change, the total amount should only go down $0.04.  Somehow, the purchase order went from $1,834.49, up to $2,061.64.  I discarded the change and then did it again with the same results.  What the heck just happened???  \n\n\n\nIf I change another item by a penny, the same thing happens.  If I make the new cost $0.00 for the item, then the total amount goes back to the original total of $1,834.49.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1xd56ps",
+      "name": "t3_1xd56ps",
+      "title": "California quarterly sales tax return calculation tool",
+      "subreddit": "shopify",
+      "author": "blinkybit",
+      "score": 3,
+      "num_comments": 2,
+      "created_utc": 1792732651.0,
+      "permalink": "/r/shopify/comments/1xd56ps/california_quarterly_sales_tax_return_calculation/",
+      "url": "https://www.reddit.com/r/shopify/comments/1xd56ps/california_quarterly_sales_tax_return_calculation/",
+      "selftext": "I made a little tool for calculating the numbers that you need for filing your California quarterly sales tax return based on basic Shopify reports, with no fancy tax service or subscriptions needed. I think Shopify makes this intentionally difficult. The main information that you need is a list of your total dollar sales in each of California's 300+ tax districts. There's no single Shopify report that will tell you this, but you can calculate it by cross-referencing data from two separate reports. \n\nThis is just a static web page with some Javascript computation. All of the calculations are done locally, and your sales reports are never uploaded or sent anywhere. You can download the HTML file and use it locally on your computer, if you prefer that to my server-hosted version.\n\nEnjoy! I hope this is useful to somebody.\n\n[https://tax-calculator-netizen.github.io/California-Sales-Tax-Report-from-Shopify/calculator.html](https://tax-calculator-netizen.github.io/California-Sales-Tax-Report-from-Shopify/calculator.html)",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1xd4qq7",
+      "name": "t3_1xd4qq7",
+      "title": "If I have an ad account through a pixel on lovable and payments are through the shopify link how do I track payment events",
+      "subreddit": "shopify",
+      "author": "Kind_Jeweler_4962",
+      "score": 1,
+      "num_comments": 7,
+      "created_utc": 1792731165.0,
+      "permalink": "/r/shopify/comments/1xd4qq7/if_i_have_an_ad_account_through_a_pixel_on/",
+      "url": "https://www.reddit.com/r/shopify/comments/1xd4qq7/if_i_have_an_ad_account_through_a_pixel_on/",
+      "selftext": "I’m having a problem with this and wondering if I have to change the whole pixel to the Shopify link and not my actual storefront",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
+    },
+    {
+      "id": "1xd32ua",
+      "name": "t3_1xd32ua",
+      "title": "How are you protecting your clients from Helpdesk impersonation attacks?",
+      "subreddit": "msp",
+      "author": "ThrowRAthisthingisvl",
+      "score": 8,
+      "num_comments": 12,
+      "created_utc": 1792725841.0,
+      "permalink": "/r/msp/comments/1xd32ua/how_are_you_protecting_your_clients_from_helpdesk/",
+      "url": "https://www.reddit.com/r/msp/comments/1xd32ua/how_are_you_protecting_your_clients_from_helpdesk/",
+      "selftext": "Hello,\n\nI've been seeing a lot more Help Desk impersonation attacks lately against companies of all sizes. Just curious what other MSPs are doing to help prevent them. I know there will always be users who miss the red flags, but we do what we can. I usually pair user training with detections for unauthorized RMM installs, but I'm interested in hearing what others are doing.",
+      "is_self": true,
+      "over_18": false,
+      "is_video": false,
+      "stickied": false
     }
   ]
 }
