@@ -1,8 +1,25 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-23T12:44:16.581130+00:00",
+  "last_fetched": "2026-10-23T18:40:46.505058+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50210534",
+      "title": "Tell HN: Don't use Fathom Analytics (founder is blocking criticism)",
+      "subreddit": "ask-hn",
+      "author": "dorianniemiec",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50210534",
+      "url": "https://news.ycombinator.com/item?id=50210534",
+      "selftext": "When I wanted to leave a critical reply with a founder of Fathom Analytics, I got blocked for \"AI reply\" (exhibit: https://x.com/JackEllis/status/2112334887021920399 , I was operating a profile of my OSS project)\nI checked the \"AI reply blocks\", and saw some other exhibits as well:\n- https://x.com/JackEllis/status/2107979041261138297 (this could be a valid criticism, but it got blocked for AI reply)\n- https://x.com/JackEllis/status/2111053035640144173 (legitimate and known person involved with Laravel community got also blocked for AI reply; context: Laravel website uses Fathom Analytics)\n- https://x.com/JackEllis/status/1959994004109775125 (possibly valid criticism against \"Company of One\" book with SPY 500 counterargument got also blocked for AI reply)\n- https://x.com/JackEllis/status/2105080650176881079 (a reply quoting a criticism of 37Signals got blocked for AI reply too)\nIf a founder is blocking legitimate criticism and significant legitimate people for \"AI replies\", would you trust the founder with Fathom Analytics? Wouldn't this lead to the product being built in interest of founder and not customer?\nUse something else for analytics instead. I'm using Plausible (or rather its self-hosted Community Edition) myself, and it works without a problem. + a modern UI.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1792768769,
+      "created_at": "2026-10-23T15:19:29+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -27,8 +44,8 @@
       "title": "Tell HN: Steamcmd doesn't work on Apple Silicon",
       "subreddit": "ask-hn",
       "author": "stdc105",
-      "score": 2,
-      "num_comments": 1,
+      "score": 3,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50207196",
       "url": "https://news.ycombinator.com/item?id=50207196",
       "selftext": "steamcmd is the official command line tool from Steam. Gamedevs work with it to get builds uploaded to Steamworks. And it doesn't support Apple Silicon.\nTo upload games to Steam, devs either go through Steamworks website, or use steamcmd. The web upload on Steamworks website mostly works for small zips, just it is unreliable. At bad times one can stare at the web upload for 10 minutes of failure, errors, \"did not receive the entire file\" after timeout.\nI have finally decided to migrate to upload using steamcmd today. I usually work on a Windows machine and build my game for Windows and Linux. The build and the upload worked flawlessly. It seems steamcmd compares my local build with contents in the depot and only upload some deltas. Saves time and bandwidth.\nUntil I try to set it up on my Mac. Because of the hellish codesign and notarization, it is better (or less bad) to build everything macOS on a Mac. Then this hits me.\n> ./steamcmd\nzsh: bad CPU type in executable: ./steamcmd\n> file steamcmd\nsteamcmd: Mach-O 64-bit executable x86_64\nIn comparison, this is Godot:\n> file /Applications/Godot.app/Contents/MacOS/Godot\n/Applications/Godot.app/Contents/MacOS/Godot: Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64]\nI've cursed Apple because Xcode, codesign, notarization are all hell of a maze to navigate, but the expectations of developing a game on a Mac has always been low (at least when you're not developing exclusively for macOS and latest iPhone). I just never thought I'd be mad at Steam. A developer tool, at 2026, under folder `builder_osx`, doesn't support Apple Silicon.\nMy disappointment is immeasurable and my day is ruined.",
@@ -37,6 +54,14 @@
       "time": 1792753927,
       "created_at": "2026-10-23T11:12:07+00:00",
       "comments_data": [
+        {
+          "id": "50212104",
+          "author": "altairprime",
+          "body": "Could you share your Steam support ticket # so that other developers can refer to it?",
+          "score": 0,
+          "time": 1792774884,
+          "parent": "50207196"
+        },
         {
           "id": "50208034",
           "author": "komon",
@@ -71,8 +96,8 @@
       "title": "Median product \"lifespan\" has fallen from ~4y down to ~1.5y",
       "subreddit": "ask-hn",
       "author": "stanislavb",
-      "score": 65,
-      "num_comments": 28,
+      "score": 72,
+      "num_comments": 31,
       "permalink": "https://news.ycombinator.com/item?id=50204125",
       "url": "https://news.ycombinator.com/item?id=50204125",
       "selftext": "The \"product graveyard\" of SaaSHub has been tracking the status (and lifespan) of hundreds of thousands of products. It's been hovering around 4y for quite some time. However, there's a sharp decline in 2026 leading to about 1.5y these days. https://www.saashub.com/product-graveyard (https://www.saashub.com/product-graveyard) That's a huge drop. And, it matches my \"human\" observations. A lot of products are being vibe coded, released, and soon after that abandoned. It's become too cheap to produce software. So, a lot of people have been experimenting for 'free' with their ideas - only to find out that they weren't viable... or that they couldn't bring customers in. Distribution and marketing have become much more important than before - within the context that everyone can build \"features\" for free.\nAnyhow, I expect this trend of shortening product lifespan to continue even further down. Or maybe, at some point people will realised that there are no users for their products as every user can \"build\" their own and custom product. Leaving us with a dozen huge platforms that host and help you build those apps. Until then - it's a crazy gold rush and a lot of makers are abandoning their empty buckets.",
@@ -106,11 +131,11 @@
           "parent": "50204125"
         },
         {
-          "id": "50207999",
-          "author": "mattbrewsbytes",
-          "body": "I think another element the cost of maintaining it, supporting it, marketing, etc. hasn't been commoditized like producing brand new software. Those things take time to do properly and there are lots of people churning out a SaaS and then they get abandoned because its not fun anymore to do all the administrative/sales stuff.\nI seriously don't think non-technical people are pumping out apps, probably never will. They simply don't have an interest and would rather just pay for a service. A HVAC, plumbing, or electrician company isn't going to write their own CRM system. Now they will price hunt those services so as software production becomes cheaper, I would expect SaaS margins to also be going down.",
+          "id": "50204746",
+          "author": "ibn_khaldun",
+          "body": "Software is in its SoundCloud rap era.",
           "score": 0,
-          "time": 1792758871,
+          "time": 1792732262,
           "parent": "50204125"
         },
         {
@@ -122,11 +147,11 @@
           "parent": "50204125"
         },
         {
-          "id": "50204746",
-          "author": "ibn_khaldun",
-          "body": "Software is in its SoundCloud rap era.",
+          "id": "50204404",
+          "author": "snarky-comments",
+          "body": "This could signal a healthy fail fast competitive market. Maybe?",
           "score": 0,
-          "time": 1792732262,
+          "time": 1792728337,
           "parent": "50204125"
         },
         {
@@ -138,19 +163,19 @@
           "parent": "50204125"
         },
         {
-          "id": "50204404",
-          "author": "snarky-comments",
-          "body": "This could signal a healthy fail fast competitive market. Maybe?",
-          "score": 0,
-          "time": 1792728337,
-          "parent": "50204125"
-        },
-        {
           "id": "50205022",
           "author": "endriju",
           "body": "Software used to solve problems for users. Now AI is solving most problems for users, but not all (although ever increasing). I think software needs to evolve to solve the category of problems that AI is not (yet) good at. For example very hard (extreme long horizon) problems in digital space which are still expensive to solve. Some domains overlapping with real-world and restricted/regulated industries are also not yet disrupted by AI to the level regular SaaS is. To get ahead one needs to start in those domains now, as it will get much harder once AI will start eating them.",
           "score": 0,
           "time": 1792735702,
+          "parent": "50204125"
+        },
+        {
+          "id": "50212111",
+          "author": "borplk",
+          "body": "The idea that users \"make their own tool with AI\" is a nerd fantasy that does not exist in the real world. Some use cases get absorbed into products like ChatGPT because Jim no longer needs a special web-based tool/calculator/product and can just ask ChatGPT to do it for him. But normies can't and don't want to build or maintain products. They wouldn't even have the patience to write the prompt to ask the AI to build it for them. Vibe-coders are mainly wannabe programmers and nerd hobbyists.",
+          "score": 0,
+          "time": 1792774902,
           "parent": "50204125"
         },
         {
@@ -162,19 +187,19 @@
           "parent": "50204125"
         },
         {
-          "id": "50205082",
-          "author": "hebetude",
-          "body": "However, my ability to produce a lot of really useful software for myself has gone way up. None of them are over a year yet but I use them more than the non personalized apps they replaced",
-          "score": 0,
-          "time": 1792736216,
-          "parent": "50204125"
-        },
-        {
           "id": "50205121",
           "author": "Maxzrco",
           "body": "I would 100% agree on that. Now REA comes in again and in a few years everybody could clone big and complex software. I think a software will need more than features in the future.\nIt will need licences, or content others could not deliver. Really something you can’t clone that fast.\nI think about Netflix, Spotify, Amazon. You can clone all this platforms but will never have the rights, artists or the logistics for example.",
           "score": 0,
           "time": 1792736655,
+          "parent": "50204125"
+        },
+        {
+          "id": "50205136",
+          "author": "Maxzrco",
+          "body": "I would 100% agree on that. Now REA comes in again and in the future everyone can clone complex software.\nI think distribution become more important than ever. And having something you can’t clone on day 1. I think about Amazon, Netflix, Spotify.\nYou can clone the platforms but not the licences, artists logistic etc…",
+          "score": 0,
+          "time": 1792736805,
           "parent": "50204125"
         }
       ]
