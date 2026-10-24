@@ -1,0 +1,42 @@
+{
+  "source": "hackernews",
+  "stream": "ask-hn",
+  "last_fetched": "2026-10-24T06:46:31.486311+00:00",
+  "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50218062",
+      "title": "Ask HN: How do people self host email and maintain deliverability?",
+      "subreddit": "ask-hn",
+      "author": "smithbob",
+      "score": 3,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50218062",
+      "url": "https://news.ycombinator.com/item?id=50218062",
+      "selftext": "I wanted to self host my email and decided to rent a VPS. I made sure the ipv4 address was on no blacklist. My domain uses a good TLD with a long domain history. I set up SPF, DKIM, DMARC, reverse IP DNS, etc.\nI sent 3 emails to my personal outlook/hotmail accounts, all of which went to spam. 1 day later, my IP was banned. Outlook support said they cannot discuss the reason for the ban and will not unban it so I'm out of luck.\nI know I can just pay a provider $5/month and get email, but there is something about having full control over your own email. Is there anything much I can do?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1792811550,
+      "created_at": "2026-10-24T03:12:30+00:00",
+      "comments_data": [
+        {
+          "id": "50218370",
+          "author": "brysonsteck",
+          "body": "I've had issues with my emails going to spam with Gmail and Outlook, but in my 2ish years of self-hosting email, it never got to a point where it was banned outright. All I do is tell people to check their spam folders for my email and report it as Not Spam, haven't had issues with a ban.\nSomething that has really helped with rejections and/or spam was having a PTR (reverse DNS) record for your server, some providers like Gmail explicitly require it. It's something that I have to pay a VPS for in order to get. But I can have that VPS with that PTR record and tunnel everything through Wireguard to my home server, all without TLS termination on the VPS.",
+          "score": 0,
+          "time": 1792816224,
+          "parent": "50218062"
+        },
+        {
+          "id": "50218179",
+          "author": "31337Logic",
+          "body": "Stalwart mail is really good and easy to setup. I register a domain name for a few bucks a year and protect it with a Lets Encrypt certificate. Free and very rewarding!!",
+          "score": 0,
+          "time": 1792813214,
+          "parent": "50218062"
+        }
+      ]
+    }
+  ]
+}
