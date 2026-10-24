@@ -1,8 +1,113 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-24T12:40:19.016031+00:00",
+  "last_fetched": "2026-10-24T18:36:46.019075+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50222517",
+      "title": "Game trips modem/router breaker",
+      "subreddit": "ask-hn",
+      "author": "simpaticoder",
+      "score": 2,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50222517",
+      "url": "https://news.ycombinator.com/item?id=50222517",
+      "selftext": "Running Empire of the Ants on Steam Machine, this game (and only this game) does one of the strangest things I've ever experienced with any software: somehow, it trips the breaker feeding my router and modem. Frankly, I don't understand how this is possible, but it is reproducible. My first thought was that it was causing a power surge on the SM itself, but that's a different breaker. My second thought was that somehow it was triggering a load on the router and/or modem. The router and modem are connected to wall power through a UPS, so the game continues to play normally. I used the UPS display to show me output wattage but I didn't see a spike.\nNo other game on the SM, and no other console or device has ever done this and the situation is at once horrifying and fascinating. My only other thought is that the UPS is reacting to a stray Wifi signal originating with the SM and increasing load, triggering the breaker. But AFAIK the UPS is not set up to interact with Wifi at all, and frankly this seems very unlikely. I'm posting this in the hopes that someone else is experiencing something similar and we can get to the bottom of this mystery. And I thought of the HN crowd because I know we all love the \"my software only crashes when it rains\" type stories.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1792857392,
+      "created_at": "2026-10-24T15:56:32+00:00",
+      "comments_data": [
+        {
+          "id": "50222572",
+          "author": "topham",
+          "body": "AFCI breaker?\nElectromagnetic noise can trigger them, it could feed back from the power supply.",
+          "score": 0,
+          "time": 1792857686,
+          "parent": "50222517"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50222093",
+      "title": "Ask HN: Kimi Code hit its 5-hour limit after $1.37 of API usage",
+      "subreddit": "ask-hn",
+      "author": "waximabbax",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50222093",
+      "url": "https://news.ycombinator.com/item?id=50222093",
+      "selftext": "I paid $19 for Kimi Code to test K3.1 Pro Standard (not Highspeed) using the official CLI v2.3.1.\nI ran two tasks on small repositories:\n1. Recommend movies based on an existing movie database.\n2. Analyze a website's codebase.\nNeither task completed. The entire 5-hour quota was exhausted within minutes.\nI analyzed the actual session logs, including background agents:\n- Fresh input: 368,203 tokens\n- Cached input: 1,183,744 tokens\n- Output: 39,324 tokens\n- Total: 1.59M tokens\nAt Kimi's published API rates, that's just $1.37 worth of usage before hitting the 5-hour limit which is easily less than 5% of what Claude Code offers at $20 subscription.\nThe logs show: \"429 You've reached your 5-hour usage limit.\"\nFor comparison, Claude Code on a $20 subscription processed roughly 381M tokens over 4-5 hours using Opus 5.5 xhigh, mostly cached input. That's not a controlled benchmark, but the difference in usable capacity is staggering.\nBoth Kimi tasks failed without delivering results. I have video evidence and detailed logs, but won't publish private repository data.\nVideo: https://www.youtube.com/watch?v=hSr-DLn88AM\nIs this a quota-accounting bug, or are Kimi's $19 subscription limits intentionally this restrictive?\nDisclosure: I also develop a competing coding agent. These tests used Kimi's official CLI.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1792854964,
+      "created_at": "2026-10-24T15:16:04+00:00",
+      "comments_data": [
+        {
+          "id": "50222573",
+          "author": "simpaticoder",
+          "body": "Did you try contacting the provider? It looks like a bug to me.",
+          "score": 0,
+          "time": 1792857689,
+          "parent": "50222093"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50220934",
+      "title": "Is AI just another get rich quick scheme?",
+      "subreddit": "ask-hn",
+      "author": "jqpabc123",
+      "score": 3,
+      "num_comments": 7,
+      "permalink": "https://news.ycombinator.com/item?id=50220934",
+      "url": "https://news.ycombinator.com/item?id=50220934",
+      "selftext": "You too can get rich quick in real estate --- details in this book; only $49.95.\nIf there really was a sure fire way to get rich quick, why sell books to the public? Why not keep it to yourself and apply it to make money?\nThe same applies to AI. If it was really all that, they wouldn't be selling tokens to the public. They would be forming corporate partnerships, building products and conquering markets --- starting with the financial markets.\nThose who can --- do. Those who can't --- sell books and \"tokens\".",
+      "is_self": true,
+      "is_video": false,
+      "time": 1792847497,
+      "created_at": "2026-10-24T13:11:37+00:00",
+      "comments_data": [
+        {
+          "id": "50221990",
+          "author": "mirmor23",
+          "body": "AI hype is real, and there is a lot of perverse incentive to keep the hype cycle going. You are right about that.\nRest of your analogy/arguments are just a lot of nonsense too.\nElectricity is valuable, and by that logic Siemens Energy should build and own all factories under the sun. TI should stop selling their calculators and compete in Math Olympiad instead!",
+          "score": 0,
+          "time": 1792854427,
+          "parent": "50220934"
+        },
+        {
+          "id": "50223267",
+          "author": "runjake",
+          "body": "You still need solid motivation, a good sense of the fundamentals, communication skills, social skills, sales skills, and good taste to build good products with AI.\nAlso, I think you are conflating two things:\n1. The genuine advancement (and challenges) AI brings.\n2. The inevitable hordes of less scrupulous people who take advantage of every new trend to make money however they can.\nI am fully immersed in building with AI and I barely notice these less scrupulous. I know they exist. They always exist. But why are you paying so much attention to them?",
+          "score": 0,
+          "time": 1792862644,
+          "parent": "50220934"
+        },
+        {
+          "id": "50222643",
+          "author": "sejje",
+          "body": "Are shovels just another get rich quick scheme? If they were really all that, they wouldn't be selling shovels to the public. They would be forming corporate partnerships, digging dirt and conquering markets--starting with the mining industry.",
+          "score": 0,
+          "time": 1792858147,
+          "parent": "50220934"
+        },
+        {
+          "id": "50221177",
+          "author": "davydm",
+          "body": "the ai companies have a problem at the moment: the compute required for inference (especially) costs a metric shit-ton of money - so they're crowd-sourcing the funds (unsuccessfully so far, tbh - for example, a $20/m claude sub that i'm on for work, and I regularly see individual conversations where the tokens cost more than that - even up to $350.\nIt's a tool tho, not a panacea. With the right guidance, for example, you can get some good code results.",
+          "score": 0,
+          "time": 1792849626,
+          "parent": "50220934"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,8 +115,8 @@
       "title": "I'm creating my own OS system. Please rate this. There's a lot written in C",
       "subreddit": "ask-hn",
       "author": "DrMoris",
-      "score": 5,
-      "num_comments": 3,
+      "score": 6,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50219838",
       "url": "https://news.ycombinator.com/item?id=50219838",
       "selftext": "I'm creating my own OS system. Check it out. A lot has been written in C. So, I created my own OS called LimonOS. It's in early development. What's unique is that it's not Linux or Unix—the kernel is unique and 98% written in C. Yes, I used the AI assistant because I had a headache and there were a lot of errors and problems, since I was the only one doing and thinking about it. Development has been going on for four days now. Here's a link to the OS itself—we recently added a browser and internet connection: https://github.com/AnonimusShamshiAlex/LimonOS OSsystem Limon Full AI+Braves TLS.rar here. LimonOS9_3.zip here . The code itself and the entire OS system are there. There's a problem: if you're using Windows, we need to click the batch file, and everything will compile using WSL Linux and Limine for implementation. Everything is on GitHub, all the instructions, and you'll probably find it easy to try it out on a virtual machine. I'm writing this because I want your opinion and suggestions on how to improve this OS so it works and becomes stable, like other OSes, like Linux. I'm having a blast creating my own OS, like Terry Davis, and I hope I don't go crazy. Here are the interface screenshots . I recently added them to the AI terminal. You can connect with the aikey command <your openrouter.ai API key here>. Then you can use the ai command. ai hi my name is Jucy. Here are the interface screenshots. Thanks everyone\nThanky you",
@@ -21,14 +126,6 @@
       "created_at": "2026-10-24T10:20:24+00:00",
       "comments_data": [
         {
-          "id": "50220639",
-          "author": "Rochus",
-          "body": "> I used the AI assistant because I had a headache and there were a lot of errors and problems\nThat's a great excuse, one I'll have to remember ;-)",
-          "score": 0,
-          "time": 1792845026,
-          "parent": "50219838"
-        },
-        {
           "id": "50220079",
           "author": "herbst",
           "body": "Was the post created by AI as well or are _we_ already this deep into psychosis?",
@@ -37,11 +134,27 @@
           "parent": "50219838"
         },
         {
+          "id": "50220639",
+          "author": "Rochus",
+          "body": "> I used the AI assistant because I had a headache and there were a lot of errors and problems\nThat's a great excuse, one I'll have to remember ;-)",
+          "score": 0,
+          "time": 1792845026,
+          "parent": "50219838"
+        },
+        {
           "id": "50220150",
           "author": "RomannBami",
           "body": "Je peux aussi participer au développement du projet ?",
           "score": 0,
           "time": 1792840205,
+          "parent": "50219838"
+        },
+        {
+          "id": "50222029",
+          "author": "codingdave",
+          "body": "\"Trust me bro, just download this zip file and run it on Windows.\"\nMaybe OP is malicious. Maybe they are not. But either way, someone claiming to have vibe-coded an OS in 4 days and expecting people to download and run it is a quick and easy \"No.\" from me.",
+          "score": 0,
+          "time": 1792854625,
           "parent": "50219838"
         }
       ]
@@ -70,7 +183,7 @@
       "title": "Took apart Claude Code, then turned it into a free course on harness engineering",
       "subreddit": "ask-hn",
       "author": "pauliusztin",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50219641",
       "url": "https://news.ycombinator.com/item?id=50219641",
@@ -87,7 +200,7 @@
       "title": "Ask HN: How do people self host email and maintain deliverability?",
       "subreddit": "ask-hn",
       "author": "smithbob",
-      "score": 5,
+      "score": 6,
       "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50218062",
       "url": "https://news.ycombinator.com/item?id=50218062",

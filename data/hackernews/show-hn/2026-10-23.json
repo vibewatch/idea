@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-24T12:40:15.082712+00:00",
+  "last_fetched": "2026-10-24T18:36:39.682221+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -88,8 +88,8 @@
       "title": "Show HN: Corgi, a helpful {agent, terminal} multiplexer",
       "subreddit": "show-hn",
       "author": "eiopa",
-      "score": 96,
-      "num_comments": 27,
+      "score": 120,
+      "num_comments": 41,
       "permalink": "https://news.ycombinator.com/item?id=50214373",
       "url": "https://corgi.computer/",
       "selftext": "Hey everyone,\nInspired by Herdr, I've built an agent multiplexer that I've been using as my daily driver for a few weeks now.\nI think I improved on the concept in a few ways, focusing on the ergonomics I always wished I had:\nI show you what the agents are up to, along with a running feed of their activity.\nThere's also a simple shortcut (F1) to go to the next unread agent.\nI use multiple accounts, so I've added unified launcher for Codex/Claude Code/Pi.\nTheres some careful ergonomics there: fast search and resume over sessions, inline usage tracking etc.\nMany small quality of life improvements to the terminal experience:\n- Links can be copied with a click, so no need to drag-select over many lines\n- cmd+v just pastes images (even on SSH)\n- images have a thumbnail preview.\n- Built-in CPU/Memory/GPU usage tracking, broken down by workspace\nI assume you have access to cheap inference (Luna/Haiku/etc).\nIt just reuses the agents to organize things for you: what is this http link? what is this worktree about? what is each agent doing? \nIt's small but it made my environment feel more cozy.\nOn a personal note, I've been on a frustrating sick leave for a while now.\nI created Corgi to challenge myself, and see if I can go back.\nThe answer is more mixed than I had hoped, but I am happy with the result and thankful for the experience.\nI hope you like it! a few friends & myself have been using it for a few weeks and it's been pretty nice.\nThere's still a lot to improve and some rough edges, so feedback would be greatly appreciated.\nThank you :)",
@@ -107,11 +107,19 @@
           "parent": "50214373"
         },
         {
-          "id": "50220295",
-          "author": "gillesjacobs",
-          "body": "Testing it out, looks good, it does seem to have some repaint/flicker bugs. I was running a customized simple Tmux sessions tabs with agent harness updates over AgentPulse hooks but this might replace that.\nLet's see if I can add in some of required version control/git tooling. Might have some PRs incoming for you soon.",
+          "id": "50223767",
+          "author": "BElluu",
+          "body": "Windows will be supported in the future ?:)",
           "score": 0,
-          "time": 1792841778,
+          "time": 1792866028,
+          "parent": "50214373"
+        },
+        {
+          "id": "50222899",
+          "author": "zeugmasyllepsis",
+          "body": "I plan to look into this deeper today, but truth be told I saw the little animation at the top of the page and paused.\nThrowing the ball and watching this little character run was truly a delightful interaction. For whatever part you had in its creation, thank you.",
+          "score": 0,
+          "time": 1792859887,
           "parent": "50214373"
         },
         {
@@ -120,6 +128,22 @@
           "body": "Looks awesome! Will give it a try. I've built something similar, just open-sourced it:\nhttps://exawatt.ai (https://exawatt.ai)\nI'm big on agent ergonomics. Cool to see what others are doing in the space.",
           "score": 0,
           "time": 1792800090,
+          "parent": "50214373"
+        },
+        {
+          "id": "50222969",
+          "author": "aryanthakor",
+          "body": "I've been using herdr + omp for my agent sessions, I really like the prefix key and how easily I can edit it, does it have the similar prefix? Looks promising I will definitely give it a try. Thank you very much :)",
+          "score": 0,
+          "time": 1792860377,
+          "parent": "50214373"
+        },
+        {
+          "id": "50220295",
+          "author": "gillesjacobs",
+          "body": "Testing it out, looks good, it does seem to have some repaint/flicker bugs. I was running a customized simple Tmux sessions tabs with agent harness updates over AgentPulse hooks but this might replace that.\nLet's see if I can add in some of required version control/git tooling. Might have some PRs incoming for you soon.",
+          "score": 0,
+          "time": 1792841778,
           "parent": "50214373"
         },
         {
@@ -147,6 +171,14 @@
           "parent": "50214373"
         },
         {
+          "id": "50222090",
+          "author": "linsomniac",
+          "body": "When I first saw this I though \"Meh, I'm happy with Herdr\", but then I saw \"paste images, even over SSH\" and I've gotta try it. I also REALLY like the website where you can interact with the example screenshot, that's <chefs kiss>.\nHowever (and I know connecting is on the road map), is it possible to have multiple local connections? That's core functionality for me, I run Herdr in one terminal on my workstation, and on my laptop I ssh in (actually \"wezterm connect\") and run a \"herdr attach\" so I can access it both from my Mac and my desk. I've never gotten around to trying the herdr native connect from my Mac because that works so well.",
+          "score": 0,
+          "time": 1792854947,
+          "parent": "50214373"
+        },
+        {
           "id": "50219706",
           "author": "pantelisk",
           "body": "Brilliant work! Testing it now",
@@ -155,43 +187,11 @@
           "parent": "50214373"
         },
         {
-          "id": "50219252",
-          "author": "troupo",
-          "body": "> cmd+v just pastes images (even on SSH)\nThis is such an useful feature and I'm surprised so few tools bother to implement it.",
-          "score": 0,
-          "time": 1792830224,
-          "parent": "50214373"
-        },
-        {
           "id": "50217652",
           "author": "robsalasco",
           "body": "please add it to brew, I don't like to use bash scripts https://nocurlbash.com/#en (https://nocurlbash.com/#en)",
           "score": 0,
           "time": 1792806411,
-          "parent": "50214373"
-        },
-        {
-          "id": "50217919",
-          "author": "Lord_Zero",
-          "body": "How much of this could be plugins to herdr?",
-          "score": 0,
-          "time": 1792809582,
-          "parent": "50214373"
-        },
-        {
-          "id": "50219094",
-          "author": "manume",
-          "body": "[flagged]",
-          "score": 0,
-          "time": 1792828172,
-          "parent": "50214373"
-        },
-        {
-          "id": "50217777",
-          "author": "syngrog66",
-          "body": "its existed for a few weeks (and was vibe coded, I assume) and... you're announcing it to the entire world?",
-          "score": 0,
-          "time": 1792807907,
           "parent": "50214373"
         }
       ]
@@ -479,8 +479,8 @@
       "title": "Show HN: We had AI write a wiki from 45k Enron emails, every fact cited",
       "subreddit": "show-hn",
       "author": "jreynar",
-      "score": 63,
-      "num_comments": 54,
+      "score": 64,
+      "num_comments": 55,
       "permalink": "https://news.ycombinator.com/item?id=50207620",
       "url": "https://www.thisandthat.chat/enron/",
       "selftext": "",
@@ -519,6 +519,14 @@
           "body": "At this point I think it's just AIs using hacker news to demonstrate to other AIs.",
           "score": 0,
           "time": 1792767787,
+          "parent": "50207620"
+        },
+        {
+          "id": "50222656",
+          "author": "g8oz",
+          "body": "It would be interesting to do this to the Epstein files as well.",
+          "score": 0,
+          "time": 1792858204,
           "parent": "50207620"
         },
         {
@@ -682,7 +690,7 @@
       "subreddit": "show-hn",
       "author": "webtjb096",
       "score": 72,
-      "num_comments": 34,
+      "num_comments": 35,
       "permalink": "https://news.ycombinator.com/item?id=50205320",
       "url": "https://swurf.org/",
       "selftext": "Hello HN,\nSwurf allows you to swipe through the real web one page after another. It learns what you like and doesn’t show you the same page twice. The idea came naturally: there’s a seemingly infinite amount of high quality blog posts, random topic rabbit holes, and trending or cool sites that exist which the average person simply will never load on their browser. Swurf solves that by allowing you to rapidly traverse a constantly growing and learning feed of sites that it thinks you’d want to view. Quickly sift through endless pages and find things you like - effortlessly.\nOne of the core drivers for making this project was the desire for real content. The project started as a simple tool for myself to find new and interesting things to learn and read about. Hours spent scrolling on my phone - while it still has its place - is increasingly losing its sense of reward. It’s genuinely hard to put into words exactly how swurfin’ feels but it’s almost refreshing in a sense. I encourage you to try it out and provide feedback. At this time there are no accounts and you can jump in and start swurfin’ immediately. There is a three dot menu button on the bottom right which allows you to submit links, save links, control adult content, and search similar topics. One of the things that’s great about Swurf is that its almost like a group browsing session (though entirely private) where everyone else who is spending time hunting down great reads or solid sites is helping massage the feed for you and you for them - all within your own set of interests.\nEnjoy and please ask any questions you have as theres plenty of room to grow.",
@@ -700,11 +708,11 @@
           "parent": "50205320"
         },
         {
-          "id": "50219384",
-          "author": "alexkkoo93",
-          "body": "I like it. But it keeps freezing — I can't scroll vertically through the sites (on either Opera/Chrome on android) unless I switch to another app and then back. Then it'll work for a page or two before freezing again. Otherwise I like the concept",
+          "id": "50214924",
+          "author": "rambambram",
+          "body": "Reminds me of the Wander network from Susam Pal (https://www.susam.net (https://www.susam.net)). His console is at https://susam.net/wander/ (https://susam.net/wander/) and my own instantiation is on https://www.heyhomepage.com/wander/ (https://www.heyhomepage.com/wander/) I didn't look at it for some weeks and now that I did it seemed to have grown more!\nI like the swiping UI from Swurf though. Being shown just one at a time is calming. I did the same thing for my RSS feed reader... it just randomly picks one post from one feed at a time, from thousands of feed sources.",
           "score": 0,
-          "time": 1792832117,
+          "time": 1792787530,
           "parent": "50205320"
         },
         {
@@ -716,19 +724,19 @@
           "parent": "50205320"
         },
         {
-          "id": "50214924",
-          "author": "rambambram",
-          "body": "Reminds me of the Wander network from Susam Pal (https://www.susam.net (https://www.susam.net)). His console is at https://susam.net/wander/ (https://susam.net/wander/) and my own instantiation is on https://www.heyhomepage.com/wander/ (https://www.heyhomepage.com/wander/) I didn't look at it for some weeks and now that I did it seemed to have grown more!\nI like the swiping UI from Swurf though. Being shown just one at a time is calming. I did the same thing for my RSS feed reader... it just randomly picks one post from one feed at a time, from thousands of feed sources.",
-          "score": 0,
-          "time": 1792787530,
-          "parent": "50205320"
-        },
-        {
           "id": "50215185",
           "author": "xnx",
           "body": "It's tough to make the swipe interface work for content that is so varied in presentation. It works for Tinder, TikTok, and even WikiTok because the content has a consistent form. With this, you have to reorient yourself after every swipe.",
           "score": 0,
           "time": 1792788875,
+          "parent": "50205320"
+        },
+        {
+          "id": "50219384",
+          "author": "alexkkoo93",
+          "body": "I like it. But it keeps freezing — I can't scroll vertically through the sites (on either Opera/Chrome on android) unless I switch to another app and then back. Then it'll work for a page or two before freezing again. Otherwise I like the concept",
+          "score": 0,
+          "time": 1792832117,
           "parent": "50205320"
         },
         {
@@ -900,7 +908,7 @@
       "title": "Show HN: Making a smart TV dumb and then smart",
       "subreddit": "show-hn",
       "author": "animalhot",
-      "score": 102,
+      "score": 105,
       "num_comments": 74,
       "permalink": "https://news.ycombinator.com/item?id=50202865",
       "url": "https://github.com/anubhavmalhotra/r2d2-tv",
@@ -943,19 +951,19 @@
           "parent": "50202865"
         },
         {
-          "id": "50219664",
-          "author": "pseudohadamard",
-          "body": "We need to stop saying \"dumb TV\" because for the general public smart = good, dumb = bad. What about turning the tables and calling them safe TVs, as opposed to (implied) unsafe \"smart\" TVs?",
-          "score": 0,
-          "time": 1792835592,
-          "parent": "50202865"
-        },
-        {
           "id": "50208227",
           "author": "a1o",
           "body": "Curious about Netflix, does it limit the resolution because it is not an “official” app or something like this?\nAlso, it says you have to have system root of the tv, how does one get root access to the LG TV?",
           "score": 0,
           "time": 1792760016,
+          "parent": "50202865"
+        },
+        {
+          "id": "50213602",
+          "author": "gawacer",
+          "body": "How do you keep webOS from updating itself again and undoing all this? Rooted, or running on top of stock?",
+          "score": 0,
+          "time": 1792781107,
           "parent": "50202865"
         },
         {
@@ -983,11 +991,11 @@
           "parent": "50202865"
         },
         {
-          "id": "50213602",
-          "author": "gawacer",
-          "body": "How do you keep webOS from updating itself again and undoing all this? Rooted, or running on top of stock?",
+          "id": "50219664",
+          "author": "pseudohadamard",
+          "body": "We need to stop saying \"dumb TV\" because for the general public smart = good, dumb = bad. What about turning the tables and calling them safe TVs, as opposed to (implied) unsafe \"smart\" TVs?",
           "score": 0,
-          "time": 1792781107,
+          "time": 1792835592,
           "parent": "50202865"
         },
         {
