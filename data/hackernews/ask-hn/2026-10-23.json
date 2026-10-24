@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-24T06:46:31.486311+00:00",
+  "last_fetched": "2026-10-24T12:40:19.016031+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -54,14 +54,24 @@
       "subreddit": "ask-hn",
       "author": "cromka",
       "score": 8,
-      "num_comments": 0,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50214693",
       "url": "https://news.ycombinator.com/item?id=50214693",
       "selftext": "So I found myself surprised today that exiting the CLI with CTRL-C does not, in fact, close Claude CLI. What it does is it closes the agent's terminal interface, but it leaves a background process active, even if you didn't work on anything at all.\nTry it yourself: run claude, exit to main conversations list, close it immediately with CTRL-C or /exit, then `ps ax|grep claude`.\nApparently it's not a bug, it's a \"feature\", introduced earlier this year. You need to disable Agent View (https://code.claude.com/docs/en/agent-view, disableAgentView in settings.json) to stop that behavior. But then you lose the ability to open the list all your chats in main view, effectively crippling it.\nThis is yet another frustrating anti-pattern they introduce and it personally upsets me that 5 decades of established paradigms (CTRL-C is CTRL-C!) continue to be thrown out of the window just like that.\nI guess at 30k changes a day you kinda have to fell entitled to not care about anything legacy.\nEDIT: you can still show a list of chats with disableAgentView, just need an explicit `claude --resume`. It's a different UI, but with an actual search!",
       "is_self": true,
       "is_video": false,
       "time": 1792786491,
-      "created_at": "2026-10-23T20:14:51+00:00"
+      "created_at": "2026-10-23T20:14:51+00:00",
+      "comments_data": [
+        {
+          "id": "50220329",
+          "author": "uliseis",
+          "body": "I think the session does indeed end, but the process you see is a background supervisor. I tried running \"claude daemon status\" and it shows the supervisor process.\nBut yeah, it's a bit strange. I tend to stick with regular agents in different tabs, and not agent view.",
+          "score": 0,
+          "time": 1792842042,
+          "parent": "50214693"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -98,14 +108,24 @@
       "subreddit": "ask-hn",
       "author": "Mutinix",
       "score": 5,
-      "num_comments": 0,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50207807",
       "url": "https://news.ycombinator.com/item?id=50207807",
       "selftext": "I lived in the US for about 10 years and moved back to India this year. My Apple Account was set to the US region and I switched it to India before enrolling in the Apple Developer Program as an individual. I verified with my passport and paid with an Indian card.\nThe enrollment was declined. I called support and followed up by email, and got the same template: \"For one or more reasons, your enrollment in the Apple Developer Program couldn't be completed. We can't continue with your enrollment at this time.\"\nThere's no reason given, no appeal process, and nothing to fix. The Apple Developer Forums are full of identical threads going back years, and almost none of them end with a resolution.\nThey hold a complete monopoly over the App Store, I tried emailing them with 2 different accounts (initially with firstname@company.app, then with name@gmail.com) with no replies for up to 10 days. I've been at this for over 2 months with them. I find it preposterous that this is acceptable behaviour.\nI'm sure the advice that's stated on forums will be restated - Try again with a new email account and a new Apple ID. But why? Why is this acceptable for a multi-trillion dollar corporation?\nI had a similar experience with trying to get Google support for a different matter and it took me a couple of months to get it resolved.",
       "is_self": true,
       "is_video": false,
       "time": 1792757999,
-      "created_at": "2026-10-23T12:19:59+00:00"
+      "created_at": "2026-10-23T12:19:59+00:00",
+      "comments_data": [
+        {
+          "id": "50219648",
+          "author": "sdevonoes",
+          "body": "Just don’t. Decouple",
+          "score": 0,
+          "time": 1792835360,
+          "parent": "50207807"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -115,7 +135,7 @@
       "subreddit": "ask-hn",
       "author": "stdc105",
       "score": 4,
-      "num_comments": 5,
+      "num_comments": 6,
       "permalink": "https://news.ycombinator.com/item?id=50207196",
       "url": "https://news.ycombinator.com/item?id=50207196",
       "selftext": "steamcmd is the official command line tool from Steam. Gamedevs work with it to get builds uploaded to Steamworks. And it doesn't support Apple Silicon.\nTo upload games to Steam, devs either go through Steamworks website, or use steamcmd. The web upload on Steamworks website mostly works for small zips, just it is unreliable. At bad times one can stare at the web upload for 10 minutes of failure, errors, \"did not receive the entire file\" after timeout.\nI have finally decided to migrate to upload using steamcmd today. I usually work on a Windows machine and build my game for Windows and Linux. The build and the upload worked flawlessly. It seems steamcmd compares my local build with contents in the depot and only upload some deltas. Saves time and bandwidth.\nUntil I try to set it up on my Mac. Because of the hellish codesign and notarization, it is better (or less bad) to build everything macOS on a Mac. Then this hits me.\n> ./steamcmd\nzsh: bad CPU type in executable: ./steamcmd\n> file steamcmd\nsteamcmd: Mach-O 64-bit executable x86_64\nIn comparison, this is Godot:\n> file /Applications/Godot.app/Contents/MacOS/Godot\n/Applications/Godot.app/Contents/MacOS/Godot: Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64]\nI've cursed Apple because Xcode, codesign, notarization are all hell of a maze to navigate, but the expectations of developing a game on a Mac has always been low (at least when you're not developing exclusively for macOS and latest iPhone). I just never thought I'd be mad at Steam. A developer tool, at 2026, under folder `builder_osx`, doesn't support Apple Silicon.\nMy disappointment is immeasurable and my day is ruined.",

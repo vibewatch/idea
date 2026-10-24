@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-24T06:46:27.805088+00:00",
+  "last_fetched": "2026-10-24T12:40:15.082712+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -88,8 +88,8 @@
       "title": "Show HN: Corgi, a helpful {agent, terminal} multiplexer",
       "subreddit": "show-hn",
       "author": "eiopa",
-      "score": 68,
-      "num_comments": 18,
+      "score": 96,
+      "num_comments": 27,
       "permalink": "https://news.ycombinator.com/item?id=50214373",
       "url": "https://corgi.computer/",
       "selftext": "Hey everyone,\nInspired by Herdr, I've built an agent multiplexer that I've been using as my daily driver for a few weeks now.\nI think I improved on the concept in a few ways, focusing on the ergonomics I always wished I had:\nI show you what the agents are up to, along with a running feed of their activity.\nThere's also a simple shortcut (F1) to go to the next unread agent.\nI use multiple accounts, so I've added unified launcher for Codex/Claude Code/Pi.\nTheres some careful ergonomics there: fast search and resume over sessions, inline usage tracking etc.\nMany small quality of life improvements to the terminal experience:\n- Links can be copied with a click, so no need to drag-select over many lines\n- cmd+v just pastes images (even on SSH)\n- images have a thumbnail preview.\n- Built-in CPU/Memory/GPU usage tracking, broken down by workspace\nI assume you have access to cheap inference (Luna/Haiku/etc).\nIt just reuses the agents to organize things for you: what is this http link? what is this worktree about? what is each agent doing? \nIt's small but it made my environment feel more cozy.\nOn a personal note, I've been on a frustrating sick leave for a while now.\nI created Corgi to challenge myself, and see if I can go back.\nThe answer is more mixed than I had hoped, but I am happy with the result and thankful for the experience.\nI hope you like it! a few friends & myself have been using it for a few weeks and it's been pretty nice.\nThere's still a lot to improve and some rough edges, so feedback would be greatly appreciated.\nThank you :)",
@@ -99,11 +99,35 @@
       "created_at": "2026-10-23T19:46:38+00:00",
       "comments_data": [
         {
+          "id": "50220652",
+          "author": "antouank",
+          "body": "Great effort, thank you so much.\nThere are some very nice features there.\nAnd more polished/modern than herdr for sure.\nWould love to be able to use it as a daily driver.\nCannot switch to it though, mainly because, from what I understand, it doesn't sync/connect with other machines like herdr does. As in, seamlessly.\nTheme-ing (light/dark) adaptation seems a bit clunky as well.\nAnd huge TS files in the source code are not encouraging for how this will scale, or how many bugs will come up.\nStill, I appreciate sharing your work with everyone. Thank you.",
+          "score": 0,
+          "time": 1792845118,
+          "parent": "50214373"
+        },
+        {
+          "id": "50220295",
+          "author": "gillesjacobs",
+          "body": "Testing it out, looks good, it does seem to have some repaint/flicker bugs. I was running a customized simple Tmux sessions tabs with agent harness updates over AgentPulse hooks but this might replace that.\nLet's see if I can add in some of required version control/git tooling. Might have some PRs incoming for you soon.",
+          "score": 0,
+          "time": 1792841778,
+          "parent": "50214373"
+        },
+        {
           "id": "50217001",
           "author": "JakeSc",
           "body": "Looks awesome! Will give it a try. I've built something similar, just open-sourced it:\nhttps://exawatt.ai (https://exawatt.ai)\nI'm big on agent ergonomics. Cool to see what others are doing in the space.",
           "score": 0,
           "time": 1792800090,
+          "parent": "50214373"
+        },
+        {
+          "id": "50219250",
+          "author": "dewey",
+          "body": "I know naming is hard, but there's another YC company with that name from a recent batch: https://www.ycombinator.com/companies/corgi-insurance (https://www.ycombinator.com/companies/corgi-insurance)",
+          "score": 0,
+          "time": 1792830172,
           "parent": "50214373"
         },
         {
@@ -123,6 +147,22 @@
           "parent": "50214373"
         },
         {
+          "id": "50219706",
+          "author": "pantelisk",
+          "body": "Brilliant work! Testing it now",
+          "score": 0,
+          "time": 1792835986,
+          "parent": "50214373"
+        },
+        {
+          "id": "50219252",
+          "author": "troupo",
+          "body": "> cmd+v just pastes images (even on SSH)\nThis is such an useful feature and I'm surprised so few tools bother to implement it.",
+          "score": 0,
+          "time": 1792830224,
+          "parent": "50214373"
+        },
+        {
           "id": "50217652",
           "author": "robsalasco",
           "body": "please add it to brew, I don't like to use bash scripts https://nocurlbash.com/#en (https://nocurlbash.com/#en)",
@@ -139,19 +179,19 @@
           "parent": "50214373"
         },
         {
+          "id": "50219094",
+          "author": "manume",
+          "body": "[flagged]",
+          "score": 0,
+          "time": 1792828172,
+          "parent": "50214373"
+        },
+        {
           "id": "50217777",
           "author": "syngrog66",
           "body": "its existed for a few weeks (and was vibe coded, I assume) and... you're announcing it to the entire world?",
           "score": 0,
           "time": 1792807907,
-          "parent": "50214373"
-        },
-        {
-          "id": "50218331",
-          "author": "crossroadsguy",
-          "body": "At this point any coder that forgot (or rather deliberately chose not to) to tell their agent\n 'oh btw, add the light theme as well and maybe read the system's, if that's not such a bother of course'\n\nisn't worth the time, and they probably didn't bother about the 'a' of accessibilty/ux in the first place anyway, neither is their tool no matter how famous it is or would become.",
-          "score": 0,
-          "time": 1792815366,
           "parent": "50214373"
         }
       ]
@@ -439,8 +479,8 @@
       "title": "Show HN: We had AI write a wiki from 45k Enron emails, every fact cited",
       "subreddit": "show-hn",
       "author": "jreynar",
-      "score": 60,
-      "num_comments": 53,
+      "score": 63,
+      "num_comments": 54,
       "permalink": "https://news.ycombinator.com/item?id=50207620",
       "url": "https://www.thisandthat.chat/enron/",
       "selftext": "",
@@ -641,8 +681,8 @@
       "title": "Show HN: Swurf – Swipe through the real web",
       "subreddit": "show-hn",
       "author": "webtjb096",
-      "score": 70,
-      "num_comments": 33,
+      "score": 72,
+      "num_comments": 34,
       "permalink": "https://news.ycombinator.com/item?id=50205320",
       "url": "https://swurf.org/",
       "selftext": "Hello HN,\nSwurf allows you to swipe through the real web one page after another. It learns what you like and doesn’t show you the same page twice. The idea came naturally: there’s a seemingly infinite amount of high quality blog posts, random topic rabbit holes, and trending or cool sites that exist which the average person simply will never load on their browser. Swurf solves that by allowing you to rapidly traverse a constantly growing and learning feed of sites that it thinks you’d want to view. Quickly sift through endless pages and find things you like - effortlessly.\nOne of the core drivers for making this project was the desire for real content. The project started as a simple tool for myself to find new and interesting things to learn and read about. Hours spent scrolling on my phone - while it still has its place - is increasingly losing its sense of reward. It’s genuinely hard to put into words exactly how swurfin’ feels but it’s almost refreshing in a sense. I encourage you to try it out and provide feedback. At this time there are no accounts and you can jump in and start swurfin’ immediately. There is a three dot menu button on the bottom right which allows you to submit links, save links, control adult content, and search similar topics. One of the things that’s great about Swurf is that its almost like a group browsing session (though entirely private) where everyone else who is spending time hunting down great reads or solid sites is helping massage the feed for you and you for them - all within your own set of interests.\nEnjoy and please ask any questions you have as theres plenty of room to grow.",
@@ -660,11 +700,11 @@
           "parent": "50205320"
         },
         {
-          "id": "50218421",
-          "author": "webtjb096",
-          "body": "Added Swurf codes to easily transfer your Swurf to any other device or browser without an account\nFrom the (...) menu -> Your Swurf code (shows up after a few swipes)\nThank you to everyone who participated in the launch so far and the great feedback/discussion",
+          "id": "50219384",
+          "author": "alexkkoo93",
+          "body": "I like it. But it keeps freezing — I can't scroll vertically through the sites (on either Opera/Chrome on android) unless I switch to another app and then back. Then it'll work for a page or two before freezing again. Otherwise I like the concept",
           "score": 0,
-          "time": 1792817253,
+          "time": 1792832117,
           "parent": "50205320"
         },
         {
@@ -692,6 +732,14 @@
           "parent": "50205320"
         },
         {
+          "id": "50218421",
+          "author": "webtjb096",
+          "body": "Added Swurf codes to easily transfer your Swurf to any other device or browser without an account\nFrom the (...) menu -> Your Swurf code (shows up after a few swipes)\nThank you to everyone who participated in the launch so far and the great feedback/discussion",
+          "score": 0,
+          "time": 1792817253,
+          "parent": "50205320"
+        },
+        {
           "id": "50215237",
           "author": "webtjb096",
           "body": "PS: If you have a blog/site you want people to see - bottom right corner the three dots -> Submit a link. An almost instant way to get eyes on your page.",
@@ -716,14 +764,6 @@
           "parent": "50205320"
         },
         {
-          "id": "50216617",
-          "author": "cowlevel",
-          "body": "Nice! I feel like sites with cookie popups deserve to be penalised. How do you know if a page is good or bad - time spent on it?",
-          "score": 0,
-          "time": 1792796883,
-          "parent": "50205320"
-        },
-        {
           "id": "50215792",
           "author": "aworks",
           "body": "There are more sites related to LLVM IR than I need to see but overall, this is a fresh browsing experience. Reminds me of reading random pages back in 1994.",
@@ -732,11 +772,11 @@
           "parent": "50205320"
         },
         {
-          "id": "50216007",
-          "author": "satnhak",
-          "body": "it's a good idea, but can you tweak it so that page 1 isn't a flashing naked lady?",
+          "id": "50216617",
+          "author": "cowlevel",
+          "body": "Nice! I feel like sites with cookie popups deserve to be penalised. How do you know if a page is good or bad - time spent on it?",
           "score": 0,
-          "time": 1792793132,
+          "time": 1792796883,
           "parent": "50205320"
         },
         {
@@ -860,8 +900,8 @@
       "title": "Show HN: Making a smart TV dumb and then smart",
       "subreddit": "show-hn",
       "author": "animalhot",
-      "score": 95,
-      "num_comments": 72,
+      "score": 102,
+      "num_comments": 74,
       "permalink": "https://news.ycombinator.com/item?id=50202865",
       "url": "https://github.com/anubhavmalhotra/r2d2-tv",
       "selftext": "A recent (unwanted) webOS update that got installed on TV prompted me to start going down the rabbit hole of writing new TV software. After a couple of weekends and massive help from 4 different models, finally managed to get v1 working.\nMy daughter enjoys navigating TV through speech while I get to browse on the biggest screen at home.\nWhile all of the code was written by ML models, there were decisions I had to help with. In specific: using WebRTC to cut down latency, repurposing vendor logic for buffering voice samples and designing user experience.\nIt was liberating to finally free the TV of bloatware and make it truly personalized!",
@@ -903,11 +943,27 @@
           "parent": "50202865"
         },
         {
+          "id": "50219664",
+          "author": "pseudohadamard",
+          "body": "We need to stop saying \"dumb TV\" because for the general public smart = good, dumb = bad. What about turning the tables and calling them safe TVs, as opposed to (implied) unsafe \"smart\" TVs?",
+          "score": 0,
+          "time": 1792835592,
+          "parent": "50202865"
+        },
+        {
           "id": "50208227",
           "author": "a1o",
           "body": "Curious about Netflix, does it limit the resolution because it is not an “official” app or something like this?\nAlso, it says you have to have system root of the tv, how does one get root access to the LG TV?",
           "score": 0,
           "time": 1792760016,
+          "parent": "50202865"
+        },
+        {
+          "id": "50207949",
+          "author": "Zookaz",
+          "body": "Just get an exisiting tv box or make your own. dumb your tv down and keep it that way smart tvs are a joke",
+          "score": 0,
+          "time": 1792758671,
           "parent": "50202865"
         },
         {
@@ -935,14 +991,6 @@
           "parent": "50202865"
         },
         {
-          "id": "50207949",
-          "author": "Zookaz",
-          "body": "Just get an exisiting tv box or make your own. dumb your tv down and keep it that way smart tvs are a joke",
-          "score": 0,
-          "time": 1792758671,
-          "parent": "50202865"
-        },
-        {
           "id": "50208278",
           "author": "gosub100",
           "body": "This is a side topic, but relevant to those of us who care about UI/UX:\nI have a webos TV and notice that it comes with free Samsung IPTV channels. But they are unusable because of the delay in switching between channels! This relatively minor detail could be the difference between a killer app that could grow and monetize, vs something that users try and give up on.\nI'm sure there are ways to make it as fast as cable TV, even if it initially degraded the video or had other consequences.",
@@ -956,14 +1004,6 @@
           "body": "This is cool",
           "score": 0,
           "time": 1792771222,
-          "parent": "50202865"
-        },
-        {
-          "id": "50205984",
-          "author": "NoboruWataya",
-          "body": "A dumb TV connected via HDMI to a Raspberry Pi running Kodi is smart enough for me.",
-          "score": 0,
-          "time": 1792744179,
           "parent": "50202865"
         }
       ]
