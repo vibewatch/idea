@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-25T12:40:28.297183+00:00",
+  "last_fetched": "2026-10-25T18:36:48.966159+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -55,7 +55,7 @@
       "subreddit": "show-hn",
       "author": "skeptrune",
       "score": 2,
-      "num_comments": 1,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50225806",
       "url": "https://chatgpt.com/plugins/plugin_asdk_app_6abdec89d46c81919cda058ca9f62cb8?search=call4me",
       "selftext": "",
@@ -98,7 +98,7 @@
       "title": "Show HN: WhatsApp Bridge for those with their own VPS",
       "subreddit": "show-hn",
       "author": "vid_t",
-      "score": 3,
+      "score": 4,
       "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50225644",
       "url": "https://github.com/vid-t/whatsapp-bridge",
@@ -125,8 +125,8 @@
       "title": "Show HN: Steal My Bitcoin",
       "subreddit": "show-hn",
       "author": "cloudlandsdev",
-      "score": 520,
-      "num_comments": 314,
+      "score": 564,
+      "num_comments": 374,
       "permalink": "https://news.ycombinator.com/item?id=50224916",
       "url": "https://stealmybitcoin.com/",
       "selftext": "Made this because I'm curious if anyone out there has figured out how to actually use this PHP RCE we spent the last few days panicking over. Have fun!",
@@ -160,19 +160,19 @@
           "parent": "50224916"
         },
         {
-          "id": "50226010",
-          "author": "dguido",
-          "body": "This looks like a trap. We have a working RCE that would claim this, but I don't want to demonstrate that because it might leak what we built to others. We still have a window for people to patch and I don't want to risk that.\nhttps://x.com/dguido/status/2113825891021144306?s=46 (https://x.com/dguido/status/2113825891021144306?s=46)",
-          "score": 0,
-          "time": 1792880618,
-          "parent": "50224916"
-        },
-        {
           "id": "50226880",
           "author": "hpone91",
           "body": "Yeah, the specific setup is not vulnerable to PHP2SHELL. CLI server + 1 MiB cap + inert page + high memory limit removes all the possibilities from the two CVEs. It would just be collecting POCs for actually vulnerable setups.",
           "score": 0,
           "time": 1792887552,
+          "parent": "50224916"
+        },
+        {
+          "id": "50226010",
+          "author": "dguido",
+          "body": "This looks like a trap. We have a working RCE that would claim this, but I don't want to demonstrate that because it might leak what we built to others. We still have a window for people to patch and I don't want to risk that.\nhttps://x.com/dguido/status/2113825891021144306?s=46 (https://x.com/dguido/status/2113825891021144306?s=46)",
+          "score": 0,
+          "time": 1792880618,
           "parent": "50224916"
         },
         {
@@ -184,11 +184,11 @@
           "parent": "50224916"
         },
         {
-          "id": "50225383",
-          "author": "jerrythegerbil",
-          "body": "This will go unclaimed for a bit. It may still get claimed within the day, but\nPeople do have the exploit. The risked opportunity cost of this being a honeypot (and handing over a functional exploit) vs just… not participating and hacking higher value targets (offensive actors) or not circulating any additional details (defensive actors who have privileged intelligence about the vulns) I just…\nThe value proposition here is so hilariously low for what is required to demonstrate stealing the bitcoin at all.\nThat doesn’t mean that people won’t try, and perhaps even succeed! But to what end? Demonstrating terrible math skills and a fundamental misunderstanding of the economics at play?\nI, and many of my friends and cooks could take this easily. The difference is we know not to.\nMake it $15-25k and it’ll get yoinked instantly, most likely without using PHP2Shell at all.",
+          "id": "50232313",
+          "author": "tavavex",
+          "body": "The fact it's still here 18 hours later is crazy to me, although I am making an assumption that this website is set up similarly to standard PHP websites, without any weird uncommon configs or changes that break the exploit. I'm not a cybersec expert, so can someone clue me in? The way I understood the fallout from a few days ago was that this was the end of the world and that the majority of all websites on the internet were about to be imminently and automatically breached in seconds, with only a single-digit percentage of vulnerable websites patching the exploit. Was it always known that the reality outside non-tech press coverage was a lot more complex, or is this a shock to everyone?\nDo we know how many other websites were verifiably breached through this by now, if any?",
           "score": 0,
-          "time": 1792876490,
+          "time": 1792940743,
           "parent": "50224916"
         },
         {
@@ -200,11 +200,27 @@
           "parent": "50224916"
         },
         {
-          "id": "50226114",
-          "author": "bramhaag",
-          "body": "A pentesting YouTuber I once respected went deep into the AI rabbit hole and claimed yesterday he created a generic POC using ChatGPT in 2 hours to show how dangerous LLMs are [0]. After that he shilled his AI pentesting platform.\nIf there was a grain of truth to this claim, surely someone would've stolen the prize by now? Thousands of people would've had a working POC if it was this easy.\n[0] https://youtu.be/SP7y1h0laN0 (https://youtu.be/SP7y1h0laN0)",
+          "id": "50225383",
+          "author": "jerrythegerbil",
+          "body": "This will go unclaimed for a bit. It may still get claimed within the day, but\nPeople do have the exploit. The risked opportunity cost of this being a honeypot (and handing over a functional exploit) vs just… not participating and hacking higher value targets (offensive actors) or not circulating any additional details (defensive actors who have privileged intelligence about the vulns) I just…\nThe value proposition here is so hilariously low for what is required to demonstrate stealing the bitcoin at all.\nThat doesn’t mean that people won’t try, and perhaps even succeed! But to what end? Demonstrating terrible math skills and a fundamental misunderstanding of the economics at play?\nI, and many of my friends and cooks could take this easily. The difference is we know not to.\nMake it $15-25k and it’ll get yoinked instantly, most likely without using PHP2Shell at all.",
           "score": 0,
-          "time": 1792881269,
+          "time": 1792876490,
+          "parent": "50224916"
+        },
+        {
+          "id": "50234093",
+          "author": "andrewmackrodt",
+          "body": "Assuming you need to exploit the full chain of bugs mentioned in https://www.wiz.io/blog/php2shell-php-rce (https://www.wiz.io/blog/php2shell-php-rce), this does not seem to be exploitable as there is no session initialised, i.e. no PHPSESSID cookie; we also do not know if OP has opcache enabled.",
+          "score": 0,
+          "time": 1792950609,
+          "parent": "50224916"
+        },
+        {
+          "id": "50234206",
+          "author": "sstehniybogd",
+          "body": "There was a live memory-disclosure primitive before the redeploy, using the session upload-progress path. After downtime/redeploy the same request is rejected. I had hope...",
+          "score": 0,
+          "time": 1792951326,
           "parent": "50224916"
         },
         {
@@ -213,22 +229,6 @@
           "body": "That's a good way to make claims about existence of a trivial exploit in the wild falsifiable.",
           "score": 0,
           "time": 1792875795,
-          "parent": "50224916"
-        },
-        {
-          "id": "50227254",
-          "author": "40four",
-          "body": "The amount of Bitcoin appears to be going up with time. It was ~$500 the last time I saw it. Now the wallet is worth ~$2000 at the time of this comment.\nSo the idea that is not enough money for someone to “give away” their exploit is going to reach a breaking point eventually if it continues. This might get more interesting the longer it goes on. Getting my popcorn ready right now!",
-          "score": 0,
-          "time": 1792891202,
-          "parent": "50224916"
-        },
-        {
-          "id": "50226066",
-          "author": "LiveOverflow",
-          "body": "If it's nginx + fpm + \"empty\" index.php, it's a meme and not exploitable.\nedit: looks more like nginx + cli-server. But the 1MB nginx body limit is annoying. Why is nobody setting up these CTF servers with a setup people actually say would be easy to exploit. Like a LAMP stack.",
-          "score": 0,
-          "time": 1792880907,
           "parent": "50224916"
         }
       ]
@@ -257,7 +257,7 @@
       "title": "Show HN: Agentsh – A Decentralized, Scalable Multiagent Harness",
       "subreddit": "show-hn",
       "author": "brunoborges",
-      "score": 7,
+      "score": 8,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50223759",
       "url": "https://github.com/microsoft/Agensh",
@@ -438,8 +438,8 @@
       "title": "Show HN: Autonomous root for Tcl Android TV via CVE-2022-22706",
       "subreddit": "show-hn",
       "author": "t20n",
-      "score": 55,
-      "num_comments": 18,
+      "score": 56,
+      "num_comments": 19,
       "permalink": "https://news.ycombinator.com/item?id=50220042",
       "url": "https://gitlab.com/c4psu13/mali-pagecache-root",
       "selftext": "",
