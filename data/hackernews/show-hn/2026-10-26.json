@@ -1,8 +1,76 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-26T14:14:56.305051+00:00",
+  "last_fetched": "2026-10-26T18:49:31.222846+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50247577",
+      "title": "Show HN: RPI Pico (RP2040) PIO Emulator Package for Go",
+      "subreddit": "show-hn",
+      "author": "headblockhead",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50247577",
+      "url": "https://git.edwardh.dev/pio",
+      "selftext": "I have been developing a bus communication protocol for a while using the Raspberry Pi Pico (RP2040)'s programmable IO (PIO) hardware (basically- 8 tiny processors that run assembly programs to manipulate GPIO pins) and I needed some way of testing my programs, as the real hardware is undebuggable.\nUnfortunately, none of the existing emulators I could find supported connecting multiple RP2040s together, and they each had a few different missing bits of functionality, so I decided to make my own!\nMy emulator supports running multiple RP2040s electrically connected together, and emulates the whole of their PIO blocks (all 8 processors each), along with all of the more niche inter-processor interactions and GPIO functionality I could possibly find in the datasheet.\nI built it as a Go package so that it can be used inside of other programs; I intend on using it myself inside a test suite against my in-development protocol.\nI've spent quite a long time checking and double-checking most of the logic so it is as complete and accurate as I can make it, but if you spot anything amiss, I'd really appreciate the feedback.\nThanks for checking it out!\nHope it can be useful to other RP2040 users.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793035762,
+      "created_at": "2026-10-26T17:29:22+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50245260",
+      "title": "Show HN: Ranwhat.com",
+      "subreddit": "show-hn",
+      "author": "ranwhatcom",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50245260",
+      "url": "https://github.com/MatijaMiki/ranwhat",
+      "selftext": "Hi HackerNews,\nMy name is Matija, and I'm building ranwhat.com. It's used for checking if any of your secrets have leaked, and where they leaked. It's mostly aimed at solo devs such as myself, but also at anyone using a coding agent. The tool also checks if your coding agent ran any sketchy commands. This is mostly a \"better safe than sorry\" feature, so you can tell your Claude or Codex not to run them.\nThe project is open source (MIT) and everything runs locally on your machine.\nHow to install it: pip install ranwhat / uv tool install ranwhat, or brew install MatijaMiki/ranwhat/ranwhat\nThere is a free and a paid plan. Everything local is free; the paid plan is 12€ a month and adds server-side features, which you can read more about here: https://ranwhat.com/pricing (https://ranwhat.com/pricing)\nAll I'm asking for here is feedback, and if you have anything you would want added to the project.\nLooking forward to answering any questions you have.\nBest,\nMatija",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793027945,
+      "created_at": "2026-10-26T15:19:05+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50244687",
+      "title": "Show HN: ToiletPanic – A static survival guide for bathroom emergencies",
+      "subreddit": "show-hn",
+      "author": "cast9",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50244687",
+      "url": "https://toiletpanic-119.netlify.app",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793026072,
+      "created_at": "2026-10-26T14:47:52+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50243797",
+      "title": "Show HN: HealthViewer – A local-first desktop app for tracking lab results",
+      "subreddit": "show-hn",
+      "author": "ChickadeeBandit",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50243797",
+      "url": "https://healthviewer.net/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793022989,
+      "created_at": "2026-10-26T13:56:29+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,7 +78,7 @@
       "title": "Show HN: Printable Calendar Maker",
       "subreddit": "show-hn",
       "author": "artiomartiom",
-      "score": 2,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50242942",
       "url": "https://makecalendars.com/",
@@ -27,7 +95,7 @@
       "title": "Show HN: Rostr – Give your agents names, remember who's working on what",
       "subreddit": "show-hn",
       "author": "piazz",
-      "score": 2,
+      "score": 3,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50242226",
       "url": "https://getrostr.sh/",
@@ -35,7 +103,17 @@
       "is_self": false,
       "is_video": false,
       "time": 1793015773,
-      "created_at": "2026-10-26T11:56:13+00:00"
+      "created_at": "2026-10-26T11:56:13+00:00",
+      "comments_data": [
+        {
+          "id": "50242300",
+          "author": "piazz",
+          "body": "Hi HN. I spent the last week furiously building and polishing up this extremely simple idea: that every coding agent deserves to be born with a memorable and easily scannable name. The agents should know their own names too, so when they reach out across another surface, you know who's calling.\nKeeping track of many async agentic coding sessions can get utterly exhausting. Giving them names make it surprisingly easier to remember which thread is working on what, and to triage notifications and messages at a glance. It's also weirdly funny.\nI hope you find this little tool useful as I have, and looking forward to hearing feedback / anything you build on top of it.",
+          "score": 0,
+          "time": 1793016323,
+          "parent": "50242226"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -44,8 +122,8 @@
       "title": "Show HN: Ultimidi – piano learning web game",
       "subreddit": "show-hn",
       "author": "XCSme",
-      "score": 3,
-      "num_comments": 1,
+      "score": 6,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50241822",
       "url": "https://game.ultimidi.com/",
       "selftext": "Hi HN,\n10 years ago, as my BsC final project I had the idea to make a quick game that used neural nets to detect notes played on a guitar, and I made a small mini-game to make use of that. I always wanted to improve on that idea, so last year I started making my own piano-learning game.\nYou know how in most games you learn complex key combinations and sequences (i.e. Mortal Kombat fatalities), but those don't have much use outside of the game.\nMy idea was to make a game that can be played with the piano, so you you learn notes, chords, scales simply by playing.\nWhile making it and prototyping many versions, I realised that that idea didn't work as well as I wanted, because it is hard to focus on reading notes, playing and some other gameplay logic.\nIn the end I settled on a combination of basic beat-based notes playing and a few minigames that use the piano as input. My goal now is to add even more such minigames, for learning different sheet reading, music theory and piano playing techniques.\nFor art, I am unfortunately not a designer and have no budget for hiring one, so I decided to go with some simple shaped art generated in bulk using AI rendering SVGs. Hopefully this is just a placeholder until I find someone to do the art for the game.\nYou can try it out for free, it does have some extra content in the Pro version, but a lotof content is free, including the ability to directly play full songs in scrolling or sheet mode here: https://game.ultimidi.com/songs (https://game.ultimidi.com/songs)\nHappy to hear any feedback, especially if the MIDI connection/notes detection didn't work or something doesn't feel good.\nThank you!",
@@ -54,6 +132,14 @@
       "time": 1793012303,
       "created_at": "2026-10-26T10:58:23+00:00",
       "comments_data": [
+        {
+          "id": "50245028",
+          "author": "vunderba",
+          "body": "Nice job. I run a relatively popular Simon Ear Training game for piano/guitar (link on my bio if interested) so always happy to see more musical edutainment games.\nSome feedback as a musician: in general, you want to avoid a metronome that maps to distinct pitches (in your case, it sounded like E on the downbeat and A on the others) because it can subtly interfere with new learners as they build a mental connection between notes and pitches.",
+          "score": 0,
+          "time": 1793027162,
+          "parent": "50241822"
+        },
         {
           "id": "50241837",
           "author": "XCSme",
@@ -71,8 +157,8 @@
       "title": "Show HN: Proc-CLI – An agent-friendly CLI tool for process and port management",
       "subreddit": "show-hn",
       "author": "yazeedaloyoun",
-      "score": 16,
-      "num_comments": 2,
+      "score": 18,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50239041",
       "url": "https://proc-cli.com/",
       "selftext": "",
@@ -140,8 +226,8 @@
       "title": "Show HN: TitleArt – Make text like it's 1997",
       "subreddit": "show-hn",
       "author": "davidbarker",
-      "score": 314,
-      "num_comments": 55,
+      "score": 373,
+      "num_comments": 69,
       "permalink": "https://news.ycombinator.com/item?id=50238708",
       "url": "https://titleart.dvy.io/",
       "selftext": "",
@@ -159,11 +245,11 @@
           "parent": "50238708"
         },
         {
-          "id": "50244044",
-          "author": "gobwas",
-          "body": "Thanks! Got my old-skulls cramped.",
+          "id": "50239090",
+          "author": "mixdup",
+          "body": "One of the weirdest bits of 90s tech trivia: Scott Forstall, who was in charge of software at Apple when the iPhone was initially developed, when working as an Intern at Microsoft contributed to the development of WordArt: https://en.wikipedia.org/wiki/Scott_Forstall#Present (https://en.wikipedia.org/wiki/Scott_Forstall#Present)",
           "score": 0,
-          "time": 1793023897,
+          "time": 1792988558,
           "parent": "50238708"
         },
         {
@@ -175,11 +261,19 @@
           "parent": "50238708"
         },
         {
-          "id": "50239090",
-          "author": "mixdup",
-          "body": "One of the weirdest bits of 90s tech trivia: Scott Forstall, who was in charge of software at Apple when the iPhone was initially developed, when working as an Intern at Microsoft contributed to the development of WordArt: https://en.wikipedia.org/wiki/Scott_Forstall#Present (https://en.wikipedia.org/wiki/Scott_Forstall#Present)",
+          "id": "50247166",
+          "author": "andai",
+          "body": "Oh my god, this is delightful.\nIt even does lets you animate them!\nReminds me of RuneScape you could add colors and wiggles to your text as you spoke. (You could do something similar in MSN, too, change the font and color!)",
           "score": 0,
-          "time": 1792988558,
+          "time": 1793034347,
+          "parent": "50238708"
+        },
+        {
+          "id": "50247902",
+          "author": "omoikane",
+          "body": "Current UI text looks blurry in Chrome and Firefox, probably because it's using a font that's optimized for 11px but font-size is scaled to 13.75px.",
+          "score": 0,
+          "time": 1793036889,
           "parent": "50238708"
         },
         {
@@ -188,22 +282,6 @@
           "body": "Who else remembers using BannerMania and printing those endless banners on Epson dot-matrix printers with continuous paper? Man, those were the days! What a nostalgia trip!",
           "score": 0,
           "time": 1793001578,
-          "parent": "50238708"
-        },
-        {
-          "id": "50242662",
-          "author": "pronik",
-          "body": "Whenever someone complains about AI-generated images being everywhere, I try to remind people about WordArt and cliparts (especially the lightbulbs and the ones called \"screen beans\", never knew that name, thanks Claude for finding that particular tidbit) being absolutely everywhere back then. I consider our timeline vastly superior, but I understand how people may think differently and how anything from thirty years ago can invoke nostalgia, for better or for worse.",
-          "score": 0,
-          "time": 1793018592,
-          "parent": "50238708"
-        },
-        {
-          "id": "50242259",
-          "author": "z3t4",
-          "body": "I think when people get tired of AI generated invitations they'll go back to this.",
-          "score": 0,
-          "time": 1793016038,
           "parent": "50238708"
         },
         {
@@ -231,19 +309,27 @@
           "parent": "50238708"
         },
         {
-          "id": "50243618",
-          "author": "dmitriy219",
-          "body": "Maaan, that's my childhood memories! Thank you!",
+          "id": "50242259",
+          "author": "z3t4",
+          "body": "I think when people get tired of AI generated invitations they'll go back to this.",
           "score": 0,
-          "time": 1793022397,
+          "time": 1793016038,
           "parent": "50238708"
         },
         {
-          "id": "50239771",
-          "author": "morikyouko",
-          "body": "Is there any plans to support CJK fonts or to release the source code so others can contribute? I'm so disappointed it doesn't support my language!\nhttps://www.makewordart.com/ (https://www.makewordart.com/) supports a wider character set but is no where near as good otherwise.",
+          "id": "50239516",
+          "author": "halflife",
+          "body": "I remember having Word 5 installed on my pc, while the other classmates had Word 97. I was so jealous for their wordart!",
           "score": 0,
-          "time": 1792995325,
+          "time": 1792992643,
+          "parent": "50238708"
+        },
+        {
+          "id": "50242662",
+          "author": "pronik",
+          "body": "Whenever someone complains about AI-generated images being everywhere, I try to remind people about WordArt and cliparts (especially the lightbulbs and the ones called \"screen beans\", never knew that name, thanks Claude for finding that particular tidbit) being absolutely everywhere back then. I consider our timeline vastly superior, but I understand how people may think differently and how anything from thirty years ago can invoke nostalgia, for better or for worse.",
+          "score": 0,
+          "time": 1793018592,
           "parent": "50238708"
         }
       ]
@@ -289,8 +375,8 @@
       "title": "Show HN: Freehire, open-source search 3M+ tech jobs from company career boards",
       "subreddit": "show-hn",
       "author": "i_strelov",
-      "score": 25,
-      "num_comments": 2,
+      "score": 27,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50237813",
       "url": "https://freehire.me/",
       "selftext": "freehire is a filterable, job board aggregator, job tracker, and AI-assisted resume tailoring tool. Saving your skills and preferences changes which jobs appear and how your resume gets tailored. I've looked at a lot of these solutions over the years and found it really hard to find the right mix of tools in an open-source offering.\nI've contributed to a few issues now and worked closely with the maintainer. I've watched this evolve over the last few months. I feel it's ready for everyone to check out and stress test.\nSource: github.com/strelov1/freehire",
@@ -299,6 +385,22 @@
       "time": 1792977223,
       "created_at": "2026-10-26T01:13:43+00:00",
       "comments_data": [
+        {
+          "id": "50244189",
+          "author": "fletchdatpaq",
+          "body": "The user-auth is confusing as there is no sign-in button. It was very unclear what to do as a first-time user. This concept is dope. Then the app wouldn't let me see the Req until I uploaded my CV and answer questions. I would prefer it to start the user onboarding directly after sign-up. I just think it would be a better UX experience.",
+          "score": 0,
+          "time": 1793024479,
+          "parent": "50237813"
+        },
+        {
+          "id": "50246168",
+          "author": "thenthenthen",
+          "body": "Mm if i click on a job and then use the back button, the search results show “no match”, ios safari",
+          "score": 0,
+          "time": 1793030917,
+          "parent": "50237813"
+        },
         {
           "id": "50240336",
           "author": "h164654156465",
@@ -316,7 +418,7 @@
       "title": "Show HN: RainbowSay – Learn, teach, research languages live with shows you love",
       "subreddit": "show-hn",
       "author": "gigapotential",
-      "score": 9,
+      "score": 11,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50237773",
       "url": "https://rainbowsay.ai/",
