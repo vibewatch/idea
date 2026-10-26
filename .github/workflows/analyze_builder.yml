@@ -42,8 +42,6 @@ on:
         type: choice
         options:
           - gpt-6-luna
-          - gpt-6-sol
-          - gpt-5.4-mini
       effort:
         description: Reasoning effort passed to Copilot CLI; auto uses a model-compatible default.
         required: false
@@ -117,23 +115,21 @@ jobs:
           ANALYSIS_LIMIT: ${{ inputs.limit || '1' }}
           PYTHONUNBUFFERED: "1"
         run: |
+          if [[ "$COPILOT_MODEL" != "gpt-6-luna" ]]; then
+            echo "::error::Unsupported Copilot model: $COPILOT_MODEL"
+            exit 1
+          fi
           if [[ "$GITHUB_EVENT_NAME" == "schedule" ]]; then
             ANALYSIS_DATE="$(date -u -d 'yesterday' +%F)"
             FORCE_REPORTS=true
             echo "Scheduled run will force-refresh completed UTC date $ANALYSIS_DATE."
           fi
           if [[ "$COPILOT_EFFORT_INPUT" == "auto" ]]; then
-            case "$COPILOT_MODEL" in
-              gpt-5.4-mini) COPILOT_EFFORT=medium ;;
-              *) COPILOT_EFFORT=high ;;
-            esac
+            COPILOT_EFFORT=high
           else
             COPILOT_EFFORT="$COPILOT_EFFORT_INPUT"
           fi
-          case "$COPILOT_MODEL" in
-            gpt-6-sol) COPILOT_CREDIT_LIMIT=300 ;;
-            *) COPILOT_CREDIT_LIMIT=150 ;;
-          esac
+          COPILOT_CREDIT_LIMIT=150
           args=(analyze-builder --model "$COPILOT_MODEL" --effort "$COPILOT_EFFORT" --max-ai-credits "$COPILOT_CREDIT_LIMIT" --workers "$ANALYSIS_WORKERS" --limit "$ANALYSIS_LIMIT")
           if [[ -n "$ANALYSIS_DATE" ]]; then
             args+=(--date "$ANALYSIS_DATE")
@@ -148,11 +144,11 @@ jobs:
             args+=(--prepare-only)
           fi
           if ! uv run --frozen "${args[@]}"; then
-            if [[ "$COPILOT_MODEL" == "gpt-6-sol" || "$PREPARE_ONLY" == "true" ]]; then
+            if [[ "$PREPARE_ONLY" == "true" ]]; then
               exit 1
             fi
-            echo "::warning::Primary generation, cited-media audit, or validation failed; retrying with GPT-6 Sol/high."
-            fallback=(analyze-builder --model gpt-6-sol --effort high --max-ai-credits 300 --artifacts-dir artifacts/builder-fallback --workers "$ANALYSIS_WORKERS" --limit "$ANALYSIS_LIMIT")
+            echo "::warning::Primary generation, cited-media audit, or validation failed; retrying with GPT-6 Luna/xhigh."
+            fallback=(analyze-builder --model gpt-6-luna --effort xhigh --max-ai-credits 300 --artifacts-dir artifacts/builder-fallback --workers "$ANALYSIS_WORKERS" --limit "$ANALYSIS_LIMIT")
             if [[ -n "$ANALYSIS_DATE" ]]; then fallback+=(--date "$ANALYSIS_DATE"); fi
             if [[ "$INCLUDE_TODAY" == "true" ]]; then fallback+=(--include-today); fi
             if [[ "$FORCE_REPORTS" == "true" ]]; then fallback+=(--force); fi

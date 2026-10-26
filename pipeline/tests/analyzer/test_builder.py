@@ -858,6 +858,7 @@ class TestPromptAndCommand:
         command = build_copilot_command("prompt")
 
         assert DEFAULT_MODEL == "gpt-6-luna"
+        assert MEDIA_AUDIT_MODEL == DEFAULT_MODEL
         assert DEFAULT_EFFORT == "high"
         assert DEFAULT_MAX_AI_CREDITS == 150
         assert (args.model, args.effort) == (DEFAULT_MODEL, DEFAULT_EFFORT)
@@ -2052,7 +2053,7 @@ Three current streams are represented; the evidence is limited to one account pe
         assert "The audit rewrote unrelated synthesis" not in merged
 
     @patch("idea_pipeline.analyzer.builder.subprocess.run")
-    def test_focused_media_audit_uses_sol_and_preserves_unrelated_items(
+    def test_focused_media_audit_uses_luna_and_preserves_unrelated_items(
         self,
         mock_run: MagicMock,
         tmp_path: Path,
@@ -2202,7 +2203,6 @@ Three current streams are represented; the evidence is limited to one account pe
         result = audit_cited_media_evidence(
             prepared,
             media_assets,
-            primary_model="gpt-6-luna",
         )
 
         assert result.status == "completed"
@@ -2221,15 +2221,6 @@ Three current streams are represented; the evidence is limited to one account pe
         )
         assert [item["post_id"] for item in manifest["items"]] == ["cited"]
         assert any("outside Section 2" in message for message in result.messages)
-
-        mock_run.reset_mock()
-        skipped = audit_cited_media_evidence(
-            prepared,
-            media_assets,
-            primary_model=MEDIA_AUDIT_MODEL,
-        )
-        assert skipped.status == "skipped-same-model"
-        mock_run.assert_not_called()
 
     @patch("idea_pipeline.analyzer.builder.subprocess.run")
     def test_media_repair_retries_items_omitted_by_a_batch(
@@ -2932,6 +2923,8 @@ class TestAnalysisBoundary:
             return asset
 
         def generate(*_args: object, **_kwargs: object) -> subprocess.CompletedProcess[str]:
+            if mock_run.call_count > 1:
+                return subprocess.CompletedProcess([], 0, stdout="audited", stderr="")
             candidate.write_text(
                 valid_report(image_url=image_url).replace(
                     "| Trigger and consequence |", "| Product function |"
@@ -2976,7 +2969,11 @@ class TestAnalysisBoundary:
         assert review["items"][0]["media_type"] == "image"
         assert review["items"][0]["report_included"] is True
         warning_document = json.loads((candidate.parent / "validation-warnings.json").read_text())
-        assert len(warning_document["normalizations"]) == 3
+        assert len(warning_document["normalizations"]) == 4
+        assert any(
+            "ran focused gpt-6-luna media audit" in message
+            for message in warning_document["normalizations"]
+        )
         assert any("recommended schema" in warning for warning in warning_document["warnings"])
 
     @patch("idea_pipeline.analyzer.builder.subprocess.run")

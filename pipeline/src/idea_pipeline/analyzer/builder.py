@@ -38,7 +38,7 @@ ANALYSIS_SKILL_PATH = REPOSITORY_ROOT / ".agents" / "skills" / "builder-intellig
 DEFAULT_MODEL = "gpt-6-luna"
 DEFAULT_EFFORT = "high"
 DEFAULT_MAX_AI_CREDITS = 150
-MEDIA_AUDIT_MODEL = "gpt-6-sol"
+MEDIA_AUDIT_MODEL = "gpt-6-luna"
 MEDIA_AUDIT_EFFORT = "low"
 MEDIA_AUDIT_MAX_AI_CREDITS = 100
 MIN_MAX_AI_CREDITS = 30
@@ -3136,16 +3136,12 @@ def audit_cited_media_evidence(
     prepared: PreparedReportArtifacts,
     media_assets: PreparedMediaAssets,
     *,
-    primary_model: str,
     model: str = MEDIA_AUDIT_MODEL,
     effort: str = MEDIA_AUDIT_EFFORT,
     max_ai_credits: int = MEDIA_AUDIT_MAX_AI_CREDITS,
     copilot_command: str = "copilot",
 ) -> MediaAuditResult:
-    """Audit only attached media cited by a non-Sol report before publication."""
-    if primary_model.casefold() == model.casefold():
-        return MediaAuditResult("skipped-same-model", 0, 0.0)
-
+    """Independently audit attached media cited by the report before publication."""
     selected = _cited_attached_media_entries(
         prepared.candidate_path,
         expected_entries=media_assets.entries,
@@ -4099,7 +4095,6 @@ def analyze_job(
         audit_result = audit_cited_media_evidence(
             prepared,
             media_assets,
-            primary_model=model,
             copilot_command=copilot_command,
         )
         normalizations.extend(audit_result.messages)

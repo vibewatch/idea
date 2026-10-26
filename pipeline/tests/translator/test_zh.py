@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 from datetime import date
 from pathlib import Path
@@ -40,22 +41,69 @@ from idea_pipeline.translator.zh import (
 )
 
 
-def test_translation_workflow_keeps_remaining_model_choices() -> None:
-    workflow_path = Path(__file__).resolve().parents[3] / ".github/workflows/translate_zh.yml"
+@pytest.mark.parametrize(
+    ("filename", "job", "step_name", "primary_effort", "retry_effort"),
+    [
+        ("translate_zh.yml", "translate", "Translate published reports", "medium", "high"),
+        ("analyze_builder.yml", "analyze", "Build intelligence reports", "high", "xhigh"),
+    ],
+)
+def test_workflows_use_luna_only(
+    filename: str, job: str, step_name: str, primary_effort: str, retry_effort: str,
+    tmp_path: Path,
+) -> None:
+    workflow_path = Path(__file__).resolve().parents[3] / ".github/workflows" / filename
     workflow = yaml.load(workflow_path.read_text(), Loader=yaml.BaseLoader)
     model = workflow["on"]["workflow_dispatch"]["inputs"]["model"]
-    assert model["options"] == ["gpt-6-luna", "gpt-6-sol", "grok-4.7", "gpt-5.6-terra"]
+    assert model["options"] == ["gpt-6-luna"]
     assert model["default"] == model["options"][0]
-    translate = next(
+    step = next(
         step
-        for step in workflow["jobs"]["translate"]["steps"]
-        if step["name"] == "Translate published reports"
+        for step in workflow["jobs"][job]["steps"]
+        if step["name"] == step_name
     )
-    assert "gpt-6-luna) COPILOT_EFFORT=medium ;;" in translate["run"]
     checked = subprocess.run(
-        ["bash", "-n"], input=translate["run"], text=True, capture_output=True, check=False
+        ["bash", "-n"], input=step["run"], text=True, capture_output=True, check=False
     )
     assert checked.returncode == 0, checked.stderr
+    uv = tmp_path / "uv"
+    uv.write_text(
+        "#!/bin/sh\n"
+        'printf "%s\\n" "$*" >> "$CALL_LOG"\n'
+        'if [ ! -f "$FIRST_ATTEMPT" ]; then\n'
+        '  touch "$FIRST_ATTEMPT"\n'
+        "  exit 1\n"
+        "fi\n"
+    )
+    uv.chmod(0o755)
+    env = {
+        **os.environ,
+        "PATH": f"{tmp_path}:{os.environ['PATH']}",
+        "CALL_LOG": str(tmp_path / "calls"),
+        "FIRST_ATTEMPT": str(tmp_path / "first"),
+        "GITHUB_EVENT_NAME": "workflow_dispatch",
+        "COPILOT_MODEL": "gpt-6-luna",
+        "COPILOT_EFFORT_INPUT": "auto",
+        "PREPARE_ONLY": "false",
+    }
+    result = subprocess.run(
+        ["bash", "-e", "-c", step["run"]],
+        text=True, capture_output=True, env=env, check=False,
+    )
+    assert result.returncode == 0, result.stderr
+    calls = (tmp_path / "calls").read_text().splitlines()
+    assert len(calls) == 2
+    assert all("--model gpt-6-luna " in call for call in calls)
+    assert f"--effort {primary_effort} " in calls[0]
+    assert f"--effort {retry_effort} " in calls[1]
+    result = subprocess.run(
+        ["bash", "-e", "-c", step["run"]],
+        text=True, capture_output=True, env={**env, "COPILOT_MODEL": "gpt-5.6-terra"},
+        check=False,
+    )
+    assert result.returncode == 1
+    assert "Unsupported Copilot model" in result.stdout
+    assert (tmp_path / "calls").read_text().splitlines() == calls
 
 
 SOURCE_REPORT = """# Builder Intelligence Report - 2026-08-05
