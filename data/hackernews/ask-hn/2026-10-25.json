@@ -1,8 +1,35 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-25T18:36:53.205061+00:00",
+  "last_fetched": "2026-10-26T01:07:23.750818+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50235794",
+      "title": "Ask HN: How fast is your CI these days?",
+      "subreddit": "ask-hn",
+      "author": "easterncalculus",
+      "score": 3,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50235794",
+      "url": "https://news.ycombinator.com/item?id=50235794",
+      "selftext": "With the age of agents CI costs are generally going up, how is your build setup handling things? Have you been able to optimize, and how did you? Most importantly, how fast is it?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1792960468,
+      "created_at": "2026-10-25T20:34:28+00:00",
+      "comments_data": [
+        {
+          "id": "50235869",
+          "author": "verdverm",
+          "body": "Trigger a review agent for any commit which has an open PR and has passed build. Use open weights, or at minimum a different model family from the one which wrote the code. I will be publishing a write up soon(tm), inspired by but different from, cloudflare's post.\nI would napkin math the averaged cost per-review to be less than $1, which is less than our most rigorous validation pathway in CI (needs GPU for up to an hour). Time-wise around ~10-15m, with variability - and a bug in Argo with pod scheduling delays. This is fine because developers check in on their own PRs when they do and then make the changes that are needed. A key point here is that we are keeping humans in the loop in the PR.\nThis is a large monorepo, I would expect much lower numbers for polyrepo setups.",
+          "score": 0,
+          "time": 1792960928,
+          "parent": "50235794"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,15 +37,33 @@
       "title": "Ask HN: Mined crypto on Azure when I was 13, after 12y still cannot open account",
       "subreddit": "ask-hn",
       "author": "realaccfromPL",
-      "score": 2,
-      "num_comments": 0,
+      "score": 4,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50234035",
       "url": "https://news.ycombinator.com/item?id=50234035",
       "selftext": "Hey all,\nI have a very stupid confession, back when DOGE was first introduced, I didn't think much of it and followed a bunch of tutorials on how to mine it on free (and much less limited) Azure account.\nI used up all of the credits and didn't think much of it...\nNow, I am infra engineer with about 5 years of experience, I have multiple Azure certs, I use it everyday at work but I still cannot get MSFT to unlock my personal account or allow me to create a new one, citing fraud. At the beginning of my career I even got to be a part of the terrible Azure technical customer service and internal requests to lift it off of me didn't help.\nPlease advice is there any way to get to be a legitimate user of service again. Thank you.",
       "is_self": true,
       "is_video": false,
       "time": 1792950246,
-      "created_at": "2026-10-25T17:44:06+00:00"
+      "created_at": "2026-10-25T17:44:06+00:00",
+      "comments_data": [
+        {
+          "id": "50235666",
+          "author": "saidnooneever",
+          "body": "think about how they determine it is you that opens the account. theres only so much info you need to provide them, so it will be in there.\ni doubt they would give back your old account. perhaps they will block your cards/bank acct/email from making new accounts.\nmost providers of servers/compute have strict rules against things like mining on their infra, and they dont take it lightly or unban. if it was against their TOS they will not do it.\nthey cant stop you making a new account if they do not know it is you though.\ni can imagine if you have a different email and payment source its legitimate enough to allow u.",
+          "score": 0,
+          "time": 1792959550,
+          "parent": "50234035"
+        },
+        {
+          "id": "50235739",
+          "author": "easterncalculus",
+          "body": "I actually forgot DOGE was a cryptocurrency and was really confused for a moment.\nI'm not sure but I wish you the best, OP.",
+          "score": 0,
+          "time": 1792960031,
+          "parent": "50234035"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -27,15 +72,41 @@
       "title": "I'm creating my own OS, check it out, LimonOs no Unix no Linux",
       "subreddit": "ask-hn",
       "author": "Drfoxi",
-      "score": 3,
-      "num_comments": 0,
+      "score": 4,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50233576",
       "url": "https://news.ycombinator.com/item?id=50233576",
       "selftext": "So, I've created my own OS called LimonOS. It is currently in the early stages of development. Its uniqueness lies in the fact that it is neither Linux nor Unix—in short, the kernel is unique and 98% written in C. Yes, I used an AI assistant for help because I had a headache and encountered many errors and problems since I was working on it and thinking through it alone. Development has been ongoing for 4 days. Here is the link to the OS itself—we recently added a browser and internet connection:\nhttps://github.com/AnonimusShamshiAlex/LimonOS\nThe code and the entire OS system are there. There is a catch: if you are on Windows, you need to click on the batch file, and everything will compile using WSL Linux and Limine for implementation. Everything is on GitHub, including all instructions, and it will probably be easiest for you to check it out in a virtual machine. I'm writing this because I want your opinion and advice on how to improve this OS system so that it works and becomes as stable as other operating systems like Linux. It's cool to build my own OS like Terry Davis, and I hope I don't become a maniac. Here are some screenshots of the interface:\nThank you everyone.\nI recently added AI to the terminal, which you can connect to via the command:\naikey <your openrouter.ai API key here>\nthen you can use it with the command ai:\nai hi my name Jucy\nhere are the screenshots of the interface in github\nhttps://github.com/AnonimusShamshiAlex/LimonOS",
       "is_self": true,
       "is_video": false,
       "time": 1792947261,
-      "created_at": "2026-10-25T16:54:21+00:00"
+      "created_at": "2026-10-25T16:54:21+00:00",
+      "comments_data": [
+        {
+          "id": "50237205",
+          "author": "mattfrommars",
+          "body": "How did you ensure code generated by LLM did not com from Linux source code?",
+          "score": 0,
+          "time": 1792972157,
+          "parent": "50233576"
+        },
+        {
+          "id": "50236373",
+          "author": "abktya",
+          "body": "Great work, I hope your efforts pay off. But honestly, instead of building an operating system from scratch, I think it might be more sensible to work on improving the management of existing operating systems.",
+          "score": 0,
+          "time": 1792964965,
+          "parent": "50233576"
+        },
+        {
+          "id": "50235713",
+          "author": "saidnooneever",
+          "body": "i would not build your OS like terry davis or mention such things. it wont help. trust me.\nalso, it might be worth suffering a bit with all the errors because operating systems have the power to completely destroy your hardware with bugs.\nexpect to spend many years on the problems, even when using AI.\nAlso, if its not unix and not linux or NT inspired, then what is it? Because if you ask AI to make you an OS without specifying the entire architecture etc. it will most likely follow the road populaire OSes have trodden even if built from scratch\nWhat type of OS is it? micro kernel? monolithic? how about drivers or device interactions? power management? what does the userspace and execution environment look like. how do privilege separation and context switches work, etc. etc.\nNot trying to discourage, but there's really a lot of considerations to make. hitting all the bugs and designing it carefully will help inform those, and perhaps lead to nice unique features to really distinguish it clearly from other systems",
+          "score": 0,
+          "time": 1792959878,
+          "parent": "50233576"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -44,7 +115,7 @@
       "title": "Ask HN: Are tab completion models dead?",
       "subreddit": "ask-hn",
       "author": "sandruso",
-      "score": 18,
+      "score": 20,
       "num_comments": 12,
       "permalink": "https://news.ycombinator.com/item?id=50229834",
       "url": "https://news.ycombinator.com/item?id=50229834",
@@ -54,14 +125,6 @@
       "time": 1792921947,
       "created_at": "2026-10-25T09:52:27+00:00",
       "comments_data": [
-        {
-          "id": "50234557",
-          "author": "nicerice",
-          "body": "Zed still actively maintains their Zeta model\nhttps://zed.dev/blog/zeta2 (https://zed.dev/blog/zeta2)",
-          "score": 0,
-          "time": 1792953088,
-          "parent": "50229834"
-        },
         {
           "id": "50231518",
           "author": "xscott",
@@ -95,6 +158,14 @@
           "parent": "50229834"
         },
         {
+          "id": "50234557",
+          "author": "nicerice",
+          "body": "Zed still actively maintains their Zeta model\nhttps://zed.dev/blog/zeta2 (https://zed.dev/blog/zeta2)",
+          "score": 0,
+          "time": 1792953088,
+          "parent": "50229834"
+        },
+        {
           "id": "50230014",
           "author": "asimovDev",
           "body": "macOS ships an optional autocomplete model with Xcode, but I have no idea if it's actively worked on in any way",
@@ -111,7 +182,7 @@
       "title": "Ask HN: Are people aware OpenAI Dots intercept SSL?",
       "subreddit": "ask-hn",
       "author": "Benjamin_Dobell",
-      "score": 6,
+      "score": 7,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50229493",
       "url": "https://news.ycombinator.com/item?id=50229493",
