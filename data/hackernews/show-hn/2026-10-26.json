@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-27T06:52:15.832766+00:00",
+  "last_fetched": "2026-10-27T12:47:53.799440+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -174,7 +174,7 @@
       "title": "Show HN: UnicornFork a Chess AI That Is Fact Checked by Stockfish",
       "subreddit": "show-hn",
       "author": "ArneVogel",
-      "score": 3,
+      "score": 4,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50249358",
       "url": "https://www.unicornfork.com/",
@@ -288,8 +288,8 @@
       "title": "Show HN: Hob - Open-source, on device alternative to Claude Cowork and ChatGPT",
       "subreddit": "show-hn",
       "author": "pancomplex",
-      "score": 137,
-      "num_comments": 31,
+      "score": 149,
+      "num_comments": 34,
       "permalink": "https://news.ycombinator.com/item?id=50246238",
       "url": "https://github.com/FrigadeHQ/hob",
       "selftext": "Hey HN, I'm Christian and this is a new OSS project I've been noodling on for the last couple of weeks. Hob is a free, MIT-licensed desktop app for Mac, Windows and Linux that works on your files the way the Claude and ChatGPT desktop apps do, except the model runs on your own computer. It uses open-weight models (currently Gemma 4 and gpt-oss). All your chats and files never leave your system. The only things that go online are web search (can be turned off in settings) and any MCP connectors you add yourself.\nMain features:\n- Automatically finds the best open-weight model for your hardware on first install (Mac/Linux/Windows)\n- Writes sandboxed Python code for ad hoc tools (data processing, document conversion, graphs etc.)\n- Built-in web search (powered by SearXNG)\n- MCP support\n- Image recognition\n- CRUD to your local filesystem\n- Works fully offline with no internet\nBefore building this I tried every local AI app I could find, but it seemed each one had different problems. The main thing I noticed is that none of them could do what the ChatGPT and Claude apps do with your files, e.g. read and change files in a folder, look at images, run code in a sandbox, draw a chart. The most advanced thing any of them did was paste a plain text file into a small context window, which basically failed as soon as you had a file larger than a few KB. I couldn't find anything that could easily parse images and bigger PDFs.\nThe OSS solutions that were more advanced all seemed to default to hosted models (either OSS or closed), which defeats the entire point of the privacy that on-device OSS offers. They also seemed to push towards an account/open-core style business.\nI build it using Electron bridged with llama.cpp in its own process. On initial load, the system will try and figure out if you have a compatible graphics card and if not default to CPU-only (I ran into a lot of issues of graphics card beeing seemingly compatible but then crashing on first query, there's a whole saga to this lol). Code execution happens in a sandbox that can only write to the chat's folder and has no network unless asked (sandbox-exec on macOS, Landlock on Linux and a low-integrity process on Windows). Images go to a small Qwen3-VL model. Dictation is a local Whisper model.\nThe hardest part was definitely to get the smaller models to use tools reliably. Ran into a ton of issues of 4B models happily saying \"here's your chart\" without ever calling the chart tool or get stuck in an infinite call loop. I spent a fair amount of the work building guards vs tweaking prompts (that didn't really work for small models).\nI understand the pushback that local models are weaker than frontier cloud models. This is true, but for most tasks for most normal people, I'd argue you rarely need the newest frontier model. From my own evals, systems with 16+ GB of RAM do really well, and if you have a GPU or more RAM, you get very close to what you'll get out of the box with a frontier hosted model.\nExcited to hear what you think and see how it runs on other systems!",
@@ -323,6 +323,14 @@
           "parent": "50246238"
         },
         {
+          "id": "50250891",
+          "author": "_aavaa_",
+          "body": "Why does it have to be JS? With all this AI, why can't we ship native apps.",
+          "score": 0,
+          "time": 1793048543,
+          "parent": "50246238"
+        },
+        {
           "id": "50251374",
           "author": "eecks",
           "body": "> Automatically finds the best open-weight model for your hardware on first install\nDo you have examples of what hardware runs what models?",
@@ -331,11 +339,11 @@
           "parent": "50246238"
         },
         {
-          "id": "50250891",
-          "author": "_aavaa_",
-          "body": "Why does it have to be JS? With all this AI, why can't we ship native apps.",
+          "id": "50256093",
+          "author": "arkdezin",
+          "body": "With the raise of AI, I believe: open-source and local software's will be on the rise, but with the open-source environment there is a real security issues that rise.\nNever the less, really appreciate your contribution",
           "score": 0,
-          "time": 1793048543,
+          "time": 1793089836,
           "parent": "50246238"
         },
         {
@@ -355,19 +363,19 @@
           "parent": "50246238"
         },
         {
-          "id": "50253249",
-          "author": "ourcat",
-          "body": "What made you change it's name from 'Garth'?",
-          "score": 0,
-          "time": 1793061378,
-          "parent": "50246238"
-        },
-        {
           "id": "50250464",
           "author": "vorticalbox",
           "body": "Did you happen to try bionic?\nhttps://lmstudio.ai/ (https://lmstudio.ai/)",
           "score": 0,
           "time": 1793046564,
+          "parent": "50246238"
+        },
+        {
+          "id": "50253249",
+          "author": "ourcat",
+          "body": "What made you change it's name from 'Garth'?",
+          "score": 0,
+          "time": 1793061378,
           "parent": "50246238"
         },
         {
@@ -534,7 +542,7 @@
       "title": "Show HN: Proc-CLI – An agent-friendly CLI tool for process and port management",
       "subreddit": "show-hn",
       "author": "yazeedaloyoun",
-      "score": 22,
+      "score": 24,
       "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50239041",
       "url": "https://proc-cli.com/",
@@ -611,8 +619,8 @@
       "title": "Show HN: TitleArt – Make text like it's 1997",
       "subreddit": "show-hn",
       "author": "davidbarker",
-      "score": 390,
-      "num_comments": 78,
+      "score": 393,
+      "num_comments": 79,
       "permalink": "https://news.ycombinator.com/item?id=50238708",
       "url": "https://titleart.dvy.io/",
       "selftext": "",
@@ -662,19 +670,19 @@
           "parent": "50238708"
         },
         {
-          "id": "50254798",
-          "author": "chester_r",
-          "body": "Any plans for a WordArt MCP or CLI? I'd use it liberally for every AI-generated slide deck I generate. (only half-joking)",
-          "score": 0,
-          "time": 1793076334,
-          "parent": "50238708"
-        },
-        {
           "id": "50239937",
           "author": "matsemann",
           "body": "At around 10 years old, I remember spending more time on the word art for my titles than the rest of the paper for school projects, heh.\nAlso remember that I set up some kind of templating, where I could print the same document multiple times, but it would go down a list of values. So I could print personalized birthday invitations, I felt so cool 8)",
           "score": 0,
           "time": 1792996866,
+          "parent": "50238708"
+        },
+        {
+          "id": "50239516",
+          "author": "halflife",
+          "body": "I remember having Word 5 installed on my pc, while the other classmates had Word 97. I was so jealous for their wordart!",
+          "score": 0,
+          "time": 1792992643,
           "parent": "50238708"
         },
         {
@@ -694,14 +702,6 @@
           "parent": "50238708"
         },
         {
-          "id": "50239516",
-          "author": "halflife",
-          "body": "I remember having Word 5 installed on my pc, while the other classmates had Word 97. I was so jealous for their wordart!",
-          "score": 0,
-          "time": 1792992643,
-          "parent": "50238708"
-        },
-        {
           "id": "50247166",
           "author": "andai",
           "body": "Oh my god, this is delightful.\nIt even does lets you animate them!\nReminds me of RuneScape you could add colors and wiggles to your text as you spoke. (You could do something similar in MSN, too, change the font and color!)",
@@ -710,11 +710,19 @@
           "parent": "50238708"
         },
         {
-          "id": "50250069",
-          "author": "amanzi",
-          "body": "This brings back memories! My first personal website used that orange gradient with the 3D text for the logo (my name).",
+          "id": "50239771",
+          "author": "morikyouko",
+          "body": "Is there any plans to support CJK fonts or to release the source code so others can contribute? I'm so disappointed it doesn't support my language!\nhttps://www.makewordart.com/ (https://www.makewordart.com/) supports a wider character set but is no where near as good otherwise.",
           "score": 0,
-          "time": 1793044871,
+          "time": 1792995325,
+          "parent": "50238708"
+        },
+        {
+          "id": "50242259",
+          "author": "z3t4",
+          "body": "I think when people get tired of AI generated invitations they'll go back to this.",
+          "score": 0,
+          "time": 1793016038,
           "parent": "50238708"
         }
       ]
@@ -760,7 +768,7 @@
       "title": "Show HN: Freehire, open-source search 3M+ tech jobs from company career boards",
       "subreddit": "show-hn",
       "author": "i_strelov",
-      "score": 29,
+      "score": 31,
       "num_comments": 8,
       "permalink": "https://news.ycombinator.com/item?id=50237813",
       "url": "https://freehire.me/",
@@ -779,19 +787,19 @@
           "parent": "50237813"
         },
         {
-          "id": "50251585",
-          "author": "ctrix",
-          "body": "I love the approach and the filters. Very well done.\nI will also try the MCP.",
-          "score": 0,
-          "time": 1793051600,
-          "parent": "50237813"
-        },
-        {
           "id": "50240336",
           "author": "h164654156465",
           "body": "How do u really manage to dudup the same posting in a reliable way? I feel like it's really annoying to sort things out from various sources even though from the job board. What's more valuable maybe the internal source? Idk",
           "score": 0,
           "time": 1793000032,
+          "parent": "50237813"
+        },
+        {
+          "id": "50251585",
+          "author": "ctrix",
+          "body": "I love the approach and the filters. Very well done.\nI will also try the MCP.",
+          "score": 0,
+          "time": 1793051600,
           "parent": "50237813"
         },
         {
@@ -811,7 +819,7 @@
       "title": "Show HN: RainbowSay – Learn, teach, research languages live with shows you love",
       "subreddit": "show-hn",
       "author": "gigapotential",
-      "score": 11,
+      "score": 12,
       "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50237773",
       "url": "https://rainbowsay.ai/",
