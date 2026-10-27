@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-27T01:06:30.847209+00:00",
+  "last_fetched": "2026-10-27T06:52:15.832766+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -27,7 +27,7 @@
       "title": "Show HN: GradientDeck – a design skill for coding agents",
       "subreddit": "show-hn",
       "author": "thisisroushan",
-      "score": 3,
+      "score": 4,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50251342",
       "url": "https://github.com/VenoM9078/gradientdeck-skill",
@@ -62,7 +62,7 @@
       "title": "Show HN: Manage BOMs for multi-board PCB projects",
       "subreddit": "show-hn",
       "author": "ikok07",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50251288",
       "url": "https://www.bomanager.app",
@@ -237,7 +237,7 @@
       "subreddit": "show-hn",
       "author": "bensterne",
       "score": 5,
-      "num_comments": 2,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50248841",
       "url": "https://fontfam.net/",
       "selftext": "",
@@ -252,6 +252,14 @@
           "body": "When should I use this vs Google Fonts?",
           "score": 0,
           "time": 1793040221,
+          "parent": "50248841"
+        },
+        {
+          "id": "50254859",
+          "author": "lilingfei7",
+          "body": "beatiful fonts",
+          "score": 0,
+          "time": 1793077131,
           "parent": "50248841"
         }
       ]
@@ -280,8 +288,8 @@
       "title": "Show HN: Hob - Open-source, on device alternative to Claude Cowork and ChatGPT",
       "subreddit": "show-hn",
       "author": "pancomplex",
-      "score": 108,
-      "num_comments": 25,
+      "score": 137,
+      "num_comments": 31,
       "permalink": "https://news.ycombinator.com/item?id=50246238",
       "url": "https://github.com/FrigadeHQ/hob",
       "selftext": "Hey HN, I'm Christian and this is a new OSS project I've been noodling on for the last couple of weeks. Hob is a free, MIT-licensed desktop app for Mac, Windows and Linux that works on your files the way the Claude and ChatGPT desktop apps do, except the model runs on your own computer. It uses open-weight models (currently Gemma 4 and gpt-oss). All your chats and files never leave your system. The only things that go online are web search (can be turned off in settings) and any MCP connectors you add yourself.\nMain features:\n- Automatically finds the best open-weight model for your hardware on first install (Mac/Linux/Windows)\n- Writes sandboxed Python code for ad hoc tools (data processing, document conversion, graphs etc.)\n- Built-in web search (powered by SearXNG)\n- MCP support\n- Image recognition\n- CRUD to your local filesystem\n- Works fully offline with no internet\nBefore building this I tried every local AI app I could find, but it seemed each one had different problems. The main thing I noticed is that none of them could do what the ChatGPT and Claude apps do with your files, e.g. read and change files in a folder, look at images, run code in a sandbox, draw a chart. The most advanced thing any of them did was paste a plain text file into a small context window, which basically failed as soon as you had a file larger than a few KB. I couldn't find anything that could easily parse images and bigger PDFs.\nThe OSS solutions that were more advanced all seemed to default to hosted models (either OSS or closed), which defeats the entire point of the privacy that on-device OSS offers. They also seemed to push towards an account/open-core style business.\nI build it using Electron bridged with llama.cpp in its own process. On initial load, the system will try and figure out if you have a compatible graphics card and if not default to CPU-only (I ran into a lot of issues of graphics card beeing seemingly compatible but then crashing on first query, there's a whole saga to this lol). Code execution happens in a sandbox that can only write to the chat's folder and has no network unless asked (sandbox-exec on macOS, Landlock on Linux and a low-integrity process on Windows). Images go to a small Qwen3-VL model. Dictation is a local Whisper model.\nThe hardest part was definitely to get the smaller models to use tools reliably. Ran into a ton of issues of 4B models happily saying \"here's your chart\" without ever calling the chart tool or get stuck in an infinite call loop. I spent a fair amount of the work building guards vs tweaking prompts (that didn't really work for small models).\nI understand the pushback that local models are weaker than frontier cloud models. This is true, but for most tasks for most normal people, I'd argue you rarely need the newest frontier model. From my own evals, systems with 16+ GB of RAM do really well, and if you have a GPU or more RAM, you get very close to what you'll get out of the box with a frontier hosted model.\nExcited to hear what you think and see how it runs on other systems!",
@@ -307,11 +315,11 @@
           "parent": "50246238"
         },
         {
-          "id": "50253249",
-          "author": "ourcat",
-          "body": "What made you change it's name from 'Garth'?",
+          "id": "50250615",
+          "author": "laughing_snyder",
+          "body": "Looks great. One thing I am missing is the ability to change the installation directory for the models. For space reasons, I want them to be on a different partition.",
           "score": 0,
-          "time": 1793061378,
+          "time": 1793047268,
           "parent": "50246238"
         },
         {
@@ -339,11 +347,19 @@
           "parent": "50246238"
         },
         {
-          "id": "50250615",
-          "author": "laughing_snyder",
-          "body": "Looks great. One thing I am missing is the ability to change the installation directory for the models. For space reasons, I want them to be on a different partition.",
+          "id": "50253770",
+          "author": "wilg",
+          "body": "I did not enjoy that there was no way for it to clean up the 18GB of models it installed after I determined it was not really usable for any real work.",
           "score": 0,
-          "time": 1793047268,
+          "time": 1793065964,
+          "parent": "50246238"
+        },
+        {
+          "id": "50253249",
+          "author": "ourcat",
+          "body": "What made you change it's name from 'Garth'?",
+          "score": 0,
+          "time": 1793061378,
           "parent": "50246238"
         },
         {
@@ -363,6 +379,23 @@
           "parent": "50246238"
         }
       ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50245820",
+      "title": "Show HN: git-dupe – Version private files alongside a public Git repo",
+      "subreddit": "show-hn",
+      "author": "WayHow",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50245820",
+      "url": "https://github.com/BrianWeiHaoMa/git-dupe/tree/main",
+      "selftext": "Hi HN!\nI made git-dupe to solve the problem where I have notes, skills, and agent instructions that are part of my personal workflow, so I do not want them committed to the public repo, but at the same time, I want them to be in the project at the correct locations (e.g., AGENTS.md file locations matter), and these files cannot be simply gitignored because I want versioning for them.\nThe solution that I've come upon is versioning those agent files in another repo, say <private-repo> (this repo is private to me and holds the history for my agent files). The project itself is open to the public in another <public-repo>. I overlap the two repos to solve the problem (i.e., they share the same worktree).\n $ git status --short # the public repo\n ?? AGENTS.md\n ?? notes/\n\n $ git dupe init # the private repo\n Initialized empty Git repository in /home/brian/code/project/.git/dupe/\n\n $ git dupe add notes/ AGENTS.md # the private repo\n hint: notes is now hidden from the project's Git; run from the root, 'git dupe unhide -- notes' stops hiding it\n\n $ git dupe commit -m \"Notes and agent instructions\" # the private repo\n [main (root-commit) 3eb3af9] Notes and agent instructions\n 3 files changed, 3 insertions(+)\n create mode 100644 .gitdupe\n create mode 100644 AGENTS.md\n create mode 100644 notes/todo.md\n\n $ git status --short # the public repo: nothing\n\n $ git dupe log --oneline # the private repo: your files\n 3eb3af9 Notes and agent instructions\n\nIn short, git-dupe allows two Git repos to share the same worktree, while using native Git for most operations. Most git-dupe commands behave just like normal Git commands, operating on the private repo instead.\ngit-dupe currently supports Linux and macOS, and is under the MIT License; the git-dupe repo contains much more extensive technical documentation documentation for those who are interested. If you have any feedback/questions about git-dupe, feel free to message. I hope it helps!\nFun fact: the git-dupe project itself is using git-dupe for versioning.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793029853,
+      "created_at": "2026-10-26T15:50:53+00:00"
     },
     {
       "source": "hackernews",
@@ -466,7 +499,7 @@
       "title": "Show HN: Ultimidi – piano learning web game",
       "subreddit": "show-hn",
       "author": "XCSme",
-      "score": 7,
+      "score": 8,
       "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50241822",
       "url": "https://game.ultimidi.com/",
@@ -501,7 +534,7 @@
       "title": "Show HN: Proc-CLI – An agent-friendly CLI tool for process and port management",
       "subreddit": "show-hn",
       "author": "yazeedaloyoun",
-      "score": 20,
+      "score": 22,
       "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50239041",
       "url": "https://proc-cli.com/",
@@ -578,8 +611,8 @@
       "title": "Show HN: TitleArt – Make text like it's 1997",
       "subreddit": "show-hn",
       "author": "davidbarker",
-      "score": 388,
-      "num_comments": 75,
+      "score": 390,
+      "num_comments": 78,
       "permalink": "https://news.ycombinator.com/item?id=50238708",
       "url": "https://titleart.dvy.io/",
       "selftext": "",
@@ -629,11 +662,11 @@
           "parent": "50238708"
         },
         {
-          "id": "50249981",
-          "author": "marcellosso",
-          "body": "This is great. I used to mess around with WordArt a lot when I was younger and this brought that back. Nice that you can get that look without turning the text into an image.",
+          "id": "50254798",
+          "author": "chester_r",
+          "body": "Any plans for a WordArt MCP or CLI? I'd use it liberally for every AI-generated slide deck I generate. (only half-joking)",
           "score": 0,
-          "time": 1793044513,
+          "time": 1793076334,
           "parent": "50238708"
         },
         {
@@ -645,19 +678,27 @@
           "parent": "50238708"
         },
         {
-          "id": "50250069",
-          "author": "amanzi",
-          "body": "This brings back memories! My first personal website used that orange gradient with the 3D text for the logo (my name).",
+          "id": "50240673",
+          "author": "dstu",
+          "body": "Oh this takes me back, what a cool project. Can someone reinvent the internet from that era next please?",
           "score": 0,
-          "time": 1793044871,
+          "time": 1793002485,
           "parent": "50238708"
         },
         {
-          "id": "50251592",
-          "author": "MitPitt",
-          "body": "This could be genuinely useful for web design because it's easy to setup layout reflow using all the sliders. I hope you'll open source it.",
+          "id": "50249981",
+          "author": "marcellosso",
+          "body": "This is great. I used to mess around with WordArt a lot when I was younger and this brought that back. Nice that you can get that look without turning the text into an image.",
           "score": 0,
-          "time": 1793051632,
+          "time": 1793044513,
+          "parent": "50238708"
+        },
+        {
+          "id": "50239516",
+          "author": "halflife",
+          "body": "I remember having Word 5 installed on my pc, while the other classmates had Word 97. I was so jealous for their wordart!",
+          "score": 0,
+          "time": 1792992643,
           "parent": "50238708"
         },
         {
@@ -669,19 +710,11 @@
           "parent": "50238708"
         },
         {
-          "id": "50240673",
-          "author": "dstu",
-          "body": "Oh this takes me back, what a cool project. Can someone reinvent the internet from that era next please?",
+          "id": "50250069",
+          "author": "amanzi",
+          "body": "This brings back memories! My first personal website used that orange gradient with the 3D text for the logo (my name).",
           "score": 0,
-          "time": 1793002485,
-          "parent": "50238708"
-        },
-        {
-          "id": "50239516",
-          "author": "halflife",
-          "body": "I remember having Word 5 installed on my pc, while the other classmates had Word 97. I was so jealous for their wordart!",
-          "score": 0,
-          "time": 1792992643,
+          "time": 1793044871,
           "parent": "50238708"
         }
       ]
@@ -727,7 +760,7 @@
       "title": "Show HN: Freehire, open-source search 3M+ tech jobs from company career boards",
       "subreddit": "show-hn",
       "author": "i_strelov",
-      "score": 27,
+      "score": 29,
       "num_comments": 8,
       "permalink": "https://news.ycombinator.com/item?id=50237813",
       "url": "https://freehire.me/",
@@ -738,14 +771,6 @@
       "created_at": "2026-10-26T01:13:43+00:00",
       "comments_data": [
         {
-          "id": "50251585",
-          "author": "ctrix",
-          "body": "I love the approach and the filters. Very well done.\nI will also try the MCP.",
-          "score": 0,
-          "time": 1793051600,
-          "parent": "50237813"
-        },
-        {
           "id": "50244189",
           "author": "fletchdatpaq",
           "body": "The user-auth is confusing as there is no sign-in button. It was very unclear what to do as a first-time user. This concept is dope. Then the app wouldn't let me see the Req until I uploaded my CV and answer questions. I would prefer it to start the user onboarding directly after sign-up. I just think it would be a better UX experience.",
@@ -754,11 +779,11 @@
           "parent": "50237813"
         },
         {
-          "id": "50246168",
-          "author": "thenthenthen",
-          "body": "Mm if i click on a job and then use the back button, the search results show “no match”, ios safari",
+          "id": "50251585",
+          "author": "ctrix",
+          "body": "I love the approach and the filters. Very well done.\nI will also try the MCP.",
           "score": 0,
-          "time": 1793030917,
+          "time": 1793051600,
           "parent": "50237813"
         },
         {
@@ -767,6 +792,14 @@
           "body": "How do u really manage to dudup the same posting in a reliable way? I feel like it's really annoying to sort things out from various sources even though from the job board. What's more valuable maybe the internal source? Idk",
           "score": 0,
           "time": 1793000032,
+          "parent": "50237813"
+        },
+        {
+          "id": "50246168",
+          "author": "thenthenthen",
+          "body": "Mm if i click on a job and then use the back button, the search results show “no match”, ios safari",
+          "score": 0,
+          "time": 1793030917,
           "parent": "50237813"
         }
       ]
