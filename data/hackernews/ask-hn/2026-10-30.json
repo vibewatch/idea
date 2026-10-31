@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-10-31T00:42:59.343876+00:00",
+  "last_fetched": "2026-10-31T06:32:25.434822+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,8 +10,8 @@
       "title": "Ask HN: Are most of you using HN Replies? Or what else do you use?",
       "subreddit": "ask-hn",
       "author": "Gooblebrai",
-      "score": 3,
-      "num_comments": 4,
+      "score": 5,
+      "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=50311495",
       "url": "https://news.ycombinator.com/item?id=50311495",
       "selftext": "To know when someone answers you in a thread",
@@ -20,6 +20,22 @@
       "time": 1793402952,
       "created_at": "2026-10-30T23:29:12+00:00",
       "comments_data": [
+        {
+          "id": "50312133",
+          "author": "codingdave",
+          "body": "I think many of us don't worry about whether someone answers us in a thread. Fretting over how a thread went after you said your piece doesn't improve the goal of HN: curiosity. If people agree with your comment, there is no need to jump back in. If they disagree and you jump back in, it just feeds arguments. When you do say something, do it because you feel you have something worthwhile that adds to the conversation. Do not comment just to promote your own voice. And once you have said something, move on.",
+          "score": 0,
+          "time": 1793407972,
+          "parent": "50311495"
+        },
+        {
+          "id": "50313419",
+          "author": "brudgers",
+          "body": "I just look at the |threads| link.",
+          "score": 0,
+          "time": 1793423917,
+          "parent": "50311495"
+        },
         {
           "id": "50311599",
           "author": "WarOnPrivacy",
@@ -41,12 +57,39 @@
     {
       "source": "hackernews",
       "stream": "ask-hn",
+      "id": "50310690",
+      "title": "GEMM Tutorial and UlmBLAS",
+      "subreddit": "ask-hn",
+      "author": "michael-lehn",
+      "score": 3,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50310690",
+      "url": "https://news.ycombinator.com/item?id=50310690",
+      "selftext": "In 2014 I wrote a tutorial on how to write an efficient matrix multiplication that can achieve near peak performance. This is actually not achieved by some Strassen algorithm variant. It's achieved through a cache friendly algorithm (exploiting the cache hierarchy) and SIMD register instructions.\nThe tutorial showed how to achieve that step by step. Beginning with a naive implementation using three loops. Then using buffers to first cache matrix blocks and then performing the matrix product block wise. That actually means you make copies of blocks and then do computations with the blocks. Sounds stupid but makes sense: Assume you have square N x N blocks then cost of make making a copy is O(N^2) and for the computation it's O(N^3). If the computation with the copied/cached blocks is much faster this actually pays of.\nAnyway the details are explained in the tutorial. As the university web server has changed many times after 2014 I moved it to GitHub: https://github.com/michael-lehn/gemm-tutorial\nFrom the tutorial I created ulmBLAS (ulm makes sense, as I work at Ulm University) which is a complete BLAS implementation. Recently I started with a tutorial for the matrix multiplication with Cuda. Currently there is not much text, I just outlined a possible step by step approach to go from naive to a performant implementation (actually the goal was to be on par with NVIDIA's cuBLAS; but it's more on parish ... but I think still gives an idea). It in the cuda subdirectory of ulmBLAS: https://github.com/michael-lehn/ulmBLAS",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793397468,
+      "created_at": "2026-10-30T21:57:48+00:00",
+      "comments_data": [
+        {
+          "id": "50310890",
+          "author": "michael-lehn",
+          "body": "Ups, screwed up the title. Should have been \"Show HN: ...\"",
+          "score": 0,
+          "time": 1793398858,
+          "parent": "50310690"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
       "id": "50308286",
       "title": "Ask HN: Is applying to Y Combinator worth it if you aren't an insider?",
       "subreddit": "ask-hn",
       "author": "all2",
-      "score": 12,
-      "num_comments": 8,
+      "score": 15,
+      "num_comments": 10,
       "permalink": "https://news.ycombinator.com/item?id=50308286",
       "url": "https://news.ycombinator.com/item?id=50308286",
       "selftext": "I see the application button on the bottom of HN occasionally. I even created an account and started filling out an application.\nBut I'm hesitant. The upside is a potential initial seed round into my business. The downside is... wasted time?\nIn terms of cost/benefit, it seems pretty straight forward. But I get the general impression that applying without knowing someone or being an advantaged class means it will be a complete waste of time to bother applying.\nThese threads come up from time to time, and I see the smattering of responses, \"totally worth it\" and \"not worth it at all\". I also see the kinds of companies that get funded and they aren't typically the focused, practical, cashflow positive in short order sorts of companies.\nI'm torn.",
@@ -80,6 +123,14 @@
           "parent": "50308286"
         },
         {
+          "id": "50313414",
+          "author": "brudgers",
+          "body": "they aren't typically the focused, practical, cashflow positive in short order sorts of companies.\nMaybe there’s not a correlation between people who commit to building that kind of company and the kind of people who will take funding to build and light a rocket.\nI get the general impression that applying without knowing someone or being an advantaged class means it will be a complete waste of time to bother applying\nThe kind of person who might build a rocketship probably won’t be daunted by the idea of some random strangers’ rejection.\nBut to be clear startups aren’t for everyone and that’s ok.\nConventional businesses are ok too. Good luck.",
+          "score": 0,
+          "time": 1793423810,
+          "parent": "50308286"
+        },
+        {
           "id": "50308447",
           "author": "mixtureoftakes",
           "body": "Not worth (I'm an insider)",
@@ -104,7 +155,7 @@
       "title": "\"Wrong\" Email",
       "subreddit": "ask-hn",
       "author": "rbmm",
-      "score": 22,
+      "score": 23,
       "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50307092",
       "url": "https://news.ycombinator.com/item?id=50307092",
@@ -156,8 +207,8 @@
       "title": "Ask HN: What's it like working at Google nowadays? Core teams like Search, Ads?",
       "subreddit": "ask-hn",
       "author": "karakoram",
-      "score": 34,
-      "num_comments": 25,
+      "score": 39,
+      "num_comments": 26,
       "permalink": "https://news.ycombinator.com/item?id=50306776",
       "url": "https://news.ycombinator.com/item?id=50306776",
       "selftext": "What's the culture at Google like these days? For Core Teams Like Gmail, Search, Ads.\nWhat's it like working in these traditionally critical departments now?",
@@ -175,19 +226,19 @@
           "parent": "50306776"
         },
         {
-          "id": "50309648",
-          "author": "bigwheels",
-          "body": "My friends who work there all hate it, the culture has become toxic. Everyone is hanging on for dear life to preserve their standard of living.",
-          "score": 0,
-          "time": 1793391820,
-          "parent": "50306776"
-        },
-        {
           "id": "50307620",
           "author": "richard_chase",
           "body": "We just let the LLMs rip and spend most of our time in the sleeping pods or the buffet. Six figures for days of relaxation. It truly is the good life.",
           "score": 0,
           "time": 1793382710,
+          "parent": "50306776"
+        },
+        {
+          "id": "50309648",
+          "author": "bigwheels",
+          "body": "My friends who work there all hate it, the culture has become toxic. Everyone is hanging on for dear life to preserve their standard of living.",
+          "score": 0,
+          "time": 1793391820,
           "parent": "50306776"
         },
         {
@@ -207,8 +258,8 @@
       "title": "Ask HN: Hack",
       "subreddit": "ask-hn",
       "author": "throwaway3309",
-      "score": 8,
-      "num_comments": 2,
+      "score": 9,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50303708",
       "url": "https://news.ycombinator.com/item?id=50303708",
       "selftext": "I work for an organization that works in the eComm space. Hosted checkouts, lots of integrations, etc. They process millions each month for thousands of clients. Ever since I started I brought up issues with the security of this organization.\nFor PCI audits, they move things around and turn off servers to avoid some issues. Username/Passwords are plaintext in API requests (query parameters). Login Password were hashed via SHA1. It's been migrated to argon this year. The company was hacked last month, although I'm positive it's happened multiple times in the past. Co-workers mentioned there was a hack a few years back that wasn't as bad as this. This most recent hack, they got everything. Codebase, databases, client credentials (we don't encrypt client secrets), and card numbers. They had root access to prod servers. Clients have done their own pentesting and found issues. Security wasn't a thing until this hack happened. Anyone with a brain would see the issues.\nIt took the company about 2 weeks or so to even discover the hack had happened. The only reason the hacker was caught was because they started using the deployment pipeline to modify code/servers. I think it was because they wanted to see just how stupid the company was. The hacker was able to gain all of this access because the code base is garbage. Tons of XSS, SSRF, SQL injections, and poor code in general. They were able to gain access to services because they used default passwords. Secrets were shared between environments (staging and production). AWS keys were not locked down (S3 read-only was setup to read/write to S3 and other services). Logs truncate at 30 days, so no one is sure how long they were in the system.\nI have been trying to find another job, but the industry is trash right now. I can't stay here. I've looked into whistle blower laws and seems like none of this would really qualify for anything. I've thought about talking to a lawyer about all of this. I cannot afford to just quit. It took me awhile to get this job and I'm terrified that losing this job will leave me homeless.\nOne of the biggest issues was our all hands we had today. The CEO, CTO, and another high level person talked to everyone. It was very little truth with a lot of BS. This entire hack was preventable. Other jobs I've had, people would be getting fired and replaced over this.\nThe question I want to ask is what would you do in a situation like this?",
@@ -232,6 +283,14 @@
           "score": 0,
           "time": 1793386293,
           "parent": "50303708"
+        },
+        {
+          "id": "50312679",
+          "author": "toomuchtodo",
+          "body": "Do the minimum to keep your job and keep looking for your next job. Finding your next job is your top priority. Document that you are doing your job to the best of your ability to prepare if you need to file for wrongful dismissal. You have no power or leverage to fix the systemic issues, and it’s only a matter of time until there is another compromise, or a compromise of sufficient magnitude that it causes the business to fail.\nThe organization chooses to operate like this, if they wanted to fix the systematic issues, they would. It sounds, from your observations, they do not want nor intend to fix the systemic issues. You cannot solve problems the organization does not want to solve. You can provide recommendations and guidance, they choose whether to implement or fix.\nOnce you find your next job and you’ve safely moved on, drop a tip to Brian Krebs and let them know who it is while sticking to facts, if you’re so inclined, no obligation to do so.\nhttps://krebsonsecurity.com/ (https://krebsonsecurity.com/)",
+          "score": 0,
+          "time": 1793413762,
+          "parent": "50303708"
         }
       ]
     },
@@ -242,7 +301,7 @@
       "title": "Ask HN: Are you using a custom harness?",
       "subreddit": "ask-hn",
       "author": "japhyr",
-      "score": 7,
+      "score": 8,
       "num_comments": 6,
       "permalink": "https://news.ycombinator.com/item?id=50301901",
       "url": "https://news.ycombinator.com/item?id=50301901",
@@ -253,19 +312,19 @@
       "created_at": "2026-10-30T10:12:39+00:00",
       "comments_data": [
         {
-          "id": "50308572",
-          "author": "ravenstine",
-          "body": "Not currently, but I probably will be in the coming weeks.\nI pretty much end up hating every harness I use. Some come really close to what I'm looking for but then completely miss the mark in other ways. At the moment, I'm stripping OpenCode down to its absolute bare minimum, removing pretty much all of the vendor-specific crap and everything else I don't plan on using. Once I'm convinced that's stable, I'll identify how all the \"good parts\" work and reimplement the core using Rust.\nAnd yeah, I know Pi exists, which in many ways is what I'm looking for, except even that ended up being more of a bulky mess than what I was hoping. Chose the install with Homebrew option, and for some reason it took an ungodly amount of time to install a buttload of dependencies and then compile, only to completely stall out and fail. I mean... what the fuck. Glad it works for other people, but this is the exact type of total nonsense that I'm done with when it comes to modern software.\nFor Pete's sake... I just want something that reads my text, contacts an LLM, and runs commands on my system. Why does this have to feel like coordinating a manned mission to the Moon? This shouldn't require even hundreds of megabytes of a runtime. It takes a fraction of the time for me to compile the Perfect Dark PC Port, a full blown FPS game, than it does for me to install some of these harnesses.",
-          "score": 0,
-          "time": 1793386646,
-          "parent": "50301901"
-        },
-        {
           "id": "50305104",
           "author": "mattbrewsbytes",
           "body": "Is there an accepted definition on what a harness is? Is this like GasTown and similar? Plan mode? Is this a client-side loop with multi-threaded agents running in parallel? If the AI client is doing this on its own, is that considered agentic and/or using a harness? Or does the introduction of saving text to a MD file make it \"self learning\" a harness?\nIt feels like the pace at which the industry is defining things may be faster than the actual pace of change sometimes.",
           "score": 0,
           "time": 1793373328,
+          "parent": "50301901"
+        },
+        {
+          "id": "50308572",
+          "author": "ravenstine",
+          "body": "Not currently, but I probably will be in the coming weeks.\nI pretty much end up hating every harness I use. Some come really close to what I'm looking for but then completely miss the mark in other ways. At the moment, I'm stripping OpenCode down to its absolute bare minimum, removing pretty much all of the vendor-specific crap and everything else I don't plan on using. Once I'm convinced that's stable, I'll identify how all the \"good parts\" work and reimplement the core using Rust.\nAnd yeah, I know Pi exists, which in many ways is what I'm looking for, except even that ended up being more of a bulky mess than what I was hoping. Chose the install with Homebrew option, and for some reason it took an ungodly amount of time to install a buttload of dependencies and then compile, only to completely stall out and fail. I mean... what the fuck. Glad it works for other people, but this is the exact type of total nonsense that I'm done with when it comes to modern software.\nFor Pete's sake... I just want something that reads my text, contacts an LLM, and runs commands on my system. Why does this have to feel like coordinating a manned mission to the Moon? This shouldn't require even hundreds of megabytes of a runtime. It takes a fraction of the time for me to compile the Perfect Dark PC Port, a full blown FPS game, than it does for me to install some of these harnesses.",
+          "score": 0,
+          "time": 1793386646,
           "parent": "50301901"
         },
         {
@@ -293,8 +352,8 @@
       "title": "Ask HN: Are you tired too in this AI era?",
       "subreddit": "ask-hn",
       "author": "mellosty",
-      "score": 140,
-      "num_comments": 135,
+      "score": 144,
+      "num_comments": 139,
       "permalink": "https://news.ycombinator.com/item?id=50301479",
       "url": "https://news.ycombinator.com/item?id=50301479",
       "selftext": "Although AI lets us do much more, I feel considerably more tired than before.\nWe need to keep track of many things happening in parallel and read enormous amounts of generated text. The constant guardrailing, decision making, and context switching overload me.\nI am pretty sure most of you are experiencing the same as me, but:\nHave you found ways of using AI without increasing mental overload?\nI would love to hear your tips, but still be relevant in this AI era, so my boss does not fire me.",
