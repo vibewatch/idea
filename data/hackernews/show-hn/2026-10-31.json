@@ -1,8 +1,288 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-10-31T18:30:34.677689+00:00",
+  "last_fetched": "2026-11-01T00:49:54.567736+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50320501",
+      "title": "Show HN: Winch – App Store optimization run by your own coding agent",
+      "subreddit": "show-hn",
+      "author": "ziyasal",
+      "score": 4,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50320501",
+      "url": "https://getwinch.app/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793482777,
+      "created_at": "2026-10-31T21:39:37+00:00",
+      "comments_data": [
+        {
+          "id": "50320809",
+          "author": "davidspenfffff",
+          "body": "this is quite cool, first ever i think. but is the system that complicated that i need to buy the software? would giving mcps and connectors or even building our own be more effective. what are some things that are way more complicated behind the scenes?",
+          "score": 0,
+          "time": 1793485084,
+          "parent": "50320501"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50320492",
+      "title": "Show HN: Nvidia RE-USE speech enhancement model running in the browser on WebGPU",
+      "subreddit": "show-hn",
+      "author": "g58892881",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50320492",
+      "url": "https://re-use-demo.geronimo-labs.com",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793482700,
+      "created_at": "2026-10-31T21:38:20+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50320472",
+      "title": "Show HN: Fix 1.0 – Ruby tests written as RFC 2119 specifications",
+      "subreddit": "show-hn",
+      "author": "cyrilllllll",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50320472",
+      "url": "https://fixrb.dev/framework/release/2026/10/31/fix-1.html",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793482593,
+      "created_at": "2026-10-31T21:36:33+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50319764",
+      "title": "Show HN: Othismo, a Runtime for Sandboxed Objects",
+      "subreddit": "show-hn",
+      "author": "mamidon",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50319764",
+      "url": "https://othismo.com",
+      "selftext": "Othismo is a runtime which has a bunch of sandboxed WASM modules talking to each other + the host environment. It's actually hosting its own website right now at othismo.com.\nThis is a project that's been percolating in my head for a while, as a vague desire to make a \"better\" runtime for software development. But it was never particularly clear for me what that would _actually_ look like. In the last month or so, I felt a bit inspired to ask what such a runtime might look like for agentic development.\nMy hypothesis is that we really can't review 10k+ SLoC pull requests consistently and really understand them. But if we try to have a higher level view of things, we still can't be confident the agent(s) haven't done something stupid and opened a socket or a file somewhere in that 10k+ SLoC.\nTherefore we need a very clear demarcation between computation and side effects. In Othismo that takes the shape of the image definition files (.oth) which describe the namespace + various type definitions describing what the interface of an object (should) be. It's somewhat like TypeScript, we don't actually do anything to verify an object conforms to this interface.\nI'd love your feedback on the syntax used to define images overall, I feel like it doesn't do a great job giving me a clear notion of the environment lexically. \nI'm more comfortable about the syntax for describing the behavior of objects, although things like `operator` and `readonly` are really only necessary because I've not done anything to support auth at the protocol layer yet.\nYou can run the same website hosted at othismo.com with\n`git clone git@github.com:mamidon/othismo.git`\n`task run:example:static`\nYou can also play with the namespace interactively with\n```\ntask build:example:static\ntarget/debug/othismo shell examples/static/static.rti\n# print out the namespace(s)\ntarget/debug/othismo --check examples/static/static.rti\n```\nYou'll need rust, task (it's like make), and node+npm.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793478195,
+      "created_at": "2026-10-31T20:23:15+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50319323",
+      "title": "Show HN: Aruma – clean-room self-hosted backend for the official Firebase SDKs",
+      "subreddit": "show-hn",
+      "author": "osama200",
+      "score": 3,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50319323",
+      "url": "https://github.com/arumadev/aruma",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793475314,
+      "created_at": "2026-10-31T19:35:14+00:00",
+      "comments_data": [
+        {
+          "id": "50319324",
+          "author": "osama200",
+          "body": "Hi HN,\nI built a clean-room Google Firebase alternative that keeps the official SDKs and cuts your bill to a ~$5 VPS: unlimited projects, no per-operation pricing.\nAruma is an open-source backend you host yourself. It speaks the same protocols as Firebase, so your app keeps the official Firebase SDKs (JS, Android, iOS, Flutter, Admin); you just point them at your own server instead of Google's. The SDKs run in normal production mode, not emulator mode.\nWhat works today:\n- Authentication\n- Realtime Database\n- Cloud Storage\n- Cloud Firestore\nIt ships as a single Go binary on PostgreSQL, and you own your data.\nClean-room: Firebase's backend is closed source, so Aruma was built from public documentation and the observed behavior of the SDKs against real Firebase and the emulators. No Google server code.\nStatus: early, not production-ready yet. I'm working toward a stable release and an automatic tool to migrate data off Firebase. Next: push notifications and App Check, then Remote Config and Functions.\nFeedback I want most: SDK compatibility gaps. If your app breaks against Aruma, please open an issue.\nRepo: https://github.com/arumadev/aruma (https://github.com/arumadev/aruma)\nDocs: https://arumadev.github.io/aruma (https://arumadev.github.io/aruma)",
+          "score": 0,
+          "time": 1793475314,
+          "parent": "50319323"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50319273",
+      "title": "Show HN: Castov – Open-source dev tools and AI secret shield with zero telemetry",
+      "subreddit": "show-hn",
+      "author": "castov",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50319273",
+      "url": "https://castov.com",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793475014,
+      "created_at": "2026-10-31T19:30:14+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50319169",
+      "title": "Show HN: NES Contra (1987) port (ASM –> C and then C –> WebAssembly)",
+      "subreddit": "show-hn",
+      "author": "tevlon",
+      "score": 40,
+      "num_comments": 27,
+      "permalink": "https://news.ycombinator.com/item?id=50319169",
+      "url": "https://epoyraz.github.io/nes-contra-us/",
+      "selftext": "Based on vermiceli's annotated disassembly of Contra: https://github.com/vermiceli/nes-contra-us (https://github.com/vermiceli/nes-contra-us). Thanks for the great work.\nI ported it in two steps. First to C: the game logic is translated routine by routine from the 6502 assembly, and checked frame by frame against the original in the Mesen emulator. Then the C code to WebAssembly so it runs in the browser.\nThe cherry on top: online multiplayer, so two players can play co-op over the internet.\nSource: https://github.com/epoyraz/nes-contra-us (https://github.com/epoyraz/nes-contra-us)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793474328,
+      "created_at": "2026-10-31T19:18:48+00:00",
+      "comments_data": [
+        {
+          "id": "50321448",
+          "author": "msephton",
+          "body": "A couple months ago I wrote about this kind of transcompilation hop-skip-jump: https://news.ycombinator.com/item?id=49643284 (https://news.ycombinator.com/item?id=49643284)\nI used it to get games written in Lua running on SNES and in my own language/engine running on Dreamcast, Wii, Web and more.",
+          "score": 0,
+          "time": 1793491062,
+          "parent": "50319169"
+        },
+        {
+          "id": "50320248",
+          "author": "raldi",
+          "body": "But the Japanese Contra was so much better! https://www.youtube.com/shorts/CiXzONyCDW0 (https://www.youtube.com/shorts/CiXzONyCDW0)",
+          "score": 0,
+          "time": 1793480843,
+          "parent": "50319169"
+        },
+        {
+          "id": "50320687",
+          "author": "shinryudbz",
+          "body": "Is the audio not supposed to work? I was hoping to hear the legendary tracks!",
+          "score": 0,
+          "time": 1793484114,
+          "parent": "50319169"
+        },
+        {
+          "id": "50319721",
+          "author": "gwbas1c",
+          "body": "One of the things that I'm curious about: How easy / hard is it to use the same NES game with higher resolution / color graphics, and sample-based sound?\nAre there any emulators out there that let you swap in higher resolution assets so a game can be freshened without a complete port?",
+          "score": 0,
+          "time": 1793477944,
+          "parent": "50319169"
+        },
+        {
+          "id": "50320829",
+          "author": "egonschiele",
+          "body": "Contra is my favorite game of all time so this is a real treat, and the co-op idea is fantastic. Not to be greedy, but how hard would it be to add music? :)",
+          "score": 0,
+          "time": 1793485228,
+          "parent": "50319169"
+        },
+        {
+          "id": "50319440",
+          "author": "BSPtree",
+          "body": "Cool, how did you build the multiplayer mode? And how much AI was used?",
+          "score": 0,
+          "time": 1793476189,
+          "parent": "50319169"
+        },
+        {
+          "id": "50320602",
+          "author": "Dwedit",
+          "body": "All that work and then somehow transposing the A and B keys at the very end.",
+          "score": 0,
+          "time": 1793483448,
+          "parent": "50319169"
+        },
+        {
+          "id": "50321475",
+          "author": "jasonlotito",
+          "body": "Whenever I see a game that uses the arrow keys and doesn't offer WASD as well, I can't help but see a game written by a non-gamer. I consider these fundamentals, and a shibboleth of whether I should care.",
+          "score": 0,
+          "time": 1793491358,
+          "parent": "50319169"
+        },
+        {
+          "id": "50321073",
+          "author": "pxx",
+          "body": "No controller support?",
+          "score": 0,
+          "time": 1793487561,
+          "parent": "50319169"
+        },
+        {
+          "id": "50320710",
+          "author": "gosen",
+          "body": "thanks for bringing back my childhood memories!",
+          "score": 0,
+          "time": 1793484298,
+          "parent": "50319169"
+        },
+        {
+          "id": "50319880",
+          "author": "einpoklum",
+          "body": "Most of the keys aren't working for me in Firefox though :-(",
+          "score": 0,
+          "time": 1793478760,
+          "parent": "50319169"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50318820",
+      "title": "Show HN: Subfaro – track subscriptions and price hikes without linking a bank",
+      "subreddit": "show-hn",
+      "author": "giozadi",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50318820",
+      "url": "https://subfaro.com/en/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793472361,
+      "created_at": "2026-10-31T18:46:01+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50318664",
+      "title": "Show HN: Run Claude Code inside OpenCode through the official CLI",
+      "subreddit": "show-hn",
+      "author": "kaygeee",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50318664",
+      "url": "https://github.com/khalilgharbaoui/opencode-claude-code-plugin",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793471532,
+      "created_at": "2026-10-31T18:32:12+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50318428",
+      "title": "Show HN: InterviewLint – Practice explaining code, not just writing it",
+      "subreddit": "show-hn",
+      "author": "aburayhanalif",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50318428",
+      "url": "https://interviewlint.com",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793469991,
+      "created_at": "2026-10-31T18:06:31+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -27,15 +307,25 @@
       "title": "Show HN: Maclet – A native macOS container runtime written from scratch in Rust",
       "subreddit": "show-hn",
       "author": "paperplaneflyr",
-      "score": 3,
-      "num_comments": 0,
+      "score": 4,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50317580",
       "url": "https://github.com/sumant1122/maclet",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1793464138,
-      "created_at": "2026-10-31T16:28:58+00:00"
+      "created_at": "2026-10-31T16:28:58+00:00",
+      "comments_data": [
+        {
+          "id": "50321233",
+          "author": "manjian2006",
+          "body": "Why all the containers share the same vm instead of the Apple's container which startup a light weight vm for each container?",
+          "score": 0,
+          "time": 1793488958,
+          "parent": "50317580"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -44,8 +334,8 @@
       "title": "Show HN: Jointter – A daily word puzzle using dots and lines",
       "subreddit": "show-hn",
       "author": "proy87",
-      "score": 8,
-      "num_comments": 8,
+      "score": 11,
+      "num_comments": 19,
       "permalink": "https://news.ycombinator.com/item?id=50317548",
       "url": "https://www.jointter.com/",
       "selftext": "Hello everyone. I’m a mathematician by training, and I love mathematical and logical puzzles and brain-teasers. Inspired by popular games like Sudoku and Wordle, I decided to come up with an engaging game of my own.\nAs it turns out, that’s not so easy! I had a few ideas, but beyond the core mechanics, a game also needs to be interesting and easy to explain — after all, nobody (including me) wants to spend a long time reading through rules.\nLet’s start with the concept, which came to me quite spontaneously: what if we represented letters like the digits on a digital clock — using lines, with dots at the points where those lines intersect? For instance, the letter \"E\" would consist of four lines and six dots — three at the intersections and three at the ends of the lines.\nIt turns out that every letter of the Latin alphabet can be represented this way (with a minor caveat) using three rows of dots connected by some lines. This immediately presented a challenge: how do you represent O-shaped parts, like those found in \"B\", \"O\", or \"R\"? I decided not to use O-shapes, an use onl rectangles/squares. This \"alphabet\" is always displayed below the game board, so the player can see the letters.\nThe goal of the game is simple: you are presented with three rows of dots and a set of lines, and you have to figure out the word. A great feature of the game is that it’s possible to deduce the word in a single turn — all the necessary information is right there on the board, allowing you to arrive at the answer with certainty.\nAnd what if you can’t figure it out on the first try? You can enter a guess, much like in Wordle: if the lines from the entered word are part of the target word, they turn green; if not, they turn red. The same applies to the dots.\nAs you play, more and more lines gradually appear...\nWhy provide some lines at the start? To uniquely identify a specific word — or a small set of words — from the dictionary. For example, you could select a configuration of lines that corresponds to only one word, like \"RADIO\", or perhaps to just two possible words, such as \"WEIGH\" and \"WRONG\".\nThe rules seem clear, but the mechanics — not so much.\nThere are dots on the board; when I enter a word, I realize there aren't enough dots. What should I do? Initially, if the target word had 5 letters, I allowed users to enter 4- or 5-letter guesses, but that just confused players. So, I came up with a different solution: adding red dots for dots that aren't part of the target word.\nAnother drawback is that the game is somewhat skewed. Since letters are processed from left to right, the first letters are revealed more frequently than the last ones.\nThen there’s the game design itself: should the target words be 5 letters long, or 6? Should a single board allow for multiple possible answers (like \"WEIGH\" and \"WRONG\"), or should it be limited to one — or perhaps more than two? Should the difficulty increase from Monday to Sunday? Currently, it’s set up this way: Monday is the easiest (a few 3-letter words), while Sunday is the hardest (more than two 7-letter words).\nThe tech stack is simple: I use Flask for the backend and Python for the algorithms; I wrote the algorithms myself. While the JS, HTML, and CSS were created with the help of AI.\nI’d love for you to test the game and share what you like, what you don’t, and what could be improved.\nSpecifically, I’d like to know:\n1. Is the game and its goal clear?\n2. Is it fun to play, and what could be improved?\n3. Would you share it with your friends?\nI welcome any constructive criticism.\nYou can find the game at https://www.jointter.com/ (https://www.jointter.com/)\nIt’s free and requires no registration.\nThank you very much.",
@@ -63,19 +353,19 @@
           "parent": "50317548"
         },
         {
-          "id": "50318602",
-          "author": "grandfunction",
-          "body": "I want to filter by dots on the sides. My brain and I are struggling!",
-          "score": 0,
-          "time": 1793471116,
-          "parent": "50317548"
-        },
-        {
           "id": "50318298",
           "author": "dofm",
           "body": "Top tip: make your instructions actually readable.\nYour LLM has used text with too low contrast, the absolutely pointless and annoying webkit-smoothing: anti-aliased, with text that is too small, cramped and squeezed into place.\nPeople with eyes that are getting over forty years old will start to find this difficult to read.\nYou might want to consider making important instructions stand out, left-align the text, etc.\nAnd then consider writing them with clarity and simplicity yourself rather than letting the LLM write them. The instructions are crucial. You should own that.",
           "score": 0,
           "time": 1793468975,
+          "parent": "50317548"
+        },
+        {
+          "id": "50319551",
+          "author": "proy87",
+          "body": "The most simple games are on Monday, for example, https://www.jointter.com/2026-10-26/ (https://www.jointter.com/2026-10-26/)",
+          "score": 0,
+          "time": 1793476862,
           "parent": "50317548"
         },
         {
@@ -93,6 +383,22 @@
           "score": 0,
           "time": 1793467903,
           "parent": "50317548"
+        },
+        {
+          "id": "50318602",
+          "author": "grandfunction",
+          "body": "I want to filter by dots on the sides. My brain and I are struggling!",
+          "score": 0,
+          "time": 1793471116,
+          "parent": "50317548"
+        },
+        {
+          "id": "50319499",
+          "author": "smitty1e",
+          "body": "I backed down to a three letter one and found some joy.",
+          "score": 0,
+          "time": 1793476515,
+          "parent": "50317548"
         }
       ]
     },
@@ -103,15 +409,73 @@
       "title": "Show HN: A USB-C LTE modem that gives my computer a phone line",
       "subreddit": "show-hn",
       "author": "abijahkaj",
-      "score": 3,
-      "num_comments": 1,
+      "score": 43,
+      "num_comments": 32,
       "permalink": "https://news.ycombinator.com/item?id=50317331",
       "url": "https://github.com/Koppar-AI/koppar-lte-modem",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1793462201,
-      "created_at": "2026-10-31T15:56:41+00:00"
+      "created_at": "2026-10-31T15:56:41+00:00",
+      "comments_data": [
+        {
+          "id": "50320356",
+          "author": "gruez",
+          "body": ">Where 2G and 3G are switched off, calls need a module firmware with VoLTE and a carrier that allows it; ask the seller.\nThis is a huge caveat. OP, does your setup even support VoLTE? Otherwise this might become a brick in a few years as your carrier shuts down 2G/3G, as many carriers around the world have already done",
+          "score": 0,
+          "time": 1793481609,
+          "parent": "50317331"
+        },
+        {
+          "id": "50319990",
+          "author": "mcculley",
+          "body": "This is great. Apple needs to figure out how to fit one into a 16\" MacBook Pro.",
+          "score": 0,
+          "time": 1793479326,
+          "parent": "50317331"
+        },
+        {
+          "id": "50319590",
+          "author": "Vaushite",
+          "body": "Obviously AI vibed, which means the project probably has never been built and wouldn't work if you built it.",
+          "score": 0,
+          "time": 1793477069,
+          "parent": "50317331"
+        },
+        {
+          "id": "50320640",
+          "author": "whalesalad",
+          "body": "I’d love one of these as a framework module",
+          "score": 0,
+          "time": 1793483789,
+          "parent": "50317331"
+        },
+        {
+          "id": "50318605",
+          "author": "mycall",
+          "body": "Will LTE continue to work when 6G rolls out in 3 years?",
+          "score": 0,
+          "time": 1793471140,
+          "parent": "50317331"
+        },
+        {
+          "id": "50320243",
+          "author": "efren6",
+          "body": "Er",
+          "score": 0,
+          "time": 1793480803,
+          "parent": "50317331"
+        },
+        {
+          "id": "50317342",
+          "author": "abijahkaj",
+          "body": "I wanted a real phone line on my computer: calls and texts on a physical SIM, answered through my headset at my desk, or by a script or an AI agent when I'm away. Cloud numbers get treated as VoIP, and old Android phones give you no clean way to get call audio in and out over USB.\nSo this is a 4-layer USB-C board around a Quectel EC25-EUX. Behind a USB hub, the computer sees an LTE network adapter, the modem's AT serial ports (caller ID, SMS, answer), and an RP2040 acting as a USB sound card. The RP2040 bridges the modem's 1.8 V PCM audio through a level shifter. There's a 3.8 V buck sized for the 2 A GSM bursts, and no battery.\nI wrote the spec as one page of text, and Koppar, the tool I'm building, generated the schematic and the board. Then I reviewed it against the datasheets. The review found a 35 Ω antenna feed that hopped layers, a buck 60 mm from its inductor, and a SIM socket facing into the board. The parts matching would have bought an 18 µH inductor for a 4.7 µH slot. REVIEW.md in the repo has all of it with the numbers.\nStatus: the boards aren't built yet. The repo is the design as I'm ordering it: KiCad 10 project, Gerbers, JLCPCB BOM and placement files. Bring-up and the sound-card firmware come next.\nHappy to answer anything about the audio path or the power design, and I'd like to hear what you'd change before the first bring-up.",
+          "score": 0,
+          "time": 1793462292,
+          "parent": "50317331"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -120,7 +484,7 @@
       "title": "Show HN: Similarity, a spiritual successor to 2000s-era OkCupid",
       "subreddit": "show-hn",
       "author": "stickfigure",
-      "score": 3,
+      "score": 4,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50317309",
       "url": "https://similarity.com",
@@ -147,7 +511,7 @@
       "title": "Show HN: Quit everything to make one website",
       "subreddit": "show-hn",
       "author": "hellojomp",
-      "score": 3,
+      "score": 8,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50317153",
       "url": "https://hellojomp.com/",
@@ -164,7 +528,7 @@
       "title": "Show HN: I built a crawler that finds personal websites by a /.well-known/josh",
       "subreddit": "show-hn",
       "author": "TheWoollyBully",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50316634",
       "url": "https://joshternet.org/",
@@ -173,6 +537,33 @@
       "is_video": false,
       "time": 1793457697,
       "created_at": "2026-10-31T14:41:37+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50315782",
+      "title": "Show HN: A language model that lives in a boot sector",
+      "subreddit": "show-hn",
+      "author": "kerlenton",
+      "score": 51,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50315782",
+      "url": "https://github.com/kerlenton/bootgpt",
+      "selftext": "All the ideas came from the boot sector demo scene where people had been writing chess and BASIC games in 512 bytes, even a C compiler. I wondered what one can do using a neural network instead of a program and generating boot logs for non-existent hardware was something fun to try.\nEntire inference engine is 510 bytes of MBR, weights, vocab, and strings reside in the sectors following MBR. Small char-level neural network was trained on dmesg generated by machine, so machine produces Linux boot messages infinitely.\ntrain.py performs precisely the same integer arithmetic operations as the asm code does and thus produces an output identical character-by-character to the one produced by QEMU. The difference analysis revealed my favorite bug. The characters at the beginning matched those generated by the simulator, but then the output diverged. I retrieved the hidden layer via QEMU’s debug port and compared the neurons' values with those of the simulator, one neuron at a time. Only the value of the first neuron was correct. The activation involves idiv, and idiv stores its remainder in edx. The pointer to the biases table was stored in edx, which resulted in the first neuron being biased correctly and the following ones using garbage. Now the bias' address is determined from the loop counter, and no pointers have to survive the division. Another bug I found simply by looking at the code before I did my first run-through: the BIOS print routine zeros out bx, but bx contains the predicted character number. This explains the push and pop of bx surrounding the print.\nsectorllm is the most similar to my project, as it runs an actual 5-layer llama2 with attention mechanism in just 1.2K of assembly code. It is the trade-off in the opposite direction, as my engine needs to fit into one sector and therefore my network has just one hidden layer of int8 operations for dreaming the dmesg.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793451509,
+      "created_at": "2026-10-31T12:58:29+00:00",
+      "comments_data": [
+        {
+          "id": "50321702",
+          "author": "aDyslecticCrow",
+          "body": "This is the kind of silly engineering that makes me appreciate humans.\nI need reminders sometimes that the world is filled with humans doing wierd things to share with one another.\nNot everything is about economic value or practicality. Making silly shit can be the goal.",
+          "score": 0,
+          "time": 1793493745,
+          "parent": "50315782"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -224,6 +615,23 @@
       "is_video": false,
       "time": 1793449751,
       "created_at": "2026-10-31T12:29:11+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50314508",
+      "title": "Show HN: I rebuilt my old canvas 3D library as a small WebGL 2 library – phoria2",
+      "subreddit": "show-hn",
+      "author": "kevs3d",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50314508",
+      "url": "https://kevs3d.co.uk/phoria2/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793440182,
+      "created_at": "2026-10-31T09:49:42+00:00"
     },
     {
       "source": "hackernews",
