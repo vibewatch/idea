@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-02T06:42:46.636268+00:00",
+  "last_fetched": "2026-11-02T12:32:32.020921+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,15 +10,25 @@
       "title": "Show HN: Quarter – A TUI launcher to browse, search and launch your games",
       "subreddit": "show-hn",
       "author": "stronxyo",
-      "score": 4,
-      "num_comments": 0,
+      "score": 5,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50329627",
       "url": "https://github.com/stronxyo/quarter",
       "selftext": "Quarter sits on top of the launcher client you already have. It grabs your library and hands every action back to the launcher, there's no login or password, no API key or data collection. Your client does everything else.\nQuarter is just a fast shortcut to play your favorite games from the terminal you live in every day. That was my main mission when I created Quarter; just insert quarter, pick a game, press Enter.\nWritten in Go with Bubble Tea, reads Steam's own files on disk; game logos are drawn as pictures in the terminal using Sixel (terminals that don't support it will have a text fallback).\nSteam today; Epic, GOG, EA and more launchers next.\nTested on Windows 11 with Windows Terminal. Did automated checks on Linux and Mac; but no tests as a real human with Steam installed, I appreciate the feedback a lot.\nWhat launcher would you like next?",
       "is_self": false,
       "is_video": false,
       "time": 1793565643,
-      "created_at": "2026-11-01T20:40:43+00:00"
+      "created_at": "2026-11-01T20:40:43+00:00",
+      "comments_data": [
+        {
+          "id": "50334965",
+          "author": "panglesd",
+          "body": "Nice project! I'm curious about the screen records in the README: how were they generated?",
+          "score": 0,
+          "time": 1793614251,
+          "parent": "50329627"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -44,7 +54,7 @@
       "title": "Show HN: Jik – a self-hosted language using region-based memory management",
       "subreddit": "show-hn",
       "author": "scorched_soy",
-      "score": 5,
+      "score": 6,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50329086",
       "url": "https://github.com/jik-lang/jik",
@@ -61,7 +71,7 @@
       "title": "Show HN: Offline project memory for coding agents – no API key, no vector DB",
       "subreddit": "show-hn",
       "author": "krapcys",
-      "score": 2,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50327937",
       "url": "https://github.com/krapcys1-maker/adaptive-agent-memory-research",
@@ -149,8 +159,8 @@
       "title": "Show HN: HackerBooks – HackerTube, but for books mentioned on HN",
       "subreddit": "show-hn",
       "author": "roansh",
-      "score": 1201,
-      "num_comments": 215,
+      "score": 1502,
+      "num_comments": 247,
       "permalink": "https://news.ycombinator.com/item?id=50326821",
       "url": "https://hackerbooks.org",
       "selftext": "Saw Karpathy's HackerTube and wanted the same thing for books. So I had Claude build one (Opus 5.5).\nIt's ~16.5k books that at least two different HN commenters brought up, from 2007 till now. Each book links back to the comments that mentioned it. Data is downloadable from the about page.\nTo be clear: Claude wrote almost all of it, including the data pipeline and the site. I mostly steered and made calls, bought the domain name, etc.\nIt counts mentions, so it's not perfect (praising a book and trashing it both count). If your favourite book is missing or matched to the wrong thing, tell me.",
@@ -160,11 +170,19 @@
       "created_at": "2026-11-01T15:58:28+00:00",
       "comments_data": [
         {
-          "id": "50333399",
-          "author": "corbinh",
-          "body": "Fun skimming through this. I wondered how it would deal with book nicknames and chuckled when I found this entry https://hackerbooks.org/#/book/OL15190817W (https://hackerbooks.org/#/book/OL15190817W)",
+          "id": "50335269",
+          "author": "irisflower95",
+          "body": "We are talking less about books now. The number of book mentions in the site peaked in 2022 and has been decreasing steadily. Is this another effect of LLMs?\nFor all books, I summed their # of mentions across the years. The data show an increasing trend, peaking in 2022 and then decreasing since then:\n2007: 1,062\n2008: 3,248\n2009: 5,206\n2010: 8,942\n2011: 8,330\n2012: 8,200\n2013: 9,808\n2014: 10,436\n2015: 12,618\n2016: 14,173\n2017: 15,231\n2018: 18,001\n2019: 17,928\n2020: 19,613\n2021: 19,996\n2022: 22,797\n2023: 20,178\n2024: 16,103\n2025: 13,738\n2026*: 11,482",
           "score": 0,
-          "time": 1793596858,
+          "time": 1793616981,
+          "parent": "50326821"
+        },
+        {
+          "id": "50333998",
+          "author": "lynguist",
+          "body": "Yes, could you please add a filter for fiction only? Since HN strongly leans towards nonfiction, the fiction ones are just interspersed, and I would like to see just them instead...\nI think fiction books are more important and more \"wholesome\" than nonfiction ones.",
+          "score": 0,
+          "time": 1793604067,
           "parent": "50326821"
         },
         {
@@ -176,11 +194,27 @@
           "parent": "50326821"
         },
         {
-          "id": "50333684",
-          "author": "timzaman",
-          "body": "\"Top All Time\" -> 3rd row -> \"Mein Kampf\"\nSweet.",
+          "id": "50335521",
+          "author": "swaggermaestro",
+          "body": "I'm not sure if the 'recommended' - 'neutral' - 'critical' statistic is reliable here. Like if I told you that 68% of people are neutral about a book, does it mean it's good? Bad? Is it even worth reading?",
           "score": 0,
-          "time": 1793600353,
+          "time": 1793619260,
+          "parent": "50326821"
+        },
+        {
+          "id": "50335858",
+          "author": "codingsh",
+          "body": "That's great, I just built one focused on mentions.",
+          "score": 0,
+          "time": 1793622034,
+          "parent": "50326821"
+        },
+        {
+          "id": "50333399",
+          "author": "corbinh",
+          "body": "Fun skimming through this. I wondered how it would deal with book nicknames and chuckled when I found this entry https://hackerbooks.org/#/book/OL15190817W (https://hackerbooks.org/#/book/OL15190817W)",
+          "score": 0,
+          "time": 1793596858,
           "parent": "50326821"
         },
         {
@@ -192,11 +226,11 @@
           "parent": "50326821"
         },
         {
-          "id": "50333656",
-          "author": "Harukadia",
-          "body": "Great website. My favorite part is the book section, cause I am always finding the truly pragmatic book for engineer. These information are useful for society, especially young enterprenaur as me.",
+          "id": "50334530",
+          "author": "enriquto",
+          "body": "This is great! I love to see the aggregated comments of HN users next to each book.\nBesides linking to bookshop and amazon (weird choices in my opinion), you could also link to bookfinder, anna's archive, libgen. That would be really useful.",
           "score": 0,
-          "time": 1793600049,
+          "time": 1793609974,
           "parent": "50326821"
         },
         {
@@ -208,27 +242,11 @@
           "parent": "50326821"
         },
         {
-          "id": "50330354",
-          "author": "karpathy",
-          "body": "Love it! :)",
+          "id": "50333864",
+          "author": "justauserid",
+          "body": "I have recently tried to check around goodreads alterantives and I came face to face with these ISBNs and ASINs and how these are a hot mess. There's really no truly open metadata source that is \"enough\". App developers often depend on proprietary sources and sadly those are the ones which are more complete and go their own way for every source. How did you deal with that?\nI also finally tried \"Thinking, fast and slow\" recently and realised it was absolutely not for me. Even the audiobook version didn't cut it. I found it completely dry and trite. I am not trying to offend anymoe (esp. with \"trite\"), and I am aware how storied and awarded the author is – to me it just came across as \"yet another self-help kind of book\" sadly. But then a clear lack of fiction for a long time in \"top all-times\" puts into perspective why that book is up at the top. I think the general hn reading-taste is quite different from mine. Also, it's not about what was book about, because I never reached that, it was rather how it was written.\nAny plans to add some sort of tag/genre to search feature?",
           "score": 0,
-          "time": 1793570297,
-          "parent": "50326821"
-        },
-        {
-          "id": "50333358",
-          "author": "aizk",
-          "body": "Inspired by your site, I built out https://wikihack.netlify.app/ (https://wikihack.netlify.app/)\nHackerbooks, but for wikipedia :)\nI hope you enjoy it.",
-          "score": 0,
-          "time": 1793596164,
-          "parent": "50326821"
-        },
-        {
-          "id": "50330808",
-          "author": "card_zero",
-          "body": "Same problem as last time somebody made one of these: what I want to see is not most recommended, but least recommended, like books mentioned exactly twice. But there's no button to sort that way. So I'm flailing around at the top of your infinite scroll trying hopelessly to reach the bottom.",
-          "score": 0,
-          "time": 1793574113,
+          "time": 1793602628,
           "parent": "50326821"
         },
         {
@@ -240,19 +258,11 @@
           "parent": "50326821"
         },
         {
-          "id": "50327283",
-          "author": "MYEUHD",
-          "body": "This was done already, back in 2021!\nhttps://news.ycombinator.com/item?id=28595967 (https://news.ycombinator.com/item?id=28595967)",
+          "id": "50330354",
+          "author": "karpathy",
+          "body": "Love it! :)",
           "score": 0,
-          "time": 1793551743,
-          "parent": "50326821"
-        },
-        {
-          "id": "50333671",
-          "author": "mhclin113",
-          "body": "This is really useful! Thanks for sharing!",
-          "score": 0,
-          "time": 1793600228,
+          "time": 1793570297,
           "parent": "50326821"
         }
       ]
@@ -335,8 +345,8 @@
       "title": "Show HN: OmniDiff – Opensource, super fast, content aware Git difftool, in Rust",
       "subreddit": "show-hn",
       "author": "FabCH",
-      "score": 206,
-      "num_comments": 49,
+      "score": 269,
+      "num_comments": 76,
       "permalink": "https://news.ycombinator.com/item?id=50325253",
       "url": "https://github.com/ivankovic/omnidiff",
       "selftext": "I have been researching what the ultimate diff tool would look like, based on actual diffs in open source repositories.\nOmniDiff can diff: code (25 languages), config, images, PDFs, archives, cursors, fonts...\nIt's fast. It can diff C++ files of tens of thousands of lines in under 100ms, on a 2023 ThinkPad T14s.\nIt's open source. AGPLv3.\nIt's based on real diffs. I looked at the 7400 repositories that are listed in Gentoo packages, sampled 2000 diffs and solved them manually to get a good understanding of what is needed, before putting together the diff pipelines for each content type. Incidentally, this also forms the basis of the CI pipeline, so the robustness of the codebase is quite high.\nI'm still developing it. It's v0.3.0 at this time. But I have been using it daily as my git difftool for months now, and it works well.\nAI Disclosure: Yes, I do use AI. No, I do not vibecode.",
@@ -346,11 +356,27 @@
       "created_at": "2026-11-01T13:02:30+00:00",
       "comments_data": [
         {
+          "id": "50335960",
+          "author": "Tooster",
+          "body": "It would be nice if you checked out lazygit and consider adding support to it's recently added OSC1717, adding supporting for staging in the main diff view directly: https://github.com/stefanhaller/diff-line-metadata-spec (https://github.com/stefanhaller/diff-line-metadata-spec)\nAlso it would be nice to have a more thorough and comprehensive comparison against difftastic, because I don't think there are much, or even any difference to code diffing compared to it: https://ivankovic.github.io/omnidiff/showcase/ (https://ivankovic.github.io/omnidiff/showcase/)\nDoes yours support move + change detection across different files, like A/before.rs => B/after.rs (~some changes)?",
+          "score": 0,
+          "time": 1793622639,
+          "parent": "50325253"
+        },
+        {
           "id": "50333302",
           "author": "blahgeek",
           "body": "> can diff 99.95% of code changes\nI’m not sure if I’m understanding this correctly : so for the remaining 0.05% of code changes, this tool would just… miss it? That seems horrible for a diff tool :O",
           "score": 0,
           "time": 1793595436,
+          "parent": "50325253"
+        },
+        {
+          "id": "50334517",
+          "author": "z0al",
+          "body": "How does it compare to Difftastic[1]? Both built on top of TreeSitter and solve similar problems.\n[1] https://difftastic.wilfred.me.uk/ (https://difftastic.wilfred.me.uk/)",
+          "score": 0,
+          "time": 1793609828,
           "parent": "50325253"
         },
         {
@@ -375,6 +401,14 @@
           "body": "Nicely done OP. Does it do 3-way diffs for merges as well? The instructions only mention the two-way `git difftool` configuration so maybe that'll be a future feature?\nAny interest in getting the setup upstreamed[1] so that users only need to `git config --global diff.tool omnidiff` to enable it by default? Disclosure: I created `git difftool` a long time ago, and am always happy when builtin support for useful tools are added to it. Feel free to reach out if you'd like help making that happen.\n[1] https://github.com/git/git/tree/master/mergetools (https://github.com/git/git/tree/master/mergetools)",
           "score": 0,
           "time": 1793562912,
+          "parent": "50325253"
+        },
+        {
+          "id": "50335301",
+          "author": "gabagoolagonist",
+          "body": "I tried using this as configured with `omnidiff git configure`, but when I use `git difftool` it shows me the entire file in the TUI and I have to scroll down to where diff is. Is this intended behavior? Setting `--context` seems to have no effect.",
+          "score": 0,
+          "time": 1793617263,
           "parent": "50325253"
         },
         {
@@ -415,30 +449,6 @@
           "body": "Really well done, I like this a lot. It produces much more minimal diffs than other tools I've tried.\nOne feature I miss from difftastic is showing diffs side-by-side on wide terminals, and unified when narrow.",
           "score": 0,
           "time": 1793555704,
-          "parent": "50325253"
-        },
-        {
-          "id": "50326856",
-          "author": "cocoto",
-          "body": "How does it compare with diffstatic?",
-          "score": 0,
-          "time": 1793548962,
-          "parent": "50325253"
-        },
-        {
-          "id": "50325592",
-          "author": "paaloeye",
-          "body": "How is it better or worse compared to https://github.com/dandavison/delta (https://github.com/dandavison/delta) ?",
-          "score": 0,
-          "time": 1793540372,
-          "parent": "50325253"
-        },
-        {
-          "id": "50325839",
-          "author": "paaloeye",
-          "body": "Older submission: https://news.ycombinator.com/item?id=49891989 (https://news.ycombinator.com/item?id=49891989)",
-          "score": 0,
-          "time": 1793542039,
           "parent": "50325253"
         }
       ]
@@ -572,8 +582,8 @@
       "title": "Show HN: BBRouter – Ben Eater's 8-bit computer, simulated on 3D breadboards",
       "subreddit": "show-hn",
       "author": "creack",
-      "score": 49,
-      "num_comments": 10,
+      "score": 53,
+      "num_comments": 12,
       "permalink": "https://news.ycombinator.com/item?id=50321522",
       "url": "https://bbrouter.com/bbrouter/ben-eater-sap-1",
       "selftext": "Hi HN,\nI kept wiring Ben Eater's 8-bit computer wrong, so I built a realistic virtual breadboard editor.\nSome of the nice features are side-by-side diff, scope, schematics auto-sync, auto-router (BBRouter stands for breadboard router), and my favorites: upload from the real Arduino IDE and connect to your AI with MCP, let Claude & co build it or help you troubleshoot.\nThe link is the SAP-1 running. You can orbit it, probe a hole with the scope, slow the clock down, play with the virtual displays for debugging, then you can actually build it following the step-by-step instructions.\nA side-goal is to create a community, there are quite a lot of simulators out there but mostly offline / too abstract to realistically use it for a real build. I also never found one that had a decent UI/UX and worked well on mobile or with a trackpad.\nHappy to answer anything, and tell me what breaks.\np.s. Maker plan is $7/month; code HACKERNEWS makes the first month free and then $5/month for as long as you keep it.",
@@ -582,6 +592,14 @@
       "time": 1793491830,
       "created_at": "2026-11-01T00:10:30+00:00",
       "comments_data": [
+        {
+          "id": "50334043",
+          "author": "ofrzeta",
+          "body": "Incidentally I was just thinking about Ben Eater's breadboard setup when I rebuilt a super simple audio circuit (ESP32, MAX98357 ....) from breadboard to a soldered contraption because there was so much noise due to the connectors. Do digital circuits on breadboards not have this problem?",
+          "score": 0,
+          "time": 1793604502,
+          "parent": "50321522"
+        },
         {
           "id": "50327961",
           "author": "jhallenworld",
