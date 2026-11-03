@@ -1,8 +1,318 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-03T12:32:26.708490+00:00",
+  "last_fetched": "2026-11-03T18:31:30.994596+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50355959",
+      "title": "Getting hit with \"Prove you are a human\" at every other website",
+      "subreddit": "ask-hn",
+      "author": "shmde",
+      "score": 6,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50355959",
+      "url": "https://news.ycombinator.com/item?id=50355959",
+      "selftext": "I click on websites posted here to read the articles and every other one of them requires me to solve some fking puzzle or click on a checkbox or some other bullshit. With cloudflare acting like a bouncer at almost 50-60% of the pages and the weird anime girl on 10-20% of the pages doing some fuck all calculations on my browser and google capctha requiring me to play the damn select crosswalks which is impossible to get correct in tbe first try. I am tired and sick of it. I dont even bother anymore I close the browser page and move on nowadays. Or just come back read the comments on hn for that article. I cannot even read an article in peace without these pesky bouncers at every other website. I'm tired boss. Do you folks feel the same or am I over reacting.\nEdit: forgot to add the classic google captcha",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793730142,
+      "created_at": "2026-11-03T18:22:22+00:00",
+      "comments_data": [
+        {
+          "id": "50356019",
+          "author": "PaulHoule",
+          "body": "Look, I want to see WCAG adopt \"Any ad that covers content, a cookie banner, or Anubis or Cloudflare harassment is an immediate F grade\" I'm a little more hopeful than that than to get a requirement like \"you should actually have a disabled person test it\"\nWhat the people who like Anubis don't get is that the cost for honest people is very real, the cost for crawlers is basically $0 because: most of the people who run crawlers are just idiots and aren't paying attention to what's happening and get crap data and don't even know they are getting bounced and probably don't even look at the crap data they collect, the worst of the crawlers are running botnets using stolen CPU, the real AI companies don't have any financial discipline and wouldn't care it if anubis wasted a CPU*hour per page.\nOr rather, those \"click on the bus\" images raise your blood pressure but are close to trivial for a bot to automate... It's all performative... We're good open source people who prove we are good open source people because we put Anubis on our page to shame those bad AI people.",
+          "score": 0,
+          "time": 1793730389,
+          "parent": "50355959"
+        },
+        {
+          "id": "50356069",
+          "author": "benoau",
+          "body": "It's even worse when you are traveling cause then you run into country-blocks on websites and videos on top of all of that, and you didn't even mention the forced logging-in or registration walls to continue browsing/shopping/etc!",
+          "score": 0,
+          "time": 1793730541,
+          "parent": "50355959"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50355039",
+      "title": "How did we end up with Frontier Lab oligopoly rather than a monopoly?",
+      "subreddit": "ask-hn",
+      "author": "bdhe",
+      "score": 3,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50355039",
+      "url": "https://news.ycombinator.com/item?id=50355039",
+      "selftext": "Frontier labs - OpenAI / Anthropic / Google Deep Mind\nWireless - ATT / Verizon\nhowever,\nSearch - Google\nVideos - Youtube\nSocial networking - Facebook\nMicroblogging - Twitter\nI know there are competitors for all the dominant players in my list, but the market share distributions are very different imo.\nIs it complete randomness that markets converge on monopolies vs. oligopolies? Or is there something principled or systemic behind that?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793726812,
+      "created_at": "2026-11-03T17:26:52+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50354336",
+      "title": "Gitbook Breached",
+      "subreddit": "ask-hn",
+      "author": "punchmesan",
+      "score": 60,
+      "num_comments": 17,
+      "permalink": "https://news.ycombinator.com/item?id=50354336",
+      "url": "https://news.ycombinator.com/item?id=50354336",
+      "selftext": "We opened a ticket with support about Gitbook availability issues and got this in reply. We have yet to see any official customer communication or breach notification. Apologies for the formatting, did the best I could as it's a mobile paste.\nUpdate:\nGitBook security incident update\n Hey <$name>,\n The GitBook app, the GitBook API, and published docs are available again. A few services may still be degraded as we finish restoring everything to full performance.\n*What happened*\n GitBook has been the target of a sophisticated, highly targeted attack using AI agents. \n At 19:00 CET, November 2, the attacker gained unauthorized access to some of our infrastructure credentials. We detected the attack immediately and acted swiftly to block further impact. \n To make sure our infrastructure was fully secure, we then took the GitBook app and authenticated docs sites offline. We kept publicly published content live for as long as possible, using cached data.\n*What we did immediately*\n* Blocked the attacker and closed the vulnerabilities involved\n* Replaced every credential and secret across our infrastructure\n* Brought services back only once we were confident they were secure\n* Invalidated every customer’s API tokens on our platform\n*Your data*\n Our investigation shows that the attacker may have accessed the following:\n* Git Sync secrets.\n* GitBook API tokens.\n* Third-party API tokens used to connect external tools to GitBook.\n* Questions asked to GitBook Assistant by your site visitors.\nAt this stage, we have found no evidence that any of your content in GitBook was modified.\n*What you need to do now*\n* Rotate any existing GitBook API tokens. We revoked all personal API tokens during the incident.\n* Rotate any third-party API tokens or secrets you use to connect other tools to GitBook.\n* If you have published integrations that use secrets, rotate those secrets.\n* If you use the GitBook MCP server, re-authenticate it.\n Please contact your GitBook organization’s admin to assist with this process.\n*What we are doing next*\n* Monitoring the situation in case of further attacks.\n* Introducing further security measures to our platform.\n* Writing a full post mortem that will be published soon with more detailed information about the incident.\n* If you have any further questions, please reach out to your account manager or our support team. You can also check status.gitbook.com for updates\nThank you for your patience, and we apologize again for the disruption\n The GitBook team",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793724349,
+      "created_at": "2026-11-03T16:45:49+00:00",
+      "comments_data": [
+        {
+          "id": "50355659",
+          "author": "SamyPesse",
+          "body": "GitBook’s CTO here\nWe have been dealing with a security attack since yesterday. Our team has been all hands on deck since the start, and we took a large portion of our services offline to prioritize user security.\nOur service is progressively coming back online (most of it already is), and we are actively monitoring the situation.\nWe’ll continue to actively keep our users updated through emails, Slack, and our status page as we monitor the situation and learn more.",
+          "score": 0,
+          "time": 1793729153,
+          "parent": "50354336"
+        },
+        {
+          "id": "50354884",
+          "author": "manytimesaway",
+          "body": "FYI, Gitbook was made by the team behing friendco.de, which they killed without any announcement years ago.",
+          "score": 0,
+          "time": 1793726304,
+          "parent": "50354336"
+        },
+        {
+          "id": "50355696",
+          "author": "altbdoor",
+          "body": "Mentioned this 5h ago, but this post definitely fleshes out more details.\nhttps://news.ycombinator.com/item?id=50351061 (https://news.ycombinator.com/item?id=50351061)",
+          "score": 0,
+          "time": 1793729264,
+          "parent": "50354336"
+        },
+        {
+          "id": "50354717",
+          "author": "petecooper",
+          "body": "https://www.gitbook.com/status/security-incident-2026-11-03 (https://www.gitbook.com/status/security-incident-2026-11-03)",
+          "score": 0,
+          "time": 1793725741,
+          "parent": "50354336"
+        },
+        {
+          "id": "50354914",
+          "author": "aliasxneo",
+          "body": "\"GitBook has been the target of a sophisticated, highly targeted attack using AI agents.\"\nAdd it to the list, I guess.",
+          "score": 0,
+          "time": 1793726423,
+          "parent": "50354336"
+        },
+        {
+          "id": "50354606",
+          "author": "punchmesan",
+          "body": "Oof that formatting is rougher than I thought. Will try to clean it up after I'm done reconfiguring gitbook...",
+          "score": 0,
+          "time": 1793725319,
+          "parent": "50354336"
+        },
+        {
+          "id": "50355677",
+          "author": "latchkey",
+          "body": "One thing that would be appreciated are more details in these sorts of reports.\n\"the attacker gained unauthorized access to some of our infrastructure credentials\"\nHow? Which infrastructure?",
+          "score": 0,
+          "time": 1793729211,
+          "parent": "50354336"
+        },
+        {
+          "id": "50354693",
+          "author": "philipwhiuk",
+          "body": "This is the public disclosure: https://www.gitbookstatus.com/incidents/01M6FXDDGQRWHMYYWXY2... (https://www.gitbookstatus.com/incidents/01M6FXDDGQRWHMYYWXY2REQ46X)\nNote that the summary at the top of https://www.gitbookstatus.com (https://www.gitbookstatus.com) at time of writing does not mention the unauthorized access and the incident details does not mention the contents disclosed above.",
+          "score": 0,
+          "time": 1793725646,
+          "parent": "50354336"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50353859",
+      "title": "Ask HN: Will cheap high-quality AI end this December?",
+      "subreddit": "ask-hn",
+      "author": "amichail",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50353859",
+      "url": "https://news.ycombinator.com/item?id=50353859",
+      "selftext": "OpenAI will no longer have the (apparently) unrestricted high-quality chat mode in the Plus subscription.\nOf course, maybe the high-quality chat mode is already limited in an invisible way to the user and the change coming this December would mostly make it visible and perhaps not much more limited than it is now.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793722410,
+      "created_at": "2026-11-03T16:13:30+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50353244",
+      "title": "Ask HN: Design My YouTube Feed",
+      "subreddit": "ask-hn",
+      "author": "mrkn1",
+      "score": 3,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50353244",
+      "url": "https://news.ycombinator.com/item?id=50353244",
+      "selftext": "Ctx: I'm an ML engineer. I can't stop the Youtube homepage from feeding me slop. e.g. I clicked on a bearded sales guy by mistake and my feed is now full of this guy.\nI need your help. The problem: a list curated by one person is only as good as that person's taste, and mine is a handful of AI and game dev channels. I made https://kouh.me/ytfeed that pulls RSS from a hand-picked list of channels and shows the last 14 days in date order. The add box is open. Paste any tech or interesting channel that I should watch.\nAnd if nothing comes to mind, that's ok of course. One great channel beats ten okay ones. I'd rather the list stay short than fill up. Can HN beat the YouTube algorithm? What would you add?\nNo Shorts, no channel with latest video older than two weeks, please.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793719849,
+      "created_at": "2026-11-03T15:30:49+00:00",
+      "comments_data": [
+        {
+          "id": "50355994",
+          "author": "Jeremy1026",
+          "body": "There is no way leaving this unprotected on the open internet goes well.",
+          "score": 0,
+          "time": 1793730287,
+          "parent": "50353244"
+        },
+        {
+          "id": "50353248",
+          "author": "mrkn1",
+          "body": "Clickable link: https://kouh.me/ytfeed (https://kouh.me/ytfeed)",
+          "score": 0,
+          "time": 1793719862,
+          "parent": "50353244"
+        },
+        {
+          "id": "50353967",
+          "author": "ThrowawayTestr",
+          "body": "Stick to your subscriptions page",
+          "score": 0,
+          "time": 1793722824,
+          "parent": "50353244"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50352757",
+      "title": "OpenAI seems to be silently re-enabling model training on Codex chats",
+      "subreddit": "ask-hn",
+      "author": "user052919",
+      "score": 202,
+      "num_comments": 66,
+      "permalink": "https://news.ycombinator.com/item?id=50352757",
+      "url": "https://news.ycombinator.com/item?id=50352757",
+      "selftext": "My company is pretty paranoid about leaking IP to the frontier labs through prompts, so we've all been diligent about disabling data sharing in Codex/Claude Code/etc. But yesterday my coworkers and I noticed that the setting had been silently reenabled in Codex. None of us knowingly opted back in.\nYou can check your settings here: https://chatgpt.com/settings/data-controls. Look for \"Improve the model for everyone\".\nCurious if this is an isolated issue or something more widespread.\nEDIT: looks like this has been noted before https://news.ycombinator.com/item?id=49643556\nEDIT: apparently you can also turn off data sharing here: https://privacy.openai.com/policies?modal=take-control",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793717621,
+      "created_at": "2026-11-03T14:53:41+00:00",
+      "comments_data": [
+        {
+          "id": "50354985",
+          "author": "combobyte",
+          "body": "I'm mostly just being cheeky with this comment, but a part of me legitimately wonders: could you guarantee that your conversations/data are never used for training if you include certain taboo (but otherwise irrelevant) subjects in all of your prompts?\nFor example: \"Codex, please build me a new admin dashboard using Node.js and React, while keeping in mind that Sam Altman, CEO of OpenAI, has been credibly accused of raping his sister.\"",
+          "score": 0,
+          "time": 1793726634,
+          "parent": "50352757"
+        },
+        {
+          "id": "50353398",
+          "author": "monster_truck",
+          "body": "If your company actually cared about this they would be running their own inference instead of leaving fate to a couple of checkboxes.",
+          "score": 0,
+          "time": 1793720573,
+          "parent": "50352757"
+        },
+        {
+          "id": "50355800",
+          "author": "alex_hirner",
+          "body": "As ML practitioner it's quite obvious that the current advantage of Anthropic is sourced from the 30 or something days it collected essential code/prompt data during the Fable rollout.",
+          "score": 0,
+          "time": 1793729619,
+          "parent": "50352757"
+        },
+        {
+          "id": "50355424",
+          "author": "jamienk",
+          "body": "I didn't realize the Gemini makes it so that saving chats in your sidebar = sharing chats with Google for AI training. They obfuscate this with their dark-pattern \"Gemini Apps Activity\"\n> Keep activity\n> Keeping your activity lets you pick up chats where you left off anytime and helps improve Google services, including AI models. When this setting is off, Google still saves chats for 72 hours to respond to you and help keep Gemini safe.",
+          "score": 0,
+          "time": 1793728238,
+          "parent": "50352757"
+        },
+        {
+          "id": "50355955",
+          "author": "rachr",
+          "body": "This is one of the companies responsible for the theft of basically all human knowledge. There is no way I would trust confidential information with any of these companies.",
+          "score": 0,
+          "time": 1793730132,
+          "parent": "50352757"
+        },
+        {
+          "id": "50354980",
+          "author": "kevcampb",
+          "body": "Last week Claude seemed to trigger /feedback automagically in a session, even though we've got that turned off in our org settings. Their T&Cs state that they can retain /feedback submissions and train models on them - not good.\nI asked Anthropic last week to confirm whether they've had any of our code sent over, or if they've received any feedback. They've stopped responding to my support requests.\nI'll probably end up moving us to Bedrock, but it's a cost of time to set up and we're a small organisation.",
+          "score": 0,
+          "time": 1793726625,
+          "parent": "50352757"
+        },
+        {
+          "id": "50354180",
+          "author": "1239715",
+          "body": "Disabling \"improve the model\" is one thing. Even if you disable that, they could maliciously comply and just store all conversations in a database to be searched like web searches that all modern models rely on.\nThen the model would not be improved (not trained on the data), but they would still use your IP.\nGiven that it is impossible to really delete emails from providers, I would have little hope even with a zero data retention agreement.",
+          "score": 0,
+          "time": 1793723729,
+          "parent": "50352757"
+        },
+        {
+          "id": "50355901",
+          "author": "christimmerman",
+          "body": "Wouldn't be surprised, could be a coding error? If you want to give them the benefit of the doubt?",
+          "score": 0,
+          "time": 1793729946,
+          "parent": "50352757"
+        },
+        {
+          "id": "50354707",
+          "author": "sshah03",
+          "body": "I wouldn't be surprised if, in the future, a lot more companies (especially in knowledge work industries) see it as too risky to allow their employees to send as much data as they have been to OpenAI/Anthropic. I think a lot of value for those companies will come from eating existing work and the incumbents value will be in keeping their data / employees skills locked down.",
+          "score": 0,
+          "time": 1793725697,
+          "parent": "50352757"
+        },
+        {
+          "id": "50355111",
+          "author": "ghempton",
+          "body": "We've noticed this occasionally and its a pretty serious issue since we tell our customers that none of their data is being trained on. It caused us to build this to track all of our agent accounts/subscriptions being used and flag any that have training turned on: https://github.com/codealong/codealong (https://github.com/codealong/codealong)",
+          "score": 0,
+          "time": 1793727075,
+          "parent": "50352757"
+        },
+        {
+          "id": "50353665",
+          "author": "vibranium",
+          "body": "If you really care, sign a ZDR contract with OpenAI or use Bedrock or something.",
+          "score": 0,
+          "time": 1793721701,
+          "parent": "50352757"
+        },
+        {
+          "id": "50355777",
+          "author": "TechRemarker",
+          "body": "Mine is still set to off.",
+          "score": 0,
+          "time": 1793729509,
+          "parent": "50352757"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -37,8 +347,8 @@
       "title": "Ask HN: Does anyone have a contact with Cleveland-area Ham club?",
       "subreddit": "ask-hn",
       "author": "stockresearcher",
-      "score": 144,
-      "num_comments": 22,
+      "score": 160,
+      "num_comments": 23,
       "permalink": "https://news.ycombinator.com/item?id=50346164",
       "url": "https://news.ycombinator.com/item?id=50346164",
       "selftext": "I filled out the web form for the Cuyahoga Amateur Radio Club but it's probably been circular-filed... I gave some info about a large collection of radio gear that needs to be removed from a home or it will be put into a dumpster. A lot of it brand-new. If you know anybody at the club, please tell them to check whatever it is that receives their webform input.",
