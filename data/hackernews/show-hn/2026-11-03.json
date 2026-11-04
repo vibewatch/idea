@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-04T00:42:47.504126+00:00",
+  "last_fetched": "2026-11-04T06:35:27.030587+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,7 +10,7 @@
       "title": "Show HN: Modelpeers – a changelog for the AI models and agents you use",
       "subreddit": "show-hn",
       "author": "liorgrossman",
-      "score": 2,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50359805",
       "url": "https://modelpeers.com",
@@ -27,15 +27,57 @@
       "title": "Show HN: Uncracked City, detective game where you question LLM suspects that lie",
       "subreddit": "show-hn",
       "author": "passkey1510",
-      "score": 3,
-      "num_comments": 0,
+      "score": 21,
+      "num_comments": 9,
       "permalink": "https://news.ycombinator.com/item?id=50358352",
       "url": "https://uncracked.city",
       "selftext": "To give you some context on the project. I'm a solo founder and I use AI heavily in my work. The idea came from wanting players to discover cities. Each city has its own history, so every case is set in a real city with real public places. The crime and the people are on other hand invented. The part that I care most is the playable aspect of the game, a model plays the detective and must solve the case before it goes live.\nAs of today: it's free on Android, the iOS version is still waiting to be reviewed by Apple. It's available in six popular languages, but adding more languages is just a matter of time and demand.My long term vision if it takes off: weekly cases, private parties like a team-building escape game, an MCP so a game master can build their own scenario from ChatGPT or Claude, and maybe tourism offices since players travel the world.",
       "is_self": false,
       "is_video": false,
       "time": 1793740803,
-      "created_at": "2026-11-03T21:20:03+00:00"
+      "created_at": "2026-11-03T21:20:03+00:00",
+      "comments_data": [
+        {
+          "id": "50362082",
+          "author": "patrickskim",
+          "body": "haha very neat! Just curious how are you planning to make it free with the inference cost? Even with a luna or haiku its still a non zero cost to run per session.",
+          "score": 0,
+          "time": 1793773619,
+          "parent": "50358352"
+        },
+        {
+          "id": "50361965",
+          "author": "unintelligibled",
+          "body": "You should probably put some better examples of writing in the first trailer, especially if the game involves a lot of reading. Asides from just sounding horribly bland, there's only two sentences of dialogue shown and the character says \"honestly\" in BOTH of them.",
+          "score": 0,
+          "time": 1793772494,
+          "parent": "50358352"
+        },
+        {
+          "id": "50362035",
+          "author": "ghgr",
+          "body": "Cool concept! It reminds me of the 1985 videogame Where in the World Is Carmen Sandiego. What a blast!",
+          "score": 0,
+          "time": 1793773193,
+          "parent": "50358352"
+        },
+        {
+          "id": "50361234",
+          "author": "reactordev",
+          "body": "When I was growing up there was a wonderfully made interactive “novel” game on early Macintosh called Sherlock Holmes. I’ve always wondered when we’ll get to a point where this can be done ad-hoc with any potential crime thriller. LA Noir introduced nuanced facial movements and dialog chains but I keep going back to that 1990s era Sherlock Holmes Consulting Detective.",
+          "score": 0,
+          "time": 1793763302,
+          "parent": "50358352"
+        },
+        {
+          "id": "50361178",
+          "author": "loloquwowndueo",
+          "body": "Talking to lying LLMs is what I do all day for work. Can’t imagine I’d want to do the same in my free time.",
+          "score": 0,
+          "time": 1793762701,
+          "parent": "50358352"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -44,8 +86,8 @@
       "title": "Show HN: Kairos – Open-source risk and fraud decisioning platform",
       "subreddit": "show-hn",
       "author": "ayanb9440",
-      "score": 47,
-      "num_comments": 5,
+      "score": 83,
+      "num_comments": 17,
       "permalink": "https://news.ycombinator.com/item?id=50358314",
       "url": "https://github.com/finic-ai/kairos",
       "selftext": "Hey HN, Ayan here from Finic. We’re launching Kairos, an open source alternative to Sift, Sardine, and other real-time fraud decisioning platforms. Kairos addresses two of the biggest problems facing traditional decisioning tools: a lack of labeled data to train on and dealing with fraudsters that are constantly changing their tactics.\n1. Traditional fraud solutions use ML models such as XGBoost to detect fraud, but these models are dependent on quality labeled data which many businesses do not have. We address this by using “System One” decision models in additional to traditional models such as XGBoost and logistic regression. This allows you to incorporate plain language questions such as “Is this a throwaway email” into your decisioning, bypassing the need for large amounts of labeled data. This also allows you to capture aspects of fraud that are more unstructured, which is something that XGBoost models struggle with.\n2. Fraud teams are facing off with live players that are constantly changing their behavior to bypass the detection logic they have in place. You can train a detection model or define a ruleset once, but it will become obsolete in a matter of weeks as fraudsters figure out what your detection logic is. This means that you need a team regularly training models and updating rules based on new fraud patterns. Typically this takes a large data science/ML team. Kairos addresses this by introducing an MCP server, so that your agent (Claude Code, Cursor, Codex, etc.) can define a decision workflow, train models on your data, and pick the variant that performs best.\nYou can self-host Kairos with Docker or use the hosted version at https://kairos.finic.ai (https://kairos.finic.ai)",
@@ -55,11 +97,43 @@
       "created_at": "2026-11-03T21:16:48+00:00",
       "comments_data": [
         {
+          "id": "50361837",
+          "author": "factotvm",
+          "body": "I love that this is open source, thank you. I'm not a fan of TypeScript on Node for this solution space. For a payment gateway, I'd want a program that can't modify itself from external sources. Programs in this runtime can rewrite themselves while running, and the Dockerfile doesn't lock it down. So as it stands, nothing at the runtime level prevents prototype pollution. And a config defect is the kind of bug that keeps on giving.",
+          "score": 0,
+          "time": 1793770708,
+          "parent": "50358314"
+        },
+        {
+          "id": "50361227",
+          "author": "bradknowles",
+          "body": "This isn’t really a new problem. Back in 1995, I was the Sr. Internet Mail Administrator at AOL. We were doing everything we could to fight the spammers.\nWe found that we would work on a new technique over a period of weeks or months, and then they would find a way to work around our technique in a single weekend.\nRinse and repeat.\nThe only thing that has changed is that the market for scammers has moved, and they’ve gotten a lot better and faster at adapting to your protection techniques.",
+          "score": 0,
+          "time": 1793763202,
+          "parent": "50358314"
+        },
+        {
           "id": "50359524",
           "author": "edude03",
           "body": "Not something I need but super cool that this is both open source and shows the realtime flow.",
           "score": 0,
           "time": 1793747531,
+          "parent": "50358314"
+        },
+        {
+          "id": "50360390",
+          "author": "tensegrist",
+          "body": "this is a new one\nhttps://news.ycombinator.com/item?id=49610571 (https://news.ycombinator.com/item?id=49610571)",
+          "score": 0,
+          "time": 1793754686,
+          "parent": "50358314"
+        },
+        {
+          "id": "50361337",
+          "author": "octoberfranklin",
+          "body": "Is anybody else annoyed by made-up words like \"decisioning\" and \"proofing\"?\nYou can't slap \"ing\" on a noun. It's for verbs. Stop nouning.",
+          "score": 0,
+          "time": 1793764559,
           "parent": "50358314"
         },
         {
@@ -79,7 +153,7 @@
       "title": "Show HN: ZapFast, Native WhatsApp for Linux, macOS, and Windows with Calls",
       "subreddit": "show-hn",
       "author": "earcar",
-      "score": 3,
+      "score": 4,
       "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50357326",
       "url": "https://zapfast.rocks/",
@@ -123,7 +197,7 @@
       "subreddit": "show-hn",
       "author": "maroofkhan2007",
       "score": 5,
-      "num_comments": 5,
+      "num_comments": 6,
       "permalink": "https://news.ycombinator.com/item?id=50357042",
       "url": "https://recto.design",
       "selftext": "",
@@ -174,7 +248,7 @@
       "title": "Show HN: Graftfork: rebase fork patches onto each upstream release, test-gated",
       "subreddit": "show-hn",
       "author": "craigm26",
-      "score": 2,
+      "score": 3,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50356948",
       "url": "https://graftfork.com/try",
@@ -310,7 +384,7 @@
       "title": "Show HN: Interactive notes on RLHF, attention, LoRA and LLM evals",
       "subreddit": "show-hn",
       "author": "laxmena",
-      "score": 39,
+      "score": 40,
       "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50353468",
       "url": "https://concepts.laxmena.com/",
@@ -321,19 +395,19 @@
       "created_at": "2026-11-03T15:48:35+00:00",
       "comments_data": [
         {
-          "id": "50359428",
-          "author": "annjose",
-          "body": "I found this quite useful to understand the concepts of eval, in an interactive way.",
-          "score": 0,
-          "time": 1793746811,
-          "parent": "50353468"
-        },
-        {
           "id": "50355755",
           "author": "thatcherc",
           "body": "I find some of these to be a little confusing, like an important detail is left out. In the RLHF one [0], for example, it makes sense that setting beta high pulls to distribution toward the \"how likely the starting model was\" distribution. But why does a low beta select for only the \"Polished, wrong\" and a low-ish beta (beta=0.16) allow for \"Polished, wrong\" and \"Worked example\", but completely suppress \"I’m not sure\" and \"one line answer\". It seems like there's some other distribution (the reward model maybe?) that's not shown in the interactive part, that makes it harder to understand than the text. It feels weird that the reward model part would be hidden and all the emphasis would be instead placed on the beta regularization parameter.\nCommit history mentions Sonnet 5.5 so maybe that's the cause?\n[0] - https://concepts.laxmena.com/concepts/rlhf/ (https://concepts.laxmena.com/concepts/rlhf/)",
           "score": 0,
           "time": 1793729436,
+          "parent": "50353468"
+        },
+        {
+          "id": "50359428",
+          "author": "annjose",
+          "body": "I found this quite useful to understand the concepts of eval, in an interactive way.",
+          "score": 0,
+          "time": 1793746811,
           "parent": "50353468"
         },
         {
@@ -353,7 +427,7 @@
       "title": "Show HN: HackerChurn – which SaaS tools HN wants to cancel",
       "subreddit": "show-hn",
       "author": "drewlem",
-      "score": 68,
+      "score": 70,
       "num_comments": 24,
       "permalink": "https://news.ycombinator.com/item?id=50353386",
       "url": "https://hissingkitty.com/hacker-churn",
@@ -485,8 +559,8 @@
       "title": "Show HN: Election.run – election night in one window",
       "subreddit": "show-hn",
       "author": "vegcel",
-      "score": 4,
-      "num_comments": 0,
+      "score": 8,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50353127",
       "url": "https://election.run/",
       "selftext": "For this election cycle, I just wanted to lean back and have the perfect customized feed instead of the usual 20 browser tabs and constant refreshing. With this dashboard, you can customize the sources, change the layout, see all the odds and results in one window. Everything you need for election night (alcohol not included). It's completely free, with no sign up, no ads, nothing. Enjoy everyone, have a good night.\n(BTW, .run domains are severely underrated)",
@@ -598,7 +672,7 @@
       "title": "Show HN: Kvittas, an Expense Splitting App",
       "subreddit": "show-hn",
       "author": "primalscreamer",
-      "score": 10,
+      "score": 11,
       "num_comments": 8,
       "permalink": "https://news.ycombinator.com/item?id=50351427",
       "url": "https://kvittas.app",
@@ -617,19 +691,19 @@
           "parent": "50351427"
         },
         {
-          "id": "50352905",
-          "author": "f1yingbanana",
-          "body": "Wait, don't we already have so many other expense splitting apps? What's the advantage of this one?",
-          "score": 0,
-          "time": 1793718223,
-          "parent": "50351427"
-        },
-        {
           "id": "50351942",
           "author": "hmokiguess",
           "body": "iOS 27 brought this natively now https://www.bloomberg.com/news/articles/2026-06-01/ios-27-wa... (https://www.bloomberg.com/news/articles/2026-06-01/ios-27-watchos-27-apple-cash-feature-to-split-bills-using-receipt-photo)\nI like that you made yours account free",
           "score": 0,
           "time": 1793713786,
+          "parent": "50351427"
+        },
+        {
+          "id": "50352905",
+          "author": "f1yingbanana",
+          "body": "Wait, don't we already have so many other expense splitting apps? What's the advantage of this one?",
+          "score": 0,
+          "time": 1793718223,
           "parent": "50351427"
         },
         {
@@ -657,7 +731,7 @@
       "title": "Show HN: Bema: Work messaging built for humans",
       "subreddit": "show-hn",
       "author": "ben_d",
-      "score": 24,
+      "score": 25,
       "num_comments": 20,
       "permalink": "https://news.ycombinator.com/item?id=50351404",
       "url": "https://getbema.app/",
@@ -700,19 +774,19 @@
           "parent": "50351404"
         },
         {
-          "id": "50352398",
-          "author": "hmokiguess",
-          "body": "Signal to noise ratio is such a frustrating problem to solve.\nI really wish you succeed and I will take whoever claims that space if they manage to do it right, I am burnt out from all messaging apps and utterly dissatisfied with where things are.\nI wish we stayed on IRC, that was peak.",
-          "score": 0,
-          "time": 1793715990,
-          "parent": "50351404"
-        },
-        {
           "id": "50351999",
           "author": "drcongo",
           "body": "It says \"Connect with your current messaging provider\" and then never mentions that ability again. What does that look like?\nPersonally, I absolutely despise what Slack has become and would love to replace it, but I can't see anything about this app that might persuade me or my coworkers to install it.\nedit: Don't mean to sound harsh about what you've built, but that page is not selling the app for you!",
           "score": 0,
           "time": 1793714066,
+          "parent": "50351404"
+        },
+        {
+          "id": "50352398",
+          "author": "hmokiguess",
+          "body": "Signal to noise ratio is such a frustrating problem to solve.\nI really wish you succeed and I will take whoever claims that space if they manage to do it right, I am burnt out from all messaging apps and utterly dissatisfied with where things are.\nI wish we stayed on IRC, that was peak.",
+          "score": 0,
+          "time": 1793715990,
           "parent": "50351404"
         }
       ]
@@ -819,7 +893,7 @@
       "title": "Show HN: Mintype – Free, zero-knowledge notes app with whiteboards (AGPL)",
       "subreddit": "show-hn",
       "author": "project59",
-      "score": 5,
+      "score": 8,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50348805",
       "url": "https://mintype.app",
@@ -1007,7 +1081,7 @@
       "title": "Show HN: I built a little browser game to practice Vim commands",
       "subreddit": "show-hn",
       "author": "dh1011",
-      "score": 66,
+      "score": 68,
       "num_comments": 49,
       "permalink": "https://news.ycombinator.com/item?id=50347552",
       "url": "https://hjkl.duy.run",
@@ -1034,19 +1108,19 @@
           "parent": "50347552"
         },
         {
-          "id": "50349462",
-          "author": "autuni",
-          "body": "I have considered getting into Vim a couple of times because it always seemed like the thing to do, but never did.\nIt does not make sense to me that I should use an editor I need to study and practice for. It can't possibly that much more efficient, especially given that usually speed is not the limiting factor for what I do.\nMaybe one day I will be tempted to find out why it's supposedly worth it again.",
-          "score": 0,
-          "time": 1793694288,
-          "parent": "50347552"
-        },
-        {
           "id": "50351387",
           "author": "gosen",
           "body": "cool! but I have a problem, how can I exit this game?",
           "score": 0,
           "time": 1793710165,
+          "parent": "50347552"
+        },
+        {
+          "id": "50349462",
+          "author": "autuni",
+          "body": "I have considered getting into Vim a couple of times because it always seemed like the thing to do, but never did.\nIt does not make sense to me that I should use an editor I need to study and practice for. It can't possibly that much more efficient, especially given that usually speed is not the limiting factor for what I do.\nMaybe one day I will be tempted to find out why it's supposedly worth it again.",
+          "score": 0,
+          "time": 1793694288,
           "parent": "50347552"
         },
         {
@@ -1066,19 +1140,19 @@
           "parent": "50347552"
         },
         {
-          "id": "50353241",
-          "author": "wjgilmore",
-          "body": "Just wanted to say I really love your project! Using Vim and TMUX more than ever these days alongside the Claude Code terminal integration, so this is a great tool to become even more proficient with Vim movements.",
-          "score": 0,
-          "time": 1793719819,
-          "parent": "50347552"
-        },
-        {
           "id": "50348400",
           "author": "jaydonb",
           "body": "This is great, definitely going to be using this to practice!\nOne note: It might be useful to keep the \"undo\" prompt when the user messes up after the first two prompted lessons for a clear recovery path.\nThank you for making this!",
           "score": 0,
           "time": 1793683265,
+          "parent": "50347552"
+        },
+        {
+          "id": "50353241",
+          "author": "wjgilmore",
+          "body": "Just wanted to say I really love your project! Using Vim and TMUX more than ever these days alongside the Claude Code terminal integration, so this is a great tool to become even more proficient with Vim movements.",
+          "score": 0,
+          "time": 1793719819,
           "parent": "50347552"
         },
         {
@@ -1090,11 +1164,11 @@
           "parent": "50347552"
         },
         {
-          "id": "50356468",
-          "author": "aakashpawar",
-          "body": "Man, I love the idea. This is Good!\nHey, is there a way we can add new challenges?",
+          "id": "50349196",
+          "author": "parasti",
+          "body": "This got a laugh out of me. I guess I practiced vim commands in the most boring way - by using vim.",
           "score": 0,
-          "time": 1793732190,
+          "time": 1793691765,
           "parent": "50347552"
         },
         {
@@ -1106,11 +1180,11 @@
           "parent": "50347552"
         },
         {
-          "id": "50349196",
-          "author": "parasti",
-          "body": "This got a laugh out of me. I guess I practiced vim commands in the most boring way - by using vim.",
+          "id": "50348951",
+          "author": "alabhyajindal",
+          "body": "very cool! one feedback - when i selected all skills the game started with all the options of \"fix a typo\" first - i would like a version where all the challenges are jumbled up.\nalso there is an opportunity to turn this into something like vim.golf but in the browser",
           "score": 0,
-          "time": 1793691765,
+          "time": 1793689393,
           "parent": "50347552"
         }
       ]
@@ -1190,8 +1264,8 @@
       "title": "Show HN: Hacker Times, a New York Times-inspired version of Hacker News",
       "subreddit": "show-hn",
       "author": "polpenn",
-      "score": 450,
-      "num_comments": 143,
+      "score": 452,
+      "num_comments": 146,
       "permalink": "https://news.ycombinator.com/item?id=50346981",
       "url": "https://hackertimes.ca/",
       "selftext": "I thought it would be fun to browse HN as if it were a newspaper. The site updates once an hour. Enjoy!",
@@ -1233,19 +1307,19 @@
           "parent": "50346981"
         },
         {
+          "id": "50349540",
+          "author": "woggy",
+          "body": "I think I'd prefer NYT in Hackernews form",
+          "score": 0,
+          "time": 1793695058,
+          "parent": "50346981"
+        },
+        {
           "id": "50351406",
           "author": "smileybarry",
           "body": "I personally don't like the AI-rephrased titles, they feel too editorialized and similar to each other. I realise AI-rephrasing is necessary for the description, but I think the title should (optionally?) be left alone. Could be a toggle.",
           "score": 0,
           "time": 1793710280,
-          "parent": "50346981"
-        },
-        {
-          "id": "50352120",
-          "author": "DivingForGold",
-          "body": "Attempting to steal HN's thunder ? Knowing the NYT's, the ads and the Nag Screens will come shortly.",
-          "score": 0,
-          "time": 1793714635,
           "parent": "50346981"
         },
         {
@@ -1257,11 +1331,19 @@
           "parent": "50346981"
         },
         {
-          "id": "50349540",
-          "author": "woggy",
-          "body": "I think I'd prefer NYT in Hackernews form",
+          "id": "50352120",
+          "author": "DivingForGold",
+          "body": "Attempting to steal HN's thunder ? Knowing the NYT's, the ads and the Nag Screens will come shortly.",
           "score": 0,
-          "time": 1793695058,
+          "time": 1793714635,
+          "parent": "50346981"
+        },
+        {
+          "id": "50347483",
+          "author": "duckkg5",
+          "body": "This is great! Very readable and feels like a nice way to browse articles. I tend to gloss over stuff in the HN wall of text sometimes so this breaks the links up in a useful way. Nice job.",
+          "score": 0,
+          "time": 1793674909,
           "parent": "50346981"
         },
         {
@@ -1273,19 +1355,11 @@
           "parent": "50346981"
         },
         {
-          "id": "50355958",
-          "author": "mnhcorp",
-          "body": "Nice typography, reminds me of something I built earlier in the year.\nShameless plug: https://rnn.news/ (https://rnn.news/)",
+          "id": "50347933",
+          "author": "theodpHN",
+          "body": "Neat. To-do: Give HN the ONION treatment? :-) https://theonion.com/ (https://theonion.com/)",
           "score": 0,
-          "time": 1793730133,
-          "parent": "50346981"
-        },
-        {
-          "id": "50347483",
-          "author": "duckkg5",
-          "body": "This is great! Very readable and feels like a nice way to browse articles. I tend to gloss over stuff in the HN wall of text sometimes so this breaks the links up in a useful way. Nice job.",
-          "score": 0,
-          "time": 1793674909,
+          "time": 1793678802,
           "parent": "50346981"
         },
         {
@@ -1305,8 +1379,8 @@
       "title": "Show HN: HackerTV – HN's most-recommended Youtube videos as 24/7 TV channels",
       "subreddit": "show-hn",
       "author": "dsalzman",
-      "score": 150,
-      "num_comments": 33,
+      "score": 271,
+      "num_comments": 55,
       "permalink": "https://news.ycombinator.com/item?id=50346755",
       "url": "https://hackertv.org",
       "selftext": "I saw HackerTube (https://news.ycombinator.com/item?id=50319510 (https://news.ycombinator.com/item?id=50319510)) a few days ago, the YouTube videos HN keeps\nrecommending, pulled from 19 years of comments. It made me want to flip\nthrough them instead of picking, so I built a TV for it. I have Algo fatigue.\nEach topic area is a channel (DEVTV, SOLDER, RETRO, ORBIT, ...), plus HN Prime\n(the top 400), a music channel, and Late Night on ch 99, which only broadcasts\n11pm-5am your local time and shows color bars otherwise.\nSimilar to HackerTube it was built with Claude Code in a few hours.\nAll credit for the data goes to HackerTube. Happy to hear channel ideas.",
@@ -1316,11 +1390,67 @@
       "created_at": "2026-11-03T01:18:09+00:00",
       "comments_data": [
         {
-          "id": "50359996",
-          "author": "gavmor",
-          "body": "Yup, exactly what I wanted as soon as I saw Hackertube",
+          "id": "50362123",
+          "author": "tesnorindian",
+          "body": "Looks really cool. Got me back to my old TV days.",
           "score": 0,
-          "time": 1793751042,
+          "time": 1793774101,
+          "parent": "50346755"
+        },
+        {
+          "id": "50361320",
+          "author": "spditner",
+          "body": "What I would like to see for vibe coded novelty apps that are not realistically going to see updates are the prompts-as-source. For instance, I one-shotted a Roku app to play the HackerTube listings, and it works good enough:\n Build a sideloadable Roku channel/app for browsing and playing videos from\n https://hackertube.org/. Inspect HackerTube's API or video pages and use Roku\n BrightScript/SceneGraph. Deliver a complete zipped Roku channel with source,\n setup instructions, and any necessary metadata/proxy details. Aim for Roku\n Developer Mode sideloading.",
+          "score": 0,
+          "time": 1793764374,
+          "parent": "50346755"
+        },
+        {
+          "id": "50361633",
+          "author": "asimjalis",
+          "body": "Nice. I like this. One minor usability issue I saw. In the guide, the channels start with the lowest on top and then go down to the higher ones. But the up and down arrows work the opposite way. For example, the down arrow moves me to a lower channel, which is the opposite direction of the guide. Maybe there is no elegant solution to this.",
+          "score": 0,
+          "time": 1793768106,
+          "parent": "50346755"
+        },
+        {
+          "id": "50361060",
+          "author": "5555watch",
+          "body": "Oh damn this is much cooler than I expected! For some reason skimming through channels is more enjoyable than click a video I'd probably wouldn't click on",
+          "score": 0,
+          "time": 1793761338,
+          "parent": "50346755"
+        },
+        {
+          "id": "50361193",
+          "author": "thechairman12",
+          "body": "Okay, this is the best one I have seen. Thank you.",
+          "score": 0,
+          "time": 1793762805,
+          "parent": "50346755"
+        },
+        {
+          "id": "50361722",
+          "author": "thoughtpeddler",
+          "body": "I kept flipping channels until I got to a clip of Zuck in 2005 saying:\n> \"We're trying to figure out what to do with Apple. We're obviously sensitive to people's privacy.\"\nWow.",
+          "score": 0,
+          "time": 1793769330,
+          "parent": "50346755"
+        },
+        {
+          "id": "50360980",
+          "author": "richardw",
+          "body": "Love the multitude of ideas! Upvoted. I did repo’s a couple days ago:\nhttps://news.ycombinator.com/item?id=50342272 (https://news.ycombinator.com/item?id=50342272)\nIt has some cool stuff if you click around some. Feedback very welcome!",
+          "score": 0,
+          "time": 1793760477,
+          "parent": "50346755"
+        },
+        {
+          "id": "50361701",
+          "author": "vavooom",
+          "body": "This did scratch a nostalgic itch honestly! Great execution of interluding into the middle of episodes as well to feel organic and live.",
+          "score": 0,
+          "time": 1793768995,
           "parent": "50346755"
         },
         {
@@ -1332,83 +1462,27 @@
           "parent": "50346755"
         },
         {
-          "id": "50359671",
-          "author": "redbell",
-          "body": "Well done, love it. It, somehow, reminded me of this Show HN from two years ago: https://news.ycombinator.com/item?id=41247023 (https://news.ycombinator.com/item?id=41247023)",
+          "id": "50360223",
+          "author": "surya_waters",
+          "body": "Love it ! Thank you for creating this. I am in the process of minimizing my digital consumption and was looking for something like this to live like if it's the 70s. Shameless plug: i have two chrome plugins to reduce digital distractions if anyone is interested. \nSanctum : https://chromewebstore.google.com/detail/sanctum-its-time-to... (https://chromewebstore.google.com/detail/sanctum-its-time-to-focus/cbibfccpchmdgnamgemdfmoijadjilbn)\nFlowTube : https://chromewebstore.google.com/detail/flowtube-%E2%80%93-... (https://chromewebstore.google.com/detail/flowtube-%E2%80%93-distraction-fr/cppgodeleiojlickmcgobbcdfpjifhdf)",
           "score": 0,
-          "time": 1793748634,
+          "time": 1793753102,
           "parent": "50346755"
         },
         {
-          "id": "50359853",
-          "author": "ks2048",
-          "body": "Does Youtube try to block third-party front-ends, or no?",
+          "id": "50360696",
+          "author": "low_tech_punk",
+          "body": "I'm wondering how come there is no ads? Why would YouTube allow this type of embedded player?",
           "score": 0,
-          "time": 1793749864,
+          "time": 1793757472,
           "parent": "50346755"
         },
         {
-          "id": "50359095",
-          "author": "unquietwiki",
-          "body": "This reminds me of https://spelunkr.tv/ (https://spelunkr.tv/), except without the 90s channel guide. That effort is using Internet Archive videos to populate channels.",
+          "id": "50360711",
+          "author": "dsalzman",
+          "body": "Creator here - thankful and appreciative of all the positive comments. I hope people enjoy!",
           "score": 0,
-          "time": 1793744580,
-          "parent": "50346755"
-        },
-        {
-          "id": "50358980",
-          "author": "nomilk",
-          "body": "A version of this that's only live videos would be cool.",
-          "score": 0,
-          "time": 1793743918,
-          "parent": "50346755"
-        },
-        {
-          "id": "50358747",
-          "author": "jimmiles",
-          "body": "This one is the best of the bunch so far (I loved the books one, too, though!). This one has potential! May it never be vibe-abandoned!",
-          "score": 0,
-          "time": 1793742873,
-          "parent": "50346755"
-        },
-        {
-          "id": "50359690",
-          "author": "krat0sprakhar",
-          "body": "Haha this is so well done! Love it!",
-          "score": 0,
-          "time": 1793748806,
-          "parent": "50346755"
-        },
-        {
-          "id": "50359753",
-          "author": "101rakibulhasan",
-          "body": "Finally a competitor",
-          "score": 0,
-          "time": 1793749199,
-          "parent": "50346755"
-        },
-        {
-          "id": "50358892",
-          "author": "sebastianconcpt",
-          "body": "I love the skeumorphism you put on it!",
-          "score": 0,
-          "time": 1793743455,
-          "parent": "50346755"
-        },
-        {
-          "id": "50359571",
-          "author": "entropie",
-          "body": "Very well done.",
-          "score": 0,
-          "time": 1793747917,
-          "parent": "50346755"
-        },
-        {
-          "id": "50358574",
-          "author": "joaobotelho423",
-          "body": "I found it a very cool concept",
-          "score": 0,
-          "time": 1793741985,
+          "time": 1793757629,
           "parent": "50346755"
         }
       ]
