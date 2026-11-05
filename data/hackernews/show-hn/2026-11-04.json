@@ -1,8 +1,35 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-05T00:43:29.541341+00:00",
+  "last_fetched": "2026-11-05T06:36:04.662482+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50372526",
+      "title": "Show HN: Using GPUs for other bs than AI – important prime record for the geeks",
+      "subreddit": "show-hn",
+      "author": "mvojvoda",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50372526",
+      "url": "https://github.com/djuk8/beacon/",
+      "selftext": "Hey HN, if you want to be new prime gap hero here is the code that runs and gets you biggest merits (everyone knows what that is in prime world). I spent months to tune it, and in the last few days got couple of top 10 records just by testing. So get you precious GPU time, run the code and become world no 1 in prime merits because it will make you cool, just not to your friends, girlfriend or family. Help the geek cause!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793832234,
+      "created_at": "2026-11-04T22:43:54+00:00",
+      "comments_data": [
+        {
+          "id": "50372552",
+          "author": "mvojvoda",
+          "body": "Make it count, be the hero, prime gap people need help!",
+          "score": 0,
+          "time": 1793832422,
+          "parent": "50372526"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -44,7 +71,7 @@
       "title": "Show HN: Diorama – Draw a world, play it with point and click",
       "subreddit": "show-hn",
       "author": "fullstackwife",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50371859",
       "url": "https://grzegorz.tanczyk.pl/diorama/",
@@ -74,12 +101,29 @@
     {
       "source": "hackernews",
       "stream": "show-hn",
+      "id": "50371428",
+      "title": "Show HN: Mdview Desktop – light, fast and feature-rich Markdown viewer (Windows)",
+      "subreddit": "show-hn",
+      "author": "Igor_Wiwi",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50371428",
+      "url": "https://mdview.io/desktop",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793825922,
+      "created_at": "2026-11-04T20:58:42+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
       "id": "50371090",
       "title": "Show HN: Gauge – Open-Source CLI to recursively improve your docs",
       "subreddit": "show-hn",
       "author": "0x63_Problems",
-      "score": 10,
-      "num_comments": 3,
+      "score": 27,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50371090",
       "url": "https://github.com/gauge-sh/gauge-cli",
       "selftext": "Hi HN, I’m Evan from Gauge. We’re open-sourcing our CLI to recursively improve your docs for coding agents. The CLI includes a local execution backend, so you don't need an account to try it. Explainer video here: https://youtu.be/zhLUlIKB1Mg (https://youtu.be/zhLUlIKB1Mg)\nThe CLI supports a hillclimbing loop:\n- set up tasks for coding agents that would need your docs, like 'set up Gauge CI checks'\n- run the tasks\n- analyze session transcripts for friction or failures\n- create variants of your docs to resolve the issues\n- re-run the tasks with the doc variants injected (transparently, at the same hostname)\n- repeat until you have a variant that resolves the issues\nThe same loop supports hillclimbing your Skills, CLI, and other agent-facing surfaces.\nWe started out 2 years ago building open-source developer tools (like Tach https://github.com/tach-org/tach (https://github.com/tach-org/tach)), then pivoted to AI Search optimization, and are now focused on the intersection of the two spaces. We were already working with awesome devtool companies, and they were the first ones to ask us how to optimize for Claude Code and Codex. We realized this would be something that eventually every company needs to do. Our CLI provides primitives for docs/devrel/eng teams to measure, analyze, and improve how coding agents use their product.\nThe design boils down to two components: VMs and a network gateway.\nThe VMs are straightforward, we want the agents to be highly privileged within their environment so that they are representative of developers' coding agents. Each VM generally comes with the agent harness itself, language toolchains, and a git repository.\nThe network gateway is where we terminate TLS and swap in variants of your docs transparently. The gateway also handles credential replacement, so agents see placeholders and can't exfiltrate keys.\nThe CLI comes with a 'local' execution backend (inference is still remote). For VMs, it uses Docker containers, and the network gateway is mitmproxy running in a sidecar container for each session.\nWe've used the hillclimbing loop internally to find and fix coding agent issues like mistaken pricing, inaccurate product limitations, and repeated workarounds. We saw coding agents report that Gauge only supports Claude Code and Codex, traced it back to the web pages they fetched, and fixed the behavior (we support Pi, OpenCode, and Antigravity as well). For Clerk, we helped shift coding agents from their legacy 'keyless' mode to their new 'clerk init' command. They were able to validate a pre-release change to their SDK's error messages using Gauge, then saw a 3x increase in coding agents using 'clerk init' post-deploy.\nDue to the 'static' nature of AI models, we've realized that closed-loop optimization techniques are now possible for essentially all software products. The same agent can be simulated over and over, meaning that a high-fidelity testing environment is all you need. Achieving the best results boils down to high-quality analysis (finding generalizable friction and objections) and paired experiments (vary only the content, measure the downstream change in behavior).\nThe repo is here: https://github.com/gauge-sh/gauge-cli (https://github.com/gauge-sh/gauge-cli) and you can start using the CLI with: npm i -g @withgauge/cli\nWe also have documentation and a quickstart here: https://docs.withgauge.com/agents/guides/cli (https://docs.withgauge.com/agents/guides/cli)\nIf you point a coding agent at those pages, it should guide you through the initial setup - let us know if it doesn't! The intention is for your agent to run some sensible evaluations and find at least one point of friction you can fix.\nWe'd love to know from HN: Has anyone tried to DIY this locally, or built something in-house at their company? Is this an improvement? If not, what would need to change?",
@@ -132,8 +176,8 @@
       "title": "Show HN: After a decade of reversing, I got co-op working in DOS Wing Commander",
       "subreddit": "show-hn",
       "author": "daniel_rh",
-      "score": 100,
-      "num_comments": 11,
+      "score": 153,
+      "num_comments": 17,
       "permalink": "https://news.ycombinator.com/item?id=50369895",
       "url": "https://fireflyk64.github.io/wcmulti/",
       "selftext": "",
@@ -148,6 +192,14 @@
           "body": "Author here: in 2015, I was playing the classic Wing Commander in DOSBox and\nsuddenly realized the game state fit in the 64k data segment.\nOver ten years my brother and I went through a set of experiments (stop\nand go, turn, communicate) while probing the memory. We uncovered\nwhere the variables were, how to inject calls into\nthe game functions, and how to sync the gamestate across the\nnetwork, so we can fly the story missions together.\nMy favorite finding is that the camera lives in entity slot 0x3D, which is\npossibly a \"3D\" reference by the original developers.\nYou can play it at https://fireflyk64.github.io/dosbox (https://fireflyk64.github.io/dosbox) in browser. If\nyou own Wing Commander, drag in the installer since no game files are\nhosted. If you don't, the page will load the original DOS/3Dfx version\nof Vega Strike, before I open sourced it. I upscaled and redid DOS Vega\nStrike art using AI, but it now has multiplayer and a similar feel.\nI'll be in the lobby for the next few hours if anyone wants to fly together.\nDisclosure: I also used AI for the final step to help compile for the\nbrowser and port our TCP networking stack to WebRTC with voice and solve\na few lingering bugs.",
           "score": 0,
           "time": 1793819311,
+          "parent": "50369895"
+        },
+        {
+          "id": "50373926",
+          "author": "EmX_3000",
+          "body": "This reminds me of how I used to cheat at certain games back in the 8-bit olden days. You could change one thing at a time, save, then look through and see what changed on the disk. Eventually you could identify all the locations that held the values for inventory, stats, location, quest stages, NPC state, and so on. All you had to do after that was change those locations and - hopefully - you're all powered up. With the WozMon you could even find the locations in memory, sometimes, and have \"free\" healing spells, for instance, any time you like by popping open the monitor and just changing the values in RAM. Among people my age this is the usual way you'd get started with something resembling hacking. It seems like the author is doing the same type of thing. This is also the basis of cheats and trainers for games, action games tended to be easier and there might only be a handful of flags and variables making cheat menus practical. For RPGs the cheats came in the form of lists of locations on the disk, eventually though there were disk-based full blown character editors available for some handful of games. Also about the same time, some developers started to go to extreme lengths to keep people from cheating by tampering with their save game files. This became quite common in the industry by the 32-bit era.\nEDIT: I will point out that people would often submit letters to computer magazines with the memory locations of popular games as time went on. But this could take months or a year or more, and a game might never have its secrets laid bare so I suspect a LOT of people just did it manually at home.",
+          "score": 0,
+          "time": 1793842469,
           "parent": "50369895"
         },
         {
@@ -167,19 +219,19 @@
           "parent": "50369895"
         },
         {
-          "id": "50372890",
-          "author": "JeppyG",
-          "body": "Incredible. Honestly tweaking old games is one of my favorite things to do with AI. I've been having a huge go at Captain Claw, one of my favorite games from childhood. Thanks for sharing this. :)",
-          "score": 0,
-          "time": 1793834896,
-          "parent": "50369895"
-        },
-        {
           "id": "50372650",
           "author": "abrookewood",
           "body": "Really cool write up - thanks for sharing.",
           "score": 0,
           "time": 1793833203,
+          "parent": "50369895"
+        },
+        {
+          "id": "50372890",
+          "author": "JeppyG",
+          "body": "Incredible. Honestly tweaking old games is one of my favorite things to do with AI. I've been having a huge go at Captain Claw, one of my favorite games from childhood. Thanks for sharing this. :)",
+          "score": 0,
+          "time": 1793834896,
           "parent": "50369895"
         },
         {
@@ -199,8 +251,8 @@
       "title": "Show HN: Unclickbait – Replace clickbait YouTube thumbnails",
       "subreddit": "show-hn",
       "author": "namuorg",
-      "score": 9,
-      "num_comments": 5,
+      "score": 10,
+      "num_comments": 8,
       "permalink": "https://news.ycombinator.com/item?id=50369277",
       "url": "https://unclickbait.app/",
       "selftext": "I liked the setting in HackerTube (https://news.ycombinator.com/item?id=50319510 (https://news.ycombinator.com/item?id=50319510)) that replaces the YouTube thumbnail with a frame from the middle of the video so I had Opus 5.5 build a browser extension to do it for all YouTube videos. Enjoy!",
@@ -218,6 +270,14 @@
           "parent": "50369277"
         },
         {
+          "id": "50374873",
+          "author": "ncr100",
+          "body": "Making YouTube work like How YouTube Should work, for the user rather than for promoting / supporting toxic, beguiling interactions.",
+          "score": 0,
+          "time": 1793850186,
+          "parent": "50369277"
+        },
+        {
           "id": "50371155",
           "author": "bkawecki",
           "body": "Top idea, the first look feels good, like a fresh sip of water for the eyes after way too much sugary cake. Now it's more about reading the titles. Let's see how this holds up.",
@@ -232,6 +292,14 @@
           "score": 0,
           "time": 1793819810,
           "parent": "50369277"
+        },
+        {
+          "id": "50374750",
+          "author": "brokenmachine",
+          "body": "There needs to be one to warn of AI slop videos.",
+          "score": 0,
+          "time": 1793848946,
+          "parent": "50369277"
         }
       ]
     },
@@ -242,7 +310,7 @@
       "title": "Show HN: ChannelVault, browse and search your Slack exports",
       "subreddit": "show-hn",
       "author": "donperignon",
-      "score": 4,
+      "score": 5,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50369269",
       "url": "https://github.com/mestr-io/channelvault",
@@ -304,7 +372,7 @@
       "subreddit": "show-hn",
       "author": "ajtimepyro",
       "score": 3,
-      "num_comments": 1,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50369009",
       "url": "https://github.com/AJTimePyro/cppbolt",
       "selftext": "Hey HN! I've been working on cppbolt, a lightweight C++ to WebAssembly compiler written in Rust.\nThe idea was to build something that can compile and run C++ directly in the browser without downloading a massive LLVM/Clang toolchain.\nUnlike projects that bundle LLVM/Clang and can require 100+ MB of compiler assets, cppbolt's compiler payload is around 1 MB. It compiles a supported subset of C++17 directly to standard WebAssembly binaries.\nSome things it supports:\n- Classes, inheritance, virtual functions and operator overloading\n- Templates and a subset of the C++ standard library\n- Pointers, references, arrays and dynamic memory\n- Lambdas, structured bindings and range-based loops\nIt comes with a browser playground, CLI and npm package.\nA few caveats: this is still a work in progress, it doesn't implement the full C++17 standard, and it might not work as expected with certain C++ programs. I'm particularly interested in feedback on the compiler architecture, language support and potential use cases and also interested in connecting with someone who might want to use it in their application.\nTry it out:\n- Playground: https://ajtimepyro.is-a.dev/cppbolt/ (https://ajtimepyro.is-a.dev/cppbolt/)\n- Docs: https://ajtimepyro.is-a.dev/cppbolt/book/ (https://ajtimepyro.is-a.dev/cppbolt/book/)\n- GitHub: https://github.com/AJTimePyro/cppbolt (https://github.com/AJTimePyro/cppbolt)\n- npm: https://www.npmjs.com/package/cppbolt (https://www.npmjs.com/package/cppbolt)\nWould love to hear what you think, especially from people who've worked on compilers or WebAssembly.",
@@ -313,6 +381,14 @@
       "time": 1793814340,
       "created_at": "2026-11-04T17:45:40+00:00",
       "comments_data": [
+        {
+          "id": "50375611",
+          "author": "Panzerschrek",
+          "body": "A C++ compiler in three weeks? Is it vibe-coded?",
+          "score": 0,
+          "time": 1793857235,
+          "parent": "50369009"
+        },
         {
           "id": "50369898",
           "author": "adamkumpf",
@@ -374,8 +450,8 @@
       "title": "Show HN: I built a tool that prices a pre-built PC part by part",
       "subreddit": "show-hn",
       "author": "adlep",
-      "score": 91,
-      "num_comments": 62,
+      "score": 99,
+      "num_comments": 72,
       "permalink": "https://news.ycombinator.com/item?id=50366929",
       "url": "https://pcdealcheck.com/",
       "selftext": "I've missed out on an awesome computer that I could use for a project because figuring out value took too long. Users paste a listing and receive a value grade, dated component estimates and a shareable report. AI reads the listing but my custom built price engine determines the grade (updated every day). Self financed and working now. Looking for feedback re: scoring, interface, and if its helpful. https://www.youtube.com/watch?v=Tpft--x3WlI (https://www.youtube.com/watch?v=Tpft--x3WlI)",
@@ -409,11 +485,27 @@
           "parent": "50366929"
         },
         {
+          "id": "50374860",
+          "author": "edmundsauto",
+          "body": "What would be cool is a delegate to agent to use your own browser to find parts on eBay. Every time I build a new rig I always save a couple hundred with used gear.",
+          "score": 0,
+          "time": 1793850092,
+          "parent": "50366929"
+        },
+        {
           "id": "50370301",
           "author": "xnx",
           "body": "Cool idea. Promising, but failed for me on https://www.amazon.com/Dell-XPS-8950-Desktop-i7-1TB/dp/B0BR9... (https://www.amazon.com/Dell-XPS-8950-Desktop-i7-1TB/dp/B0BR9Z9JLW/)\nI got pretty good results when I asked an agent to put components to build an equivalent PC in a cart for me.",
           "score": 0,
           "time": 1793820140,
+          "parent": "50366929"
+        },
+        {
+          "id": "50373660",
+          "author": "freediddy",
+          "body": "Respectfully, taking a URL and pasting that into chatgpt and asking it whether this is a good deal gives an excellent response and much faster. It also works in multiple regions. If this is a just a fun side project, then very cool but if you are looking to monetize this, I don't think you should be investing in it.",
+          "score": 0,
+          "time": 1793840516,
           "parent": "50366929"
         },
         {
@@ -425,11 +517,19 @@
           "parent": "50366929"
         },
         {
-          "id": "50371749",
+          "id": "50374028",
           "author": "adlep",
-          "body": "We’ve added a note on the homepage clarifying that new checks are currently available to US visitors and use US retailer listings and market prices",
+          "body": "Site open internationally. Check supported US retailer links from anywhere. Photos and pasted text require a US connection. Estimates use US market prices.",
           "score": 0,
-          "time": 1793827368,
+          "time": 1793843189,
+          "parent": "50366929"
+        },
+        {
+          "id": "50373534",
+          "author": "jeswin",
+          "body": "> New checks currently require a US connection.\nI can't seem to get any further. You're requiring my ip address itself to be based in the US?",
+          "score": 0,
+          "time": 1793839564,
           "parent": "50366929"
         },
         {
@@ -441,43 +541,19 @@
           "parent": "50366929"
         },
         {
+          "id": "50371749",
+          "author": "adlep",
+          "body": "We’ve added a note on the homepage clarifying that new checks are currently available to US visitors and use US retailer listings and market prices",
+          "score": 0,
+          "time": 1793827368,
+          "parent": "50366929"
+        },
+        {
           "id": "50370491",
           "author": "adlep",
           "body": "Btw, some components will not be in the database on occasion but you can suggest them to be added. First priority for us was to add \"current\" PC hardware classes.",
           "score": 0,
           "time": 1793821189,
-          "parent": "50366929"
-        },
-        {
-          "id": "50369767",
-          "author": "adamkumpf",
-          "body": "Super useful. I think everyone is swimming in the overpriced PC era due to the memory shortages and desire to run local AI when possible. Is this something you want to support long-term?",
-          "score": 0,
-          "time": 1793817726,
-          "parent": "50366929"
-        },
-        {
-          "id": "50369219",
-          "author": "fhn",
-          "body": "I thought about building this a long time ago. Can you add used prices as well - perhaps source from ebay, craigslist, facebook marketplace.",
-          "score": 0,
-          "time": 1793815302,
-          "parent": "50366929"
-        },
-        {
-          "id": "50370679",
-          "author": "adlep",
-          "body": "Apologies in advance for any usage quota messages. I have set a daily $$$ limit.",
-          "score": 0,
-          "time": 1793822231,
-          "parent": "50366929"
-        },
-        {
-          "id": "50369867",
-          "author": "rgbrgb",
-          "body": "is there a way to find good deals other people have checked? seems like a nice data play if so and you could do affiliate links to monetize on some. I don't think people would mind you sharing the deals they found (could be a \"share with community\" checkbox too).",
-          "score": 0,
-          "time": 1793818187,
           "parent": "50366929"
         }
       ]
@@ -506,7 +582,7 @@
       "title": "Show HN: Codemap – one-page interactive map of any Go repository",
       "subreddit": "show-hn",
       "author": "peter_retief",
-      "score": 41,
+      "score": 42,
       "num_comments": 18,
       "permalink": "https://news.ycombinator.com/item?id=50366811",
       "url": "https://github.com/peterretief/codemap",
@@ -516,14 +592,6 @@
       "time": 1793805504,
       "created_at": "2026-11-04T15:18:24+00:00",
       "comments_data": [
-        {
-          "id": "50372039",
-          "author": "int0x21",
-          "body": "I got inspired and \"vibe coded\" a Perl version :)\nhttps://github.com/interrupt21h/perl-codemap (https://github.com/interrupt21h/perl-codemap)",
-          "score": 0,
-          "time": 1793828986,
-          "parent": "50366811"
-        },
         {
           "id": "50367431",
           "author": "stigok",
@@ -538,6 +606,14 @@
           "body": "Possibly silly question, but is this aimed at Go repos only because of some structural reason, or because this was the author's intention?\nI can see this approach being useful across non-Go repositories too.",
           "score": 0,
           "time": 1793810020,
+          "parent": "50366811"
+        },
+        {
+          "id": "50372039",
+          "author": "int0x21",
+          "body": "I got inspired and \"vibe coded\" a Perl version :)\nhttps://github.com/interrupt21h/perl-codemap (https://github.com/interrupt21h/perl-codemap)",
+          "score": 0,
+          "time": 1793828986,
           "parent": "50366811"
         },
         {
@@ -909,7 +985,7 @@
       "title": "Show HN: Vegetable Gardening for Engineers",
       "subreddit": "show-hn",
       "author": "jrcplus",
-      "score": 8,
+      "score": 10,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50362963",
       "url": "https://jrcpl.us/contrib/2020/gardening-for-engineers/",
