@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-05T12:33:08.164975+00:00",
+  "last_fetched": "2026-11-05T18:31:34.835634+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -176,8 +176,8 @@
       "title": "Show HN: After a decade of reversing, I got co-op working in DOS Wing Commander",
       "subreddit": "show-hn",
       "author": "daniel_rh",
-      "score": 209,
-      "num_comments": 30,
+      "score": 242,
+      "num_comments": 33,
       "permalink": "https://news.ycombinator.com/item?id=50369895",
       "url": "https://fireflyk64.github.io/wcmulti/",
       "selftext": "",
@@ -211,14 +211,6 @@
           "parent": "50369895"
         },
         {
-          "id": "50377583",
-          "author": "InsidiousWombat",
-          "body": "I think you could just point cheatEngine on dosbox process for finding the changed regions. Tho that has problem of not finding the offset from actual memory start, but once you have it you can just compare it to dump",
-          "score": 0,
-          "time": 1793875291,
-          "parent": "50369895"
-        },
-        {
           "id": "50377484",
           "author": "harry_F",
           "body": "I did a similar approach but completely without DOSBOX to get native ARM64 binaries on a Mac (using SDL3) or WASM (using canvas + HTML Audio): https://github.com/haraldF/wc-decomp (https://github.com/haraldF/wc-decomp) - multiplayer is still very basic, though.",
@@ -227,11 +219,11 @@
           "parent": "50369895"
         },
         {
-          "id": "50377896",
-          "author": "nnnlog",
-          "body": "Wow, that's amazing.",
+          "id": "50377583",
+          "author": "InsidiousWombat",
+          "body": "I think you could just point cheatEngine on dosbox process for finding the changed regions. Tho that has problem of not finding the offset from actual memory start, but once you have it you can just compare it to dump",
           "score": 0,
-          "time": 1793878117,
+          "time": 1793875291,
           "parent": "50369895"
         },
         {
@@ -240,6 +232,14 @@
           "body": "Could this approach be used to make a similar game? It looks like a lot of fun—thanks for sharing!",
           "score": 0,
           "time": 1793862988,
+          "parent": "50369895"
+        },
+        {
+          "id": "50377896",
+          "author": "nnnlog",
+          "body": "Wow, that's amazing.",
+          "score": 0,
+          "time": 1793878117,
           "parent": "50369895"
         },
         {
@@ -459,6 +459,57 @@
     {
       "source": "hackernews",
       "stream": "show-hn",
+      "id": "50368208",
+      "title": "Show HN: A decent text-to-image model trained for ~$20K (Apache 2.0 Weights)",
+      "subreddit": "show-hn",
+      "author": "schopra909",
+      "score": 50,
+      "num_comments": 4,
+      "permalink": "https://news.ycombinator.com/item?id=50368208",
+      "url": "https://www.linum.ai/field-notes/pjit-21k",
+      "selftext": "My brother and I run a 2-person lab that trains our own generative video models from scratch. The ultimate goal is a set of creative tools that make it easier for anyone to make animation.\nVideo models today are too slow/expensive and lack sufficient controls. Creativity is an iterative process. You make, you tweak, you get better. In our opinion, they're not usable yet for storytelling.\nWhen we set out to build Linum v3 (our next video model) earlier this year, the primary goal was to bring the cost envelope of inference down significantly. If our model is fast and cheap, it's the first step (of many) towards useful creative tools.\nTypically, you see \"latent diffusion models\". A VAE (Variational Autoencoder) compresses the input data into a smaller \"latent space\" and the diffusion model learns how to generate within this subspace.\nOver the past few months, we've been publishing our work on efficient pixel-space diffusion models. These throw away the VAE, having the diffusion model learn a latent-space optimized for its exact task.\nThis serves 3 purposes:\n1) Simplify Architecture (no 2-stage model training)\n2) Faster Convergence (11x faster convergence vs. our latent diffusion counterpart)\n3) Cheaper Inference (4x more aggressive token reduction in attention context-windows, without significant loss in quality)\nThis past month we were pressure testing our latest architecture (Pyramid-JiT) by training a text-to-image model longer than the typical one-off experiment. Specifically, we trained it for ~$20K on 660M samples.\nWe were surprised by the quality of results, so we thought we'd release it as open weights for the community (Apache 2.0). The research itself is already public, on our website.\nFor us, it's a big stepping stone towards cheaper video models, since pretty much all video models start as image models. We like to say these models have to learn nouns before they learn verbs.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793810711,
+      "created_at": "2026-11-04T16:45:11+00:00",
+      "comments_data": [
+        {
+          "id": "50381842",
+          "author": "Valk3_",
+          "body": "What was the most difficult challenge for you guys with this project?\nAlso I'm a little intrigued on looking into efficiency techniques for video gen. What are current research directions in that field and promising directions you are particularly interested in? Any pointers for beginners?",
+          "score": 0,
+          "time": 1793899795,
+          "parent": "50368208"
+        },
+        {
+          "id": "50382483",
+          "author": "dvh",
+          "body": "How many ladybugs are in training dataset?",
+          "score": 0,
+          "time": 1793902951,
+          "parent": "50368208"
+        },
+        {
+          "id": "50382209",
+          "author": "gunalx",
+          "body": "Interesting. It does however seem to struggle with a lot of the typical t2i models struggle with. \nOver smoothing, lots of uncanney shine, mangled limbs and such.",
+          "score": 0,
+          "time": 1793901795,
+          "parent": "50368208"
+        },
+        {
+          "id": "50381665",
+          "author": "gigel82",
+          "body": "I wonder how this behaves when quantized, and how far are we from being able to run something like this purely in the browser with WebGPU.\nIf you swap the text encoder for something like T5-small or CLIP, this could be <2.5Gb at INT4; doable on a lot of machines.",
+          "score": 0,
+          "time": 1793898943,
+          "parent": "50368208"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
       "id": "50367367",
       "title": "Show HN: I built a Bible verse feed to replace doomscrolling",
       "subreddit": "show-hn",
@@ -541,8 +592,8 @@
       "title": "Show HN: I built a tool that prices a pre-built PC part by part",
       "subreddit": "show-hn",
       "author": "adlep",
-      "score": 106,
-      "num_comments": 73,
+      "score": 115,
+      "num_comments": 78,
       "permalink": "https://news.ycombinator.com/item?id=50366929",
       "url": "https://pcdealcheck.com/",
       "selftext": "I've missed out on an awesome computer that I could use for a project because figuring out value took too long. Users paste a listing and receive a value grade, dated component estimates and a shareable report. AI reads the listing but my custom built price engine determines the grade (updated every day). Self financed and working now. Looking for feedback re: scoring, interface, and if its helpful. https://www.youtube.com/watch?v=Tpft--x3WlI (https://www.youtube.com/watch?v=Tpft--x3WlI)",
@@ -592,11 +643,11 @@
           "parent": "50366929"
         },
         {
-          "id": "50374860",
-          "author": "edmundsauto",
-          "body": "What would be cool is a delegate to agent to use your own browser to find parts on eBay. Every time I build a new rig I always save a couple hundred with used gear.",
+          "id": "50379177",
+          "author": "guruhat",
+          "body": "there were a few firefox pluggins I though that direction was easier because then I didn't had to switch tabs, but this is great.",
           "score": 0,
-          "time": 1793850092,
+          "time": 1793887348,
           "parent": "50366929"
         },
         {
@@ -605,6 +656,14 @@
           "body": "would love to see support for B&H as a store, integrated graphics as a gpu option, and the intel wildcat lake series of chips",
           "score": 0,
           "time": 1793817234,
+          "parent": "50366929"
+        },
+        {
+          "id": "50374860",
+          "author": "edmundsauto",
+          "body": "What would be cool is a delegate to agent to use your own browser to find parts on eBay. Every time I build a new rig I always save a couple hundred with used gear.",
+          "score": 0,
+          "time": 1793850092,
           "parent": "50366929"
         },
         {
@@ -624,14 +683,6 @@
           "parent": "50366929"
         },
         {
-          "id": "50370491",
-          "author": "adlep",
-          "body": "Btw, some components will not be in the database on occasion but you can suggest them to be added. First priority for us was to add \"current\" PC hardware classes.",
-          "score": 0,
-          "time": 1793821189,
-          "parent": "50366929"
-        },
-        {
           "id": "50369767",
           "author": "adamkumpf",
           "body": "Super useful. I think everyone is swimming in the overpriced PC era due to the memory shortages and desire to run local AI when possible. Is this something you want to support long-term?",
@@ -640,11 +691,11 @@
           "parent": "50366929"
         },
         {
-          "id": "50371749",
+          "id": "50370491",
           "author": "adlep",
-          "body": "We’ve added a note on the homepage clarifying that new checks are currently available to US visitors and use US retailer listings and market prices",
+          "body": "Btw, some components will not be in the database on occasion but you can suggest them to be added. First priority for us was to add \"current\" PC hardware classes.",
           "score": 0,
-          "time": 1793827368,
+          "time": 1793821189,
           "parent": "50366929"
         }
       ]
