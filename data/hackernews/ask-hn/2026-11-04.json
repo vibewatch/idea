@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-05T06:36:09.308487+00:00",
+  "last_fetched": "2026-11-05T12:33:11.068261+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,8 +10,8 @@
       "title": "Canva lays off 22% of its workforce; 1,270 people",
       "subreddit": "ask-hn",
       "author": "princevegeta89",
-      "score": 23,
-      "num_comments": 1,
+      "score": 28,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50372381",
       "url": "https://news.ycombinator.com/item?id=50372381",
       "selftext": "This was probably already coming. Sad day for many folks but frankly AI put in a strong pivot in the world of design.",
@@ -142,7 +142,7 @@
       "title": "Ask HN: Which agent harness do you use for working with multiple Models?",
       "subreddit": "ask-hn",
       "author": "avucenovic",
-      "score": 4,
+      "score": 5,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50369140",
       "url": "https://news.ycombinator.com/item?id=50369140",
@@ -211,8 +211,8 @@
       "title": "Ask HN: What's your current AI agentic setup?",
       "subreddit": "ask-hn",
       "author": "eggbrain",
-      "score": 253,
-      "num_comments": 242,
+      "score": 379,
+      "num_comments": 424,
       "permalink": "https://news.ycombinator.com/item?id=50366117",
       "url": "https://news.ycombinator.com/item?id=50366117",
       "selftext": "I'm curious how people on HN are using AI day to day, and came up with a list of questions I thought could be interesting to know. No need to answer every question of course, just wanted to get a gut feel how people are using AI.\n1) What AI subscriptions are you personally paying for? (Claude, ChatGPT/Codex, Cursor, etc)\n- Which tiers?\n- Have you purchased multiple subscriptions from the same provider (eg two Claude accounts)?\n2) Are you using models outside (or instead) of those subscriptions? For example, pay-as-you-go APIs, OpenRouter, or locally hosted models.\n- Which models and providers?\n3) What coding harnesses and interfaces are you using? Are you sticking with the default CLIs or IDE integrations, or using alternatives like OpenCode, Pi, Aider, Muse Code, or custom-built harnesses?\n- What made you switch harnesses (if you switched)?\n4) Are you using any agent orchestration or swarm tools?\n- For example, Munder Difflin, Gas Town, Ruflo, or something custom.\n5) Are you using broader agent platforms like OpenClaw / Hermes Agent / Grok bot / Dots / Muse?\n- If you are using them, what are your main use cases?\n-----\nI know my workflow has differed significantly from a year ago, and so it would be interesting to capture a snapshot today of what people are using and why.",
@@ -222,35 +222,27 @@
       "created_at": "2026-11-04T14:37:22+00:00",
       "comments_data": [
         {
-          "id": "50375773",
-          "author": "big-chungus4",
-          "body": "I use free models in opencode, mainly DeepSeek, but it turns out my laptop can run Qwen3.8 flash next with strata at 60 tok/s via Strata. So I mostly use Qwen now in a customized version of pi. But when I need the GPU to be free, I have to use free models in opencode. I don't use any orchestration - free models don't have high enough limits for that, and local model has only 1 conversion cache slot, more won't fit to my RAM",
+          "id": "50376720",
+          "author": "Animats",
+          "body": "Embarrassingly, I don't have one yet. I'm mostly still writing code one keystroke at a time. I've used Github Copilot to translate between languages and look things up, but haven't trusted it to write new code or fix anything.\nClaude Fable is now good enough that I should be using it. The latest Claude version is said to be comparable to a mid-career graphics programmer, which is about what I need. Six months ago it wasn't good enough to use for such work, and probably would have made a hash of my code. \nThere's been progress.\nBut Anthropic's business practices are scary. They have a reputation for cancelling accounts for random reasons, offer rather bad terms, and have no customer support. I have a strong aversion\nto services with a reputation for cancelling services arbitrarily. They will apparently cancel based on their system's guesses as to what you're working on. Sometimes they guess wrong. What I'm doing (metaverse clients) is so far out of the mainstream they may guess wrong.\nI'm currently stalled signing up for Claude because their verification email system can't get to my inbox. (Some problem with their using Constant Contact, a spam system, to send transactional emails to my own domain, which, long ago, I had blocked at the Constant Contact end. I think. The verification email never touches the inbound mail server.) It's very important to Anthropic that you sign up with the \"right\" email address, and it may not be possible to change it, so using some disposable address is not a good idea.\nSuggestions?",
           "score": 0,
-          "time": 1793858864,
+          "time": 1793867977,
           "parent": "50366117"
         },
         {
-          "id": "50375407",
-          "author": "dgunay",
-          "body": "I use AI primarily through work, I don't pay for a personal AI sub.\nI do have some OpenRouter credits but I mostly use them sparingly to try open weight models out for small personal projects.\nI currently interact primarily with Claude Code, but most of my async workers are on Codex.\nThe orchestration part is custom. I talk to a \"chief of staff\" Opus instance to ingest various workstreams (Jira tickets, alerts, personal ideas, etc) and turn them into beads. It launches workers to tackle individual beads using Remuda, an agent launcher I wrote at work in 2025 and open sourced earlier this year: https://github.com/yendo-eng/remuda (https://github.com/yendo-eng/remuda). I configure profiles in Remuda that launch containerized agents using my preferred harness and model. I update these profiles as the pareto frontier shifts. Currently it's GPT 6 Luna max for most tasks.\nIt monitors the workers and has them go through at least one round of agentic code review. It surfaces PRs for me to read once they've passed agent review. It then either ships them or hands them off to my coworkers for codebases where I'm not allowed to just merge PRs.\nAround this workflow I had it write a small collection of skills and scripts to grease the wheels and make repetitive actions more reliable.\nSince Remuda supports several terminal multiplexers, I've swapped out the backend 3 times: tmux -> herdr-tui -> herdr-core. There's experimental support for Rex but I'm waiting for it to mature a bit before I try and daily drive it.\nIt's not nearly as polished as some of the software factory setups and fancy GUI orchestrators I'm seeing, but it's light, hackable, and so far the bitter lesson has kept this working really well for me so I haven't felt much of a need to try anything else.\nI have been trying out Muse for a while but it hasn't found a solid place in my life yet. Still too unreliable and too many privacy concerns to justify giving it a lot of access.",
+          "id": "50378067",
+          "author": "eamonnsullivan",
+          "body": "I'm (somewhat unexpectedly) retiring [1] soon and need to come up with an affordable setup for when I no longer have an organisation paying for my tokens. I use Github Copilot through work, which is actually not bad, but the affordable personal subscription doesn't include many of the models I like to use. I tried Claude, Codex, DeepSeek, and a few others. I think I'm settling on the following:\n1. OpenCode Console (I think this used to be called Zen). It's a pay-as-you-go system, but I get access to almost any model at open market rates. I'll then set up an affordable regular monthly top-up. I looked at OpenCode Go, but that had the same issue as Copilot: access to only a subset of the cheaper models.\n2. I use the OpenCode TUI and desktop app sometimes, for general questions or exploring, but I mostly use Editor Code Assistant [2] with Emacs as my go-to harness. I've set up ECA to use OpenCode as a provider, which was a little fiddly compared with more mainstream options, but it's working now.\nMy needs will (probably) be light in retirement, but I like to use models to add features to Emacs, write scripts, work on a couple of small websites and maybe dabble in progressive web apps or mobile apps for a food bank I help run. This setup gives me flexibility (lots of models to try) and won't break the bank, I hope.\n[1] https://eamonnsullivan.co.uk/posts/2026-10-20-retirement/ (https://eamonnsullivan.co.uk/posts/2026-10-20-retirement/)\n[2] https://eca.dev/ (https://eca.dev/)",
           "score": 0,
-          "time": 1793854943,
+          "time": 1793879538,
           "parent": "50366117"
         },
         {
-          "id": "50375046",
-          "author": "earthdeity",
-          "body": "Claude + Codex, both from work.\nJust those.\nhttps://github.com/oscscull/quarterdeck (https://github.com/oscscull/quarterdeck) built my own harness. I had trouble with both claude and codex. In particular, managing multiple tasks in a kanban, syncing between my machines, making sure work is done on the right machine and can be triggered from either. Making sure I ping reviewers, meeting reminders, todos. Parking tickets til conditions are met or time elapses. Automated notifications when I have meetings. I have just kept adding features as I want them. This kind of software is so easy to make nowadays, I don't really think there's any sense in \"launching\" it for others, but I'm using it all the time. I highly recommend doing so (building your own personal work management software in 2026).\nI guess this is also in some sense an agent orchestration tool, I don't use any of those.\nDon't use.",
+          "id": "50378293",
+          "author": "jcubic",
+          "body": "I use Claude Code with Opus 5.5 via ACP inside the GNU Emacs Agent-Shell.\nI used Open Code, but they stopped supporting Claude, so I was searching for something different (I had a free 20x Max plan as an open source maintainer). First used Claude Code and then found out about Agent-Shell. Now I'm using the Claude Pro plan.",
           "score": 0,
-          "time": 1793851667,
-          "parent": "50366117"
-        },
-        {
-          "id": "50375782",
-          "author": "Feathercrown",
-          "body": "I figure my experience might be uncommon here so I'll offer it: None, no, none, no, no.",
-          "score": 0,
-          "time": 1793858983,
+          "time": 1793881657,
           "parent": "50366117"
         },
         {
@@ -262,6 +254,46 @@
           "parent": "50366117"
         },
         {
+          "id": "50378227",
+          "author": "zkmon",
+          "body": "Tried the popular agents and paid models for some time, and now settled with a local model (Qwen3.8-27B-Q_6) and opencode desktop.\nMy work doesn't really require ultra super-intelligent models, or one-shot solutions. It's a standard python API, web app and some strict compliance requirements and tons of test cases. I have time to give the Q27B a few iterations. I monitor the progress and give directions while it keeps chugging off for about 30 mins for each medium-hard task. But I like the results. Exactly what is needed. It also allows me work on high-level stuff.",
+          "score": 0,
+          "time": 1793881135,
+          "parent": "50366117"
+        },
+        {
+          "id": "50378273",
+          "author": "ccapndave",
+          "body": "ChatGPT Pro (the $100 plan). Like many people here, I used AI to build my own orchestrator so I can work on multiple tasks across multiple projects without going insane. For reviewing code and (god forbid) writing something by hand I use zed.",
+          "score": 0,
+          "time": 1793881507,
+          "parent": "50366117"
+        },
+        {
+          "id": "50378106",
+          "author": "flaburgan",
+          "body": "I use the Zed IDE with Opus 5.5 pro subscription. I use to have access to Fable with the max plan and I miss it, despite what everyone is saying I still find that Opus does weird things. Just yesterday I pointed it to a queue suddenly being twice slower to be processed in prod. A select SQL query called thousands of times per minute became slower because of a data increased. Opus proposed several non trivial ways to optimize the query by forcing some execution plan. I just kept the result in a variable for one minute, as the data don't change often. x1000 perf with 3 lines of code. I would have expected it to say that this query didn't have to be executed that many times in the first place. It codes well when you tell it what to do, but it is still dumb about what is the real problem (and so the real solution).\nThat's worrying me a bit because Opus 5.5 clearly is SOTA, so better than any open weights models, and I really want to be able to run smart models locally on my laptop for independence and privacy reasons. So, if I still find Opus dumb now, when will I have an open weight model better than 5.5 that can run on my Ryzen 7 AI 350 with its Radeon 860m and 32GB of RAM? ... This summer with all the releases of DeepSeek and Qwen I was hopeful I could have it for Christmas, but it looks like I will have to wait much more...",
+          "score": 0,
+          "time": 1793879933,
+          "parent": "50366117"
+        },
+        {
+          "id": "50378217",
+          "author": "pelagicAustral",
+          "body": "1 - Deepseek for non-important stuff, 50 bucks seems to last forever. Claude annual 200 bucks sub (my main one), and Gemini 20 buck a month sub to complement Claude when i run out of usage. There is some kind of extra Argon allowance at the moment, so it's pretty solid.\n2 - Deepseek is my pay as you go one... I only use it for small stuff, mostly as a way to validate API use on some implementations.\n3 - Claude code and antygravity, I have not gotten anywhere near one of the other harnesses, i see them as the React of AI.\n4 - No\n5 - No",
+          "score": 0,
+          "time": 1793881009,
+          "parent": "50366117"
+        },
+        {
+          "id": "50377557",
+          "author": "tomburgs",
+          "body": "1.) None anymore. They're all turning into increasingly poor value for (my) money. I need AI on my own schedule and don't want to be paying for compute I don't need and end up waiting for limits to reset when I do need it. If I was to use one though it'd probably be Opencode Go.\n2.) Yes, I'm currently using OpenRouter. It's good for quickly switching around and trying different models, but I currently have it constrained to just 3 models and 1 provider. Truthfully I could just use that provider directly, but I like retaining some flexibility.\n3.) I've been using OpenCode for over a year. I think it's an incredible tool and its wide support is a massive boon. It's really easy to pull in skills, tag the skills, and switch providers. Their more recent changes turning the CLI into more of a GUI has been quite annoying (wdym I have to tap an X in my CLI to close a tab), but not enough for me to (yet) look elsewhere.\n4.) Nope, no idea what those are but thanks for teaching me about something new.\n5.) In EU (DK) so we don't get access to Dots or Muse like everyone else. I have used Grok Bot and I really like it. It's super helpful and I'm using it as a personal assistant. I delegate tasks to it that I just can't be bothered doing manually or can't figure out easily (e.g using some accounting tools, figuring out cryptic documentation, etc.). I've also used Hermes Agent, but I didn't like it as much. It's great intent but the UI/UX is really not it. It looks like it was taken out of a 90s hacker movie and I'm sure some people like it, but I prefer tools that look polished and focused. I might switch back to it though if something was to happen to Grok Bot.\nP.S the models I primarily use are DeepSeek V4.1 Flash 1017 and GLM 5.3 Flash. If you use skills to their full potential they feel SotA to me (my reference point for SotA being OpenAI models we use at work, since we have an enterprise agreement).",
+          "score": 0,
+          "time": 1793875128,
+          "parent": "50366117"
+        },
+        {
           "id": "50375606",
           "author": "glennfiedler",
           "body": "I'm juggling multiple claude ultra subs, multiple codex $500 a month subs, antigravity for argon, plus API rate deepseek 4.1 flash, mercury 3, and abliterated large v2 for red teaming.\nI work across multiple models and harnesses using a really simple redis-backed message bus called \"nova-bus\": https://github.com/mas-bandwidth/nova-tools (https://github.com/mas-bandwidth/nova-tools) (open source).\nWith just this message bus, I can coordinate AIs to work together at a normal pace (worktrees, subtasks etc...), but past a certain point the AIs can't keep up and I need to use a sprint card system I developed to coordinate work.\nWith this sprint system I'm able to work 200 cards wide (each card is around 30-60 minutes of LLM work in a session) across a fleet of 20 machines linked together with tailscale and ssh.\nFull system is here: https://github.com/mas-bandwidth/nova-sprint (https://github.com/mas-bandwidth/nova-sprint) (open source)\nIt's been very effective at getting high throughput, but afterwards I find that the resulting code can be a bit of a pastiche from different models working in isolation, thus a good pass over working directly with models to clean up and harden the code is necessary.\nI find that using nova-bus to coordinate multiple model/harness review of codebase in very effective at increasing code quality. Each model sees things the others don't.",
@@ -270,51 +302,19 @@
           "parent": "50366117"
         },
         {
-          "id": "50374261",
-          "author": "seanmcdirmid",
-          "body": "- Antigravity (AGY - Google Ultra $100/month), mostly gemeni flash but I benchmark Gemini Astra sometimes. My main driver because it’s pretty good at search compared to setting something up with DSH.\n- DeepSeekHarness (DSH) Desktop using:\n—- with pay as you go DeepSeek tokens, more expensive to use during my night/Chinese daytime, otherwise very cheap\n—- oMLX on my MacBook driving mostly a Qwen 3.6 35b A3b MOE (mostly used for benchmarking a less capable model)\nI mostly do custom subagent programming and can trigger subagents in AGY and DSH easily enough. DSH supports a Python coordinator orchestrating DSH subagents as conversations via RPC. AGY only supports a sub-agent orchestrating other sub-agents but it works well enough at this point. I plan on releasing my subagent framework soon (called autofab in pypi), which is basically a specification driven code development agent system (using existing agent harnesses rather than implementing my own).\nI tried goose, OpenClaw, Claude, codex, etc…and they didn’t really work for what I needed. I might get a $100/month ChatGPT subscription to go with my Google one, primarily to get a different perspective and benchmark openAI models on codex (Claude doesn’t really support what I need it to, otherwise would go for that instead).",
+          "id": "50378016",
+          "author": "itsloopyo",
+          "body": "1) Claude ultra. I ended up using 3 accounts in tandem for some big work I needed to do recently, but the other 2 accounts were only open for a month.\n2) I have a cheap OpenAI sub I sometimes use codex on, but just for small tasks when I'm out of tokens on Claude\n3) Lab - a frontend I made that let's me run loads of chats in a single UI, I get notified when they need me, if I turn off my PC and load it back up everything picks up where it left off. It'll run compound workflows comprised of multiple prompts+macros, and centrally manages all my agents/skills and MCP servers - they're associated with projects, categories of project etc and rolled out to everyone when changes are made.\n4) Hivemind - another one of mine, hivemind's a small self contained binary that acts as a collaboration layer for the agents+me. I send messages to everyone, groups or individuals. They can also ping me and send me desktop notifications if they need me urgently. I get a lot of mileage out of this where file reservations, resource locking etc are concerned. Stops them stepping on each others' toes.\n5) No, 100% of my work takes place in Lab (with loads of Claude + Hivemind sessions under the hood)",
           "score": 0,
-          "time": 1793844944,
+          "time": 1793879159,
           "parent": "50366117"
         },
         {
-          "id": "50373324",
-          "author": "jeswin",
-          "body": "1) I use 2x ChatGPT Pro 200, and a Claude Max 200.\n2) I use other models via Open Router, but ChatGPT beats them in value (at the moment) thanks to Tibo's resets.\n3) I mostly make Claude coordinate a group of Codex agents. They've set up a communication channel between them, and Claude acts as the coordinator and a second verifier. This saves me time because it's easier to talk to one agent than a group of agents. Codex parent session does only \"comms\" with Claude, and all the other agents run as sub agents.\n4) For non coding usecases, I use https://www.ctlflow.com (https://www.ctlflow.com). This lets me run dozens of agents on tasks like equity analysis. The information a swarm of agents can surface from a large data store can be quite surprising.\n5) I have tested OpenClaw, but now I just use ctlflow.com or claude + codex.",
+          "id": "50375046",
+          "author": "earthdeity",
+          "body": "Claude + Codex, both from work.\nJust those.\nhttps://github.com/oscscull/quarterdeck (https://github.com/oscscull/quarterdeck) built my own harness. I had trouble with both claude and codex. In particular, managing multiple tasks in a kanban, syncing between my machines, making sure work is done on the right machine and can be triggered from either. Making sure I ping reviewers, meeting reminders, todos. Parking tickets til conditions are met or time elapses. Automated notifications when I have meetings. I have just kept adding features as I want them. This kind of software is so easy to make nowadays, I don't really think there's any sense in \"launching\" it for others, but I'm using it all the time. I highly recommend doing so (building your own personal work management software in 2026).\nI guess this is also in some sense an agent orchestration tool, I don't use any of those.\nDon't use.",
           "score": 0,
-          "time": 1793838059,
-          "parent": "50366117"
-        },
-        {
-          "id": "50375705",
-          "author": "ruduhudi",
-          "body": "My biggest improvement lately was a cloud vm. I start it when I start working and shut it down when nothing is running which makes it fairly cheap.\nOn there i run claude code and codex via ssh and zed‘s ssh connection feature to take a look at the code where necessary.\nI map a range of ports so I can take a look at previews.\nAgents just continue running when I close the lid.",
-          "score": 0,
-          "time": 1793858209,
-          "parent": "50366117"
-        },
-        {
-          "id": "50373796",
-          "author": "Kuyawa",
-          "body": "DeepSeek Harness using DeepSeek Flash API\nNothing else, DS is smart enough to do everything I ask for and more, never hallucinates and never disappoints. Apps in Rust, Swift, Node, we even designed a new language better suited for LLMs, a compiler, and it runs beautifully. Haven't coded a single line since May 2026 and I will remember that date as the day AI took over my mundane job as programmer and promoted me to architect or director of my own apps\nA custom plugin to ring a bell whenever a task is finished and a gong when a question needs an answer, that way I can play backgammon or mahjong in the meantime\nI can't be happier",
-          "score": 0,
-          "time": 1793841500,
-          "parent": "50366117"
-        },
-        {
-          "id": "50375312",
-          "author": "noahbp",
-          "body": "1. Claude Ultra. I've never had multiple subscriptions from the same provider, though that has looked more attractive lately as I\n2. Yes: I often have personal tasks that Claude refuses to do, so I have to use Deepseek-v4.1-flash or GLM-5.3. I typically stay with OpenRouter, but I've found a discount provider that offers a 2/3 discount and have migrated to them. The catch is the data is probably sold, but given that it has saved me $300 this past month for non-sensitive work (game decompilation), the tradeoff is worth it.\n3. Claude Code for Claude. I used to use OpenCode for my API usage, but there are too many issues which have gone unfixed and too many weird issues that I became tired of working around, so I switched to Oh my Pi. I'm not a fan of it either, so before my next big run with open weights models, I will probably rewire Claude Code to use these Chinese models.\n4. Claude Code's subagent feature and workflow (subagents, but queuing up >200, and running 8 at a time) are sufficient for my needs. I had Claude build some bespoke workflow orchestration tool for managing many OpenCode agent instances, but it is a single shell or Python script that is essentially the equivalent of Claude Code Workflow.\n5. I don't have a use case for them, so no.",
-          "score": 0,
-          "time": 1793854004,
-          "parent": "50366117"
-        },
-        {
-          "id": "50374298",
-          "author": "dofm",
-          "body": "1) none\n2) Local LLMs on an M1 Max (Unsloth, LM Studio, occasionally direct llama.cpp). Muse Glimmer (because it is good at what it is optimised for: interactive coding sessions). Qwen 3.8 27B occasionally and a couple of other things for fun (an LFM MoE, experimenting with Nemotron Bolt 74B-9B, enjoying the really super Gemma 4 12B QAT when working on creative photography research or non-code planning).\nNo openrouter (yet) but that will definitely happen.\n3) Currently focusing my attentions on Pi via Paseo (and trying Pendant). Pi is just much better in smaller context sizes, and it is the right fit if you are keen to learn from first principles.\nI tried OpenCode first. I couldn’t quite get on with it and what ultimately made me switch was trying to understand its terribly messy source code.\n4, 5) I am mostly using AI as a coding sidekick so I don’t really have much need for orchestration yet. I did some experiments with Osaurus (really quite impressive) and I actually think that is almost enough by itself, except that I want a little more control over the sandbox container.\nI feel that my usage pattern is still settling, because I am not keen to surrender all of my coding to the machine. But I am trying more purely “directed” coding to learn the process, and finally beginning to get a feel for how I will work with that.",
-          "score": 0,
-          "time": 1793845241,
+          "time": 1793851667,
           "parent": "50366117"
         }
       ]
@@ -327,7 +327,7 @@
       "subreddit": "ask-hn",
       "author": "dhruv_ahuja",
       "score": 3,
-      "num_comments": 5,
+      "num_comments": 6,
       "permalink": "https://news.ycombinator.com/item?id=50364621",
       "url": "https://news.ycombinator.com/item?id=50364621",
       "selftext": "Just curious what folks think.\nI've personally learnt a lot and benefitted greatly career-wise from building and showcasing projects in communities like Reddit and Discord, as well as blogging about them -- even though none of my work was ground-breaking per-se.\nDo you folks think non-senior engineers can still build presence and gain employment opportunities this way? If not, what needs to change now?",
@@ -342,6 +342,14 @@
           "body": "That very much depends on what you mean by the old way. When I first started the old way Documenting meant you write very complex design documents up front, which inevitably in the first hour we discovered something very critical and important that was not in it and within a couple days the documents were completely unrelated to the reality of what we were implementing. By the end of the week, there was a large first of the document that still had to be implemented, but the document was so divorced from the reality of what the code was that it was useless to refer to.\nHowever, instead you're referring to documenting as a few smart people stand in front of a whiteboard for a couple hours and sketch out the details. That is a valuable activity. Just remember that within a couple days you need to erase that whiteboard because it's useless anyway. These days I would use an LLM to help me create that, especially if it's a part i work on alone. However, it's only a help and I understand again that this is a guide to get me started but it won't match reality and so I'm not going to share it with others.",
           "score": 0,
           "time": 1793795634,
+          "parent": "50364621"
+        },
+        {
+          "id": "50376414",
+          "author": "dev_kensuh",
+          "body": "It is still worth doing if readers can run the project and see your reasoning. Write up one bug you traced and how you checked the fix.",
+          "score": 0,
+          "time": 1793865582,
           "parent": "50364621"
         },
         {
@@ -361,8 +369,8 @@
       "title": "Tell HN: Gemini trains on chat history, even for subscribers (personal accounts)",
       "subreddit": "ask-hn",
       "author": "jameslk",
-      "score": 652,
-      "num_comments": 168,
+      "score": 674,
+      "num_comments": 174,
       "permalink": "https://news.ycombinator.com/item?id=50363461",
       "url": "https://news.ycombinator.com/item?id=50363461",
       "selftext": "If you have a personal Google AI subscription, all your saved chat history in Gemini can be used for training and there is no way to opt out unless you turn off chat history or use temporary chat sessions. These chat transcripts may even be read by human reviewers. Although Google claims to disconnect them from your account when human-reviewed, they explicitly warn not to enter confidential information.\nhttps://support.google.com/gemini/answer/16836988\n“[Gemini app activity] is used to improve Google services for everyone, including by training generative AI models, if your Keep Activity setting is on.“\nhttps://support.google.com/gemini/answer/13594961?hl=en#human_review\n“A subset of chats are reviewed by human reviewers”\nhttps://support.google.com/gemini/answer/13594961?hl=en#pn_retain_data\n“Chats reviewed by human reviewers [...] are not deleted when you delete your activity. Instead, they are retained for up to three years.”\nhttps://support.google.com/gemini/answer/13594961?hl=en#pn_data_usage\n“Please don’t enter confidential information that you wouldn’t want a reviewer to see or Google to use to improve our services, including machine-learning technologies.”\nTo disable their training on your chat sessions, you need to turn off “Keep Activity” in Gemini’s settings. Turning that off means you’ll lose any chat sessions after 72 hours.\nI learned this too late, thinking that having a paid subscription = not being turned into the product. Apparently paying is not enough.\nThank you to this user on HN for mentioning in another thread: https://news.ycombinator.com/item?id=50355424",
@@ -420,11 +428,27 @@
           "parent": "50363461"
         },
         {
+          "id": "50377320",
+          "author": "lencastre",
+          "body": "For subscribing users: Disable “Keep Activity”, don’t use Gemini Web/Mobile apps and do all your chatting needs inside a Gemini Notebook. I understood that Notebooks are walled off. To the extent that that is true I cannot be sure. YMMV. Alternatively, maybe run models locally.",
+          "score": 0,
+          "time": 1793872821,
+          "parent": "50363461"
+        },
+        {
           "id": "50364477",
           "author": "jwr",
           "body": "I am not sure why anyone expected anything different from Google. This is a company that lives and thrives on user data and tracking users. Users are the material that is being run through this entire huge ad-selling machine.",
           "score": 0,
           "time": 1793794114,
+          "parent": "50363461"
+        },
+        {
+          "id": "50372485",
+          "author": "wafflemaker",
+          "body": "While we're touching on de-googling.\nCan anybody recommend a good Swype¹ keyboard that is not G-board?\nOld Swype+Dragon is dead.\nGoogle regularly removes words they don't like from my dictionary. For example swear words, or today, I had to re-type GrapheneOS.\nAD 1: By Swype I mean writing on Android by dragging my finger through the letters making up the words I want to type.\nI also miss being able to easily use ctrl+c,x,v or easily entering space or other special characters, using special gestures.\nThere is just so many FOSS keyboards, that it's hard to choose from them. And I hope somebody with similar usage patterns could share what they are using.",
+          "score": 0,
+          "time": 1793831974,
           "parent": "50363461"
         },
         {
@@ -444,27 +468,11 @@
           "parent": "50363461"
         },
         {
-          "id": "50372485",
-          "author": "wafflemaker",
-          "body": "While we're touching on de-googling.\nCan anybody recommend a good Swype¹ keyboard that is not G-board?\nOld Swype+Dragon is dead.\nGoogle regularly removes words they don't like from my dictionary. For example swear words, or today, I had to re-type GrapheneOS.\nAD 1: By Swype I mean writing on Android by dragging my finger through the letters making up the words I want to type.\nI also miss being able to easily use ctrl+c,x,v or easily entering space or other special characters, using special gestures.\nThere is just so many FOSS keyboards, that it's hard to choose from them. And I hope somebody with similar usage patterns could share what they are using.",
-          "score": 0,
-          "time": 1793831974,
-          "parent": "50363461"
-        },
-        {
           "id": "50365439",
           "author": "baggachipz",
           "body": "Is anyone actually surprised by this? They've devoured the whole internet for training already, the stream of shit coming in from users is the only way to hoover up more training data.",
           "score": 0,
           "time": 1793799970,
-          "parent": "50363461"
-        },
-        {
-          "id": "50364436",
-          "author": "Haven880",
-          "body": "This why I advocate Deepseek, GLM, Kimi, Qwen as in hosted directly (send data) to China. Think about it, what can they do worse off than what our own backyard AI can do? There is no privacy advantage in Western AI. It is way more likely ours leak your data to dark web (solid track records for decades) or get law enforcers on you. Meanwhile, am I suppose to be worried, China sending their Ming-like Eastern Bureau to my home in the west? On dark web, aplenty western companies leaks. How frequent the eastern one?",
-          "score": 0,
-          "time": 1793793863,
           "parent": "50363461"
         }
       ]
@@ -503,19 +511,19 @@
           "parent": "50363274"
         },
         {
-          "id": "50368954",
-          "author": "anygivnthursday",
-          "body": "And it is down again... https://www.githubstatus.com/incidents/h02n9572mx9y (https://www.githubstatus.com/incidents/h02n9572mx9y)",
-          "score": 0,
-          "time": 1793814150,
-          "parent": "50363274"
-        },
-        {
           "id": "50363320",
           "author": "misnome",
           "body": "Outages are one thing, but for the past couple of weeks even when everything is green, about 30% of pushes/pulls just outright fail.\nI've been relatively tolerant of the outages, but this is constant and really intolerable, to the point I'm actively migrating projects into our internal company GitLab.\nI really hope they can sort their shit out.\nEdit: while ! git push; do sleep 5; done",
           "score": 0,
           "time": 1793786099,
+          "parent": "50363274"
+        },
+        {
+          "id": "50368954",
+          "author": "anygivnthursday",
+          "body": "And it is down again... https://www.githubstatus.com/incidents/h02n9572mx9y (https://www.githubstatus.com/incidents/h02n9572mx9y)",
+          "score": 0,
+          "time": 1793814150,
           "parent": "50363274"
         },
         {
@@ -634,7 +642,7 @@
       "title": "Ask HN: Impact of US Elections on AI?",
       "subreddit": "ask-hn",
       "author": "talmr",
-      "score": 8,
+      "score": 9,
       "num_comments": 11,
       "permalink": "https://news.ycombinator.com/item?id=50362700",
       "url": "https://news.ycombinator.com/item?id=50362700",
@@ -702,7 +710,7 @@
       "subreddit": "ask-hn",
       "author": "spacebuffer",
       "score": 10,
-      "num_comments": 5,
+      "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=50362698",
       "url": "https://news.ycombinator.com/item?id=50362698",
       "selftext": "Hi, for the past few months I've been thinking a lot about my work as a software engineer and how I'll be able to provide benefits to companies I work for in the coming years, given the fast pace of progress of LLMs\nEvery time I think I found an edge that will help me stay I relevant, AIs seem to get really good at it in a few weeks/months. I'll give a few examples.\nWhen gpt-4 was really popular we saw an increase of badly written vibe-coded apps, I thought cybersecurity was a good career path to persue since sometime will eventually need to secure these apps if they start being used in production. but now we're seeing new models find security vulnerabilities at an insane rate.\nMore recently I had to deal with a few difficult problems at work where I had to cross-reference different logs in the DB and the server to pinpoint the issue quickly so production wouldn't be impacted for very long. I really enjoyed that challenge and found it to be rewarding both for me and for my employer. but I recently came across someone who gave opus read only access to his AWS company and it diagnosed faster than he ever could have (according to the guy himself)\nSure I cannot give AI agents access to my server yet given that its hosted on platforms without a read-only access but I don't foresee this lasting much longer.\nI wanted to know what your thoughts are on this situation.",
@@ -753,7 +761,7 @@
       "subreddit": "ask-hn",
       "author": "viejaquerida",
       "score": 3,
-      "num_comments": 2,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50361330",
       "url": "https://news.ycombinator.com/item?id=50361330",
       "selftext": "My webapp has a goals section, shared calendar with my wife, expenses traking, calorific deficit, etc. Only my wife and I can login with our gmails. I can itirate ver fast. Are you guys doing something similar? What are you doing? No need to scale.",
@@ -787,8 +795,8 @@
       "title": "Tell HN: Don't use Postman, they proxy your info without your permission",
       "subreddit": "ask-hn",
       "author": "neya",
-      "score": 98,
-      "num_comments": 3,
+      "score": 103,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50360947",
       "url": "https://news.ycombinator.com/item?id=50360947",
       "selftext": "When you send a POST request to your server, you think you're sending the information to YOUR server, right? That was the default behaviour - as it should be. After updating the Postman client, I noticed Postman also sends the request to their internal servers, which then sends your server the actual request (proxying). I thought I was paranoid until another commenter confirmed the same (https://news.ycombinator.com/item?id=50358055). It's fucking annoying that something called POSTman does anything but that. Please don't use Postman for anything sensitive. It's borderline spyware, especially when you didn't consent to this behavior.",
@@ -798,6 +806,14 @@
       "created_at": "2026-11-04T02:43:55+00:00",
       "comments_data": [
         {
+          "id": "50378296",
+          "author": "thorin",
+          "body": "First I've seen of this, thanks HN. Almost every SAAS I've worked with this year has used Postman or offered a Postman collection, so a bit surprised this isn't more widely appreciated.\nIs Bruno the general replacement now, for general purpose / enterprise users?\nIs this only an issue with the web version, rather than the desktop client?",
+          "score": 0,
+          "time": 1793881668,
+          "parent": "50360947"
+        },
+        {
           "id": "50361228",
           "author": "gnabgib",
           "body": "Gigantic discussion (1084 points, 10 hours ago, 359 comments) https://news.ycombinator.com/item?id=50354960 (https://news.ycombinator.com/item?id=50354960)\nIncludes suggested replacements, lots of bots, accounts saying enshittification. The whole nine yards",
@@ -806,19 +822,19 @@
           "parent": "50360947"
         },
         {
-          "id": "50369266",
-          "author": "ironmagma",
-          "body": "Hurl was always my preferred tool. Very dumb, very Unixy. Then there is Insomnia, and HTTPie. Really no reason to use Postman.",
-          "score": 0,
-          "time": 1793815497,
-          "parent": "50360947"
-        },
-        {
           "id": "50367621",
           "author": "vocatan",
           "body": "Absolutely abysmal situation. Postman has lost my trust.",
           "score": 0,
           "time": 1793808551,
+          "parent": "50360947"
+        },
+        {
+          "id": "50369266",
+          "author": "ironmagma",
+          "body": "Hurl was always my preferred tool. Very dumb, very Unixy. Then there is Insomnia, and HTTPie. Really no reason to use Postman.",
+          "score": 0,
+          "time": 1793815497,
           "parent": "50360947"
         }
       ]
@@ -830,7 +846,7 @@
       "title": "Ask HN: What is the best non mainstream programming language or stack in 2026?",
       "subreddit": "ask-hn",
       "author": "kbrannigan",
-      "score": 5,
+      "score": 6,
       "num_comments": 8,
       "permalink": "https://news.ycombinator.com/item?id=50360263",
       "url": "https://news.ycombinator.com/item?id=50360263",
