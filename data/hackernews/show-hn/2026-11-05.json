@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-06T06:35:20.512960+00:00",
+  "last_fetched": "2026-11-06T12:31:46.981364+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -44,8 +44,8 @@
       "title": "Show HN: HackerRepos – HackerTube for repos mentioned on HN",
       "subreddit": "show-hn",
       "author": "mmvvaa",
-      "score": 3,
-      "num_comments": 2,
+      "score": 7,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50385952",
       "url": "https://HackerRepos.fyi/",
       "selftext": "Karpathy posted hackertube.org 5 days ago, and mentioned that it took him 2 hours to build. A day after another fellow posted hackerbooks.org https://news.ycombinator.com/item?id=50326821 (https://news.ycombinator.com/item?id=50326821), and made it to the top of HN. Some hours after someone else made it to the top of HN with the same for wikis: https://wikihack.netlify.app/ (https://wikihack.netlify.app/)\nI found particularly interesting the \"Trends\" section on https://hackerbooks.org/ (https://hackerbooks.org/)\nThat night, I set out to build something similar but for Repos.\nSo I built https://HackerRepos.fyi (https://HackerRepos.fyi). There are 57,316 repositories and 667,508 mentions indexed.\nI originally made three main sections: Top of all time, Most Recommended, and Trends - per HackerBooks inspiration.\nIt looked/felt good, so I wanted to take it further.\nI am a big fan of https://github.com/trending (https://github.com/trending), and frequent it often, looking for inspiration. So I built the \"Trending now section\" https://hackerrepos.fyi/#/trending (https://hackerrepos.fyi/#/trending) section. Trending now gives in a quick colour-coded sentiment snapshot of the repos trending on HN, using a grid/map in the style of https://finviz.com/ (https://finviz.com/).\nWhen you click on a repo, it gives you a summary of the chatter, a colour-coder tag (Favorable, Critical, Debated, Informational), a graph of the mentions over time and the comments below the graph.\nI also added a section on every repo called \"Where it’s used\", to showcase real world use cases. I realized populating this section could be costly, so I placed it behind a paywall for those that care for it. Pro users can click \"Find real-world uses\", and the app goes and finds a real-world use case.\nI am working on a few other features I want to ship, but they are not ready yet. For example, I want to build a reverse product-to-stack exploration feature, where a user could enter or describe a product, and the app could provide a set of stacks to fit it, and perhaps, supporting comments. Also, I want to build task-based comparisons. I have a task, and I am debating between some repos to use. I could describe the task and enter the repos I have in mind to solve for the task, and have the app suggest the better one.\nBut I am glad I stopped and I am posting this now, because it has been a long time since I have finally managed to actually ship something from start to finish. I have a folder full of projects I started and did not ship. As I was struggling with this yesterday, whether I should make this public now or keep fiddling with it, I went to Mass and the gospel was Luke 14:25-33. The following part struck me:\n\"And indeed, which of you here, intending to build a tower, would not first sit down and work out the cost to see if he had enough to complete it? Otherwise, if he laid the foundation and then found himself unable to finish the work, anyone who saw it would start making fun of him and saying, Here is someone who started to build and was unable to finish.\"\nSo here it is. I finished this little tower. I hope you enjoy it, find it helpful, and if you care for it, sponsor it.",
@@ -54,6 +54,14 @@
       "time": 1793920723,
       "created_at": "2026-11-05T23:18:43+00:00",
       "comments_data": [
+        {
+          "id": "50391500",
+          "author": "cucoo",
+          "body": "The site is very cool and interesting. Congrats!!!",
+          "score": 0,
+          "time": 1793967627,
+          "parent": "50385952"
+        },
         {
           "id": "50385966",
           "author": "verdverm",
@@ -339,8 +347,8 @@
       "title": "Show HN: Stroq – a local audit of what your coding agent did and why",
       "subreddit": "show-hn",
       "author": "agybay_07",
-      "score": 80,
-      "num_comments": 29,
+      "score": 88,
+      "num_comments": 33,
       "permalink": "https://news.ycombinator.com/item?id=50380704",
       "url": "https://github.com/AGGIB/Stroq",
       "selftext": "",
@@ -358,11 +366,27 @@
           "parent": "50380704"
         },
         {
+          "id": "50391186",
+          "author": "cucoo",
+          "body": "This is cool. I am working on a similar project but to remove PII and other sensitive info while talking with AI providers in an transparent manner. I started this because I am not comfortable sharing all this info with AI.",
+          "score": 0,
+          "time": 1793965477,
+          "parent": "50380704"
+        },
+        {
           "id": "50383008",
           "author": "maven29",
           "body": "You could cover a lot more adversarial scenarios with an ebpf backend. It needs linux, but with all the patches going around, you should be doing all your dev in a VM anyway.\nhttps://eunomia.dev/agentsight/ (https://eunomia.dev/agentsight/)",
           "score": 0,
           "time": 1793905471,
+          "parent": "50380704"
+        },
+        {
+          "id": "50389163",
+          "author": "chanux",
+          "body": "Could this be used with Agent Safe house? https://agent-safehouse.dev/ (https://agent-safehouse.dev/)",
+          "score": 0,
+          "time": 1793949217,
           "parent": "50380704"
         },
         {
@@ -374,11 +398,27 @@
           "parent": "50380704"
         },
         {
+          "id": "50380839",
+          "author": "agybay_07",
+          "body": "I've built project that helps to protect your computer from dangerous commands that your ai agent might execute. Have you noticed how often dont even check what our agents are actually running? Thats why I created Stroq. \nTry it locally npx @stroq/cli",
+          "score": 0,
+          "time": 1793894609,
+          "parent": "50380704"
+        },
+        {
           "id": "50388283",
           "author": "bill10",
           "body": "Interesting. How does it know: rule based, small model, or LLM? Anyway, like the mascot",
           "score": 0,
           "time": 1793939959,
+          "parent": "50380704"
+        },
+        {
+          "id": "50386586",
+          "author": "emscb",
+          "body": "From the README, matching is text-level and nothing is sent out. So it seems to judge with rules, not an LLM. Is that right?",
+          "score": 0,
+          "time": 1793925027,
           "parent": "50380704"
         },
         {
@@ -398,22 +438,6 @@
           "parent": "50380704"
         },
         {
-          "id": "50386586",
-          "author": "emscb",
-          "body": "From the README, matching is text-level and nothing is sent out. So it seems to judge with rules, not an LLM. Is that right?",
-          "score": 0,
-          "time": 1793925027,
-          "parent": "50380704"
-        },
-        {
-          "id": "50380839",
-          "author": "agybay_07",
-          "body": "I've built project that helps to protect your computer from dangerous commands that your ai agent might execute. Have you noticed how often dont even check what our agents are actually running? Thats why I created Stroq. \nTry it locally npx @stroq/cli",
-          "score": 0,
-          "time": 1793894609,
-          "parent": "50380704"
-        },
-        {
           "id": "50381327",
           "author": "hmokiguess",
           "body": "feature suggestion:\nbackground daemon that continuously scans and alerts in a menubar app when a positive match is found\nclicking the menubar app shows the offending entry, clicking the entry lets you redact, delete, repair, mark as false positive, etc.",
@@ -427,22 +451,6 @@
           "body": "I'm wondering if that could be part of a prompt injection warn system in the future. Did I get it right, that it does not need an LLM to evaluate sessions?",
           "score": 0,
           "time": 1793921257,
-          "parent": "50380704"
-        },
-        {
-          "id": "50383592",
-          "author": "MakazhanAlpamys",
-          "body": "homie lets keep building",
-          "score": 0,
-          "time": 1793908327,
-          "parent": "50380704"
-        },
-        {
-          "id": "50385127",
-          "author": "q17",
-          "body": "cool project! ...so is it pronounced, like, stroke? lol",
-          "score": 0,
-          "time": 1793916247,
           "parent": "50380704"
         }
       ]
@@ -800,7 +808,7 @@
       "title": "Show HN: TubeHaus – an open-source YouTube client with no Google account",
       "subreddit": "show-hn",
       "author": "invidiouslove12",
-      "score": 18,
+      "score": 21,
       "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50379073",
       "url": "https://github.com/biolend83/tubehaus",
@@ -851,8 +859,8 @@
       "title": "Show HN: Firenook – Firebase emulators in Rust: 40× faster writes, 10× less RAM",
       "subreddit": "show-hn",
       "author": "sanjevirau",
-      "score": 87,
-      "num_comments": 16,
+      "score": 136,
+      "num_comments": 18,
       "permalink": "https://news.ycombinator.com/item?id=50378643",
       "url": "https://firenook.dev/",
       "selftext": "Hi HN, we have been developing with Firebase for a long time, and the only way Firebase developers can build apps without directly costing them is using the official Firebase Emulator Suite.\nHowever, the issue with this suite is, it's dependent and running on Java with a old Console UI (not updated in years), that was not built to support tons and millions of data and has pretty bad developer experience. For a long time, we were hitting Out of Memory on even high specs laptop while developing and the worst part is while this happens all the persists data keep getting lost.\nWe were honestly frustrated with this, and thought what if we built the Firebase Emulator Suite the right way, as it always should have been.\nIntroducing Firenook, a faster drop-in replacement for Firebase Emulator Suite for Firebase developers. It's 40x faster writes and needs 10x less RAM to run it. We took the right approach of first building it Rust as a single engine, so that there will be no Java dependencies and built from scratch a new Console UI using modern web stacks.\nThe result is, now we were able to run 2 millions datas loaded to Firenook with only taking around 2GB ram compared to 22GB of the official suite. Things are way faster and rebuilt Console UI gives best developer experience from logging Firebase Functions, to editing Firestore documents in JSON and many more.\nWe developed this throughly for around 2 months now and ran this internally for a month before we decided it's time to release it to public so that other devs can make use of Firenook and also contribute it to make it better.\nFirenook is still new and I'm sure it misses things. So please try it our on your project and let us if there are any issues.\nThank you.",
@@ -875,6 +883,14 @@
           "body": "Looks nice!\nSomewhat off topic question though: if you guys are such skilled developers to be building something as involved as this, why not just use something other than Firebase? I used Firebase mainly as a crutch when I was first getting into web dev, but feel that I’ve sorta outgrown it. Do you feel Firebase still serves developers like you well or are you developing this moreso for people like my old self?\nAgain, nice work!",
           "score": 0,
           "time": 1793931573,
+          "parent": "50378643"
+        },
+        {
+          "id": "50390453",
+          "author": "anilgulecha",
+          "body": "Can this be hosted on a node and I get firebase of my own?",
+          "score": 0,
+          "time": 1793959883,
           "parent": "50378643"
         },
         {
@@ -927,7 +943,7 @@
       "subreddit": "show-hn",
       "author": "rahilb",
       "score": 5,
-      "num_comments": 4,
+      "num_comments": 6,
       "permalink": "https://news.ycombinator.com/item?id=50377933",
       "url": "https://news.ycombinator.com/item?id=50377933",
       "selftext": "Hi all,\nI started learning Piano a while ago, memorising songs from YouTube and graduating to learning classical pieces from sheet music that are too hard for me. It's typical, and you can express yourself through piece selection, and dynamics etc but this is quite limited. I reflected on why I want to play; to be able to sit and improvise, to freely express myself, to make my own music. So I created Noodle; she's a little companion you connect to your digital piano and she guides you through chord progressions, inversions, licks, and traditional scale exercises, guiding you to make nice sounding music.\nWould appreciate any feedback, and I've included 20 redemption codes for the lifetime license at the end of the post.\nCheers,\nRahil\nhttps://turquoisehexagon.co.uk/noodle (https://turquoisehexagon.co.uk/noodle)\nhttps://apps.apple.com/us/app/noodle-piano-improv/id68248940... (https://apps.apple.com/us/app/noodle-piano-improv/id6824894079)\nKX4ME38R84AE8WFMYF\nPWYPWLX6FN8X6KPEAN\nN3JNPKWEA4TAE3AJWN\nXLXYAPEEWTXRTM4Y7W\n6FX87WT67T747NFK77\n3W7YERFAMJLLHY8EJP\nREJ3X7TKPYMHW8X4E3\n6J4PKXN4WHF4KH8A43\nPAXA6NXJ7R3WEJ384N\nY7J8JAF7XKPWNAFRWM\n4MF8T7PYF3APE7EHHR\nXPJ3HYA83ETAHAEWNW\nHTYMW7W8RT4J6LPR8W\nR88KELMLRRHAYHMMF8\nKT7XFY6HNXLHXAWLNM\nN8KPKKLXN68MLYH3PT\n7TPNE6ERHMEWFMWAEY\n3FPYH3R6PAM4FFYW6E\nNH3RPJJHEJX7466WP4\nFF8JJXRXT3X3LJNHL4",
@@ -972,19 +988,19 @@
       "created_at": "2026-11-05T11:21:00+00:00",
       "comments_data": [
         {
-          "id": "50387631",
-          "author": "iAMkenough",
-          "body": "Bonzi Waifu",
-          "score": 0,
-          "time": 1793934051,
-          "parent": "50377851"
-        },
-        {
           "id": "50377985",
           "author": "anushka_gandhi",
           "body": "The front/worker agent is exactly how this should be done,monolithic agents are way too slow for UI.For the remote issue,what if you exposed the worker's inbox via Tailscale? You could just text tasks to your mac while on the go.",
           "score": 0,
           "time": 1793878903,
+          "parent": "50377851"
+        },
+        {
+          "id": "50387631",
+          "author": "iAMkenough",
+          "body": "Bonzi Waifu",
+          "score": 0,
+          "time": 1793934051,
           "parent": "50377851"
         }
       ]
