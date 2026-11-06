@@ -1,8 +1,459 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-06T12:31:51.247259+00:00",
+  "last_fetched": "2026-11-06T18:30:42.656192+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50395613",
+      "title": "If your code chatbot was genuinely honest",
+      "subreddit": "ask-hn",
+      "author": "chrisjj",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50395613",
+      "url": "https://news.ycombinator.com/item?id=50395613",
+      "selftext": "You: What?? This function does nothing like that!\nClaude: You got me there. I found similar code on Stackoverflow and copied the most credible-looking explanation.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793986945,
+      "created_at": "2026-11-06T17:42:25+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50395015",
+      "title": "Looking for a CTO",
+      "subreddit": "ask-hn",
+      "author": "alpbahadur",
+      "score": 3,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50395015",
+      "url": "https://news.ycombinator.com/item?id=50395015",
+      "selftext": "I quit my Head of Quant Research job last friday to go full-time on a startup. I built complex stuff before. I am good with sales and networking. I want to offload the CTO part to someone else while I can raise and sell and work on GTM.\nI am mainly working on agentic software for business (grokbot) and fin-agents (rolo)",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793984515,
+      "created_at": "2026-11-06T17:01:55+00:00",
+      "comments_data": [
+        {
+          "id": "50395643",
+          "author": "alpbahadur",
+          "body": "my linkedin name is Latif Adur, i have a photo of a handsome turk man as a profile picture...",
+          "score": 0,
+          "time": 1793987111,
+          "parent": "50395015"
+        },
+        {
+          "id": "50395465",
+          "author": "gh5689",
+          "body": "Ex Quant Dev here. DM/email me. I'm in London.",
+          "score": 0,
+          "time": 1793986310,
+          "parent": "50395015"
+        },
+        {
+          "id": "50395049",
+          "author": "manav",
+          "body": "DM me. My username at me dot\ncom. Sf Bay Area.",
+          "score": 0,
+          "time": 1793984653,
+          "parent": "50395015"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50394231",
+      "title": "I tried to connect every GPU on the planet together (kinda)",
+      "subreddit": "ask-hn",
+      "author": "lukefrisker",
+      "score": 4,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50394231",
+      "url": "https://news.ycombinator.com/item?id=50394231",
+      "selftext": "Nowadays, unless you’re training a frontier model from scratch, finding spare GPU capacity for training and post-training on some cloud is manageable.\nBut a lot of the time, I’m just too lazy to move my work or even go through the signup processes and deal with their limits and regions and shit. So I wasted a lot of money keeping GPUs idle or gambling on a paused instance, crossing my fingers that the node would still be available when I wanted it again (usually didn’t work).\nSo here’s my journey trying to automate this process, and it was a lot harder than you might think.\n1. Shared File System\n“Just mount a network filesystem… duhh.” Well, not so fast. Many providers have random restrictions and sandboxed compute; the RunPod containers I tested, for example, didn’t expose FUSE. To build a universal solution, I needed another way.\nI built a custom LISAFS adapter and, over months of refinement, got it to the point where it outperforms even network filesystems through clever syncing: packing small files into fewer transfers, fetching file ranges on demand, and using a Rust-based storage engine to reuse cached content-addressed blocks instead of copying whole files. The system works so efficently, you can transfer an uncompressed 3GB 50k file build folder on your laptop to the cloud file system faster than transfering the same folder through a wired connection to a Samsung T5 SSD (crazy right?!)\nOnce machines can efficently share a filesystem, they can also cooperate. Imagine a TPU running a JAX teacher model, publishing training targets that GPUs on a different provider use to train a PyTorch student. It works like magic.\n2. Virtual Clusters\nBooting up separate GPUs/TPUs into the same workspace comes in clutch in a bunch of situations I hadn’t even realized were possible until it became easy to do.\nPushing the abstraction further, I (with the help of ~$50k in research agents) created a new library to optimize many core training functions across compute from different providers. It no longer mattered where my compute came from; it could run distributed workloads automatically under the hood while operating like a single machine.\nSome notes here: planning which regions to place the machines in, even across different providers, was extremely important. Distributed training still never matched the validation loss of single-cluster training, but it came damn close—within ~0.2%, while being 2.3x cheaper, on a post training experiment with a 27B param LLM.\nbtw this is what I’m building at meshia.io -- check it out :) I’m a one-man team and love feedback, so please lmk your thoughts or if you have any questions about this!",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793981448,
+      "created_at": "2026-11-06T16:10:48+00:00",
+      "comments_data": [
+        {
+          "id": "50394518",
+          "author": "unhingedttable",
+          "body": "faster than a wired connection? that IS crazy",
+          "score": 0,
+          "time": 1793982479,
+          "parent": "50394231"
+        },
+        {
+          "id": "50394449",
+          "author": "spookybear",
+          "body": "Cool!",
+          "score": 0,
+          "time": 1793982257,
+          "parent": "50394231"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50393262",
+      "title": "Ask HN: What fun things to do with an iPhone 11?",
+      "subreddit": "ask-hn",
+      "author": "wanderingpixel",
+      "score": 2,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50393262",
+      "url": "https://news.ycombinator.com/item?id=50393262",
+      "selftext": "I have an old iPhone 11 Pro laying around that is no longer used for anything.\nWhat fun things could be done with it to give it a second life ?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793977780,
+      "created_at": "2026-11-06T15:09:40+00:00",
+      "comments_data": [
+        {
+          "id": "50394581",
+          "author": "brudgers",
+          "body": "Slap in a pair of external microphones into the lightning port and you have a pretty good field recorder with a touch screen and rechargeable battery.\nOr load AUM, plug it into an audio interface with a camera connector and you have a digital mixer.\nOr load Garage Band and you have a Daw in your pocket.",
+          "score": 0,
+          "time": 1793982739,
+          "parent": "50393262"
+        },
+        {
+          "id": "50394896",
+          "author": "oofbaroomf",
+          "body": "Setup OpenBubbles! You can iMessage from your Android.",
+          "score": 0,
+          "time": 1793984042,
+          "parent": "50393262"
+        },
+        {
+          "id": "50393366",
+          "author": "pluc",
+          "body": "iOS is to iPhones what Windows is to PCs\nPut another OS on it and use it for many more years\n(though I don't know the status of jailbreak or alternate OSes for iPhones as my last one was a 3G and Cydia was a thriving ecosystem then)",
+          "score": 0,
+          "time": 1793978292,
+          "parent": "50393262"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50393105",
+      "title": "Ask HN: What in the world is taking Ubuntu so long?",
+      "subreddit": "ask-hn",
+      "author": "linsomniac",
+      "score": 132,
+      "num_comments": 70,
+      "permalink": "https://news.ycombinator.com/item?id=50393105",
+      "url": "https://news.ycombinator.com/item?id=50393105",
+      "selftext": "Ubuntu has CVE-2026-98432 marked as a 9.8, but yet it's coming up on a week with no update to fix it. It's still marked as \"work in progress\" (though at least now they've listed a mitigation):\nhttps://ubuntu.com/security/CVE-2026-98432\nI've had mitigations in place for a week, but this response is really shaking my confidence in Ubuntu. I'm just trying to understand what is going on with Ubuntu. Do they have too many kernels (that page is loooong), do they not have enough automation in the build/test pipeline, are their engineers overwhelmed?\nWe are moving into a world where there are going to be vastly more security issues; if you can't keep up now, where are you going to be in the next 6 months?\nFor a long time keeping on top of OS updates has been a huge part of keeping the attackers at bay. However, the world is changing.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793977113,
+      "created_at": "2026-11-06T14:58:33+00:00",
+      "comments_data": [
+        {
+          "id": "50393671",
+          "author": "AnotherGoodName",
+          "body": "It's Canonical. The company that literally asks for high school grades and a multi-page essay on any job application and will pass if you're not in the 99th percentile of year 9 maths even while requiring many years experience (which means you probably don't even know what your year 9 maths scores were). All the while they pay a fraction of any other Bay Area tech company.\nWhat i just described isn't a joke or an exaggeration either. It's literally part of the application process and you can look this up.\nAnyway they are quite simply hopelessly mismanaged and no one should be touching Canonical products at this point.",
+          "score": 0,
+          "time": 1793979565,
+          "parent": "50393105"
+        },
+        {
+          "id": "50394421",
+          "author": "throw0101c",
+          "body": "As outlined in this weblog post:\n* https://ubuntu.com/blog/fixes-available-in-proposed-pocket-f... (https://ubuntu.com/blog/fixes-available-in-proposed-pocket-for-cve-2026-98432)\nThe fixes were in the \"proposed\" repo since October 26 (noble) and 28 (resolute):\n* https://launchpad.net/ubuntu/+source/linux (https://launchpad.net/ubuntu/+source/linux)\nOne could pull them down at any point in the last week. Yesterday afternoon they were still in \"proposed\", but I checked this morning (EST/UTC-5) and they there were in \"updates\". Some tracking of timeline of when the updates to the repos happened seems to be available at:\n* https://ma.ttias.be/linux-cve-2026-98432-vulnerable-kernels/ (https://ma.ttias.be/linux-cve-2026-98432-vulnerable-kernels/)\nThe kernels goes through an QA testing processes, and per this September post, they're looking at shortening the timeframe for kernel updates:\n* https://canonical.com/blog/accelerating-delivery-of-cve-fixe... (https://canonical.com/blog/accelerating-delivery-of-cve-fixes-with-a-new-kernel-release-strategy)",
+          "score": 0,
+          "time": 1793982165,
+          "parent": "50393105"
+        },
+        {
+          "id": "50395394",
+          "author": "marcosdumay",
+          "body": "You were wrong to have confidence in Ubuntu before this, you are doubly wrong for it to still be \"shaking your confidence\".\nYou are expecting some quality that was never there. Visibly so.",
+          "score": 0,
+          "time": 1793986014,
+          "parent": "50393105"
+        },
+        {
+          "id": "50395745",
+          "author": "atestu",
+          "body": "Seems like a good time to ask: what do people use, if not ubuntu, on a web server? Like for example for a rails app, on EC2... asking for a friend (who is me).",
+          "score": 0,
+          "time": 1793987541,
+          "parent": "50393105"
+        },
+        {
+          "id": "50395062",
+          "author": "imjonse",
+          "body": "Has there been a documented exploit of this CVE on Ubuntu or on the other distros before they were patched?",
+          "score": 0,
+          "time": 1793984718,
+          "parent": "50393105"
+        },
+        {
+          "id": "50395886",
+          "author": "xet7",
+          "body": "According to Canonical product team, fixed Ubuntu kernel is at proposed:\nhttps://news.ycombinator.com/item?id=50348688 (https://news.ycombinator.com/item?id=50348688)\nOr install newest mainline test kernel, but it had less testing, YMMV:\nhttps://news.ycombinator.com/item?id=50358616 (https://news.ycombinator.com/item?id=50358616)",
+          "score": 0,
+          "time": 1793988056,
+          "parent": "50393105"
+        },
+        {
+          "id": "50394372",
+          "author": "bon0r",
+          "body": "it's rolling out..\nhttps://ma.ttias.be/linux-cve-2026-98432-vulnerable-kernels/ (https://ma.ttias.be/linux-cve-2026-98432-vulnerable-kernels/)",
+          "score": 0,
+          "time": 1793981960,
+          "parent": "50393105"
+        },
+        {
+          "id": "50393489",
+          "author": "adsfasf",
+          "body": "Aren't the patches out since a day?",
+          "score": 0,
+          "time": 1793978779,
+          "parent": "50393105"
+        },
+        {
+          "id": "50393926",
+          "author": "chrisvalleybay",
+          "body": "There has been a workaround available since nov 2: https://ubuntu.com/blog/fixes-available-in-proposed-pocket-f... (https://ubuntu.com/blog/fixes-available-in-proposed-pocket-for-cve-2026-98432)",
+          "score": 0,
+          "time": 1793980465,
+          "parent": "50393105"
+        },
+        {
+          "id": "50394594",
+          "author": "ravenstine",
+          "body": "I was asking \"what in the world is taking Ubuntu so long\" back in 2006.",
+          "score": 0,
+          "time": 1793982786,
+          "parent": "50393105"
+        },
+        {
+          "id": "50395203",
+          "author": "nekusar",
+          "body": "Maybe the patch is going through their interview process?",
+          "score": 0,
+          "time": 1793985208,
+          "parent": "50393105"
+        },
+        {
+          "id": "50395456",
+          "author": "machska",
+          "body": "Does Ubuntu Pro get this fix any sooner, or is it the same for everyone?",
+          "score": 0,
+          "time": 1793986257,
+          "parent": "50393105"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50392710",
+      "title": "Ask HN: How are companies hiring developers nowadays?",
+      "subreddit": "ask-hn",
+      "author": "Frazzlebilt",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50392710",
+      "url": "https://news.ycombinator.com/item?id=50392710",
+      "selftext": "Hi, using a throwaway for obvious reasons. I'm currently in a situation where I'll have to both create a hiring process to hire a couple of programmers at a startup where I'm working at, but at the same time I'm also starting to think about looking around and start sending out job applications.\nSince it's been a while from my last job interview I'm wondering how companies are hiring programmers nowadays. Do they still require leetcode exercises? What about take-home exercises? Or is it all done in real time during a call?\nMy last interviews all had a take-home project that I had to do (some paid and some not), is that still the case? I'd guess that with agents that changed a lot since someone could just have Claude doing all the work and submit it back.\nI want to both create a process that is fair and worth the time on both the parts, but also want to know what other companies are doing in order to start preparing if I'll get lucky and move to the next interviewing steps.\nHow is it at your company or in your [recent] experience?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793975363,
+      "created_at": "2026-11-06T14:29:23+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50392695",
+      "title": "Ask HN: AI isn't intelligent :/ what is intelligence?",
+      "subreddit": "ask-hn",
+      "author": "aaditsingal7859",
+      "score": 3,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50392695",
+      "url": "https://news.ycombinator.com/item?id=50392695",
+      "selftext": "Everyone around is calling it intelligence wherein it's actually just maths essentially mirroring the dataset. It's not at all intelligent.\nLet's define intelligence, is it observer intelligence that we mean when talking about AGI? Every thought counts.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793975307,
+      "created_at": "2026-11-06T14:28:27+00:00",
+      "comments_data": [
+        {
+          "id": "50396236",
+          "author": "mirmor23",
+          "body": "> Everyone around is calling it intelligence wherein it's actually just maths essentially mirroring the dataset. It's not at all intelligent.\nDo you consider yourself intelligent, and did you derive everything you know from first principles or are you just mirroring the cumulative subject matter that you've been taught and read? if a black box that can mimic that, is that intelligent.\nCuriosity and Creativity is what sets apart humans from machines, not an output that depends on the corpus that has been fed.",
+          "score": 0,
+          "time": 1793989562,
+          "parent": "50392695"
+        },
+        {
+          "id": "50393029",
+          "author": "ma2kx",
+          "body": "I often hear the argument that \"it’s just mathematics,\" and therefore not intelligent. Yet, the universe in which we exist is also \"just mathematics,\" and we clearly consider ourselves to be intelligent. It therefore seems obvious to me that intelligence can emerge from \"just mathematics.\" The real question is how complex the underlying mathematics needs to be. In our brains, we have actual cells that form a complex neural network via synapses, dendrites, and so on. But is this level of complexity—which also manages the supply of nutrients to the cells—truly necessary for intelligence? Or, to put it another way: to what extent can this structure be simplified?\nIn my view, language models certainly exhibit a form of intelligence. Judging by the results, they grasp my input—or rather, my intent—and adapt their decisions based on dynamic input from various tools to address problems for which the solutions are not pre-programmed. I consider that a form of intelligence.\nA completely different question, however, concerns consciousness, needs, and emotions. A language model doesn't feel a sense of satisfaction upon completing a task; it simply asks if there is anything else it can do or you just open a new prompt.",
+          "score": 0,
+          "time": 1793976787,
+          "parent": "50392695"
+        },
+        {
+          "id": "50392798",
+          "author": "trio8453",
+          "body": "> it's actually just maths essentially mirroring the dataset\nAnd your brain is just water and fat conducting electrical signals. Also, modern AI doesn't mirror the training dataset, that's not how LLMs work, it's only true for the initial pretraining phase. But that's besides the point.\nWhat matters is what it can and can't do. Whether you label it as intelligence or not is pretty inconsequential long term.",
+          "score": 0,
+          "time": 1793975764,
+          "parent": "50392695"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50392586",
+      "title": "OpenClaw SaaS?",
+      "subreddit": "ask-hn",
+      "author": "alexfthom",
+      "score": 2,
+      "num_comments": 9,
+      "permalink": "https://news.ycombinator.com/item?id=50392586",
+      "url": "https://news.ycombinator.com/item?id=50392586",
+      "selftext": "Does anyone know of an OpenClaw like SaaS or Agent saas that is a turnkey solution? Preferably not one that I have to buy a new computer or find a spare one? Something that just works as software with its own email, calendaring, etc...? I am thinking of using Muse but the idea of giving it access to all my emails is a bit daunting. And then working on a phone is not ideal for me as I find doing business on a phone very difficult. Ideally, something completely siloed with its own email, calendar, notes, and things but with an AI agent built in. \nThanks!\nAlex",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793974851,
+      "created_at": "2026-11-06T14:20:51+00:00",
+      "comments_data": [
+        {
+          "id": "50392639",
+          "author": "Laxman_Singh",
+          "body": "Interesting idea. i think the difficult part isn't just making an agent available as a SaaS, but making it reliable, easy to integrate with other tools and simple for users to manage.",
+          "score": 0,
+          "time": 1793975102,
+          "parent": "50392586"
+        },
+        {
+          "id": "50393858",
+          "author": "figassis",
+          "body": "Try https://crew.ao (https://crew.ao)\nI’ve not officially launched it, it hav therm using it as my daily driver for a few months. I may in the future add BYOK, but for now I’m a lot more focused in improving it for real world usefulness. The goal is to really answer the question “what is the actual benefit of LLMs”, for these personas:\n1. Business: a business leader (CXO, or any other decision maker or managerial type) that is drowning in processes, meetings, plans, research, experimentation, and needs a team of specialists following them wherever they go.\n2. Building: An engineer who wants to get as close as possible to a Jarvis like experience (not there yet, but getting the pieces together) that they can trust, instead of yelling constantly at agents and just saying “ship it”.\n3. General: A normie (or your mother) that just needs help getting through their day, reading her emails, killing all the spam, replying, answering questions on whatever they need.\n4. Physical: Eventually someone like a farmer, that can manage their entire operation by injecting sensor data into the app and monitoring performance, identifying plagues, etc.\nThe main goal is 100% privacy friendly, no training and absolutely no claim on anyone’s data now in the future. I actually wonder how one can insure that this outlives acquisitions (not that I expect to be acquired)\nTry it out, mostly I’m just expecting some feedback. Thanks!",
+          "score": 0,
+          "time": 1793980198,
+          "parent": "50392586"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50392495",
+      "title": "Ask HN: How to resist endless app directories listing your product?",
+      "subreddit": "ask-hn",
+      "author": "gosen",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50392495",
+      "url": "https://news.ycombinator.com/item?id=50392495",
+      "selftext": "So everyone is building something these days, right, probably you know what I mean.\nEvery time I publish some new tool / product and then list it on websites like Product Hunt / BetaList to get some first traffic, I get dozens of emails from noname bestappsever.whatever AI-slop saying that they've listed my product and \"I'm only 1 click away from publishing it\" (or sometimes they just do it without asking). Then I also receive another dozen of outreach emails offering their \"services\", but that's another story.\nAs a result I get a lot of spam and bad backlinks which affects the overall domain trust. And they don't stop and create more and more PH-like \"app directories\" with voting as if the only idea their AI gives is \"build another product hunt, but better\".\nIs there any way to resist it? I can use Google disavow tool to fight the backlinks problem but it doesn't help with annoying spam.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793974368,
+      "created_at": "2026-11-06T14:12:48+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50391785",
+      "title": "Verifying a satellite image with temporal evidence",
+      "subreddit": "ask-hn",
+      "author": "avijeetsingh16",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50391785",
+      "url": "https://news.ycombinator.com/item?id=50391785",
+      "selftext": "We ran a simulation to extract dates of undated satellite images using dated, low-resolution image time-series. The results are fairly accurate. The emem plugin is available in chatgpt, vscode, claude. Give it a try yourelf.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793969845,
+      "created_at": "2026-11-06T12:57:25+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50391784",
+      "title": "Executive (C-Level) Decision Making Under Uncertainty with Large Language Models",
+      "subreddit": "ask-hn",
+      "author": "northlondoner",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50391784",
+      "url": "https://news.ycombinator.com/item?id=50391784",
+      "selftext": "Since reasoning in-context learning improved a lot as show by \nrecently works []. Decision support for C-levels increased immensely. Looks like AI might be able to automate some CEO tasks as well.\n[] DeLLMa: Decision Making Under Uncertainty with Large Language Models\nOllie Liu, Deqing Fu, Dani Yogatama, Willie Neiswanger\n(2025)\nhttps://proceedings.iclr.cc/paper_files/paper/2025/hash/6cd3ac24cdb789beeaa9f7145670fcae-Abstract-Conference.html",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793969844,
+      "created_at": "2026-11-06T12:57:24+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50391647",
+      "title": "Ask HN: Is anyone running multi/always-on agents that don't cost a fortune?",
+      "subreddit": "ask-hn",
+      "author": "abejora",
+      "score": 3,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50391647",
+      "url": "https://news.ycombinator.com/item?id=50391647",
+      "selftext": "Yesterday a few interesting links appeared on hacker news about always-on [1] and multi-agent setups [2].\nSome of those points resonate with what we're experiencing with our current approach of running agents and sub-agents locally.\n- We are delegating complex and long running tasks to agents more and more. Being able to run those overnight seems like a logical next step in efficiency, because at the moment we are stopping the local agents every evening and restarting them in the morning.\n- A setup with decentralized multi-agent system with shared context is 5.5x faster than Claude code + native subagents. It takes 29.3 minutes (2% of agent time waiting) versus 162.7 minutes (44% of agent time waiting). [3] This aligns with our feeling that locally running agents are often \"doing nothing\" while waiting on test results, each other, and so on\n- The possibility to monitor \"input channels\" (e.g. chat channels, e-mail inboxes...) and have agents act autonomously on those seems like something that could help us out as well.\nThis all sounds amazing, but we're unsure how others are currently doing this and what those cost. We currently mainly power our needs via subscription-based contracts (e.g. claude (code) pro/max, chatgpt plus/pro ...)\n- Is anyone running such multi-agent or always-on agent systems?\n- Do you host it yourself, or do you use existings solutions like grok bots or claude remote control sessions or claude routines?\n- Can you make this work with subscriptions, or do you use API pricing, or even self-hosted LLMs? How do the costs compare with running local agents?\n- How are the results? Is it an improvement?\n[1] Stanford CS146S: How always-on agents work\nLecture: https://www.youtube.com/watch?v=L1OBRtfPS34\nSlides: https://drive.google.com/file/d/1b8WiBk_lcB3ue-jZMLijSUMLj6SDiF6Z/view\n[2] CMU 11-768 AI Agents: https://www.cmu-agents.com/#/schedule\n[3] Decentralized Multi-Agent Systems with Shared Context (figure 3, page 3): https://arxiv.org/pdf/2606.10662",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793968814,
+      "created_at": "2026-11-06T12:40:14+00:00",
+      "comments_data": [
+        {
+          "id": "50391685",
+          "author": "abejora",
+          "body": "Links from the post:\n[1] Stanford CS146S: How always-on agents work\nLecture: https://www.youtube.com/watch?v=L1OBRtfPS34 (https://www.youtube.com/watch?v=L1OBRtfPS34)\nSlides: https://drive.google.com/file/d/1b8WiBk_lcB3ue-jZMLijSUMLj6S... (https://drive.google.com/file/d/1b8WiBk_lcB3ue-jZMLijSUMLj6SDiF6Z/view)\n[2] CMU 11-768 AI Agents: https://www.cmu-agents.com/#/schedule (https://www.cmu-agents.com/#/schedule)\n[3] Decentralized Multi-Agent Systems with Shared Context (figure 3, page 3): https://arxiv.org/pdf/2606.10662 (https://arxiv.org/pdf/2606.10662)",
+          "score": 0,
+          "time": 1793969113,
+          "parent": "50391647"
+        },
+        {
+          "id": "50392974",
+          "author": "harlequinetcie",
+          "body": "agent-swarm.dev is open source/MIT exactly meant for these scenarios.\nParticularly interesting for you, our lasts posts on how we handle to have efficient dreaming focused on reducing costs.\ntl;dr: there's a self-driven process generating more effective and efficient prompts, code, and potentially select systemone models to tackle the cost problems.\nWe have companies using the system that we understand have stayed 'flat' in token consumption but with increasing workloads (ie. more workflows running).\nHope it helps!",
+          "score": 0,
+          "time": 1793976518,
+          "parent": "50391647"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50391446",
+      "title": "Ask HN: How's your home-cooked software revolution going?",
+      "subreddit": "ask-hn",
+      "author": "nihakue",
+      "score": 3,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50391446",
+      "url": "https://news.ycombinator.com/item?id=50391446",
+      "selftext": "I know the title is glib, but there is a genuine question behind it. With LLMs getting better, and services like sprites, deno sandboxes, exe.dev, and now lambda web functions making it cheaper to deploy very small scale-to-zero apps, I wanted to ask a question that I haven't seen asked on here recently.\nHow has your relationship with technology changed in your 'regular' life in the past year or two? How about for the (possibly less-technical) people around you? Have you found that access to better LLMs is inducing you to create more 'home-cooked' software for just you and your close friends and family? Are you feeling like you have more autonomy/control when it comes to the software/hardware that you interact with daily? What does your stack look like?\nThe reason I ask is that I'm very bullish on the idea of [home-cooked software](https://www.robinsloan.com/notes/home-cooked-app/) and have noticed a personal uptick in the scope and efficacy of LLM-assisted coding. For me, the big benefit recently has been feeling like I can take on the dozens of small annoyances that I previously would have just tolerated because fixing them is high cost/low reward.\nThe psychological benefit of getting a handle on these has been surprising for me. The analogy I've been using with my friends and family is it feels like learning to lucid dream (insofar as software isn't 'real' and suddenly being much more in control of it). Because of that, I'm putting together a little course in my local village to help others get some of this same benefit. I'd love to hear about others' experience and start a conversation about home cooked software as well. In particular, I want to hear what others think we should be doing to increase the likelihood of a future where home-cooked software can continue to be a thing, and isn't completely hobbled (see e.g. the recent reverse engineering restrictions).\nI'll start with a couple examples of the small sorts of things I've been building with the help of LLMs recently. I've been blow away by how much I'm able to get done in my home with Opus 5.5 and an ethernet/USB cable. Nothing here is particularly hard or interesting on its own, but I think it's probably a very big deal that I was able to do it all with very minimal input from myself. If we really get to the point where my mom can do the same things with all the tech papercuts that plague her life then we're going to be in a very different reality than today.\n1. My Google TV remote doesn't have a profile for my Hisense TV (running vidaa) that allows me to change the input/source. I side-loaded an app that intercepts a button press on my remote and uses MQTT to change the input. I can also navigate all of the settings and menus with my laptop (lost the original remote)\n2. Generally replacing every piece of small adware in my life. For example, a sleep timer for my phone that pauses any media after 15 minutes. Or a static website that lets me print to my old Brother LaserJet from my phone.\n3. Resurrected an abandonware smart frame and put a custom smart-frame app on it that lets my siblings send my mom video-grams as well as adding photos to a family album / slideshow\n4. Pointed my phone (and a bespoke android app) at my dumb electricity meter to jerry rig a realtime utilisation dashboard and help me identify that an old lamp in my home was drawing a crazy ~400W\n5. An absurd jerry-rigged Minecraft setup that lets my kids easily play split-screen minecraft offline on my living room TV (Steam deck Moonlight Client -> Sunshine server on my Wake-on-LAN PC running a custom minecraft launcher capable of launching / managing multiple Java Minecraft instances including arranging windows for splitscreen as players join / leave)\n6. A custom smart nightlight (with custom 3d printed case) for my kids. I'm not experienced with hardware, but I'm finding that I can do a lote more with less here when the stakes are low.\n7. Offline route map app for walks/hikes with GPS and GPS tracks\nWould love to hear others' stories like this.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793967142,
+      "created_at": "2026-11-06T12:12:22+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,8 +461,8 @@
       "title": "Ask HN: What's one coding habit that separates great dev from average dev?",
       "subreddit": "ask-hn",
       "author": "dhruonweb",
-      "score": 3,
-      "num_comments": 2,
+      "score": 5,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50391348",
       "url": "https://news.ycombinator.com/item?id=50391348",
       "selftext": "",
@@ -21,11 +472,27 @@
       "created_at": "2026-11-06T12:01:24+00:00",
       "comments_data": [
         {
+          "id": "50393544",
+          "author": "sloaken",
+          "body": "Clearly productivity. But as a refinement, productivity without documentation is called a hack, not a great development.\nDocumentation - a significant amount of work ends up being maintenance. If you cannot explain why you did something, or refuse to waste your time explaining, then you are a poser. Chesterton's fence IS a critical problem. If you do not document why, you condemn those that follow to throw your crap out and just redo all of it.\nWillingness to learn. The world is not stopping anytime soon. Each year you do not advance, you are going backwards.\nSorry that is 3 one things, I just did not want to post 3 times :-)",
+          "score": 0,
+          "time": 1793979019,
+          "parent": "50391348"
+        },
+        {
           "id": "50391432",
           "author": "NeuraCryption",
           "body": "In today's world? Using AI while ensuring CYBERSECURITY. A good dev will always create code that is secure rather than just shipping it fast!",
           "score": 0,
           "time": 1793967022,
+          "parent": "50391348"
+        },
+        {
+          "id": "50392636",
+          "author": "ravenstine",
+          "body": "You mean other than knowing what you're doing? It's hard not to bring that up when it comes to vibe coding and the resulting contemporary ideas of what it means to be a \"dev\" or \"coder\".\nIf I had to name only one coding habit that distinguishes a great dev, I'd say it's in the ability to say no to the things that don't actually matter. Software isn't just about solving problems; it's about solving the right problems, which almost never means solving every problem, in spite of the greatest wet dreams of product managers and senior leadership. Jira is what you get when you believe that software is about solving everyone's problems.",
+          "score": 0,
+          "time": 1793975085,
           "parent": "50391348"
         }
       ]
@@ -37,8 +504,8 @@
       "title": "Seeking advice: Wix stolen my .com domain",
       "subreddit": "ask-hn",
       "author": "wixcom",
-      "score": 3,
-      "num_comments": 8,
+      "score": 6,
+      "num_comments": 10,
       "permalink": "https://news.ycombinator.com/item?id=50391313",
       "url": "https://news.ycombinator.com/item?id=50391313",
       "selftext": "I transferred .com domain to wix from another domain registrar, paid for transfer and additional year of domain from my bank card, they blocked account, requested passport and bank card photo via email, and after I provided them document (same legal name of admin of domain) and bank card photo they rejected to reactivate account, so I don't have access to my domain anymore and can't withdraw it to another registrar.\nTheir final reply:\n\"Hi there,\nThank you for reaching back out.\n_As mentioned by my colleague, regrettably we are unable to restore the account or provide access to the domain in this case._\nAt this time, we would advise reaching out to ICANN directly or continuing communication with ICANN in order to retrieve the domain. With this being said, I would recommend gathering your proof of ownership for the domain. This would include your registration/transfer records and any related correspondence.\nI understand this is not the outcome you expected and I apologize on behalf of any frustrations or inconveniences this may cause.\nThank you for your patience during this process. If you happen to have any additional questions or concerns please don't hesitate to reach back out.\nBest Regards,\nOlivia | Wix Customer Care\"",
@@ -64,6 +531,14 @@
           "parent": "50391313"
         },
         {
+          "id": "50393904",
+          "author": "phendrenad2",
+          "body": "It really sucks that every web hosting company is greedily trying to trick people into transferring their domains, usually by implying that you can't use your domain with them unless you transfer it. Scumbags, the lot of them.",
+          "score": 0,
+          "time": 1793980380,
+          "parent": "50391313"
+        },
+        {
           "id": "50391405",
           "author": "Kevin_Flynn",
           "body": "I looked at Wix when they were new.\nMy first thought was \"this is a captive portal that will never let you have your website back without first slaying a multi-headed hydra.\"\nGood luck.",
@@ -72,6 +547,110 @@
           "parent": "50391313"
         }
       ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50390644",
+      "title": "Ask HN: What is the most secure OS for mobile phone?",
+      "subreddit": "ask-hn",
+      "author": "Muralnick",
+      "score": 5,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50390644",
+      "url": "https://news.ycombinator.com/item?id=50390644",
+      "selftext": "Given that privacy and security are being discussed more and more often, I was wondering which OS is safer for phones or tablets. I know many will say GrapheneOS, but are there similar alternatives available right now?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793961340,
+      "created_at": "2026-11-06T10:35:40+00:00",
+      "comments_data": [
+        {
+          "id": "50390998",
+          "author": "tourmalinetaco",
+          "body": "It depends on your threat model. Lineage is a good alternative to Graphene and is available on more phones, there’s also Calyx and I’m sure there’s more I’m unaware of.",
+          "score": 0,
+          "time": 1793964201,
+          "parent": "50390644"
+        },
+        {
+          "id": "50391426",
+          "author": "xx__yy",
+          "body": "Also depends on your phone.\nI use Axion for older phones and LineageOS for newer ones.\nThere is also e/OS (whoever named e/OS needs a slap, it's a terrible name to search/google for answers, seriously, why? Let's pick a vowel and a very common abbr and join them with a symbol used in URL and file system paths, and expect search engines to even know what you're harping on about. Come on!)",
+          "score": 0,
+          "time": 1793966948,
+          "parent": "50390644"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50390466",
+      "title": "Ask HN: How can I get informed in the static vs. dynamic typing debate?",
+      "subreddit": "ask-hn",
+      "author": "zingar",
+      "score": 2,
+      "num_comments": 4,
+      "permalink": "https://news.ycombinator.com/item?id=50390466",
+      "url": "https://news.ycombinator.com/item?id=50390466",
+      "selftext": "Static typing has converted a bunch of people I know who started their careers with Ruby's dynamic typing. Nowadays they see static typing as an important guardrail for agent programming.\nClojure programmers are also into agentic programming. I wouldn't have thought it possible but I encounter Clojure people who are even _more_ into agentic programming. Yet Clojureconf is still full of what seem like good points against static typing.\nI'd really like to understand this. Where do I start?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793959985,
+      "created_at": "2026-11-06T10:13:05+00:00",
+      "comments_data": [
+        {
+          "id": "50390713",
+          "author": "smt88",
+          "body": "This debate ended a long time ago. Every language is moving toward stronger, static typing, especially JavaScript with TypeScript, but even Python.\nI don’t know of any good arguments against strong, static typing. What do you think are some?",
+          "score": 0,
+          "time": 1793961909,
+          "parent": "50390466"
+        },
+        {
+          "id": "50390693",
+          "author": "hashim",
+          "body": "It seems to me that debate ended - at least for non-hobbyist programmers - with the modern capability of LLMs. Writing code, especially when it comes to tedious boilerplate like types, has been so abstracted away from me nowadays going back to it feels like doing maths without a calculator... and even those used to be human at one point.",
+          "score": 0,
+          "time": 1793961781,
+          "parent": "50390466"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50390444",
+      "title": "Ask HN: Engineers Focus Using AI",
+      "subreddit": "ask-hn",
+      "author": "elchuzade",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50390444",
+      "url": "https://news.ycombinator.com/item?id=50390444",
+      "selftext": "Now that engineers are developing most of the code using AI at a rapid pace, I am curious if distractions from other non-technical people have increased? And is it easy to answer their requests while your coding agent is working?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793959801,
+      "created_at": "2026-11-06T10:10:01+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50390442",
+      "title": "Ask HN: Has anyone used LLMs to audit TrueCrypt for backdoors?",
+      "subreddit": "ask-hn",
+      "author": "dlphii",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50390442",
+      "url": "https://news.ycombinator.com/item?id=50390442",
+      "selftext": "TrueCrypt was discontinued in 2014 under mysterious circumstances, prompting speculation about possible US government involvement. Now that LLMs can help with source code analysis, has anyone revisited the code and found evidence of a backdoor or other signs of government interference?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1793959786,
+      "created_at": "2026-11-06T10:09:46+00:00"
     },
     {
       "source": "hackernews",
@@ -271,8 +850,8 @@
       "title": "Ask HN: What workspace/productivity tools do you use and why?",
       "subreddit": "ask-hn",
       "author": "anragyadev",
-      "score": 3,
-      "num_comments": 1,
+      "score": 4,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50389152",
       "url": "https://news.ycombinator.com/item?id=50389152",
       "selftext": "",
@@ -323,8 +902,8 @@
       "title": "Ask HN: What are forgotten topics in computing that deserve a new revisit?",
       "subreddit": "ask-hn",
       "author": "draxen",
-      "score": 31,
-      "num_comments": 29,
+      "score": 39,
+      "num_comments": 36,
       "permalink": "https://news.ycombinator.com/item?id=50387483",
       "url": "https://news.ycombinator.com/item?id=50387483",
       "selftext": "I mean both things that are enabled by AI coding agents but also things we couldn't do because computers weren't fast enough in the past.",
@@ -339,6 +918,22 @@
           "body": "Pascal.\nLike, all of it. People who decry it think of Wirth's original implementation but never the decades of (admittedly slow, Delphi was hardly blazing trails here...) improvements so they think it sucks. Pascal is great.\nWith AI, I think it's a future worth exploring. Great low-level and efficient string handling, unlike C.\nStupendously fast compiler and linker, and it generates code that's near C++/C/Rust performance with relative ease. Cram more useful features into it; keep the memory and pointer system as it is; add more useful language concepts from other places. Hell, strap an optional GC into it for things where you don't care.",
           "score": 0,
           "time": 1793949289,
+          "parent": "50387483"
+        },
+        {
+          "id": "50392679",
+          "author": "codingdave",
+          "body": "HCI (Human-Computer Interaction), as an overall subject matter area. Keyboards and screen and mobile devices... they all grew incrementally from what came before, and people are used to it, but we can do better.\nThe AI-driven work these days has not actually re-imagined much. We're doing the same stuff, putting the same UIs on the same screens as we were before AI. It is faster, and the content is changing, but not the core interactions with devices. Do we need to output to screens? Do we need keyboards and mice and digital keyboards on phone as input mechanisms?\nPeople are dabbling in VR and AR, and voice control. We're using watches a bit. And those are interesting directions, but some (VR and AR, mostly) of that hardware requirements comes with the baggage of awkward experiences and societal stigma, and often prohibitive costs for non-wealthy consumers.\nI don't have the answers, I'd just encourage everybody to really ask yourself - is the goal I'm trying to achieve best solved by defaulting to the same \"put it on a screen\" UX as before, or can we do something completely new?",
+          "score": 0,
+          "time": 1793975248,
+          "parent": "50387483"
+        },
+        {
+          "id": "50394755",
+          "author": "RetroTechie",
+          "body": "Reconfigurable computing.\nRead: have FPGA-like reconfigurable hardware as a core feature. With the reconfiguring being as easy as starting an executable or changing a setting.\nNOT: \"stick an FPGA onto a CPU, upload 'kernels' to accelerate some task\". I mean the platform itself being dead-easy to reconfigure, like change the workings of a particular CPU instruction on-the-fly, or have a # of processing elements encode/decode/process a data stream, reroute traffic from output A to output B by reconfiguring some multiplexer, etc.\nTransistors are cheap now. Configuring logic as if it were a simple RAM matrix should be toootally doable.",
+          "score": 0,
+          "time": 1793983458,
           "parent": "50387483"
         },
         {
@@ -366,19 +961,19 @@
           "parent": "50387483"
         },
         {
-          "id": "50388196",
-          "author": "qtqtqt",
-          "body": "- https://en.wikipedia.org/wiki/Ternary_computer (https://en.wikipedia.org/wiki/Ternary_computer)\n- https://en.wikipedia.org/wiki/Sloot_Digital_Coding_System (https://en.wikipedia.org/wiki/Sloot_Digital_Coding_System)",
-          "score": 0,
-          "time": 1793939224,
-          "parent": "50387483"
-        },
-        {
           "id": "50388996",
           "author": "muzani",
           "body": "Evolutionary programming. Very suited to goals and agentic stuff. I'd be surprised if it's not yet in production somewhere.\nProcedurally generated content is also a lot more interesting. Without structure, you get slop.\nYou can set the beginning of a story and an ending, as well as a story contour. Then procedurally generate content that ends at these points, even if they seem to veer away.\nMetaprogramming for similar reasons, things like writing scripts/languages for very specific problems.\nThere's good techniques for all these, but the ROI was too low compared to the returns. It was difficult to write tests for the output space, but now it's a lot simpler.",
           "score": 0,
           "time": 1793947428,
+          "parent": "50387483"
+        },
+        {
+          "id": "50388196",
+          "author": "qtqtqt",
+          "body": "- https://en.wikipedia.org/wiki/Ternary_computer (https://en.wikipedia.org/wiki/Ternary_computer)\n- https://en.wikipedia.org/wiki/Sloot_Digital_Coding_System (https://en.wikipedia.org/wiki/Sloot_Digital_Coding_System)",
+          "score": 0,
+          "time": 1793939224,
           "parent": "50387483"
         },
         {
@@ -398,14 +993,6 @@
           "parent": "50387483"
         },
         {
-          "id": "50389379",
-          "author": "hulitu",
-          "body": "GUIs, quality, digital garbage: every version of a program is incompatible with the one before and require a new toochain to build and run, bloat",
-          "score": 0,
-          "time": 1793951372,
-          "parent": "50387483"
-        },
-        {
           "id": "50390097",
           "author": "bjourne",
           "body": "Asynchronous digital design!",
@@ -414,19 +1001,11 @@
           "parent": "50387483"
         },
         {
-          "id": "50388609",
-          "author": "rramadass",
-          "body": "All types of unconventional/exotic computing. I think this has been criminally neglected ever since the ascendancy of the von neumann architecture digital computer.\n1) The Zen of Exotic Computing by Peter Kogge - https://epubs.siam.org/doi/10.1137/1.9781611977295 (https://epubs.siam.org/doi/10.1137/1.9781611977295)\n2) Handbook Of Unconventional Computing in 2-vols (Vol1-Theory, Vol2- Implementations) by Andrew Adamatzky et al. - https://www.worldscientific.com/worldscibooks/10.1142/12232#... (https://www.worldscientific.com/worldscibooks/10.1142/12232#t=aboutBook)",
+          "id": "50389379",
+          "author": "hulitu",
+          "body": "GUIs, quality, digital garbage: every version of a program is incompatible with the one before and require a new toochain to build and run, bloat",
           "score": 0,
-          "time": 1793943515,
-          "parent": "50387483"
-        },
-        {
-          "id": "50388010",
-          "author": "jackb4040",
-          "body": "Lisp Machines. And if you're a real freak, Forth Machines",
-          "score": 0,
-          "time": 1793937726,
+          "time": 1793951372,
           "parent": "50387483"
         }
       ]

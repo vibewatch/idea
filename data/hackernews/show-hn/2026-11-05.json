@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-06T12:31:46.981364+00:00",
+  "last_fetched": "2026-11-06T18:30:39.494967+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -859,8 +859,8 @@
       "title": "Show HN: Firenook – Firebase emulators in Rust: 40× faster writes, 10× less RAM",
       "subreddit": "show-hn",
       "author": "sanjevirau",
-      "score": 136,
-      "num_comments": 18,
+      "score": 166,
+      "num_comments": 25,
       "permalink": "https://news.ycombinator.com/item?id=50378643",
       "url": "https://firenook.dev/",
       "selftext": "Hi HN, we have been developing with Firebase for a long time, and the only way Firebase developers can build apps without directly costing them is using the official Firebase Emulator Suite.\nHowever, the issue with this suite is, it's dependent and running on Java with a old Console UI (not updated in years), that was not built to support tons and millions of data and has pretty bad developer experience. For a long time, we were hitting Out of Memory on even high specs laptop while developing and the worst part is while this happens all the persists data keep getting lost.\nWe were honestly frustrated with this, and thought what if we built the Firebase Emulator Suite the right way, as it always should have been.\nIntroducing Firenook, a faster drop-in replacement for Firebase Emulator Suite for Firebase developers. It's 40x faster writes and needs 10x less RAM to run it. We took the right approach of first building it Rust as a single engine, so that there will be no Java dependencies and built from scratch a new Console UI using modern web stacks.\nThe result is, now we were able to run 2 millions datas loaded to Firenook with only taking around 2GB ram compared to 22GB of the official suite. Things are way faster and rebuilt Console UI gives best developer experience from logging Firebase Functions, to editing Firestore documents in JSON and many more.\nWe developed this throughly for around 2 months now and ran this internally for a month before we decided it's time to release it to public so that other devs can make use of Firenook and also contribute it to make it better.\nFirenook is still new and I'm sure it misses things. So please try it our on your project and let us if there are any issues.\nThank you.",
@@ -886,11 +886,11 @@
           "parent": "50378643"
         },
         {
-          "id": "50390453",
-          "author": "anilgulecha",
-          "body": "Can this be hosted on a node and I get firebase of my own?",
+          "id": "50393447",
+          "author": "codazoda",
+          "body": "At first I thought this had something to do with books because \"Amazon Fire\" plus \"B&N Nook\" = \"firenook\".",
           "score": 0,
-          "time": 1793959883,
+          "time": 1793978631,
           "parent": "50378643"
         },
         {
@@ -910,6 +910,38 @@
           "parent": "50378643"
         },
         {
+          "id": "50390453",
+          "author": "anilgulecha",
+          "body": "Can this be hosted on a node and I get firebase of my own?",
+          "score": 0,
+          "time": 1793959883,
+          "parent": "50378643"
+        },
+        {
+          "id": "50391927",
+          "author": "shaolinspirit",
+          "body": "well, actually this inspired me to try firebase for my next app instead of supabase (sorry supa, you are awesome)",
+          "score": 0,
+          "time": 1793970819,
+          "parent": "50378643"
+        },
+        {
+          "id": "50393796",
+          "author": "yuhuabill",
+          "body": "Nice!",
+          "score": 0,
+          "time": 1793980003,
+          "parent": "50378643"
+        },
+        {
+          "id": "50393722",
+          "author": "lenerdenator",
+          "body": "If you can get application integrations running on an emulator I would seriously consider switching my team over. I know that's technically outside of Firebase, but we use a Frankenstein's monster of GCP and Firebase for our services.",
+          "score": 0,
+          "time": 1793979757,
+          "parent": "50378643"
+        },
+        {
           "id": "50387099",
           "author": "willdub",
           "body": "this is awesome, great work. any plans to target replacing the cloud production services?",
@@ -918,19 +950,19 @@
           "parent": "50378643"
         },
         {
-          "id": "50388343",
-          "author": "_minjun_choi",
-          "body": "This is very cool!",
-          "score": 0,
-          "time": 1793940421,
-          "parent": "50378643"
-        },
-        {
           "id": "50386754",
           "author": "measurablefunc",
           "body": "Nice work.",
           "score": 0,
           "time": 1793926266,
+          "parent": "50378643"
+        },
+        {
+          "id": "50388343",
+          "author": "_minjun_choi",
+          "body": "This is very cool!",
+          "score": 0,
+          "time": 1793940421,
           "parent": "50378643"
         }
       ]
