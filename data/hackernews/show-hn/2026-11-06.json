@@ -1,8 +1,166 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-06T18:30:39.494967+00:00",
+  "last_fetched": "2026-11-07T00:42:08.668839+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50399610",
+      "title": "Show HN:Best Price Supermarket Offers in Denmark",
+      "subreddit": "show-hn",
+      "author": "Zinnn",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50399610",
+      "url": "https://nyneon.net/supermarket-offers-denmark/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794005708,
+      "created_at": "2026-11-06T22:55:08+00:00",
+      "comments_data": [
+        {
+          "id": "50399620",
+          "author": "gnabgib",
+          "body": "You just posted this 4 hours ago as a Show HN https://news.ycombinator.com/item?id=50396090 (https://news.ycombinator.com/item?id=50396090)",
+          "score": 0,
+          "time": 1794005787,
+          "parent": "50399610"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50397561",
+      "title": "Show HN: Tell the Sky – message lanterns drift on winds from live weather data",
+      "subreddit": "show-hn",
+      "author": "andycodeman",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50397561",
+      "url": "https://tellthesky.com",
+      "selftext": "I created a web/mobile app that lets you write a story/secret/encouragement/etc... on a lantern. You can then let it go and it will float over a world map using live wind data from NOAA's public wind forecast. Other users can then catch them in a timed window as they float by overhead and add on to the message chain. Then they release them to continue on.\nIt's just a fun thing I was trying - kind of like a message in a bottle but in the sky. I thought it sounded like a cool idea and after playing with it, I really like it but was curious if other people also thought it was cool or just seemed lame. lol\nIf you'd be willing to check it out you can view lanterns without any signup or anything. But to launch one yourself, it requires an account (all free of course and Google and Apple OAuth supported). Only cities are shown for locations (never addresses).\nDoes the idea of watching your own lanterns float around the world in real-time and seeing others catch them interest you enough to come back to, or does it need more?\nI welcome any feedback but would really appreciate creative ideas to enhance it.\nThanks for any help!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793995165,
+      "created_at": "2026-11-06T19:59:25+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50397435",
+      "title": "Show HN: CloneGuard – Scan a repo for credential-stealing tricks before it runs",
+      "subreddit": "show-hn",
+      "author": "tharun208",
+      "score": 28,
+      "num_comments": 7,
+      "permalink": "https://news.ycombinator.com/item?id=50397435",
+      "url": "https://github.com/tharun208/cloneguard",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793994567,
+      "created_at": "2026-11-06T19:49:27+00:00",
+      "comments_data": [
+        {
+          "id": "50397436",
+          "author": "tharun208",
+          "body": "Hi HN, I built CloneGuard after a fake recruiter had me run a “take-home” codebase on a call. I ran it once, stopped it, and later asked an AI tool to explain the code. It was a stealer going after SSH and AWS keys. I reported it to IT immediately, but it made me realize I had no quick way to vet a repo before touching it.\nIn these attacks the payload is often not the app itself. It’s an npm install script or a .vscode/tasks.json task that runs the moment you open the folder. So CloneGuard looks for exactly that kind of thing.\nIt’s a single Go binary with no dependencies, and it is read-only. It never runs, installs or imports anything from the project.\ncloneguard clone https://github.com/someone/demo-app (https://github.com/someone/demo-app)\ncloneguard scan ./some-folder\nWhat it flags:\nreads of SSH keys, cloud credentials (AWS, GCP, Azure, kube), browser data, wallets\nconnections to raw IPs, webhooks, pastebins, tunnels\ndownload-and-run patterns (eval, curl | sh)\nauto-run hooks (npm scripts, VS Code tasks, setup.py)\nobfuscated code and committed binaries\nA file that both reads secrets and talks to a suspicious server is escalated to “critical”. Exit codes (0-3) make it easy to drop into a script or git hook. The demo/ folder has a deliberately malicious sample you can try it on.\nLimitations: it’s regex and heuristic based, so a determined attacker can evade it, and legitimate code (a password manager, for instance) can trigger false positives. “Clean” doesn’t mean safe. For code from strangers, still use a throwaway VM.\nI’d love feedback on techniques it misses, false positives you hit, and rules you’d want added.",
+          "score": 0,
+          "time": 1793994567,
+          "parent": "50397435"
+        },
+        {
+          "id": "50398227",
+          "author": "rsoto2",
+          "body": "How about we don't run code we do not trust. There is enough rogue code running around on a laptop. Also, to people making interviewees run untrusted code, give a 3rd party desktop access, why don't you imbeciles figure out how to TALK to people and look at their experience and figure out a hiring process like any regular business not run by inept anti-environment, anti-human psychopathic CEOs. It's really not that hard to discuss pseudocode, discuss project history and design, and figure out someone's problem solving skills.",
+          "score": 0,
+          "time": 1793997788,
+          "parent": "50397435"
+        },
+        {
+          "id": "50397977",
+          "author": "bandie91",
+          "body": "cool, now they know how to hide better.\nwhy not improve tooling on how to run untrusted code in isolated environments? this covers wider range of applicable situations.",
+          "score": 0,
+          "time": 1793996785,
+          "parent": "50397435"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50397325",
+      "title": "Show HN: Agents infer Lego mechanisms from sources, then animate them",
+      "subreddit": "show-hn",
+      "author": "antelocnova",
+      "score": 24,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50397325",
+      "url": "https://github.com/anteloc/ldraw-mecha/tree/v0.5.0",
+      "selftext": "Hi there :)\nAround a month ago, I released LDraw Nova, an agentic toolset for assembling LEGO CAD models by generating LDraw source code files.\nFor more details, here's the Show HN post:\nhttps://news.ycombinator.com/item?id=49937916 (https://news.ycombinator.com/item?id=49937916)\nFrom the comments, I got the impression that there was quite an interest in seeing not only AI-generated LEGO models, but also AI-animated LEGO ones.\nI took a look at results from past experiments, and found it feasible to use agentic LLMs for:\n- analyzing the LDraw source code for LEGO models\n- reverse-engineer! the mechanisms present by reading the descriptions and sequence for the parts there\n- and then, animate them via Blender!\nThis new project I'm presenting, LDraw Mecha, is the end result and proof that can be done:\n- Read specially annotated LDraw LEGO models .mpd source files\n- Infer the model structure in terms of submodels\n- Select from those the ones that are mechanisms\n- Plan animations\n- Execute them in Blender\nIn summary, from an initial .mpd source file, get a rigged and animated version for the model as a Blender (.blend) file.\nSee the results here:\n- Repo (v0.5.0): https://github.com/anteloc/ldraw-mecha/tree/v0.5.0 (https://github.com/anteloc/ldraw-mecha/tree/v0.5.0)\n- Gallery: https://github.com/anteloc/ldraw-mecha/blob/v0.5.0/GALLERY.m... (https://github.com/anteloc/ldraw-mecha/blob/v0.5.0/GALLERY.md)\n- Process: https://github.com/anteloc/ldraw-mecha/blob/v0.5.0/PROCESS.m... (https://github.com/anteloc/ldraw-mecha/blob/v0.5.0/PROCESS.md)\nThis project is very unusual, I'd really appreciate some feedback from the community.\nCheers!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793994080,
+      "created_at": "2026-11-06T19:41:20+00:00",
+      "comments_data": [
+        {
+          "id": "50399558",
+          "author": "hmartin",
+          "body": "Hi anteloc, congrats on some cool projects! Look forward to playing with them over the weekend.\npyldraw3 creator here btw... would love to find a forum where we (i.e. the handful of us trying to push lego tooling forward) can collaborate and communicate better.\nMy current main effort is deterministic model/instructions building but I've been thinking a lot about how to incorporate agents: https://github.com/hbmartin/legolization (https://github.com/hbmartin/legolization)",
+          "score": 0,
+          "time": 1794005381,
+          "parent": "50397325"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50397064",
+      "title": "Show HN: Send to dot 0.9.5 – no computer has to stay on",
+      "subreddit": "show-hn",
+      "author": "bryanzk",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50397064",
+      "url": "https://github.com/bryanzk/send-to-dot/releases/tag/v0.9.5",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793992931,
+      "created_at": "2026-11-06T19:22:11+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50396969",
+      "title": "Show HN: IMDb for YouTube (Long-Form Videos Only)",
+      "subreddit": "show-hn",
+      "author": "eamag",
+      "score": 4,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50396969",
+      "url": "https://vidtier.eamag.me/",
+      "selftext": "I loved https://hackertube.org/ (https://hackertube.org/) and I also love imdb/letterboxd, I'm surprised there's still no imdb for youtube",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793992573,
+      "created_at": "2026-11-06T19:16:13+00:00",
+      "comments_data": [
+        {
+          "id": "50398760",
+          "author": "jatora",
+          "body": "and this immediately needs my Google login upon first visit...why?",
+          "score": 0,
+          "time": 1794000455,
+          "parent": "50396969"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,15 +168,33 @@
       "title": "Show HN: Search Danish supermarket offers in English",
       "subreddit": "show-hn",
       "author": "nynsam",
-      "score": 2,
-      "num_comments": 0,
+      "score": 3,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50396090",
       "url": "https://nyneon.net/denmark-supermarket-offers/",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1793988925,
-      "created_at": "2026-11-06T18:15:25+00:00"
+      "created_at": "2026-11-06T18:15:25+00:00",
+      "comments_data": [
+        {
+          "id": "50399618",
+          "author": "Zinnn",
+          "body": "https://nyneon.net/supermarket-offers-denmark/ (https://nyneon.net/supermarket-offers-denmark/)\nthats correct link",
+          "score": 0,
+          "time": 1794005782,
+          "parent": "50396090"
+        },
+        {
+          "id": "50399591",
+          "author": "Zinnn",
+          "body": "wow",
+          "score": 0,
+          "time": 1794005601,
+          "parent": "50396090"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -27,15 +203,33 @@
       "title": "Show HN: Should I Grade It? Estimates a Pokémon card's PSA grade from a photo",
       "subreddit": "show-hn",
       "author": "mjprintz",
-      "score": 2,
-      "num_comments": 0,
+      "score": 3,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50395977",
       "url": "https://shouldigradeit.app/",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1793988406,
-      "created_at": "2026-11-06T18:06:46+00:00"
+      "created_at": "2026-11-06T18:06:46+00:00",
+      "comments_data": [
+        {
+          "id": "50395982",
+          "author": "mjprintz",
+          "body": "Hi HN. I collect Pokémon cards, and the question I kept asking was whether a card was worth sending to PSA. Grading costs roughly $60 to $95 a card once shipping is included, takes months, and plenty of cards come back worth less than that.\nShould I Grade It? takes a photo of a card, identifies it, estimates the PSA grade, and pulls the raw price from TCGplayer plus recent eBay sales at each grade. Then it does the sum using the PSA tier the card's value requires, since a $5,000 card can't go through a tier capped at $500.\nHow it works:\nThe measurement runs client-side with canvas: find the card, warp it flat, measure the borders for centering (PSA publishes the limits, 55/45 for a 10), and check the back for corner and edge whitening. An optional tilted photo is used to look for surface scratches.\nThe front photo goes through a Cloudflare Worker to CardSight AI for identification. Prices come from TCGCSV, a mirror of TCGplayer's catalog, and graded sales from PokemonPriceTracker. The app is a single HTML file with no framework; the Worker also renders about 25,000 card price pages from KV.\nThere's an inspector where you can drag the measuring lines yourself if you don't trust the automatic ones.\nLimitations: it's an estimate from photos, not a grade. Centering works best on yellow-bordered cards; full-art cards with thin silver borders often can't be measured automatically, and it says so rather than guessing. Corner sharpness can't really be judged from a flat photo, only whitening.\nFree use is 7 scans a month, and there's a paid tier for unlimited scans. The centering tool and grading calculator are free with no limit.\nI'd especially like feedback on the measurement approach (glare and perspective are the hard parts), and from anyone who has sent cards to PSA on whether the estimates match what came back.",
+          "score": 0,
+          "time": 1793988423,
+          "parent": "50395977"
+        },
+        {
+          "id": "50396814",
+          "author": "tomshafer",
+          "body": "Cool idea. Does glare or photo angle change the estimate much? Centering and corner wear are hard to judge from a phone shot, so I'd be curious how it copes with that.",
+          "score": 0,
+          "time": 1793991903,
+          "parent": "50395977"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -95,7 +289,7 @@
       "title": "Show HN: Wrapped – Your neighborhood's 311 story",
       "subreddit": "show-hn",
       "author": "eltokh7",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50395261",
       "url": "https://311wrapped.com/",
@@ -129,7 +323,7 @@
       "title": "Show HN: Hacker Living – HN's most recommended places",
       "subreddit": "show-hn",
       "author": "grandimam",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50395134",
       "url": "https://hacker.living",
@@ -180,15 +374,33 @@
       "title": "Show HN: AegisKernel – Zero-trust POSIX runtime for AI agents in <0.016ms",
       "subreddit": "show-hn",
       "author": "adityawebde",
-      "score": 4,
-      "num_comments": 0,
+      "score": 12,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50394991",
       "url": "https://adikshatriyag-crypto.github.io/aegis-kernel/",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1793984423,
-      "created_at": "2026-11-06T17:00:23+00:00"
+      "created_at": "2026-11-06T17:00:23+00:00",
+      "comments_data": [
+        {
+          "id": "50397283",
+          "author": "spoaceman7777",
+          "body": "Hmm. It's definitely an interesting idea. Though, from my read of what's in the main branch of the repo, you may perhaps be overselling what exactly the system is capable of, and what policy enforcement it's doing (and at what level)... a bit...",
+          "score": 0,
+          "time": 1793993897,
+          "parent": "50394991"
+        },
+        {
+          "id": "50397306",
+          "author": "jiveturkey",
+          "body": "laughable landing page.\nlast github commit 3 weeks ago.\nthe design also (at a glance, i might be very very far off) seems laughably naive.",
+          "score": 0,
+          "time": 1793994011,
+          "parent": "50394991"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -198,14 +410,24 @@
       "subreddit": "show-hn",
       "author": "smokeeaasd",
       "score": 4,
-      "num_comments": 0,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50394952",
       "url": "https://github.com/smokeeaasd/flawless-ui-ux",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1793984259,
-      "created_at": "2026-11-06T16:57:39+00:00"
+      "created_at": "2026-11-06T16:57:39+00:00",
+      "comments_data": [
+        {
+          "id": "50397738",
+          "author": "memjay",
+          "body": "Any examples of UI and UX created with this?\nMaybe with different directions of style to tell whether this actually creates good results.",
+          "score": 0,
+          "time": 1793995880,
+          "parent": "50394952"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -214,7 +436,7 @@
       "title": "Show HN: Self-Annotating Stock Charts",
       "subreddit": "show-hn",
       "author": "regnull",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50394931",
       "url": "https://portfoliogenius.ai/features/ai-annotated-charts",
@@ -266,14 +488,24 @@
       "subreddit": "show-hn",
       "author": "javier123454321",
       "score": 2,
-      "num_comments": 0,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50394380",
       "url": "https://looptranscribe.com",
       "selftext": "Hey HN, so I made this tool in order to help me transcribe solos and melodies using YouTube videos. It's one of those little tools that I started making with AI, but this is one that I come back to and use it all the time. I love playing jazz and learning things by ear. This has made me a lot better at both, I would say.",
       "is_self": false,
       "is_video": false,
       "time": 1793981984,
-      "created_at": "2026-11-06T16:19:44+00:00"
+      "created_at": "2026-11-06T16:19:44+00:00",
+      "comments_data": [
+        {
+          "id": "50400402",
+          "author": "Leftium",
+          "body": "I made a similar tool for two main purposes:\n- studying dance videos (https://youloop.leftium.com/dt-SqNL4z3w/31~38 (https://youloop.leftium.com/dt-SqNL4z3w/31~38))\n- sharing short excerpts from (longer) YouTube videos (https://youloop.leftium.com/NvVbCqDgfCs/520~733?speed=2 (https://youloop.leftium.com/NvVbCqDgfCs/520~733?speed=2))\nFeel free to steal my ideas: https://github.com/Leftium/youloop (https://github.com/Leftium/youloop)\n- novel way to visualize A-B points, that can be dragged (https://youloop.leftium.com/?v=dt-SqNL4z3w&t=31~38 (https://youloop.leftium.com/?v=dt-SqNL4z3w&t=31~38))\n- toggle between timeline for A-B section and entire video\n- cleanest viewing experience using CSS trick to hide YouTube chrome\n- much more...\n---\nIn the future, I want to make a beat-aware media player (https://github.com/Leftium/phrasier (https://github.com/Leftium/phrasier))\nUnfortunately it is difficult to get audio data across CORS boundaries. My plan is a separate CLI tool that downloads the audio and produces a text file you can drag on top of the site. Perhaps I will support manual tapping like https://looptranscribe.com (https://looptranscribe.com), too.",
+          "score": 0,
+          "time": 1794011461,
+          "parent": "50394380"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -282,15 +514,25 @@
       "title": "Show HN: Infinity – Git-style branching for AI chats",
       "subreddit": "show-hn",
       "author": "nkotov",
-      "score": 2,
-      "num_comments": 0,
+      "score": 3,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50394379",
       "url": "https://infinitychat.app/",
       "selftext": "Hello HN, I'm Nik. I built Infinity for myself because I tend to love to rabbit-hole on various subjects.\nI usually have 3-4 windows open for ChatGPT desktop + Claude + Ollama. Typically, I'd ask a question, see something interesting in the answer, and then keep expanding on it. The mental chain of thought eventually gets lost and I would start from scratch again. Second, I also wanted to compare answers across multiple models. From there, pick and use the best one and continue.\nSo I built Infinity for myself. Multiple windows, multiple chats. Projects all aligned in one place. But the best part is when you start highlighting any part of the response - you can branch off and fork into new chat sessions from there without losing your original chain of thought.\nIt's a native Mac app written in Swift. You can use all the popular cloud models that you already pay for but on top of that, you can use local models as well. You can even set out what each model's job is and assign certain models for certain jobs.\nIt's free, there's no account, no analytics on the actual app. Everything is stored locally. Just download, connect up, and get going.\nStill extremely early but if there is interest, would love to hear what works and what doesn't!",
       "is_self": false,
       "is_video": false,
       "time": 1793981982,
-      "created_at": "2026-11-06T16:19:42+00:00"
+      "created_at": "2026-11-06T16:19:42+00:00",
+      "comments_data": [
+        {
+          "id": "50400258",
+          "author": "explosion-s",
+          "body": "Llama 3.2 latest??",
+          "score": 0,
+          "time": 1794010066,
+          "parent": "50394379"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -316,15 +558,33 @@
       "title": "Show HN: NASA's Swift telescope's 22 years in orbit, rebuilt from its archive",
       "subreddit": "show-hn",
       "author": "mrroryflint",
-      "score": 2,
-      "num_comments": 0,
+      "score": 3,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50394162",
       "url": "https://swift.rory.codes/",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1793981234,
-      "created_at": "2026-11-06T16:07:14+00:00"
+      "created_at": "2026-11-06T16:07:14+00:00",
+      "comments_data": [
+        {
+          "id": "50398950",
+          "author": "xyxc",
+          "body": "The site is much more that what I want to mention here but - the globe animation is the best I have seen in my life. It's absolutely stunning!!",
+          "score": 0,
+          "time": 1794001633,
+          "parent": "50394162"
+        },
+        {
+          "id": "50399252",
+          "author": "iberator",
+          "body": "Evil project disguised as astronomy.\n99% of any neutrino based research is in reality aimed towards winning nuclear wars: nuclear submarine neutrino based communications at any depth and distance, and neutrino based navigation for submarines.",
+          "score": 0,
+          "time": 1794003500,
+          "parent": "50394162"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -472,7 +732,7 @@
       "title": "Show HN: Agentic Identity Broker, OAuth Delegation for AI Agents",
       "subreddit": "show-hn",
       "author": "jbspeakr",
-      "score": 17,
+      "score": 20,
       "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50393235",
       "url": "https://github.com/zalando-incubator/agentic-identity-broker",
@@ -507,7 +767,7 @@
       "title": "Show HN: An open source webbluetooth and NFC browser for iOS",
       "subreddit": "show-hn",
       "author": "hito",
-      "score": 13,
+      "score": 14,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50392219",
       "url": "https://github.com/hito-dev/wand-browser",
@@ -584,6 +844,23 @@
       "is_video": false,
       "time": 1793962834,
       "created_at": "2026-11-06T11:00:34+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50390605",
+      "title": "Show HN: Overhead – the planes overhead, painted on an e-ink frame",
+      "subreddit": "show-hn",
+      "author": "xDaftTurtle",
+      "score": 6,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50390605",
+      "url": "https://github.com/dmellok/tesserae-widget-overhead",
+      "selftext": "Hi HN,\nI've been fascinated by aviation for some time now. Inspired by Fugleramme, I wanted a framed print of a cluster of aircraft over my house or a busy airport. So I built Overhead. (Photos in the README)\nThe hero photo shows planes departing and landing in Changi, Singapore.\nHow it works\nFlight data for a location is gathered from adsb.lol and adsb.fi as a fallback. (you can also point it to your own ADS-B receiver).\nThe photo of the exact aircraft is gathered from planespotters.net and the photographer is credited on the page.\nThe photo is then handed to an AI image gen service via fal.ai using your own key.\nIt's then cut out and packed into a cluster on the page with packers adapted from Fugleramme.\nIt costs about US$0.04 a painting but images are painted once and kept for the next time that aircraft is seen.\nYou can also choose to only show photos.\nThis widget is built on my open source, self-hosted e-ink platform, Tesserae. \nIt's a one click install from the widget catalog.\nI'm looking for feedback and contributors.\nhttps://github.com/arnegiacomo/fugleramme (https://github.com/arnegiacomo/fugleramme)\nhttps://github.com/dmellok/tesserae (https://github.com/dmellok/tesserae)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1793961015,
+      "created_at": "2026-11-06T10:30:15+00:00"
     },
     {
       "source": "hackernews",
