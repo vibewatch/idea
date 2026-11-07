@@ -1,8 +1,147 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-07T12:30:57.480027+00:00",
+  "last_fetched": "2026-11-07T18:30:54.135177+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50406700",
+      "title": "Show HN: We made a new theme to increase engagement on our website",
+      "subreddit": "show-hn",
+      "author": "forgotmypw17",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50406700",
+      "url": "https://zenmemes.com/threads/thread-20261107173646-27caa60f/",
+      "selftext": "Backstory: We run an old-internet-style website called ZenMemes.\nRecently, end-user testing has shown that many users find this site disorienting, because there is no cookie banner, and at no point are you told the experience is better in the app.\nTo help them adapt, we built a new theme called Engagify. We made this page default to the theme so it's easier to test out.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794075428,
+      "created_at": "2026-11-07T18:17:08+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50406292",
+      "title": "Show HN: Coldframe, a honeypot that poses as a supermarket fridge controller",
+      "subreddit": "show-hn",
+      "author": "hedgerow-dev",
+      "score": 52,
+      "num_comments": 12,
+      "permalink": "https://news.ycombinator.com/item?id=50406292",
+      "url": "https://github.com/hedgerow-dev/coldframe",
+      "selftext": "I built Coldframe, a honeypot that pretends to be a supermarket refrigeration controller. Inspired by the events on industrial fridge installations in the past weeks, I wanted to see what people would try against a convincing fake.\nTo learn more about this I built a honeypot that resembled perfectly the Danfoss AK-SM 800A and Dixell XWEB interfaces. Both of them are recognized on Shodan as real ones (an not as honeypots). It’s one Python file using only the standard library, and it builds on eppser/danfoss-ak-sm-decoy and public research by Synacktiv, Claroty and Ironhackers.\nThings that were fun to get right:\n- Matching real units. I used Shodan records of real devices to match header order, page titles, certificate fields and TLS versions. The Danfoss persona sends nginx headers in the same order as a real AK-SM 800A. The Dixell persona sends no Server header and pads its page to exactly 8,202 bytes.\n- Recognising exploit attempts. It recognises CVE-2025-41450, the Danfoss “code of the day” login bypass, and records whether the submitted code is correct for today. It also tags attempts targeting three other Danfoss CVEs and the XWEB vulnerabilities.\n- Letting them in. Default logins open a fake store dashboard with defrost buttons, so you see the second move, not just the first. Nothing behind it is real.\nTwo instances have been live for a day. So far they’ve only seen generic scanners and Shodan’s crawler, which is called refrigerator.census.shodan.io.\nFeedback welcome, especially from anyone who has seen these devices in the field!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794072450,
+      "created_at": "2026-11-07T17:27:30+00:00",
+      "comments_data": [
+        {
+          "id": "50406579",
+          "author": "supriyo-biswas",
+          "body": "I would be very skeptical of anyone relying on Shodan data. At one point I was trying to write honeypots myself by replicating wifi cameras, but almost all the ones on the internet I found were honeypots of some sort, and the ones that weren't were already hacked and had their web pages replaced. In retrospect it would have probably been better to get a vulnerable device myself and probe it.\nIf I were you, I would probably ensure that the fridges you used have residential or commercial (aka non-DC) IP addresses. Maybe Shodan uses this data for their \"honeypot\" label, my experience was some time ago so no idea though.",
+          "score": 0,
+          "time": 1794074588,
+          "parent": "50406292"
+        },
+        {
+          "id": "50406412",
+          "author": "xrd",
+          "body": "Wait, I recall reading the threads about someone speculating there was a hack. Some people suggested it could just be that a large percentage of refrigeration units received a software update at the same time which resembled a hack.\nIs there a definitive story that someone actually did hack these units on a grand scale?",
+          "score": 0,
+          "time": 1794073310,
+          "parent": "50406292"
+        },
+        {
+          "id": "50406598",
+          "author": "IshKebab",
+          "body": "The hilarious thing about this is that there was an initial hack, and then like a month later another one that was equally successful. Who could have possibly seen that coming lol.\n> Default logins open a fake store dashboard with defrost buttons, so you see the second move, not just the first.\nI think we're past the point where it's reasonable to expect people to not use AI for code, but their prose still sucks balls. You should at least write your submission here yourself, come on.",
+          "score": 0,
+          "time": 1794074705,
+          "parent": "50406292"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50406146",
+      "title": "Show HN: FoilGateway–Linux firewall gateway with telemetry blocking (2×Ethernet)",
+      "subreddit": "show-hn",
+      "author": "Codemonkey2k5",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50406146",
+      "url": "https://github.com/iBgeek/FoilGateway-Network",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794071425,
+      "created_at": "2026-11-07T17:10:25+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50405263",
+      "title": "Show HN: We compressed a 31B video+audio diffusion model to 14B, 6 steps, INT8",
+      "subreddit": "show-hn",
+      "author": "jiant",
+      "score": 13,
+      "num_comments": 5,
+      "permalink": "https://news.ycombinator.com/item?id=50405263",
+      "url": "https://github.com/Video-Rebirth/hyperflow-h3-flash",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794064561,
+      "created_at": "2026-11-07T15:16:01+00:00",
+      "comments_data": [
+        {
+          "id": "50406504",
+          "author": "swiftcoder",
+          "body": "This is very cool, I wish they would make quality+time comparisons between the various quantisations though",
+          "score": 0,
+          "time": 1794074113,
+          "parent": "50405263"
+        },
+        {
+          "id": "50406428",
+          "author": "xrd",
+          "body": "I see references to comfyui in the readme. Is that the easiest way to run it? I've always found it a bit cumbersome to use and wish I had something like a simple CLI tool to use it like llama.cpp. Perhaps that's not possible with a video diffusion model?",
+          "score": 0,
+          "time": 1794073462,
+          "parent": "50405263"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50404321",
+      "title": "Show HN: Logo Deal – Logos anyone can edit with text",
+      "subreddit": "show-hn",
+      "author": "vednig",
+      "score": 6,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50404321",
+      "url": "https://logo.deal/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794057429,
+      "created_at": "2026-11-07T13:17:09+00:00",
+      "comments_data": [
+        {
+          "id": "50406361",
+          "author": "joombaga",
+          "body": "> One free AI generation, no signup\n> The free AI preview is off until a model provider key is set. Use the template demo below, or start a trial.\nSo we do need to sign up?",
+          "score": 0,
+          "time": 1794072925,
+          "parent": "50404321"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,15 +149,25 @@
       "title": "Show HN: An online shop where your friends can hurry the courier",
       "subreddit": "show-hn",
       "author": "AmsterErdo",
-      "score": 4,
-      "num_comments": 0,
+      "score": 6,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50403954",
       "url": "https://www.dopaminechic.com/",
       "selftext": "I built an emulator of a flash-sale fashion outlet with no registration and fake checkout that never takes money. You can browse items that are on sale, watch in real time as they go out of stock one by one, and get notified when they are back on sale (possibly with different prices).\nEvery order placed on the website gets “tracking” which fails on the delivery day with one of 50 available reasons (for example, “a raccoon in the Newark depot has claimed your parcel; animal control reports that it seems happy there”). But you can also share the tracking with your friends, and they can hurry the courier; the more hurries, the more spectacularly it fails, until your parcel lands in the Svalbard seed vault, the North Pole, the International Space Station or some such place.\nThe complete shop contents (campaigns, prices, item availability and stock levels) are computed from the current time with a fixed seed (FNV-1a for hashing, mulberry32 as the PRNG). I wrote the mechanism first in JS and then ported to PHP (for the website) and Flutter (for the mobile app); a test ran over several thousand random time points to verify they are identical. The Flutter app uses its own generator because it can work offline - no contact with the website is necessary.\nItem images are generated with OpenAI API, except models in swimsuits. OpenAI refused a lot of swimsuit image prompts, so I had to switch to Gemini for these as Gemini has no qualms about this kind of content.\nDoes this kind of site feel like shopping to you? Or more like a game or something to do together with friends?",
       "is_self": false,
       "is_video": false,
       "time": 1794054304,
-      "created_at": "2026-11-07T12:25:04+00:00"
+      "created_at": "2026-11-07T12:25:04+00:00",
+      "comments_data": [
+        {
+          "id": "50404153",
+          "author": "mohitgupta_in",
+          "body": "Basically it felt like shopping to me but can be done while sitting with friends together! it's actually a dopamine booster",
+          "score": 0,
+          "time": 1794056060,
+          "parent": "50403954"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -27,7 +176,7 @@
       "title": "Show HN: Retex, a Faster LaTeX Engine",
       "subreddit": "show-hn",
       "author": "skadge",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50403249",
       "url": "https://gitlab.com/severin-lemaignan/retex",
@@ -44,7 +193,7 @@
       "title": "Show HN: I taught my Fujifilm X-T30 II to print on an instax Link 3 over BLE",
       "subreddit": "show-hn",
       "author": "j_leboulanger",
-      "score": 3,
+      "score": 4,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50403007",
       "url": "https://ronangaillard.github.io/posts/fujifilm-x-t30-ii-instax-link-3/",

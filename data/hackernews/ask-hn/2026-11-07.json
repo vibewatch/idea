@@ -1,0 +1,206 @@
+{
+  "source": "hackernews",
+  "stream": "ask-hn",
+  "last_fetched": "2026-11-07T18:30:57.130429+00:00",
+  "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50405250",
+      "title": "Ask HN: How did you convince family and friends to join your XMPP/Matrix server?",
+      "subreddit": "ask-hn",
+      "author": "mtlynch",
+      "score": 55,
+      "num_comments": 40,
+      "permalink": "https://news.ycombinator.com/item?id=50405250",
+      "url": "https://news.ycombinator.com/item?id=50405250",
+      "selftext": "I love open-source software and open protocols, but my family and friends primarily communicate through SMS for exactly the reasons in https://xkcd.com/2365/\nWhenever XMPP or Matrix threads pop up on HN, several commenters casually mention their \"friends and family XMPP (or Matrix) server.\"\nHow did you convince friends and family to move away from SMS/WhatsApp and replace it with a niche messaging app?\nMy family and friends aren't hardcore nerdy, but they're more tech-savvy than average. Their needs in messaging are mainly pragmatic: they want ease of use, reliability, and fun features. They don't care that much about privacy, decentralization, or extensibility (though I care about those things a lot).\nI've been experimenting with self-hosting XMPP and Matrix servers and clients in the past week, and the UX is even worse than I expected. It seems like all the clients either imitate Slack, imitate Discord, or imitate hot garbage. I haven't seen any that try to be a simple, friendly replacement for SMS. I'm a software developer who uses computers all day, and I find the UX for most of the clients incredibly hard to use.\nThe only angle I could see to pitch XMPP/Matrix to people for non-philosophical reasons are that there's a more consistent experience across iOS/Android. The biggest shortcoming I think is visible to regular users is that there's feature degradation and missing information when iOS users have SMS conversations with Android users, especially in group chats.\nFor people who have successfully won family and friends to XMPP or Matrix, what was your pitch? What do you recommend others do to make XMPP or Matrix an attractive experience for a regular person?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794064480,
+      "created_at": "2026-11-07T15:14:40+00:00",
+      "comments_data": [
+        {
+          "id": "50406654",
+          "author": "CircuitSeuss",
+          "body": "I know this isn't the answer you want, but I sell people on Signal based on the user features. I’ve had great success in getting my friends and family to adopt it.\nSignal is incredible user friendly, privacy respecting, the gold standard for encryption, cross platform, etc. Yes, it’s centralized, yes it’s imperfect in many ways, but it’s easy and it’s pretty damn good.\nIf you want to help the people around you to become more involved in understanding and owning their tech, it has to be an easy and good experience. It has to be tangibly better, not just abstractly better with tangible downsides.\nI use XMPP, but would never try to convince my friends and family to use it; it’s too complicated, the user facing apps all suck (Snikket and Cheogram are the best of the bad lot), and the incentives to use it aren't there. As you said, it’s just not attractive to a regular user, since it’s all around a worse experience than what they currently use. The one exception is that I do occasionally recommend XMPP for SIP access via jmp.chat to some of my more technical friends who have a tolerance for clunky user experiences in favor of privacy and affordability. I am holding onto an unreasonable hope that Signal or Whatsapp or others will consider XMPP+OMEO in the future to popularize the standard, but that is extremely unlikely.\nMatrix also is an unfortunately terrible alternative to discord (even Element is a rather lacking user experience), so while I have pushed to move groups there before, I no longer recommend Matrix. I suggest signal or nextcloud as alternatives when possible; the remaining large groups who need the closed server forum style system are usually unlikely to move to Matrix anyway.",
+          "score": 0,
+          "time": 1794075031,
+          "parent": "50405250"
+        },
+        {
+          "id": "50406621",
+          "author": "bob1029",
+          "body": "I learned a long time ago that things like this might be really important to me but fall below the noise floor for everyone else.\nUnless everyone in your circle is on HN all the time, you will probably fail to convince them to change.\nThe more likely outcome is that you wind up annoying everyone involved and don't get invited to the new discord server.",
+          "score": 0,
+          "time": 1794074868,
+          "parent": "50405250"
+        },
+        {
+          "id": "50406587",
+          "author": "nik_ca",
+          "body": "Well, my folks live/visit countries with insane govt censorship, so it was quite easy: I just said our private XMPP server is a good reserve comms channel, and over time they just got used to the peace of mind that it gives to them. Decent android (https://f-droid.org/en/packages/eu.siacs.conversations/ (https://f-droid.org/en/packages/eu.siacs.conversations/)) + web (https://github.com/nioc/xmpp-web (https://github.com/nioc/xmpp-web)) clients played vital role though. Also, shout out to Delta Chat! (https://f-droid.org/packages/com.b44t.messenger/ (https://f-droid.org/packages/com.b44t.messenger/))",
+          "score": 0,
+          "time": 1794074642,
+          "parent": "50405250"
+        },
+        {
+          "id": "50406365",
+          "author": "niyumard",
+          "body": "During Iran's Internet blackout, I set up a chatmail server on an interanet VPS, installed Delta Chat's client (https://delta.chat (https://delta.chat)) on every family member's phone, and they are using it even now after the Internet is back.\nI have tried Matrix, XMPP (Conversations), Signal and even some Nostr clients but Delta Chat has by far the best UX and reliability. It has groups, channels and private messages, stickers and built-in video calls. My only gripe is that it doesn't have video messages or screen share like Telegram yet.\nIf you want to try it out you're always welcome to message me.",
+          "score": 0,
+          "time": 1794072946,
+          "parent": "50405250"
+        },
+        {
+          "id": "50406722",
+          "author": "junek",
+          "body": "… why? Are you pushing this on people for their good, or for yours?",
+          "score": 0,
+          "time": 1794075655,
+          "parent": "50405250"
+        },
+        {
+          "id": "50405399",
+          "author": "Bender",
+          "body": "My advice is not specific to Matrix but other self hosted private services. Some of this may or may not be feasible with Matrix. (I have never used Matrix)\n- Whether family or friends, always suggest it as a \"fallback\" for when \"preferred service\" is down and to use when discussion ultra-sensitive topics or sharing financial files. With time they may just stay connected to it if the friction to do so is low. It has to be their choice, not yours.\n- What helps? Add more incentives such as perks that \"preferred service\" does not offer. No file size limits. No or few file type limits. No content filters. Add emoji's or gifs that align with their inside jokes and their style of humor. Keeping random people away is very important. Making your friends and family administrators or moderators and let them decide how it operates. Do not moderate or power-trip over your friends or family or they will leave. Limit rules to \"Do not break the laws of this country in public chatrooms\" and private chat rooms if you do not physically host the server. Database and file backups become even more important but they will feel in control of a thing. Have a keyword or code word they all learn means to go check the private platform that \"primary platform\" would not recognize. Maybe when they see \"Turtle Farts!\" they know to go log into your service.\n- They may just stay on their primary preferred service. Every group is different and not every group will see the benefits of your fallback service. They may not appreciate the work you put into setting it up for them. Do not expect to get the friends of your friends and family to move to your service. They may not appreciate the OpSec value until \"Bad Things\"(c)™2038 happen to enough people. Just be there for when it does.\n- If there are concerns that you would spy on them, consider instead using eJapperd or Prosody as you can implement OMEMO for individual and group end-to-end encrypted messages. Set up TLS fingerprint checks from multiple locations to reduce the risk of MitM attacks until XEP-0474: SASL SCRAM Downgrade Protection is fully supported and active by default on both servers and all clients. This is the only thing holding me back from setting up a public Prosody server as 0474 is still experimental. See [1]\n- Avoid (block) federation on private servers for friends and family otherwise it is not a private server.\n[1] - https://news.ycombinator.com/item?id=37955264 (https://news.ycombinator.com/item?id=37955264)",
+          "score": 0,
+          "time": 1794065616,
+          "parent": "50405250"
+        },
+        {
+          "id": "50406054",
+          "author": "Thom2000",
+          "body": "I manually installed Conversations.im on their phones configuring accounts, joining groups etc then on my phone I've disabled notifications on other chat apps. If they want something, XMPP is the only way to reliably reach me. Over time they grew to like it even though it's not perfect (eg. no built-in gallery or message retraction).",
+          "score": 0,
+          "time": 1794070770,
+          "parent": "50405250"
+        },
+        {
+          "id": "50405349",
+          "author": "MattJ100",
+          "body": "Curious if you've tried Snikket, and what hurdles you ran into (if you did). I made it with the primary purpose of moving my family communication over to XMPP, and I succeeded with that (improving a bunch of stuff in the process). I'm not claiming it's perfect (a known weak point is the iOS app, but we're actively working on solving that...)",
+          "score": 0,
+          "time": 1794065218,
+          "parent": "50405250"
+        },
+        {
+          "id": "50405853",
+          "author": "dlcarrier",
+          "body": "In trying, I discovered that most family members don't want to use anything that lets the government spy on its users, but one sibling is against privacy in general and only wants to use platforms that allow the government to spy on users, so there's no solution.",
+          "score": 0,
+          "time": 1794069188,
+          "parent": "50405250"
+        },
+        {
+          "id": "50406658",
+          "author": "DonsDiscountGas",
+          "body": "Why are you dead set on self hosting? Signal is probably an easier lift",
+          "score": 0,
+          "time": 1794075065,
+          "parent": "50405250"
+        },
+        {
+          "id": "50406505",
+          "author": "griffiths",
+          "body": "Is Matrix a good solution for internal company communication? \nOr is it better to go the way of \"industry standard\" like slack?",
+          "score": 0,
+          "time": 1794074126,
+          "parent": "50405250"
+        },
+        {
+          "id": "50406665",
+          "author": "singpolyma3",
+          "body": "I said \"you can use this app to talk to me\"",
+          "score": 0,
+          "time": 1794075109,
+          "parent": "50405250"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50403882",
+      "title": "I turned an ESP32-S3 into a Tailscale gateway with recovery functions",
+      "subreddit": "ask-hn",
+      "author": "Mattboxx",
+      "score": 5,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50403882",
+      "url": "https://news.ycombinator.com/item?id=50403882",
+      "selftext": "Hi, I’ve been working on ESP32 Tailnet Gateway, an open-source firmware that turns an ESP32-S3 into a small Tailscale/Headscale gateway\nThe main use case is connecting IoT devices that can’t run a VPN client to services on another network with a low cost device.\nThe idea is to have a small, independently powered device that can provide connectivity and help recover a NAS or PC when the main server is offline.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794053771,
+      "created_at": "2026-11-07T12:16:11+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50402106",
+      "title": "Ask HN: What tech companies do you think have a good moral compass?",
+      "subreddit": "ask-hn",
+      "author": "gehwartzen",
+      "score": 3,
+      "num_comments": 9,
+      "permalink": "https://news.ycombinator.com/item?id=50402106",
+      "url": "https://news.ycombinator.com/item?id=50402106",
+      "selftext": "Interested to hear which companies come to mind for you.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794031972,
+      "created_at": "2026-11-07T06:12:52+00:00",
+      "comments_data": [
+        {
+          "id": "50406716",
+          "author": "vconnor",
+          "body": "Good, I couldn't say; no for-profit company is good. If you're asking for better than average and than its competition, I'd say Valve.\nI wouldn't trust a public company.",
+          "score": 0,
+          "time": 1794075581,
+          "parent": "50402106"
+        },
+        {
+          "id": "50402168",
+          "author": "WheelsAtLarge",
+          "body": "None, all the big tech companies were build with the idea of fast growth as their primary guiding principle. Grow at all cost as long as their actions are not prohibited by law. This means that the companies' culture was build around that idea. It's very hard for companies' to change even when they want to do it but at this point I doubt they even want to change. So the answer is, not a single one.",
+          "score": 0,
+          "time": 1794032934,
+          "parent": "50402106"
+        },
+        {
+          "id": "50402151",
+          "author": "schoen",
+          "body": "Gandi SAS (France).\nTime and Date AS (Norway).",
+          "score": 0,
+          "time": 1794032583,
+          "parent": "50402106"
+        },
+        {
+          "id": "50402366",
+          "author": "Imustaskforhelp",
+          "body": "Wow, I had multiple names pop up in my mind yet with most of the names, I found a recent controversy which weirded me out.\nThere are two things: Tech companies which actually do have a good moral compass & Tech companies which are perceived/advertised as such.\nAs much as I'd like to think that I cannot be persuaded by adverts, I think that with the recent case of proton, it does shatter a bit to what I had thought was a tech company with a good moral compass.\nIt almost seems that every single one of the company that I trusted with is going through some deep disturbance within the force.\nFor what its worth, I have huge respect for Lavabit, also I have lots of respects to small VPS providers who are keeping it an affordable price. You might not know their names as some are even 1 man shops but TNAhosting and xhosts.uk seem extremely fine companies to me.\nMy interpretation: You need structural alignment with what you and what the company wants because incentives are much harder to overcome even if one has good moral compass and vice versa as well as a company with bad moral compass but one where your incentives are perfectly aligned can be good. Companies might start with good intentions but it is really really hard to preserve that as you grow and involve more people and bureaucracy and as those people come with their own incentives which might or might not align with the incentives of the company or that of the consumer.",
+          "score": 0,
+          "time": 1794035675,
+          "parent": "50402106"
+        },
+        {
+          "id": "50403501",
+          "author": "wseqyrku",
+          "body": "Any tech company, ten plus years ago",
+          "score": 0,
+          "time": 1794049827,
+          "parent": "50402106"
+        },
+        {
+          "id": "50402225",
+          "author": "bbor",
+          "body": "Anthropic, for obvious reasons. Hard to imagine a more moral founding story, corporate vision, or governance structure, even if they've engaged in quite a few questionable projects along the way. Can you imagine any other company willing to get blacklisted from government contracts for 3+ years minimum just to take a moral stand?\nVarious companies dedicated to open source, workers coops, etc. -- but they might not count as \"tech\", depending on your priors. They certainly don't pay as much! Still, 80,000 hours is a great resource for anyone interested in the mainstream of that kind of thing: https://80000hours.org/ (https://80000hours.org/)\nGoogle certainly has a good moral compass in the small, incidental things; the fact that their empire is maintained via monopolistic behavior and weapons of war more than outweighs that though, as does the fact that they are far less well-intentioned than they used to be. Watching videos of old AdSense training seminars in 2022 was a pretty radicalizing experience, I won't lie.\nMicrosoft has been leaning into moral arguments for their new AI branch to a unique degree, but I don't even give em partial credit there. They seem to just be cynically taking advantage of the popular sentiments about AI in the west (read: deep, virulent hatred), kinda like what people accused Meta under Le Cunn to be doing but real this time.\nOtherwise... uh... nothing comes to mind. A company has to be a non-profit to truly qualify, or (like Anthropic) a Public-Benefit Corporation[1]; without that, they are ostensibly obligated to be immoral in the quest for profit, with the exact limits of that law being vague and extreme at best.\n[1]: For clarity: the latter designation is 5% substantial legal justification for unprofitable moral decisions and 95% virtue signaling, yes, but virtue signaling is important! If a company can't be bothered to do some paperwork to show they're moral, they probably don't care all that much about it either as an honest intention or as a cynical strategy.",
+          "score": 0,
+          "time": 1794033702,
+          "parent": "50402106"
+        }
+      ]
+    }
+  ]
+}
