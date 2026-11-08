@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-08T12:31:03.074032+00:00",
+  "last_fetched": "2026-11-08T18:30:52.661538+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -27,8 +27,8 @@
       "title": "Show HN: An offline desktop companion to help maintain a healthy blink rhythm",
       "subreddit": "show-hn",
       "author": "prnysoni",
-      "score": 32,
-      "num_comments": 15,
+      "score": 37,
+      "num_comments": 21,
       "permalink": "https://news.ycombinator.com/item?id=50408350",
       "url": "https://eyesrhythm.com/",
       "selftext": "Profession like software engineer, mechanical / graphics designer takes a lot of strain on your eyes, observing minute details for hours and hours on screen can significantly reduce the blink rate which you might not even notice until it gets irreversibly painful, leaving you with dry eyes. I am already a victim of it, working 20 years as a research engineer in computer vision, zooming into pixel level details to hand craft algorithms. Now the doctors says its only regular use of lubricating drops can keep your eyes safe.\nNow with AI and available fantastic libraries it's possible to play safe so that your body does not pay the price of your profession. EyesRhythm is build to help you keep the blink rhythm healthy by giving small audio / visual indication to maintain healthy blink rhythm not just by monitoring healthy blink rate but also keeping a watch on how rhythmic they are.\nEyeRhythm also has a visual log for the neck movement. It is also capable to automatically track the face using multiple webcams that you might have on your working desk to get the best view of your eyes for accurate blink detection.\nMost importantly it works completely local no internet required.",
@@ -51,6 +51,14 @@
           "body": "I had an employer who did that inadvertently by taking screenshots of the entire desktop fleet every hour (or was it 30 mins?). Things would freeze for a second and then you would blink.",
           "score": 0,
           "time": 1794091859,
+          "parent": "50408350"
+        },
+        {
+          "id": "50412816",
+          "author": "erikvanoosten",
+          "body": "Amazing! I have wanted exactly this app for years. Thanks!\nWhat do you think of making the screen black for a split second when blinking is over due?",
+          "score": 0,
+          "time": 1794142193,
           "parent": "50408350"
         },
         {
@@ -119,8 +127,8 @@
       "title": "Show HN: Where Were We",
       "subreddit": "show-hn",
       "author": "zkiihne",
-      "score": 46,
-      "num_comments": 17,
+      "score": 53,
+      "num_comments": 18,
       "permalink": "https://news.ycombinator.com/item?id=50408082",
       "url": "https://wherewerewe.app/",
       "selftext": "A little web game I made as an anniversary present for my wife.\nUpload vacation photos and make them into a game.\nWWW uses EXIF to determine where and when the photo was taken. This is then turned into a game you can send to anyone.",
@@ -130,19 +138,19 @@
       "created_at": "2026-11-07T21:08:35+00:00",
       "comments_data": [
         {
+          "id": "50415660",
+          "author": "telesilla",
+          "body": "It says 'you were less than a km away', for NYC as a correct answer. What does that refer to exactly?",
+          "score": 0,
+          "time": 1794162036,
+          "parent": "50408082"
+        },
+        {
           "id": "50408446",
           "author": "bredren",
           "body": "Neat idea. I remember when the wall came down, you could buy chunks of it at our local Fred Meyer. (General store and grocery)\nThere was this big bin of pieces. I tried to remember how old I would have had to have been to remember that and was off by 17 months.\nThe mobile view could use some tweaks so it all renders without needing to scroll.",
           "score": 0,
           "time": 1794088808,
-          "parent": "50408082"
-        },
-        {
-          "id": "50408456",
-          "author": "deadnomore",
-          "body": "Amazing! Thank you for the idea. My memory is so bad that something like this seems like it would be helpful just to remember any bit of my life.",
-          "score": 0,
-          "time": 1794088880,
           "parent": "50408082"
         },
         {
@@ -154,11 +162,11 @@
           "parent": "50408082"
         },
         {
-          "id": "50412197",
-          "author": "zodwick",
-          "body": "super cool ! wished there were more haha",
+          "id": "50408456",
+          "author": "deadnomore",
+          "body": "Amazing! Thank you for the idea. My memory is so bad that something like this seems like it would be helpful just to remember any bit of my life.",
           "score": 0,
-          "time": 1794135751,
+          "time": 1794088880,
           "parent": "50408082"
         },
         {
@@ -175,6 +183,14 @@
           "body": "Interesting! Creating a photo game seems like a good idea.",
           "score": 0,
           "time": 1794115425,
+          "parent": "50408082"
+        },
+        {
+          "id": "50412197",
+          "author": "zodwick",
+          "body": "super cool ! wished there were more haha",
+          "score": 0,
+          "time": 1794135751,
           "parent": "50408082"
         },
         {
@@ -329,8 +345,8 @@
       "title": "Show HN: Coldframe, a honeypot that poses as a supermarket fridge controller",
       "subreddit": "show-hn",
       "author": "hedgerow-dev",
-      "score": 251,
-      "num_comments": 60,
+      "score": 268,
+      "num_comments": 62,
       "permalink": "https://news.ycombinator.com/item?id=50406292",
       "url": "https://github.com/hedgerow-dev/coldframe",
       "selftext": "I built Coldframe, a honeypot that pretends to be a supermarket refrigeration controller. Inspired by the events on industrial fridge installations in the past weeks, I wanted to see what people would try against a convincing fake.\nTo learn more about this I built a honeypot that resembled perfectly the Danfoss AK-SM 800A and Dixell XWEB interfaces. Both of them are recognized on Shodan as real ones (an not as honeypots). It’s one Python file using only the standard library, and it builds on eppser/danfoss-ak-sm-decoy and public research by Synacktiv, Claroty and Ironhackers.\nThings that were fun to get right:\n- Matching real units. I used Shodan records of real devices to match header order, page titles, certificate fields and TLS versions. The Danfoss persona sends nginx headers in the same order as a real AK-SM 800A. The Dixell persona sends no Server header and pads its page to exactly 8,202 bytes.\n- Recognising exploit attempts. It recognises CVE-2025-41450, the Danfoss “code of the day” login bypass, and records whether the submitted code is correct for today. It also tags attempts targeting three other Danfoss CVEs and the XWEB vulnerabilities.\n- Letting them in. Default logins open a fake store dashboard with defrost buttons, so you see the second move, not just the first. Nothing behind it is real.\nTwo instances have been live for a day. So far they’ve only seen generic scanners and Shodan’s crawler, which is called refrigerator.census.shodan.io.\nFeedback welcome, especially from anyone who has seen these devices in the field!",
@@ -348,27 +364,11 @@
           "parent": "50406292"
         },
         {
-          "id": "50412348",
-          "author": "asjo",
-          "body": "Can't open the link, GitHub is down:\n 503 Service Unavailable\n No server is available to handle this request.",
-          "score": 0,
-          "time": 1794137433,
-          "parent": "50406292"
-        },
-        {
           "id": "50406950",
           "author": "hedgerow-dev",
           "body": "An extra insight, there was some news of 'blood banks' also being targetted. This is possibly a stronger (painful) target. It would demorelize people that are donors.\nhttps://www.independent.co.uk/tech/security/blood-hack-fridg... (https://www.independent.co.uk/tech/security/blood-hack-fridge-cyber-attack-b3079644.html)",
           "score": 0,
           "time": 1794077540,
-          "parent": "50406292"
-        },
-        {
-          "id": "50411298",
-          "author": "saidnooneever",
-          "body": "i think it would be pretty trivial to determine the box is a pot from whois etc.\npeople who target these supermarket chains etc. are doing just that. not scanning the entire internet and popping all the fridges, but doing targeted attacks.\nmostly your pot will just be a +1 on benign peoples scanners.\nyou want honeypots for things that are mass exploited, not for things used in targeted attacks.\njust my 2 cents. respect the project can be fun to do ofc but i wouldnt expect much interesting results.\nthat being said maybe you can find parties who secure these chains, or themselves, and offer it as a TI sort of service. Seeing as they knew about these vulns for many months before they got hit, its unlikely they will pay for it or be interested.",
-          "score": 0,
-          "time": 1794124986,
           "parent": "50406292"
         },
         {
@@ -380,11 +380,27 @@
           "parent": "50406292"
         },
         {
+          "id": "50412348",
+          "author": "asjo",
+          "body": "Can't open the link, GitHub is down:\n 503 Service Unavailable\n No server is available to handle this request.",
+          "score": 0,
+          "time": 1794137433,
+          "parent": "50406292"
+        },
+        {
           "id": "50408781",
           "author": "gukov",
           "body": "Not a headline I ever expected to read. 2026 has been a wild year.",
           "score": 0,
           "time": 1794091829,
+          "parent": "50406292"
+        },
+        {
+          "id": "50411298",
+          "author": "saidnooneever",
+          "body": "i think it would be pretty trivial to determine the box is a pot from whois etc.\npeople who target these supermarket chains etc. are doing just that. not scanning the entire internet and popping all the fridges, but doing targeted attacks.\nmostly your pot will just be a +1 on benign peoples scanners.\nyou want honeypots for things that are mass exploited, not for things used in targeted attacks.\njust my 2 cents. respect the project can be fun to do ofc but i wouldnt expect much interesting results.\nthat being said maybe you can find parties who secure these chains, or themselves, and offer it as a TI sort of service. Seeing as they knew about these vulns for many months before they got hit, its unlikely they will pay for it or be interested.",
+          "score": 0,
+          "time": 1794124986,
           "parent": "50406292"
         },
         {
@@ -396,6 +412,14 @@
           "parent": "50406292"
         },
         {
+          "id": "50407751",
+          "author": "DANmode",
+          "body": "Super cool, especially showing your work as FOSS, but: why announce your honeypot before it’s fulfilled its intended purpose once?",
+          "score": 0,
+          "time": 1794083276,
+          "parent": "50406292"
+        },
+        {
           "id": "50406961",
           "author": "morkalork",
           "body": "You'd probably have more luck posing as other industrial hardware like HVAC, lighting, controllers for the kinds of pumps or valves you'd find in chemical plants. That kind of stuff.",
@@ -404,11 +428,11 @@
           "parent": "50406292"
         },
         {
-          "id": "50407751",
-          "author": "DANmode",
-          "body": "Super cool, especially showing your work as FOSS, but: why announce your honeypot before it’s fulfilled its intended purpose once?",
+          "id": "50413817",
+          "author": "mathfailure",
+          "body": "Why?",
           "score": 0,
-          "time": 1794083276,
+          "time": 1794149346,
           "parent": "50406292"
         },
         {
@@ -425,14 +449,6 @@
           "body": "Did anyone else notice the badge at the top of the GitHub README.md?\n > HackerNews: #1 Repo of the Day - 214 points\n\nHere is the link from the README.md:\n <img src=\"https://hackergit.org/badge/hedgerow-dev/coldframe.svg?style=rank&rank=day\" alt=\"Hacker News\" width=\"250\" height=\"55\">\n\nSomething about it is cringe to me. It is giving LinkedIn self-promotion vibes.",
           "score": 0,
           "time": 1794120321,
-          "parent": "50406292"
-        },
-        {
-          "id": "50409717",
-          "author": "Melatonic",
-          "body": "Very cool. Seems like this is the modern hacker version of \"is your refrigerator running?\"",
-          "score": 0,
-          "time": 1794101372,
           "parent": "50406292"
         }
       ]
@@ -461,7 +477,7 @@
       "title": "Show HN: We compressed a 31B video+audio diffusion model to 14B, 6 steps, INT8",
       "subreddit": "show-hn",
       "author": "jiant",
-      "score": 69,
+      "score": 74,
       "num_comments": 14,
       "permalink": "https://news.ycombinator.com/item?id=50405263",
       "url": "https://github.com/Video-Rebirth/hyperflow-h3-flash",
@@ -521,7 +537,7 @@
       "subreddit": "show-hn",
       "author": "vednig",
       "score": 9,
-      "num_comments": 4,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50404321",
       "url": "https://logo.deal/",
       "selftext": "",
