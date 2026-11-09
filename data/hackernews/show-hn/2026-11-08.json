@@ -1,8 +1,351 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-08T18:30:52.661538+00:00",
+  "last_fetched": "2026-11-09T06:44:03.149110+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50419025",
+      "title": "Show HN: Velorki - open-source bike navigation that works with just your phone",
+      "subreddit": "show-hn",
+      "author": "morrk0r",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50419025",
+      "url": "https://velorki.com",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794181783,
+      "created_at": "2026-11-08T23:49:43+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50418253",
+      "title": "Show HN:Free Web Tools",
+      "subreddit": "show-hn",
+      "author": "Munayem",
+      "score": 3,
+      "num_comments": 4,
+      "permalink": "https://news.ycombinator.com/item?id=50418253",
+      "url": "https://nyneon.net/tools/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794177732,
+      "created_at": "2026-11-08T22:42:12+00:00",
+      "comments_data": [
+        {
+          "id": "50418373",
+          "author": "gnabgib",
+          "body": "New account @nynsam @zinnn? https://news.ycombinator.com/item?id=50406568 (https://news.ycombinator.com/item?id=50406568) https://news.ycombinator.com/item?id=50399610 (https://news.ycombinator.com/item?id=50399610)\nNot sure how long you can keep this up before your domain is banned.",
+          "score": 0,
+          "time": 1794178360,
+          "parent": "50418253"
+        },
+        {
+          "id": "50419037",
+          "author": "0xmattclark",
+          "body": "WOW.It's very similar to my online tool site.But I mainly focus on AI tools",
+          "score": 0,
+          "time": 1794181882,
+          "parent": "50418253"
+        },
+        {
+          "id": "50418735",
+          "author": "khalidahmad",
+          "body": "why its seems like just drop a link with no further information about it on the post",
+          "score": 0,
+          "time": 1794180063,
+          "parent": "50418253"
+        },
+        {
+          "id": "50419565",
+          "author": "Munayem",
+          "body": "Thanks for Comments.",
+          "score": 0,
+          "time": 1794185549,
+          "parent": "50418253"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50418158",
+      "title": "Show HN: My first project, an AI-powered financial news analyzer",
+      "subreddit": "show-hn",
+      "author": "lamarcol",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50418158",
+      "url": "https://github.com/lamarcol/NotBot",
+      "selftext": "I'm 17, and I started NotBot a few months ago to see whether I could turn an idea into a working project. My main interest is economics, not becoming a programmer, but I enjoy experimenting with code.\nA few months ago, I had the idea of creating a program that would analyze the most recent news about a specific stock and calculate a weighted average of their polarity to create a sort of sentiment indicator.\nWhile researching, I found a YouTube video about creating a simple GitHub repository that did, in a simplified and imprecise way, what I had in mind. At first glance, I realized it was a very simple program: feedparser retrieved news from Google News, beautifulsoup4 extracted the content, the sentiment was analyzed with FinBERT, running through Transformers and PyTorch.\nFrom there, I started modifying it with the free versions of Gemini. I had to solve a lot of problems, for example fixing the extraction of articles from Google News, I managed to solve it with a new library (googlenewsdecoder).\nThen I had to replace FinBERT, because it classified sentiment based on the context of the words but didn't take into account the actual impact of the event using external sources.\nI experimented with an LLM that allowed me to specify the evaluation criteria more precisely through a prompt. I found a free one with rather strict TPM and RPM limits (it was called openai/gpt-oss-120b).\nI also created two coefficients: one that adjusted the reliability of the news based on its source, and another that adjusted its impact based on how recent it was (all selected news articles had been published within the last 24 hours). Each article was divided into title, description, and content, and each of these three sections had a different weight based on predefined values (title 35%, description 25%, and text 40%). If the content had fewer than 100 characters, the text was not assigned any weight, and the title accounted for 60% while the description accounted for 40%.\nAfter these modifications, I took a break of about a month because of school commitments, during which I discovered Codex (OpenAI's agent).\nI changed the main LLM and implemented Gemini (3.1 Flash-Lite) because the TPM limits of the LLM I was using were too restrictive.\nEven though I started using Gemini, I didn't discard Groq. In fact, I used it as a fallback in case Gemini returned some kind of error.\nAnother important modification was the addition of asynchronous article downloading through aiohttp and the processing of multiple articles simultaneously through asyncio. Later, I decided to start using Groq again for article analysis. In fact, I had both LLMs analyze the longer articles and then calculated the average of their two polarity scores.\nThe first was Finnhub, which allowed me to search for many more news articles about a specific stock (by entering its name and ticker).\nAt that point, I had to split up the code because the script had become very long.\nThe last modification I made concerned news selection: I implemented a filter that prevented similar news articles from being selected, to avoid excessively distorting the polarity in an incorrect way.\nFirst of all, I'd like to know, from an expert, how well the project is built from a structural point of view and how it could be improved. For future projects, what parameters should I take into consideration to understand whether a project is well built?\nSecondly, I'd like to know how I can determine whether a program like this can actually work, or at least how it could be useful (even with some modifications).\nThe third and final point is: which aspects of the pipeline might require more attention or could be optimized? Does it make sense to continue working on the project (also with the idea of turning it into a product), or am I approaching a structural limit?",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794177246,
+      "created_at": "2026-11-08T22:34:06+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50417974",
+      "title": "Show HN: Remedy – Prompt stuff out of your feeds",
+      "subreddit": "show-hn",
+      "author": "armatav",
+      "score": 4,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50417974",
+      "url": "https://getremedyapp.com",
+      "selftext": "I built an AI classifier chrome extension with Jev to insta-remove stuff from all your feeds before you see it.\nJust change the prompt to anything you want like \"remove ragebait\" or \"remove political stuff\" and it works fast.\nEnjoy!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794176181,
+      "created_at": "2026-11-08T22:16:21+00:00",
+      "comments_data": [
+        {
+          "id": "50419950",
+          "author": "loveTech",
+          "body": "Congrats for the launch! I really like how Remedy removes rage-bait, spoilers, and anything you describe in your own words before it hits your feed? Would a demo video help you reach more people and get the product adopted? If so, feel free to try Fluxcut (www.fluxcut.dev) where the demo video in the landing page is made by Fluxcut.",
+          "score": 0,
+          "time": 1794188828,
+          "parent": "50417974"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50417478",
+      "title": "Show HN: SafeScript, a safe version of JavaScript for executing untrusted code",
+      "subreddit": "show-hn",
+      "author": "EGreg",
+      "score": 12,
+      "num_comments": 10,
+      "permalink": "https://news.ycombinator.com/item?id=50417478",
+      "url": "https://github.com/SafeScript/safescript",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794173193,
+      "created_at": "2026-11-08T21:26:33+00:00",
+      "comments_data": [
+        {
+          "id": "50419038",
+          "author": "Rohansi",
+          "body": "What's stopping malicious scripts from sucking up the host's memory?",
+          "score": 0,
+          "time": 1794181882,
+          "parent": "50417478"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50416829",
+      "title": "Show HN: Bulk-harden all your GitHub repos' settings without an API token",
+      "subreddit": "show-hn",
+      "author": "1ch4k",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50416829",
+      "url": "https://gist.github.com/1ch4k/ba726954db1cc509c2071d54f93b5304",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794169742,
+      "created_at": "2026-11-08T20:29:02+00:00",
+      "comments_data": [
+        {
+          "id": "50418560",
+          "author": "bestony",
+          "body": "Reading the local files of the browser is still not good enough. A better way to implement it might be through Browser Javascript, so users just need to press F12 to open Console, paste, and run.",
+          "score": 0,
+          "time": 1794179238,
+          "parent": "50416829"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50416757",
+      "title": "Show HN: APC Playground – Stop AI agents from modifying your API tool calls",
+      "subreddit": "show-hn",
+      "author": "apcaleph",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50416757",
+      "url": "https://playground.alephapc.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794169346,
+      "created_at": "2026-11-08T20:22:26+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50415946",
+      "title": "Show HN: Nexjoin – A C++ remote desktop alternative (Windows XP+, macOS 10.13)",
+      "subreddit": "show-hn",
+      "author": "szigand",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50415946",
+      "url": "https://nexjoin.io/README.html",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794164242,
+      "created_at": "2026-11-08T18:57:22+00:00",
+      "comments_data": [
+        {
+          "id": "50415949",
+          "author": "szigand",
+          "body": "Many years ago, as a former LogMeIn developer, starting my own remote desktop system from scratch seemed like an interesting idea and a good challenge, especially since there were more and more complaints about the existing ones. I saw no point in developing yet another identical system, but rethinking what I could, putting in new ideas, and polishing every detail with proper implementation - while respecting future users' time, nerves, and private data - seemed like a good task. It should just do its job simply, cleanly, and unnoticed as it should: removing distance, making remote work easier and a better experience, and simplifying connections while taking care of security. For now, this is what came out of it. This is just a first incarnation of the engine; many kinds of products can be born from this.",
+          "score": 0,
+          "time": 1794164254,
+          "parent": "50415946"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50415725",
+      "title": "Show HN: Elo Ratings for Tests, ODIs, and T20Is",
+      "subreddit": "show-hn",
+      "author": "neehao",
+      "score": 3,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50415725",
+      "url": "https://outside-edge.github.io/side_order/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794162582,
+      "created_at": "2026-11-08T18:29:42+00:00",
+      "comments_data": [
+        {
+          "id": "50416041",
+          "author": "phillc73",
+          "body": "Not sure how much traction this will get on HN, but it's really great work. I'm a cricket fan and love stuff like this.\nInstead of scraping ESPNcricinfo data though, have you considered using Cricsheet?[1] YAML, JSON and experimental CSV formats.\n[1] https://cricsheet.org/ (https://cricsheet.org/)",
+          "score": 0,
+          "time": 1794164854,
+          "parent": "50415725"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50415581",
+      "title": "Show HN: Notekpr – An open-source, E2EE alternative to Notion and Obsidian",
+      "subreddit": "show-hn",
+      "author": "coolapso",
+      "score": 4,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50415581",
+      "url": "https://notekpr.md",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794161429,
+      "created_at": "2026-11-08T18:10:29+00:00",
+      "comments_data": [
+        {
+          "id": "50416498",
+          "author": "evanjrowley",
+          "body": "I'm excited to try this. Joplin has been my E2EE encrypted notes app for several years. One of the main drawbacks of Joplin is the only convenient web interface is their cloud service which explicitly lacks support for E2EE.",
+          "score": 0,
+          "time": 1794167561,
+          "parent": "50415581"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50415379",
+      "title": "Show HN: Build a PC in 3D in the Browser",
+      "subreddit": "show-hn",
+      "author": "ozaiworld",
+      "score": 3,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50415379",
+      "url": "https://www.buildcores.com",
+      "selftext": "I've been building this over the past few years. I left my job working on Google Earth to make a 3D PC builder. We have quite a few users so it's able to fund our team but I realized I never shared on HN!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794159908,
+      "created_at": "2026-11-08T17:45:08+00:00",
+      "comments_data": [
+        {
+          "id": "50419927",
+          "author": "loveTech",
+          "body": "Congrats for the launch! I really like building a full PC in 3D in the browser with real component models and compatibility guidance? Would a demo video help you reach more people and get the product adopted? If so, feel free to try Fluxcut (www.fluxcut.dev) where the demo video in the landing page is made by Fluxcut.",
+          "score": 0,
+          "time": 1794188665,
+          "parent": "50415379"
+        },
+        {
+          "id": "50415577",
+          "author": "nhggfu",
+          "body": "This looks like a simple idea executed PERFECTLY.\nShared with a few people I know - and I will refer to this instead of \"asking my bro\" about techy hardware stuff.\nSince i personally have a VISUAL learning style, this is right up my alley.\ngood hunting + best of luck with this. \nps. I adore the website design + messaging too. 10/10",
+          "score": 0,
+          "time": 1794161373,
+          "parent": "50415379"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50415219",
+      "title": "Show HN: FELF – AppImage-like single binaries without FUSE, root, or a runtime",
+      "subreddit": "show-hn",
+      "author": "Rucadi",
+      "score": 3,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50415219",
+      "url": "https://github.com/Rucadi/FELF",
+      "selftext": "Hello HN!\nI've always had a bad time redistributing programs that use shared libraries, AppImage in my opinion does too much, and a container is an overkill - not always integrates smoothly.\nI've moved to nix since long ago, but redistributing between nix and other distros or vice versa it's still a pain in the ass, more so if you want to run an alien app in nix or a nix app without the package manger in any other distro.\nFor that, with the help of Claude, I've implemented a format that deduces at pack-time all the shared libraries a program needs, puts them, together with its own glibc and a patched dynamic linker into a single executable.\nThis means that you don't actually need a runtime nor any special capability, it can run inside a FROM SCRATCH docker, alpine linux etc... And it also supports coreutils-like multiple programs accessible via symlinks, so it is a good fit for that purpose.\nYou can just use:\n> felf pack $(which git) --output git.felf\nand you'll have already a git binary that works everywhere, no matter which distro you are building this from. This only packs the binary and their dependencies.\nEssentially, the effect is similar as if you LD_PRELOAD's all the libraries that it requires.\nIn the end, we have been fighting these demons since long long ago, chroots/docker/appimage/flatpack/nix etc...\nSo this xkcd applies: https://xkcd.com/927/ (https://xkcd.com/927/)\nI'm happy to share the project, I hope it inspires new discoveries/tools in this regard!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794158805,
+      "created_at": "2026-11-08T17:26:45+00:00",
+      "comments_data": [
+        {
+          "id": "50416227",
+          "author": "Imustaskforhelp",
+          "body": "This is really beautiful from first glance.\nI had built appseed[0] inspired by zapps.app (curious what you think about that)\nand although, I could get some apps like bun and others to work statically using that. I struggled to make it work on things like OBS studio and it certainly had a lot of limitations with how it worked.\nIt had a different approach of working where instead of pushing everything into a single binary, you had the .so file outside in an external filesystem of binary, could something like this work within FELF as well theoretically (for de-duplication purposes perhaps)?\nIt seems that your experiment can work for almost every app including OBS and other complicated applications. I am rather really impressed by it and I will try to try it!\nI wonder if games can now be FELF'd as well and we can have containerized games into single binaries maybe, where I can just \"run\" games.\nWhat do you personally think could be the largest benefits of this approach and if there are any further things that you are pursuing in this area?\nThis is really impressive work and thank you for releasing it! Have a nice day :-D\n[0]: https://github.com/serJaimeLannister/appseed (https://github.com/serJaimeLannister/appseed)",
+          "score": 0,
+          "time": 1794165983,
+          "parent": "50415219"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50415106",
+      "title": "Show HN: Maple – Run Gemma 4 26B on a 6GB Laptop GPU at 45 TPS (Sub-2-BPW)",
+      "subreddit": "show-hn",
+      "author": "AmSach",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50415106",
+      "url": "https://amsach.github.io/maple/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794157983,
+      "created_at": "2026-11-08T17:13:03+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,8 +353,8 @@
       "title": "Show HN: Ghanaian street games you can play in the browser",
       "subreddit": "show-hn",
       "author": "samuelaidoo45",
-      "score": 2,
-      "num_comments": 1,
+      "score": 4,
+      "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50414117",
       "url": "https://www.ghanastreetgames.com/",
       "selftext": "",
@@ -220,7 +563,7 @@
       "title": "Show HN: Maple – Sub-2-BPW Moe Pruning to Run Gemma 4 26B at 45 TPS on a 6GB GPU",
       "subreddit": "show-hn",
       "author": "AmSach",
-      "score": 18,
+      "score": 20,
       "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50410253",
       "url": "https://github.com/AmSach/maple",
@@ -296,7 +639,7 @@
       "title": "Show HN: LLM weight editing tool made by a 15-year-old",
       "subreddit": "show-hn",
       "author": "032renya",
-      "score": 12,
+      "score": 13,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50409986",
       "url": "https://github.com/Miyamoto-Renya/LaplacesScissors",

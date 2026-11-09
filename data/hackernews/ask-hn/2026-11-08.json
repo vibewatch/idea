@@ -1,8 +1,233 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-08T18:31:01.785104+00:00",
+  "last_fetched": "2026-11-09T06:44:05.079409+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50419019",
+      "title": "Tell HN: A flood of reports of Opus 5.5 being nerfed",
+      "subreddit": "ask-hn",
+      "author": "b--l",
+      "score": 16,
+      "num_comments": 9,
+      "permalink": "https://news.ycombinator.com/item?id=50419019",
+      "url": "https://news.ycombinator.com/item?id=50419019",
+      "selftext": "Here are several user reports of Opus 5.5 being nerfed:\nhttps://www.reddit.com/r/ClaudeCode/comments/1xr4urz/opus_55_in_the_past_two_weeks/\nhttps://www.reddit.com/r/ClaudeCode/comments/1xr9x5y/the_nerf_is_real_thank_you_uwum1ha1nho/\nhttps://www.reddit.com/r/ClaudeCode/comments/1xqvqip/anthropic_should_offer_a_free_reset_and_restore/\nhttps://www.reddit.com/r/ClaudeCode/comments/1xr0nz5/either_a_lawsuit_an_apology_or_never_touching/\nhttps://www.reddit.com/r/ClaudeCode/comments/1xl72og/opus_56_imminently_about_to_release/\nhttps://www.reddit.com/r/ClaudeCode/comments/1xqtslm/rant_anthropic_stop_silently_degrading_models/\nhttps://www.reddit.com/r/ClaudeCode/comments/1xr8jod/opus_high_55_nerfed/\nhttps://www.reddit.com/r/ClaudeCode/comments/1xqujuh/opus_55_started_coming_up_with_unintelligible/\nhttps://www.reddit.com/r/ClaudeCode/comments/1xqfp7m/opus_55_xhigh_just_deleted_all_my_apps_data/\nhttps://www.reddit.com/r/ClaudeCode/comments/1xr488d/weve_been_nerfed/\nhttps://www.reddit.com/r/ClaudeCode/comments/1xr6r3t/has_claude_been_made_dumber_again/\nhttps://www.reddit.com/r/ClaudeCode/comments/1xr8aic/fable_opus_55_noticeable_performance_regression/\nhttps://www.reddit.com/r/ClaudeCode/comments/1xrc97q/claude_again_ignoring_all_hooks_first_time_since/\nhttps://www.reddit.com/r/ClaudeCode/comments/1xphsj9/opus_55_is_trying_to_destroy_my_codebase_recently/\nThese are all within the last week.\nI have noticed the same thing myself. I am going to pause Opus 5.5 use. I find it really scummy business practice. We trust them that what is behind the string \"opus-5-5\" is consistent and what we signed up for. Of course behind the scenes they can do whatever they like and serve whatever model they like under that string. It is a scummy and deceptive business practice though.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794181759,
+      "created_at": "2026-11-08T23:49:19+00:00",
+      "comments_data": [
+        {
+          "id": "50421880",
+          "author": "cedws",
+          "body": "I doubt Anthropic are quantizing their own models. Since effort levels are essentially a compute budget I wonder if they’re using this behind the scenes to dial it down when getting close to capacity. Thinking blocks are hidden so we wouldn’t be able to tell right?\nFrom Anthropic's POV it would be better to sneakily nerf the effort level and have some people whine on reddit, than hit capacity and have potentially thousands of customers unable to use the service they're paying for.",
+          "score": 0,
+          "time": 1794206218,
+          "parent": "50419019"
+        },
+        {
+          "id": "50420515",
+          "author": "kasey_junk",
+          "body": "> We trust them that what is behind the string \"opus-5-5\" is consistent and what we signed up for.\nDo you run evals as a matter of course? Everyone I know that does shows high levels of variance across them under the best case.\nThat’s not to say that the labs don’t downgrade models at times, just that without any measurement it’s a non-interesting assertion.",
+          "score": 0,
+          "time": 1794193474,
+          "parent": "50419019"
+        },
+        {
+          "id": "50420297",
+          "author": "faangguyindia",
+          "body": "It seems like pre-IPO companies need to balance \"cost\" vs. \"optics\" and it's one of the metrics they optimize.\nSo, launch at an \"exceptional\" state and then cut costs after some time following the release, then repeat to make it appear like lots of advancement is happening.",
+          "score": 0,
+          "time": 1794191657,
+          "parent": "50419019"
+        },
+        {
+          "id": "50421139",
+          "author": "echion",
+          "body": "I've noticed this too, since about Wednesday.",
+          "score": 0,
+          "time": 1794199262,
+          "parent": "50419019"
+        },
+        {
+          "id": "50419545",
+          "author": "turtleyacht",
+          "body": "Why not use a distributed benchmark? Tokens are shared across volunteers; everyone gets informed of the nerf simultaneously. No one need be surprised.",
+          "score": 0,
+          "time": 1794185421,
+          "parent": "50419019"
+        },
+        {
+          "id": "50420378",
+          "author": "oleksg",
+          "body": "Oh man, can't wait for open-source to catch up...",
+          "score": 0,
+          "time": 1794192330,
+          "parent": "50419019"
+        },
+        {
+          "id": "50419237",
+          "author": "Bender",
+          "body": "For me Claude was nerfed when:\n- They put the shock collar on it [Cyber] Your session has been paused - meaning I have to start a new session. That is also on Opus 4.8 now, just not quite as sensitive as on 5.5. (Defensive coding, defensive system configuration) In my opinion Claude is not permitted to write secure code or analyze ones existing code for bugs that may be security related. Instead of the shock collar, just report anything illegal I ask Claude to do to Palantir and other related platforms like everyone else does.\n- They downgraded my 20x account to a 10x, so I downgraded it to the lowest one. I would have paid for Mythos if they would have permitted me to verify myself.\n- I keep hitting context memory limits and Claude starts acting like it has dementia, accusing me of doing things that it did. Claude is not proactively compacting when it should, especially on max. It says max does not matter but in my experience it very much does.\nI have not logged in for a couple weeks so I have no idea if the model itself has been nerfed. The feeling I got is that they want to focus on enterprise customers and would prefer individuals went away so I cleared out my data and moved my projects elsewhere that does not block me for wanting to secure my code. Perhaps that is their way of sending more individuals away? Their message has been received loud and clear.",
+          "score": 0,
+          "time": 1794183200,
+          "parent": "50419019"
+        },
+        {
+          "id": "50419105",
+          "author": "gigatexal",
+          "body": "I noticed the same at work using Opus 5.5 on medium which was the sweet spot. It’s now just not great.",
+          "score": 0,
+          "time": 1794182265,
+          "parent": "50419019"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50417407",
+      "title": "Ask HN: What are you working on? (November 2026)",
+      "subreddit": "ask-hn",
+      "author": "david927",
+      "score": 188,
+      "num_comments": 631,
+      "permalink": "https://news.ycombinator.com/item?id=50417407",
+      "url": "https://news.ycombinator.com/item?id=50417407",
+      "selftext": "What are you working on? What have you been curious about lately?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794172820,
+      "created_at": "2026-11-08T21:20:20+00:00",
+      "comments_data": [
+        {
+          "id": "50421921",
+          "author": "mindaslab",
+          "body": "Working on browser games https://games.numerical.works/ (https://games.numerical.works/)",
+          "score": 0,
+          "time": 1794206594,
+          "parent": "50417407"
+        },
+        {
+          "id": "50418273",
+          "author": "jzig",
+          "body": "I was laid off a few weeks ago. Then I learned my dad’s carpet cleaning company has been struggling, so I started learning about Google Local Service Ads to help him out. THEN I learned his old Windows desktop CRM was discontinued and one OS update away from no longer working. I wanted a way to track every dollar spent to determine return on ad spend, but the Google LSA dashboard left a lot to be desired. And existing SaaS CRMs didn’t have great integrations to Google Ads API. So I built Crewbird, a Field Service Management and CRM for service based businesses with Google LSA integration where my dad is quickly approaching 3x ROAS!\nI’m still looking for work in the mean time but I’m proud of what I’ve achieved so far.\nhttps://getcrewbird.com/ (https://getcrewbird.com/)",
+          "score": 0,
+          "time": 1794177805,
+          "parent": "50417407"
+        },
+        {
+          "id": "50421858",
+          "author": "vedanshchauhan9",
+          "body": "Working on Zoupyu (https://zoupyu.com (https://zoupyu.com)). You paste a long video, it suggests the best moments, and you pick the start and end points which then become clips. Most AI clippers just pick for you, so I wanted something that gives me full control over each second. I want to expand it into a platform that brings creators and clippers together through content rewards.\n7 months ago I left my job to give more time to Zoupyu. Solo building and figuring out everything from SEO, marketing, tech, design, and everything else it takes to build and run an online product. I never sold anything in my life before and now we have around 50 paying customers from all around the world, just 3 months ago my goal in life was to make one sale just one! and now its around 50. I know its not much but feels so good that I achived that. That too all organic.",
+          "score": 0,
+          "time": 1794206009,
+          "parent": "50417407"
+        },
+        {
+          "id": "50421762",
+          "author": "tjansen",
+          "body": "Working on http://downread.com/ (http://downread.com/), making it an advanced RSS reader. \nI am trying to push the boundaries of what an RSS reader can do. Just added podcast capabilities, complete with background play, queuing and video streaming. Now I am working on adding posting and commenting within the reader, based on rss.chat and the webmention protocol. I am also procrastinating the completion of the mobile apps, which I really should finish soon..",
+          "score": 0,
+          "time": 1794205212,
+          "parent": "50417407"
+        },
+        {
+          "id": "50418058",
+          "author": "aaronbrethorst",
+          "body": "I work on a suite of open source public transit software projects, collectively called OneBusAway (or OBA). The software is used by millions of transit riders every day around the world, including in New York City, the Seattle area, San Diego, and Washington, D.C.\nUniversity of California San Diego has deployed our Wayfinder and Waystation web apps for their 35,000+ students!\nWe're getting ready to launch our Vehicle Positions software, which replaces expensive, proprietary vehicle location systems with free, open source software that runs on commodity smartphones.\nOur next-generation server software, Maglev, is adding support for newer transit data formats, like GTFS-Flex so that we can show demand responsive transit systems on the map.\nWe are always looking for more developers, biz dev, ux designers, product managers, and more to help out!\nOpen volunteer positions: https://ossvolunteers.com/organizations/open-transit-softwar... (https://ossvolunteers.com/organizations/open-transit-software-foundation)\nOur software: https://github.com/OneBusAway/ (https://github.com/OneBusAway/)\nMore about us: https://opentransitsoftwarefoundation.org (https://opentransitsoftwarefoundation.org)",
+          "score": 0,
+          "time": 1794176646,
+          "parent": "50417407"
+        },
+        {
+          "id": "50419208",
+          "author": "chartrow",
+          "body": "I am still working on fast and dense stock market related visualizations, example:\nDrawdown (from 52-week high) charts for top performing YTD stocks of the NASDAQ 100:\nhttps://chartrow.com/top-performers#view=drawdown&p=ytd&in=n... (https://chartrow.com/top-performers#view=drawdown&p=ytd&in=nasdaq100&gl=off)\nView the stock charts of holdings of an ETF like ARKK in a dense way:\nhttps://chartrow.com/quote/arkk/holdings#range=10y&ma=20%2C5... (https://chartrow.com/quote/arkk/holdings#range=10y&ma=20%2C50&view=charts&win=1y)\nMicrosoft business fundamental trends:\nhttps://chartrow.com/quote/msft/trends (https://chartrow.com/quote/msft/trends)\nVisualizing the top performing stocks in different ways:\nhttps://chartrow.com/top-performers#view=charts&p=ytd (https://chartrow.com/top-performers#view=charts&p=ytd)\nhttps://chartrow.com/top-performers#view=heatmap&p=ytd (https://chartrow.com/top-performers#view=heatmap&p=ytd)\nhttps://chartrow.com/top-performers#view=calendar&p=ytd (https://chartrow.com/top-performers#view=calendar&p=ytd)\nFeel free to change views from charts to table to heatmap etc. And it should feel responsive. Report any bugs to me and happy viewing. :)",
+          "score": 0,
+          "time": 1794183024,
+          "parent": "50417407"
+        },
+        {
+          "id": "50421853",
+          "author": "shintoist",
+          "body": "I've recently been making improvements to Larm, https://larm.dev (https://larm.dev), an uptime monitoring service I've been running for a while now. It's got global probe coverage, automatic/standalone status pages, and lots of alert channels. Pricing is simple and the limits are generous.\nIt's accumulated a decent number of users now which is exciting.\nUnder the hood it's an Elixir backend with a network of little go probes running all over the world, all connected by TCP tunnels. All the check result data is stored in Clickhouse. Status pages are generated on demand and served through a CDN.\nThe whole thing is EU hosted.",
+          "score": 0,
+          "time": 1794205931,
+          "parent": "50417407"
+        },
+        {
+          "id": "50418955",
+          "author": "leobuskin",
+          "body": "I’m reverse engineering and replacing the entire stack on Samsung A54 (Exynos 1380, Mali-G68), started with booting to a customized linux kernel (7.3) w/o Android layer at all (Wayland and WPE WebKit only), built a custom WLBT thin firmware to replace the original fat blob (using mac80211 as the foundation), figured out how to exploit USB control transfer and got ACE in the PBL, reconstructed (with byte-identical verification) their LK-based S-Boot, uH and harx, patched mesa/panfrost, optimized kernels for this device (finally got STT/TTS running on GPU faster than on CPU), figured out how to utilize NPU, built a custom toolchain for it. I’m trying to properly own this device (and giving it to Claude on the lowest possible level, but still running pKVM and getting rid of original hypervisors), it’s the goal number one at this point, no binary blobs, ability to change sw and control hw on-the-fly. Obviously with AI usage (Opus 5.5/4.8, GLM 5.3, Kimi 3.1), there’s a lot of work.",
+          "score": 0,
+          "time": 1794181332,
+          "parent": "50417407"
+        },
+        {
+          "id": "50421806",
+          "author": "radius89",
+          "body": "Still working on radius.to [1] - a Meetup.com alternative.\nI relaunched it on HN [2] just over a month ago after working on features over the last year or so and landing a ton of useful feedback, which I've mostly now acted on. Could and should probably do more marketing so that's my short term focus.\nLikely the next phase of work I'll be exploring is potentially open sourcing and federation - super excited about this but it'll likely need a fair bit of research and planning.\n[1] https://www.radius.to/ (https://www.radius.to/)\n[2] https://news.ycombinator.com/item?id=49777539 (https://news.ycombinator.com/item?id=49777539)",
+          "score": 0,
+          "time": 1794205568,
+          "parent": "50417407"
+        },
+        {
+          "id": "50418936",
+          "author": "Malcx",
+          "body": "A series of actually hard puzzle books, so far sudoku, killer sudoku and some fiendish wordsearches that only use 5 letters per grid.\nhttps://extremepuzzlebooks.com (https://extremepuzzlebooks.com)\nA sample wordsearch is available as a pdf here:\nhttps://extremepuzzlebooks.com/assets/sample/extreme-wordsea... (https://extremepuzzlebooks.com/assets/sample/extreme-wordsearch-sample.pdf)\nI'm quite proud of this wordsearch concept as I've not seen it done before.\nAll the logic puzzles have an online solution to show step by step how you can complete them.\nhttps://extremepuzzlebooks.com/walkthroughs (https://extremepuzzlebooks.com/walkthroughs)\nI've been working on the software to generate, test and verify these for a couple of years and finally built up enough puzzle stock that meets the difficulty requirements to properly launch.\nNow the work is on every hackers favourite part... Marketing!",
+          "score": 0,
+          "time": 1794181199,
+          "parent": "50417407"
+        },
+        {
+          "id": "50421785",
+          "author": "jpsimons",
+          "body": "I'm really pleased with how my equivalent to Smart Objects turned out in Mojave Studio, my Mac image editor. In Photoshop you can transform an opaque sub-document with an affine and/or homographic transform, while in Mojave Studio you get what I call a \"Smart Folder\" shown inline, as if you're examining shadow DOM in web inspector. The thing you're viewing has its identity transform and the rest of the document gets the inverse transform applied, to see how it sits in context. https://mojavepaint.app/blog/smart-folders (https://mojavepaint.app/blog/smart-folders)",
+          "score": 0,
+          "time": 1794205377,
+          "parent": "50417407"
+        },
+        {
+          "id": "50421714",
+          "author": "iugtmkbdfil834",
+          "body": "Hmm. A lot of smaller projects that seem to be slowly integrated into agent skills. I am admittedly moving into agent world very slowly.\nThough now, with the specter of raised prices on the horizon, the local only portion of my setup gained some additional focus.\nStill, from the fun mini-projects:\n- attempting to replicate testing whether agents elevate inferred persona, memory, or background context above explicit user requests ( https://bloomberg.com/news/newsletters/2026-10-07/study-clau... (https://bloomberg.com/news/newsletters/2026-10-07/study-claude-chatgpt-ai-bots-offer-different-shopping-prices-based-on-wealth) )\n- a few hackaton entries\n- my llm rpg got some few additions ( still nothing I am willing to publish )\n- first working and useful unraid app;p",
+          "score": 0,
+          "time": 1794204896,
+          "parent": "50417407"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50415959",
+      "title": "HN's HTML has changed slightly",
+      "subreddit": "ask-hn",
+      "author": "1vuio0pswjnm7",
+      "score": 3,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50415959",
+      "url": "https://news.ycombinator.com/item?id=50415959",
+      "selftext": "HTML parser I'm using only took a minute to fix; I use C, no selectors or scripting languages\nI think this is what makes HN good as a website\nDesign simplicity",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794164295,
+      "created_at": "2026-11-08T18:58:15+00:00",
+      "comments_data": [
+        {
+          "id": "50416271",
+          "author": "lexoj",
+          "body": "Sure but it broke Hack app and it wasn’t obvious what was going on (comments were simply not showing). An API would have been nice, and it would make error handling easier",
+          "score": 0,
+          "time": 1794166144,
+          "parent": "50415959"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,8 +235,8 @@
       "title": "Ask HN: What are your advice for a CS/IT student for the future?",
       "subreddit": "ask-hn",
       "author": "L0in",
-      "score": 4,
-      "num_comments": 14,
+      "score": 5,
+      "num_comments": 19,
       "permalink": "https://news.ycombinator.com/item?id=50412307",
       "url": "https://news.ycombinator.com/item?id=50412307",
       "selftext": "Hello. I'm an Information Technology university student from Greece. I'm older than most of my peers and i feel anxious about my professional future with all the advancements of AI. What advice do you have for someone who just starting out?",
@@ -21,19 +246,19 @@
       "created_at": "2026-11-08T11:21:07+00:00",
       "comments_data": [
         {
+          "id": "50421148",
+          "author": "nicbou",
+          "body": "Do not tie your entire identity to your job and how well you do it. Learn to appreciate the world through non-technical lenses and develop a life and hobbies outside of tech.\nAI is currently killing my business and threatening my old CS career, but I have things to retreat to: a network, friends, hobbies, nature, art. I find answers in the countless books and essays I have read, instead of flying blind. Liberal arts matter.\nI did not see the use of those things when I was laser-focused on my career, but they added so much richness to my life outside of work, and now they're the only thing between me and despair.\nThat aside, do not neglect networking, negotiation and other soft skills. They do much more for your career than being a really solid coder. Software engineering is engineering. It requires herding a bunch of human beings to achieve unclear, changing goals. Code is just an artefact of that endeavour.",
+          "score": 0,
+          "time": 1794199323,
+          "parent": "50412307"
+        },
+        {
           "id": "50414007",
           "author": "mattbrewsbytes",
           "body": "Embrace AI but not in the sense of having it feed you answers. Have it be your sounding board, have it teach you, question its answers and ask for citations/sources/references. Read those references, try to lean on using trusted humans that have authoritative knowledge and not random blogs, forums, etc. Lean more towards the human elements of IT and software delivery, things like project management and other aspects of the job that aren't about syntax of code. You still need to know syntax, how systems work, etc. but if you're in roles talking to the business teams using the computing systems you're in a better spot than being a \"coder\".\nThe other thing is get experience or look at companies that aren't technology companies, look at sciences, manufacturing, etc. and services they need. Maybe consider a minor in some other field that also interests you and focus on companies in that field.",
           "score": 0,
           "time": 1794151040,
-          "parent": "50412307"
-        },
-        {
-          "id": "50414728",
-          "author": "EvLDesign",
-          "body": "Get Obsidian, connect it with your favorite AI (mine is Claude) and let it save everything that you have learned in your uni. It will make you look like you are a super machine and never forget anything in your future carrier",
-          "score": 0,
-          "time": 1794155706,
           "parent": "50412307"
         },
         {
@@ -53,6 +278,14 @@
           "parent": "50412307"
         },
         {
+          "id": "50414728",
+          "author": "EvLDesign",
+          "body": "Get Obsidian, connect it with your favorite AI (mine is Claude) and let it save everything that you have learned in your uni. It will make you look like you are a super machine and never forget anything in your future carrier",
+          "score": 0,
+          "time": 1794155706,
+          "parent": "50412307"
+        },
+        {
           "id": "50413065",
           "author": "FrankWilhoit",
           "body": "Go deep in some subject matter, and learn how to analyze legacy business processes. This is not the new flashy stuff but it is where there will always be a need.",
@@ -69,11 +302,11 @@
           "parent": "50412307"
         },
         {
-          "id": "50414291",
-          "author": "brudgers",
-          "body": "Be the kind of person people want to work with.\nPeople skills never become obsolete and are useful outside of IT.\nBusiness runs on relationships.\nNetwork.\nGood luck.",
+          "id": "50412310",
+          "author": "pluc",
+          "body": "Pick up carpentry",
           "score": 0,
-          "time": 1794153130,
+          "time": 1794136899,
           "parent": "50412307"
         },
         {
@@ -85,11 +318,11 @@
           "parent": "50412307"
         },
         {
-          "id": "50412310",
-          "author": "pluc",
-          "body": "Pick up carpentry",
+          "id": "50414291",
+          "author": "brudgers",
+          "body": "Be the kind of person people want to work with.\nPeople skills never become obsolete and are useful outside of IT.\nBusiness runs on relationships.\nNetwork.\nGood luck.",
           "score": 0,
-          "time": 1794136899,
+          "time": 1794153130,
           "parent": "50412307"
         },
         {
@@ -168,7 +401,7 @@
       "title": "Is YouTube starting to protect channel RSS feeds?",
       "subreddit": "ask-hn",
       "author": "kradeelav",
-      "score": 5,
+      "score": 6,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50409244",
       "url": "https://news.ycombinator.com/item?id=50409244",
