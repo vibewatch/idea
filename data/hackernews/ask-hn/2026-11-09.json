@@ -1,8 +1,376 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-09T06:44:05.079409+00:00",
+  "last_fetched": "2026-11-09T12:33:23.050724+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50423535",
+      "title": "Ask HN: How your SEO traffic doing? Up or down?",
+      "subreddit": "ask-hn",
+      "author": "bigmuzzy",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50423535",
+      "url": "https://news.ycombinator.com/item?id=50423535",
+      "selftext": "Just wondering",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794218909,
+      "created_at": "2026-11-09T10:08:29+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50423371",
+      "title": "Ask HN: Do you still enjoy coding in C++?",
+      "subreddit": "ask-hn",
+      "author": "hasley",
+      "score": 37,
+      "num_comments": 42,
+      "permalink": "https://news.ycombinator.com/item?id=50423371",
+      "url": "https://news.ycombinator.com/item?id=50423371",
+      "selftext": "In the recent years C++ received a lot of backlash due to its complexity and (perceived) feature creep. However, since C++11 I really enjoyed writing C++ with its strict type system (including const), range-based for loops, smart pointers, and how much you can do with templates. On the other hand, I know that it can be very tricky to write, for instance, a correct iterator, to get handling of rvalue references right, or to read error messages that involve templates.\nSo, do you enjoy or dislike writing C++ source code and why?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794217803,
+      "created_at": "2026-11-09T09:50:03+00:00",
+      "comments_data": [
+        {
+          "id": "50424058",
+          "author": "chris_j",
+          "body": "I'm really torn about C++. I love C++ but there are things that I really don't like about it as well. It's a fantastic language in a lot of ways, but it carries around 40+ years of cruft, of things that you wouldn't do like that if you were inventing a programming language today.\nI haven't written C++ professionally for many years at this point, and my memories of using it professionally (pre C++ 11) are not happy ones: having to agree on a strict subset of the language that we were allowed to use, which avoided features that any of the compilers didn't support well, or that my teammates didn't like. Sadly back then the list of forbidden features included templates and namespaces.\nBut using C++ on personal projects nowadays, and being able to choose which bits of the language to use - and which to avoid - is much more enjoyable. And honestly, the language did get a lot better from C++ 11 onwards.",
+          "score": 0,
+          "time": 1794223049,
+          "parent": "50423371"
+        },
+        {
+          "id": "50424131",
+          "author": "gignico",
+          "body": "I love C++, in the C++11 days I even organized a local C++ User Group at my university, and I've used it for the last 20 years as my main language.\nI still appreciate its many merits but since a bit more than a year I migrated to Rust and I find it very difficult to look back, except for maintaining my previous C++ projects.\nSurprisingly, it's not Rust's memory safety features that I miss the most when turning back to C++. It's mostly the absence of algebraic data types and pattern matching, and the split between compile-time and runtime polymorphism, i.e. concepts vs virtual classes, where in Rust you just have traits and use them for everything. On top of that the tooling and the ecosystem are just amazing.\nThere's a proposal for pattern matching sitting there under the committee's desk for some years now. With the mess that the standard committee is going through I really doubt they will be able to ship pattern matching for C++29 or even later. Too little too late.\nSo to answer the question, yes, I still appreciate the merits of C++ but I don't enjoy writing it as much as I have in the past.",
+          "score": 0,
+          "time": 1794223624,
+          "parent": "50423371"
+        },
+        {
+          "id": "50424564",
+          "author": "simonask",
+          "body": "Oh, C++.\nC++ feels like an old lover who I think fondly of. We were together many years, until about C++20, through thick and thin. It was exhilarating - blazingly fast, perhaps irresponsibly so, but heck, the ride was wild. It taught me so many things, and shaped me into the programmer I am today. But we went our separate ways when its shortcomings became too large to bear, and its behavior - too often undefined - no longer excusable.\nI keep up with it because I still have love for it, but I have to admit I am deeply concerned about many of the life choices it is making. I should have seen how problematic it was, because I knew its history, but I had hope that it could change, and it just looks like it never will.\nI'm still rooting for C++, even though I am very happy with my new primary language, Rust. I hope it changes to the better, because I really want the best for it, but right now I'm just not seeing it. It keeps repeating old mistakes (e.g., more UB footguns with every new feature), without addressing any of the big flaws (insufficient tools for building robust software).\nI sometimes still write C++, but I'm not excited about it the way I used to be. When I do write C++, it's because I have to. When given the choice, Rust is simply just a better choice for almost everything I do. Right now, I don't see a future for C++ and me.",
+          "score": 0,
+          "time": 1794226572,
+          "parent": "50423371"
+        },
+        {
+          "id": "50424551",
+          "author": "zagal",
+          "body": "I only used it for bare-metal embedded and Linux user space where efficiency was important.\nSome features are nice. Some arrived too late, like std::optional in C++17 [0] or std::expected in C++23 [1], and some features requires too deep knowledge of the language, like std::move unable to optimize for containers of structs without \"noexcept\" in their constructors. [2]\nBut honestly, the reason why I don't enjoy it is unrelated to the features added to each new standard. It's the build system. I just want to cross compile easily, add sanitizers to testing, and the minimal third party libraries I may need. I think I don't have to explain here how complicated it can get when you have to use CMake/Meson/Bazel, compared to other build systems.\n[0] https://en.cppreference.com/cpp/utility/optional (https://en.cppreference.com/cpp/utility/optional)\n[1] https://en.cppreference.com/cpp/utility/expected (https://en.cppreference.com/cpp/utility/expected)\n[2] https://0xghost.dev/blog/std-move-deep-dive/ (https://0xghost.dev/blog/std-move-deep-dive/)",
+          "score": 0,
+          "time": 1794226492,
+          "parent": "50423371"
+        },
+        {
+          "id": "50423726",
+          "author": "adev_",
+          "body": "In one word: Power.\nC++ is by far the most powerful language around. And this is for the best and (often) also the worst.\nIn term of generic programming, control on hardware, capacity of abstraction and more generally expressivity: Nothing, even today, come even close to C++.\nIt is a language full of foot guns and it has its fair share of legacy problems.\nBut if you learn to avoid it (throught experience and pain). You can reach a productivity and a level of performance in C++ which is very difficult to beat with anything else, including Rust.\nIronically, I find it particularly true in the age of A.I.\nBecause the amount of C++ around is so tremendous, that agents are currently pretty good at it if guided properly.",
+          "score": 0,
+          "time": 1794220399,
+          "parent": "50423371"
+        },
+        {
+          "id": "50423698",
+          "author": "mort96",
+          "body": "I enjoy writing C++ code.\nI acknowledge that C++ is a bad language in a lot of ways, but it's a bad language which I know really well, and it fits with how I think about code. And it lets me effortlessly do \"clever\" things with how memory is managed to avoid unnecessary allocations etc. I've already learned most of its idiosyncrasies, handling rvalue references/move semantics, how to go about implementing contracts like iterators and containers, etc.\nI also like writing Rust, and I like how Rust makes sure I don't make mistakes. I think Rust is a better language in many ways and I think it's the future of low-level programming (and I think it's wild that it took so many decades to get a proper competitor to C++!). But I also like how C++ doesn't care and lets me do whatever I want without acting as a nanny. I would never ever dare to write a publicly exposed web server in C++, but a game? Sure!",
+          "score": 0,
+          "time": 1794220205,
+          "parent": "50423371"
+        },
+        {
+          "id": "50424293",
+          "author": "dotdi",
+          "body": "I agree that C++11 was a big step. This was around the time I was working on a master's thesis, building a distributed optimization framework based around simulated annealing, using hand-optimized CUDA kernels on Nvidia CPUs. Writing CUDA code became a much nicer experience with C++11, and I didn't hate it.\nHowever, it was still a bad choice for all the plumbing, caching, networking, job-management, etc that a useful framework needed, and I started using more and more Python. C++ was frustrating for those bits.\nEventually, after some important work on Numba[0], I was able to replace C++ completely, even for the CUDA kernels, and just write a subset of Python. It wasn't without it's (often quite esoteric) problems, but I was happy to throw out the last bits of C++ code. The thesis was praised and had some outside attention, but fizzled out in the years thereafter.\n0: https://numba.pydata.org/ (https://numba.pydata.org/)",
+          "score": 0,
+          "time": 1794224840,
+          "parent": "50423371"
+        },
+        {
+          "id": "50424320",
+          "author": "bulbar",
+          "body": "Still loving writing C++ and generally, it got much better over the years. User-Code (vs. library code) is quite easy to understand and it's easy to avoid pitfalls for the most part when using modern practices.\nMain problem I see is that it has to move pretty slow. Reflection arriving finally now, but some more modern features might take an additional decade.\nIt feels however that around C++23/26, a lot of decade-long developings ( i.e.compile time stuff) are getting close to form a complete system without major limitations for the most part.\nThey also took notes regarding errors and templates, so the user experience also improved a lot (i.e. with concepts).",
+          "score": 0,
+          "time": 1794225037,
+          "parent": "50423371"
+        },
+        {
+          "id": "50423928",
+          "author": "throwaway81523",
+          "body": "Yes I mostly enjoy it, but I don't do anything critical with it and I'm nowhere near expert level. I use the subset of it that makes sense to me. If I were doing something critical I'd want to use Ada, which I've played around with a little bit.\nI think the lurking question is about Rust. I've read a book about it and it has some attractions but also what I think are some poor decisions. I suppose I'll have to use it for something sometime. C++ is sort of like Perl, it seems to me. A lot of what seems like bloat is actually affordances, so the thing you want is often surprisingly close at hand. Some things of course are awful.\nI wouldn't call C++ a good language but it does most of the things. Enjoyment doesn't always mean productivity anyway. I enjoy using Forth but that's almost like enjoying riding a unicycle. I wouldn't do anything substantial with Forth except for recreation. I do feel fairly productive in C++.",
+          "score": 0,
+          "time": 1794221978,
+          "parent": "50423371"
+        },
+        {
+          "id": "50424256",
+          "author": "NooneAtAll5",
+          "body": "I still don't understand the \"feature creep\" complaint\npython just introduced built-in sentinel, and only comment on an explainer video brought up that it's nothing new and is just a rename of unittest.mock.sentinel\nwho even knew there's unittest module? who even knew there's unittest.mock? definitely not me\nbecause it doesn't matter - you use what you need and learn what you encounter. Same thing with C++",
+          "score": 0,
+          "time": 1794224596,
+          "parent": "50423371"
+        },
+        {
+          "id": "50424002",
+          "author": "adg001",
+          "body": "I never enjoyed programming in C++. I feel its (original) syntax and approach to OOP to be obnoxious. I never looked into C++11, though; I hope things improved. The first love was always for C; notwithstanding all its shortcomings, I feel at home writing C, and I would still enjoy doing so.",
+          "score": 0,
+          "time": 1794222570,
+          "parent": "50423371"
+        },
+        {
+          "id": "50423861",
+          "author": "pjc50",
+          "body": "I'd like to put in a \"no\" after spending many years writing C++; my day job is in C# now.\nThe templating system is more powerful than any other language I have significant experience with, but that also lets people write incomprehensible systems. And the compile times always have been really long.",
+          "score": 0,
+          "time": 1794221456,
+          "parent": "50423371"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50422628",
+      "title": "ChatGPT Desktop forwards your SSH agent to remote machines",
+      "subreddit": "ask-hn",
+      "author": "DenGorbachev",
+      "score": 56,
+      "num_comments": 11,
+      "permalink": "https://news.ycombinator.com/item?id=50422628",
+      "url": "https://news.ycombinator.com/item?id=50422628",
+      "selftext": "The agent running on a remote machine can authenticate using your local SSH credentials.\nThat means it can push to your private repos on GitHub, for example.\nProof: https://github.com/openai/codex/pull/28131#discussion_r3410013180",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794212269,
+      "created_at": "2026-11-09T08:17:49+00:00",
+      "comments_data": [
+        {
+          "id": "50423388",
+          "author": "recsv-heredoc",
+          "body": "It's amazing how often product decisions head this way for the purposes of 'removing friction'.\nIn security, friction is a GOOD thing. You want to have some ceremony to do things. It's pretty much inevitable that people will give up control for convenience.\nLook at Artifacts for example.",
+          "score": 0,
+          "time": 1794217896,
+          "parent": "50422628"
+        },
+        {
+          "id": "50423130",
+          "author": "littlecranky67",
+          "body": "I'd suggest to use ssh keys inside the secure enclave on macOS that require your fingerprint for every new session [0]. That way agents cannot initiate anything, and you will always be aware when a new ssh connection is being made.\n[0]: https://gist.github.com/arianvp/5f59f1783e3eaf1a2d4cd8e952bb... (https://gist.github.com/arianvp/5f59f1783e3eaf1a2d4cd8e952bb4acf)",
+          "score": 0,
+          "time": 1794215954,
+          "parent": "50422628"
+        },
+        {
+          "id": "50424220",
+          "author": "eosis",
+          "body": "Things are awful for this at the moment. [Was the same for docker desktop at some point.](https://rupertrutledge.com/posts/docker-sbx-s-ssh-security-i... (https://rupertrutledge.com/posts/docker-sbx-s-ssh-security-issue/))\nSame for [devpod](https://devpod.sh/ (https://devpod.sh/)) for sshing to devcontainers. They are particularly annoying because they just dump it into your config. Use an include statement to your own file for goodness sake.\nIt was often not ideal in the old world. Now agents are doing everything in those boxes, it is kind of mad.\nI have my own utilities now for managing these sockets and files now to deal with this stuff.",
+          "score": 0,
+          "time": 1794224344,
+          "parent": "50422628"
+        },
+        {
+          "id": "50423464",
+          "author": "m000",
+          "body": "At this point, should cases like this even be news? Isn't that a fundamental security design issue? Local agent security guardrails appear to always be built around blacklists, which will always be unreliable and leaky. It is left as an exercise to the user to properly sandbox them.\nThere may be some limited form of whitelisting, but often it is just a facade, as it is very coarse-grained. So, with tools with very broad capabilities (ssh, kubectl, gcloud, etc) you end up with the agent performing unwanted actions.",
+          "score": 0,
+          "time": 1794218436,
+          "parent": "50422628"
+        },
+        {
+          "id": "50423453",
+          "author": "Betelbuddy",
+          "body": "They might have solved coding but they did not solve common sense.",
+          "score": 0,
+          "time": 1794218360,
+          "parent": "50422628"
+        },
+        {
+          "id": "50423443",
+          "author": "spwa4",
+          "body": "Of course it does. That's what the codex <> chat merge is actually doing.\nBut codex <> chat merge is what they're giving as the \"real reason\" for what actually is raising prices (a LOT, I might add) for all the subscriptions. Nobody wants it (certainly not applied globally to everything like it is), but they're still going to do it. I even know someone who works at OpenAI and there's apparently a few people trying to fight it at least internally.\nGiven Sam Altman's speech about how he wants OpenAI pricing to work, I don't think this can be stopped. Btw: that is that you type something into ChatGPT and instead of subscription or per-token cost or anything like that, as soon as you type something in, anything, the way he sees it, ChatGPT would give you a cost for that specific answer and you'd agree or not.\nI just feel like this guy is an even worse example of not seeing the viewpoint of a normal (you know non-millionaire) person than even Google's leadership. Can I just say \"I think Google is going to win from Altman\", you know, despite OpenAI having the far superior technology. Because if there's one guy in the whole world that can destroy the advantages of OpenAI's engineering accomplishments for everyone else, it's this guy ...",
+          "score": 0,
+          "time": 1794218265,
+          "parent": "50422628"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50422486",
+      "title": "Ask HN: Will Humans Become Useless?",
+      "subreddit": "ask-hn",
+      "author": "misano",
+      "score": 2,
+      "num_comments": 7,
+      "permalink": "https://news.ycombinator.com/item?id=50422486",
+      "url": "https://news.ycombinator.com/item?id=50422486",
+      "selftext": "We are seeing a shift in the emergence of new tools towards humans and agents so that the product can be used by these two. It is likely that the next generation of tools will only be used by agents, and humans will only be consumers, not producers. So what will be human use?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794211134,
+      "created_at": "2026-11-09T07:58:54+00:00",
+      "comments_data": [
+        {
+          "id": "50424345",
+          "author": "staleBot_tom1pr",
+          "body": "No.\nBeing useless requires situational circumstances, and there's 9 billion people.\nEven if AI takes over everything, humans will still create situational circumstances that require other humans; via desires and needs for various kinds of fulfillment.\nRemember that there are people who do not buy Chinese products. There's people who will never work for Americans or trust Russians.\nThere are enterprises who just won't use AI for anything because they know they can hire and pay people. If it gets to the point where an enterprise, whatever size, cannot compete without AI, then it's game over, which isn't even ridiculous but makes for a fun story like shooting up stuff in the strait of Hormuz or blocking it for fun & gas prices.",
+          "score": 0,
+          "time": 1794225138,
+          "parent": "50422486"
+        },
+        {
+          "id": "50422561",
+          "author": "theroadnotbacon",
+          "body": "In the ancestral environment, prior to even agriculture, was the “use” of humans merely to hunt and to gather? To reproduce? What is your “use” to your friends and family? What is the “use” in a smile, or a laugh, or tears, that an LLM could possibly take from you?",
+          "score": 0,
+          "time": 1794211750,
+          "parent": "50422486"
+        },
+        {
+          "id": "50422972",
+          "author": "ThePhysicist",
+          "body": "Too bad most societies are built around the concept of utility, it's going to lead to a lot of issues (it already does) once both mental and physical human labor can be mostly replaced by capital. I always liked the world view of indigenious societies like e.g. native American tribes regarding this (not all their views), as they see humans simply as part of nature, you do not need to fulfill a purpose or be useful, you can just exist.",
+          "score": 0,
+          "time": 1794214910,
+          "parent": "50422486"
+        },
+        {
+          "id": "50422837",
+          "author": "stankalachev",
+          "body": "No, not in our lifetime. Our kids - maybe. But not in our lifetime. Although work-life balance will look different in the next 10-15 years for sure.",
+          "score": 0,
+          "time": 1794213858,
+          "parent": "50422486"
+        },
+        {
+          "id": "50424031",
+          "author": "easyThrowaway",
+          "body": "Why should I care of what others think if am I useful/pretty/cool/interesting enough or not?\nThis posts sounds like the capitalistic equivalent of those '80s movies where the losers are afraid of not being part of the cool clique in high school.\nDon't worry about what some myopic idiots think about your perceived \"usefulness\". It's their problem, not yours.",
+          "score": 0,
+          "time": 1794222862,
+          "parent": "50422486"
+        },
+        {
+          "id": "50422686",
+          "author": "yawpitch",
+          "body": "The primary use case for humans today is the metabolism of fossil fuels into carbon dioxide, long-chain polymers, pornography, machines for generating pornography, shit, and other environmental contaminants.\nAre you suggesting something’s changed?",
+          "score": 0,
+          "time": 1794212775,
+          "parent": "50422486"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50421579",
+      "title": "Those who have lost their job to AI what was your job?",
+      "subreddit": "ask-hn",
+      "author": "dev_grex",
+      "score": 2,
+      "num_comments": 4,
+      "permalink": "https://news.ycombinator.com/item?id=50421579",
+      "url": "https://news.ycombinator.com/item?id=50421579",
+      "selftext": "I am wondering, what kind of jobs are affected the most.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794203804,
+      "created_at": "2026-11-09T05:56:44+00:00",
+      "comments_data": [
+        {
+          "id": "50422907",
+          "author": "stankalachev",
+          "body": "I honestly believe there will be a shift in the \"workforce\" in the coming years and most who got laid off will try something on their own. There are some \"offline\" jobs and business who would potentially get more mainstream.",
+          "score": 0,
+          "time": 1794214314,
+          "parent": "50421579"
+        },
+        {
+          "id": "50421885",
+          "author": "anovikov",
+          "body": "I farmed freelance profiles and rented them out using a forwarding app.",
+          "score": 0,
+          "time": 1794206301,
+          "parent": "50421579"
+        },
+        {
+          "id": "50424022",
+          "author": "spottedmarley",
+          "body": "Honestly, I've always hated jobs and resented the idea that I had to spend most of my time every day of my life doing work for someone else just so I could afford to have one or two days per week of 'free time'. I retired before the whole AI thing took hold so I never got replaced or even had a single discussion about AI at work. I was a software engineer and probably wouldn't even recognize the role as it looks today.\nAll this to say that I hope AI takes all of the jobs and frees everyone from the horrible monotony of work-life. I'm not pushing for UBI either, rather, I lean toward UBLMTFA (Universal Basic Leave Me The Fuck Alone).\nOn a side note, I am deep in the AI world now, run my own local models, build my own harnesses, and \"write\" more code now than I ever did in my career. Turns out I actually love being a software engineer when the stuff I build is for me.",
+          "score": 0,
+          "time": 1794222766,
+          "parent": "50421579"
+        },
+        {
+          "id": "50422165",
+          "author": "sankalp22",
+          "body": "i left the job before loosing the job, hence i never lost even if wanted.",
+          "score": 0,
+          "time": 1794208825,
+          "parent": "50421579"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50420252",
+      "title": "Ask HN: Is it normal to not write code for a years as software engineer?",
+      "subreddit": "ask-hn",
+      "author": "khalidahmad",
+      "score": 3,
+      "num_comments": 6,
+      "permalink": "https://news.ycombinator.com/item?id=50420252",
+      "url": "https://news.ycombinator.com/item?id=50420252",
+      "selftext": "I have been working as software engineers for 12 years, and the last 2 years I have been utilize AI for coding, and the last years mostly I don't code or type code anymore, just doing prompt, a review of the generated code, and setting a workflow for agent to spesific task. I just feels I'm starting to lose my basic programming skills to write code from scrath",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794191345,
+      "created_at": "2026-11-09T02:29:05+00:00",
+      "comments_data": [
+        {
+          "id": "50423783",
+          "author": "cutthegrass2",
+          "body": "I forget who initially said this, but it rings true now more than ever, especially in the context of writing code.\n\"Writing is not merely the final product of thought; it is the primary tool through which thinking happens\"\nReading the diff after the LLM writes the code 'feels' like understanding but I don't think it really is. If you didn’t write the code, did you write the spec, the tests, or the design? If not, who did the thinking?",
+          "score": 0,
+          "time": 1794220878,
+          "parent": "50420252"
+        },
+        {
+          "id": "50420861",
+          "author": "rator9521",
+          "body": "Actually, it seems like the reason to type the code directly has disappeared. In Korea, the computer science field is already experiencing a shortage of new university students, and developers' salaries have been cut by an average of 50%.",
+          "score": 0,
+          "time": 1794196284,
+          "parent": "50420252"
+        },
+        {
+          "id": "50424178",
+          "author": "spottedmarley",
+          "body": "If you enjoy coding, keep doing it. If it's only something you do for a paycheck then do whatever the paycheck requires, let AI write it all. If you're worried about losing your skills, the obvious solution is to just keep writing code, for yourself.",
+          "score": 0,
+          "time": 1794224073,
+          "parent": "50420252"
+        },
+        {
+          "id": "50422012",
+          "author": "locknitpicker",
+          "body": "I think it's starting to become the new normal. A couple of years ago I was pushing myself to go way out of my way to use AI code assistants in tasks I would never use before. Now I find myself doing the exact same thing but to manually write code.",
+          "score": 0,
+          "time": 1794207412,
+          "parent": "50420252"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
