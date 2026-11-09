@@ -1,8 +1,70 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-09T12:33:23.050724+00:00",
+  "last_fetched": "2026-11-09T18:30:58.992342+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50427181",
+      "title": "uBlock Origin Can't Block Facebook Ads",
+      "subreddit": "ask-hn",
+      "author": "anidsiam",
+      "score": 5,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50427181",
+      "url": "https://news.ycombinator.com/item?id=50427181",
+      "selftext": "Recently, I noticed uBlock Origin not blocking Facebook Ads, what's the issue.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794239253,
+      "created_at": "2026-11-09T15:47:33+00:00",
+      "comments_data": [
+        {
+          "id": "50428136",
+          "author": "_nobody",
+          "body": "If you export your Facebook account, it lists all the advertisers who accessed your data. They range from Chinese, russians, Europeans, africans, and god knows who. It doesn’t matter if you stopped using Facebook or its product, the export data has lots of information about your online profile. And this is just the data which they choose to reveal.",
+          "score": 0,
+          "time": 1794243101,
+          "parent": "50427181"
+        },
+        {
+          "id": "50427282",
+          "author": "markx2",
+          "body": "Facebook won the war.\nhttps://www.neowin.net/news/facebook-ads-are-so-hard-to-bloc... (https://www.neowin.net/news/facebook-ads-are-so-hard-to-block-that-ublock-origin-stopped-filtering-them/)",
+          "score": 0,
+          "time": 1794239749,
+          "parent": "50427181"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50426070",
+      "title": "Ask HN: How do you evaluate the skills your AI agents use?",
+      "subreddit": "ask-hn",
+      "author": "enesalatas",
+      "score": 14,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50426070",
+      "url": "https://news.ycombinator.com/item?id=50426070",
+      "selftext": "Do you systematically evaluate agent skills, either before or while using them? If so, what tools or methods do you use? Or do you mostly rely on reading the SKILL.md and trying things out?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794234262,
+      "created_at": "2026-11-09T14:24:22+00:00",
+      "comments_data": [
+        {
+          "id": "50427183",
+          "author": "bisonbear",
+          "body": "There are two ways I see to do this:\n1. Tell your agent to eval the skill itself (https://code.claude.com/docs/en/plugin-evals (https://code.claude.com/docs/en/plugin-evals)). This is easier and faster, but less accurate, and harder to extend to capture things like code quality.\n2. Build your own benchmark out of work your normally do, and then eval the skill on that dataset. This is harder and more annoying (because creating benchmarks is hard) but provides deeper insight into how the skill affects the agent in known scenarios.\nIt also depends on what the skill is doing. If it's creating an artifact (like a report, easier to eval) then your strategy is very different than if the skill is changing agent behavior (like telling it to use cheap subagents under XYZ conditions, harder to eval).\nThe importance of doing this grows with the number of people using the skill. Working on my own projects, I don't usually bother. Working in an enterprise monorepo, suddenly the risk of shipping a bad skill is amplified, and evals become much more attractive.\nAlso note that skill behavior changes across different models. A skill built for Opus 4.8 may not be necessary on Opus 5.5. A skill built for Opus 5.5 might cause Haiku 5.5 to behave erratically.\nTLDR: tell your agent to do it, and think about building your own.",
+          "score": 0,
+          "time": 1794239271,
+          "parent": "50426070"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,7 +72,7 @@
       "title": "Ask HN: How your SEO traffic doing? Up or down?",
       "subreddit": "ask-hn",
       "author": "bigmuzzy",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50423535",
       "url": "https://news.ycombinator.com/item?id=50423535",
@@ -27,8 +89,8 @@
       "title": "Ask HN: Do you still enjoy coding in C++?",
       "subreddit": "ask-hn",
       "author": "hasley",
-      "score": 37,
-      "num_comments": 42,
+      "score": 45,
+      "num_comments": 58,
       "permalink": "https://news.ycombinator.com/item?id=50423371",
       "url": "https://news.ycombinator.com/item?id=50423371",
       "selftext": "In the recent years C++ received a lot of backlash due to its complexity and (perceived) feature creep. However, since C++11 I really enjoyed writing C++ with its strict type system (including const), range-based for loops, smart pointers, and how much you can do with templates. On the other hand, I know that it can be very tricky to write, for instance, a correct iterator, to get handling of rvalue references right, or to read error messages that involve templates.\nSo, do you enjoy or dislike writing C++ source code and why?",
@@ -38,19 +100,11 @@
       "created_at": "2026-11-09T09:50:03+00:00",
       "comments_data": [
         {
-          "id": "50424058",
-          "author": "chris_j",
-          "body": "I'm really torn about C++. I love C++ but there are things that I really don't like about it as well. It's a fantastic language in a lot of ways, but it carries around 40+ years of cruft, of things that you wouldn't do like that if you were inventing a programming language today.\nI haven't written C++ professionally for many years at this point, and my memories of using it professionally (pre C++ 11) are not happy ones: having to agree on a strict subset of the language that we were allowed to use, which avoided features that any of the compilers didn't support well, or that my teammates didn't like. Sadly back then the list of forbidden features included templates and namespaces.\nBut using C++ on personal projects nowadays, and being able to choose which bits of the language to use - and which to avoid - is much more enjoyable. And honestly, the language did get a lot better from C++ 11 onwards.",
+          "id": "50429456",
+          "author": "dekdrop",
+          "body": "Recently I have started to learn C++. It feels nicer than C at first, while remaining in more C like. But moving to more C++ feature doesn't feel good. I heard many others use C++ just for some extra feature on top of C and leave many features out, like not writing classes. I like that way too.",
           "score": 0,
-          "time": 1794223049,
-          "parent": "50423371"
-        },
-        {
-          "id": "50424131",
-          "author": "gignico",
-          "body": "I love C++, in the C++11 days I even organized a local C++ User Group at my university, and I've used it for the last 20 years as my main language.\nI still appreciate its many merits but since a bit more than a year I migrated to Rust and I find it very difficult to look back, except for maintaining my previous C++ projects.\nSurprisingly, it's not Rust's memory safety features that I miss the most when turning back to C++. It's mostly the absence of algebraic data types and pattern matching, and the split between compile-time and runtime polymorphism, i.e. concepts vs virtual classes, where in Rust you just have traits and use them for everything. On top of that the tooling and the ecosystem are just amazing.\nThere's a proposal for pattern matching sitting there under the committee's desk for some years now. With the mess that the standard committee is going through I really doubt they will be able to ship pattern matching for C++29 or even later. Too little too late.\nSo to answer the question, yes, I still appreciate the merits of C++ but I don't enjoy writing it as much as I have in the past.",
-          "score": 0,
-          "time": 1794223624,
+          "time": 1794248804,
           "parent": "50423371"
         },
         {
@@ -62,11 +116,19 @@
           "parent": "50423371"
         },
         {
-          "id": "50424551",
-          "author": "zagal",
-          "body": "I only used it for bare-metal embedded and Linux user space where efficiency was important.\nSome features are nice. Some arrived too late, like std::optional in C++17 [0] or std::expected in C++23 [1], and some features requires too deep knowledge of the language, like std::move unable to optimize for containers of structs without \"noexcept\" in their constructors. [2]\nBut honestly, the reason why I don't enjoy it is unrelated to the features added to each new standard. It's the build system. I just want to cross compile easily, add sanitizers to testing, and the minimal third party libraries I may need. I think I don't have to explain here how complicated it can get when you have to use CMake/Meson/Bazel, compared to other build systems.\n[0] https://en.cppreference.com/cpp/utility/optional (https://en.cppreference.com/cpp/utility/optional)\n[1] https://en.cppreference.com/cpp/utility/expected (https://en.cppreference.com/cpp/utility/expected)\n[2] https://0xghost.dev/blog/std-move-deep-dive/ (https://0xghost.dev/blog/std-move-deep-dive/)",
+          "id": "50424058",
+          "author": "chris_j",
+          "body": "I'm really torn about C++. I love C++ but there are things that I really don't like about it as well. It's a fantastic language in a lot of ways, but it carries around 40+ years of cruft, of things that you wouldn't do like that if you were inventing a programming language today.\nI haven't written C++ professionally for many years at this point, and my memories of using it professionally (pre C++ 11) are not happy ones: having to agree on a strict subset of the language that we were allowed to use, which avoided features that any of the compilers didn't support well, or that my teammates didn't like. Sadly back then the list of forbidden features included templates and namespaces.\nBut using C++ on personal projects nowadays, and being able to choose which bits of the language to use - and which to avoid - is much more enjoyable. And honestly, the language did get a lot better from C++ 11 onwards.",
           "score": 0,
-          "time": 1794226492,
+          "time": 1794223049,
+          "parent": "50423371"
+        },
+        {
+          "id": "50429262",
+          "author": "jjav",
+          "body": "I first met C++ in 1992 and hated it. Still do. I'm mostly ok using any language, but C++ and scala are the two that I hate. Both for the same reason, the incredibly baroque overcomplexity.",
+          "score": 0,
+          "time": 1794248053,
           "parent": "50423371"
         },
         {
@@ -83,6 +145,14 @@
           "body": "I enjoy writing C++ code.\nI acknowledge that C++ is a bad language in a lot of ways, but it's a bad language which I know really well, and it fits with how I think about code. And it lets me effortlessly do \"clever\" things with how memory is managed to avoid unnecessary allocations etc. I've already learned most of its idiosyncrasies, handling rvalue references/move semantics, how to go about implementing contracts like iterators and containers, etc.\nI also like writing Rust, and I like how Rust makes sure I don't make mistakes. I think Rust is a better language in many ways and I think it's the future of low-level programming (and I think it's wild that it took so many decades to get a proper competitor to C++!). But I also like how C++ doesn't care and lets me do whatever I want without acting as a nanny. I would never ever dare to write a publicly exposed web server in C++, but a game? Sure!",
           "score": 0,
           "time": 1794220205,
+          "parent": "50423371"
+        },
+        {
+          "id": "50424131",
+          "author": "gignico",
+          "body": "I love C++, in the C++11 days I even organized a local C++ User Group at my university, and I've used it for the last 20 years as my main language.\nI still appreciate its many merits but since a bit more than a year I migrated to Rust and I find it very difficult to look back, except for maintaining my previous C++ projects.\nSurprisingly, it's not Rust's memory safety features that I miss the most when turning back to C++. It's mostly the absence of algebraic data types and pattern matching, and the split between compile-time and runtime polymorphism, i.e. concepts vs virtual classes, where in Rust you just have traits and use them for everything. On top of that the tooling and the ecosystem are just amazing.\nThere's a proposal for pattern matching sitting there under the committee's desk for some years now. With the mess that the standard committee is going through I really doubt they will be able to ship pattern matching for C++29 or even later. Too little too late.\nSo to answer the question, yes, I still appreciate the merits of C++ but I don't enjoy writing it as much as I have in the past.",
+          "score": 0,
+          "time": 1794223624,
           "parent": "50423371"
         },
         {
@@ -110,27 +180,19 @@
           "parent": "50423371"
         },
         {
-          "id": "50424256",
-          "author": "NooneAtAll5",
-          "body": "I still don't understand the \"feature creep\" complaint\npython just introduced built-in sentinel, and only comment on an explainer video brought up that it's nothing new and is just a rename of unittest.mock.sentinel\nwho even knew there's unittest module? who even knew there's unittest.mock? definitely not me\nbecause it doesn't matter - you use what you need and learn what you encounter. Same thing with C++",
-          "score": 0,
-          "time": 1794224596,
-          "parent": "50423371"
-        },
-        {
-          "id": "50424002",
-          "author": "adg001",
-          "body": "I never enjoyed programming in C++. I feel its (original) syntax and approach to OOP to be obnoxious. I never looked into C++11, though; I hope things improved. The first love was always for C; notwithstanding all its shortcomings, I feel at home writing C, and I would still enjoy doing so.",
-          "score": 0,
-          "time": 1794222570,
-          "parent": "50423371"
-        },
-        {
           "id": "50423861",
           "author": "pjc50",
           "body": "I'd like to put in a \"no\" after spending many years writing C++; my day job is in C# now.\nThe templating system is more powerful than any other language I have significant experience with, but that also lets people write incomprehensible systems. And the compile times always have been really long.",
           "score": 0,
           "time": 1794221456,
+          "parent": "50423371"
+        },
+        {
+          "id": "50426709",
+          "author": "beej71",
+          "body": "I can't claim to have ever liked it, sadly, as much as I like C. The language has a significant number of footguns (the FAQ is unbelievably expansive and would require superhuman effort to internalize).\nBut really it's the error messages. I remember them being awful in the early 90s, and they're still awful today. It is an inevitable comment from students who hadn't yet been exposed to it.\nI'd greenfield in Rust over C++ every time today, especially with LLMs involved. If I'm going to have slow compiles, I might as well get as much proof of correctness from the compiler as I can.",
+          "score": 0,
+          "time": 1794236986,
           "parent": "50423371"
         }
       ]
@@ -142,8 +204,8 @@
       "title": "ChatGPT Desktop forwards your SSH agent to remote machines",
       "subreddit": "ask-hn",
       "author": "DenGorbachev",
-      "score": 56,
-      "num_comments": 11,
+      "score": 186,
+      "num_comments": 60,
       "permalink": "https://news.ycombinator.com/item?id=50422628",
       "url": "https://news.ycombinator.com/item?id=50422628",
       "selftext": "The agent running on a remote machine can authenticate using your local SSH credentials.\nThat means it can push to your private repos on GitHub, for example.\nProof: https://github.com/openai/codex/pull/28131#discussion_r3410013180",
@@ -161,6 +223,14 @@
           "parent": "50422628"
         },
         {
+          "id": "50425575",
+          "author": "Lukas_Skywalker",
+          "body": "The Bitwarden desktop app has a built in SSH agent [1], which lets you store SSH keys inside Bitwarden. I have set the app to always ask me for confirmation when the key is requested.\n[1] https://bitwarden.com/help/ssh-agent/ (https://bitwarden.com/help/ssh-agent/)",
+          "score": 0,
+          "time": 1794232243,
+          "parent": "50422628"
+        },
+        {
           "id": "50423130",
           "author": "littlecranky67",
           "body": "I'd suggest to use ssh keys inside the secure enclave on macOS that require your fingerprint for every new session [0]. That way agents cannot initiate anything, and you will always be aware when a new ssh connection is being made.\n[0]: https://gist.github.com/arianvp/5f59f1783e3eaf1a2d4cd8e952bb... (https://gist.github.com/arianvp/5f59f1783e3eaf1a2d4cd8e952bb4acf)",
@@ -169,11 +239,35 @@
           "parent": "50422628"
         },
         {
-          "id": "50424220",
-          "author": "eosis",
-          "body": "Things are awful for this at the moment. [Was the same for docker desktop at some point.](https://rupertrutledge.com/posts/docker-sbx-s-ssh-security-i... (https://rupertrutledge.com/posts/docker-sbx-s-ssh-security-issue/))\nSame for [devpod](https://devpod.sh/ (https://devpod.sh/)) for sshing to devcontainers. They are particularly annoying because they just dump it into your config. Use an include statement to your own file for goodness sake.\nIt was often not ideal in the old world. Now agents are doing everything in those boxes, it is kind of mad.\nI have my own utilities now for managing these sockets and files now to deal with this stuff.",
+          "id": "50425064",
+          "author": "yfontana",
+          "body": "I don't understand what the linked pull request is supposed to prove, considering it was closed and not merged.",
           "score": 0,
-          "time": 1794224344,
+          "time": 1794229628,
+          "parent": "50422628"
+        },
+        {
+          "id": "50427621",
+          "author": "otterley",
+          "body": "If this bothers you, it can be guarded against in your ssh config file:\n Host trusted-server\n HostName server.example.com\n ForwardAgent yes\n\n Host another-trusted-server\n HostName another.example.com\n ForwardAgent yes\n\n Host *\n ForwardAgent no",
+          "score": 0,
+          "time": 1794241072,
+          "parent": "50422628"
+        },
+        {
+          "id": "50427920",
+          "author": "mbreese",
+          "body": "I’m not sure this is quite the smoking gun. This PR was closed as not merged and the entire process is described as opt-in. Is there other evidence of Codex abusing or surreptitiously extending an ssh agent?",
+          "score": 0,
+          "time": 1794242166,
+          "parent": "50422628"
+        },
+        {
+          "id": "50426454",
+          "author": "carterschonwald",
+          "body": "this is a normal ssh feature meant to allow keys to be used while keeping keys local …\nits actually a keystone of secure infrastructure setups, aka jump hosts.\ngranted its meant for human or scripted uses, as is everything else",
+          "score": 0,
+          "time": 1794235922,
           "parent": "50422628"
         },
         {
@@ -185,19 +279,35 @@
           "parent": "50422628"
         },
         {
-          "id": "50423453",
-          "author": "Betelbuddy",
-          "body": "They might have solved coding but they did not solve common sense.",
+          "id": "50424220",
+          "author": "eosis",
+          "body": "Things are awful for this at the moment. [Was the same for docker desktop at some point.](https://rupertrutledge.com/posts/docker-sbx-s-ssh-security-i... (https://rupertrutledge.com/posts/docker-sbx-s-ssh-security-issue/))\nSame for [devpod](https://devpod.sh/ (https://devpod.sh/)) for sshing to devcontainers. They are particularly annoying because they just dump it into your config. Use an include statement to your own file for goodness sake.\nIt was often not ideal in the old world. Now agents are doing everything in those boxes, it is kind of mad.\nI have my own utilities now for managing these sockets and files now to deal with this stuff.",
           "score": 0,
-          "time": 1794218360,
+          "time": 1794224344,
           "parent": "50422628"
         },
         {
-          "id": "50423443",
-          "author": "spwa4",
-          "body": "Of course it does. That's what the codex <> chat merge is actually doing.\nBut codex <> chat merge is what they're giving as the \"real reason\" for what actually is raising prices (a LOT, I might add) for all the subscriptions. Nobody wants it (certainly not applied globally to everything like it is), but they're still going to do it. I even know someone who works at OpenAI and there's apparently a few people trying to fight it at least internally.\nGiven Sam Altman's speech about how he wants OpenAI pricing to work, I don't think this can be stopped. Btw: that is that you type something into ChatGPT and instead of subscription or per-token cost or anything like that, as soon as you type something in, anything, the way he sees it, ChatGPT would give you a cost for that specific answer and you'd agree or not.\nI just feel like this guy is an even worse example of not seeing the viewpoint of a normal (you know non-millionaire) person than even Google's leadership. Can I just say \"I think Google is going to win from Altman\", you know, despite OpenAI having the far superior technology. Because if there's one guy in the whole world that can destroy the advantages of OpenAI's engineering accomplishments for everyone else, it's this guy ...",
+          "id": "50427994",
+          "author": "UndividedDev",
+          "body": "Setting up fingerprint / password authentication via secretive for ssh key access made me realize how often these tools try to do something without explicitly asking",
           "score": 0,
-          "time": 1794218265,
+          "time": 1794242465,
+          "parent": "50422628"
+        },
+        {
+          "id": "50428754",
+          "author": "TacticalCoder",
+          "body": "> The agent running on a remote machine can authenticate using your local SSH credentials.\nNo it doesn't. I'm using and enforcing SSH U2F keys. You physically press on a Yubikey (or similar) or you don't authenticate.\nAs for my own Git server, it's of course over SSH and it requires pressing the Yubikey too. As a sidenote as I do it from Magit I modified Magit to add a small but obvious message stating that the Yubikey probably awaits touching (otherwise it's easy to miss / not realize).\nThe great thing with all these hacks and bad practices is that I believe, eventually, people are going to learn better security hygiene.",
+          "score": 0,
+          "time": 1794245940,
+          "parent": "50422628"
+        },
+        {
+          "id": "50428746",
+          "author": "viccis",
+          "body": "Back in my pen testing days, agent forwarding was a gift from heaven when I was on a Linux machine.",
+          "score": 0,
+          "time": 1794245873,
           "parent": "50422628"
         }
       ]
@@ -209,8 +319,8 @@
       "title": "Ask HN: Will Humans Become Useless?",
       "subreddit": "ask-hn",
       "author": "misano",
-      "score": 2,
-      "num_comments": 7,
+      "score": 3,
+      "num_comments": 10,
       "permalink": "https://news.ycombinator.com/item?id=50422486",
       "url": "https://news.ycombinator.com/item?id=50422486",
       "selftext": "We are seeing a shift in the emergence of new tools towards humans and agents so that the product can be used by these two. It is likely that the next generation of tools will only be used by agents, and humans will only be consumers, not producers. So what will be human use?",
@@ -220,19 +330,19 @@
       "created_at": "2026-11-09T07:58:54+00:00",
       "comments_data": [
         {
-          "id": "50424345",
-          "author": "staleBot_tom1pr",
-          "body": "No.\nBeing useless requires situational circumstances, and there's 9 billion people.\nEven if AI takes over everything, humans will still create situational circumstances that require other humans; via desires and needs for various kinds of fulfillment.\nRemember that there are people who do not buy Chinese products. There's people who will never work for Americans or trust Russians.\nThere are enterprises who just won't use AI for anything because they know they can hire and pay people. If it gets to the point where an enterprise, whatever size, cannot compete without AI, then it's game over, which isn't even ridiculous but makes for a fun story like shooting up stuff in the strait of Hormuz or blocking it for fun & gas prices.",
-          "score": 0,
-          "time": 1794225138,
-          "parent": "50422486"
-        },
-        {
           "id": "50422561",
           "author": "theroadnotbacon",
           "body": "In the ancestral environment, prior to even agriculture, was the “use” of humans merely to hunt and to gather? To reproduce? What is your “use” to your friends and family? What is the “use” in a smile, or a laugh, or tears, that an LLM could possibly take from you?",
           "score": 0,
           "time": 1794211750,
+          "parent": "50422486"
+        },
+        {
+          "id": "50425991",
+          "author": "drakonka",
+          "body": "This feels like a bit of a philosophical question, and in that sense I think our usefulness may be a bit questionable already, so I'm not sure AI changes too much on that front. Seems like we're largely just a circular dependency anyway.",
+          "score": 0,
+          "time": 1794233861,
           "parent": "50422486"
         },
         {
@@ -244,11 +354,11 @@
           "parent": "50422486"
         },
         {
-          "id": "50422837",
-          "author": "stankalachev",
-          "body": "No, not in our lifetime. Our kids - maybe. But not in our lifetime. Although work-life balance will look different in the next 10-15 years for sure.",
+          "id": "50424345",
+          "author": "staleBot_tom1pr",
+          "body": "No.\nBeing useless requires situational circumstances, and there's 9 billion people.\nEven if AI takes over everything, humans will still create situational circumstances that require other humans; via desires and needs for various kinds of fulfillment.\nRemember that there are people who do not buy Chinese products. There's people who will never work for Americans or trust Russians.\nThere are enterprises who just won't use AI for anything because they know they can hire and pay people. If it gets to the point where an enterprise, whatever size, cannot compete without AI, then it's game over, which isn't even ridiculous but makes for a fun story like shooting up stuff in the strait of Hormuz or blocking it for fun & gas prices.",
           "score": 0,
-          "time": 1794213858,
+          "time": 1794225138,
           "parent": "50422486"
         },
         {
@@ -260,11 +370,35 @@
           "parent": "50422486"
         },
         {
+          "id": "50426796",
+          "author": "codingdave",
+          "body": "The unstated premise of this question is that the goals we all aim for are about business/productivity, not the human experience. As I completely disagree with that premise, the question becomes absurd. Humans can never be useless - our existence and experience is the meaning we seek in life.",
+          "score": 0,
+          "time": 1794237367,
+          "parent": "50422486"
+        },
+        {
+          "id": "50422837",
+          "author": "stankalachev",
+          "body": "No, not in our lifetime. Our kids - maybe. But not in our lifetime. Although work-life balance will look different in the next 10-15 years for sure.",
+          "score": 0,
+          "time": 1794213858,
+          "parent": "50422486"
+        },
+        {
           "id": "50422686",
           "author": "yawpitch",
           "body": "The primary use case for humans today is the metabolism of fossil fuels into carbon dioxide, long-chain polymers, pornography, machines for generating pornography, shit, and other environmental contaminants.\nAre you suggesting something’s changed?",
           "score": 0,
           "time": 1794212775,
+          "parent": "50422486"
+        },
+        {
+          "id": "50426980",
+          "author": "xallace",
+          "body": "yes",
+          "score": 0,
+          "time": 1794238192,
           "parent": "50422486"
         }
       ]
@@ -277,7 +411,7 @@
       "subreddit": "ask-hn",
       "author": "dev_grex",
       "score": 2,
-      "num_comments": 4,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50421579",
       "url": "https://news.ycombinator.com/item?id=50421579",
       "selftext": "I am wondering, what kind of jobs are affected the most.",
@@ -327,8 +461,8 @@
       "title": "Ask HN: Is it normal to not write code for a years as software engineer?",
       "subreddit": "ask-hn",
       "author": "khalidahmad",
-      "score": 3,
-      "num_comments": 6,
+      "score": 4,
+      "num_comments": 9,
       "permalink": "https://news.ycombinator.com/item?id=50420252",
       "url": "https://news.ycombinator.com/item?id=50420252",
       "selftext": "I have been working as software engineers for 12 years, and the last 2 years I have been utilize AI for coding, and the last years mostly I don't code or type code anymore, just doing prompt, a review of the generated code, and setting a workflow for agent to spesific task. I just feels I'm starting to lose my basic programming skills to write code from scrath",
@@ -367,6 +501,14 @@
           "body": "I think it's starting to become the new normal. A couple of years ago I was pushing myself to go way out of my way to use AI code assistants in tasks I would never use before. Now I find myself doing the exact same thing but to manually write code.",
           "score": 0,
           "time": 1794207412,
+          "parent": "50420252"
+        },
+        {
+          "id": "50428056",
+          "author": "slipwalker",
+          "body": "in our current zeitgeist, yes it is.\nAfter all, you named it \"software engineering\", not \"software masonry\"..... you make the design, the machine lays the bricks.",
+          "score": 0,
+          "time": 1794242763,
           "parent": "50420252"
         }
       ]
