@@ -1,8 +1,610 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-09T18:30:54.522812+00:00",
+  "last_fetched": "2026-11-10T00:42:54.455022+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50433678",
+      "title": "Show HN: Live counts of AI assistants reading a diaspora business directory",
+      "subreddit": "show-hn",
+      "author": "NiBiashara",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50433678",
+      "url": "https://nibiashara.com/agent-index",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794265811,
+      "created_at": "2026-11-09T23:10:11+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50433321",
+      "title": "Show HN: Every Job in the Observability Space",
+      "subreddit": "show-hn",
+      "author": "ScarZy",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50433321",
+      "url": "https://o11y.jobs/",
+      "selftext": "A job board without the recruiters.\nFind jobs by keywords and show them in a timeline.\nHopefully this helps someone looking for work!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794264103,
+      "created_at": "2026-11-09T22:41:43+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50433242",
+      "title": "Show HN: Camwall – all your camera feeds on one screen, no black bars",
+      "subreddit": "show-hn",
+      "author": "vinodhalaharvi",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50433242",
+      "url": "https://github.com/vinodhalaharvi/camwall",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794263596,
+      "created_at": "2026-11-09T22:33:16+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50433154",
+      "title": "Show HN: Totle, daily math puzzle game; Saturday puzzles have the fewest answers",
+      "subreddit": "show-hn",
+      "author": "zemelett",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50433154",
+      "url": "https://playtotle.com/",
+      "selftext": "My oldest two kids are off to college and since leaving we've been playing the Wordle and 'sharing' our solutions with each other. It's been a fun way to stay connected with them, and it's become a bit of a challenge to see if we can beat each other's solutions. This got me thinking about other ways I could connect with them. The thing about the Wordle is that it doesn't take a large commitment of time, you can just pull it out when you've a few spare minutes. So I set out to build a game that would borrow from many of the themes that keep pulling us back to Wordle. What I created is called Tōtle which fits another one of our (okay my) favorite things; Dad jokes and puns (as it’s pronounced total).\nHere's how it works. You get five different numbers from a number pool 1 to 20, and a target from the remaining pool. Combine two at a time with + − × ÷, using all five numbers, every result a positive whole number, each puzzle always takes 4 moves. You get 3 rounds and 4 undos per round; a medal for fewest moves (perfect 4 = crown). There's a spoiler-free share card, like Wordle’s grid.\nThe combinatorics math works out like this: C(20,5) (that's choose 5 from 20) × 15 possible target numbers = 232,560 possible puzzles. An interesting side quest: exhaustive search discovered that exactly 6 can’t be solved. They all are from the group of 6 numbers: 3, 7, 16, 17, 19, 20. If any one of those is chosen as the target the other 5 cannot make the target. I'm not sure if there are any interesting reasons or patterns.\nEvery puzzle was sorted into 7 difficulty bands, by how many solutions each has, to provide a way to add increasing difficulty along the week. Sunday draws from the easiest 30%, Saturday from the hardest 3%, the game shows “harder than X% of puzzles” on the hardest days; Saturdays so far have been in the 98th–99th percentile of difficulty. 5 Saturdays were discovered to have exactly one answer (answer here means ways that only regroup or reorder the same moves count as one); the first is #68, Saturday, December 19, 2026.\nA few things I'd love to know from y'all:\nDifficulty: does the Sunday-to-Saturday curve feel right, and are Saturdays too hard? I've experimented with a mode that offers some help. But it's still under development.\nFirst-time play: was anything confusing, like dragging vs. tapping or how rounds work?\nPhones: How does it play on your phone vs your computer?",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794263118,
+      "created_at": "2026-11-09T22:25:18+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50432998",
+      "title": "Show HN: Vork – headless 3D and VFX engine for agents",
+      "subreddit": "show-hn",
+      "author": "raviparikh",
+      "score": 5,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50432998",
+      "url": "https://github.com/voyager-so/vork",
+      "selftext": "I made an agent-native 3d/vfx engine.\nAgents are good at making interesting scenes in Blender/Unreal/Nuke/etc. But these tools are fundamentally limited compared to what coding agents are capable of. Many simplifying assumptions are baked into these tools in order to fit human authoring methods.\nIn vork, agents write the whole scene as code, including their own shaders, materials, cameras and physics, and vork renders it on the GPU. The core API fits in about 2,500 tokens.\nSo, for example, almost every 3d engine assumes light moves in a straight line. Light near a black hole does not; so the best you can do in e.g. Blender is faking gravitational lensing. In vork, you can model it for real.\nIf you want a camera lens that simulates a dragonfly's eye, or realistically-modeled Fata Morgana, this is also possible in vork.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794262311,
+      "created_at": "2026-11-09T22:11:51+00:00",
+      "comments_data": [
+        {
+          "id": "50433087",
+          "author": "beamalchemist",
+          "body": "What a fantastic work thanks a lot for sharing!",
+          "score": 0,
+          "time": 1794262806,
+          "parent": "50432998"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50432836",
+      "title": "Show HN: Fable 5.2 made a fun Claude castaway clone",
+      "subreddit": "show-hn",
+      "author": "nzach",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50432836",
+      "url": "https://claude-castaway.zachy.dev/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794261437,
+      "created_at": "2026-11-09T21:57:17+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50432776",
+      "title": "Show HN: Brick Atlas: Explore 1000+ LEGO sets on one zoomable canvas",
+      "subreddit": "show-hn",
+      "author": "gasi",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50432776",
+      "url": "https://showcase.zoomhub.net/ecommerce/brick-atlas",
+      "selftext": "Hello HN, I’m Daniel and I run ZoomHub, a small deep zoom image service.\nMost online catalogs look the same: There’s a grid of thumbnails, limited to about 20–50 items, filters that refresh the page when activated, and pagination buttons to go to page 22 of 128.\nIt has always bothered me that you can’t see the whole collection and every action makes you wait and lose context.\nI built Brick Atlas to show it doesn’t have to be that way: You can browse 1000+ LEGO sets by zooming in, selecting a set, seeing different angles (at full resolution) and in the sidebar, the set’s piece count, price, etc. You can read the whole instructions (on some sets) without ever seeing a page refresh or losing your place. On a slow connection, the image simply gradually becomes sharper. Once you are done, you can zoom out and see all sets again. Apply a price filter to find gift ideas under $50 or switch to Real size layout to see how big the sets are in real life compared to each other. Toggle Box vs Built to switch between the retail box and the assembled set. For collectors, I added the scatter view to plot sets by piece count vs price so you can find the best value sets. Every change in filters or layout animates gently so you never lose the thread.\nI’ve been obsessed with zooming for almost twenty years. I interned at Zoomorama and later worked on the (Microsoft Live Labs) Seadragon team, in case this looks familiar to you :)\nThe idea to use zoom and image streaming could be applied to photo galleries, a museum catalog, other products, or even scientific images. I just happened to pick LEGO because I’m an AFOL (adult fan of LEGO), have been wanting to explore their catalog like this for years, and hope there are lots of you who do too.\nI published this as a static data set to S3 behind CloudFront (700k WebP tiles) for performance and render it using OpenZoom, my own WebGL deep zoom engine. The data comes from Brickset (thanks to Huw, the founder, for his blessing) and the images from LEGO (also via Brickset). I used my ‘free’ Anthropic API credits from Ultra plan to classify images into box vs built, to extract tags and colors, etc. using Claude Haiku and Sonnet (spend: ~$60.)\nI’d love to hear how it feels to explore, what you’d do differently, and what collection you’d like to see this used with :)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794261164,
+      "created_at": "2026-11-09T21:52:44+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50432720",
+      "title": "Show HN: Bottled Reset Rune – auto-use spare Codex resets before they expire",
+      "subreddit": "show-hn",
+      "author": "morrowf",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50432720",
+      "url": "https://github.com/sufferfml/reset-rune",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794260850,
+      "created_at": "2026-11-09T21:47:30+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50432613",
+      "title": "Show HN: Agent-email-guard – agent tried to send 400 receipts, stopped at 5",
+      "subreddit": "show-hn",
+      "author": "Iammnhamza",
+      "score": 3,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50432613",
+      "url": "https://github.com/agentisend/agent-email-guard",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794260346,
+      "created_at": "2026-11-09T21:39:06+00:00",
+      "comments_data": [
+        {
+          "id": "50432623",
+          "author": "Iammnhamza",
+          "body": "Hi HN. I run AgentiSend, an email API for applications and AI agents. This is the part we pulled out and open-sourced (MIT).\nThe failure it's for: an agent's send tool times out, the model retries, and each retry changes a word, so idempotency keys never match. In the demo, 400 attempts to send one customer the same receipt: 5 go out, 395 are refused. (The demo raises the threshold so you can see it; the default refuses the 4th.)\nIt's blast-radius control, not a filter. Whatever the model decides: at most N emails per hour/day/month, M per minute, no near-repeats to the same inbox, a kill switch, and a hold for recipients you mark (e.g. anyone the agent hasn't emailed before) until a person approves.\nThree forms, strongest first:\n- a Claude Code PreToolUse hook (npx agent-email-guard hook install) that checks every email-sending tool call, whichever MCP server it goes to\n- an MCP proxy (npx agent-email-guard mcp --wrap ...) for Cursor, Codex, Claude Desktop\n- a library for Node, Python, PHP and Go that wraps nodemailer, SES, Resend, Postmark or SMTP\nThe four libraries are one spec plus 49 shared test vectors, so they print the same decisions. npx agent-email-guard test runs 12 runaway scenarios (a prompt-injected forward, the 400-receipt loop, a recipient sweep, a reply-all storm) against a reference policy and shows what got through.\nLimits, stated up front: the library runs in the agent's process, so an agent that edits its own tools can route around it. The hook and proxy sit outside the agent's code but guard one machine. None of them stops someone who holds your provider API key from calling the provider directly. Our paid API enforces the same policy server-side, which is the only place that last gap closes. That's the line between free and paid.\nI'd like to hear about loops it misses and sends it blocks that it shouldn't.",
+          "score": 0,
+          "time": 1794260387,
+          "parent": "50432613"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50432589",
+      "title": "Show HN: Emma, a real-time AI video persona from Nuance Labs",
+      "subreddit": "show-hn",
+      "author": "cvanea",
+      "score": 5,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50432589",
+      "url": "https://app.nuancelabs.ai/try",
+      "selftext": "Hi HN! I'm Claudia, first employee and founding researcher at Nuance Labs. We're a research startup based in Seattle and have just released what we've been working on for the past 18 months.\nEmma, a conversational audio-visual AI that you can have a video call with in real time. It might be a little rough around the edges but we think it's better than anything else out there (we're biased, of course). You don't need to make an account and it works from the browser with mic and optionally camera.\nEmma is built on our full-duplex audio-visual system, Nuplex. We focused on naturalness over existing benchmarks as we found they didn't correlate well with what people actually like or how we speak face to face. We think being uniquely expressive is more important than an averaged-out face, for example. Our blog goes into more detail: https://research.nuancelabs.ai/ (https://research.nuancelabs.ai/)\nA beta developer API is available at https://platform.nuancelabs.ai/ (https://platform.nuancelabs.ai/). We're taking safety very seriously so she may prematurely end the call, in particular for the API, but we're working on tuning that.\nPersonality, across all modalities, was the most important part for me. I've spent the longest speaking to her and I think she can be a lot of fun! I'd love for people to try it out and I look forward to hearing what you all think.\nThank you!\n(Apologies for the double post, someone external posted our demo before we were ready, oops: https://news.ycombinator.com/item?id=50429477 (https://news.ycombinator.com/item?id=50429477))",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794260280,
+      "created_at": "2026-11-09T21:38:00+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50432228",
+      "title": "Show HN: Secure browser sessions for agents",
+      "subreddit": "show-hn",
+      "author": "roxygens",
+      "score": 3,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50432228",
+      "url": "https://easi.run/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794258737,
+      "created_at": "2026-11-09T21:12:17+00:00",
+      "comments_data": [
+        {
+          "id": "50432642",
+          "author": "pluswithai",
+          "body": "The takeover flow is the part most agent browser tools get wrong, so nice to\nsee it treated as a first-class feature. Pausing screenshots and redacting\ntyped text during takeover is a detail I haven't seen elsewhere.\nQuestion on the vault: if sessions are encrypted with a key my password\nunlocks, how does an agent resume a saved login when I'm not around? Does the\nserver keep the unlocked key in memory after the first unlock, or does each\nresume need me? That decides whether the threat model is \"stolen disk\" or\n\"compromised server\".\nAlso curious about the 55 fps at 1.8 Mbit/s number. Is that tiles plus AV1\nonly on the moving region, or AV1 for the whole frame while scrolling?",
+          "score": 0,
+          "time": 1794260473,
+          "parent": "50432228"
+        },
+        {
+          "id": "50432535",
+          "author": "grahamgooch",
+          "body": "AgPL? Hard pass.",
+          "score": 0,
+          "time": 1794260086,
+          "parent": "50432228"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50431705",
+      "title": "Show HN: Airgap-check – find what your AI app silently downloads offline",
+      "subreddit": "show-hn",
+      "author": "humanethq",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50431705",
+      "url": "https://github.com/humanethq/airgap-check",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794256648,
+      "created_at": "2026-11-09T20:37:28+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50431297",
+      "title": "Show HN: Static analysis for JavaScript/TS test suites, written in Rust",
+      "subreddit": "show-hn",
+      "author": "AlexFromTwelve",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50431297",
+      "url": "https://spirolo.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794255249,
+      "created_at": "2026-11-09T20:14:09+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50430860",
+      "title": "Show HN: Open-source app that lets LLMs control your iPhone (no Mac required)",
+      "subreddit": "show-hn",
+      "author": "ea016",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50430860",
+      "url": "https://github.com/EliotAndres/iphone-use-app",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794253649,
+      "created_at": "2026-11-09T19:47:29+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50430050",
+      "title": "Show HN: Attentry – a local checker that reviews each edit Claude Code makes",
+      "subreddit": "show-hn",
+      "author": "aarvsinghchauha",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50430050",
+      "url": "https://github.com/Aarv-1o/Attentry",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794251079,
+      "created_at": "2026-11-09T19:04:39+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50429817",
+      "title": "Show HN: MergeAtlas – A better way to review PRs",
+      "subreddit": "show-hn",
+      "author": "ismayilkarimli",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50429817",
+      "url": "https://mergeatlas.dev/",
+      "selftext": "Hey HN community, I built MergeAtlas - a better way to review PRs when bulk of the code is written by AI agents. It is a skill for your coding agent plus a small python script.\nMergeAtlas was built from a simple premise - When AI agents are writing the code, there's no need to review every single line of code. Instead it is better to understand the intent, important lines, and the blast radius.\nMergeAtlas helps you see the intents behind file changes, understand why each file was changed, and PR's scope all before you read a single line of code. When you are ready to read the code, MergeAtlas singles out the key lines from each file, so you are only focused on the most important lines.\nIt goes further than GitHub's Files Changed tab as it also determines what files outside of the PR are affected by the changes.\nI tuned the skill till I was satisfied with the result in terms of structure, explanations, and verbosity.\nThere's a live demo on the website based on an actual PR from excalidraw. Play around with it, and any feedback is welcome.\nGithub: https://github.com/ismayilkarimli/MergeAtlas (https://github.com/ismayilkarimli/MergeAtlas)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794250272,
+      "created_at": "2026-11-09T18:51:12+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50429812",
+      "title": "Show HN: Someone Was Here – Find out who used your Mac while you were away",
+      "subreddit": "show-hn",
+      "author": "4onthefloor124",
+      "score": 50,
+      "num_comments": 19,
+      "permalink": "https://news.ycombinator.com/item?id=50429812",
+      "url": "https://someonewashere.app/",
+      "selftext": "Many thanks to my ex for inspiring my new MacOS app, Someone Was Here.\nIt takes a photo of whoever uses your Mac while you're away, whether you left it unlocked or they know your password, and sends their photo to your iPhone if the face isn't yours.\nI built Someone Was Here as a menu bar app making use of Apple Vision and a local face recognition run via Core ML. It all runs locally on your Mac with no tracking or ads.\nReal-time remote alerts are available via one-time $4.99 lifetime purchase via the free companion iPhone/iPad app, Pushover, ntfy, Telegram or a webhook.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794250256,
+      "created_at": "2026-11-09T18:50:56+00:00",
+      "comments_data": [
+        {
+          "id": "50432872",
+          "author": "alentred",
+          "body": "I understand that the objective is to, pardon the language, detect the \"creeps\", but somehow the app itself feels creepy, too :/ Somehow I wouldn't feel comfortable even installing it. Not to mention my own privacy concerns.",
+          "score": 0,
+          "time": 1794261659,
+          "parent": "50429812"
+        },
+        {
+          "id": "50430754",
+          "author": "ludsan",
+          "body": "> Many thanks to my ex for inspiring my new MacOS app\nstory implied?",
+          "score": 0,
+          "time": 1794253292,
+          "parent": "50429812"
+        },
+        {
+          "id": "50432750",
+          "author": "nikolay",
+          "body": "How about the free DND (DoNotDisturb) [0] by Objective See foundation?\n[0]: https://objective-see.org/products/donotdisturb.html (https://objective-see.org/products/donotdisturb.html)",
+          "score": 0,
+          "time": 1794261035,
+          "parent": "50429812"
+        },
+        {
+          "id": "50431065",
+          "author": "thisislife2",
+          "body": "Nice idea.\n> Real-time remote alerts are available via one-time $4.99 lifetime purchase via the free companion iPhone/iPad app, Pushover, ntfy, Telegram or a webhook.\nInstead of making users download 2 apps (one on the Mac and one on the iPhone), you should instead consider sending the alert by email (through Mail extensions) and / or iMessage (iMessage Extensions) - you can still charge for it.",
+          "score": 0,
+          "time": 1794254376,
+          "parent": "50429812"
+        },
+        {
+          "id": "50433035",
+          "author": "cadamsdotcom",
+          "body": "This is so weird.\nLike, ...\nLock your laptop when you stand up??\nWhy would anyone know your password? If they do, change it.\nThis advice is available for the low low price of $4.99/month.",
+          "score": 0,
+          "time": 1794262501,
+          "parent": "50429812"
+        },
+        {
+          "id": "50433505",
+          "author": "_ks3e",
+          "body": "I look forward to a barrage of alerts with cat pictures.",
+          "score": 0,
+          "time": 1794264968,
+          "parent": "50429812"
+        },
+        {
+          "id": "50431102",
+          "author": "hyperjeff",
+          "body": "Ads for spyware on HN. Is the goal entrapment instead of proper account boundaries?",
+          "score": 0,
+          "time": 1794254551,
+          "parent": "50429812"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50429636",
+      "title": "Show HN: MeowDisplay Is iPhone Mirroring, but in Reverse",
+      "subreddit": "show-hn",
+      "author": "raiseCatError",
+      "score": 73,
+      "num_comments": 26,
+      "permalink": "https://news.ycombinator.com/item?id=50429636",
+      "url": "https://meowdisplay.app/",
+      "selftext": "Hey HN and Cats, thank you for checking this out!\nGithub:\nhttps://github.com/raiseCatError/meowdisplay (https://github.com/raiseCatError/meowdisplay)\nEDIT 2: I should've mentioned that MeowDisplay started as a fork of OpenDisplay: https://github.com/peetzweg/opendisplay (https://github.com/peetzweg/opendisplay)\nwhich provided the foundational screen capture, virtual display, encoding and iPhone/iPad receivers. I've since taken it in a more phone-first direction, with work on the interaction, streaming and security layers. I've credited OpenDisplay and its developer Philip in the README under \"Built on OpenDisplay\".\nMeowDisplay is my take on the control your Mac from your phone scene. Available on iPhones, iPads and Macs, with Android rn in closed testing.\nThe website has interactive illustrative demos if you'd like to see the app demonstrated.\nI think MeowDisplay does a few things differently, some of which I prefer and you might too.\nSuch as Window view: allowing multiple tabs in split-screen type panes. Traditional Mirror/Extend views exist as alternatives. \nFloating windows: coming in the 2.1 release.\nTouch input approaches: Direct Touch(Classic or Natural), experimental Smart Touch, and Trackpad mode alongside Apple Pencil support. Doesn't sacrifice display space for a trackpad, use all of the phone's screen with your preferred mode.\nStage Peek: shows a scrollable and searchable list of your Mac's windows on your phone along with an app drawer when you hold and pull on the left edge of your screen.\nIt's free and open source so you can try it and see if it's for you without having to commit to it or anything.\nEDIT: I've used MeowDisplay during development whilst I was travelling between cities, left my acbook at home clamshell, powered, external display attached, and used it for small tasks remotely, it was pretty reliable even on a 5G network on a moving bus.\nMeow,\nJai",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794249562,
+      "created_at": "2026-11-09T18:39:22+00:00",
+      "comments_data": [
+        {
+          "id": "50430918",
+          "author": "dabbz",
+          "body": "It's uncanny, I just vibe built something super similar. A server/client system to share individual windows as a resized app on the phone. I can select certain windows to render as if it was an app on either my Windows client, mac client, or iPhone client from a windows or mac server.\nGlad to know I'm not the only one thinking about this. It also connects over tailnet.",
+          "score": 0,
+          "time": 1794253879,
+          "parent": "50429636"
+        },
+        {
+          "id": "50429803",
+          "author": "Shank",
+          "body": "I really want an evaluation of all of these classes of remote desktop systems and latency. Almost all of my remote display experiences have been mediocre due to lag. Maybe my tolerance is too low? How is the latency on this product?\nOnly RDP has felt truly responsive to me, and my understanding is that it cheats by not sending raster graphics and instead drawing primaries directly on the remote system and then updating the state based on the server?",
+          "score": 0,
+          "time": 1794250223,
+          "parent": "50429636"
+        },
+        {
+          "id": "50430187",
+          "author": "mpolichette",
+          "body": "Since this forks opendisplay, what are you doing differently? Are you a layer on top, or a different direction?\nI'd have expected that to be declared in an announcement for this community.",
+          "score": 0,
+          "time": 1794251565,
+          "parent": "50429636"
+        },
+        {
+          "id": "50430096",
+          "author": "jdalgetty",
+          "body": "Is this much different from Sill?",
+          "score": 0,
+          "time": 1794251219,
+          "parent": "50429636"
+        },
+        {
+          "id": "50431597",
+          "author": "qingcharles",
+          "body": "What can I use to bring the iMessage window from my clamshut MacBook onto my Windows desktop so I can write texts on a big boy screen instead of on the phone?",
+          "score": 0,
+          "time": 1794256257,
+          "parent": "50429636"
+        },
+        {
+          "id": "50432290",
+          "author": "montjoy",
+          "body": "Does this require that Apple devices use the same account like sidecar?",
+          "score": 0,
+          "time": 1794259026,
+          "parent": "50429636"
+        },
+        {
+          "id": "50429791",
+          "author": "_aavaa_",
+          "body": "Cool. Does it support proper color profiles on the iPhone and HDR content?",
+          "score": 0,
+          "time": 1794250194,
+          "parent": "50429636"
+        },
+        {
+          "id": "50432780",
+          "author": "SirFatty",
+          "body": "VNC?",
+          "score": 0,
+          "time": 1794261179,
+          "parent": "50429636"
+        },
+        {
+          "id": "50430081",
+          "author": "iLoveOncall",
+          "body": "Isn't that natively supported? I thought you could use your iPhone as side display for your Mac.\nEDIT: Yes, the feature is called Sidecar.",
+          "score": 0,
+          "time": 1794251182,
+          "parent": "50429636"
+        },
+        {
+          "id": "50430175",
+          "author": "TazeTSchnitzel",
+          "body": "Refreshing to see a marketing site that isn't slop.",
+          "score": 0,
+          "time": 1794251530,
+          "parent": "50429636"
+        },
+        {
+          "id": "50430897",
+          "author": "sleepybrett",
+          "body": "write me a client for the steam frame",
+          "score": 0,
+          "time": 1794253780,
+          "parent": "50429636"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50429266",
+      "title": "Show HN: Rollare – Bracket maker with registration and live scoring",
+      "subreddit": "show-hn",
+      "author": "cloudyer",
+      "score": 6,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50429266",
+      "url": "https://rollare.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794248067,
+      "created_at": "2026-11-09T18:14:27+00:00",
+      "comments_data": [
+        {
+          "id": "50430881",
+          "author": "bradknowles",
+          "body": "The title shown above leaves some key words. On the site, the title is: “Free Online Tournament Bracket Maker”.\nI think a combination of both would be even more descriptive.\nI have been working on a concept for a manga or graphic novel, perhaps starting as a web version. And a key early feature in that story is a tournament. So, this comes at an opportune time for me. Thanks!",
+          "score": 0,
+          "time": 1794253726,
+          "parent": "50429266"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50429144",
+      "title": "Show HN: STE80 Humanizer – de-AI text by writing 80% of the way to ASD-STE100",
+      "subreddit": "show-hn",
+      "author": "Dodaios",
+      "score": 50,
+      "num_comments": 12,
+      "permalink": "https://news.ycombinator.com/item?id=50429144",
+      "url": "https://github.com/Dodaios/ste80-humanizer",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794247544,
+      "created_at": "2026-11-09T18:05:44+00:00",
+      "comments_data": [
+        {
+          "id": "50433896",
+          "author": "wavemode",
+          "body": "This is a de-AI-izer, not a \"humanizer\". It removes AI tics, it doesn't add human voice.\nThis tool appears primarily designed to produce text that's clearer and more concise, not to produce text that fools someone into thinking a human wrote it.",
+          "score": 0,
+          "time": 1794267160,
+          "parent": "50429144"
+        },
+        {
+          "id": "50433728",
+          "author": "bushido",
+          "body": "Curious how this is different from simple english [0][1]. I've tested that one across multiple harnesses, and it works pretty well.\n[0] https://github.com/AminBlg/SimpleEnglish (https://github.com/AminBlg/SimpleEnglish)\n[1] https://news.ycombinator.com/item?id=49114639 (https://news.ycombinator.com/item?id=49114639)",
+          "score": 0,
+          "time": 1794266107,
+          "parent": "50429144"
+        },
+        {
+          "id": "50433816",
+          "author": "nphardon",
+          "body": "wow even just asking it for 80% of the way to ASD-STE100 makes a huge difference in readability. I'm experiencing way less brain fog trying to read opus.",
+          "score": 0,
+          "time": 1794266631,
+          "parent": "50429144"
+        },
+        {
+          "id": "50432864",
+          "author": "cadamsdotcom",
+          "body": "Very cool, thanks for this! Looks super useful for all kinds of copy..\nWonder if it also defeats text watermarking.",
+          "score": 0,
+          "time": 1794261604,
+          "parent": "50429144"
+        },
+        {
+          "id": "50433499",
+          "author": "datadrivenangel",
+          "body": "ISO 24495-1 is the way for technical writing.",
+          "score": 0,
+          "time": 1794264937,
+          "parent": "50429144"
+        },
+        {
+          "id": "50434093",
+          "author": "bemtevi",
+          "body": "Maybe instead of using this, one should just have some pride and learn to write properly, instead of relying on a machine for everything.",
+          "score": 0,
+          "time": 1794268278,
+          "parent": "50429144"
+        },
+        {
+          "id": "50433427",
+          "author": "adammarples",
+          "body": "Am I crazy or I can't even find the SKILL.md",
+          "score": 0,
+          "time": 1794264572,
+          "parent": "50429144"
+        },
+        {
+          "id": "50430743",
+          "author": "whattheheckheck",
+          "body": "Should look into tropes.fyi",
+          "score": 0,
+          "time": 1794253265,
+          "parent": "50429144"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,15 +612,148 @@
       "title": "Show HN: Write GitHub Actions in any language: Loopt",
       "subreddit": "show-hn",
       "author": "Bnjoroge",
-      "score": 4,
-      "num_comments": 0,
+      "score": 11,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50429031",
       "url": "https://github.com/preloopdev/loopt",
       "selftext": "Loopt generates the equivalent code for your workflows in any language, then compiles it down to your workflow files. First-party support for Rust, Python, Typescript, and Go, but it's trivial to add a new language. Check it out if you are tired of mangling YAML.",
       "is_self": false,
       "is_video": false,
       "time": 1794247145,
-      "created_at": "2026-11-09T17:59:05+00:00"
+      "created_at": "2026-11-09T17:59:05+00:00",
+      "comments_data": [
+        {
+          "id": "50430116",
+          "author": "engma7moud3ly",
+          "body": "I like the idea.. I often use JavaScript in workflows through (actions/github-script) and Python inside (shell: python) Being able to write the entire workflow in my preferred language sounds really cool :)",
+          "score": 0,
+          "time": 1794251283,
+          "parent": "50429031"
+        },
+        {
+          "id": "50429887",
+          "author": "dezgeg",
+          "body": "I assume you're looked into whether it's possible to generate the yaml at runtime, without committing the generated file to the repo?",
+          "score": 0,
+          "time": 1794250526,
+          "parent": "50429031"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50428907",
+      "title": "Show HN: Every satellite that passed over any place this week, and its photos",
+      "subreddit": "show-hn",
+      "author": "a585gupt",
+      "score": 216,
+      "num_comments": 42,
+      "permalink": "https://news.ycombinator.com/item?id=50428907",
+      "url": "https://www.watched.earth",
+      "selftext": "hey HN, i built this because i wanted to know what had actually photographed my street.\ntype in any place and it finds every satellite that passed over it in the last 7 days (SGP4 on the CelesTrak catalog, runs in your browser in about half a second), then pulls the real Sentinel-2 / Landsat / NASA images from those passes.\nsome fun bits:\n- the pass search can't skip a pass. checked it against a brute force on poles, the antimeridian and tiny swaths: 0 missed\n- all ~17k objects in orbit are drawn on the GPU, solving Kepler's equation every frame\n- Sentinel-2 timestamps are often 5-10 min off from when the sat actually crosses your spot, which was a fun one to figure out\nit only says \"watched\" if a real image exists, and it doesn't store your location.\ncode: https://github.com/dev-Armaan/satellites (https://github.com/dev-Armaan/satellites)\nwould love feedback, especially on what data sources to add",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794246691,
+      "created_at": "2026-11-09T17:51:31+00:00",
+      "comments_data": [
+        {
+          "id": "50433435",
+          "author": "anonymous908213",
+          "body": "People who prompt an LLM to generate without proper capitalization in order to deceive more people into thinking the text is genuine deserve a special place in hell. Always with the inauthentic feedback CTA, too. This should be killed off HN for flagrantly violating the rules against LLM-generated text, and yet everyone upvotes it.",
+          "score": 0,
+          "time": 1794264615,
+          "parent": "50428907"
+        },
+        {
+          "id": "50431721",
+          "author": "HoldOnAMinute",
+          "body": "I don't say this lightly: This may be the best combination of style and substance I have ever seen.",
+          "score": 0,
+          "time": 1794256725,
+          "parent": "50428907"
+        },
+        {
+          "id": "50432081",
+          "author": "award_",
+          "body": "This is not only a very cool idea, but also fantastic execution! Great work and very neat!",
+          "score": 0,
+          "time": 1794258158,
+          "parent": "50428907"
+        },
+        {
+          "id": "50433880",
+          "author": "bradknowles",
+          "body": "Trying to type in the location field is almost impossible. There is something way off in the way the block cursor reacts to character spacing compared to the text in that field.",
+          "score": 0,
+          "time": 1794267022,
+          "parent": "50428907"
+        },
+        {
+          "id": "50428983",
+          "author": "sixtyj",
+          "body": "I have seen a lot of sites with satellites’ overviews… I work in geospatial.\nThis site is really good one as you can see exact image taken by a satellite.\nWell done.",
+          "score": 0,
+          "time": 1794246963,
+          "parent": "50428907"
+        },
+        {
+          "id": "50430479",
+          "author": "wnissen",
+          "body": "This is great for planning backpacking trips. I have been using Copernicus but you have a lot more and it's much easier to access. Very nice!",
+          "score": 0,
+          "time": 1794252502,
+          "parent": "50428907"
+        },
+        {
+          "id": "50433623",
+          "author": "dingaling",
+          "body": "> type in any place and it finds every satellite that passed over it\n_Most_ satellites. However, nothing associated with the NRO is in the public TLE catalog.",
+          "score": 0,
+          "time": 1794265500,
+          "parent": "50428907"
+        },
+        {
+          "id": "50433947",
+          "author": "janoelze",
+          "body": "and built in three days! https://github.com/dev-Armaan/satellites (https://github.com/dev-Armaan/satellites)",
+          "score": 0,
+          "time": 1794267467,
+          "parent": "50428907"
+        },
+        {
+          "id": "50433271",
+          "author": "lol8675309",
+          "body": "Super broken at the moment - or I'm impatient",
+          "score": 0,
+          "time": 1794263823,
+          "parent": "50428907"
+        },
+        {
+          "id": "50433372",
+          "author": "Eridanus2",
+          "body": "The relevant launch video trailer on your X page is really well produced. How did you go about constructing it?",
+          "score": 0,
+          "time": 1794264328,
+          "parent": "50428907"
+        },
+        {
+          "id": "50430864",
+          "author": "nico",
+          "body": "This is very cool, and a bit creepy too, but mostly cool\nReally liked the UX, even on a small phone screen it was easy to use. I enjoyed the big typing cursor, it was a unique surprise (almost 100% of text form inputs have either a very small vertical line cursor, or nothing at all - the big cursor feels refreshing)",
+          "score": 0,
+          "time": 1794253659,
+          "parent": "50428907"
+        },
+        {
+          "id": "50433013",
+          "author": "tarpump",
+          "body": "Really cool, and beautiful UX.\nFor data sources, it would be cool to add Sentinel-1 since SAR sees through clouds, plus the Umbra and Capella open data archives for some high-res passes.",
+          "score": 0,
+          "time": 1794262407,
+          "parent": "50428907"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -27,8 +762,8 @@
       "title": "Show HN: DBDelve – Open-Source DB Client Made with Rust and GPUI",
       "subreddit": "show-hn",
       "author": "shayan_abbas",
-      "score": 30,
-      "num_comments": 4,
+      "score": 92,
+      "num_comments": 33,
       "permalink": "https://news.ycombinator.com/item?id=50427934",
       "url": "https://news.ycombinator.com/item?id=50427934",
       "selftext": "Hi HN, I’m Shayan and a few months ago I started building a DB Client DBDelve with a focus on performance and just making something that feels good to use (in the spirit of Zed, Ghostty, and other tools that just feel pleasant to use).\nFor my workflow I’ve always looked for performance, especially since some time ago I had a really outdated machine and any kind of bloat was really noticeable, I remember using DBeaver and it just crashing on me multiple times, I also had to use postGIS which just made it worse. I migrated all my essential dev tools to use the ones with performance in mind (Zed, Ghostty etc) but the only thing that was missing was DB Client. The main choices everyone has are DBeaver which is a memory hog and an overkill for most of the tasks imo. The other options like Datagrid, Beekeeper, TablePlus are either electron based so bloated and memory hogs or paid and closed-source.\nDBDelve 0.3.6 against DBeaver 25.3.1 on the same Postgres table, median of 5 runs each (2026-10-11, M1 Pro, 32 GB). Times are from the action to the rows rendered.\n DBDelve DBeaver\n Launch 1.1 s 5.2 s\n Idle memory 133 MB 606 MB\n 1,000-row query 0.21 s 1.96 s\n 1M rows, time 56 s 208 s\n 1M rows, memory [1] 4.9 GB 17 GB\n\n[1] The whole 1M-row, 100-column table pulled into memory on purpose, with the row limit off. Not a normal use case; DBeaver's heap limit had to be raised manually for the benchmark.\nScrolling perf with 1 million rows loaded with 100 columns each: https://youtu.be/V2MOhJYFqIE (https://youtu.be/V2MOhJYFqIE)\nIt has most of the features most devs would need for 90% of their workflow plus some more I thought would be a nice touch:\nReadonly, read-write and Full Access modes\nGlass themes (If you’re into them, I am)\nKeyboard focused with every keybinding customizable\nOrganization of connections into projects\nMe and some other folks have been daily driving it for more than a month now and most good feedback comes on it having a really simple UI to navigate, very stable for its age and the performance of course. I’m also sharing here because those people tell me this has potential to grow so I’m trying my hand at distributing it.\nJust want to give a huge shoutout here to the Zed team for GPUI, it's a breeze to work with if you just get through them not updating the crate officially on crates.io but the community has found the solutions for it, you just have to dig deep for it. It performs extremely well and just the HTML-like structure of it, makes it easy to understand for someone from a web dev background and agents are very good at writing it too. GPUI component also solves a lot of problems with having a good component library we can use. I think for anyone starting a GPUI project now, GPUI-kit makes a lot of sense, it just bundles GPUI, GPUI-component together and has some optimizations adding retained mode which is experimental but could provide a lot of benefit, so think all things considered it should be the default way.\nThe major optimization I did was just lowering the memory overhead by using packed rows which reduced the memory usage by 40% on large datasets (8.1GB to 4.9GB on a 4GB table loaded in app), everything else came bundled in with Rust and GPUI mostly or they just made it very easy.\nLimitations:\nIt's not signed and notarized, identity verification from apple's side has been a nightmare but it should be signed soon.\nDon’t expect feature parity with more mature clients for now, the general direction of this right now is the zed way of adding features in but after making sure the core workflows are done with a high quality.\nDo give it a try, you can import your connections from dbeaver and tableplus.\nhttps://github.com/ShayanAbbas1/dbdelve (https://github.com/ShayanAbbas1/dbdelve)",
@@ -38,6 +773,38 @@
       "created_at": "2026-11-09T16:36:38+00:00",
       "comments_data": [
         {
+          "id": "50430837",
+          "author": "mamcx",
+          "body": "One thing missing in all the GUI clients I know for Postgres's is being able to work with composite types and filtering them like `(IMT, 1)`. Similar as edit things like this, arrays, json, etc",
+          "score": 0,
+          "time": 1794253573,
+          "parent": "50427934"
+        },
+        {
+          "id": "50433026",
+          "author": "olive-n",
+          "body": "Looks nice, though it does not open .sqlite files on Windows, when they are somewhere in the WSL filesystem. But neither does DBeaver. dbx opens them just fine though.",
+          "score": 0,
+          "time": 1794262471,
+          "parent": "50427934"
+        },
+        {
+          "id": "50434278",
+          "author": "waterTanuki",
+          "body": "> I wanted something which is performant, modern and consumes little ram. The existing DB clients are either filled with bloat (Electron and JVM) or paid. This is an alternative to them.\nThere are many, many existing DB clients. Some of them already written in GPUI and free/open source:\nhttps://github.com/0xErwin1/dbflux (https://github.com/0xErwin1/dbflux)",
+          "score": 0,
+          "time": 1794269302,
+          "parent": "50427934"
+        },
+        {
+          "id": "50430683",
+          "author": "logdahl",
+          "body": "Thanks for working on this! All db clients I've used have felt very bloated and I relate to your experience of crashes. I will definitely try this out!",
+          "score": 0,
+          "time": 1794253082,
+          "parent": "50427934"
+        },
+        {
           "id": "50429255",
           "author": "edstarch",
           "body": ">it's a breeze to work with if you just get through them not updating the crate officially on crates.io but the community has found the solutions for it, you just have to dig deep for it\nwhat does this mean?\nthe ui does look very nice",
@@ -46,20 +813,95 @@
           "parent": "50427934"
         },
         {
-          "id": "50429256",
-          "author": "dofm",
-          "body": "Oh this is good news — I have been looking for a fuss-free cross-platform alternative to MySQL Workbench to recommend for a data product for some time.\n(Workbench is a pain but it was capable, off-the-shelf and was possible to document it once, more or less, for multiple platforms; I did not actually hate using it. But alas it is old now)\nI will surely test this out; good luck with it.",
+          "id": "50429547",
+          "author": "exaroth",
+          "body": "Whats the advantage of this over something like dbx (https://github.com/t8y2/dbx (https://github.com/t8y2/dbx))?",
           "score": 0,
-          "time": 1794248026,
+          "time": 1794249247,
           "parent": "50427934"
         },
         {
-          "id": "50428984",
-          "author": "written-beyond",
-          "body": "What about beekeeper studio?",
+          "id": "50433220",
+          "author": "gmmachine",
+          "body": "This feels more like a proof of concept than anything else.\nI'd like an AI agent plugin to help with my SQL queries?",
           "score": 0,
-          "time": 1794246965,
+          "time": 1794263455,
           "parent": "50427934"
+        },
+        {
+          "id": "50432893",
+          "author": "upmostly",
+          "body": "What does it have over a hyper-modern DB client like DB Pro?\n[1] https://dbpro.app (https://dbpro.app)",
+          "score": 0,
+          "time": 1794261749,
+          "parent": "50427934"
+        },
+        {
+          "id": "50432686",
+          "author": "brumbelow",
+          "body": "Thanks for sharing I will give this a try this week. The improved memory impact compared to Dbeaver is too good to resist.",
+          "score": 0,
+          "time": 1794260688,
+          "parent": "50427934"
+        },
+        {
+          "id": "50432846",
+          "author": "godockly",
+          "body": "I really like it !",
+          "score": 0,
+          "time": 1794261513,
+          "parent": "50427934"
+        },
+        {
+          "id": "50432528",
+          "author": "written-beyond",
+          "body": "How intelligent is the query editor? If you've used DataGrip you'll see it's nothing short of a god send. Their Intellisense is really something else.\nBut I absolutely hate opening DataGrip it feels like you're trying to start a crank car from the 40's.",
+          "score": 0,
+          "time": 1794260056,
+          "parent": "50427934"
+        },
+        {
+          "id": "50430454",
+          "author": "mrgoldenbrown",
+          "body": "What dbs does it support? I won't drop datagrip until I can access oracle, SQL server and postgres.",
+          "score": 0,
+          "time": 1794252417,
+          "parent": "50427934"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50426593",
+      "title": "Show HN: My daily word puzzle Jointter revisited",
+      "subreddit": "show-hn",
+      "author": "proy87",
+      "score": 8,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50426593",
+      "url": "https://news.ycombinator.com/item?id=50426593",
+      "selftext": "Hello.\nThis is a follow-up to the post https://news.ycombinator.com/item?id=50317548 (https://news.ycombinator.com/item?id=50317548)\nI've got tons of feedback.\nThank you all so much for that!\nThe main issue was an absence of tutorial.\nI've added it. Hope it helps.\nSince many people have played, I've noticed that many people start the game, but almost no one finishes it. Is the game hard? What is the main obstacle?\nMost people, when see opened HA......, try to enter the word that start with HA and give up, forgetting that the first letter can be B as well. It is not necessary to enter specific words. You can submit whatever word you like.\nSo, I'd like to ask for your advice.\nHow to improve the game, so that more people finish it?\nMaybe I shouldn't make it a daily game with increasing difficulty throughout the week?\nThe same board hides multiple words. I thought that some sort of a challenge would be a good idea, but don't know how to implement it: https://www.jointter.com/2026-11-02/?w=PUP (https://www.jointter.com/2026-11-02/?w=PUP)\nThe idea of the game is good, but mechanics and gameplay are far from perfect.\nAs before, constructive criticism is always welcome.\nYou can test and retest the game at https://www.jointter.com (https://www.jointter.com)\nThank you very much!",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794236508,
+      "created_at": "2026-11-09T15:01:48+00:00",
+      "comments_data": [
+        {
+          "id": "50432934",
+          "author": "tlh",
+          "body": "There’s probably a good game there, but there’s too much cruft on the screen which makes me feel overwhelmed. Ideally, I should be able to just intuit how the game works with as little instruction as possible.\nLess is more/simplify would be my advice.\nThat’s from my own experience building games at Waffle Studio like https://puzzlist.com/stackdown (https://puzzlist.com/stackdown)",
+          "score": 0,
+          "time": 1794261972,
+          "parent": "50426593"
+        },
+        {
+          "id": "50431172",
+          "author": "MD87",
+          "body": "> How to improve the game, so that more people finish it?\nI tried to play today's and failed after 5 attempts. The attempt feedback is borderline incomprehensible to me, even with the tutorial. I understand what it's telling me, but it doesn't actually help me.\nI ended up with red lines all over the place, and they moved around whenever I made another guess. I had a solid green letter that was wrong, because it was a subset of the real letter.\nI'm not sure if I'm meant to break out graph theory to try and incorporate the feedback, or just blindly stab in the dark. Neither really appeals to me in a daily puzzle game.",
+          "score": 0,
+          "time": 1794254811,
+          "parent": "50426593"
         }
       ]
     },
@@ -236,8 +1078,8 @@
       "title": "Show HN: Flide: Make Jev-like decision models up to 9.5x faster",
       "subreddit": "show-hn",
       "author": "unikcc",
-      "score": 107,
-      "num_comments": 27,
+      "score": 119,
+      "num_comments": 28,
       "permalink": "https://news.ycombinator.com/item?id=50421155",
       "url": "https://github.com/OmniJev/Flide",
       "selftext": "Decision models need their own inference engine.\nSo we developed Flide, a high-performance and exact inference engine for Jev-like decision models.\nFlide achieves up to a 9.5x speedup over vLLM and SGLang.\nIt now supports 30+ popular local Jev-like decision models.\nStart to make your decision immediately:\npip install flide",
@@ -255,6 +1097,14 @@
           "parent": "50421155"
         },
         {
+          "id": "50424643",
+          "author": "Tostino",
+          "body": "You really don't need an entire new inference engine for this. I modified vllm to work just fine for my decision model experiments.\nIt properly uses the single shared context and only recomputes the questions, or if the questions are longer, I let the questions go first and then the context that changes often can go after, and then the answer menu tokens... I got roughly the same speed increase with the right workloads that you're saying though.",
+          "score": 0,
+          "time": 1794227090,
+          "parent": "50421155"
+        },
+        {
           "id": "50428694",
           "author": "nico",
           "body": "Amazing, love it\nDo you have numbers for running something like Laya locally with/without Flide?",
@@ -263,11 +1113,11 @@
           "parent": "50421155"
         },
         {
-          "id": "50424643",
-          "author": "Tostino",
-          "body": "You really don't need an entire new inference engine for this. I modified vllm to work just fine for my decision model experiments.\nIt properly uses the single shared context and only recomputes the questions, or if the questions are longer, I let the questions go first and then the context that changes often can go after, and then the answer menu tokens... I got roughly the same speed increase with the right workloads that you're saying though.",
+          "id": "50421227",
+          "author": "unikcc",
+          "body": "Hi HN! I'm one of the Flide team.\nWe built Flide from scratch to make Jev-like decision model inference up to 9.5x faster than vLLM and SGLang, while keeping exactness.\nHere is the source code: https://github.com/OmniJev/Flide (https://github.com/OmniJev/Flide)\nLook forward to hearing your feedback and ideas!",
           "score": 0,
-          "time": 1794227090,
+          "time": 1794200119,
           "parent": "50421155"
         },
         {
@@ -284,14 +1134,6 @@
           "body": "Cool!",
           "score": 0,
           "time": 1794239320,
-          "parent": "50421155"
-        },
-        {
-          "id": "50421227",
-          "author": "unikcc",
-          "body": "Hi HN! I'm one of the Flide team.\nWe built Flide from scratch to make Jev-like decision model inference up to 9.5x faster than vLLM and SGLang, while keeping exactness.\nHere is the source code: https://github.com/OmniJev/Flide (https://github.com/OmniJev/Flide)\nLook forward to hearing your feedback and ideas!",
-          "score": 0,
-          "time": 1794200119,
           "parent": "50421155"
         },
         {
