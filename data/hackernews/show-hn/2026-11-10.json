@@ -1,8 +1,337 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-10T12:32:09.089220+00:00",
+  "last_fetched": "2026-11-10T18:30:50.313151+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50443847",
+      "title": "Show HN: Gmessages-TUI, Google Messages (RCS and SMS) in the Terminal",
+      "subreddit": "show-hn",
+      "author": "louis_",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50443847",
+      "url": "https://github.com/louisrubet/gmessages-tui",
+      "selftext": "As a big TUI fan I've been complaining for a long time about not being able to read my Google Messages in a terminal. I wrote a client. It pairs with the Android phone, Google connection then emoji, the phone must remain on. The client manages SMS and RCS and groups, images (if you have a kitty compatible terminal), reactions, archives, spam, trash, searches, notifications...\nGoogle Messages having no public interface, I wrote a specification https://github.com/louisrubet/gmessages-tui/tree/main/doc/pr... (https://github.com/louisrubet/gmessages-tui/tree/main/doc/protocol) from the protocol decoded by mautrix-gmessages https://github.com/mautrix/gmessages (https://github.com/mautrix/gmessages) in libgm https://github.com/mautrix/gmessages/tree/main/pkg/libgm (https://github.com/mautrix/gmessages/tree/main/pkg/libgm). Thanks to you guys! This allowed me to write gmessages-proto, a clean-room client crate in Rust and a separated interface https://github.com/louisrubet/chat-tui-core (https://github.com/louisrubet/chat-tui-core) I am reusing for another messenger. Messages are stored in a local encrypted database, whose key is stored in the system keystore.\nInstallation through cargo is `cargo install --locked gmessages-tui`.\nThere are deb, rpm and pacman packages if you prefer.\nTested on Linux only, please dare to install it on macOS or Windows, and open GitHub tickets!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794333808,
+      "created_at": "2026-11-10T18:03:28+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50443812",
+      "title": "Show HN: Get your coding agent off ~2019 JavaScript, onto modern web primitives",
+      "subreddit": "show-hn",
+      "author": "paulirish",
+      "score": 13,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50443812",
+      "url": "https://github.com/GoogleChrome/modern-web-guidance",
+      "selftext": "Browsers natively handle a lot of what used to take 50 lines of JS (or a dependency): `CSS.highlights` for text range highlighting without <span>s everywhere, `<dialog>` and showModal() give you backdrops and ideal focus management, `field-sizing` to auto-grow textareas as the user types.. (Something yesterday's ftrain post touched on [0])\nModels know about some of these by name, but consistently won't default to using the platform-native solution and instead prefer the incumbent <div>+JS based pattern. We started an effort in Chrome to supplement coding agents with this key domain knowledge and we're shipping our 1.0 today, in collaboration with Firefox, MDN, and Edge.\n200+ guides (~1.7MB) of curated, hand-crafted implementation best-practices from web experts, updated as the web evolves. (Open source, obv, so.. we'll welcome your bikeshedding ;) Readable versions here: [1]\nI've spent the last 9 months obsessing over how to ship this as an agent skill + (Agentic RAG) CLI without blowing up your context window. (Or cedeing activation mechanics to MCP dynamic tool search). The skill description is minmaxed for activating on relevant frontend tasks. The RAG work I'm pretty proud of… originally a 500mb native stack down to a ~7MB pure-JS package, ~10ms search on your CPU.\nWe just introduced a deterministic 'legacy-scan' (trained on 30k github repos) to identify old 'n dusted patterns that your agent can modernize. (92% avg precision on held-out repos.)\nPeople make a lot of claims about what coding agents are good/bad at. We wanted receipts, so we invested heavily in eval infra [2] to help us hill-climb, but also to identify when knowledge is common enough we can prune our guides. (Ofc, some of the things we thought AI didn't know turned out to be wrong :) We run codex/claude/agy against 200 tasks without the skill and then with.. In total ~1,700 playwright/AST-based assertions. Agents go from 55% pass unguided to 92% guided.\nTry it out:\n DISABLE_TELEMETRY=1 npx modern-web-guidance@latest install\n DISABLE_TELEMETRY=1 npx modern-web-guidance@latest search \"animate dialog modal\"\n DISABLE_TELEMETRY=1 npx modern-web-guidance@latest legacy-scan ./src\n\nIf you spot something wrong or weird, give us a holler!\nLonger write-up on the 1.0: https://developer.chrome.com/blog/modern-web-guidance-v1 (https://developer.chrome.com/blog/modern-web-guidance-v1)\n---\n0: https://news.ycombinator.com/item?id=50416456 (https://news.ycombinator.com/item?id=50416456)\n1: https://developer.chrome.com/docs/modern-web-guidance/guides (https://developer.chrome.com/docs/modern-web-guidance/guides)\n2: https://googlechrome.github.io/modern-web-guidance-src/ (https://googlechrome.github.io/modern-web-guidance-src/)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794333675,
+      "created_at": "2026-11-10T18:01:15+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50443654",
+      "title": "Show HN: Gauge, a 900 KB macOS menu bar app for what's using your RAM and disk",
+      "subreddit": "show-hn",
+      "author": "thisisvaze",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50443654",
+      "url": "https://github.com/thisisvaze/Gauge",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794332984,
+      "created_at": "2026-11-10T17:49:44+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50443596",
+      "title": "Show HN: WolveKafka – Consume Kafka with a plain HTTP endpoint",
+      "subreddit": "show-hn",
+      "author": "piscesdk",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50443596",
+      "url": "https://github.com/wolveflake/wolvekafka",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794332720,
+      "created_at": "2026-11-10T17:45:20+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50442804",
+      "title": "Show HN: I checked 66 AI tools' privacy policies for AI training",
+      "subreddit": "show-hn",
+      "author": "inkllm",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50442804",
+      "url": "https://getpolicypeek.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794328966,
+      "created_at": "2026-11-10T16:42:46+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50442257",
+      "title": "Show HN: Y Recombinator – The HN threads HN keeps recommending",
+      "subreddit": "show-hn",
+      "author": "nightjar",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50442257",
+      "url": "https://yrecombinator.org/",
+      "selftext": "A lot of the best stuff I've read on HN I found through a comment saying \"this old thread is worth reading.\" So, I tried to collect all of them!\nIt takes every HN comment that links to another HN item, drops the dupe/previous discussion/related links, and uses Sonnet to decide which of the rest are actual recommendations. Then it ranks them by how many different people recommended each one.\nThe Dropbox comment is #1, which I guess is no surprise. Further down there's a lot I hadn't seen.\nIf you swap news.ycombinator.com for yrecombinator.org in an item link, you can see who recommended it.\nInspired by Karpathy's HackerTube: https://yrecombinator.org/item?id=50319510 (https://yrecombinator.org/item?id=50319510)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794326642,
+      "created_at": "2026-11-10T16:04:02+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50441876",
+      "title": "Show HN: We wanted to build an AI application, not maintain RAG pipelines",
+      "subreddit": "show-hn",
+      "author": "kareu",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50441876",
+      "url": "https://akropolys.cloud/docs/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794325060,
+      "created_at": "2026-11-10T15:37:40+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50441801",
+      "title": "Show HN: NodusDB – Zanzibar-style authorization, embedded like SQLite",
+      "subreddit": "show-hn",
+      "author": "pragadeesh_21",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50441801",
+      "url": "https://github.com/Pragadeesh-19/nodusdb",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794324742,
+      "created_at": "2026-11-10T15:32:22+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50441622",
+      "title": "Show HN: Clikr – Virtual laser pointer that follows where you point your phone",
+      "subreddit": "show-hn",
+      "author": "abelw",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50441622",
+      "url": "https://chromewebstore.google.com/detail/clikr/oalndbmcbpchbbognlpkdafainaimhdk",
+      "selftext": "After installing the web extension and clicking its icon it shows a QR code that is scanned by a phone which opens the web app in the browser. When the WebRTC connection has been set up between the devices you can steer a dot on the computer web page by holding a button and pointing the phone. The app also has other presentation clicker features like switching slides, drawing, presenter notes, and can also be used for remote controlling some videos (tested on YouTube and Plex).\nFirefox extension: https://addons.mozilla.org/sv-SE/firefox/addon/clikr/ (https://addons.mozilla.org/sv-SE/firefox/addon/clikr/)\nChrome extension: https://chromewebstore.google.com/detail/clikr/oalndbmcbpchb... (https://chromewebstore.google.com/detail/clikr/oalndbmcbpchbbognlpkdafainaimhdk)\nHome page: https://www.clikr.app/ (https://www.clikr.app/)\nI've always been fascinated in how much the web can do. This project started as a fun small POC many years ago when some of these native app-like functions were less common. I got the idea to see if I could make my phone control a \"laser dot\" on my computer just by tilting the phone like a real laser pointer. Being a web guy I went with web extension + web app. Surprisingly I think I got the basics working in an afternoon or two, having some experience with web extensions from before. Getting the user experience smooth and stable and adding other presentation features in various online tools took more time...\nIt uses RTCPeerConnection for the communication, Metered for TURN, and a small protocol for the commands (point, switch slides, etc.). The deviceorientation event is used for getting the orientation (which has to be explicitly allowed on some devices). One issue here is that the angle values don't actually mean anything without a reference. Therefore the first pair of angles received in the extension becomes the origin for that \"pointing\". The origin on the screen is the middle of the viewport and additional received angles move the dot with those origin values as reference. I.e. it will always start in the middle. This is of course not as good as a real laser pointer but I think it works quite well when you've tried it a bit. Distance to the screen and its size will matter for how much to move the dot which is why there is also a calibration tool.\nI like the other features too but I think the laser pointer is the fun one.\nThere are some paid features (one-time payment, no subscription) but the laser pointer, basic presentation features, and video remote are free and doesn't require an account.\nIt has some users but it's hard to get them to give feedback so honestly I don't yet know much about how it's performing in real situations. If anyone here tries it out please tell me what you think.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794323954,
+      "created_at": "2026-11-10T15:19:14+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50441518",
+      "title": "Show HN: Valencia, Spain in Sim City/Isometric View",
+      "subreddit": "show-hn",
+      "author": "leugim",
+      "score": 70,
+      "num_comments": 24,
+      "permalink": "https://news.ycombinator.com/item?id=50441518",
+      "url": "https://tinyvalencia.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794323536,
+      "created_at": "2026-11-10T15:12:16+00:00",
+      "comments_data": [
+        {
+          "id": "50442908",
+          "author": "akfanta",
+          "body": "As someone who's only familiar with Valencia on Google Maps, I found the default orientation very confusing. Is it possible to configure it so that north always points upwards?",
+          "score": 0,
+          "time": 1794329403,
+          "parent": "50441518"
+        },
+        {
+          "id": "50443946",
+          "author": "larodi",
+          "body": "It is incorrect to name this pixelart. Perhaps diffusion-art. I wouldn’t go so far as to call it \"slopart\"—that would be derogatory.\nFirst, it has very little in common with the process of creation of actual pixelart imagery, as all here on the map is blurred, no pixels are clearly distinguishable.\nSecond of all, pixelart is something ppl intent-fully create one layer at a time, very often - one pixel a time. Is akin to as embroidery (which pixelart very much resembles), and embroidery is not the same as textile produced by a Jacquard Loom. And the whole point of embroidery is to do it like this in order to achieve the result, not that you cannot do whatever you want with machine textile, and not that we don't wear it daily, because it was programmed and done by machine.\nPresent map is perhaps the third similar attempt at something... which has its value, but should be regarded the same as perhaps taking Pink Floyd's lyrics and progressions recreated in Suno... or rather training a model to play like Pink Floyd and then call a diffusion product psychedelic rock.\nAs s.o. who is both super-fan of pixel-art (such as https://x.com/84Aleha/status/2038268570094723313 (https://x.com/84Aleha/status/2038268570094723313), though I can take isometric stuff also, that is fine), and diffusion imagery (I actually did some poster designs with it, not many), I feel the need to express my disagreement and overall confusion reg if this is an actual pixelart. To me - it is not,.",
+          "score": 0,
+          "time": 1794334249,
+          "parent": "50441518"
+        },
+        {
+          "id": "50443698",
+          "author": "Michael_Houben",
+          "body": "My last visit to valencia (as a tourist) was a long time ago (20 yeyrs) but i just had some minutes of fun playing your two tourist games :-) thanks for showing !!",
+          "score": 0,
+          "time": 1794333228,
+          "parent": "50441518"
+        },
+        {
+          "id": "50443565",
+          "author": "vunderba",
+          "body": "> An image model trained on a hand-picked pixel-art style then repaints it, tile by tile, each tile continuing its painted neighbours so the city stays seamless.\nNice work. The developer of Isometric NYC did something similar - creating a fine-tune of the Qwen Image Edit model. I'd be curious to hear more detail about the image model you used. (the base checkpoint, LoRAs, etc).",
+          "score": 0,
+          "time": 1794332593,
+          "parent": "50441518"
+        },
+        {
+          "id": "50443826",
+          "author": "stagas",
+          "body": "This is super nice! It would be very interesting to share some details on how it was made. Good job!",
+          "score": 0,
+          "time": 1794333728,
+          "parent": "50441518"
+        },
+        {
+          "id": "50443191",
+          "author": "jnmandal",
+          "body": "So cool. Very curious what tools you used for making this!",
+          "score": 0,
+          "time": 1794330626,
+          "parent": "50441518"
+        },
+        {
+          "id": "50443380",
+          "author": "dn3500",
+          "body": "The streetcar tracks fade out in places and I don't see any streetcars. And I can't see my narrow medieval street from this angle. But overall very impressive.",
+          "score": 0,
+          "time": 1794331608,
+          "parent": "50441518"
+        },
+        {
+          "id": "50442998",
+          "author": "franciscop",
+          "body": "Hey I'm from Valencia! This is pretty nice render of the city, thanks for sharing. I liked the mini game as well. Would've loved to see some other angles of some places though!",
+          "score": 0,
+          "time": 1794329737,
+          "parent": "50441518"
+        },
+        {
+          "id": "50442924",
+          "author": "mapcars",
+          "body": "That is a quite a nice way to explore a city, a middle ground between regular maps (too abstract, no sense of height) and detailed/realistic street view.",
+          "score": 0,
+          "time": 1794329484,
+          "parent": "50441518"
+        },
+        {
+          "id": "50443363",
+          "author": "jorisboris",
+          "body": "I saw a couple of these on Twitter in the last 24 hours\nBut this one is particularly detailed, very nice!",
+          "score": 0,
+          "time": 1794331500,
+          "parent": "50441518"
+        },
+        {
+          "id": "50443125",
+          "author": "torben-friis",
+          "body": "Missing some tents in Plaça de l'Ajuntament :)",
+          "score": 0,
+          "time": 1794330320,
+          "parent": "50441518"
+        },
+        {
+          "id": "50443006",
+          "author": "harlequinetcie",
+          "body": "Ohhhh very nice.\nWe should figure out a good game to play with it. Like adding transport infrastructure or you need to achieve X time reduction in commuting times.\nNice!",
+          "score": 0,
+          "time": 1794329754,
+          "parent": "50441518"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50441216",
+      "title": "Show HN: QueenMQ – slow LLM calls blocked our Kafka partitions, so we built it",
+      "subreddit": "show-hn",
+      "author": "aliceviola",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50441216",
+      "url": "https://github.com/queen-mq/queen",
+      "selftext": "Hi HN, I'm Alice.\nOver the last year, at Smartness, the company where I work, we built a new message broker, open source under Apache 2.0. During this year it has replaced Kafka almost completely for us. I would like to show it to you and try to explain what is different about it.\nFirst, long story short: in 2025 we launched a new product in our suite. Like all the others it used Kafka for messaging, and like many other companies we were using Kafka as a message queue, wrongly and knowingly.\nIn this product head-of-line blocking hurt a lot: an LLM call takes seconds to minutes, and it blocked every other chat in the same partition. We first built a hack: we saved the Kafka messages in Postgres, ordered by the entity we needed (a chat_id, for example), processed them, and sent them back to Kafka. Then we decided to build a real broker on that idea. It took a year, from C++ plus Postgres to, today, a single Rust binary with data replicated on disk by Raft.\nI designed this system, so I am biased. Still, I believe QueenMQ holds a new paradigm that turns a message broker into something more powerful, while staying simple.\nWhat QueenMQ is, compared to what you already know:\nLike Kafka, it has partitions, but in QueenMQ they are dynamic (not preallocated) and you can use a lot of them (tested up to 10 million). Like Kafka it is a log, but there is one Raft leader per tenant, so all of a tenant's writes go through one node, which allows transactions without 2PC. Head-of-line blocking can only happen inside one partition, which is one business entity, like a customer or a chat. If you need a plain queue, you can use a different partition for every message.\nLike RabbitMQ, it has ACK, NACK, retries and a DLQ: this makes it a message queue. It has no routing on push and no exchanges, though.\nLike a database: thanks to its etcd-like design, it runs transactions that include ACKs, pushes to other queues, KV writes and timers, and it has atomic locks. The KV store is replicated by Raft and keeps the application's state. It is linearizable.\nIt also has strong streaming features: the SDKs can receive one single log with all the messages of all the queues, with one clock and one order. On top of it there are the classic streaming features, like windows, and some less common ones.\nClients talk to it over HTTP (the clients are thin, the intelligence is in the broker), and it is Kafka-compatible (although that way you cannot use all of its strengths).\nThe idea underneath is the change from seeing a message broker as a pure \"handler\" of messages to one where you can offload a lot of application logic that you would otherwise write yourself. In our company it let us remove outbox tables, cron jobs and many other things.\nOn three beefy machines (24 vCPU, NVMe, 88 GB of RAM), QueenMQ sustains 3M msg/s of 256-byte messages, up to 10M partitions, with p99 latency around 20 ms and every write fsynced on two nodes. Of course, with a single leader per tenant, it does not scale by adding more machines.\nWe tested it hard: 226 tests of our own, written with the Jepsen library, on up to 5 nodes.\nIt is changing the way we design the systems and products of our company.\nI believe in this project and I believe in open source, and I am really glad that Smartness thinks the same way. It is hard to find the time and the money to build something like this without a company behind you.\nI would love to get questions, the harsh ones too (like how many times this thing crashed production), and feedback.\n docker run -p 6632:6632 ghcr.io/queen-mq/queen:2.8.0",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794322356,
+      "created_at": "2026-11-10T14:52:36+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50439598",
+      "title": "Show HN: Markview – a fast Markdown reader in Rust, Obsidian Vault compatible",
+      "subreddit": "show-hn",
+      "author": "szdytom",
+      "score": 2,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50439598",
+      "url": "https://github.com/szdytom/markview",
+      "selftext": "Hey HN! I built Markview after coming across RaTeX which is a library renders LaTeX natively without JavaScript or webview. I thought \"How hard could it be to render the rest of Markdown natively too?\"\nSo the result is a lightweight reader with no browser engine. Reading Markdown feels fast and fluent, yet it uses much less of your valueable RAM then most other apps.\nOn my laptop, it opens documents 5–20× faster than Obsidian and MarkText, depending on the content, despite I implemented Knuth's typeset algorithm, which gives me publication-quality typography.\nThese days I read Markdown much more than I write it because I ask LLMs to organize my thought and do the actual writing. That (partly) why I built this app a reader. (the other part is that editing is complex)\nAnyway, it supports a growing set of Obsidian Flavored Markdown features. Lately I’ve been reading my own Obsidian vault exclusively in Markview, and it actually feels good.\nIt runs on Linux, macOS, Windows, and Android. It's free and open source so you can try it and see if it's for you.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794314841,
+      "created_at": "2026-11-10T12:47:21+00:00",
+      "comments_data": [
+        {
+          "id": "50440153",
+          "author": "rthimian",
+          "body": "I opened a few files. Really fast. What I like a lot is that I can open a whole folder and jump between the files very quickly. The included styles are very nice. I first had to get used to the fact that the list order changes when I pick a style, and the chosen one moves to the top. PDF export is also very fast, and the PDF looks good, which is not a given.\nI'm working on a private project where I need a good Markdown viewer, and I'd like to take some ideas from yours. Our current file viewer looks amateurish next to it.",
+          "score": 0,
+          "time": 1794317886,
+          "parent": "50439598"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50439596",
+      "title": "Show HN: Wanim – Run Manim Python in the browser, 20× smaller than Pyodide",
+      "subreddit": "show-hn",
+      "author": "Acfboy",
+      "score": 3,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50439596",
+      "url": "https://github.com/Acfboy/Wanim",
+      "selftext": "Hi HN, I love 3Blue1Brown's animations and Manim, the Python animation engine behind them. So I wanted to run it in my blog to build interactive animations. But that wasn't easy. Running it with Pyodide is too heavy.\nI came up with a new approach: by patching rapydscript-ng (a tool that transpiles Python-like syntax to JS), I make it translate Manim code into JS, and pair it with a companion JS library. This lets it run the original code in a small enough bundle.\nFortunately, after overcoming some difficulties, it worked! It runs surprisingly well. You can see a blog I built here: https://wanim.org/blog (https://wanim.org/blog) , or try running your own Manim animations at https://wanim.org/playground (https://wanim.org/playground).",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794314834,
+      "created_at": "2026-11-10T12:47:14+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,15 +339,33 @@
       "title": "Show HN: Cosh – An open-source AI agent orchestrator",
       "subreddit": "show-hn",
       "author": "Zaluski",
-      "score": 2,
-      "num_comments": 0,
+      "score": 6,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50439141",
       "url": "https://github.com/DiegoZaluski/co-sh",
       "selftext": "Cosh is an open-source AI agent built in Rust that brings together multiple agents like Codex and Goose in a unified environment for orchestration and collaboration.",
       "is_self": false,
       "is_video": false,
       "time": 1794312313,
-      "created_at": "2026-11-10T12:05:13+00:00"
+      "created_at": "2026-11-10T12:05:13+00:00",
+      "comments_data": [
+        {
+          "id": "50442610",
+          "author": "dividedcomet",
+          "body": "Similarly could use some screenshots before I pull down and consider it. Also no WHY I would use this over established players like those mentioned in the post",
+          "score": 0,
+          "time": 1794328031,
+          "parent": "50439141"
+        },
+        {
+          "id": "50441426",
+          "author": "orbis-tertius",
+          "body": "Very nice, and congrats on launch! It would be helpful if you could add to the README a summary of the key differences with other TUI orchestrators.",
+          "score": 0,
+          "time": 1794323180,
+          "parent": "50439141"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -44,7 +391,7 @@
       "title": "Show HN: Chatty – Open-source AI support engine with WooCommerce sync",
       "subreddit": "show-hn",
       "author": "TharinduDama",
-      "score": 2,
+      "score": 3,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50439073",
       "url": "https://github.com/PersonaliAI/chatty",
@@ -61,15 +408,113 @@
       "title": "Show HN: A 15 MB self-hosted Netflix and Spotify for your media server",
       "subreddit": "show-hn",
       "author": "CoderLuii",
-      "score": 3,
-      "num_comments": 0,
+      "score": 156,
+      "num_comments": 109,
       "permalink": "https://news.ycombinator.com/item?id=50439000",
       "url": "https://github.com/HolyArrs/HolyArrs",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1794311479,
-      "created_at": "2026-11-10T11:51:19+00:00"
+      "created_at": "2026-11-10T11:51:19+00:00",
+      "comments_data": [
+        {
+          "id": "50442217",
+          "author": "wes-k",
+          "body": "Will check this out after it becomes more stable.\nI literally, just this last weekend, finally bit the bullet and created my own media server. I had been dragging my feet, not wanting to deal with the complexity of configuring and setting things up. With codex, I had it do the leg work. Even made a snazzy website as homebase and an admin panel with links to every service, easy invite creation, and some basic usage & storage monitoring.\nBeen a blast using codex to configure and design my media server!\nThat said, the many logins do annoy me! My main friction though is around a single client my friends & family can use that brings things closer to the netflix experience. Currently evaluating moonfin, so they can request and watch within the same client. Seerr still seems to be best for requests, but moonfin will get the job done.\nMy list so far: Sonarr, Radarr, Prowlarr, Seerr, Wizarr, Cleanuparr, Jellyfin, Moonfin.\nAlso using codex to setup the same box for home automation and comfyui. Fun times!",
+          "score": 0,
+          "time": 1794326447,
+          "parent": "50439000"
+        },
+        {
+          "id": "50440290",
+          "author": "tjohnell",
+          "body": "I've seen multiple \"consolidate all the arr\" attempts over the years. None prevail. Not saying this one won't, but something tells me it's going to peter out and be abandonware. It's incredible how sticky the OG arr apps have been to be honest. Likely because they are extremely stable and well-integrated.",
+          "score": 0,
+          "time": 1794318451,
+          "parent": "50439000"
+        },
+        {
+          "id": "50439669",
+          "author": "utopiah",
+          "body": "FWIW\n ls -lh /usr/sbin/minidlnad\n -rwxr-xr-x 1 root root 323K Feb 21 2025 /usr/sbin/minidlnad\n\nand a lot of TV, video projectors, etc support DLNA out of the box, if they don't add VLC and you are good to go.",
+          "score": 0,
+          "time": 1794315359,
+          "parent": "50439000"
+        },
+        {
+          "id": "50442038",
+          "author": "lbrito",
+          "body": ">\"A normal media server runs six apps: Sonarr, Radarr, Lidarr, Bazarr, Prowlarr and Seerr.\"\nHere I was thinking people just used Plex! No idea what any of those are",
+          "score": 0,
+          "time": 1794325666,
+          "parent": "50439000"
+        },
+        {
+          "id": "50439624",
+          "author": "ZenoArrow",
+          "body": "> AI or MCP features. Not in 1.0.\nWhy would you even want this, what desirable features could you add by adding AI?",
+          "score": 0,
+          "time": 1794315015,
+          "parent": "50439000"
+        },
+        {
+          "id": "50439961",
+          "author": "FabCH",
+          "body": "Ok, I'm a potential user, but what is your long term plan for following the scene and making sure HolyArrs supports the wild west of the grey area content acquisition?\nThings like parsing the file name for format, group, language, repack etc...",
+          "score": 0,
+          "time": 1794317101,
+          "parent": "50439000"
+        },
+        {
+          "id": "50442567",
+          "author": "0xAFFFF",
+          "body": "People really need to stop thinking that their vibe coded app developed in a day is something the world needs to be made aware of. That's insulting really.",
+          "score": 0,
+          "time": 1794327894,
+          "parent": "50439000"
+        },
+        {
+          "id": "50439643",
+          "author": "Oxodao",
+          "body": "I'd love something like this, and i'll maybe try it, but last time we had something like this it turned pretty quickly to a shitshow.\nThough I like the choice of go. The heavy c# stack other have is quite resource intensive\nhttps://www.reddit.com/r/selfhosted/comments/1rckopd/huntarr... (https://www.reddit.com/r/selfhosted/comments/1rckopd/huntarr_your_passwords_and_your_entire_arr_stacks/)",
+          "score": 0,
+          "time": 1794315190,
+          "parent": "50439000"
+        },
+        {
+          "id": "50439758",
+          "author": "stroebs",
+          "body": "Does it use the same data sources that Seerr, Sonarr, and Radarr use? What is it?\nAre you aiming to be more feature complete with the rest of the *arr stack or intentionally a different course?",
+          "score": 0,
+          "time": 1794315941,
+          "parent": "50439000"
+        },
+        {
+          "id": "50440355",
+          "author": "NamTaf",
+          "body": "What got removed to make this smaller?\nYou don't just shed 97% of the size without compromises. What are those compromises and why were they made?",
+          "score": 0,
+          "time": 1794318700,
+          "parent": "50439000"
+        },
+        {
+          "id": "50442980",
+          "author": "thatonehack",
+          "body": "I have a ton of blu-ray movies that I would like to digitize and throw on a server, organize and play. Is there a specific blu-ray reader/writer SATA or external via usb that has a high likelihood of success ripping blu-ray discs?",
+          "score": 0,
+          "time": 1794329667,
+          "parent": "50439000"
+        },
+        {
+          "id": "50441898",
+          "author": "Myzel394",
+          "body": "Hmm idk, I'm gonna stay with my lidarr + navidrome and radarr sonarr + jellyfin",
+          "score": 0,
+          "time": 1794325139,
+          "parent": "50439000"
+        }
+      ]
     },
     {
       "source": "hackernews",
