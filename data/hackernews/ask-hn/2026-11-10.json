@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-11T00:43:45.677037+00:00",
+  "last_fetched": "2026-11-11T06:35:33.292782+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,8 +10,8 @@
       "title": "How do you keep up quality when you vibe-code?",
       "subreddit": "ask-hn",
       "author": "nkcodes",
-      "score": 21,
-      "num_comments": 19,
+      "score": 28,
+      "num_comments": 25,
       "permalink": "https://news.ycombinator.com/item?id=50444380",
       "url": "https://news.ycombinator.com/item?id=50444380",
       "selftext": "I'm having a really hard time working with claude. In the past when I wrote all the code manually, it was always carefully reviewed and architected, with all possible flows carefully mapped out. Now, my code is mostly AI written which has led to things going out of control. Since it's easy to add new features and support many user flows, we went ahead and implemented flows that support a lot of cases our users run into. But now, I feel like things are getting too complex with no central notion of behaviour definitions, which causes every bug-fixing session to feel like a game of whack-a-mole, and results in missing edge cases and UI bugs that are becoming impossible to review and keep track of.\nEvery time I build anything new, it adds more complexity and the agent only seems to focus on the surrounding code within that session without keeping track of how it fits into the rest of the code base/product.\nHow do you all deal with this? Any suggestions for improving?",
@@ -45,11 +45,27 @@
           "parent": "50444380"
         },
         {
-          "id": "50447797",
-          "author": "llbknapik",
-          "body": "I personally build rules using static analysis tools. All my guardrails hook into my .NET static analyzer pipeline. This makes the agent fail at build time then it goes and corrects itself.\nAdditionally, .NET added a bunch of formatting rules in its static analyzer for .NET 11 that give greater control on the styling of the code the agent generates. For example you can ban `=>` function syntax using editorconfig. The build will fail and the agent has to adjust.",
+          "id": "50449747",
+          "author": "jvaqueiro",
+          "body": "I face similar problems on a daily basis. Mostly UI bugs, and copywriting.\nFixing these is exahusting. What I ended up doing was building a \"feedback\"[1] tool I can point to my agent.\nBasically, I collect bugs/improvements and then tell codex to fix them.\nBeing able to gather a bunch of bugs in a working session has been a boost in productivity.\n[1]. https://pecky.app (https://pecky.app)",
           "score": 0,
-          "time": 1794353432,
+          "time": 1794371334,
+          "parent": "50444380"
+        },
+        {
+          "id": "50449384",
+          "author": "EduardoBautista",
+          "body": "I have Claude run the simplify and code-review skills as part of verification. Also every month or so I use the tech-debt skill on all my codebases and fix any issues. The more tech debt you have, the more the models start doing strange things.\nAnd the usual stuff any decent CI pipeline should have: tests, builds, linting, SQL breaking changes and potential heavy migration checks, etc.",
+          "score": 0,
+          "time": 1794367064,
+          "parent": "50444380"
+        },
+        {
+          "id": "50448910",
+          "author": "rafabitt",
+          "body": "Coming from someone with a non technical background that has started building things post AI, I think what helps me the most is referencing other successful products and learning from their bad reviews/mistakes.\nNow to your question specifically, I believe it's not that hard to maintain quality when you're not obsessing over a million features, what I've seen people do is make their app or software do everything instead of focusing on a sum of functionalities that are actually worth keeping and will certainly impact the user experience.",
+          "score": 0,
+          "time": 1794362084,
           "parent": "50444380"
         },
         {
@@ -61,6 +77,22 @@
           "parent": "50444380"
         },
         {
+          "id": "50449906",
+          "author": "bahung1221",
+          "body": "what helped me is not letting the agent touch code until theres a plan for how it fits the expectation and existing code, and actually pushing back on it. then review the changes, not just \"does it work\"",
+          "score": 0,
+          "time": 1794373202,
+          "parent": "50444380"
+        },
+        {
+          "id": "50449571",
+          "author": "gabe84700",
+          "body": "1. Design first. Vibe design before vibe code\n2. Build all CRUD operations for all data entities and clean your database regularly",
+          "score": 0,
+          "time": 1794369149,
+          "parent": "50444380"
+        },
+        {
           "id": "50446574",
           "author": "purple-leafy",
           "body": "Have a vision, and know what to say no to [0]. Thats how I build all my own projects, most recent here for example\n[0] - https://github.com/con-dog/clingon (https://github.com/con-dog/clingon)",
@@ -69,11 +101,11 @@
           "parent": "50444380"
         },
         {
-          "id": "50446414",
-          "author": "bengold14",
-          "body": "My cofounder and I built https://www.archme.io (https://www.archme.io) for this.\nIt is an abstraction on top of code, turning your codebase into architecture diagrams and then keeping them up to date on each commit.\nAs a bonus you can do PR review and propose changes in it as well.",
+          "id": "50447797",
+          "author": "llbknapik",
+          "body": "I personally build rules using static analysis tools. All my guardrails hook into my .NET static analyzer pipeline. This makes the agent fail at build time then it goes and corrects itself.\nAdditionally, .NET added a bunch of formatting rules in its static analyzer for .NET 11 that give greater control on the styling of the code the agent generates. For example you can ban `=>` function syntax using editorconfig. The build will fail and the agent has to adjust.",
           "score": 0,
-          "time": 1794345412,
+          "time": 1794353432,
           "parent": "50444380"
         },
         {
@@ -82,38 +114,6 @@
           "body": "I'm not sure if there is any standard for this, I also tried to search about it in the past. But what I ended up doing that has been working well is to keep everything documented. Every task and decisions are documented on .md files, referencing related tasks and decisions. The project becomes bloated quickly, but Claude can easily locate and relate decisions from a long time ago. Some times I even ask to do do something and mid-way Claude realizes that it goes against a previous written decision.",
           "score": 0,
           "time": 1794336747,
-          "parent": "50444380"
-        },
-        {
-          "id": "50445906",
-          "author": "fwlr",
-          "body": "I don’t think it is “you” that deals with this. You have outsourced your engineering to Claude, so Claude must deal with this, and if it’s not good enough to deal with that task just yet, you should wait for improvements to Claude until it is. (Some of the other suggestions here are good; it is possible that Claude already is good enough to deal with the task and you’re just not asking it correctly.)",
-          "score": 0,
-          "time": 1794342764,
-          "parent": "50444380"
-        },
-        {
-          "id": "50444410",
-          "author": "toufiqqureshi",
-          "body": "The same I was facing now I have built complete app but always worried about it is really protected and production ready I also facing this issue I don't know what to do",
-          "score": 0,
-          "time": 1794336235,
-          "parent": "50444380"
-        },
-        {
-          "id": "50447794",
-          "author": "Theophane_Rame",
-          "body": "always review what claude has done and try to know what is it",
-          "score": 0,
-          "time": 1794353385,
-          "parent": "50444380"
-        },
-        {
-          "id": "50447133",
-          "author": "xtajv",
-          "body": "Remember, \"There will be a quiz\".",
-          "score": 0,
-          "time": 1794349355,
           "parent": "50444380"
         }
       ]
@@ -153,19 +153,19 @@
       "created_at": "2026-11-10T15:22:46+00:00",
       "comments_data": [
         {
-          "id": "50447834",
-          "author": "Theophane_Rame",
-          "body": "I think AI controlled by a bad actor is a more immediate risk, while misaligned AI is a potentially much larger long-term risk",
-          "score": 0,
-          "time": 1794353629,
-          "parent": "50441674"
-        },
-        {
           "id": "50443719",
           "author": "hlincontacts",
           "body": "I think a misaligned AI is vastly more dangerous than a bad actor. Bad actors are statistically much rarer than regular users, so it really comes down to scale. Let's say we have a misaligned AI, and it naturally does bad acts. That means nearly every regular user can become a bad actor via the AI's actions. But if the AI is aligned and the bad actor just jailbreaks it, sure that's bad, but not nearly on the scale of a misaligned AI.",
           "score": 0,
           "time": 1794333328,
+          "parent": "50441674"
+        },
+        {
+          "id": "50447834",
+          "author": "Theophane_Rame",
+          "body": "I think AI controlled by a bad actor is a more immediate risk, while misaligned AI is a potentially much larger long-term risk",
+          "score": 0,
+          "time": 1794353629,
           "parent": "50441674"
         },
         {
@@ -244,7 +244,7 @@
       "title": "Ask HN: Anyone else notice Fable 5.2 making grammar errors?",
       "subreddit": "ask-hn",
       "author": "linearza",
-      "score": 4,
+      "score": 5,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50438506",
       "url": "https://news.ycombinator.com/item?id=50438506",
@@ -279,7 +279,7 @@
       "title": "Tell HN: Notion AI chat sessions have been exposed via Fireworks AI hack",
       "subreddit": "ask-hn",
       "author": "RamblingCTO",
-      "score": 15,
+      "score": 16,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50436636",
       "url": "https://news.ycombinator.com/item?id=50436636",
@@ -352,19 +352,19 @@
           "parent": "50435819"
         },
         {
-          "id": "50435824",
-          "author": "andsoitis",
-          "body": "If you don’t embrace AI you stand very high chance of being irrelevant in the future.",
-          "score": 0,
-          "time": 1794282583,
-          "parent": "50435819"
-        },
-        {
           "id": "50439542",
           "author": "ungreased0675",
           "body": "As a product manager, AI made my developers happier, but the product didn’t launch any faster.",
           "score": 0,
           "time": 1794314563,
+          "parent": "50435819"
+        },
+        {
+          "id": "50435824",
+          "author": "andsoitis",
+          "body": "If you don’t embrace AI you stand very high chance of being irrelevant in the future.",
+          "score": 0,
+          "time": 1794282583,
           "parent": "50435819"
         },
         {
