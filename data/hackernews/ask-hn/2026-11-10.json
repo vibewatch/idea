@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-11T06:35:33.292782+00:00",
+  "last_fetched": "2026-11-11T12:32:42.558986+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,8 +10,8 @@
       "title": "How do you keep up quality when you vibe-code?",
       "subreddit": "ask-hn",
       "author": "nkcodes",
-      "score": 28,
-      "num_comments": 25,
+      "score": 31,
+      "num_comments": 27,
       "permalink": "https://news.ycombinator.com/item?id=50444380",
       "url": "https://news.ycombinator.com/item?id=50444380",
       "selftext": "I'm having a really hard time working with claude. In the past when I wrote all the code manually, it was always carefully reviewed and architected, with all possible flows carefully mapped out. Now, my code is mostly AI written which has led to things going out of control. Since it's easy to add new features and support many user flows, we went ahead and implemented flows that support a lot of cases our users run into. But now, I feel like things are getting too complex with no central notion of behaviour definitions, which causes every bug-fixing session to feel like a game of whack-a-mole, and results in missing edge cases and UI bugs that are becoming impossible to review and keep track of.\nEvery time I build anything new, it adds more complexity and the agent only seems to focus on the surrounding code within that session without keeping track of how it fits into the rest of the code base/product.\nHow do you all deal with this? Any suggestions for improving?",
@@ -45,27 +45,11 @@
           "parent": "50444380"
         },
         {
-          "id": "50449747",
-          "author": "jvaqueiro",
-          "body": "I face similar problems on a daily basis. Mostly UI bugs, and copywriting.\nFixing these is exahusting. What I ended up doing was building a \"feedback\"[1] tool I can point to my agent.\nBasically, I collect bugs/improvements and then tell codex to fix them.\nBeing able to gather a bunch of bugs in a working session has been a boost in productivity.\n[1]. https://pecky.app (https://pecky.app)",
+          "id": "50451603",
+          "author": "corroclaro",
+          "body": "With great difficulty - it's very hard to keep LLMs from generating codebases that are hard to reason about for humans - the spaghetti intermingles with a ball of mud.\nSo far, my most successful ventures have been tiny CLIs that do something I have been itching to write that one day when I'd had some free time (that never materialized).",
           "score": 0,
-          "time": 1794371334,
-          "parent": "50444380"
-        },
-        {
-          "id": "50449384",
-          "author": "EduardoBautista",
-          "body": "I have Claude run the simplify and code-review skills as part of verification. Also every month or so I use the tech-debt skill on all my codebases and fix any issues. The more tech debt you have, the more the models start doing strange things.\nAnd the usual stuff any decent CI pipeline should have: tests, builds, linting, SQL breaking changes and potential heavy migration checks, etc.",
-          "score": 0,
-          "time": 1794367064,
-          "parent": "50444380"
-        },
-        {
-          "id": "50448910",
-          "author": "rafabitt",
-          "body": "Coming from someone with a non technical background that has started building things post AI, I think what helps me the most is referencing other successful products and learning from their bad reviews/mistakes.\nNow to your question specifically, I believe it's not that hard to maintain quality when you're not obsessing over a million features, what I've seen people do is make their app or software do everything instead of focusing on a sum of functionalities that are actually worth keeping and will certainly impact the user experience.",
-          "score": 0,
-          "time": 1794362084,
+          "time": 1794391492,
           "parent": "50444380"
         },
         {
@@ -77,19 +61,27 @@
           "parent": "50444380"
         },
         {
-          "id": "50449906",
-          "author": "bahung1221",
-          "body": "what helped me is not letting the agent touch code until theres a plan for how it fits the expectation and existing code, and actually pushing back on it. then review the changes, not just \"does it work\"",
+          "id": "50449747",
+          "author": "jvaqueiro",
+          "body": "I face similar problems on a daily basis. Mostly UI bugs, and copywriting.\nFixing these is exahusting. What I ended up doing was building a \"feedback\"[1] tool I can point to my agent.\nBasically, I collect bugs/improvements and then tell codex to fix them.\nBeing able to gather a bunch of bugs in a working session has been a boost in productivity.\n[1]. https://pecky.app (https://pecky.app)",
           "score": 0,
-          "time": 1794373202,
+          "time": 1794371334,
           "parent": "50444380"
         },
         {
-          "id": "50449571",
-          "author": "gabe84700",
-          "body": "1. Design first. Vibe design before vibe code\n2. Build all CRUD operations for all data entities and clean your database regularly",
+          "id": "50448910",
+          "author": "rafabitt",
+          "body": "Coming from someone with a non technical background that has started building things post AI, I think what helps me the most is referencing other successful products and learning from their bad reviews/mistakes.\nNow to your question specifically, I believe it's not that hard to maintain quality when you're not obsessing over a million features, what I've seen people do is make their app or software do everything instead of focusing on a sum of functionalities that are actually worth keeping and will certainly impact the user experience.",
           "score": 0,
-          "time": 1794369149,
+          "time": 1794362084,
+          "parent": "50444380"
+        },
+        {
+          "id": "50449384",
+          "author": "EduardoBautista",
+          "body": "I have Claude run the simplify and code-review skills as part of verification. Also every month or so I use the tech-debt skill on all my codebases and fix any issues. The more tech debt you have, the more the models start doing strange things.\nAnd the usual stuff any decent CI pipeline should have: tests, builds, linting, SQL breaking changes and potential heavy migration checks, etc.",
+          "score": 0,
+          "time": 1794367064,
           "parent": "50444380"
         },
         {
@@ -114,6 +106,14 @@
           "body": "I'm not sure if there is any standard for this, I also tried to search about it in the past. But what I ended up doing that has been working well is to keep everything documented. Every task and decisions are documented on .md files, referencing related tasks and decisions. The project becomes bloated quickly, but Claude can easily locate and relate decisions from a long time ago. Some times I even ask to do do something and mid-way Claude realizes that it goes against a previous written decision.",
           "score": 0,
           "time": 1794336747,
+          "parent": "50444380"
+        },
+        {
+          "id": "50444410",
+          "author": "toufiqqureshi",
+          "body": "The same I was facing now I have built complete app but always worried about it is really protected and production ready I also facing this issue I don't know what to do",
+          "score": 0,
+          "time": 1794336235,
           "parent": "50444380"
         }
       ]
@@ -333,7 +333,7 @@
       "title": "Ask HN: Are companies making money by using AI?",
       "subreddit": "ask-hn",
       "author": "vanh4lt",
-      "score": 4,
+      "score": 6,
       "num_comments": 12,
       "permalink": "https://news.ycombinator.com/item?id=50435819",
       "url": "https://news.ycombinator.com/item?id=50435819",

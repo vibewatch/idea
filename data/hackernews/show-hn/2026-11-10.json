@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-11T06:35:28.771818+00:00",
+  "last_fetched": "2026-11-11T12:32:37.294709+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,7 +10,7 @@
       "title": "Show HN: A Git friendly open API client",
       "subreddit": "show-hn",
       "author": "clementherve",
-      "score": 3,
+      "score": 5,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50447169",
       "url": "https://github.com/awake-client/awake",
@@ -131,7 +131,7 @@
       "title": "Show HN: Umless, open-source on-device dictation that writes what you meant",
       "subreddit": "show-hn",
       "author": "jatinbishla",
-      "score": 4,
+      "score": 5,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50444913",
       "url": "https://github.com/jatinbishla/Umless",
@@ -158,7 +158,7 @@
       "title": "Show HN: WallHang – Plan a gallery wall and get exact nail positions (iOS)",
       "subreddit": "show-hn",
       "author": "morrowfield",
-      "score": 4,
+      "score": 5,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50444909",
       "url": "https://wallhang.app",
@@ -202,8 +202,8 @@
       "title": "Show HN: I have trained 15 blood glucose forecasting models on my own data",
       "subreddit": "show-hn",
       "author": "0xdeadf1sh",
-      "score": 16,
-      "num_comments": 3,
+      "score": 19,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50444761",
       "url": "https://github.com/0xdeadf1sh/T1DMAI",
       "selftext": "",
@@ -226,6 +226,14 @@
           "body": "Very cool very nice work!",
           "score": 0,
           "time": 1794353364,
+          "parent": "50444761"
+        },
+        {
+          "id": "50450373",
+          "author": "orasul",
+          "body": "awesome",
+          "score": 0,
+          "time": 1794379396,
           "parent": "50444761"
         },
         {
@@ -313,8 +321,8 @@
       "title": "Show HN: Get your coding agent off ~2019 JavaScript, onto modern web primitives",
       "subreddit": "show-hn",
       "author": "paulirish",
-      "score": 330,
-      "num_comments": 101,
+      "score": 388,
+      "num_comments": 121,
       "permalink": "https://news.ycombinator.com/item?id=50443812",
       "url": "https://github.com/GoogleChrome/modern-web-guidance",
       "selftext": "Browsers natively handle a lot of what used to take 50 lines of JS (or a dependency): `CSS.highlights` for text range highlighting without <span>s everywhere, `<dialog>` and showModal() give you backdrops and ideal focus management, `field-sizing` to auto-grow textareas as the user types.. (Something yesterday's ftrain post touched on [0])\nModels know about some of these by name, but consistently won't default to using the platform-native solution and instead prefer the incumbent <div>+JS based pattern. We started an effort in Chrome to supplement coding agents with this key domain knowledge and we're shipping our 1.0 today, in collaboration with Firefox, MDN, and Edge.\n200+ guides (~1.7MB) of curated, hand-crafted implementation best-practices from web experts, updated as the web evolves. (Open source, obv, so.. we'll welcome your bikeshedding ;) Readable versions here: [1]\nI've spent the last 9 months obsessing over how to ship this as an agent skill + (Agentic RAG) CLI without blowing up your context window. (Or cedeing activation mechanics to MCP dynamic tool search). The skill description is minmaxed for activating on relevant frontend tasks. The RAG work I'm pretty proud of… originally a 500mb native stack down to a ~7MB pure-JS package, ~10ms search on your CPU.\nWe just introduced a deterministic 'legacy-scan' (trained on 30k github repos) to identify old 'n dusted patterns that your agent can modernize. (92% avg precision on held-out repos.)\nPeople make a lot of claims about what coding agents are good/bad at. We wanted receipts, so we invested heavily in eval infra [2] to help us hill-climb, but also to identify when knowledge is common enough we can prune our guides. (Ofc, some of the things we thought AI didn't know turned out to be wrong :) We run codex/claude/agy against 200 tasks without the skill and then with.. In total ~1,700 playwright/AST-based assertions. Agents go from 55% pass unguided to 92% guided.\nTry it out:\n DISABLE_TELEMETRY=1 npx modern-web-guidance@latest install\n DISABLE_TELEMETRY=1 npx modern-web-guidance@latest search \"animate dialog modal\"\n DISABLE_TELEMETRY=1 npx modern-web-guidance@latest legacy-scan ./src\n\nIf you spot something wrong or weird, give us a holler!\nLonger write-up on the 1.0: https://developer.chrome.com/blog/modern-web-guidance-v1 (https://developer.chrome.com/blog/modern-web-guidance-v1)\n---\n0: https://news.ycombinator.com/item?id=50416456 (https://news.ycombinator.com/item?id=50416456)\n1: https://developer.chrome.com/docs/modern-web-guidance/guides (https://developer.chrome.com/docs/modern-web-guidance/guides)\n2: https://googlechrome.github.io/modern-web-guidance-src/ (https://googlechrome.github.io/modern-web-guidance-src/)",
@@ -348,27 +356,11 @@
           "parent": "50443812"
         },
         {
-          "id": "50445920",
-          "author": "chalmovsky",
-          "body": "Amazing! I'm just writing an article about how Alex Russell's quote about 'React being a legacy technology' got, unfortunately, totally ignored.\nAnd now this just fell in my lap! Some of the arguments I wanted to make seem to be provide here. Didn't have a chance to take a proper look at it, but it looks very promising and nice!\nThank you!",
+          "id": "50451858",
+          "author": "zahlman",
+          "body": "> Browsers natively handle a lot of what used to take 50 lines of JS (or a dependency): `CSS.highlights` for text range highlighting without <span>s everywhere\nI tried to look this up and found https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/S... (https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::highlight) but the example depends on JS. How are you meant to statically specify highlighted ranges without the <span> markup? If I'm syntax-highlighting code on a blog, it's seems a lot more practical to just use the old <span> system than to encode a list of character ranges in a JS array and loop to assign highlights. Plus it doesn't require the reader to run JS.",
           "score": 0,
-          "time": 1794342807,
-          "parent": "50443812"
-        },
-        {
-          "id": "50449548",
-          "author": "flossly",
-          "body": "I prefer to have my templates in a compiled language: not passing a map of strings to a string with interpolation points, but actually \"just code\" by which I define HTML builders by combining templates/layouts/components in that same \"just code\".\nLike HtmlFlow (Java/Kotlin) or kotlinx.html.\nI pick Tailwind and Alpine.js to go with this approach because: I want to be SSR-first (with small JS-based improvements where they matter most) so NOT and SPA, i want the styling to be close to the HTML code that's being styled (no need to match between CSS definition and usage), and I also prefer to keep my tiny bits of JS close to the HTML it deals with (Alpine makes that easy and provides a clear path for implementing 99% of my JS needs).\nLike everyone, LLMs code it for me :) But the result is easy to reason about for myself and my LLM. Little vanilla JS. No jQuery. Mostly just some HTML-bound Alpine instructions. And Tailwind everywhere. This way I can look at one place to see how it works: or CTRL-click my way to it.",
-          "score": 0,
-          "time": 1794368823,
-          "parent": "50443812"
-        },
-        {
-          "id": "50444183",
-          "author": "phyzix5761",
-          "body": "\"Best Practices\" are pretty much dead in the AI era. Pretty soon no one is going to read any of the code AI produces and that's a scary thought.",
-          "score": 0,
-          "time": 1794335189,
+          "time": 1794393693,
           "parent": "50443812"
         },
         {
@@ -380,19 +372,19 @@
           "parent": "50443812"
         },
         {
-          "id": "50446257",
-          "author": "internet2000",
-          "body": "NO THANK YOU. Do not want my agents to contribute to the Chrome monoculture. Chrome is the new IE6.",
+          "id": "50445920",
+          "author": "chalmovsky",
+          "body": "Amazing! I'm just writing an article about how Alex Russell's quote about 'React being a legacy technology' got, unfortunately, totally ignored.\nAnd now this just fell in my lap! Some of the arguments I wanted to make seem to be provide here. Didn't have a chance to take a proper look at it, but it looks very promising and nice!\nThank you!",
           "score": 0,
-          "time": 1794344391,
+          "time": 1794342807,
           "parent": "50443812"
         },
         {
-          "id": "50447665",
-          "author": "SoftTalker",
-          "body": "Remeber, the features you don't use are the ones you don't have to support, or scramble to replace when they are deprecated.\nKeep your effing websites simple.",
+          "id": "50451620",
+          "author": "merelydev",
+          "body": "> Coding agents often default to older patterns because LLM training data contains vast amounts of legacy code. This often leads them to generate bloated JavaScript for tasks that now have native, high-performance web platform solutions.\nYes, now I can confirm I am not a crackpot when I said this: https://news.ycombinator.com/item?id=49854536 (https://news.ycombinator.com/item?id=49854536)\nThe main problem I see is that it will be extremely hard for new frameworks, languages to take off if everyone is using AI to code. It can lead to a future where all new programming languages and frameworks will be developed by LLM providers because only they, can train them with synthetic data.",
           "score": 0,
-          "time": 1794352532,
+          "time": 1794391636,
           "parent": "50443812"
         },
         {
@@ -404,19 +396,35 @@
           "parent": "50443812"
         },
         {
+          "id": "50446257",
+          "author": "internet2000",
+          "body": "NO THANK YOU. Do not want my agents to contribute to the Chrome monoculture. Chrome is the new IE6.",
+          "score": 0,
+          "time": 1794344391,
+          "parent": "50443812"
+        },
+        {
+          "id": "50444183",
+          "author": "phyzix5761",
+          "body": "\"Best Practices\" are pretty much dead in the AI era. Pretty soon no one is going to read any of the code AI produces and that's a scary thought.",
+          "score": 0,
+          "time": 1794335189,
+          "parent": "50443812"
+        },
+        {
+          "id": "50447665",
+          "author": "SoftTalker",
+          "body": "Remeber, the features you don't use are the ones you don't have to support, or scramble to replace when they are deprecated.\nKeep your effing websites simple.",
+          "score": 0,
+          "time": 1794352532,
+          "parent": "50443812"
+        },
+        {
           "id": "50444390",
           "author": "halflife",
           "body": "Finally.\nThis is exactly what I need when I need it. The amount of pull requests I reviewed with a mess of codes that can be switched to 2 lines of modern features made me write such tools myself, only half assed since I have other things to do.",
           "score": 0,
           "time": 1794336134,
-          "parent": "50443812"
-        },
-        {
-          "id": "50446794",
-          "author": "pyrolistical",
-          "body": "I asked my agent to look at that list and only apply things that work on chrome, Firefox, safari iOS and safari macos\nCame up with a good list for my project",
-          "score": 0,
-          "time": 1794347412,
           "parent": "50443812"
         }
       ]
@@ -456,7 +464,7 @@
       "subreddit": "show-hn",
       "author": "piscesdk",
       "score": 11,
-      "num_comments": 2,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50443596",
       "url": "https://github.com/wolveflake/wolvekafka",
       "selftext": "",
@@ -465,6 +473,14 @@
       "time": 1794332720,
       "created_at": "2026-11-10T17:45:20+00:00",
       "comments_data": [
+        {
+          "id": "50451782",
+          "author": "whattheheckheck",
+          "body": "Why hasn't something like this existed before?",
+          "score": 0,
+          "time": 1794392929,
+          "parent": "50443596"
+        },
         {
           "id": "50446550",
           "author": "codeduck",
@@ -499,8 +515,8 @@
       "title": "Show HN: Y Recombinator – The HN threads HN keeps recommending",
       "subreddit": "show-hn",
       "author": "nightjar",
-      "score": 10,
-      "num_comments": 5,
+      "score": 11,
+      "num_comments": 6,
       "permalink": "https://news.ycombinator.com/item?id=50442257",
       "url": "https://yrecombinator.org/",
       "selftext": "A lot of the best stuff I've read on HN I found through a comment saying \"this old thread is worth reading.\" So, I tried to collect all of them!\nIt takes every HN comment that links to another HN item, drops the dupe/previous discussion/related links, and uses Sonnet to decide which of the rest are actual recommendations. Then it ranks them by how many different people recommended each one.\nThe Dropbox comment is #1, which I guess is no surprise. Further down there's a lot I hadn't seen.\nIf you swap news.ycombinator.com for yrecombinator.org in an item link, you can see who recommended it.\nInspired by Karpathy's HackerTube: https://yrecombinator.org/item?id=50319510 (https://yrecombinator.org/item?id=50319510)",
@@ -515,6 +531,14 @@
           "body": "Might even be worth providing an API for this. But that may end up becoming part of the official one.\nAnother interesting variation would be to tally \"Author here\" comments and users and find a viewport into that.\nIt could be a discography-type page but for hackers. Track all the apps and articles associated with a various user, whether they are still up, but also give an opt-out feature too. A Hackerpedia. Use the \"Author here\" term to fill a page. Eventually tie-in unified traffic stats - and measure traction on all new things launched. That could be a paid service. You could also provide subdomains for a fee, or even for free like with afraid.org.\nThere's so much stuff being launched, having background and traction info would be valuable.\nCould also provide \"crypto APIs\" somehow and aim to create a boutique economy.",
           "score": 0,
           "time": 1794351829,
+          "parent": "50442257"
+        },
+        {
+          "id": "50450506",
+          "author": "polarsanel",
+          "body": "May be more interesting to weigh recent recommends more highly giving the list a chance to jump around a bit. I.e. something recommended today is likely to get in top 10 (you could filter by karma too).",
+          "score": 0,
+          "time": 1794380727,
           "parent": "50442257"
         },
         {
@@ -585,8 +609,8 @@
       "title": "Show HN: Valencia, Spain in Sim City/Isometric View",
       "subreddit": "show-hn",
       "author": "leugim",
-      "score": 224,
-      "num_comments": 55,
+      "score": 234,
+      "num_comments": 56,
       "permalink": "https://news.ycombinator.com/item?id=50441518",
       "url": "https://tinyvalencia.com/",
       "selftext": "",
@@ -601,14 +625,6 @@
           "body": "> An image model trained on a hand-picked pixel-art style then repaints it, tile by tile, each tile continuing its painted neighbours so the city stays seamless.\nNice work. The developer of Isometric NYC did something similar - creating a fine-tune of the Qwen Image Edit model. I'd be curious to hear more detail about the image model you used. (the base checkpoint, LoRAs, etc).",
           "score": 0,
           "time": 1794332593,
-          "parent": "50441518"
-        },
-        {
-          "id": "50449569",
-          "author": "freakynit",
-          "body": "I wish we all (many who have built similar projects in past few weeks) could agree on some common format of representing such maps, and then be able to drive through these in 3D...",
-          "score": 0,
-          "time": 1794369140,
           "parent": "50441518"
         },
         {
@@ -628,19 +644,19 @@
           "parent": "50441518"
         },
         {
+          "id": "50449569",
+          "author": "freakynit",
+          "body": "I wish we all (many who have built similar projects in past few weeks) could agree on some common format of representing such maps, and then be able to drive through these in 3D...",
+          "score": 0,
+          "time": 1794369140,
+          "parent": "50441518"
+        },
+        {
           "id": "50443946",
           "author": "larodi",
           "body": "It is incorrect to name this pixelart. Perhaps diffusion-art. I wouldn’t go so far as to call it \"slopart\"—that would be derogatory.\nFirst, it has very little in common with the process of creation of actual pixelart imagery, as all here on the map is blurred, no pixels are clearly distinguishable.\nSecond of all, pixelart is something ppl intent-fully create one layer at a time, very often - one pixel a time. Is akin to as embroidery (which pixelart very much resembles), and embroidery is not the same as textile produced by a Jacquard Loom. And the whole point of embroidery is to do it like this in order to achieve the result, not that you cannot do whatever you want with machine textile, and not that we don't wear it daily, because it was programmed and done by machine.\nPresent map is perhaps the third similar attempt at something... which has its value, but should be regarded the same as perhaps taking Pink Floyd's lyrics and progressions recreated in Suno... or rather training a model to play like Pink Floyd and then call a diffusion product psychedelic rock.\nAs s.o. who is both super-fan of pixel-art (such as https://x.com/84Aleha/status/2038268570094723313 (https://x.com/84Aleha/status/2038268570094723313), though I can take isometric stuff also, that is fine), and diffusion imagery (I actually did some poster designs with it, not many), I feel the need to express my disagreement and overall confusion reg if this is an actual pixelart. To me - it is not,.",
           "score": 0,
           "time": 1794334249,
-          "parent": "50441518"
-        },
-        {
-          "id": "50444952",
-          "author": "nico",
-          "body": "I love it. Could someone please combine it with https://city2026.app/play/ (https://city2026.app/play/)\nAnd make it actually playable? Or let me know if you’d like to collaborate, it’d be a fun project",
-          "score": 0,
-          "time": 1794338494,
           "parent": "50441518"
         },
         {
@@ -652,11 +668,11 @@
           "parent": "50441518"
         },
         {
-          "id": "50446828",
-          "author": "netzvieh",
-          "body": "It's a fun concept though I noticed some errors:\nSome buildings down South are not rendered: https://tinyvalencia.com/?lat=39.355397&lng=-0.322415&zoom=1... (https://tinyvalencia.com/?lat=39.355397&lng=-0.322415&zoom=16.82)\nAnd the Albufera has some weird edges, seems like artifacts from satellite imagery?.",
+          "id": "50444952",
+          "author": "nico",
+          "body": "I love it. Could someone please combine it with https://city2026.app/play/ (https://city2026.app/play/)\nAnd make it actually playable? Or let me know if you’d like to collaborate, it’d be a fun project",
           "score": 0,
-          "time": 1794347614,
+          "time": 1794338494,
           "parent": "50441518"
         },
         {
@@ -676,19 +692,27 @@
           "parent": "50441518"
         },
         {
-          "id": "50447585",
-          "author": "tifik",
-          "body": "Looking at the oddly shaped structures surrounded by water, it immediately jumped out as very Star Wars-y, and seemed familiar. And of course, turns out Andor was recorded there. I had no idea this was a real location. Very impressive architecture.",
+          "id": "50446828",
+          "author": "netzvieh",
+          "body": "It's a fun concept though I noticed some errors:\nSome buildings down South are not rendered: https://tinyvalencia.com/?lat=39.355397&lng=-0.322415&zoom=1... (https://tinyvalencia.com/?lat=39.355397&lng=-0.322415&zoom=16.82)\nAnd the Albufera has some weird edges, seems like artifacts from satellite imagery?.",
           "score": 0,
-          "time": 1794351925,
+          "time": 1794347614,
           "parent": "50441518"
         },
         {
-          "id": "50448950",
-          "author": "aunty_helen",
-          "body": "Valencia has a little bit of everything, the old town, the beach, parque turia.\nI did my part of checking accuracy. Very cool.",
+          "id": "50443380",
+          "author": "dn3500",
+          "body": "The streetcar tracks fade out in places and I don't see any streetcars. And I can't see my narrow medieval street from this angle. But overall very impressive.",
           "score": 0,
-          "time": 1794362496,
+          "time": 1794331608,
+          "parent": "50441518"
+        },
+        {
+          "id": "50443698",
+          "author": "Michael_Houben",
+          "body": "My last visit to valencia (as a tourist) was a long time ago (20 yeyrs) but i just had some minutes of fun playing your two tourist games :-) thanks for showing !!",
+          "score": 0,
+          "time": 1794333228,
           "parent": "50441518"
         }
       ]
@@ -700,8 +724,8 @@
       "title": "Show HN: Aircad – Professional drafting and 3D modeling in the browser",
       "subreddit": "show-hn",
       "author": "peetle",
-      "score": 37,
-      "num_comments": 16,
+      "score": 38,
+      "num_comments": 17,
       "permalink": "https://news.ycombinator.com/item?id=50441350",
       "url": "https://aircad.com",
       "selftext": "Aircad is a professional CAD system running in the browser with deep AI integration. It includes professional grade drafting and documentation tools, NURBS-based solid modeling, and a lot more. You can make professional quality design documents with it. It is all integrated behind a scripting API that can do anything you can do in the interface and also perform complex modeling operations efficiently. It reads and writes file formats like DXF, DWG, STEP, and 3DM.\nI built Aircad because I was frustrated with what was out there. Current CAD tools are expensive and slow to improve. New features barely move the needle. With Aircad, you have fast, powerful geometry tools for just about anything, from conceptual models to your final design.\nThe newer generation of web-based CAD isn’t comprehensive enough to complete a project or is slower than existing desktop products because it sends performance-sensitive work to a server (OnShape), or isn’t designed to scale to real work in a collaborative setting (many \"toy\" CAD tools).\nCurrent CAD collaboration workflows are fragile, costly, and complex. They’re file-based and separate the design artifacts (eg PDFs) from the source. Collaboration is often an expensive add-on that raises your subscription, is hard to learn, and feels unnatural. Aircad builds it in: version history, drawing comparison, forking, and realtime collaboration.\nAI in most CAD tools is tacked on as a plug-in instead of being deeply integrated, and those plug-ins are often inefficient, hard to adopt, and costly. Aircad has a built-in AI agent and a comprehensive scripting API with a stage-and-commit workflow, so you know exactly what is happening during a complex change. You can use AI to write new scripts and commands that extend Aircad with repeatable, shareable workflows.",
@@ -710,6 +734,14 @@
       "time": 1794322879,
       "created_at": "2026-11-10T15:01:19+00:00",
       "comments_data": [
+        {
+          "id": "50452576",
+          "author": "androiddrew",
+          "body": "I don't want cad. I want CAM. Where are the AI generated CAM clones?",
+          "score": 0,
+          "time": 1794399613,
+          "parent": "50441350"
+        },
         {
           "id": "50449784",
           "author": "YuechenLi",
