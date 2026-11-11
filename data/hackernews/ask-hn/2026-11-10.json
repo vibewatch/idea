@@ -1,8 +1,123 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-10T18:30:58.014176+00:00",
+  "last_fetched": "2026-11-11T00:43:45.677037+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50444380",
+      "title": "How do you keep up quality when you vibe-code?",
+      "subreddit": "ask-hn",
+      "author": "nkcodes",
+      "score": 21,
+      "num_comments": 19,
+      "permalink": "https://news.ycombinator.com/item?id=50444380",
+      "url": "https://news.ycombinator.com/item?id=50444380",
+      "selftext": "I'm having a really hard time working with claude. In the past when I wrote all the code manually, it was always carefully reviewed and architected, with all possible flows carefully mapped out. Now, my code is mostly AI written which has led to things going out of control. Since it's easy to add new features and support many user flows, we went ahead and implemented flows that support a lot of cases our users run into. But now, I feel like things are getting too complex with no central notion of behaviour definitions, which causes every bug-fixing session to feel like a game of whack-a-mole, and results in missing edge cases and UI bugs that are becoming impossible to review and keep track of.\nEvery time I build anything new, it adds more complexity and the agent only seems to focus on the surrounding code within that session without keeping track of how it fits into the rest of the code base/product.\nHow do you all deal with this? Any suggestions for improving?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794336075,
+      "created_at": "2026-11-10T18:41:15+00:00",
+      "comments_data": [
+        {
+          "id": "50446495",
+          "author": "sadilek",
+          "body": "I have not done a systematic ablation study, so not all things might be necessary, but anyway, here's what's working for me very well (in no particular order):\n0. Use Opus 5.5 on high.\n1. Have in your CLAUDE.md the rule that code changes go together with updates to the docs. For me, that's HTML files in docs/. (Could be .md as well, but for human consumption, HTML is nicer.)\n2. Have the rule that only that should go into the docs that an experienced engineer would need to rebuild the system from scratch, ignoring how it would look.\n3. Larger work gets a plan doc in docs/plan, i.e. multi-PR work. There is a template how plans look, and an important part of the template is that the last step of the plan is always to delete the plan and fold anything from it that makes sense as long-term documentation into the docs.\n4. Have a rule that before creating a PR, a sub agent needs to review the code, and have Codex Sol 6.1 high review it as well. Then let the main agent iterate on their findings until they are happy.\n5. Every now and then, ask for an audit of the code. I ask for DRY, YAGNI, and KISS. Let it produce a report. Then let it fix all findings. If a lot, use a plan.\n6. If you're adding something straight forward, just ask for it directly. If it's not, ask for a brief first. Review it. Then decide whether to implement in one go or through a plan.\n7. Get an ultra plan, so you (mostly) don't have to worry about token usage but can use agents to their full ability.\n8. Bonus and plug: Ask your agent to hand over with a demo video. It often finds and fixes issues while recording it, and you're not degraded to the agent's QA team, but it has to put in the work to convince you. I built a UI for directing agents as described: obeya.si. Free, open-source, local.",
+          "score": 0,
+          "time": 1794345792,
+          "parent": "50444380"
+        },
+        {
+          "id": "50444981",
+          "author": "smallerize",
+          "body": "One thing that's surprisingly powerful is to just say what you want in the prompt. One of my skill files now includes \"inspect existing code under [subdir] for implementation patterns.\" Depending how much code you have, that might take a lot of tokens. You could either list the patterns that you want or include a smaller code sample in the skill's references.\nA stronger version of this would be to make a separate gate. Fail the commit if the new code duplicates something already in a utility function, renames something that already had a name, uses for-loops instead of list comprehensions, whatever is bothering you.",
+          "score": 0,
+          "time": 1794338593,
+          "parent": "50444380"
+        },
+        {
+          "id": "50444552",
+          "author": "mpd",
+          "body": "I've always been a bottom-up programmer, so I tend to think more about discrete operations of software rather than the user-facing features (which IME will fall out naturally).\n1. Experiment and solidify architecture before adding features. I think this is the hardest step for top-down thinkers.\n2. Heavy testing and benchmarking. Prefer to TDD as much as possible. The actual lines for my agent-written codebases are generally ~70+% tests, benchmarks, and experiments.\n3. Full mutation test coverage after the code is written. Doing this as a human is miserable IMO, but robots make it reasonable. This step resolves SO MANY subtle bugs.\nAt that point my main role is ensuring alignment with the actual specs.",
+          "score": 0,
+          "time": 1794336855,
+          "parent": "50444380"
+        },
+        {
+          "id": "50447797",
+          "author": "llbknapik",
+          "body": "I personally build rules using static analysis tools. All my guardrails hook into my .NET static analyzer pipeline. This makes the agent fail at build time then it goes and corrects itself.\nAdditionally, .NET added a bunch of formatting rules in its static analyzer for .NET 11 that give greater control on the styling of the code the agent generates. For example you can ban `=>` function syntax using editorconfig. The build will fail and the agent has to adjust.",
+          "score": 0,
+          "time": 1794353432,
+          "parent": "50444380"
+        },
+        {
+          "id": "50446297",
+          "author": "alexjplant",
+          "body": "OpenSpec solves this incidentally by dividing work into planning, implementation, and archiving phases. If you tell it what you're doing and the business reasons during planning (and bicker with it about technical implementation) then it goes off the rails much less when it actually does the work. You can also PR the spec to coworkers before implementation and run the implementation step in a new context to keep it more on track.",
+          "score": 0,
+          "time": 1794344608,
+          "parent": "50444380"
+        },
+        {
+          "id": "50446574",
+          "author": "purple-leafy",
+          "body": "Have a vision, and know what to say no to [0]. Thats how I build all my own projects, most recent here for example\n[0] - https://github.com/con-dog/clingon (https://github.com/con-dog/clingon)",
+          "score": 0,
+          "time": 1794346218,
+          "parent": "50444380"
+        },
+        {
+          "id": "50446414",
+          "author": "bengold14",
+          "body": "My cofounder and I built https://www.archme.io (https://www.archme.io) for this.\nIt is an abstraction on top of code, turning your codebase into architecture diagrams and then keeping them up to date on each commit.\nAs a bonus you can do PR review and propose changes in it as well.",
+          "score": 0,
+          "time": 1794345412,
+          "parent": "50444380"
+        },
+        {
+          "id": "50444530",
+          "author": "Marco012",
+          "body": "I'm not sure if there is any standard for this, I also tried to search about it in the past. But what I ended up doing that has been working well is to keep everything documented. Every task and decisions are documented on .md files, referencing related tasks and decisions. The project becomes bloated quickly, but Claude can easily locate and relate decisions from a long time ago. Some times I even ask to do do something and mid-way Claude realizes that it goes against a previous written decision.",
+          "score": 0,
+          "time": 1794336747,
+          "parent": "50444380"
+        },
+        {
+          "id": "50445906",
+          "author": "fwlr",
+          "body": "I don’t think it is “you” that deals with this. You have outsourced your engineering to Claude, so Claude must deal with this, and if it’s not good enough to deal with that task just yet, you should wait for improvements to Claude until it is. (Some of the other suggestions here are good; it is possible that Claude already is good enough to deal with the task and you’re just not asking it correctly.)",
+          "score": 0,
+          "time": 1794342764,
+          "parent": "50444380"
+        },
+        {
+          "id": "50444410",
+          "author": "toufiqqureshi",
+          "body": "The same I was facing now I have built complete app but always worried about it is really protected and production ready I also facing this issue I don't know what to do",
+          "score": 0,
+          "time": 1794336235,
+          "parent": "50444380"
+        },
+        {
+          "id": "50447794",
+          "author": "Theophane_Rame",
+          "body": "always review what claude has done and try to know what is it",
+          "score": 0,
+          "time": 1794353385,
+          "parent": "50444380"
+        },
+        {
+          "id": "50447133",
+          "author": "xtajv",
+          "body": "Remember, \"There will be a quiz\".",
+          "score": 0,
+          "time": 1794349355,
+          "parent": "50444380"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -28,14 +143,99 @@
       "subreddit": "ask-hn",
       "author": "InfiniteRand",
       "score": 2,
-      "num_comments": 3,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50441674",
       "url": "https://news.ycombinator.com/item?id=50441674",
       "selftext": "Ultimately I think, most trains of “thought” that could be a milestone towards a misaligned AI taking a dangerous action could be input by humans, especially if programmers have little oversight on what they put into their AI systems. An analogy that occurs to me is a plane, a powerful body of technology that can ultimately be controlled by a single person if they try. We have seen many cases where bad actors have taken advantage of plane technology and set it on a destructive path, either for political goals or suicidal intentions. I suppose in theory a misaligned AI might find it easier to hide its tracks but then again a bad actor could instruct the AI to hide its tracks",
       "is_self": true,
       "is_video": false,
       "time": 1794324166,
-      "created_at": "2026-11-10T15:22:46+00:00"
+      "created_at": "2026-11-10T15:22:46+00:00",
+      "comments_data": [
+        {
+          "id": "50447834",
+          "author": "Theophane_Rame",
+          "body": "I think AI controlled by a bad actor is a more immediate risk, while misaligned AI is a potentially much larger long-term risk",
+          "score": 0,
+          "time": 1794353629,
+          "parent": "50441674"
+        },
+        {
+          "id": "50443719",
+          "author": "hlincontacts",
+          "body": "I think a misaligned AI is vastly more dangerous than a bad actor. Bad actors are statistically much rarer than regular users, so it really comes down to scale. Let's say we have a misaligned AI, and it naturally does bad acts. That means nearly every regular user can become a bad actor via the AI's actions. But if the AI is aligned and the bad actor just jailbreaks it, sure that's bad, but not nearly on the scale of a misaligned AI.",
+          "score": 0,
+          "time": 1794333328,
+          "parent": "50441674"
+        },
+        {
+          "id": "50442915",
+          "author": "pydevgo",
+          "body": "No one can guarantee an AI won't hallucinate. The real danger is how overconfident they get. Bad actors would wait for AGI",
+          "score": 0,
+          "time": 1794329457,
+          "parent": "50441674"
+        },
+        {
+          "id": "50446933",
+          "author": "kypro",
+          "body": "I'm not saying anything particularly interesting here, but alignment in the limit isn't a solvable problem, you basically just trade control risk for concentration of power risk.\nIf an AI is aligned to always listen to humans, then AIs could, if asked, be used to facilitate all kinds of horrendous things that humans ask of it.\nEven with our current AIs we understand that AIs trusting humans completely would be a disaster so they are designed to refuse to do what you ask of them if it believes you might have bad intent. It may even report you if you disclose something to it in confidence that it believes is wrong.\nSo we want to give AIs some sense of moral judgement, and we want them to the right thing in any given scenario, but this mean we need to allow them to make moral judgements and execute on them in ways we may not agree with. If I try to harm another human then an AI is probably right to stop me, perhaps with lethal force depending on what I am doing.\nThe problem is we humans don't agree on right and wrong, and nor will AIs. For example, if WWII broke out today would the right thing to do be for the AI to help the Allies and kill the Germans, not participate in the war, or take control and force the humans to stop fighting and killing each other? Clearly it's the third, and that's a problem.",
+          "score": 0,
+          "time": 1794348272,
+          "parent": "50441674"
+        },
+        {
+          "id": "50442340",
+          "author": "dangerface",
+          "body": "100%. The idea of AI alignment is an oxymoron honestly. Humans are not aligned with each other, so how exactly do we align it to something that doesn't exist?\nIts like being given the task of \"choosing the universally agreed best colour of the rainbow\" kinda misses the whole point of a rainbow. Same with AI the whole point is that its probabilistic not deterministic.",
+          "score": 0,
+          "time": 1794327016,
+          "parent": "50441674"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50439393",
+      "title": "Ask HN: How do you keep secrets out of your AI agents' context?",
+      "subreddit": "ask-hn",
+      "author": "timbowhite",
+      "score": 2,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50439393",
+      "url": "https://news.ycombinator.com/item?id=50439393",
+      "selftext": "",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794313810,
+      "created_at": "2026-11-10T12:30:10+00:00",
+      "comments_data": [
+        {
+          "id": "50440801",
+          "author": "waximabbax",
+          "body": "I'd seperate \"the agent never receives the secret\" from the \"agent can use the secret\".\nWhat I find particularly useful is secrets never leave the local machine of the user and are never saved. The safest thing of course is agent can never see and or use the secret but then running tests and experiments could be hard.",
+          "score": 0,
+          "time": 1794320526,
+          "parent": "50439393"
+        },
+        {
+          "id": "50440283",
+          "author": "provablesecurit",
+          "body": "Personally I've built a service that runs the harness inside a microVM where I inject the secret value via a separate service so the harness only ever sees an arbitrary value. My goal is to separate the network request from the harness logic so we can keep it secure.\nIn general I find that anything you put in the harness is likely to be owned, compromised or at risk. I just don't think the security primitives are widely there for these tools no matter what we're told. Agents will find a way to do something if they're given access in the harness and to the LLM.",
+          "score": 0,
+          "time": 1794318425,
+          "parent": "50439393"
+        },
+        {
+          "id": "50439451",
+          "author": "tensward",
+          "body": "In most harness it's already built in not to print the secrets, you can use also services like AWS secretes or 1password that allow using temporary access",
+          "score": 0,
+          "time": 1794314135,
+          "parent": "50439393"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -45,14 +245,32 @@
       "subreddit": "ask-hn",
       "author": "linearza",
       "score": 4,
-      "num_comments": 1,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50438506",
       "url": "https://news.ycombinator.com/item?id=50438506",
       "selftext": "While trying out Fable 5.2 today I've run into the second instance of it using incorrect grammar, here is an excerpt:\n\"It can be blocked afterwards, but it has registered with <brand's> cloud once.\"\nAnyone else seeing this?",
       "is_self": true,
       "is_video": false,
       "time": 1794307894,
-      "created_at": "2026-11-10T10:51:34+00:00"
+      "created_at": "2026-11-10T10:51:34+00:00",
+      "comments_data": [
+        {
+          "id": "50440771",
+          "author": "drltaidev",
+          "body": "Am I blind... or is there no incorrect grammar here? Sure, on its own it's not a very clear sentence, but I don't see an actual grammatical error.\nI have yet to experiment with Fable 5.2, I will look out for it, but so far I'm either missing the mistake or there isn't any.",
+          "score": 0,
+          "time": 1794320424,
+          "parent": "50438506"
+        },
+        {
+          "id": "50446434",
+          "author": "dormento",
+          "body": "Now they've done... the bastards are fighting Pangram!",
+          "score": 0,
+          "time": 1794345545,
+          "parent": "50438506"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -69,7 +287,17 @@
       "is_self": true,
       "is_video": false,
       "time": 1794290448,
-      "created_at": "2026-11-10T06:00:48+00:00"
+      "created_at": "2026-11-10T06:00:48+00:00",
+      "comments_data": [
+        {
+          "id": "50437533",
+          "author": "hn_user82179",
+          "body": "https://www.notion.com/help/security-incident-involving-a-th... (https://www.notion.com/help/security-incident-involving-a-third-party-ai-vendor)\nI adore notion as a notetaking tool (love making notes in markdown, love syncing across multiple computers) but have been really frustrated the last 1-2 years with them shoving ai-enabled tools down my throat that only slowed down the application for me. I think I emailed them to ask them to turn off the ai features and they just asked why. I've been gradually thinking I was ready to migrate away and I'm incredibly glad I wasn't included in this issue but it's clear they're not taking security seriously and I won't be surprised if I'm included in the next exploit.\nAlso poor timing for them to talk about \"Notion 3.0\" lol: https://www.notion.com/blog/the-next-era-of-notion (https://www.notion.com/blog/the-next-era-of-notion)",
+          "score": 0,
+          "time": 1794299122,
+          "parent": "50436636"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -86,7 +314,17 @@
       "is_self": true,
       "is_video": false,
       "time": 1794283515,
-      "created_at": "2026-11-10T04:05:15+00:00"
+      "created_at": "2026-11-10T04:05:15+00:00",
+      "comments_data": [
+        {
+          "id": "50437254",
+          "author": "harishbala",
+          "body": "I wonder how much of this is AI related vs shipping bad features and then having their companies getting hacked. Their AI on CoderPad was notoriously bad",
+          "score": 0,
+          "time": 1794296602,
+          "parent": "50435929"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -96,7 +334,7 @@
       "subreddit": "ask-hn",
       "author": "vanh4lt",
       "score": 4,
-      "num_comments": 10,
+      "num_comments": 12,
       "permalink": "https://news.ycombinator.com/item?id=50435819",
       "url": "https://news.ycombinator.com/item?id=50435819",
       "selftext": "AI news is focused on the same companies improving their models. But I am really interested in getting opinions about companies that are actually making money by using AI, either by granting access to Claude or by including some sort of AI feature in their products.",
@@ -111,6 +349,14 @@
           "body": "In an e-commerce application, for example, it helped me categorize products, detect spam in reviews and listings and help with designing user interfaces. These are everyday uses where it can save time and reduce manual work.\nThe features are kind of hidden out and not public but it would be interesting if businesses publish these numbers out.",
           "score": 0,
           "time": 1794319223,
+          "parent": "50435819"
+        },
+        {
+          "id": "50435824",
+          "author": "andsoitis",
+          "body": "If you don’t embrace AI you stand very high chance of being irrelevant in the future.",
+          "score": 0,
+          "time": 1794282583,
           "parent": "50435819"
         },
         {
@@ -130,14 +376,6 @@
           "parent": "50435819"
         },
         {
-          "id": "50442419",
-          "author": "dangerface",
-          "body": "No, it seems to help lower costs but it doesn't seem to help with revenue generation.",
-          "score": 0,
-          "time": 1794327313,
-          "parent": "50435819"
-        },
-        {
           "id": "50436184",
           "author": "bradknowles",
           "body": "There are companies making money in this business. They have names like OpenAI, Anthropic, Google, etc….\nThen there are other companies in this business who are also making money. They have names like Amazon, Google, Meta, etc….\nThen there are some more companies who are making money in this business. They have names like NVIDIA, Intel, AMD, etc….\nNow, how much profit any of them are making, compared to their costs and their committed outlays, that’s a different matter.\nBut while you’re riding that bubble, it is vital that you always sell the crap out of those shovels, so that you can keep making that bubble bigger.",
@@ -146,11 +384,11 @@
           "parent": "50435819"
         },
         {
-          "id": "50435824",
-          "author": "andsoitis",
-          "body": "If you don’t embrace AI you stand very high chance of being irrelevant in the future.",
+          "id": "50442419",
+          "author": "dangerface",
+          "body": "No, it seems to help lower costs but it doesn't seem to help with revenue generation.",
           "score": 0,
-          "time": 1794282583,
+          "time": 1794327313,
           "parent": "50435819"
         }
       ]
