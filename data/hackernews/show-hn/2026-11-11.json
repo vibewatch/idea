@@ -1,8 +1,646 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-11T12:32:37.294709+00:00",
+  "last_fetched": "2026-11-11T18:30:53.961803+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50454951",
+      "title": "Show HN: Klad, a paint app your coding agent can drive (source-available)",
+      "subreddit": "show-hn",
+      "author": "ambewas",
+      "score": 41,
+      "num_comments": 14,
+      "permalink": "https://news.ycombinator.com/item?id=50454951",
+      "url": "https://github.com/klad-app/klad",
+      "selftext": "I've been developing applications for a long time and have turned to game development as well lately. One of the things that frustrated me the most was that using AI agents for game development is very annoying in the art department. Your only options right now are to either use an image genAI model and roll the dice every time you want to make an edit, or have your agent draw with something like vectors.\nI was looking for an application that would allow me to ask an agent to make a first draft of whatever art I needed with actual brushes, and then be able to go in myself and edit every last stroke or layer that it created.\nKlad is that application. Written in Rust, it can be fully controlled by an agent through the CLI, and every function is available in a nice UI as well: a brush engine, frame-by-frame animation (and bones/IK), vectors, text layers, colours, layer effects, infinite undo (even after re-opening the file!),…\nWhy I think it's useful for a wider audience: Adobe showed agents editing Photoshop files at MAX this week, with a private beta planned for early 2027.\nKlad is built on the same core idea, with editable paint strokes as core architecture, and it works today.\nClone the repo to try it out: https://github.com/klad-app/klad (https://github.com/klad-app/klad)\nYou can basically point Claude to the repo, ask it to build it, and pick up the drawing skills. Then ask it to make any drawing you want! (After that, you or the agent can change absolutely every brush stroke in the app again, which makes edits a breeze.)\nThe quality of the drawings really depends on the agent you use. I have tried it with Claude Fable 5.2 since it came out on Monday, and the drawings are already quite impressive. I'm confident that this will only improve.\nI use it every day on Mac, so that definitely works well. It builds on Linux too (tablet pen pressure still needs some work there). Windows builds in CI, I haven't used it there myself yet but I have some reports that it works perfectly fine.\nComing up next is support for pixel art. I'm in the testing phase with this right now, and I expect it to go live in the repo sometime this weekend.\nKlad is source-available rather than open source: free to build and use for individuals and small companies, and I plan to sell pre-built binaries later, the way Aseprite does. The file format, CLI reference and agent skill are MIT.\nWhat I want to hear from people who try it: Can your agent work out the CLI without help, and where does it get confused? Can you go in and change one of its strokes easily?\nThe command reference and guides are available at https://klad.studio (https://klad.studio)\nI'll be here answering any questions about the technical side as well, as it's a pretty interesting challenge to build a performant engine with editable brush strokes that render as paint.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794412850,
+      "created_at": "2026-11-11T16:00:50+00:00",
+      "comments_data": [
+        {
+          "id": "50456549",
+          "author": "vunderba",
+          "body": "Nice job~~\nSo I've done a little bit of testing. When I loaded up the editor, I expected it to communicate with the installed binaries for my large language models, or possibly use a BYOK (bring your own key) approach. But once I understood that it's driven from the command line and you see the changes happen in the editor that gets spun up, I had no problems.\nI've been experimenting a fair amount with LLMs driving procedural graphics myself, although my experiments have been mostly limited to relatively low-resolution stuff, such as EGA adventure game graphics.\nSo I decided to put Klad through a relatively hard test: I took a reference picture of an illustrated squirrel and asked it to recreate it, then set up the rigging for a basic walk cycle. This was using Fable 5.2 high.\nThen I did the same thing, but with a more traditional approach, using standard generative models to manually create a walk cycle. This was all done relatively quickly, so bear that in mind.\nHere are the results. I still think these are early days, and LLM-driven graphics are only going to improve.\nAnd there are obvious advantages to a procedural system with rigging: Much easier to maintain consistency, palette control, and the ability to make precise alterations without having to deal with any kind of conventional in-painting nonsense.\nhttps://imgpb.com/vJFpP (https://imgpb.com/vJFpP)",
+          "score": 0,
+          "time": 1794420879,
+          "parent": "50454951"
+        },
+        {
+          "id": "50456530",
+          "author": "mmvvaa",
+          "body": "I have been meaning to find/build a tool that would sit in between the pre-production assets of a movie clip (script, characters, locations, prop assets) and the moment you press generate.\nI envisioned it as some sort of a flipbook that would allow me to *cheaply* get a low-res idea of what the 'generate' click would get me, without having to burn movie making tokens.\nThis may not be exactly it, but it nudged me into a direction. Thanks!\nI will give it a try and report back.",
+          "score": 0,
+          "time": 1794420765,
+          "parent": "50454951"
+        },
+        {
+          "id": "50456163",
+          "author": "rchrp",
+          "body": "The project looks really cool. Do you have an average measure of the time taken for a generation and the number of tool calls?",
+          "score": 0,
+          "time": 1794419030,
+          "parent": "50454951"
+        },
+        {
+          "id": "50456142",
+          "author": "arjgoel30",
+          "body": "Hmm this is interesting, perhaps you could pair it with image gen and add code to seperate the layers instead of individual brush strokes. Could be very token costly. Will try though",
+          "score": 0,
+          "time": 1794418871,
+          "parent": "50454951"
+        },
+        {
+          "id": "50455712",
+          "author": "geooff_",
+          "body": "Very cool. Can't wait to try this!",
+          "score": 0,
+          "time": 1794416690,
+          "parent": "50454951"
+        },
+        {
+          "id": "50455992",
+          "author": "tamimio",
+          "body": "This looks very interesting, so the outputs are svg? Will definitely give it a try",
+          "score": 0,
+          "time": 1794418154,
+          "parent": "50454951"
+        },
+        {
+          "id": "50455648",
+          "author": "chaostheory",
+          "body": "In the future, I wonder if agents will still try to leave some sort of hard to detect “watermark” using this new generation of tools?\nThis is a really great tool that solves a specific pain point with image models though",
+          "score": 0,
+          "time": 1794416344,
+          "parent": "50454951"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50454625",
+      "title": "Show HN: Yogurt – Free, private, open-source alternative to Granola",
+      "subreddit": "show-hn",
+      "author": "brownrout",
+      "score": 44,
+      "num_comments": 25,
+      "permalink": "https://news.ycombinator.com/item?id=50454625",
+      "url": "https://github.com/FrigadeHQ/yogurt",
+      "selftext": "Hey HN, I’m Eric and I want to share an OSS project that I’ve been building in my free time. Yogurt is a free, MIT licensed desktop app that uses on-device AI models to transcribe, summarize, and chat with your meetings.\nHere's a quick demo video: https://youtu.be/BFfbXAwRq98 (https://youtu.be/BFfbXAwRq98)\nSimilar to Granola, Yogurt runs in the background and does not join your calls. But unlike Granola, Yogurt is open-source, free to use, and private. Your meeting transcripts, call recordings, and summaries never leave your computer.\nAs small OSS models have gotten faster and more powerful, Yogurt seemed like a pretty obvious win for privacy and cost conscious folks. You do not need a frontier model to summarize meeting notes or answer questions about them. And if you want to make your notes available to a frontier model, you can just share it with Anthropic, OpenAI, etc. directly via Yogurt’s local MCP server. There’s no need to use a paid cloud service as a middleman.\nI tried some of the most popular OSS note taking tools, and most were missing features like calendar integration, MCP server, etc. or required you to connect or create an account. And more than that, they didn’t feel polished enough for it to be something I actually wanted to use daily, and so I built Yogurt to scratch that itch. I spent a lot of time fine-tuning every UI interaction/animation and optimizing the model calls to get the most out of your hardware + make it snappy.\nTo support Windows/Mac/Linux, I decided to go with Electron. I use whisper.cpp for transcription and Apple’s on-device SpeechAnalyzer if your system supports it. For call summaries and questions, I use a local open weight LLM that automatically gets downloaded and set up based on what your hardware can handle without your cooling fans firing off like crazy (this part uses llama.cpp).\nI’ve spent a lot of time working on details like echo detection/reduction, global/folder/local level search respectively, and auto-end recordings. Hope this is useful for any of you who have held out on using AI note tools for privacy or cost reasons, or for folks using cloud tools who want to switch to something free and open source that still feels great to use.\nWould love to hear what you think about the onboarding and note taking experience :)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794411186,
+      "created_at": "2026-11-11T15:33:06+00:00",
+      "comments_data": [
+        {
+          "id": "50456763",
+          "author": "theturtletalks",
+          "body": "I’ll add it to my open-source directory[0].\nHow does it differ from Muesli[1] and OpenOats[2]?\n0. https://opensource.builders/alternatives/granola (https://opensource.builders/alternatives/granola)\n1. https://github.com/pHequals7/muesli (https://github.com/pHequals7/muesli)\n2. https://github.com/yazinsai/OpenOats (https://github.com/yazinsai/OpenOats)",
+          "score": 0,
+          "time": 1794421809,
+          "parent": "50454625"
+        },
+        {
+          "id": "50456694",
+          "author": "fmajid",
+          "body": "My company uses https://github.com/itskhalil/talky (https://github.com/itskhalil/talky)",
+          "score": 0,
+          "time": 1794421497,
+          "parent": "50454625"
+        },
+        {
+          "id": "50456628",
+          "author": "hvvivek",
+          "body": "Gonna give this a try! I too stopped all the other subscriptions and have been looking for something that works well.",
+          "score": 0,
+          "time": 1794421287,
+          "parent": "50454625"
+        },
+        {
+          "id": "50456571",
+          "author": "pruneau",
+          "body": "Is it possible to choose which model or models are used for transcription? Are other languages, such as French, supported?",
+          "score": 0,
+          "time": 1794421026,
+          "parent": "50454625"
+        },
+        {
+          "id": "50456473",
+          "author": "zaius",
+          "body": "I also got frustrated with Granola earlier this year and have been building my replacement - Noted: https://takenoted.com/ (https://takenoted.com/)\nIt shares similar principles but is (currently) closed source and mac-only.\nTake a look at anarlog as well - it's a great project and I wish I'd found it earlier as I probably would have contributed instead of starting my own: https://anarlog.so/ (https://anarlog.so/)\nLet me know if you want to compare notes - I am sure we have hit a lot of the same issues.",
+          "score": 0,
+          "time": 1794420453,
+          "parent": "50454625"
+        },
+        {
+          "id": "50456344",
+          "author": "walthamstow",
+          "body": "I made something like this myself but because I didn't want anyone to know I was doing it, no bot in the call, I couldn't diarise the notes. I have what's been said, but not who said it. Did you manage to solve this?",
+          "score": 0,
+          "time": 1794419817,
+          "parent": "50454625"
+        },
+        {
+          "id": "50456527",
+          "author": "andy_ppp",
+          "body": "This looks absolutely incredible! Thank you!",
+          "score": 0,
+          "time": 1794420751,
+          "parent": "50454625"
+        },
+        {
+          "id": "50455134",
+          "author": "kokugle",
+          "body": "Been waiting for this for so long. very cool product",
+          "score": 0,
+          "time": 1794413898,
+          "parent": "50454625"
+        },
+        {
+          "id": "50456341",
+          "author": "vad_n__",
+          "body": "Hmm... granola is usually yummy with yogurt.",
+          "score": 0,
+          "time": 1794419808,
+          "parent": "50454625"
+        },
+        {
+          "id": "50456315",
+          "author": "asdfqwertzxcv",
+          "body": "Excited to give it a whirl. Great work!",
+          "score": 0,
+          "time": 1794419714,
+          "parent": "50454625"
+        },
+        {
+          "id": "50455885",
+          "author": "anoojb",
+          "body": "looks amazing! if you used AI coding agents to build this, any reason why you couldn't refactor this to use gpui or rune to still get cross platform but have better performance?",
+          "score": 0,
+          "time": 1794417513,
+          "parent": "50454625"
+        },
+        {
+          "id": "50456245",
+          "author": "BizarroLand",
+          "body": "The name reminds me of the line in Spaceballs:\n\"Yogurt!? Yogurt! I hate yogurt! Even with strawberries!\"",
+          "score": 0,
+          "time": 1794419448,
+          "parent": "50454625"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50453641",
+      "title": "Show HN: BackTrail, keep each tab's Back history across browser restarts",
+      "subreddit": "show-hn",
+      "author": "lgday",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50453641",
+      "url": "https://lgdventures.github.io/backtrail/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794406258,
+      "created_at": "2026-11-11T14:10:58+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50453372",
+      "title": "Show HN: Whisperstream – Free, open-source local dictation for Windows",
+      "subreddit": "show-hn",
+      "author": "djacksondev",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50453372",
+      "url": "https://whisperstream.io",
+      "selftext": "Hi HN, I built Whisperstream, a free and open-source dictation app for Windows.\nYou've seen a dozen of these, so what makes it different from all the other dictation apps?\n- Local cleanup: We're the only free and open source solution on Windows with a finetuned cleanup model. Stream-1 Mini is a Qwen 0.6B finetune for removing filler and applying spoken corrections. Superwhisper is the only Windows app that offers this, is paid, and in our benchmark we outperform their S1 mini with 36% less failures. Benchmark: https://whisperstream.io/stream-1-mini-vs-s1-mini (https://whisperstream.io/stream-1-mini-vs-s1-mini)\n- Agent Speak: Hear or read response summaries from Claude Code or Codex, and speak back directly. Expand to see the full response without switching contexts. The TTS uses Kokoro for highly realistic voices.\n- Smart Dictionary: Most local dictation apps don't offer dictionary support when using their fine-tuned cleanup model. We trained it into our finetune and use phonetic matching so we only include similar words for boosting.\nIt's GPL-3.0, completely free and now has a Mac version too.\nGithub: https://github.com/lanreal-io/whisperstream/ (https://github.com/lanreal-io/whisperstream/)\nDemo: https://whisperstream.io/press/demos/launch-2.0-light.gif (https://whisperstream.io/press/demos/launch-2.0-light.gif)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794404865,
+      "created_at": "2026-11-11T13:47:45+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50453328",
+      "title": "Show HN: AI Purgatory – how long until AI-exposed workers are back on track",
+      "subreddit": "show-hn",
+      "author": "orange_joe",
+      "score": 3,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50453328",
+      "url": "https://tylerthinking.com/purgatory/",
+      "selftext": "I worked up this model as a personal project to help figure out how long AI exposed workers are worse off. As a software engineer, I imagine getting laid off and being incapable of finding new work. It Also showcases the impacts of proposed redistribution mechanisms. This model is meant as a device to consider the impact of AI on workers.\nthis is all highly speculative so you can play with the knobs yourself.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794404603,
+      "created_at": "2026-11-11T13:43:23+00:00",
+      "comments_data": [
+        {
+          "id": "50454302",
+          "author": "akzh4n",
+          "body": "cool project. i'm not sure about the 65% re-hire rate though. \nthat's from normal layoffs, ff AI hits a whole profession at once, everyone's looking for the same jobs, so i'd guess it's a lot lower",
+          "score": 0,
+          "time": 1794409435,
+          "parent": "50453328"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50453229",
+      "title": "Show HN: Godbolt-in-a-floating-window for Neovim (C, C++, Rust)",
+      "subreddit": "show-hn",
+      "author": "0xdeadf1sh",
+      "score": 67,
+      "num_comments": 13,
+      "permalink": "https://news.ycombinator.com/item?id=50453229",
+      "url": "https://github.com/0xdeadf1sh/AssemblyForNeovim",
+      "selftext": "No internet connection needed. Uses a locally-installed compiler for assembly generation.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794404064,
+      "created_at": "2026-11-11T13:34:24+00:00",
+      "comments_data": [
+        {
+          "id": "50456500",
+          "author": "waschl",
+          "body": "+1 only because of the seemingly non-AI README. Such a joy to get the core info in one glimpse",
+          "score": 0,
+          "time": 1794420607,
+          "parent": "50453229"
+        },
+        {
+          "id": "50454596",
+          "author": "evmar",
+          "body": "https://github.com/pacak/cargo-show-asm (https://github.com/pacak/cargo-show-asm) is a nice helper for the Rust->asm part of this that has seen a decent amount of work for handling all the edge cases. (I've contributed a bit to it to handle some Windows issues.)",
+          "score": 0,
+          "time": 1794411072,
+          "parent": "50453229"
+        },
+        {
+          "id": "50454851",
+          "author": "bajard",
+          "body": "Maybe I should say Compiler Explorer instead of Godbolt.\nThis should be mandatory for any programming environment, along with a CPU emulator showing how data moves through the ALU, and all the ports, to which registers it goes to, and how everything works clock by clock.\nI hope AI makes this possible, at least for VS Code and C++.",
+          "score": 0,
+          "time": 1794412375,
+          "parent": "50453229"
+        },
+        {
+          "id": "50455018",
+          "author": "ivanjermakov",
+          "body": "I usually want to see assembly during debugging, not development. For which rad debugger is a must (now on Linux!): https://github.com/EpicGames/raddebugger (https://github.com/EpicGames/raddebugger)",
+          "score": 0,
+          "time": 1794413224,
+          "parent": "50453229"
+        },
+        {
+          "id": "50456427",
+          "author": "FirstClassTree",
+          "body": "genuinely asking, but isn't today the AI writing the code?",
+          "score": 0,
+          "time": 1794420238,
+          "parent": "50453229"
+        },
+        {
+          "id": "50454067",
+          "author": "shmerl",
+          "body": "That's interesting. There is also https://codeberg.org/Jorenar/nvim-dap-disasm (https://codeberg.org/Jorenar/nvim-dap-disasm) if you want to get it for actual compiled result + debugger.",
+          "score": 0,
+          "time": 1794408268,
+          "parent": "50453229"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50453221",
+      "title": "Show HN: Zaelar, self-hostable life agent with voice, UI and network A2A",
+      "subreddit": "show-hn",
+      "author": "zaelar",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50453221",
+      "url": "https://zaelar.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794404023,
+      "created_at": "2026-11-11T13:33:43+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50453189",
+      "title": "Show HN: blqsort – A C++ Quicksort Faster Than std:sort",
+      "subreddit": "show-hn",
+      "author": "chrka",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50453189",
+      "url": "https://tiki.li/blog/about_blqsort",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794403872,
+      "created_at": "2026-11-11T13:31:12+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50453176",
+      "title": "Show HN: I created a library for correctly using SQLite in Go programs",
+      "subreddit": "show-hn",
+      "author": "sethops1",
+      "score": 13,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50453176",
+      "url": "https://github.com/cattlecloud/litesql",
+      "selftext": "Using SQLite in Go is deceptively easy. If you just import the popular github.com/mattn/go-sqlite3 as the database/sql driver implementation and start making queries, things will work great until you start hitting SQLITE_BUSY errors as traffic increases.\nThen you go down the same path of many gophers before you, finding GitHub and forum posts providing conflicting information on best practices for pragma values and connection handling.\nSo I created https://github.com/cattlecloud/litesql (https://github.com/cattlecloud/litesql)\nWhich provides a nice abstraction, making it easy to accidentally do the right things when using SQLite in your Go program. In particular it pools connections for read transactions and isolates a dedicated write connection for writes. It also sets pragma values to much more reasonable defaults, like isolation levels, foreign keys, cache sizes, etc. On top it provides a nice abstraction for creating periodic snapshots with retention policies. There is also litesqltest for one-line test database creation in unit tests.\nHopefully you or your agents might find it useful.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794403826,
+      "created_at": "2026-11-11T13:30:26+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50453034",
+      "title": "Show HN: Editmamei – Giving AI agents access to desktop Photoshop and GIMP",
+      "subreddit": "show-hn",
+      "author": "belcairn",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50453034",
+      "url": "https://github.com/editmamei/editmamei",
+      "selftext": "Hi HN!\nI built Editmamei, a local MCP server for Adobe Photoshop and GIMP.\nI built it because I wanted to connect Claude to a powerful photo editor, since Claude can't generate images itself. Apparently I wasn't the only one, Adobe previewed their own local Photoshop MCP yesterday, announcing at Adobe MAX a private beta in early 2027.\nEditmamei brings the AI agent of your choice into Photoshop and lets it do as much or as little of the editing as you want. It has tools to measure and inspect, apply filters, transform the image, insert other images and create objects, and it can use some of Photoshop's more advanced features like Select Subject and Sky Replacement.\nThe agent \"sees\" each edit with downscaled previews, layer trees, histogram calculations and other tools, so someone who has never used Photoshop can ask for a recommended edit, and a professional can hand Editmamei the specific directions for tedious actions and batch automation, keeping the finishing and favorite parts for themselves. Everything is done layer by layer in a fully editable PSD, just as a normal Photoshop user would work.\nPhotoshop has more features overall, but GIMP is just as capable for normal photo processing and design. The main difference is the Adobe-specific tools; GIMP doesn't have heal/clone or AI subject and sky selection. Photoshop runs on Windows and Mac; GIMP runs on Windows, Mac and Linux.\nSource available: https://github.com/editmamei/editmamei (https://github.com/editmamei/editmamei)\nI'd love feedback, and suggestions for other editors this could support!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794402896,
+      "created_at": "2026-11-11T13:14:56+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50453033",
+      "title": "Show HN: Episteme AI – Self-healing roadmaps with paywall and dead-link checks",
+      "subreddit": "show-hn",
+      "author": "SreeNaresh1",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50453033",
+      "url": "https://github.com/SreeNaresh1/episteme-ai",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794402891,
+      "created_at": "2026-11-11T13:14:51+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50453025",
+      "title": "Show HN: I checked 10 AI-written patches to real C++ projects – 6 didn't hold up",
+      "subreddit": "show-hn",
+      "author": "u-pump",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50453025",
+      "url": "https://unfix.dev/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794402852,
+      "created_at": "2026-11-11T13:14:12+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50453016",
+      "title": "Show HN: I Rebuilt iCloud's Apps in Rust for Linux, Windows and Android",
+      "subreddit": "show-hn",
+      "author": "YashOnYC",
+      "score": 3,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50453016",
+      "url": "https://github.com/YashwanthKamireddi/Skykeep",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794402813,
+      "created_at": "2026-11-11T13:13:33+00:00",
+      "comments_data": [
+        {
+          "id": "50453045",
+          "author": "nimitbhardwaj",
+          "body": "Thats neat, you used REA + Claude for development?",
+          "score": 0,
+          "time": 1794402973,
+          "parent": "50453016"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50452933",
+      "title": "Show HN: PairOnce – Files between phone and computer, no app needed",
+      "subreddit": "show-hn",
+      "author": "PairOnce",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50452933",
+      "url": "https://paironce.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794402289,
+      "created_at": "2026-11-11T13:04:49+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50452926",
+      "title": "Show HN: Komrad – an AI agent that does not work for you",
+      "subreddit": "show-hn",
+      "author": "harelj6",
+      "score": 4,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50452926",
+      "url": "https://komr.ad/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794402254,
+      "created_at": "2026-11-11T13:04:14+00:00",
+      "comments_data": [
+        {
+          "id": "50452930",
+          "author": "harelj6",
+          "body": "Hey HN!\nEvery agent launch this year promises to do more for you, so I built the opposite :)\nKomrad is an \"AI\" terminal from a fictional Soviet ministry. You type a request, it prints a reply on a paper slip. Real old time vibes.\nSome details that were fun to get right:\n1. The design, the language, the jokes. Not so simple!\n2. Easter eggs, like the website's llms.txt\n3. Making the internet a bit more silly, with yet another purposeless product, just there to make you smile.\nIt's silly, it's useless, but if you enjoyed it then that's what it's all about :)\nHope you have a great day!",
+          "score": 0,
+          "time": 1794402262,
+          "parent": "50452926"
+        },
+        {
+          "id": "50453115",
+          "author": "vaishnavsm",
+          "body": "Super fun! Really good idea to add a queue.\nDo you use a small model with a tuned system prompt? What was your tuning methodology?",
+          "score": 0,
+          "time": 1794403415,
+          "parent": "50452926"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50452711",
+      "title": "Show HN: Kodelyth ECC – 71 AI agents and MCP and 55% token cuts for Claude Code",
+      "subreddit": "show-hn",
+      "author": "sifxprime",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50452711",
+      "url": "https://ecc.kodelyth.com",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794400790,
+      "created_at": "2026-11-11T12:39:50+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50452558",
+      "title": "Show HN: Inp-Analyser – MIT CLI That Diagnoses Interaction to Next Paint",
+      "subreddit": "show-hn",
+      "author": "franze",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50452558",
+      "url": "https://inp-analyser.franzai.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794399486,
+      "created_at": "2026-11-11T12:18:06+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50452549",
+      "title": "Show HN: Faraway – Physically accurate solar system, time travel 1900–2100",
+      "subreddit": "show-hn",
+      "author": "qianyiyu",
+      "score": 5,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50452549",
+      "url": "https://faraway.space/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794399442,
+      "created_at": "2026-11-11T12:17:22+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50452389",
+      "title": "Show HN: NoDOM high performance WASM UI kit for DuckDB-WASM",
+      "subreddit": "show-hn",
+      "author": "osullivj",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50452389",
+      "url": "https://osullivj.github.io/nodom_ukprop/",
+      "selftext": "NoDOM replaces Chrome's DOM, CSS & HTML rendering with a custom WASM engine designed for high performance and minimal latency in Modern Data Oriented C++ for a zero alloc zero copy render hotpath. The aim being to minimise tick-to-render latency. GUI layout and data declarative JSON are served via websocket after initial page load, or can be packaged in an HTML shell like the UK property demo. The layout JSON supports embedded Forth fragments for \"glue\" computation. NoDOM can also call out to JS both synch and async. NoDOM builds on top of Dear ImGui and ImPlot, and builds to wasm with emscripten, and win32 with MSVC 2022. NoDOM is closely integrated with DuckDB-WASM; any table can be rendered as a grid or chart. I designed NoDOM with financial market trading apps in mind, having seen quants and traders frustrated by slow Plotly charts. Ultimately NoDOM should make it possible to show users dynamically generated high performance dashboards.\nhttps://github.com/osullivj/nodom (https://github.com/osullivj/nodom)\nhttps://github.com/osullivj/nodom/wiki (https://github.com/osullivj/nodom/wiki)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794398336,
+      "created_at": "2026-11-11T11:58:56+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50452257",
+      "title": "Show HN: Aq – an attention queue TUI for Claude Code",
+      "subreddit": "show-hn",
+      "author": "orbis-tertius",
+      "score": 8,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50452257",
+      "url": "https://github.com/nodo-labs-uk/attention-queue",
+      "selftext": "Hi, here's a TUI we originally created for internal use. The goal is to be able to control multiple Claude Code sessions running in parallel while being able to review the changes and to understand the design choices the agents make.\nThe key design principles are:\n- the programmer's attention is the bottleneck, so instead of cycling between sessions to find what's waiting for user input we use hooks to push work to the attention queue, i.e. let work come to you, not viceversa\n- easy change, review and comment loop: [tuicr](https://tuicr.dev/ (https://tuicr.dev/)}-inspired code reviews. Easy to add comments and send them to agents\n- unobtrusive tooling: run on tmux sessions, connect to claude code via hooks, no complex dependencies\n- quiz mode: answer design questions about the code to verify and reinforce your understanding of the changes\n- keyboard-first navigation with vim keybindings\nComments, ideas and PRs all welcome!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794397415,
+      "created_at": "2026-11-11T11:43:35+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50452230",
+      "title": "Show HN: ThingStudio, Node-RED style programming for microcontrollers",
+      "subreddit": "show-hn",
+      "author": "mkarliner",
+      "score": 11,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50452230",
+      "url": "https://thingstudio.net/",
+      "selftext": "Hi, I'm Mike,\nI've made ThingStudio, a flow programing environment for microcontrollers. It allows drag and drop programming Node-RED style, but emits MicroPython which it uploads to the micro. The board does not need the editor to run after that. Runs fully local, Apache 2 licensed.\nThere's a functional version of the editor/IDE at linked to the home page, you'll need to install to be able to upload, because WebSerial is not universal.\nPlease give it a whirl. I'm happy to answer any questions.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794397155,
+      "created_at": "2026-11-11T11:39:15+00:00",
+      "comments_data": [
+        {
+          "id": "50454829",
+          "author": "superxpro12",
+          "body": "I remember wishing for something like this that emitted C or C++ code a few years ago. Micropython is a fine choice, but very limiting. It's nearly impossible to do anything hard-realtime with it. But if it fits the nice, which is usually some flavor of a communication bus abstraction, this is probably a nice toy to play with. Curious how hard you can push the pedal on this.\nCan it saturate the adc sampling? Can it configure a 20khz systick? Can it link interrupts together?\nHow easy is it to stand up uart/i2c/spi concurrently? What about canbus and usb?\nHow does it handle threaded programs? IS that part of the Node-RED arch? Or maybe micropy?",
+          "score": 0,
+          "time": 1794412245,
+          "parent": "50452230"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50452040",
+      "title": "Show HN: Pots – Open-source Grok Bot alternative, used by 6 startups for a month",
+      "subreddit": "show-hn",
+      "author": "Crokily",
+      "score": 6,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50452040",
+      "url": "https://github.com/Crokily/pi-durable-bot",
+      "selftext": "Hi HN, I'm Crokily. Pots is an AI coworker that lives in the chat your team already uses: Slack, Discord, Telegram, or any channel with a Chat SDK adapter. It is MIT-licensed and runs on a machine you give it, with the model you choose.\nTo be honest, the first time I used Grok Bot, its design really impressed me. Unlike OpenClaw before it, it was not just Claude Code connected to a chat app. It truly cared about how it works with people. It felt like a living AI assistant, and working with it was painless. That is the idea I kept learning from the whole time I built Pots: it is not an agent hooked up to a chat channel. It should be a coworker that feels alive and is comfortable to work with.\nBut Grok Bot is only Grok's bot. Which model you get depends on your X subscription, your data and your machine are all in the cloud, and most of all, it is a standalone app, and most of its features serve that app.\nPots is a bit different. In Sydney I have talked with quite a few founders. Grok Bot is good, and it helps them a lot with their personal tasks. But when I asked who had actually put Grok Bot into their company's work to make their startup team faster, nobody had. So I think Pots is in a different place from Grok Bot, and from most open-source Grok Bot alternatives: it grew out of what real startup teams need. Before I open-sourced it, 6 small startups I met at startup events had been using it with me for over a month.\nPots is built first for the channels startup teams already work in, not for an app of its own, so most of what it does serves the places where you actually work. The teams use Pots as a middle layer: a CEO talks ideas through with the team in chat, Pots listens, and then it builds a prototype that both sides can check. They use Pots for competitor research: because Pots runs inside their channels, it knows their product well. Not only the GitHub repo, but the team's daily discussions and what the team cares about. Pots has been listening quietly the whole time, so it knows the product with no setup at all. It also works well with each channel: it talks to people with the channel's own controls, like Slack and Discord buttons and cards, and when it hands over something complex, it deploys a page with its built-in server so everyone sees it in a better form.\nSo Pots is different from Grok Bot and from most open-source alternatives. It came out of what real startup teams need. Its channel features start from what each company's work needs, and it can join your real work setup with no setup and still do well, instead of being one more app that nobody uses and that is hard to start with. And it ran in real business for a while before I cleaned it up and open-sourced it.\nThe difference from Grok Bot is also exactly why I made Pots an open-source Grok Bot alternative. I have OpenAI and Claude subscriptions with plenty of quota, and my own servers, so I don't want an X subscription to limit me. I want to use whatever model I want and do whatever I want. I can even switch to an open model, and none of my data goes into anyone's pocket.\nTry it (Node 24+, macOS, Linux or Windows): the easiest way is to ask your coding agent (Claude Code, Codex, Cursor) to read docs/for-agents.md in the repo and set up Pots for you. Or by hand: npm install -g pi-durable-bot, then pots init.\nI'd love feedback, especially on how it decides when to act.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794395494,
+      "created_at": "2026-11-11T11:11:34+00:00",
+      "comments_data": [
+        {
+          "id": "50455072",
+          "author": "avaer",
+          "body": "Can you elaborate more on what Grok Bot has (that you are emulating) that isn't available in other agents, and why you are emulating Grok Bot in particular, compared to another agent? What exactly is what \"real startup teams need\"?",
+          "score": 0,
+          "time": 1794413512,
+          "parent": "50452040"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -27,8 +665,8 @@
       "title": "Show HN: Black Ops II statically recompiled to native ARM64 macOS",
       "subreddit": "show-hn",
       "author": "adrbn",
-      "score": 46,
-      "num_comments": 9,
+      "score": 123,
+      "num_comments": 55,
       "permalink": "https://news.ycombinator.com/item?id=50449891",
       "url": "https://github.com/adrbn/bo2-mac",
       "selftext": "I grew up with Black Ops 2 and wanted to see if I could make it work on my 2020 MacBook Pro. So I used Claude Opus 5.5 to create a tool that converts your copy of the game (from Steam) to a native ARM64 Mac app, with almost 60fps in all areas. The whole game is statically recompilated ahead-of-time (AOT) and does not use any emulator whatsoever, be it Wine, Crossover or Rosetta. The best thing is the performance, although some heat issues are still to fix. You get to play the whole Campaign, local Multiplayer (with bots) and local Zombies (all DLCs maps; you need to have them in your Steam library obviously) at about 60fps. Split-screen was not in the PC version, but I've been working on it lately; it's coming soon! LAN mode is on the roadmap for later too :)",
@@ -38,11 +676,51 @@
       "created_at": "2026-11-11T04:56:47+00:00",
       "comments_data": [
         {
+          "id": "50453837",
+          "author": "cornedor",
+          "body": "I've used to same technique to get Fallout: New Vegas running on Asahi Linux on MacOS. Its quite a step, but https://github.com/doitsujin/dxvk (https://github.com/doitsujin/dxvk) makes it possible to skip a lot of work and get the game running in day. You can then make any changes you want, so I'm running fallout nv on a wide display in native resolution and some graphical improvements. Realtime whole world shadow maps, SSAO, tonemap + color grading, FXAA and Hor+ FOV.\nGives me a solid 60fps most of the time, with only the occasianal bug here and there that is often fixed in no time. Luckily i've added 10min auto save quite quickly, so that it does not cause that big of a problem.\nAside from the fun of both getting the game to work on this machine, and the fun of actually being able to play the game, it is a great way to find creative ways to work with LLM. Building out dev tools on the way that works for an LLM etc.",
+          "score": 0,
+          "time": 1794407223,
+          "parent": "50449891"
+        },
+        {
+          "id": "50453553",
+          "author": "scronkfinkle",
+          "body": "> does not use any emulator whatsoever, be it Wine, Crossover or Rosetta\nNot sure about the other two, but WINE Is Not an Emulator. It's in the name :)",
+          "score": 0,
+          "time": 1794405730,
+          "parent": "50449891"
+        },
+        {
+          "id": "50455831",
+          "author": "pipes",
+          "body": "Two of the best games of all time waverace 64 and 1080 snowboarding for the n64 have been statically recomped. I've been playing them on my steamdeck.\nUnfortunately I think the party will end soon as anthropic are already preventing reimplementing games in there system prompts.",
+          "score": 0,
+          "time": 1794417218,
+          "parent": "50449891"
+        },
+        {
           "id": "50452375",
           "author": "baalimago",
           "body": "Stuff like this makes me really happy about AI. The convenience that AAA lacks, or that they intentionally withhold, is now within reach.",
           "score": 0,
           "time": 1794398267,
+          "parent": "50449891"
+        },
+        {
+          "id": "50453845",
+          "author": "klaussilveira",
+          "body": "Somewhat related: https://lwss.github.io/Kisak-Black/ (https://lwss.github.io/Kisak-Black/)",
+          "score": 0,
+          "time": 1794407271,
+          "parent": "50449891"
+        },
+        {
+          "id": "50454269",
+          "author": "stmw",
+          "body": "This is impressive. Besides personal use gaming, it has a lot of interesting opportunities... Elsewhere OP said it was 4 months of Claude, which is very fas for something this complicated.",
+          "score": 0,
+          "time": 1794409218,
           "parent": "50449891"
         },
         {
@@ -59,6 +737,38 @@
           "body": "what was your workflow for creating this? there's now extra guardrails around decompiling / reverse engineering, do you think this is still possible to do or were you just lucky enough to do it before the guardrails?",
           "score": 0,
           "time": 1794389011,
+          "parent": "50449891"
+        },
+        {
+          "id": "50454523",
+          "author": "nicman23",
+          "body": "i want someone to make a co op mod for cod 4 :C",
+          "score": 0,
+          "time": 1794410649,
+          "parent": "50449891"
+        },
+        {
+          "id": "50454411",
+          "author": "HelloUsername",
+          "body": "Now do MW (2007) and MW2 (2009) :)",
+          "score": 0,
+          "time": 1794410051,
+          "parent": "50449891"
+        },
+        {
+          "id": "50451806",
+          "author": "Benard-dev",
+          "body": "This is great, I also grew up on Black Ops 2.\n How big is the recompiled binary compared to original?",
+          "score": 0,
+          "time": 1794393196,
+          "parent": "50449891"
+        },
+        {
+          "id": "50452674",
+          "author": "alanfranz",
+          "body": "The README is very much AI slop. Why don't you people write by yourself at least your READMEs? Explain the why? Explain the advantages? You can still ask AI for reviews.\nAlmost every paragraph makes me want to ask: \"so what?\"\n> There is no Wine and no JIT: the game runs as native code, in one process\n> the campaign runs at 51–60 frames per second\nSo what?\nIs it a matter of running the game in itself? Was the game not running on Apple M-series in any way, so you're unlocking something that was impossible before?\nOr does the game just ran faster (more FPS), load quicker, render better, what?\nThere's no comparison to how the game runs on x86, or how it runs on M-series with translation layers (IF it runs).\nThis is an exact manifestation of the AI slop problem. A lot of details. A lot of \"how\". A lot of \"what\". So little \"why\" - you need to read a lot and in the end your questions are never answered, and you don't understand if the project makes sense at all or is just something \"we did it because we could\". I'm perfectly happy to read AI generated text if it's properly and clearly written and answers the right questions.",
+          "score": 0,
+          "time": 1794400433,
           "parent": "50449891"
         }
       ]

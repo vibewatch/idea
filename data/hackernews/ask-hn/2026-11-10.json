@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-11T12:32:42.558986+00:00",
+  "last_fetched": "2026-11-11T18:30:59.051189+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,8 +10,8 @@
       "title": "How do you keep up quality when you vibe-code?",
       "subreddit": "ask-hn",
       "author": "nkcodes",
-      "score": 31,
-      "num_comments": 27,
+      "score": 34,
+      "num_comments": 31,
       "permalink": "https://news.ycombinator.com/item?id=50444380",
       "url": "https://news.ycombinator.com/item?id=50444380",
       "selftext": "I'm having a really hard time working with claude. In the past when I wrote all the code manually, it was always carefully reviewed and architected, with all possible flows carefully mapped out. Now, my code is mostly AI written which has led to things going out of control. Since it's easy to add new features and support many user flows, we went ahead and implemented flows that support a lot of cases our users run into. But now, I feel like things are getting too complex with no central notion of behaviour definitions, which causes every bug-fixing session to feel like a game of whack-a-mole, and results in missing edge cases and UI bugs that are becoming impossible to review and keep track of.\nEvery time I build anything new, it adds more complexity and the agent only seems to focus on the surrounding code within that session without keeping track of how it fits into the rest of the code base/product.\nHow do you all deal with this? Any suggestions for improving?",
@@ -21,11 +21,35 @@
       "created_at": "2026-11-10T18:41:15+00:00",
       "comments_data": [
         {
+          "id": "50456115",
+          "author": "jesecamilo",
+          "body": "Ensure it's referencing well-regarded coding/ui/ux standards. If you're developing in C++, Google has great docs. If you're making an iOS app, Apple has great docs, of course. If you're making a user-facing web app, look up behavior-driven development (BDD) ... Etc, etc.",
+          "score": 0,
+          "time": 1794418744,
+          "parent": "50444380"
+        },
+        {
           "id": "50446495",
           "author": "sadilek",
           "body": "I have not done a systematic ablation study, so not all things might be necessary, but anyway, here's what's working for me very well (in no particular order):\n0. Use Opus 5.5 on high.\n1. Have in your CLAUDE.md the rule that code changes go together with updates to the docs. For me, that's HTML files in docs/. (Could be .md as well, but for human consumption, HTML is nicer.)\n2. Have the rule that only that should go into the docs that an experienced engineer would need to rebuild the system from scratch, ignoring how it would look.\n3. Larger work gets a plan doc in docs/plan, i.e. multi-PR work. There is a template how plans look, and an important part of the template is that the last step of the plan is always to delete the plan and fold anything from it that makes sense as long-term documentation into the docs.\n4. Have a rule that before creating a PR, a sub agent needs to review the code, and have Codex Sol 6.1 high review it as well. Then let the main agent iterate on their findings until they are happy.\n5. Every now and then, ask for an audit of the code. I ask for DRY, YAGNI, and KISS. Let it produce a report. Then let it fix all findings. If a lot, use a plan.\n6. If you're adding something straight forward, just ask for it directly. If it's not, ask for a brief first. Review it. Then decide whether to implement in one go or through a plan.\n7. Get an ultra plan, so you (mostly) don't have to worry about token usage but can use agents to their full ability.\n8. Bonus and plug: Ask your agent to hand over with a demo video. It often finds and fixes issues while recording it, and you're not degraded to the agent's QA team, but it has to put in the work to convince you. I built a UI for directing agents as described: obeya.si. Free, open-source, local.",
           "score": 0,
           "time": 1794345792,
+          "parent": "50444380"
+        },
+        {
+          "id": "50454179",
+          "author": "NishanStepak",
+          "body": "You need to make sure you download your git history. You can analyze your git history with artificial intelligence to know where there were issues. There should be a complete record of every command you put into AI.\n1. You need to audit your work regularly. You can ask almost any AI to audit your work. There are several different audits you can do, security, marketing, performance, seo, bias etc. Use more than one ai for the performance audits. This should tell you where a lot of the performance issues are. There are also specialty audits you can get from specific services. I also have a weekly audit run for general issues. Cover all the bases.\n2. You have to watch the AI carefully to make sure it is not generating errors. I catch it looping quite often or making mistakes.\n3. Ask people to review your site. There are places where you can get human reviews. Do this regularly. AI is self referential and will make mistakes that no person will make.",
+          "score": 0,
+          "time": 1794408753,
+          "parent": "50444380"
+        },
+        {
+          "id": "50444552",
+          "author": "mpd",
+          "body": "I've always been a bottom-up programmer, so I tend to think more about discrete operations of software rather than the user-facing features (which IME will fall out naturally).\n1. Experiment and solidify architecture before adding features. I think this is the hardest step for top-down thinkers.\n2. Heavy testing and benchmarking. Prefer to TDD as much as possible. The actual lines for my agent-written codebases are generally ~70+% tests, benchmarks, and experiments.\n3. Full mutation test coverage after the code is written. Doing this as a human is miserable IMO, but robots make it reasonable. This step resolves SO MANY subtle bugs.\nAt that point my main role is ensuring alignment with the actual specs.",
+          "score": 0,
+          "time": 1794336855,
           "parent": "50444380"
         },
         {
@@ -37,11 +61,19 @@
           "parent": "50444380"
         },
         {
-          "id": "50444552",
-          "author": "mpd",
-          "body": "I've always been a bottom-up programmer, so I tend to think more about discrete operations of software rather than the user-facing features (which IME will fall out naturally).\n1. Experiment and solidify architecture before adding features. I think this is the hardest step for top-down thinkers.\n2. Heavy testing and benchmarking. Prefer to TDD as much as possible. The actual lines for my agent-written codebases are generally ~70+% tests, benchmarks, and experiments.\n3. Full mutation test coverage after the code is written. Doing this as a human is miserable IMO, but robots make it reasonable. This step resolves SO MANY subtle bugs.\nAt that point my main role is ensuring alignment with the actual specs.",
+          "id": "50452856",
+          "author": "waximabbax",
+          "body": "I can tell you what helps me and maybe you can incorporate some of this in your own code as well.\n1- Ensure you have Changelogs.md, Agents.md properly written to your likings.\n2- Depending on what you are building there is always a way to add actual UI tests and takes screenshots of before and after. If its a related to web UI, you can use playwright and or similar but there is always an option to test UI. Worst case scnerio is when none of libs help you and in those cases, you can add automated tests for UI using computer control from agents and take screenshots.\n3- When reviewing PRs, always use a totally different agent. For example if you use claude code for creating PR, then perhaps ask Codex or Cursor to review the PR in depth.\n4- Prefer smaller multiple PRs over larger ones.\n5- Last resort: If you don't have to review and check PRs yourself, perhaps consider hiring a QA engineer if you can afford one.\nLast but not least, learn to freeze the scope and remember not all bugs and edge cases are worth covering.",
           "score": 0,
-          "time": 1794336855,
+          "time": 1794401873,
+          "parent": "50444380"
+        },
+        {
+          "id": "50452834",
+          "author": "hhhkm",
+          "body": "I use Claude Design Artifacts a lot for new features I'm building. Its really helpful for nailing a flow and look. Besides that my apps usually have a component library built so it doesn't repeat code.\nOpus 5.5 has made it pretty effortless to get right the first time tbh. Usually it even lays things out better than I was thinking originally",
+          "score": 0,
+          "time": 1794401715,
           "parent": "50444380"
         },
         {
@@ -61,14 +93,6 @@
           "parent": "50444380"
         },
         {
-          "id": "50449747",
-          "author": "jvaqueiro",
-          "body": "I face similar problems on a daily basis. Mostly UI bugs, and copywriting.\nFixing these is exahusting. What I ended up doing was building a \"feedback\"[1] tool I can point to my agent.\nBasically, I collect bugs/improvements and then tell codex to fix them.\nBeing able to gather a bunch of bugs in a working session has been a boost in productivity.\n[1]. https://pecky.app (https://pecky.app)",
-          "score": 0,
-          "time": 1794371334,
-          "parent": "50444380"
-        },
-        {
           "id": "50448910",
           "author": "rafabitt",
           "body": "Coming from someone with a non technical background that has started building things post AI, I think what helps me the most is referencing other successful products and learning from their bad reviews/mistakes.\nNow to your question specifically, I believe it's not that hard to maintain quality when you're not obsessing over a million features, what I've seen people do is make their app or software do everything instead of focusing on a sum of functionalities that are actually worth keeping and will certainly impact the user experience.",
@@ -77,11 +101,11 @@
           "parent": "50444380"
         },
         {
-          "id": "50449384",
-          "author": "EduardoBautista",
-          "body": "I have Claude run the simplify and code-review skills as part of verification. Also every month or so I use the tech-debt skill on all my codebases and fix any issues. The more tech debt you have, the more the models start doing strange things.\nAnd the usual stuff any decent CI pipeline should have: tests, builds, linting, SQL breaking changes and potential heavy migration checks, etc.",
+          "id": "50449747",
+          "author": "jvaqueiro",
+          "body": "I face similar problems on a daily basis. Mostly UI bugs, and copywriting.\nFixing these is exahusting. What I ended up doing was building a \"feedback\"[1] tool I can point to my agent.\nBasically, I collect bugs/improvements and then tell codex to fix them.\nBeing able to gather a bunch of bugs in a working session has been a boost in productivity.\n[1]. https://pecky.app (https://pecky.app)",
           "score": 0,
-          "time": 1794367064,
+          "time": 1794371334,
           "parent": "50444380"
         },
         {
@@ -90,30 +114,6 @@
           "body": "Have a vision, and know what to say no to [0]. Thats how I build all my own projects, most recent here for example\n[0] - https://github.com/con-dog/clingon (https://github.com/con-dog/clingon)",
           "score": 0,
           "time": 1794346218,
-          "parent": "50444380"
-        },
-        {
-          "id": "50447797",
-          "author": "llbknapik",
-          "body": "I personally build rules using static analysis tools. All my guardrails hook into my .NET static analyzer pipeline. This makes the agent fail at build time then it goes and corrects itself.\nAdditionally, .NET added a bunch of formatting rules in its static analyzer for .NET 11 that give greater control on the styling of the code the agent generates. For example you can ban `=>` function syntax using editorconfig. The build will fail and the agent has to adjust.",
-          "score": 0,
-          "time": 1794353432,
-          "parent": "50444380"
-        },
-        {
-          "id": "50444530",
-          "author": "Marco012",
-          "body": "I'm not sure if there is any standard for this, I also tried to search about it in the past. But what I ended up doing that has been working well is to keep everything documented. Every task and decisions are documented on .md files, referencing related tasks and decisions. The project becomes bloated quickly, but Claude can easily locate and relate decisions from a long time ago. Some times I even ask to do do something and mid-way Claude realizes that it goes against a previous written decision.",
-          "score": 0,
-          "time": 1794336747,
-          "parent": "50444380"
-        },
-        {
-          "id": "50444410",
-          "author": "toufiqqureshi",
-          "body": "The same I was facing now I have built complete app but always worried about it is really protected and production ready I also facing this issue I don't know what to do",
-          "score": 0,
-          "time": 1794336235,
           "parent": "50444380"
         }
       ]
@@ -306,7 +306,7 @@
       "title": "CoderPad Reports a Security Breach",
       "subreddit": "ask-hn",
       "author": "werrett",
-      "score": 6,
+      "score": 7,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50435929",
       "url": "https://news.ycombinator.com/item?id=50435929",
