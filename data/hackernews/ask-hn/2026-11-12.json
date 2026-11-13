@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-13T06:36:20.514898+00:00",
+  "last_fetched": "2026-11-13T12:32:51.052109+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -11,7 +11,7 @@
       "subreddit": "ask-hn",
       "author": "fraserphysics",
       "score": 2,
-      "num_comments": 1,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50475155",
       "url": "https://news.ycombinator.com/item?id=50475155",
       "selftext": "In the 1980s I programmed two kinds of array processors for signal processing. It was mostly matrix vector multiplication. It was tedious.\nI imagine that video cards are kind of like that. NVIDIA has their products fabbed at TSMC. What value does NVIDIA add? What is their moat?",
@@ -62,7 +62,7 @@
       "title": "Tell HN: Major Microsoft Outlook/Exchange Online/Teams Outage in the Americas",
       "subreddit": "ask-hn",
       "author": "wmchen",
-      "score": 12,
+      "score": 13,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50472411",
       "url": "https://news.ycombinator.com/item?id=50472411",
@@ -188,8 +188,8 @@
       "title": "I'm genuinely disappointed in our most visible tech leadership",
       "subreddit": "ask-hn",
       "author": "AnneTrotter",
-      "score": 6,
-      "num_comments": 3,
+      "score": 7,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50471061",
       "url": "https://news.ycombinator.com/item?id=50471061",
       "selftext": "Elon Musk, Jensen Huang, Alex Karp, Jeff Bezos, Bill Gates, etc, etc. I know the reasons why this stuff happens. Power is absolutely toxic to ethics, consequences are often minimal until a line is crossed, crossing the line is often not an immediate trigger to consequences, success breeds overconfidence, money breeds echo chambers of sychophantic feedback which trigger garbage-in-garbage-out decision making. That last one has always been a special trap for the rich and famous, killing them and their reputation with tremendous efficiency for most of human history; but we're all kings of little AI domains now and can all curate our feedback to whatever feels best, ignoring any discomfort until it goes away.\nStill. Knowing why it's happening doesn't stop the disappointment. Isn't anyone at that level aware of the GIGO problem? Does awareness make you less successful because responsible, prosocial, ordinarily intelligent actions are not profitable? What would be effective strategies to keep people at that level off drugs and relatively sane?",
@@ -198,6 +198,14 @@
       "time": 1794505011,
       "created_at": "2026-11-12T17:36:51+00:00",
       "comments_data": [
+        {
+          "id": "50481832",
+          "author": "sdevonoes",
+          "body": "Why americans need to idolise CEOs? It’s the most dumb thing ever.",
+          "score": 0,
+          "time": 1794568188,
+          "parent": "50471061"
+        },
         {
           "id": "50471457",
           "author": "fullshark",
@@ -232,7 +240,7 @@
       "subreddit": "ask-hn",
       "author": "mv4",
       "score": 8,
-      "num_comments": 8,
+      "num_comments": 9,
       "permalink": "https://news.ycombinator.com/item?id=50470809",
       "url": "https://news.ycombinator.com/item?id=50470809",
       "selftext": "I've been building and selling B2B for most of my career and it seems things have changed quite a bit when it comes to launching a consumer product online.\nObservations:\n1. Product Hunt is dead. Everybody is selling something, and you get spammed instantly.\n2. Show HN seems unbalanced. I've tried a few threads and the only traction I saw was getting emails (10-20 per day) from other startups, including YC startups, all following the same template which is incredible \"Hey saw your Show HN, cool product. My startup does X and can help you with Y\". I checked the numbers, Show HN is getting 200 submissions a day.\nWhat is everyone doing these days to get traction ?",
@@ -318,7 +326,7 @@
       "subreddit": "ask-hn",
       "author": "niceguy1827",
       "score": 6,
-      "num_comments": 6,
+      "num_comments": 8,
       "permalink": "https://news.ycombinator.com/item?id=50470591",
       "url": "https://news.ycombinator.com/item?id=50470591",
       "selftext": "Honest question. Jev seems to cost 10x as much as Deepseek and I can easily just put the same payload to Deepseek and add \"follow this strict format ...\". What am I missing?",
@@ -328,6 +336,22 @@
       "created_at": "2026-11-12T17:07:57+00:00",
       "comments_data": [
         {
+          "id": "50481013",
+          "author": "jimle_uk",
+          "body": "I found some success in using Jev/decision models by replacing some of my existing workflows which were using LLMs for classification tasks.\nReplacing vector store: https://subworkflow.ai/blog/ragextract/rag-vs-jag (https://subworkflow.ai/blog/ragextract/rag-vs-jag)\nStarter examples: https://community.n8n.io/t/n8n-jev-4-awesome-examples-to-get... (https://community.n8n.io/t/n8n-jev-4-awesome-examples-to-get-started/314596)\nFor me, it's less about cost and more about accuracy, scale and speed.",
+          "score": 0,
+          "time": 1794564042,
+          "parent": "50470591"
+        },
+        {
+          "id": "50480367",
+          "author": "muzani",
+          "body": "If DeepSeek works better, use it. The benefit is faster, cheaper, and more accurate.\nI'm using it in a RPG where it decides what dice to roll and what difficulty is needed to pass. Proper gen AI can handle the outcome of that roll.",
+          "score": 0,
+          "time": 1794560193,
+          "parent": "50470591"
+        },
+        {
           "id": "50478231",
           "author": "hzz4444433333",
           "body": "In real-world production scenarios, generation tasks are not that common; decision-making remains critical. We have recently been building an intelligent ticket-booking agent and have been using Qwen2-7B. Its inference speed is slow, and even after our optimizations, performance is still unsatisfactory. Under concurrency, it becomes practically unworkable. In fact, Qwen2-7B is mainly used here to parse user intent, which JEV can handle perfectly well. Based on our current empirical results, we plan to replace all open-ended branching steps within our complex agent with JEV.",
@@ -336,19 +360,19 @@
           "parent": "50470591"
         },
         {
-          "id": "50471474",
-          "author": "mikericar",
-          "body": "Check Deterministic State Machine idea - basically, on prod regulated / high stakes env. you don't want LLM to run almost anything directly.\nYou rather need exact reproducebale, tracable path of decisions. Either a hard-coded graph where LLM is a point of contact for the customer/user and parsing, function call etc. is all done deterministic way.\nOR you use smth like JEV to decide about the next path in the chain (under the condition that JEV is trained for that path only and its only job is to do the best routing possible with close to 0 costs).",
-          "score": 0,
-          "time": 1794506686,
-          "parent": "50470591"
-        },
-        {
           "id": "50470630",
           "author": "akras14",
           "body": "It only makes sense if traditional LLMs are either too expensive or too slow.\nThat’s it, that’s the only use case.\nHowever there are use cases that meet that requirement, for example, near instant labeling of dynamically generated content on the screen.",
           "score": 0,
           "time": 1794503405,
+          "parent": "50470591"
+        },
+        {
+          "id": "50471474",
+          "author": "mikericar",
+          "body": "Check Deterministic State Machine idea - basically, on prod regulated / high stakes env. you don't want LLM to run almost anything directly.\nYou rather need exact reproducebale, tracable path of decisions. Either a hard-coded graph where LLM is a point of contact for the customer/user and parsing, function call etc. is all done deterministic way.\nOR you use smth like JEV to decide about the next path in the chain (under the condition that JEV is trained for that path only and its only job is to do the best routing possible with close to 0 costs).",
+          "score": 0,
+          "time": 1794506686,
           "parent": "50470591"
         },
         {
@@ -452,7 +476,7 @@
       "subreddit": "ask-hn",
       "author": "prmph",
       "score": 3,
-      "num_comments": 5,
+      "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=50468864",
       "url": "https://news.ycombinator.com/item?id=50468864",
       "selftext": "Every day I encounter more weirdness of SQLite. Is this the JavaScript of databases?",
@@ -467,6 +491,14 @@
           "body": "There is more: https://dbfiddle.uk/FDkqamR_ (https://dbfiddle.uk/FDkqamR_)\n(Some examples there no longer work with the current version - so they are improving :) )\nThis is by design and well documented though.",
           "score": 0,
           "time": 1794497307,
+          "parent": "50468864"
+        },
+        {
+          "id": "50482024",
+          "author": "ftherd",
+          "body": "It's so lite, it even removes the errors",
+          "score": 0,
+          "time": 1794569549,
           "parent": "50468864"
         },
         {
@@ -513,8 +545,8 @@
       "title": "Claude Code's API billing depends on how often the cache expires",
       "subreddit": "ask-hn",
       "author": "MaxBozhenko",
-      "score": 2,
-      "num_comments": 0,
+      "score": 4,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50467233",
       "url": "https://news.ycombinator.com/item?id=50467233",
       "selftext": "Hello, HN! I’m Max, CTO at Hystax. We use Claude a lot in our development work, and we’re also trying to make coding agents cheaper to run. We built the open-source Kompressor for compressing identical tool outputs that agents constantly resend. In our Codex tests, we noticed a real cost reduction of 22.7%. But testing it with Claude Code, we found something completely different. In Claude Code, the cache plays a more crucial role than compression.\nClaude Code marks its messages with caching points. As a result, almost every request consists of a long cached prefix and a new, truncated final part. Based on practical experience with Opus 5.5, reading from the cache appears to cost $0.20 per million tokens, accounting for about 92–95% of the tokens charged for prompts. Meanwhile, a five-minute cache entry costs $5, which is 25 times more expensive than reading from the cache. When an agent needs to run a build or a longer training cycle, they face the problem of the cache expiring. The next request then has to write the prefix to the cache again. We saw this 33 times in a cycle of 89-task runs without compression. As a result, 927,000 tokens were rewritten, which is approximately one-third of the volume billed in full.\nUntil now, we’ve deliberately left the Claude Code text uncompressed because overwriting any byte within a cached prefix would very likely cause it to become invalid. But here’s what we came up with instead:\n– Compress only the uncached part. On the first transmission, only the new part is compressed. Everything already cached stays byte-for-byte unchanged. Fragments shorter than 4,000 characters are sent in full, since compressing each fragment would be much more expensive than sending the entire dialogue as is.\n– Keep the cache active while the tools are running; don’t let it expire.\nWhile the agent waits for a tool response (model building/training), Kompressor resends the last request every 4.5 minutes with max_tokens: 1, so Anthropic re-reads the cached dialogue, and the five-minute timer restarts. Pings stop on the agent’s next request, after ~50 min, on the first failed attempt, or if a ping finds nothing in the cache.\n– Switch to the one-hour cache only when necessary. \nAfter the first pause longer than 5 min, Kompressor requests a one-hour cache for that conversation.\nWe ran Claude Code on the Opus 5.5 model through the Terminal-Bench 2.1 benchmark (89 tasks) and calculated the cost based on Anthropic's actual billing, including pings. The cost per run decreased from $35.35 to $28.30 (-20%). The percentage of tasks solved by the agent without compression was 89.9%, and 90.6% when using Kompressor. The number of tokens lost due to cache expiration decreased from 927,000 to 13,000.\nBut there’s a caveat: the agent never solves the same task twice in exactly the same way, and the entire difference came down to just 4 out of the 89 tasks. We expect these savings to persist from run to run: about 11% from keeping the cache up to date, and a few more percentage points from compression. This effect is most noticeable on tasks where the agent waits a long time – more than five minutes – for a command to execute: model training, compilation, and long simulations. In those cases, costs decreased by 34%.\nTo try Kompressor, see the GitHub repo below. Setup is in the README. The default configuration already includes compression of new text only and a switch to an hourly cache on long pauses; “keep-warm” is off (the only request that the proxy sends on its own). To enable, add to your config:\n [proxy.providers.anthropic] \n cache_keep_warm = true\n\nand then run:\n kompressor wrap claude \n\nThe benchmark above was run with all these settings enabled.\nHere are cost calculations: https://optscale.ai/blog/claude-code-prompt-caching \nIf you run long tasks in Claude Code, how often does the cache expire while a tool is still running? Have you seen this with other providers too?",
