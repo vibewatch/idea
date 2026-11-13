@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-13T12:32:45.695616+00:00",
+  "last_fetched": "2026-11-13T18:31:18.215521+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -88,8 +88,8 @@
       "title": "Show HN: RealtimeVAD – trading false positives for 110ms earlier end-of-speech",
       "subreddit": "show-hn",
       "author": "koljab",
-      "score": 26,
-      "num_comments": 5,
+      "score": 29,
+      "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=50474586",
       "url": "https://github.com/KoljaB/RealtimeVAD",
       "selftext": "Hey guys. I recently watched the latency reports for my local voice assistant, which show a waveform plus silero probability for voice activity. I noticed silero lags visibly on the speech off signal.\nThere had to be a method to get this signal closer to what I felt is optimal. My idea was to use a 10 ms energy detector with a threshold that adapts to environment or room noise. Which worked amazingly well. It created more false positives but in my speculative generation pipeline that would not matter. If it's wrong and the user continues speaking I can abort the pipeline fast.\nI benchmarked my solution over ~3200 turns from my assistant logs and it came out ~110 ms faster initially. Still 100 ms now after some a fix which was needed for quiet speech.\nI made it public if you want to have a look. If you measure it on your data I really appreciate any feedback. There's a benchmark script in the repo.\nThx for reading, have a good day folks.",
@@ -104,6 +104,14 @@
           "body": "You can also avoid the problem all together. I made a \"speculative regeneration\" at least thats what i call it pipeline i been using for many months now and it works great. basically as long as you have access to the inference server you are good to go. idea is as such, every n milliseconds of silence (usually 300ms) for me, you send the asr transcript for the llm to process immediately. you let the model start answering , but if the user starts talking again before the end of turn token is reached you cancel the generation and again wait for the 300ms. rinse repeat. there is a safety window you have to set up as well that way the final llm answer gets finalized regardless of its inference speeds. works like a charm. basically the user gets 300ms latency at the highest for that \"silence\" window. so the only other thing you have to worry about as faras latency is llm inferance speeds and asr and tts latencies. in my pipeline the moment the user stops talking, the model ,is already responding within about 900ms - 1.2 sec.. its my gemma 26b moe model , 4 bit quant thinking on... with mtp getting about 300 tokens per second... asr and tts are both under 350ms for total... anyways, speeds could be improved if turning off thinking but i like my voice agent to be smart as he has tool calling and common sence capability is reduced when thinking is off.... fun times!",
           "score": 0,
           "time": 1794553199,
+          "parent": "50474586"
+        },
+        {
+          "id": "50486982",
+          "author": "LeoisNotAI",
+          "body": "which model works fastest for you?",
+          "score": 0,
+          "time": 1794591746,
           "parent": "50474586"
         },
         {
@@ -158,7 +166,7 @@
       "subreddit": "show-hn",
       "author": "lakshays",
       "score": 12,
-      "num_comments": 4,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50474106",
       "url": "https://github.com/cerulion-inc/cerulion",
       "selftext": "Hey HN! I'm Lakshay. Raveen and I have built Cerulion, a ROS2-compatible robotics runtime written in Rust. We've worked hard on lowering IPC transport latencies without making the single process tradeoff or forcing POD message types. These fast multi-process graphs can then be resimmed deterministically, and existing ROS2 nodes/launch files can run unmodified alongside native Cerulion Rust/Python code. Installation and quickstart (with a one-shot prompt for your favorite coding agent) here at the repo README: https://github.com/cerulion-inc/cerulion (https://github.com/cerulion-inc/cerulion)\nI worked on off-road autonomy during my PhD at MIT, and we kept running into inter-process latency in ROS (2 lidars and 6 cameras). Loaned messages need POD types, which nukes standard, vendor-agnostic Image/PointCloud2. We ended up running some hot paths in a brittle single process, which made debugging a nightmare. I'm sure you've seen the heisenbugs ROS-based stacks can produce, with no way to easily reproduce the consumption order or interleaving of callbacks. Valuable data of runtime failures on the robot was hard to use effectively without deterministic reproducibility.\nThis is what we fix. Cerulion bags record per-input reads and scheduler traces alongside message content in standard MCAPs. cerulion bag play --resim all --verify re-executes node code on the recorded schedule and compares each byte for exact matches or within defined tolerances. Exit 0 is a match, 1 shows the first topic/frame that diverges, 6 shows schedule divergence and --report gives an optional CI verdict. Eligible ROS2 processes can replay deterministically as well.\nHere's the data loop:\n1. Run: Dependency-ordered level-based DAG scheduler with periodic/data/sync triggers, I/O deadlines, backpressure, and automatic profiling for process partitioning. Each node by default free-runs in its own process while preserving deterministic replay. Live runs pause/resume, and UMWAIT/WFE parks idle consumers on CPUs that support it. Wall-clock reads and runtime thread spawns in user code rejected at compile time by macros.\nROS 2 is supported with rmw_cerulion for Foxy, Humble, Jazzy and Lyrical, that lets you run ROS2 nodes/launch files unmodified in the same graph as native Cerulion nodes. LD_PRELOAD gives ROS2 code shared memory loans through std::vector/std::string. cerulion ros2 attach folds in already-running ROS2 robots, and cerulion ros2 run/launch lets you run existing ROS2 workspaces on Cerulion without any additional setup (with an optional automatic migrate suggested that rewrites C++ publish sites).\n2. Move: iceoryx2 shared memory with no serialization, no payload copy and no payload-sized allocation, including for variable-length messages like sensor_msgs/Image and PointCloud2. Round trip latency for a 1MiB sensor_msgs/Image between two processes is 4.08µs p50, with a tight tail of 7.38µs p99 (under 2x p50), with recording on. This is default Cerulion, against 10.95 ms for default ROS 2 Jazzy. Cerulion's p50 and p99 stay flat from 64B to 16 MiB.\n3. Capture: With this round-trip latency, there are no tradeoffs, not for process isolation and not for bagging. We can afford always-on or event-based logging. Flashback is our robot dashcam: keeps ~30s of all logs and message contents in memory and saves it automatically on process crashes, topic stalls or declared incidents/manual triggers.\n4. Reach: A free account lets you pair robots and desks, letting all your devices find each other with no config, IP addresses or discovery chatter. Pubsub is authenticated and on-demand, with signed grants that the robot verifies offline. We use Iroh to hole-punch or relay over WAN, and mDNS over LAN to transmit data using QUIC. Remote topics mirror into local shared memory, and each device has a single network gateway.\n5. Diagnose: cerulion doctor scans for compile/run-time issues (better than Windows Troubleshooter I promise) and suggests fixes. Hindsight is an early access MCP to let agents analyze your bags.\nTo get started: go to the repo, install Cerulion with the curl one-liner, and paste the prompt in Claude Code/Codex: https://github.com/cerulion-inc/cerulion#quickstart-run-reco... (https://github.com/cerulion-inc/cerulion#quickstart-run-record-and-verify). Or shift your own gears, it's all in the repo that you should star!\nThe CLI needs a free account, which we use to make device pairing as easy as AirDrop USED to be ;) Everything runs on Linux (x86_64/ARM64), macOS and Android (JNI), with more platforms coming.\nWe'd love to hear your feedback! If you run ROS 2 on a real robot, point this at your stack and tell us what breaks.\nDocs: https://docs.cerulion.com (https://docs.cerulion.com)\nSite: https://cerulion.com (https://cerulion.com)",
@@ -167,6 +175,14 @@
       "time": 1794516784,
       "created_at": "2026-11-12T20:53:04+00:00",
       "comments_data": [
+        {
+          "id": "50487672",
+          "author": "known-developer",
+          "body": "I thought of building a better ROS alternative at one point !! Would take good amount of effort but lets see",
+          "score": 0,
+          "time": 1794594504,
+          "parent": "50474106"
+        },
         {
           "id": "50476545",
           "author": "leetrout",
@@ -226,8 +242,8 @@
       "title": "Show HN: AgentRun – open-source, Self-improving Managed Agents",
       "subreddit": "show-hn",
       "author": "miguelrios",
-      "score": 114,
-      "num_comments": 29,
+      "score": 131,
+      "num_comments": 34,
       "permalink": "https://news.ycombinator.com/item?id=50471650",
       "url": "https://github.com/Parcha-ai/agentrun/blob/main/README.md",
       "selftext": "We (GREP.AI, YC F26) are open-sourcing AgentRun and turning it into a full managed agents platform. Read more about it in this post: https://agentrun.ai/blog/introducing-agentrun-run-smarter-ag... (https://agentrun.ai/blog/introducing-agentrun-run-smarter-agents-use-fewer-tokens).\nIt includes what we originally built for our own agent harness:\n- Self-improving agents \n- Web-grounded workflows \n- A range of sandboxes and computer environments \n- Thousands of tools and integrations \n- Detailed analytics on how your agents behave\nYou can bring your own agent. AgentRun works with Pi, Claude Agents, Codex, OpenCode, and any other harness that supports ACP.\nYou can self-host it (see 1-click install on Render) with an OpenRouter key, or try the hosted version at console.agentrun.ai.\nWe’d love feedback, especially on the architecture (see README), or anything we may be missing to make it useful to you.",
@@ -237,11 +253,35 @@
       "created_at": "2026-11-12T18:15:48+00:00",
       "comments_data": [
         {
+          "id": "50484893",
+          "author": "brendanator",
+          "body": "Sourcery CEO here. Wanted to comment on the claims of 1.6x Greptile review comments.\nWith Greptile there's a precision-recall trade-off with code review comments. Greptile is at the precision end of the scale, so every comment that they make is accurate. We've seen on GitHub that over 80% of the comments they make get addressed. At the other end of the spectrum is Sourcery [1], which produces over 2x as many comments as Greptile, and this agent run example has 1.6x.\nShameless self-promotion: we believe that outputting a lot of comments, even if they're nitpicky, is the right way to go for coding agents because they can triage all of the comments very rapidly and decide which to address and which are not relevant.\n[1] https://sourcery.ai (https://sourcery.ai)",
+          "score": 0,
+          "time": 1794583440,
+          "parent": "50471650"
+        },
+        {
+          "id": "50485190",
+          "author": "jo_in_europe",
+          "body": "How is this different to a simple harness? For example, I have a harness, made in 1.5 days, that has an executive agent answering the \"what done looks like\" task, then chunking the work, creating a dependency graph, and assigning it to sub-agents (which can be recursive, ie. the sub-agent becomes an executive for its own workers). And there's an independent \"reviewer\" for each work chunk, before potentially merging and kicking off any tasks whose dependencies are satisfied. Interfaces with remote hosts, GPU machines from different providers. So what would your thing give me that mine can't do?\nhttps://knowhow.ml/harness1.png (https://knowhow.ml/harness1.png)\nhttps://knowhow.ml/harness2.png (https://knowhow.ml/harness2.png)\nhttps://knowhow.ml/harness3.png (https://knowhow.ml/harness3.png)",
+          "score": 0,
+          "time": 1794584707,
+          "parent": "50471650"
+        },
+        {
           "id": "50474430",
           "author": "whirlwin",
           "body": "Would like to hear from everyone: How are you dealing with PRs in 2026? It's our biggest bottle neck.\nWe are considering looking into attestations, e.g. through the SLSA spec: https://slsa.dev/ (https://slsa.dev/) to ensure build provenance and verification before it is deployed.",
           "score": 0,
           "time": 1794518307,
+          "parent": "50471650"
+        },
+        {
+          "id": "50486994",
+          "author": "yasirkhan001",
+          "body": "Hey .Nice",
+          "score": 0,
+          "time": 1794591786,
           "parent": "50471650"
         },
         {
@@ -307,14 +347,6 @@
           "score": 0,
           "time": 1794551854,
           "parent": "50471650"
-        },
-        {
-          "id": "50472307",
-          "author": "jstummbillig",
-          "body": "I think I'll need like at least another 3-4 months of new models before I can deal with AI UI/UX design.",
-          "score": 0,
-          "time": 1794509733,
-          "parent": "50471650"
         }
       ]
     },
@@ -352,7 +384,7 @@
       "title": "Show HN: Kapso – Iterative learning from enterprise data",
       "subreddit": "show-hn",
       "author": "alirezamshi",
-      "score": 49,
+      "score": 56,
       "num_comments": 11,
       "permalink": "https://news.ycombinator.com/item?id=50471281",
       "url": "https://news.ycombinator.com/item?id=50471281",
@@ -421,8 +453,8 @@
       "title": "Show HN: My $300 embroidery machine needed a subscription, so I built my own app",
       "subreddit": "show-hn",
       "author": "simpsoka",
-      "score": 571,
-      "num_comments": 195,
+      "score": 698,
+      "num_comments": 226,
       "permalink": "https://news.ycombinator.com/item?id=50470488",
       "url": "https://github.com/simpsoka/zigzag",
       "selftext": "https://x.com/simpsoka/status/2115254318161182876 (https://x.com/simpsoka/status/2115254318161182876)",
@@ -456,14 +488,6 @@
           "parent": "50470488"
         },
         {
-          "id": "50482039",
-          "author": "robinduckett",
-          "body": "My mum passed away but she was constantly embroidering on these machines and always complained about the Brother software costing a bunch of money and not working on the later versions of Windows. We managed to find alternative software so she could use the software using Windows 7. It’s nice to see PES support and hopefully the lifetime of these machines can be expanded for a long time because they rarely breakdown if maintained correctly.",
-          "score": 0,
-          "time": 1794569643,
-          "parent": "50470488"
-        },
-        {
           "id": "50474010",
           "author": "TrackerFF",
           "body": "If there's one thing I'm very optimistic about with AI, it's the de-bricking of bricked things, giving new life to legacy/unsupported software and hardware, or just getting around shitty practices like this.\nSeems very promising. I have a home recording studio, and there's a small revolution going on with people cloning subscription-based stuff. Some brands are notorious for making expensive equipment which they just stop supporting after 10 years, sometimes rendering them obsolete. Or tacking ridiculous licensing mechanism onto the equipment.",
@@ -480,19 +504,27 @@
           "parent": "50470488"
         },
         {
-          "id": "50482348",
-          "author": "sheepscreek",
-          "body": "I have a $1,000+ Posha cooking robot that requires a monthly subscription, which is easily the most annoying thing about it. I’ve been thinking about doing this exact same thing. Nice work, and thanks for the reminder to finally get on it!",
-          "score": 0,
-          "time": 1794571599,
-          "parent": "50470488"
-        },
-        {
           "id": "50473199",
           "author": "geerlingguy",
           "body": "William Osman built a browser app that works pretty well too: https://www.stitchslop.com/ (https://www.stitchslop.com/)\nI think that one was built with Claude (he wanted to embroider cats on merch, and didn't like the expensive subscription software's ancient UX).",
           "score": 0,
           "time": 1794513126,
+          "parent": "50470488"
+        },
+        {
+          "id": "50482039",
+          "author": "robinduckett",
+          "body": "My mum passed away but she was constantly embroidering on these machines and always complained about the Brother software costing a bunch of money and not working on the later versions of Windows. We managed to find alternative software so she could use the software using Windows 7. It’s nice to see PES support and hopefully the lifetime of these machines can be expanded for a long time because they rarely breakdown if maintained correctly.",
+          "score": 0,
+          "time": 1794569643,
+          "parent": "50470488"
+        },
+        {
+          "id": "50485968",
+          "author": "oorestisime",
+          "body": "This looks awesome congrats! I recently found a local shop in Cyprus making custom embroidery tshirts and ordered a few ones! I didnt know it could be possible to even make on my own!!!\nbtw unrelated, i ll add your replacement story in https://replacemrr.com/ (https://replacemrr.com/) as its the kind of stories i am looking for!",
+          "score": 0,
+          "time": 1794587752,
           "parent": "50470488"
         },
         {
@@ -512,19 +544,19 @@
           "parent": "50470488"
         },
         {
-          "id": "50473945",
-          "author": "amelius",
-          "body": "I'm tired of everything needing a subscription.\nLife was better before the internet which allowed companies to remotely put their hands in our pockets.",
+          "id": "50478074",
+          "author": "egeozcan",
+          "body": "William Osman (a youtuber) had created one too! See: https://www.reddit.com/r/Machine_Embroidery/comments/1wurw5o... (https://www.reddit.com/r/Machine_Embroidery/comments/1wurw5o/william_osman_2_created_free_embroidery_machine/)",
           "score": 0,
-          "time": 1794516070,
+          "time": 1794542178,
           "parent": "50470488"
         },
         {
-          "id": "50474205",
-          "author": "nijave",
-          "body": "Love this type of stuff but afraid it won't last. Only a matter of time before OEMs ask same LLM to setup secure boot with signed firmware with anti-rollback and pinned certs.\nThere is already prior art like anything Google (phones, Fitbit)",
+          "id": "50483234",
+          "author": "xtiansimon",
+          "body": "This the sort of product hacking that Cory Doctorow discusses:\n“…all they have to say is there was a countermeasure. The toolmaker bypasses the countermeasure. And then that’s a felony…”\nhttps://youtu.be/LbidZVPciys?t=1842&is=dOoFAjVunKa01SIq (https://youtu.be/LbidZVPciys?t=1842&is=dOoFAjVunKa01SIq)\nhttps://youtube.com/shorts/Gzwe6DuIoQM (https://youtube.com/shorts/Gzwe6DuIoQM)",
           "score": 0,
-          "time": 1794517214,
+          "time": 1794576730,
           "parent": "50470488"
         }
       ]
@@ -536,8 +568,8 @@
       "title": "Show HN: Apron Chat Protocol",
       "subreddit": "show-hn",
       "author": "shazow",
-      "score": 46,
-      "num_comments": 1,
+      "score": 53,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50470343",
       "url": "https://apron.chat/",
       "selftext": "Hi HN friends - I've been obsessed with chat protocols for ages - one previous project is ssh-chat (https://ssh.chat/ (https://ssh.chat/))\nI come bringing a new kind of chat protocol that I've been working on since I spent quite a lot of time exploring the 14 other competing standards we've come up with in the past few decades.\nThe protocol details are here: https://apron.chat (https://apron.chat)\nI'm hoping that Apron will better reflect our needs beyond 2026, which I expect will move more and more toward semi-private chats rather than global social networks.\nCome say hi on the live public demo: https://web.apron.chat (https://web.apron.chat)\nSome fun facts:\n- The demo server runs in a Cloudflare Durable Worker. It's quite efficient, since it's hibernated except for when a message comes in. Easy to self-host this in the free tier.\n- Despite the JSON protocol being intentionally unabbreviated (\"message\" instead of \"msg\", etc), a typical Apron session still uses almost half as much bandwidth and messages compared to an equivalent Matrix or XMTP session. This is largely because Apron minimizes the number of roundtrips and state required for common chat scenarios. Also it compresses very nicely!\n- The official reference client is a PWA (Apron Web), we also have a TUI, macOS, and an iOS implementation by third party Apron-enjoyers. There's two reference server implementations (Cloudflare worker in TS and a Go implementation), plus a bunch of minimal implementations.\n- My favourite fun capability is embedding streaming messages, great for LLM outputs. This can be done just by piping to a curl command, no additional dependencies. There's also a mode for streaming a terminal (by piping something like `script` from util-linux which handles row/col/baud flushing, no special dependencies either). See section 4.8 for details: https://apron.chat/protocol#48-embeds-and-avatars (https://apron.chat/protocol#48-embeds-and-avatars)",
@@ -756,8 +788,8 @@
       "title": "Show HN: I built a calendar app that gives each event its own to-do list",
       "subreddit": "show-hn",
       "author": "whereinside",
-      "score": 12,
-      "num_comments": 2,
+      "score": 14,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50468901",
       "url": "https://apps.apple.com/ph/app/daily-planner-tasks-zesfy/id6479947874",
       "selftext": "",
@@ -766,6 +798,22 @@
       "time": 1794497057,
       "created_at": "2026-11-12T15:24:17+00:00",
       "comments_data": [
+        {
+          "id": "50487093",
+          "author": "samfierro",
+          "body": "I like the idea because I often want to block out time in my day to tackle multiple tasks",
+          "score": 0,
+          "time": 1794592206,
+          "parent": "50468901"
+        },
+        {
+          "id": "50483591",
+          "author": "michaelmcdonald",
+          "body": "What aspect of this necessitates the need for a subscription? That alone had me immediately stop looking at the app.",
+          "score": 0,
+          "time": 1794578381,
+          "parent": "50468901"
+        },
         {
           "id": "50478212",
           "author": "throwaway81523",
