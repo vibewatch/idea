@@ -1,8 +1,35 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-13T00:44:53.539908+00:00",
+  "last_fetched": "2026-11-13T06:36:14.119125+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50476219",
+      "title": "Show HN: AxiomStory – Keep stories consistent across AI text, images, video",
+      "subreddit": "show-hn",
+      "author": "asimj1029",
+      "score": 3,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50476219",
+      "url": "https://axiomstory.com",
+      "selftext": "hey everyone!\nI read alotttt, and i always wondered what if i could turn my favourite story into a comic, or even an animated film. what if i could keep reading forever? that is how i came up with AxiomStory.\nthe hardest part was mainly consistency\nin text, models forgets facts about your stories\nin pictures, models dont keep characters consistent, and giving them reference images every time was tedious.\nin videos, the model invents a completely new voice, face background and makes you lose that immersion when you change b/w shots\ni've created AxiomStory to fix all of that, its a tool to create consistent stories. it reads your story and builds a wiki of the characters, places, plots etc! it uses that wiki along with other things to find inconsistencies.\nThe wiki also keeps image and voice references for every character, so text, images and even long ai videos stay consistent.\ni posted a short video of it on x: https://x.com/asim1029/status/2120881282955813333 (https://x.com/asim1029/status/2120881282955813333)\ndo take a look, and let me know your thoughts!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794527956,
+      "created_at": "2026-11-12T23:59:16+00:00",
+      "comments_data": [
+        {
+          "id": "50478621",
+          "author": "bradknowles",
+          "body": "This is a very interesting concept. And one that I could make use of for some stories I’ve had bouncing around in my head for a while.\nBut all this content lives on your servers, right? What keeps you from stealing all of it? What keeps you from using all the uploaded content and training your own AI tools on that?\nIf you could give me a local-only version of this tool, which I could verify doesn’t upload anything at all to your servers, then I would be much more interested in trying it out.\nOtherwise, I might just vibe-code my own kinda-semi-sorta solution that gets me 80% of this functionality, but locally on my own machines.",
+          "score": 0,
+          "time": 1794546601,
+          "parent": "50476219"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -61,15 +88,25 @@
       "title": "Show HN: RealtimeVAD – trading false positives for 110ms earlier end-of-speech",
       "subreddit": "show-hn",
       "author": "koljab",
-      "score": 5,
-      "num_comments": 0,
+      "score": 15,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50474586",
       "url": "https://github.com/KoljaB/RealtimeVAD",
       "selftext": "Hey guys. I recently watched the latency reports for my local voice assistant, which show a waveform plus silero probability for voice activity. I noticed silero lags visibly on the speech off signal.\nThere had to be a method to get this signal closer to what I felt is optimal. My idea was to use a 10 ms energy detector with a threshold that adapts to environment or room noise. Which worked amazingly well. It created more false positives but in my speculative generation pipeline that would not matter. If it's wrong and the user continues speaking I can abort the pipeline fast.\nI benchmarked my solution over ~3200 turns from my assistant logs and it came out ~110 ms faster initially. Still 100 ms now after some a fix which was needed for quiet speech.\nI made it public if you want to have a look. If you measure it on your data I really appreciate any feedback. There's a benchmark script in the repo.\nThx for reading, have a good day folks.",
       "is_self": false,
       "is_video": false,
       "time": 1794519057,
-      "created_at": "2026-11-12T21:30:57+00:00"
+      "created_at": "2026-11-12T21:30:57+00:00",
+      "comments_data": [
+        {
+          "id": "50478712",
+          "author": "com2kid",
+          "body": "This is the 3rd or so time I've posted this -\nRun a tiny shitty llm, one that is super fast. Or better yet try out a decision model now days.\nFeed it the previous conversation turn and all the STT (ASR output) you have so far and just ask it for a probability that the user is done speaking.\nUse that probability to shorten your VAD time.\nIt isn't as good as a true speech to speech model but this will cut a few hundred ms compared to pure VAD. Oh as a bonus it also lets you wait longer when the user isn't done talking yet.",
+          "score": 0,
+          "time": 1794547421,
+          "parent": "50474586"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -112,8 +149,8 @@
       "title": "Show HN: Cerulion – ROS 2-compatible robotics runtime with multi-process replay",
       "subreddit": "show-hn",
       "author": "lakshays",
-      "score": 6,
-      "num_comments": 1,
+      "score": 11,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50474106",
       "url": "https://github.com/cerulion-inc/cerulion",
       "selftext": "Hey HN! I'm Lakshay. Raveen and I have built Cerulion, a ROS2-compatible robotics runtime written in Rust. We've worked hard on lowering IPC transport latencies without making the single process tradeoff or forcing POD message types. These fast multi-process graphs can then be resimmed deterministically, and existing ROS2 nodes/launch files can run unmodified alongside native Cerulion Rust/Python code. Installation and quickstart (with a one-shot prompt for your favorite coding agent) here at the repo README: https://github.com/cerulion-inc/cerulion (https://github.com/cerulion-inc/cerulion)\nI worked on off-road autonomy during my PhD at MIT, and we kept running into inter-process latency in ROS (2 lidars and 6 cameras). Loaned messages need POD types, which nukes standard, vendor-agnostic Image/PointCloud2. We ended up running some hot paths in a brittle single process, which made debugging a nightmare. I'm sure you've seen the heisenbugs ROS-based stacks can produce, with no way to easily reproduce the consumption order or interleaving of callbacks. Valuable data of runtime failures on the robot was hard to use effectively without deterministic reproducibility.\nThis is what we fix. Cerulion bags record per-input reads and scheduler traces alongside message content in standard MCAPs. cerulion bag play --resim all --verify re-executes node code on the recorded schedule and compares each byte for exact matches or within defined tolerances. Exit 0 is a match, 1 shows the first topic/frame that diverges, 6 shows schedule divergence and --report gives an optional CI verdict. Eligible ROS2 processes can replay deterministically as well.\nHere's the data loop:\n1. Run: Dependency-ordered level-based DAG scheduler with periodic/data/sync triggers, I/O deadlines, backpressure, and automatic profiling for process partitioning. Each node by default free-runs in its own process while preserving deterministic replay. Live runs pause/resume, and UMWAIT/WFE parks idle consumers on CPUs that support it. Wall-clock reads and runtime thread spawns in user code rejected at compile time by macros.\nROS 2 is supported with rmw_cerulion for Foxy, Humble, Jazzy and Lyrical, that lets you run ROS2 nodes/launch files unmodified in the same graph as native Cerulion nodes. LD_PRELOAD gives ROS2 code shared memory loans through std::vector/std::string. cerulion ros2 attach folds in already-running ROS2 robots, and cerulion ros2 run/launch lets you run existing ROS2 workspaces on Cerulion without any additional setup (with an optional automatic migrate suggested that rewrites C++ publish sites).\n2. Move: iceoryx2 shared memory with no serialization, no payload copy and no payload-sized allocation, including for variable-length messages like sensor_msgs/Image and PointCloud2. Round trip latency for a 1MiB sensor_msgs/Image between two processes is 4.08µs p50, with a tight tail of 7.38µs p99 (under 2x p50), with recording on. This is default Cerulion, against 10.95 ms for default ROS 2 Jazzy. Cerulion's p50 and p99 stay flat from 64B to 16 MiB.\n3. Capture: With this round-trip latency, there are no tradeoffs, not for process isolation and not for bagging. We can afford always-on or event-based logging. Flashback is our robot dashcam: keeps ~30s of all logs and message contents in memory and saves it automatically on process crashes, topic stalls or declared incidents/manual triggers.\n4. Reach: A free account lets you pair robots and desks, letting all your devices find each other with no config, IP addresses or discovery chatter. Pubsub is authenticated and on-demand, with signed grants that the robot verifies offline. We use Iroh to hole-punch or relay over WAN, and mDNS over LAN to transmit data using QUIC. Remote topics mirror into local shared memory, and each device has a single network gateway.\n5. Diagnose: cerulion doctor scans for compile/run-time issues (better than Windows Troubleshooter I promise) and suggests fixes. Hindsight is an early access MCP to let agents analyze your bags.\nTo get started: go to the repo, install Cerulion with the curl one-liner, and paste the prompt in Claude Code/Codex: https://github.com/cerulion-inc/cerulion#quickstart-run-reco... (https://github.com/cerulion-inc/cerulion#quickstart-run-record-and-verify). Or shift your own gears, it's all in the repo that you should star!\nThe CLI needs a free account, which we use to make device pairing as easy as AirDrop USED to be ;) Everything runs on Linux (x86_64/ARM64), macOS and Android (JNI), with more platforms coming.\nWe'd love to hear your feedback! If you run ROS 2 on a real robot, point this at your stack and tell us what breaks.\nDocs: https://docs.cerulion.com (https://docs.cerulion.com)\nSite: https://cerulion.com (https://cerulion.com)",
@@ -128,6 +165,14 @@
           "body": "I hate ROS so much. Such a misguided effort given what we have with both common / existing and modern dev tooling. Sorry I don't use it now only because I can't test your replacement.\nGood luck! Excited to see more stuff like this coming.",
           "score": 0,
           "time": 1794530161,
+          "parent": "50474106"
+        },
+        {
+          "id": "50477300",
+          "author": "noxs",
+          "body": "I hate ROS so much as well:\n- Robot Operating System - it is not even an operating system\n- ROS Node - okay a process/thread that runs the application logic (but why name it as node? it is a service)\nfor ROS Node to talking to another ROS Node:\n- I need a ROS topic\n- I need a ROS Message\n- in C++ I need rclcpp that is a C++ client\n- which then uses rcl which is a C implementation\n- it goes through a ROS Middleware (rmw) that is an abstract DDS (hey what is DDS)\n- now you have many implementation choices, FastDDS, Cycloe DDS etc. which one should I pick?\n- finally it would make some syscall\noh you want to build this with your application?\n- use some weird command line called ros2 pkg create\n- you need to use ament_cmake (what the heck is this?)\n- and yet another tool called colcon to build the package",
+          "score": 0,
+          "time": 1794536740,
           "parent": "50474106"
         }
       ]
@@ -173,8 +218,8 @@
       "title": "Show HN: AgentRun – open-source, Self-improving Managed Agents",
       "subreddit": "show-hn",
       "author": "miguelrios",
-      "score": 74,
-      "num_comments": 13,
+      "score": 90,
+      "num_comments": 25,
       "permalink": "https://news.ycombinator.com/item?id=50471650",
       "url": "https://github.com/Parcha-ai/agentrun/blob/main/README.md",
       "selftext": "We (GREP.AI, YC F26) are open-sourcing AgentRun and turning it into a full managed agents platform. Read more about it in this post: https://agentrun.ai/blog/introducing-agentrun-run-smarter-ag... (https://agentrun.ai/blog/introducing-agentrun-run-smarter-agents-use-fewer-tokens).\nIt includes what we originally built for our own agent harness:\n- Self-improving agents \n- Web-grounded workflows \n- A range of sandboxes and computer environments \n- Thousands of tools and integrations \n- Detailed analytics on how your agents behave\nYou can bring your own agent. AgentRun works with Pi, Claude Agents, Codex, OpenCode, and any other harness that supports ACP.\nYou can self-host it (see 1-click install on Render) with an OpenRouter key, or try the hosted version at console.agentrun.ai.\nWe’d love feedback, especially on the architecture (see README), or anything we may be missing to make it useful to you.",
@@ -184,11 +229,35 @@
       "created_at": "2026-11-12T18:15:48+00:00",
       "comments_data": [
         {
-          "id": "50476071",
-          "author": "egonschiele",
-          "body": "Could you explain how the self-improving part works?",
+          "id": "50474430",
+          "author": "whirlwin",
+          "body": "Would like to hear from everyone: How are you dealing with PRs in 2026? It's our biggest bottle neck.\nWe are considering looking into attestations, e.g. through the SLSA spec: https://slsa.dev/ (https://slsa.dev/) to ensure build provenance and verification before it is deployed.",
           "score": 0,
-          "time": 1794527070,
+          "time": 1794518307,
+          "parent": "50471650"
+        },
+        {
+          "id": "50477365",
+          "author": "bmiedlar",
+          "body": "I've noticed on some of my own research and testing that even with caps some agents will work around the per-call time limit using background processes. Do your caps cover compute in the detached processes?",
+          "score": 0,
+          "time": 1794537201,
+          "parent": "50471650"
+        },
+        {
+          "id": "50478489",
+          "author": "spikehoppins",
+          "body": "How does this compare to Letta or Hermes?",
+          "score": 0,
+          "time": 1794545431,
+          "parent": "50471650"
+        },
+        {
+          "id": "50475009",
+          "author": "ghempton",
+          "body": "If your team is using subscriptions, it is a lot more cost effective (and higher quality) to simply use a local orchestrator to automatically deal with PR reviews. We built https://github.com/codealong/codealong (https://github.com/codealong/codealong) in part to help with this.",
+          "score": 0,
+          "time": 1794521242,
           "parent": "50471650"
         },
         {
@@ -200,14 +269,6 @@
           "parent": "50471650"
         },
         {
-          "id": "50474430",
-          "author": "whirlwin",
-          "body": "Would like to hear from everyone: How are you dealing with PRs in 2026? It's our biggest bottle neck.\nWe are considering looking into attestations, e.g. through the SLSA spec: https://slsa.dev/ (https://slsa.dev/) to ensure build provenance and verification before it is deployed.",
-          "score": 0,
-          "time": 1794518307,
-          "parent": "50471650"
-        },
-        {
           "id": "50473096",
           "author": "Rinkesh2010rpp",
           "body": "Cool project, I myself have a similar autonomous agent, in python \nAt rinkesh2010rpp/sudarshana. But I liked your mission control. Will for sure take some inspiration.\nAlso, what I have is ability to find other agents on run time, running on Modal, and a safety layer that checks every actions taken by the agent.\nand happy to talk more.\nThanks",
@@ -216,11 +277,19 @@
           "parent": "50471650"
         },
         {
-          "id": "50475009",
-          "author": "ghempton",
-          "body": "If your team is using subscriptions, it is a lot more cost effective (and higher quality) to simply use a local orchestrator to automatically deal with PR reviews. We built https://github.com/codealong/codealong (https://github.com/codealong/codealong) in part to help with this.",
+          "id": "50476071",
+          "author": "egonschiele",
+          "body": "Could you explain how the self-improving part works?",
           "score": 0,
-          "time": 1794521242,
+          "time": 1794527070,
+          "parent": "50471650"
+        },
+        {
+          "id": "50476658",
+          "author": "ferar",
+          "body": "Do it uses the claude code harness (for example) or bypass it? I ask because of the subscription. thanks",
+          "score": 0,
+          "time": 1794530906,
           "parent": "50471650"
         },
         {
@@ -267,8 +336,8 @@
       "title": "Show HN: Kapso – Iterative learning from enterprise data",
       "subreddit": "show-hn",
       "author": "alirezamshi",
-      "score": 37,
-      "num_comments": 9,
+      "score": 43,
+      "num_comments": 10,
       "permalink": "https://news.ycombinator.com/item?id=50471281",
       "url": "https://news.ycombinator.com/item?id=50471281",
       "selftext": "Hey HN! We're Alireza and Majid building Leeroo (https://leeroo.com/ (https://leeroo.com/)). Previously we’ve built AI systems for products with millions of users, including at LinkedIn and Meta. We’re now focusing on building AI systems for enterprise data. Today, we're open-sourcing Kapso (https://github.com/Leeroo-AI/kapso (https://github.com/Leeroo-AI/kapso)), an engine that runs experiments, deploys the best solution, and learns from every run.\nThe nature of data work is iterative: investigate, form hypotheses, experiment, and improve based on what you learn. This bottom-up process is the only way to deliver meaningful outcomes quickly in large, messy enterprise data environments. Consultants gathering context in meetings or teams defining a business ontology upfront to fit into the data has no chance of execution, in quarters and sometimes years. An AI-native system should automate this process, compounding learning to each new investigation and implementation.\nFor instance, one of our enterprise projects was moving a company off its old data estate onto a lakehouse with more than 30 source-system families, thousands of tables and transformations, and hundreds of BI reports. No individual or AI agent knew how that data estate was connected and operated. The only way to learn it was to investigate the company's repos, dbt models, documentation, and data itself and propose hypotheses about the estate, run experiments, and learn from them, until we understand how each system behaves and under which conditions.\nThe iterative work goes beyond understanding how data and systems fit together, and the business operations. Building useful software is iterative too. Whether you’re optimizing a warehouse, building a lakehouse pipeline or predicting churn, you need to run experiments and learn what works best in that environment. As you deliver more projects, that know-how compounds, similar in principle to RL. RAGing documentation has little value until it has been tried in a specific environment and the consequences are learned. As with human engineering work, experimentation and learning should happen in a sandbox.\nWe built Kapso for this kind of work, you give it an objective and success criteria, and it works towards an optimum solution that can be deployed on your stack.\nYou can view a video walkthrough here: https://www.youtube.com/watch?v=W4FHlza1fRs (https://www.youtube.com/watch?v=W4FHlza1fRs)\nHere’s how it works…\nKapso has a bank of lessons that are induced or deduced from the past experiments, and each carries a credence score, conditions on where it applies, and the evidence behind it. For each new experiment, an ideation module proposes ideas considering the earlier lessons, re-ranks them by expected return against the budget each would use, and sends the top-ranked ones to the implementor. Because the bank keeps learning from the past experiments in that environment, the proposed ideas are better suited to it than generic hypotheses from an LLM or RAG. Also, results of each experiment are verified by a verifier module that no experiment can access and cheat. As we’ve found when building such systems, sometimes the success criteria and evaluation tests need to be evolved. The experimentation modules can propose updates to the metrics and criteria for the verifier to approve or reject.\nAfter each run, learn() updates the bank of lessons’ scores and boundaries using the evidence from that run. Changes to the bank can also be A/B tested by running otherwise identical builds with the previous and updated banks. The bank is built on git, so you can share your experience with others, list the banks available to you, and update them (`kapso experience share/list/update` in CLI). The system is model-agnostic and coding-agent-agnostic.\nkapso.deploy(solution, target_stack) follows the same workflow, runs a shorter experimentation loop to adapt the best solution to the target stack (e.g. Docker, Modal, BentoCloud, LangGraph). Every domain has a harness to start from, you can write your own domain harness with /kapso:harness in the plugin or through CLI (kapso harness new <name>), and compound over that by running experimentations.\nWe ran it on some public benchmarks and live competitions, with the following results…\n- Predictive modelling on relational databases: first on RelBench, Kumo AI (now Nvidia) and Stanford's benchmark, ahead of the best tabular foundation model (https://star-project.stanford.edu/relbench/leaderboard/ (https://star-project.stanford.edu/relbench/leaderboard/)). This shows that keeping the learning in the harness-level can beat foundational table models. Updating a bank of lessons costs far less than retraining a tabular foundation model.\n- ML Engineering: First on OpenAI's MLE-bench at submission, still among the top open-source systems (https://github.com/openai/mle-bench/pull/107 (https://github.com/openai/mle-bench/pull/107)).\n- AI competitions: ahead of the best agent the ALE-Bench authors at Sakana AI reported, and running autonomously at the live International Olympiad in AI 2026, above all 471 human contestants and in the top three AI systems (https://ioai-official.org/ai-models-track/ioai%c2%b2-2026-re... (https://ioai-official.org/ai-models-track/ioai%c2%b2-2026-report/)).\nWe have a public bank for ML and Data at Leeroopedia (https://leeroopedia.com/ (https://leeroopedia.com/)): around 100k pages extracted by experimenting on papers and repos, about 6M requests a month, about 28% from AI agents.\nIf you are at a growing company with a complex data estate across multiple systems and functions, and your data and AI team is stretched, we would love to help!\nhttps://github.com/Leeroo-AI/kapso (https://github.com/Leeroo-AI/kapso)",
@@ -336,11 +405,11 @@
       "title": "Show HN: My $300 embroidery machine needed a subscription, so I built my own app",
       "subreddit": "show-hn",
       "author": "simpsoka",
-      "score": 304,
-      "num_comments": 126,
+      "score": 448,
+      "num_comments": 168,
       "permalink": "https://news.ycombinator.com/item?id=50470488",
       "url": "https://github.com/simpsoka/zigzag",
-      "selftext": "",
+      "selftext": "https://x.com/simpsoka/status/2115254318161182876 (https://x.com/simpsoka/status/2115254318161182876)",
       "is_self": false,
       "is_video": false,
       "time": 1794502962,
@@ -355,19 +424,19 @@
           "parent": "50470488"
         },
         {
+          "id": "50478829",
+          "author": "skeedle",
+          "body": "I also recently entered into the world of embroidery software (disclaimer: I programmed embroiderybreeze.com). I can best describe it as these poor embroiderists have been held hostage by Big Embroidery for years. The software out there is old, and super expensive. My wife has embroidered a lot and got frustrated trying to digitize just some simple designs and asked if I could make software for her. When I looked at the multiple applications she used and the difficulty of it I was shocked. It was like 1998 level. Then I looked at the prices and I was shocked even more. So I started making software for her.\nNow I will say there is more to embroidery than one might first expect. It's got some overlap with image editing but only to a point. The stitching really matters and to make it stitch out well requires sort of a lot of rules about how to do that. Most software is either $1000+ and requires you take a course, or there's a subscription but you're really just downloading designs and sending them to your machine. There's a fairly healthy market of people selling embroidery designs on Etsy in part I believe because digitizing for embroidery is not that easy and requires expensive software. So people often just buy designs rather than make them themselves.\nTo make things worse, basically no embroidery digitizing software was available on Android or iOS and it usually was just Windows. So I set out to build the easiest digitizing software which would also work on mobile devices which means you have to design around things like no key combos, no right click, etc. So while I expected it wouldn't be that hard to write embroidery digitizing software, I learned that just being able to send a PES/DST/etc file to a machine was really not the hard part. So kudos to the OP writing his own software. Gotta break that grip of Big Embroidery.",
+          "score": 0,
+          "time": 1794548451,
+          "parent": "50470488"
+        },
+        {
           "id": "50476215",
           "author": "gregsadetsky",
           "body": "This is very very much in my current wheelhouse. My (extremely genius) friend Owen Trueblood reverse engineered the Brother PE-150 [0] and made a replacement motherboard, replacing the stock one, to control it over USB.\nThe PE-150 is a great example of the absurdity/sadness of the embroidery world: today, you can have those machines for $100 on eBay, completely functional, but being sold/abandoned because they use a proprietary cartridge holding proprietary data that no one wants to deal with.\nEven novel Brother machines that have USB connectors still force you to use terrible apps and lock you into subscriptions. This entire world - which is/should be full of twee and about making beautiful things with your hands - is somehow corrupted with this merchandising/everything-software-should-have-a-price mentality which is just so sad.\nNothing to announce announce, but I 100000000000000000000000000000000000% want to make embroidery machines more accessible, open, and free of this balagan.\nA few more links on this topic:\n- https://github.com/CreativeInquiry/PEmbroider (https://github.com/CreativeInquiry/PEmbroider) !! Check the \"Motivation\" section of the readme!\n- https://emberdesign.net/ (https://emberdesign.net/) - a startup by another friend, with a really great online editor, and which exports a variety of formats\n[0] https://owentrueblood.com/blog/2024/12/10/reverse-engineerin... (https://owentrueblood.com/blog/2024/12/10/reverse-engineering-the-brother-pe-150-embroidery-machine/)",
           "score": 0,
           "time": 1794527938,
-          "parent": "50470488"
-        },
-        {
-          "id": "50473413",
-          "author": "rocmcd",
-          "body": "For anyone interested in this space, I'd also recommend looking at InkStitch[0], which is a plugin for InkScape. It allows you to take SVGs and export them into file types that an embroidery machine can use. It's not without its faults (there is a surprising amount of care needed for any design - stitch placement, size, type, layering, etc), but it's been a fun experience to take an SVG and turn it into something real.\n[0] https://inkstitch.org/ (https://inkstitch.org/)",
-          "score": 0,
-          "time": 1794514017,
           "parent": "50470488"
         },
         {
@@ -379,6 +448,22 @@
           "parent": "50470488"
         },
         {
+          "id": "50473413",
+          "author": "rocmcd",
+          "body": "For anyone interested in this space, I'd also recommend looking at InkStitch[0], which is a plugin for InkScape. It allows you to take SVGs and export them into file types that an embroidery machine can use. It's not without its faults (there is a surprising amount of care needed for any design - stitch placement, size, type, layering, etc), but it's been a fun experience to take an SVG and turn it into something real.\n[0] https://inkstitch.org/ (https://inkstitch.org/)",
+          "score": 0,
+          "time": 1794514017,
+          "parent": "50470488"
+        },
+        {
+          "id": "50478803",
+          "author": "tomas1808",
+          "body": "I did a similar thing today. I bought a used enterprise card printer that expected me to pay for some proprietary program to design and print. Astra created the program in 20min, worked first try. Even customized it for my very specific use case. I don't even consider uploading it to GitHub because why do it if anyone can just ask their LLM of choice and get it a few minutes later? These types of programs are now literally worth nothing.",
+          "score": 0,
+          "time": 1794548216,
+          "parent": "50470488"
+        },
+        {
           "id": "50473199",
           "author": "geerlingguy",
           "body": "William Osman built a browser app that works pretty well too: https://www.stitchslop.com/ (https://www.stitchslop.com/)\nI think that one was built with Claude (he wanted to embroider cats on merch, and didn't like the expensive subscription software's ancient UX).",
@@ -387,11 +472,19 @@
           "parent": "50470488"
         },
         {
-          "id": "50476237",
-          "author": "newhotelowner",
-          "body": "We have a proprietary rfid encoder with their software to make hotel room keys (BeLine Locks). It's bulky, and doesn't connect to PMS. Doesn't have any API. We learned how it works, and build our own little encoder software that provides API to make keys. Created a webapp that uses new API. Now, we can make keys from PMS. It may not save much time, but keys will be more accurate based on the reservation. And will be able to track who screwed up.\nAnother hotel uses different vendor locks with a different encoder. They don't also provide APIs or way to integrate. I just order a new encoder for that. Hopefully, we can figure that out too.",
+          "id": "50478284",
+          "author": "brainless",
+          "body": "This is the reason I am hopeful with LLMs. Yes there are massive risks but I do not think the average person has ever been empowered by tech in quite this way. An LLM agent can write automation for much of home/farm/business hardware.\nI live in a farm. I am software engineer and gave up city life few years ago. Now, all I dream of is automating little things in my chicken farm and growing the business. Not in the mechanical monstrous way that makes me hate eating meat. But a balance in between with actual daily physical work and care. And tiny little automation ideas. Measure food intake, an automatic weight check, door closer/opener, heating control... so many things. And I do not want to buy the best \"Chicken Star 3000\" model, I want to make these out of microcontrollers with tiny mechanical parts that I can assemble. AI helping me all the way.\nI also have a small sewing machine. I want to get a larger one. I want to make \"patch\" clothes, jackets. I love them. From scrap clothes, etc. What a time to tinker!",
           "score": 0,
-          "time": 1794528051,
+          "time": 1794543679,
+          "parent": "50470488"
+        },
+        {
+          "id": "50478074",
+          "author": "egeozcan",
+          "body": "William Osman (a youtuber) had created one too! See: https://www.reddit.com/r/Machine_Embroidery/comments/1wurw5o... (https://www.reddit.com/r/Machine_Embroidery/comments/1wurw5o/william_osman_2_created_free_embroidery_machine/)",
+          "score": 0,
+          "time": 1794542178,
           "parent": "50470488"
         },
         {
@@ -403,27 +496,11 @@
           "parent": "50470488"
         },
         {
-          "id": "50476358",
-          "author": "wittjeff",
-          "body": "I have theorized for a couple of years that an embroidery machine might make a cheap tactile graphics device for blind people. This might make it a lot more feasible. Thanks!",
+          "id": "50478789",
+          "author": "bill10",
+          "body": "With cheaper and better AI, I guess personal software will have less and less market since everyone can just build their own. However, business side might still have a chance",
           "score": 0,
-          "time": 1794528730,
-          "parent": "50470488"
-        },
-        {
-          "id": "50475661",
-          "author": "wildpeaks",
-          "body": "I actually went on a deep dive when I encountered this project a few weeks ago.\nIt seems a lot of the magic comes from Respira (https://github.com/jhbruhn/respira (https://github.com/jhbruhn/respira)), there were already open source softwares to avoid using the subscription app.\nAlso the $300 price was probably secondhand/on sale because that machine is usually 499, not 300.\nStill a cool project, but you'd think this was reverse engineered from scratch from the description whereas this is more like a downloader wrapping yt-dlp",
-          "score": 0,
-          "time": 1794524524,
-          "parent": "50470488"
-        },
-        {
-          "id": "50474205",
-          "author": "nijave",
-          "body": "Love this type of stuff but afraid it won't last. Only a matter of time before OEMs ask same LLM to setup secure boot with signed firmware with anti-rollback and pinned certs.\nThere is already prior art like anything Google (phones, Fitbit)",
-          "score": 0,
-          "time": 1794517214,
+          "time": 1794548104,
           "parent": "50470488"
         },
         {
@@ -432,14 +509,6 @@
           "body": "I'm tired of everything needing a subscription.\nLife was better before the internet which allowed companies to remotely put their hands in our pockets.",
           "score": 0,
           "time": 1794516070,
-          "parent": "50470488"
-        },
-        {
-          "id": "50475431",
-          "author": "jlyon1",
-          "body": "I ran into the same problem and made something similar, but I ended up writing what is basically a server that can be driven by any thin client. The goal being I can start designs by either a simple prompt, or create a mobile/tablet client that has the same power as desktop applications.\nIn addition to the digitizer, I am building my own set of heuristics that give designs a \"better\" outcome but things are really a work in progress right now.\nEmbroidery is a really fun hobby for me so i'm basically optimizing for \"what I need\" as I learn more about it!\nhttps://studio.embroiderytext.com/ (https://studio.embroiderytext.com/)",
-          "score": 0,
-          "time": 1794523208,
           "parent": "50470488"
         }
       ]
@@ -451,15 +520,25 @@
       "title": "Show HN: Apron Chat Protocol",
       "subreddit": "show-hn",
       "author": "shazow",
-      "score": 28,
-      "num_comments": 0,
+      "score": 39,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50470343",
       "url": "https://apron.chat/",
       "selftext": "Hi HN friends - I've been obsessed with chat protocols for ages - one previous project is ssh-chat (https://ssh.chat/ (https://ssh.chat/))\nI come bringing a new kind of chat protocol that I've been working on since I spent quite a lot of time exploring the 14 other competing standards we've come up with in the past few decades.\nThe protocol details are here: https://apron.chat (https://apron.chat)\nI'm hoping that Apron will better reflect our needs beyond 2026, which I expect will move more and more toward semi-private chats rather than global social networks.\nCome say hi on the live public demo: https://web.apron.chat (https://web.apron.chat)\nSome fun facts:\n- The demo server runs in a Cloudflare Durable Worker. It's quite efficient, since it's hibernated except for when a message comes in. Easy to self-host this in the free tier.\n- Despite the JSON protocol being intentionally unabbreviated (\"message\" instead of \"msg\", etc), a typical Apron session still uses almost half as much bandwidth and messages compared to an equivalent Matrix or XMTP session. This is largely because Apron minimizes the number of roundtrips and state required for common chat scenarios. Also it compresses very nicely!\n- The official reference client is a PWA (Apron Web), we also have a TUI, macOS, and an iOS implementation by third party Apron-enjoyers. There's two reference server implementations (Cloudflare worker in TS and a Go implementation), plus a bunch of minimal implementations.\n- My favourite fun capability is embedding streaming messages, great for LLM outputs. This can be done just by piping to a curl command, no additional dependencies. There's also a mode for streaming a terminal (by piping something like `script` from util-linux which handles row/col/baud flushing, no special dependencies either). See section 4.8 for details: https://apron.chat/protocol#48-embeds-and-avatars (https://apron.chat/protocol#48-embeds-and-avatars)",
       "is_self": false,
       "is_video": false,
       "time": 1794502351,
-      "created_at": "2026-11-12T16:52:31+00:00"
+      "created_at": "2026-11-12T16:52:31+00:00",
+      "comments_data": [
+        {
+          "id": "50478771",
+          "author": "sans_souse",
+          "body": "That's quite a robust LLMs-full.txt\nI am curious if you can help shed insight; why the trend / focus on the llms txt files over a standard sitemap.xml? Is it dependent upon your TLD, or a design choice?",
+          "score": 0,
+          "time": 1794547905,
+          "parent": "50470343"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -529,8 +608,8 @@
       "title": "Show HN: Fable52.games – Play and inspect Fable 5.2 single-file HTML games",
       "subreddit": "show-hn",
       "author": "felixne",
-      "score": 61,
-      "num_comments": 54,
+      "score": 67,
+      "num_comments": 55,
       "permalink": "https://news.ycombinator.com/item?id=50469007",
       "url": "https://fable52.games",
       "selftext": "",
@@ -540,11 +619,11 @@
       "created_at": "2026-11-12T15:30:01+00:00",
       "comments_data": [
         {
-          "id": "50476183",
-          "author": "kodoman",
-          "body": "Looking over the games again they are all... the same, there is a feel to them that is all the same and the mechanics are all the same (and not polished particularly the driving games).",
+          "id": "50478466",
+          "author": "dumbgamelab",
+          "body": "Would like the inspect view to split Saltline's 1.4MB by part: audio synth, geometry, canvas texture painting. From the outside there's no way to tell if most of that is real code or one big base64 string that brings an asset back in through the side door",
           "score": 0,
-          "time": 1794527773,
+          "time": 1794545188,
           "parent": "50469007"
         },
         {
@@ -580,6 +659,14 @@
           "parent": "50469007"
         },
         {
+          "id": "50469914",
+          "author": "DavidD",
+          "body": "I made a game with Fable5.2 yesterday turned out pretty good - https://civilwarstrategy.com/ (https://civilwarstrategy.com/)",
+          "score": 0,
+          "time": 1794500654,
+          "parent": "50469007"
+        },
+        {
           "id": "50470128",
           "author": "QuantumNomad_",
           "body": "In the Saltline game https://fable52.games/play/saltline-fable-5-2-fps (https://fable52.games/play/saltline-fable-5-2-fps) when i play on mobile, dragging the joystick to move around does nothing.\nThe other touch controls work, like the aim, reload, fire and touch-dragging on the right side to look around.",
@@ -596,11 +683,11 @@
           "parent": "50469007"
         },
         {
-          "id": "50469914",
-          "author": "DavidD",
-          "body": "I made a game with Fable5.2 yesterday turned out pretty good - https://civilwarstrategy.com/ (https://civilwarstrategy.com/)",
+          "id": "50476183",
+          "author": "kodoman",
+          "body": "Looking over the games again they are all... the same, there is a feel to them that is all the same and the mechanics are all the same (and not polished particularly the driving games).",
           "score": 0,
-          "time": 1794500654,
+          "time": 1794527773,
           "parent": "50469007"
         },
         {
@@ -625,14 +712,6 @@
           "body": "Just tried to load a couple games and received error 1027 - rate limited - you need to upgrade your Cloudflare plan.",
           "score": 0,
           "time": 1794503148,
-          "parent": "50469007"
-        },
-        {
-          "id": "50469871",
-          "author": "cr125rider",
-          "body": "This is incredible.\nIt seems like the full screen button and mobile support is a bit lacking. Can you fix that?",
-          "score": 0,
-          "time": 1794500470,
           "parent": "50469007"
         }
       ]
@@ -662,7 +741,7 @@
       "subreddit": "show-hn",
       "author": "whereinside",
       "score": 10,
-      "num_comments": 1,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50468901",
       "url": "https://apps.apple.com/ph/app/daily-planner-tasks-zesfy/id6479947874",
       "selftext": "",
@@ -671,6 +750,14 @@
       "time": 1794497057,
       "created_at": "2026-11-12T15:24:17+00:00",
       "comments_data": [
+        {
+          "id": "50478212",
+          "author": "throwaway81523",
+          "body": "Org mode?",
+          "score": 0,
+          "time": 1794543203,
+          "parent": "50468901"
+        },
         {
           "id": "50474956",
           "author": "jiehong",
@@ -807,7 +894,7 @@
       "title": "Show HN: AI Red Lines – write down what would make you act on AI",
       "subreddit": "show-hn",
       "author": "ap11071",
-      "score": 31,
+      "score": 36,
       "num_comments": 29,
       "permalink": "https://news.ycombinator.com/item?id=50467880",
       "url": "https://yourairedlines.com",
