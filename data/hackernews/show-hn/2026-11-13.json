@@ -1,8 +1,232 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-13T18:31:18.215521+00:00",
+  "last_fetched": "2026-11-14T00:42:00.253135+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50491929",
+      "title": "Show HN: String#to_proc` to Help Traversing JSON",
+      "subreddit": "show-hn",
+      "author": "samleb34",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50491929",
+      "url": "https://github.com/samleb/schmuck",
+      "selftext": "I've resuscitated a project I was working on years ago.\nI was tired of having nested `flat_map` making my code basically unreadable just to fetch a simple value.\nThe idea is to make simple & readable the traversing of deeply nested structures like JSON responses, while staying in Ruby & keeping its flexibility. Here it goes:\n graphql_response.then(&'[data][repository][issues][edges]*([node][title])')\n # => [\"Support negative indexes\", \"Document aggregates\"]\n\n github_prs_response.then(&'*[draft].any?')\n # => true\n\nIt's different from jq or JSONPath in that: \n- it's a Ruby block so you can use it with `map`, `find`, etc.\n- you can call Ruby method from it\n- it doesn't automatically flatten arrays, you decide\n- it raises on `nil` by default (unless you use `&`, i.e. `[customer][address]&[city]`)\nObviously, it has drawbacks:\n- it's yet another syntax to learn\n- it monkey-patches `String` which might be a blocker for some\nI'm really looking for feedback here, what do you think?\nIs it worth releasing a gem with this value proposition?",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794614343,
+      "created_at": "2026-11-13T23:59:03+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50491841",
+      "title": "Show HN: Feedback/AMA MeditionBench; LLMs for mediation and conflict resolution",
+      "subreddit": "show-hn",
+      "author": "hendler",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50491841",
+      "url": "https://news.ycombinator.com/item?id=50491841",
+      "selftext": "I am the founder of Human Assisted Intelligence and I believe AI can be used to reduce polarization and improve the way people communicate and reach agreement.\nAt https://mediationbench.com/ (https://mediationbench.com/), there are many frontier LLMs tested, but it is difficult to keep up. I've been trying to get more free openrouter or huggingface credits. \nAzure for OpenAI and Anthropic have both provided token credits. (Thank You!)\nThe research paper is there as well.\nThere have been efforts to use LLMs to lie and play diplomacy, which are excellent compliments to this work.\nIn v4, the test will get harder as Claude nearly saturated the test. Astra was surprisingly low, perhaps because of alignment or safety efforts.\nI'd love to get feedback and hear from all of you. I've been working on related ideas for 20 years, so it's definitely a passion project with too much time in isolation.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794613803,
+      "created_at": "2026-11-13T23:50:03+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50491776",
+      "title": "Show HN: Anvil builds premium websites at lower cost",
+      "subreddit": "show-hn",
+      "author": "Alumu",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50491776",
+      "url": "https://www.tryanvil.dev/",
+      "selftext": "Anvil is an AI app builder focused on premium UI/UX without the premium price tags. Build polished websites by using natural language with with real project execution, live previews and automated error correction. Plans starts at $1 for 7 days with 1M tokens. Built independently from Africa in Zambia.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794613355,
+      "created_at": "2026-11-13T23:42:35+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50491545",
+      "title": "Show HN: Live map of U.S. flights during tonight's FAA nationwide ground stop",
+      "subreddit": "show-hn",
+      "author": "gvsi",
+      "score": 5,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50491545",
+      "url": "https://grounds.top/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794611859,
+      "created_at": "2026-11-13T23:17:39+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50491060",
+      "title": "Show HN: FrontierBioML – Can coding agents do ML for computational biology?",
+      "subreddit": "show-hn",
+      "author": "dominik-space",
+      "score": 2,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50491060",
+      "url": "https://www.frontierbioml.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794609366,
+      "created_at": "2026-11-13T22:36:06+00:00",
+      "comments_data": [
+        {
+          "id": "50491102",
+          "author": "ray__",
+          "body": "The certificate on this site is having issues.",
+          "score": 0,
+          "time": 1794609578,
+          "parent": "50491060"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50491021",
+      "title": "Show HN: NETWAR – hacker MMO with 15-second card duels on a shared hex map",
+      "subreddit": "show-hn",
+      "author": "Fivekoto",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50491021",
+      "url": "https://play-netwar.com/?from=hn",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794609206,
+      "created_at": "2026-11-13T22:33:26+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50488795",
+      "title": "Show HN: Tinbo – yet another (modern) link shortener",
+      "subreddit": "show-hn",
+      "author": "gothy",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50488795",
+      "url": "https://tinbo.co/",
+      "selftext": "Hi folks\nI've started this project years ago as an \"exercise\" and it stalled completely very soon, for years due to various reasons.\nBut recently i've decided that it was worth a shot to actually make something useful out of it and show to the world. Yep, the world that's already full of link shorteners\\link management software\\branded links services\\etc.\nI realise that there's a lot of established options in this space and I clearly realise that there's no \"moat\" in software like this nowadays, but it feels really great to see not yet another tombstone in my graveyard of started-and-never-finished projects, but a publicly available tool, that can be used by people.\nWhile working on it, i've realised that a \"link shortener\" nowadays is much more than fitting a long link in a message or whatever.\nIt can actually be a fun tool to o̶v̶e̶r̶-̶e̶n̶g̶i̶n̶e̶e̶r̶ build, while you're exploring all the areas it can be used in.\nIf you'll find it useful for your project/job - I'd be happy to hear your thoughts on any aspect of it, let me know.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794599679,
+      "created_at": "2026-11-13T19:54:39+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50488733",
+      "title": "Show HN: College Basketball Stats and Predictions",
+      "subreddit": "show-hn",
+      "author": "JackFr",
+      "score": 5,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50488733",
+      "url": "https://fijimf.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794599263,
+      "created_at": "2026-11-13T19:47:43+00:00",
+      "comments_data": [
+        {
+          "id": "50490596",
+          "author": "ignaher",
+          "body": "thats good, where do you get the data from?",
+          "score": 0,
+          "time": 1794607488,
+          "parent": "50488733"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50488513",
+      "title": "Show HN: The Price of Patience",
+      "subreddit": "show-hn",
+      "author": "kkm",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50488513",
+      "url": "https://github.com/konarkmodi/pi-doubleword",
+      "selftext": "How waiting a little has saved us over 50% on inference requests over the last few months. And taught us something unexpected about our coding agents.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794598128,
+      "created_at": "2026-11-13T19:28:48+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50488492",
+      "title": "Show HN: Hotaisle-Console",
+      "subreddit": "show-hn",
+      "author": "latchkey",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50488492",
+      "url": "https://hotaisle.xyz/blog/introducing-hotaisle-console",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794598052,
+      "created_at": "2026-11-13T19:27:32+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50488091",
+      "title": "Show HN: Re-ranking of the 3000 HN Comments on Jensen Huang resigns thread",
+      "subreddit": "show-hn",
+      "author": "icc97",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50488091",
+      "url": "https://ianchanning.com/hn/item?id=50467087",
+      "selftext": "Vibe-coded with Gemini Carbon experimenting with techniques from the 'Scaling Discovery Requires Forgetting' paper: https://arxiv.org/abs/2610.20563 (https://arxiv.org/abs/2610.20563)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794596269,
+      "created_at": "2026-11-13T18:57:49+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50487275",
+      "title": "Show HN: Webpage of Hands",
+      "subreddit": "show-hn",
+      "author": "willmeyers",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50487275",
+      "url": "https://lasmanos.app/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794592917,
+      "created_at": "2026-11-13T18:01:57+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,15 +234,113 @@
       "title": "Show HN: Isometric SF – A pixel-art map of the SF Bay Area",
       "subreddit": "show-hn",
       "author": "juscha1",
-      "score": 10,
-      "num_comments": 2,
+      "score": 144,
+      "num_comments": 50,
       "permalink": "https://news.ycombinator.com/item?id=50487228",
       "url": "https://isometricsf.com/",
       "selftext": "Technical Write-up: https://www.justinchavez.com/blog/isometric-sf-how/ (https://www.justinchavez.com/blog/isometric-sf-how/)\nHi HN! Showcasing this fun project. I took 1300 square miles of the SF Bay Area from Google Photorealistic 3D Tiles and transformed them into a cohesive pixel map. It's really fun to explore and stumble upon various famous landmarks like Apple Park, Palace of Fine Arts, or UC Berkeley.\nThe technicals involve using Nano Banana 2 to train a Qwen-Image-Edit 2511 LoRA which is used to prototype the style and generation methods. For final map I used Qwen to train a Klein 4B LoRA which reproduced the style at 1/4 of the cost. More details in the blog post.\nLet me know what you think! I really enjoyed this process of fine-tuning smaller open source models.\nIf I did the map with Nano Banana 2 it would have cost around 7k USD!\nCredit for the idea goes to Isometric NYC.",
       "is_self": false,
       "is_video": false,
       "time": 1794592717,
-      "created_at": "2026-11-13T17:58:37+00:00"
+      "created_at": "2026-11-13T17:58:37+00:00",
+      "comments_data": [
+        {
+          "id": "50489230",
+          "author": "drayfield",
+          "body": "Sorry to be a downer, but this looks really bad to me. It completely lacks the sumptuous precision of real pixel art.",
+          "score": 0,
+          "time": 1794601919,
+          "parent": "50487228"
+        },
+        {
+          "id": "50488197",
+          "author": "mlmonkey",
+          "body": "OP didn't mention it (or maybe I missed it), but the underlying imagery comes from the Google 3D photorealistic tiles API: https://developers.google.com/maps/documentation/tile/3d-til... (https://developers.google.com/maps/documentation/tile/3d-tiles)\nThey offer a generous 1000 API calls per month for free, in case anyone is interested in replicating this.",
+          "score": 0,
+          "time": 1794596640,
+          "parent": "50487228"
+        },
+        {
+          "id": "50490242",
+          "author": "fwipsy",
+          "body": "This is neat but maybe we could call it \"pixel-art-styled?\" Pixel art is all about attention to detail; this is more like applying a shader (though I see some AI artifacts in there too.)",
+          "score": 0,
+          "time": 1794606109,
+          "parent": "50487228"
+        },
+        {
+          "id": "50487747",
+          "author": "kenferry",
+          "body": "…not actually pixel art though, no?",
+          "score": 0,
+          "time": 1794594763,
+          "parent": "50487228"
+        },
+        {
+          "id": "50489743",
+          "author": "dllu",
+          "body": "Here's a 7388 x 5097 photo I took from a friend's Cessna of the Mission from a similar angle in 2018 which provides a nice point of reference for comparing the fine details:\nhttps://i.dllu.net/2018-04-14-23-31-28_DSC04018_6201e8e3a215... (https://i.dllu.net/2018-04-14-23-31-28_DSC04018_6201e8e3a21598fb3a21a1f3f33a62282e46558a_4b2e5cb4aee9a1e2.jpg)\nYou can see some buildings, like 350 Treat Ave, which is a white warehouse in the middle of the photo, are blended from two colors in this isometric viewer. It's yellow on the left and grey on the right, when in fact it is uniformly white throughout. This is probably due to image generation running separately on two tiles and then blending them together.\nStill, from a distance, this looks great.",
+          "score": 0,
+          "time": 1794604391,
+          "parent": "50487228"
+        },
+        {
+          "id": "50487783",
+          "author": "scosman",
+          "body": "Also see isometric Toronto: https://iso.sloptoronto.ca/#v=3&x=102672&y=64255&z=0.262 (https://iso.sloptoronto.ca/#v=3&x=102672&y=64255&z=0.262)",
+          "score": 0,
+          "time": 1794594868,
+          "parent": "50487228"
+        },
+        {
+          "id": "50489116",
+          "author": "30minAdayHN",
+          "body": "This is so beautiful! Something soothing and ultra clean about it. Maybe all the maps should have this rendered version as default.",
+          "score": 0,
+          "time": 1794601349,
+          "parent": "50487228"
+        },
+        {
+          "id": "50489341",
+          "author": "nphardon",
+          "body": "this is really cool, but I wish it was oriented north south (maybe thats not as pleasing re the isometry?), just because that's how I think about the city and navigating it, so this makes me like, instinctually rotate my head.",
+          "score": 0,
+          "time": 1794602453,
+          "parent": "50487228"
+        },
+        {
+          "id": "50490413",
+          "author": "AntonyGarand",
+          "body": "I thought I already saw that project few months ago, but turns out it's a similar submission under the same concept: \"Isopolis – Isometric pixel map of SF \"!\nLooks great, I love the style you chose, it was enjoyable to move around and explore\n[0]: https://news.ycombinator.com/item?id=49149966 (https://news.ycombinator.com/item?id=49149966)",
+          "score": 0,
+          "time": 1794606746,
+          "parent": "50487228"
+        },
+        {
+          "id": "50490489",
+          "author": "armcat",
+          "body": "I've done something similar with generating pixel-style images of Stockholm. Unfortunately imagegen models are quite bad at localised details. It looks good on the surface, but when you look closer or zoom in you see structurally things that don't make sense, like windows disappearing, or walls just not making any sense at all.",
+          "score": 0,
+          "time": 1794607053,
+          "parent": "50487228"
+        },
+        {
+          "id": "50490455",
+          "author": "ubasu",
+          "body": "This misses large parts of the Bay Area, which is nine counties: Alameda, Contra Costa, Marin, Napa, San Mateo, Santa Clara, Solano, Sonoma, and San Francisco. Here, pretty much everything east of 680 and north of the Richmond Bridge is missing. No Mt. Diablo, no Livermore, only bits of Dublin, Pleasanton, San Ramon etc.",
+          "score": 0,
+          "time": 1794606905,
+          "parent": "50487228"
+        },
+        {
+          "id": "50487812",
+          "author": "leugim",
+          "body": "How much it cost you paint per km2 after training the model? I did (and publish here) https://www.tinyvalencia.com (https://www.tinyvalencia.com) and got to 0.4$ per km2 after training the model (for 15$ or so).",
+          "score": 0,
+          "time": 1794595011,
+          "parent": "50487228"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -35,7 +357,17 @@
       "is_self": false,
       "is_video": false,
       "time": 1794587059,
-      "created_at": "2026-11-13T16:24:19+00:00"
+      "created_at": "2026-11-13T16:24:19+00:00",
+      "comments_data": [
+        {
+          "id": "50486721",
+          "author": "Benard-dev",
+          "body": "Congrats on shipping!\nHow are you detecting the unfolded state; screen size change or trait collection?\nNice to see it done on-device vs extension.",
+          "score": 0,
+          "time": 1794590896,
+          "parent": "50485799"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -69,7 +401,17 @@
       "is_self": false,
       "is_video": false,
       "time": 1794584194,
-      "created_at": "2026-11-13T15:36:34+00:00"
+      "created_at": "2026-11-13T15:36:34+00:00",
+      "comments_data": [
+        {
+          "id": "50485660",
+          "author": "alorenzom",
+          "body": "I checked out the project and I think it's really lovely and quirky. Making a custom deck of cards featuring your loved ones, whether for yourself or as a gift, is a very special idea.",
+          "score": 0,
+          "time": 1794586493,
+          "parent": "50485064"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -112,7 +454,7 @@
       "title": "Show HN: Cal.flare – cal.diy ported to Cloudflare Workers",
       "subreddit": "show-hn",
       "author": "ralphbibera",
-      "score": 2,
+      "score": 8,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50484737",
       "url": "https://github.com/ralphbibera/cal.flare",
@@ -129,7 +471,7 @@
       "title": "Show HN: Hexalexagons, a daily word game on a hexagonal grid",
       "subreddit": "show-hn",
       "author": "michelleful",
-      "score": 8,
+      "score": 13,
       "num_comments": 6,
       "permalink": "https://news.ycombinator.com/item?id=50484579",
       "url": "https://hexalexagons.com/",
@@ -148,19 +490,19 @@
           "parent": "50484579"
         },
         {
-          "id": "50487073",
-          "author": "samfierro",
-          "body": "Cute game!",
-          "score": 0,
-          "time": 1794592129,
-          "parent": "50484579"
-        },
-        {
           "id": "50484996",
           "author": "james_marks",
           "body": "Beautiful, love the colors and clean execution. Great job.",
           "score": 0,
           "time": 1794583909,
+          "parent": "50484579"
+        },
+        {
+          "id": "50487073",
+          "author": "samfierro",
+          "body": "Cute game!",
+          "score": 0,
+          "time": 1794592129,
           "parent": "50484579"
         }
       ]
@@ -249,7 +591,7 @@
       "title": "Show HN: Reflota – Open-source data recovery for NTFS/FAT disks with phased copy",
       "subreddit": "show-hn",
       "author": "christ_dev",
-      "score": 22,
+      "score": 30,
       "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50482455",
       "url": "https://github.com/Christ10-8/reflota",
