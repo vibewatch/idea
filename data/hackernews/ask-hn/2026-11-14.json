@@ -1,8 +1,123 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-14T06:33:29.186787+00:00",
+  "last_fetched": "2026-11-14T12:30:41.941252+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50494696",
+      "title": "Ask HN: What are the most useful, concrete AI skills to independently learn?",
+      "subreddit": "ask-hn",
+      "author": "shnock",
+      "score": 48,
+      "num_comments": 40,
+      "permalink": "https://news.ycombinator.com/item?id=50494696",
+      "url": "https://news.ycombinator.com/item?id=50494696",
+      "selftext": "Specifically, what are the most useful, concrete skills to learn as an individual to take economic advantage of the advances in LLMs, agents and associated new technological capabilities?\nWhat is accessible to learn just from the internet and experimentation, without a degree program, assuming a preexisting moderately technical background? The clearer and more specific (eg. “Learn how-to x with y”) the better.\nThank you!",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794639402,
+      "created_at": "2026-11-14T06:56:42+00:00",
+      "comments_data": [
+        {
+          "id": "50495864",
+          "author": "cadamsdotcom",
+          "body": "The most modern efficient slopftware factories are bottlenecked trying to get things out the door.\nThat's a huge opportunity for you.\nLearn the many techniques the industry has developed for scaling verification.\nI don't mean infra; CI is solved. I mean Red-green & test-driven development, the testing pyramid (most unit tests/fewer functional/integration tests/happy-path e2e tests), learn how to get the most out of tools like Playwright and test frameworks like pytest and vitest and go and rust's testing tooling. Learn when to mock and when to include your code's dependencies in a test (test boundaries). Learn patterns like dependency injection so your tests can have no I/O and be FAST.\nLearn to scale verification, and you'll solve your team's biggest bottleneck.",
+          "score": 0,
+          "time": 1794652567,
+          "parent": "50494696"
+        },
+        {
+          "id": "50495687",
+          "author": "lmf4lol",
+          "body": "I personally would say: Learn how to think like an engineer. As in:\n- Be able to analyze a situation into processes and discrete steps\n- Be able to describe the actual (!) problem you want to be solved\n- Be able to describe how to verify that the problem is actually solved\n- Be able to ask the right questions regarding HOW the problem has been solved in order to gain understanding and to identify the next steps and improvements\n- Be able to identify when the AI gets stuck or down a rabbit hole and to guide it out of there.\n- Understand what LLMs are good at and what they are not good at. And there are tons of things they are not good at.\nDisclaimer: This is absoluty not based on any scientific study or so :-) Just my personal experience! Feel free to disagree.\nBut my experience comes directly from my work: I have a lot of customers on my platform that are not engineers, but make use of AI to solve business problems through automations. Nearly everytime when they are stuck (or burning through a sh*tload of tokens in no time), it is because one of those skills aren't present. So I try to teach them more and more how to \"think like an engineer\". And often when it lands, they become much better at using AI in a very short time. The best learners are often those that already had some kind of engineering background.\nNow granted, the frontier models can help themselves pretty well and often can produce amazing results with very bad input. But they are also expensive. If you work with less-than-frontier, those skill requirements become very salient again. And thats what we do. We mostly work with models like Deepseek flash or GLM Flash or even local ones like Qwen3.7 .",
+          "score": 0,
+          "time": 1794650913,
+          "parent": "50494696"
+        },
+        {
+          "id": "50495166",
+          "author": "hypfer",
+          "body": "The best AI skill to learn is learning people management, actually.\nTo successfully steer AI, you need essentially the same stuff you'd need if you were to steer humans in a management role.\nMeaning communication, introspection, remote introspection, emotional intelligence and all that kind of stuff.\nReading when someone is bullshitting you. Reading when someone is insecure and overcompensates that. Reading the actual problems people struggle with and not the ones they claim they do nor their suggested solutions.\nVerbalizing what you need someone to do in a way that actually enables them to do it. Knowing what you want to do to a level where that is possible",
+          "score": 0,
+          "time": 1794644659,
+          "parent": "50494696"
+        },
+        {
+          "id": "50495874",
+          "author": "hypendev",
+          "body": "I'd rank them like this - this comes from applying LLM's since GPT-3 autocomplete API, teaching people how to use them, giving talks to developers, answering their questions, training my own models and seeing how people interact with them:\n1. Building your own model - this will cost you a bit, but is without a doubt the best way to earn concrete AI skills. From picking the data to training, seeing how it evolves, improves and scales. You will understand the \"hyperplanes\" of a model's inner world better than anything else can teach you. You will learn how to pick data, how it impacts model quality, way of thinking, scores, personality. If training your own is too much, start with a completed pretrain and toy with it.\n2. Building a harness around a completion model - I'd put this as second best to understand the inner worlds of LLM's. It helps you build intuition around how prompting really works, how they form the answers, how to build around that. Then you can do an SFT for your own harness.\n3. Building a harness and an orchestrator around finished models - this takes the bronze. It teaches you how harnesses, agents and swarms actually work, how they shape the model's thoughts and actions, how models interact with them, how they can be applied and how they can work without humans.\n.",
+          "score": 0,
+          "time": 1794652669,
+          "parent": "50494696"
+        },
+        {
+          "id": "50495548",
+          "author": "OgsyedIE",
+          "body": "I think the answer to the title is \"psychologically preparing for short timelines\" and that you can get a good explainer from googling that exact phrase, but there's a different answer to the body of the post.\nTo the question in the body of the post, take a look at Jeremy Utley's 11ish minute YouTube video \"How Stanford teaches AI\". It's a couple years old but he figured out the correct attitude and communicated it way before anybody else. Watch it in full without distractions and immediately apply the lesson to the various questions in the OP post.",
+          "score": 0,
+          "time": 1794649223,
+          "parent": "50494696"
+        },
+        {
+          "id": "50495809",
+          "author": "cadamsdotcom",
+          "body": "Learn communication styles. You could use this model: https://www.leaderfactor.com/learn/four-leadership-styles/ (https://www.leaderfactor.com/learn/four-leadership-styles/)\nSometimes you'll be coaching, others delegating, and on the agent's worst days you'll be directing.\nYou can flex between them: for example start in a high trust mode, using an open ended communication style with the agent - thenif the work sucks shift to a more direct / blunt style. Try to avoid asking for exactly what you want, though. Working through curiosity and guiding questions gives the agent its best chance to surprise you - and an open ended conversation could uncover solutions you hadn't thought of.",
+          "score": 0,
+          "time": 1794652000,
+          "parent": "50494696"
+        },
+        {
+          "id": "50496115",
+          "author": "nicfio",
+          "body": "Nowadays the arrival of frontier LLMs has opened new scenarios. Agentic AI can be used to get things done, and this is important: we ourselves become architects and build by ourselves the tools we need. But there is a use that few people make: using LLMs as patient teachers that we can ask to explain things that at school, or at work, we never understood. For example I always had problems understanding the Linux graphics stack, yet over time LLMs explained to me well how everything works. I also used agentic AI to develop personal projects, work that in other times would have required the involvement of an entire team of developers. We have in front of us a wonderful scenario, but also a dangerous one: learning and working together with AI systems, or losing control of our lives.",
+          "score": 0,
+          "time": 1794655356,
+          "parent": "50494696"
+        },
+        {
+          "id": "50495742",
+          "author": "edg5000",
+          "body": "How to use local agents (either TUI or GUI), how to give agents good access to powerful tools such as Odoo, Blender, FreeCAD, KiCAD, the list goes on. Understanding agent-tool friction and having agents write tooling to fill in any gaps. E.g. I had it write tooling to use my 3D printer, and tooling to view PCBs visually in places where existing KiCAD IPC protocol lacks.\nThe more tools and data you give the agent, the more they can do.",
+          "score": 0,
+          "time": 1794651353,
+          "parent": "50494696"
+        },
+        {
+          "id": "50495522",
+          "author": "galaxyLogic",
+          "body": "I think it's not so much about learning AI, it's learning to USE AI to create and run a company.\nAnd that you can probabaly do the same way you get to Carnegie Hall: Practice, practice, pracTtice.\nThe thing about AI is AI should know everything so you don't need to learn anything, except how to use AI effectively to accomplish business goals.\nImagine the 2000s, should you study internet tech like Cisco's routers? Not a bad idea, but who made money? Cisco? Not so much relatively speaking. It was Google and Amazon who learned how to use the new web-tech to do something people and companies needed.",
+          "score": 0,
+          "time": 1794648952,
+          "parent": "50494696"
+        },
+        {
+          "id": "50495990",
+          "author": "phone_book",
+          "body": "Based on job postings I see related to AI:\n- Agent coding with Claude Code, I rarely see Codex mentioned. Sometimes Cursor is mentioned along with Claude\n- Prompt engineering and evaluation techniques, few shot, chain of thought, roles, llm as judge, decision models, code based eval, etc\n- RAG, mostly I see \"familiar\" with it rather than \"built something in production\"\n- Sometimes I see mention of using an agent SDK or implementing LLMs within a product rather than using LLM for coding. So like, LLM chatbot\n- Sometimes I see Langchain, n8n, or similar agent orchestration tools",
+          "score": 0,
+          "time": 1794654023,
+          "parent": "50494696"
+        },
+        {
+          "id": "50495765",
+          "author": "imclaren",
+          "body": "Learn a skill. AI is best used to assist with / speed up using an existing skill. If you want something AI specific, learn what the AI is doing when you ask it questions. Learn about programming, databases, networking, security, backups, systems thinking etc.",
+          "score": 0,
+          "time": 1794651564,
+          "parent": "50494696"
+        },
+        {
+          "id": "50495055",
+          "author": "wseqyrku",
+          "body": "> What is accessible to learn just from the internet and experimentation, without a degree program\nSince you do have a moderate technical background you can start studying PhD material right now from your desk which is widely accessible all over the web, however the time you need to spend on it is not very different. I think everyday for ten years is a good time span to invest for any one subject unless you have several fields of interest (you named three) multiply that by a few years of just skimming through the material for each so you have a mediocre understanding to solve \"learn how to x with y\" for x and y. Hope this helps.",
+          "score": 0,
+          "time": 1794643578,
+          "parent": "50494696"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
