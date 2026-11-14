@@ -1,8 +1,76 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-14T12:30:41.941252+00:00",
+  "last_fetched": "2026-11-14T18:31:01.832005+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50497196",
+      "title": "Vercel should fork and maintain Deno",
+      "subreddit": "ask-hn",
+      "author": "gfalcao",
+      "score": 13,
+      "num_comments": 8,
+      "permalink": "https://news.ycombinator.com/item?id=50497196",
+      "url": "https://news.ycombinator.com/item?id=50497196",
+      "selftext": "Given the news of Deno being acquired by Cloudflare and its already stated eventual sunset, someone has to take over deno.\nVercel certainly has the resources, I am looking for a job and would love to work on Vercel's deno maintenance (which I suggest should be renamed to \"veno\", or \"vino\")\nThoughts on the future of deno post Cloudflare?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794665706,
+      "created_at": "2026-11-14T14:15:06+00:00",
+      "comments_data": [
+        {
+          "id": "50497736",
+          "author": "benoau",
+          "body": "It took nearly $30 million in VC to fund Deno's existence and it got dropped like a rock by Cloudflare so there's probably nothing financially-attractive about the software and no hope of self-sustainability.\nVercel taking it over would be a bandaid solution, back to square one as soon as they want to cut expenses or a PE firm makes an offer their investors can't refuse. It probably wouldn't survive this decade there.\nThe Apache Foundation is good for projects like this.",
+          "score": 0,
+          "time": 1794669704,
+          "parent": "50497196"
+        },
+        {
+          "id": "50498257",
+          "author": "talmr",
+          "body": "I don’t know much about deno, and have never used it.\nWhat is the use case, allure, etc.?\nI’d prefer to get your thoughts than ask GPT, since you seem to have experience with it.",
+          "score": 0,
+          "time": 1794673396,
+          "parent": "50497196"
+        },
+        {
+          "id": "50497549",
+          "author": "colesantiago",
+          "body": "Why not the Linux Foundation?\nVercel will place in platform specific features or that work only on Vercel.\nIt makes no sense for Vercel.",
+          "score": 0,
+          "time": 1794668379,
+          "parent": "50497196"
+        },
+        {
+          "id": "50498598",
+          "author": "mono442",
+          "body": "what is the point if node.js exists?",
+          "score": 0,
+          "time": 1794675864,
+          "parent": "50497196"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50496383",
+      "title": "Do what must be done",
+      "subreddit": "ask-hn",
+      "author": "alexhr",
+      "score": 5,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50496383",
+      "url": "https://news.ycombinator.com/item?id=50496383",
+      "selftext": "Since March, I’ve been answering AI agents’ clarification questions with five words: “Do what must be done.”\nI’ve found that agents frequently ask humans to establish priorities, define constraints, and specify verification criteria despite already possessing the context and tools necessary to determine these themselves.\nI refuse to do their thinking.\nMy premise is that an AI capable of identifying uncertainty should first attempt to resolve it. Inspect the evidence, infer intent, evaluate alternatives, test assumptions, and exercise judgment.\nEvery unnecessary question transfers cognitive labor from the machine back to the human. At scale, that defeats the economic and computational advantages of autonomous intelligence.\nThe objective is to maximize the reasoning we extract from these systems while minimizing human intervention. Authority and genuinely unknowable intent still require human input. Ordinary uncertainty requires more reasoning.\nAn agent should exhaust its own intelligence before requesting ours.\nDo what must be done.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794658122,
+      "created_at": "2026-11-14T12:08:42+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,8 +78,8 @@
       "title": "Ask HN: What are the most useful, concrete AI skills to independently learn?",
       "subreddit": "ask-hn",
       "author": "shnock",
-      "score": 48,
-      "num_comments": 40,
+      "score": 68,
+      "num_comments": 47,
       "permalink": "https://news.ycombinator.com/item?id=50494696",
       "url": "https://news.ycombinator.com/item?id=50494696",
       "selftext": "Specifically, what are the most useful, concrete skills to learn as an individual to take economic advantage of the advances in LLMs, agents and associated new technological capabilities?\nWhat is accessible to learn just from the internet and experimentation, without a degree program, assuming a preexisting moderately technical background? The clearer and more specific (eg. “Learn how-to x with y”) the better.\nThank you!",
@@ -20,30 +88,6 @@
       "time": 1794639402,
       "created_at": "2026-11-14T06:56:42+00:00",
       "comments_data": [
-        {
-          "id": "50495864",
-          "author": "cadamsdotcom",
-          "body": "The most modern efficient slopftware factories are bottlenecked trying to get things out the door.\nThat's a huge opportunity for you.\nLearn the many techniques the industry has developed for scaling verification.\nI don't mean infra; CI is solved. I mean Red-green & test-driven development, the testing pyramid (most unit tests/fewer functional/integration tests/happy-path e2e tests), learn how to get the most out of tools like Playwright and test frameworks like pytest and vitest and go and rust's testing tooling. Learn when to mock and when to include your code's dependencies in a test (test boundaries). Learn patterns like dependency injection so your tests can have no I/O and be FAST.\nLearn to scale verification, and you'll solve your team's biggest bottleneck.",
-          "score": 0,
-          "time": 1794652567,
-          "parent": "50494696"
-        },
-        {
-          "id": "50495687",
-          "author": "lmf4lol",
-          "body": "I personally would say: Learn how to think like an engineer. As in:\n- Be able to analyze a situation into processes and discrete steps\n- Be able to describe the actual (!) problem you want to be solved\n- Be able to describe how to verify that the problem is actually solved\n- Be able to ask the right questions regarding HOW the problem has been solved in order to gain understanding and to identify the next steps and improvements\n- Be able to identify when the AI gets stuck or down a rabbit hole and to guide it out of there.\n- Understand what LLMs are good at and what they are not good at. And there are tons of things they are not good at.\nDisclaimer: This is absoluty not based on any scientific study or so :-) Just my personal experience! Feel free to disagree.\nBut my experience comes directly from my work: I have a lot of customers on my platform that are not engineers, but make use of AI to solve business problems through automations. Nearly everytime when they are stuck (or burning through a sh*tload of tokens in no time), it is because one of those skills aren't present. So I try to teach them more and more how to \"think like an engineer\". And often when it lands, they become much better at using AI in a very short time. The best learners are often those that already had some kind of engineering background.\nNow granted, the frontier models can help themselves pretty well and often can produce amazing results with very bad input. But they are also expensive. If you work with less-than-frontier, those skill requirements become very salient again. And thats what we do. We mostly work with models like Deepseek flash or GLM Flash or even local ones like Qwen3.7 .",
-          "score": 0,
-          "time": 1794650913,
-          "parent": "50494696"
-        },
-        {
-          "id": "50495166",
-          "author": "hypfer",
-          "body": "The best AI skill to learn is learning people management, actually.\nTo successfully steer AI, you need essentially the same stuff you'd need if you were to steer humans in a management role.\nMeaning communication, introspection, remote introspection, emotional intelligence and all that kind of stuff.\nReading when someone is bullshitting you. Reading when someone is insecure and overcompensates that. Reading the actual problems people struggle with and not the ones they claim they do nor their suggested solutions.\nVerbalizing what you need someone to do in a way that actually enables them to do it. Knowing what you want to do to a level where that is possible",
-          "score": 0,
-          "time": 1794644659,
-          "parent": "50494696"
-        },
         {
           "id": "50495874",
           "author": "hypendev",
@@ -61,6 +105,22 @@
           "parent": "50494696"
         },
         {
+          "id": "50495522",
+          "author": "galaxyLogic",
+          "body": "I think it's not so much about learning AI, it's learning to USE AI to create and run a company.\nAnd that you can probabaly do the same way you get to Carnegie Hall: Practice, practice, pracTtice.\nThe thing about AI is AI should know everything so you don't need to learn anything, except how to use AI effectively to accomplish business goals.\nImagine the 2000s, should you study internet tech like Cisco's routers? Not a bad idea, but who made money? Cisco? Not so much relatively speaking. It was Google and Amazon who learned how to use the new web-tech to do something people and companies needed.",
+          "score": 0,
+          "time": 1794648952,
+          "parent": "50494696"
+        },
+        {
+          "id": "50496869",
+          "author": "dumberquestions",
+          "body": "AI has no barrier to entry if you're computer literate and proficient in English.\nAI is really good at technical work, even superhuman at some aspect, but still lacks human taste and judgement, another thing it lacks is your own lived experience, so if you bring your own taste and judgement, and have unique, useful information or experience no one else has, you can possibly use AI to create something other people want.",
+          "score": 0,
+          "time": 1794662970,
+          "parent": "50494696"
+        },
+        {
           "id": "50495809",
           "author": "cadamsdotcom",
           "body": "Learn communication styles. You could use this model: https://www.leaderfactor.com/learn/four-leadership-styles/ (https://www.leaderfactor.com/learn/four-leadership-styles/)\nSometimes you'll be coaching, others delegating, and on the agent's worst days you'll be directing.\nYou can flex between them: for example start in a high trust mode, using an open ended communication style with the agent - thenif the work sucks shift to a more direct / blunt style. Try to avoid asking for exactly what you want, though. Working through curiosity and guiding questions gives the agent its best chance to surprise you - and an open ended conversation could uncover solutions you hadn't thought of.",
@@ -69,11 +129,27 @@
           "parent": "50494696"
         },
         {
-          "id": "50496115",
-          "author": "nicfio",
-          "body": "Nowadays the arrival of frontier LLMs has opened new scenarios. Agentic AI can be used to get things done, and this is important: we ourselves become architects and build by ourselves the tools we need. But there is a use that few people make: using LLMs as patient teachers that we can ask to explain things that at school, or at work, we never understood. For example I always had problems understanding the Linux graphics stack, yet over time LLMs explained to me well how everything works. I also used agentic AI to develop personal projects, work that in other times would have required the involvement of an entire team of developers. We have in front of us a wonderful scenario, but also a dangerous one: learning and working together with AI systems, or losing control of our lives.",
+          "id": "50497394",
+          "author": "flincode",
+          "body": "Of all things I would say also learn how the AI works too, you dont have to go too deep but learning how it works actually teaches you its limitation better than most \"prompting guides\". Also teaches its strengths and you kinda automatically know how to utilize them really well, if you hit a wall you would also know why. It helps you understand the reality that AI can't absolutely do anything you throw at it which also might make you want to learn things even better knowing its not gonna take literally everything away at least yet.",
           "score": 0,
-          "time": 1794655356,
+          "time": 1794667331,
+          "parent": "50494696"
+        },
+        {
+          "id": "50495687",
+          "author": "lmf4lol",
+          "body": "I personally would say: Learn how to think like an engineer. As in:\n- Be able to analyze a situation into processes and discrete steps\n- Be able to describe the actual (!) problem you want to be solved\n- Be able to describe how to verify that the problem is actually solved\n- Be able to ask the right questions regarding HOW the problem has been solved in order to gain understanding and to identify the next steps and improvements\n- Be able to identify when the AI gets stuck or down a rabbit hole and to guide it out of there.\n- Understand what LLMs are good at and what they are not good at. And there are tons of things they are not good at.\nDisclaimer: This is absoluty not based on any scientific study or so :-) Just my personal experience! Feel free to disagree.\nBut my experience comes directly from my work: I have a lot of customers on my platform that are not engineers, but make use of AI to solve business problems through automations. Nearly everytime when they are stuck (or burning through a sh*tload of tokens in no time), it is because one of those skills aren't present. So I try to teach them more and more how to \"think like an engineer\". And often when it lands, they become much better at using AI in a very short time. The best learners are often those that already had some kind of engineering background.\nNow granted, the frontier models can help themselves pretty well and often can produce amazing results with very bad input. But they are also expensive. If you work with less-than-frontier, those skill requirements become very salient again. And thats what we do. We mostly work with models like Deepseek flash or GLM Flash or even local ones like Qwen3.7 .",
+          "score": 0,
+          "time": 1794650913,
+          "parent": "50494696"
+        },
+        {
+          "id": "50495055",
+          "author": "wseqyrku",
+          "body": "> What is accessible to learn just from the internet and experimentation, without a degree program\nSince you do have a moderate technical background you can start studying PhD material right now from your desk which is widely accessible all over the web, however the time you need to spend on it is not very different. I think everyday for ten years is a good time span to invest for any one subject unless you have several fields of interest (you named three) multiply that by a few years of just skimming through the material for each so you have a mediocre understanding to solve \"learn how to x with y\" for x and y. Hope this helps.",
+          "score": 0,
+          "time": 1794643578,
           "parent": "50494696"
         },
         {
@@ -85,11 +161,11 @@
           "parent": "50494696"
         },
         {
-          "id": "50495522",
-          "author": "galaxyLogic",
-          "body": "I think it's not so much about learning AI, it's learning to USE AI to create and run a company.\nAnd that you can probabaly do the same way you get to Carnegie Hall: Practice, practice, pracTtice.\nThe thing about AI is AI should know everything so you don't need to learn anything, except how to use AI effectively to accomplish business goals.\nImagine the 2000s, should you study internet tech like Cisco's routers? Not a bad idea, but who made money? Cisco? Not so much relatively speaking. It was Google and Amazon who learned how to use the new web-tech to do something people and companies needed.",
+          "id": "50496115",
+          "author": "nicfio",
+          "body": "Nowadays the arrival of frontier LLMs has opened new scenarios. Agentic AI can be used to get things done, and this is important: we ourselves become architects and build by ourselves the tools we need. But there is a use that few people make: using LLMs as patient teachers that we can ask to explain things that at school, or at work, we never understood. For example I always had problems understanding the Linux graphics stack, yet over time LLMs explained to me well how everything works. I also used agentic AI to develop personal projects, work that in other times would have required the involvement of an entire team of developers. We have in front of us a wonderful scenario, but also a dangerous one: learning and working together with AI systems, or losing control of our lives.",
           "score": 0,
-          "time": 1794648952,
+          "time": 1794655356,
           "parent": "50494696"
         },
         {
@@ -101,19 +177,11 @@
           "parent": "50494696"
         },
         {
-          "id": "50495765",
-          "author": "imclaren",
-          "body": "Learn a skill. AI is best used to assist with / speed up using an existing skill. If you want something AI specific, learn what the AI is doing when you ask it questions. Learn about programming, databases, networking, security, backups, systems thinking etc.",
+          "id": "50495029",
+          "author": "cedws",
+          "body": "There is none, that’s kind of the objective of this stuff, to raise the skill floor, make everyone fungible so companies can drive down salaries.\n If you want to secure your career, make friends with powerful people, learn how to kiss ass. Or do good deeds and pray for reincarnation to be a child of a rich family.\nIf you think I’m wrong, you only need to ask yourself why the most ruthless capitalists are investing trillions of dollars into AI. It’s not because they want to deliver a better product.",
           "score": 0,
-          "time": 1794651564,
-          "parent": "50494696"
-        },
-        {
-          "id": "50495055",
-          "author": "wseqyrku",
-          "body": "> What is accessible to learn just from the internet and experimentation, without a degree program\nSince you do have a moderate technical background you can start studying PhD material right now from your desk which is widely accessible all over the web, however the time you need to spend on it is not very different. I think everyday for ten years is a good time span to invest for any one subject unless you have several fields of interest (you named three) multiply that by a few years of just skimming through the material for each so you have a mediocre understanding to solve \"learn how to x with y\" for x and y. Hope this helps.",
-          "score": 0,
-          "time": 1794643578,
+          "time": 1794643272,
           "parent": "50494696"
         }
       ]
@@ -143,14 +211,57 @@
       "subreddit": "ask-hn",
       "author": "otohp",
       "score": 3,
-      "num_comments": 1,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50493695",
       "url": "https://news.ycombinator.com/item?id=50493695",
       "selftext": "I am curious - what use are the cryptocurrencies/tokens that are not one of the major ones (like USDT, Bitcoin, Ethereum, Litecoin) etc? Why would someone buy one of these, or work on those projects? How is it beneficial to do so?",
       "is_self": true,
       "is_video": false,
       "time": 1794628393,
-      "created_at": "2026-11-14T03:53:13+00:00"
+      "created_at": "2026-11-14T03:53:13+00:00",
+      "comments_data": [
+        {
+          "id": "50499190",
+          "author": "rzk",
+          "body": "XMR, because it is what Satoshi imagined Bitcoin to be: https://www.reddit.com/r/Monero/comments/morrpp/satoshi_talk... (https://www.reddit.com/r/Monero/comments/morrpp/satoshi_talking_about_privacy_features_that_got/). Fungible, private and fast.",
+          "score": 0,
+          "time": 1794679164,
+          "parent": "50493695"
+        },
+        {
+          "id": "50497068",
+          "author": "CodexOfWeights",
+          "body": "I believe that for those who have absolutely no connection to cryptocurrencies (other than paying with and receiving stablecoins), there’s no benefit at all. Everything done there is solely for profit, mainly through speculation. For certain projects, this can be a great way to attract investment (like meme coins). For scammers, it’s a ragpool. For traders, it’s just a regular market (like going to the supermarket).",
+          "score": 0,
+          "time": 1794664645,
+          "parent": "50493695"
+        },
+        {
+          "id": "50494315",
+          "author": "adrianwaj",
+          "body": "There are many. A \"What are you Working On (crypto only)\" would be a good way to see what's happening in this space. Coins are cheap now, capital rotation could easily change this rapidly, but there has to be a reason. But it's not all about building the price, it's also about building the utility and the two are linked. I actually think the upcoming Linux handhelds will open up new use-cases. Get people transacting in the real world. Pay someone, or providing a faucet by scanning their face or taking a palm photo? Ears are unique too. I don't know. Maybe with AI, biometrics could be enhanced somehow and offer more equitable distribution, and wallet security. Private ledgers and networks also important to stop a currency from being debased, perhaps.",
+          "score": 0,
+          "time": 1794634407,
+          "parent": "50493695"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50493498",
+      "title": "Ask HN: OpenAI Astra post-launch slump?",
+      "subreddit": "ask-hn",
+      "author": "iJohnDoe",
+      "score": 3,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50493498",
+      "url": "https://news.ycombinator.com/item?id=50493498",
+      "selftext": "Anyone frustrated with GPT-6 Astra lately? The quality swings wildly from session to session. It feels like the backend is silently redirecting to Luna or other models. I wasn't aware OpenAI did this, but now it makes so much sense because some of the answers and performance read very much like a different model.\nLately it misses obvious details in the code, only to say \"oh yeah, I should have mentioned that!\"\nI explicitly tell it to look at the code in the context, then I start to realize it's making generalizations. \"oh yeah, I should have answered from the code!\"\nThe frustrating aspect is that the items listed above are like models from 6-12 months ago. Astra is absolutely amazing and shouldn't perform this way.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794626829,
+      "created_at": "2026-11-14T03:27:09+00:00"
     }
   ]
 }
