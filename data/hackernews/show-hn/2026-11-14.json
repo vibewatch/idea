@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-15T06:33:54.948276+00:00",
+  "last_fetched": "2026-11-15T12:30:46.216270+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,7 +10,7 @@
       "title": "Show HN: Infinite Shaders",
       "subreddit": "show-hn",
       "author": "andrewray",
-      "score": 5,
+      "score": 7,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50501503",
       "url": "https://shaderfrog.com/infinite",
@@ -62,8 +62,8 @@
       "title": "Show HN: DeepSeek V3 in ~200 lines of pure Jax",
       "subreddit": "show-hn",
       "author": "VaibhaavTiwari",
-      "score": 216,
-      "num_comments": 14,
+      "score": 244,
+      "num_comments": 23,
       "permalink": "https://news.ycombinator.com/item?id=50497589",
       "url": "https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax",
       "selftext": "",
@@ -73,11 +73,11 @@
       "created_at": "2026-11-14T15:04:15+00:00",
       "comments_data": [
         {
-          "id": "50504490",
-          "author": "d_tr",
-          "body": "I am just starting Raschka's book to write an llm from scratch in C++ with zero dependencies with avx-512 on a 9950x, and then I'd like to go through the literature for more advanced stuff.\nI don't know what Jax is exactly but while I am aware that the algorithm implementation is not something terribly complicated, 200 lines still sounds impressive.\nIf anyone wants to share any tips, they're welcome.",
+          "id": "50500124",
+          "author": "joebarbere",
+          "body": "Thanks for this! I've been trying to get local training working on Fedora with ROCm for a while now, and this is the first project that ran end-to-end on my RX 7600 XT 16GB.\nThe whole reason for me buying the card was to play around with deep learning and models, so it's awesome to have a stepping off point now!\nNo CUDA meant ROCm surprisingly just worked with JAX.\nGotchas for anyone with a 7600 XT: it needed two env vars, HSA_OVERRIDE_GFX_VERSION=11.0.0 because JAX's plugin rejects gfx1102, and XLA_FLAGS=--xla_gpu_enable_triton_gemm=false to stop a GPU hang.\nI'm on Fedora 45 with the in-kernel amdgpu driver, rootless podman and AMD's rocm/jax image (ROCm 10.1, JAX 0.11.1). Nothing ROCm is installed on the host, which is nice.\nContainer setup is in a PR if it helps anyone: https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax/pull/1 (https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax/pull/1)",
           "score": 0,
-          "time": 1794723776,
+          "time": 1794685550,
           "parent": "50497589"
         },
         {
@@ -89,11 +89,11 @@
           "parent": "50497589"
         },
         {
-          "id": "50500124",
-          "author": "joebarbere",
-          "body": "Thanks for this! I've been trying to get local training working on Fedora with ROCm for a while now, and this is the first project that ran end-to-end on my RX 7600 XT 16GB.\nThe whole reason for me buying the card was to play around with deep learning and models, so it's awesome to have a stepping off point now!\nNo CUDA meant ROCm surprisingly just worked with JAX.\nGotchas for anyone with a 7600 XT: it needed two env vars, HSA_OVERRIDE_GFX_VERSION=11.0.0 because JAX's plugin rejects gfx1102, and XLA_FLAGS=--xla_gpu_enable_triton_gemm=false to stop a GPU hang.\nI'm on Fedora 45 with the in-kernel amdgpu driver, rootless podman and AMD's rocm/jax image (ROCm 10.1, JAX 0.11.1). Nothing ROCm is installed on the host, which is nice.\nContainer setup is in a PR if it helps anyone: https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax/pull/1 (https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax/pull/1)",
+          "id": "50506054",
+          "author": "madduci",
+          "body": "Does this work on CPU only hardware (Intel Core Ultra 7)?",
           "score": 0,
-          "time": 1794685550,
+          "time": 1794741557,
           "parent": "50497589"
         },
         {
@@ -105,11 +105,27 @@
           "parent": "50497589"
         },
         {
+          "id": "50504490",
+          "author": "d_tr",
+          "body": "I am just starting Raschka's book to write an llm from scratch in C++ with zero dependencies with avx-512 on a 9950x, and then I'd like to go through the literature for more advanced stuff.\nI don't know what Jax is exactly but while I am aware that the algorithm implementation is not something terribly complicated, 200 lines still sounds impressive.\nIf anyone wants to share any tips, they're welcome.",
+          "score": 0,
+          "time": 1794723776,
+          "parent": "50497589"
+        },
+        {
           "id": "50499974",
           "author": "nico",
           "body": "> to asking a language model to create a 3D end-to-end working model for me to capture the nuances\nLove this! Yes, having a visual of the system makes it a lot easier to reason about and understand\nI wish all AI models came with interactive animated workflows of their architecture\n> so I wanted it to be different just for the sake of it and used various books by…\nThat’s cool and great for your own project. At the same time it helps to use datasets that others have used, because then you can compare results more directly\nExcellent write up, I really appreciate all the detail and the sample outputs at the end. Excited to see what I could apply for this to the small <10M models I’ve been training",
           "score": 0,
           "time": 1794684447,
+          "parent": "50497589"
+        },
+        {
+          "id": "50505707",
+          "author": "steeve",
+          "body": "fun nugget: if you grab our (zml) PJRT Metal plugin and point JAX to it, it should just work",
+          "score": 0,
+          "time": 1794738058,
           "parent": "50497589"
         },
         {
@@ -187,8 +203,8 @@
       "title": "Show HN: Agweb – a browser for agents that stays out of your way",
       "subreddit": "show-hn",
       "author": "paul_nameless",
-      "score": 92,
-      "num_comments": 27,
+      "score": 102,
+      "num_comments": 30,
       "permalink": "https://news.ycombinator.com/item?id=50497147",
       "url": "https://github.com/paul-nameless/agweb",
       "selftext": "",
@@ -254,19 +270,19 @@
           "parent": "50497147"
         },
         {
-          "id": "50502980",
-          "author": "_blk",
-          "body": "Looks interesting! But..\n> Needs macOS 26 or later.\nToo bad. I'll check back when someone submits a PR for Linux.",
-          "score": 0,
-          "time": 1794705435,
-          "parent": "50497147"
-        },
-        {
           "id": "50500232",
           "author": "mentalgear",
           "body": "is there a cli version / headless or build on such.",
           "score": 0,
           "time": 1794686356,
+          "parent": "50497147"
+        },
+        {
+          "id": "50502980",
+          "author": "_blk",
+          "body": "Looks interesting! But..\n> Needs macOS 26 or later.\nToo bad. I'll check back when someone submits a PR for Linux.",
+          "score": 0,
+          "time": 1794705435,
           "parent": "50497147"
         },
         {
@@ -302,7 +318,7 @@
       "title": "Show HN: Fursoy – Out-of-order RV64IMAFDV core in SystemVerilog (Linux 6.6)",
       "subreddit": "show-hn",
       "author": "fursoy",
-      "score": 74,
+      "score": 80,
       "num_comments": 26,
       "permalink": "https://news.ycombinator.com/item?id=50497137",
       "url": "https://github.com/FURSOY/fursoy-cpu",
@@ -353,8 +369,8 @@
       "title": "Show HN: A terminal-native idle factory game, written in Rust with ratatui",
       "subreddit": "show-hn",
       "author": "snipedbywifi",
-      "score": 152,
-      "num_comments": 37,
+      "score": 159,
+      "num_comments": 39,
       "permalink": "https://news.ycombinator.com/item?id=50497132",
       "url": "https://gitlab.com/snipedbywifi/terminactory",
       "selftext": "Hey HN readers!\nI'm snipedbywifi (https://gitlab.com/snipedbywifi (https://gitlab.com/snipedbywifi)), and i've been working on terminactory. Please try it out if you'd like to play a cozy factory game while waiting for long agent tasks to finish!\nThe game is a factory game (overused niche, i know xD), but runs in your terminal. Reason i built it? glad you asked: So basically, it started off with me wanting a terminal-native factory game. Me and the modern 5.5 claude models made a base for the game that I liked, and then i went ham adding features / fixing some minor flaws (like adding claude code hooks so you recieve \"telegrams\" [the agent's responses], so you can review progress directly in-game). (yes, I had heavy AI assistance, disclaimer!!!)\nRight now, the game has basic factory features you'd expect from a game like this (build stuff, delete stuff, measure how much you're earning, basic selection tools), along with a few more.. \"unexpected\" features. This includes a fake in-game browser that has a wiki, fake forums, some fun bits of lore, some more lore, a LOT more lore, and a research graph that shows how many items or how much RP (research points) you'd need to unlock something, and some more QOL features.\nIf anyone actually has this issue / want of a terminal-based game that runs alongside your agents so you don't doomscroll, do you have any suggestions, or additional ideas I could add?\nIt's hosted on GitLab, soo, that's one additional thing i'd like to mention\nThanks for reading!! snipedbywifi\n(p.s. first HN post lol)\n(p.s. p.s. there's a lot of hidden lore in the game, so.. lore-divers? you might like it?)",
@@ -404,11 +420,11 @@
           "parent": "50497132"
         },
         {
-          "id": "50502626",
-          "author": "BiraIgnacio",
-          "body": "this is cool, thank you! A bit too busy for my old brain but I like the game. Good job!",
+          "id": "50504678",
+          "author": "slarti89",
+          "body": "I wonder is the lore AI generated as well? Or written by you?",
           "score": 0,
-          "time": 1794702563,
+          "time": 1794726085,
           "parent": "50497132"
         },
         {
@@ -420,6 +436,14 @@
           "parent": "50497132"
         },
         {
+          "id": "50502626",
+          "author": "BiraIgnacio",
+          "body": "this is cool, thank you! A bit too busy for my old brain but I like the game. Good job!",
+          "score": 0,
+          "time": 1794702563,
+          "parent": "50497132"
+        },
+        {
           "id": "50498357",
           "author": "yoyohello13",
           "body": "Pretty neat looking! I'll need to try it out on Monday ;)",
@@ -428,11 +452,11 @@
           "parent": "50497132"
         },
         {
-          "id": "50503468",
-          "author": "syngrog66",
-          "body": "hard stop when I see/hear any AI use",
+          "id": "50502407",
+          "author": "gigel82",
+          "body": "I'm a big idle / automation games aficionado but this just doesn't work in the terminal, sorry. It's not visually pleasing, the UI is simply too busy to work well there.",
           "score": 0,
-          "time": 1794710521,
+          "time": 1794700970,
           "parent": "50497132"
         },
         {
@@ -444,11 +468,11 @@
           "parent": "50497132"
         },
         {
-          "id": "50502407",
-          "author": "gigel82",
-          "body": "I'm a big idle / automation games aficionado but this just doesn't work in the terminal, sorry. It's not visually pleasing, the UI is simply too busy to work well there.",
+          "id": "50503468",
+          "author": "syngrog66",
+          "body": "hard stop when I see/hear any AI use",
           "score": 0,
-          "time": 1794700970,
+          "time": 1794710521,
           "parent": "50497132"
         }
       ]
