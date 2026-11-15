@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-15T00:47:37.313645+00:00",
+  "last_fetched": "2026-11-15T06:33:54.948276+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,15 +10,33 @@
       "title": "Show HN: Infinite Shaders",
       "subreddit": "show-hn",
       "author": "andrewray",
-      "score": 2,
-      "num_comments": 0,
+      "score": 5,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50501503",
       "url": "https://shaderfrog.com/infinite",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1794694303,
-      "created_at": "2026-11-14T22:11:43+00:00"
+      "created_at": "2026-11-14T22:11:43+00:00",
+      "comments_data": [
+        {
+          "id": "50503852",
+          "author": "semihydrogen",
+          "body": "Thanks for the \"what is this?\" button.",
+          "score": 0,
+          "time": 1794714924,
+          "parent": "50501503"
+        },
+        {
+          "id": "50503701",
+          "author": "vivzkestrel",
+          "body": "- i would love to learn how to write complex shaders like that from scratch. do you have any personal recommendations?",
+          "score": 0,
+          "time": 1794713167,
+          "parent": "50501503"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -44,8 +62,8 @@
       "title": "Show HN: DeepSeek V3 in ~200 lines of pure Jax",
       "subreddit": "show-hn",
       "author": "VaibhaavTiwari",
-      "score": 157,
-      "num_comments": 8,
+      "score": 216,
+      "num_comments": 14,
       "permalink": "https://news.ycombinator.com/item?id=50497589",
       "url": "https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax",
       "selftext": "",
@@ -55,11 +73,27 @@
       "created_at": "2026-11-14T15:04:15+00:00",
       "comments_data": [
         {
+          "id": "50504490",
+          "author": "d_tr",
+          "body": "I am just starting Raschka's book to write an llm from scratch in C++ with zero dependencies with avx-512 on a 9950x, and then I'd like to go through the literature for more advanced stuff.\nI don't know what Jax is exactly but while I am aware that the algorithm implementation is not something terribly complicated, 200 lines still sounds impressive.\nIf anyone wants to share any tips, they're welcome.",
+          "score": 0,
+          "time": 1794723776,
+          "parent": "50497589"
+        },
+        {
           "id": "50499902",
           "author": "armcat",
           "body": "I love this, there is nothing like recreating a model from first principles, plus makes me want to revisit Jax again (I'll do it after I spend enough time with Zig). Thanks for this!",
           "score": 0,
           "time": 1794683921,
+          "parent": "50497589"
+        },
+        {
+          "id": "50500124",
+          "author": "joebarbere",
+          "body": "Thanks for this! I've been trying to get local training working on Fedora with ROCm for a while now, and this is the first project that ran end-to-end on my RX 7600 XT 16GB.\nThe whole reason for me buying the card was to play around with deep learning and models, so it's awesome to have a stepping off point now!\nNo CUDA meant ROCm surprisingly just worked with JAX.\nGotchas for anyone with a 7600 XT: it needed two env vars, HSA_OVERRIDE_GFX_VERSION=11.0.0 because JAX's plugin rejects gfx1102, and XLA_FLAGS=--xla_gpu_enable_triton_gemm=false to stop a GPU hang.\nI'm on Fedora 45 with the in-kernel amdgpu driver, rootless podman and AMD's rocm/jax image (ROCm 10.1, JAX 0.11.1). Nothing ROCm is installed on the host, which is nice.\nContainer setup is in a PR if it helps anyone: https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax/pull/1 (https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax/pull/1)",
+          "score": 0,
+          "time": 1794685550,
           "parent": "50497589"
         },
         {
@@ -79,11 +113,27 @@
           "parent": "50497589"
         },
         {
-          "id": "50500124",
-          "author": "joebarbere",
-          "body": "Thanks for this! I've been trying to get local training working on Fedora with ROCm for a while now, and this is the first project that ran end-to-end on my RX 7600 XT 16GB.\nThe whole reason for me buying the card was to play around with deep learning and models, so it's awesome to have a stepping off point now!\nNo CUDA meant ROCm surprisingly just worked with JAX.\nGotchas for anyone with a 7600 XT: it needed two env vars, HSA_OVERRIDE_GFX_VERSION=11.0.0 because JAX's plugin rejects gfx1102, and XLA_FLAGS=--xla_gpu_enable_triton_gemm=false to stop a GPU hang.\nI'm on Fedora 45 with the in-kernel amdgpu driver, rootless podman and AMD's rocm/jax image (ROCm 10.1, JAX 0.11.1). Nothing ROCm is installed on the host, which is nice.\nContainer setup is in a PR if it helps anyone: https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax/pull/1 (https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax/pull/1)",
+          "id": "50503574",
+          "author": "try-working",
+          "body": "Could you build and train a V4.1 the same way?",
           "score": 0,
-          "time": 1794685550,
+          "time": 1794711819,
+          "parent": "50497589"
+        },
+        {
+          "id": "50503770",
+          "author": "vivzkestrel",
+          "body": "anyone got a c++ version of this?",
+          "score": 0,
+          "time": 1794714079,
+          "parent": "50497589"
+        },
+        {
+          "id": "50503201",
+          "author": "itsthecourier",
+          "body": "thank you so so much for writing this, I will recreate it for learning",
+          "score": 0,
+          "time": 1794707480,
           "parent": "50497589"
         },
         {
@@ -95,6 +145,23 @@
           "parent": "50497589"
         }
       ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50497513",
+      "title": "Show HN: SrcWranglr v0.13 – A C/C++ Graphical Code Explorer for Vuln. Research",
+      "subreddit": "show-hn",
+      "author": "jdefr89",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50497513",
+      "url": "https://github.com/jdefrancesco/SrcWranglr",
+      "selftext": "SrcWranglr my open-source, Rust-powered C/C++ source-code exploration and security analysis toolkit. I had originally developed this in Python as a prototype for a couple years… That’s until you Rustaceans got in my damn year…\nIf you ever used SourceTrail or Understand, this is my idea of how it should have been done. It helps visualize complex codebases C/C++ it combines interactive call graphs, cross-references, semantic code search, reachability analysis, and inter-procedural value tracing.\nSecurity-focused features include vulnerability discovery, attack-surface analysis, automated fuzz harness generation, and integration with external static analyzers. My favorite feature is the ability to generate semgrep rules for the specific code base.\nPowered by tree-sitter, SrcWranglr can analyze codebases without requiring a successful build or compilation database.\nUsing this tool and my AAVR (Agentic Augmented Vuln Research) methodology I found several vulnerabilities in projects I won’t name as I just disclose to maintainers, in just a couple of hours.\nhttps://github.com/jdefrancesco/SrcWranglr (https://github.com/jdefrancesco/SrcWranglr)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1794668116,
+      "created_at": "2026-11-14T14:55:16+00:00"
     },
     {
       "source": "hackernews",
@@ -120,8 +187,8 @@
       "title": "Show HN: Agweb – a browser for agents that stays out of your way",
       "subreddit": "show-hn",
       "author": "paul_nameless",
-      "score": 86,
-      "num_comments": 22,
+      "score": 92,
+      "num_comments": 27,
       "permalink": "https://news.ycombinator.com/item?id=50497147",
       "url": "https://github.com/paul-nameless/agweb",
       "selftext": "",
@@ -131,11 +198,27 @@
       "created_at": "2026-11-14T14:08:12+00:00",
       "comments_data": [
         {
+          "id": "50503166",
+          "author": "edmundsauto",
+          "body": "The big features I need in an agentic browser.\n1. Not detectable and so not blocked\n2. Uses my IP (I have separate hardware available)\n3. Uses cookies from my main browsing sessions\n4. Run in parallel-shadow so it doesn’t block me,\nI don’t break it.\nWe are in the cat and mouse world of scraping, but with end users now. Companies that enable agents will thrive and those that don’t, won’t.\nI also wonder how much of a SMB profit margin comes from upsells and dark patterns. Agents help me a lot with avoiding those, also reducing my cognitive complexity. I’m at the point where I don’t order things if I can’t delegate my agent, I don’t want to see all their bullshit that they’ve structured to extract more money from me. My agents save me from those costs.",
+          "score": 0,
+          "time": 1794707160,
+          "parent": "50497147"
+        },
+        {
           "id": "50497919",
           "author": "CharlesW",
           "body": "Out of curiosity, what prompted you to make this when agent-browser.dev and lots of other alternatives already exist? \"Because it's fun\" is absolutely a legitimate answer, but I couldn't tell from the README what I might be missing.",
           "score": 0,
           "time": 1794671016,
+          "parent": "50497147"
+        },
+        {
+          "id": "50503960",
+          "author": "dfish",
+          "body": "We use agweb daily and love it. It is a good alternative to Atlas that gives you a full desktop (most of our use cases are web, of course), and it doesn't require a new user.",
+          "score": 0,
+          "time": 1794716102,
           "parent": "50497147"
         },
         {
@@ -171,6 +254,14 @@
           "parent": "50497147"
         },
         {
+          "id": "50502980",
+          "author": "_blk",
+          "body": "Looks interesting! But..\n> Needs macOS 26 or later.\nToo bad. I'll check back when someone submits a PR for Linux.",
+          "score": 0,
+          "time": 1794705435,
+          "parent": "50497147"
+        },
+        {
           "id": "50500232",
           "author": "mentalgear",
           "body": "is there a cli version / headless or build on such.",
@@ -201,14 +292,6 @@
           "score": 0,
           "time": 1794665519,
           "parent": "50497147"
-        },
-        {
-          "id": "50497457",
-          "author": "agline_in",
-          "body": "The shared named profile is handy, but how do you deal with one agent's actions spilling over to the others? For example, one agent logs out, switches accounts, or trips a site's rate limit, and every other agent on that profile inherits it. Is there a way to give an agent a forked or read-only copy of the profile's cookies?",
-          "score": 0,
-          "time": 1794667686,
-          "parent": "50497147"
         }
       ]
     },
@@ -219,8 +302,8 @@
       "title": "Show HN: Fursoy – Out-of-order RV64IMAFDV core in SystemVerilog (Linux 6.6)",
       "subreddit": "show-hn",
       "author": "fursoy",
-      "score": 66,
-      "num_comments": 21,
+      "score": 74,
+      "num_comments": 26,
       "permalink": "https://news.ycombinator.com/item?id=50497137",
       "url": "https://github.com/FURSOY/fursoy-cpu",
       "selftext": "",
@@ -238,19 +321,19 @@
           "parent": "50497137"
         },
         {
-          "id": "50500912",
-          "author": "PowerElectronix",
-          "body": "This is really cool. Any chance you'll try to make a few with tiny tap or some service like that?",
-          "score": 0,
-          "time": 1794691045,
-          "parent": "50497137"
-        },
-        {
           "id": "50498636",
           "author": "phendrenad2",
           "body": "Doing OOO in a one-person project is impressive.",
           "score": 0,
           "time": 1794676108,
+          "parent": "50497137"
+        },
+        {
+          "id": "50500912",
+          "author": "PowerElectronix",
+          "body": "This is really cool. Any chance you'll try to make a few with tiny tap or some service like that?",
+          "score": 0,
+          "time": 1794691045,
           "parent": "50497137"
         },
         {
@@ -270,8 +353,8 @@
       "title": "Show HN: A terminal-native idle factory game, written in Rust with ratatui",
       "subreddit": "show-hn",
       "author": "snipedbywifi",
-      "score": 131,
-      "num_comments": 27,
+      "score": 152,
+      "num_comments": 37,
       "permalink": "https://news.ycombinator.com/item?id=50497132",
       "url": "https://gitlab.com/snipedbywifi/terminactory",
       "selftext": "Hey HN readers!\nI'm snipedbywifi (https://gitlab.com/snipedbywifi (https://gitlab.com/snipedbywifi)), and i've been working on terminactory. Please try it out if you'd like to play a cozy factory game while waiting for long agent tasks to finish!\nThe game is a factory game (overused niche, i know xD), but runs in your terminal. Reason i built it? glad you asked: So basically, it started off with me wanting a terminal-native factory game. Me and the modern 5.5 claude models made a base for the game that I liked, and then i went ham adding features / fixing some minor flaws (like adding claude code hooks so you recieve \"telegrams\" [the agent's responses], so you can review progress directly in-game). (yes, I had heavy AI assistance, disclaimer!!!)\nRight now, the game has basic factory features you'd expect from a game like this (build stuff, delete stuff, measure how much you're earning, basic selection tools), along with a few more.. \"unexpected\" features. This includes a fake in-game browser that has a wiki, fake forums, some fun bits of lore, some more lore, a LOT more lore, and a research graph that shows how many items or how much RP (research points) you'd need to unlock something, and some more QOL features.\nIf anyone actually has this issue / want of a terminal-based game that runs alongside your agents so you don't doomscroll, do you have any suggestions, or additional ideas I could add?\nIt's hosted on GitLab, soo, that's one additional thing i'd like to mention\nThanks for reading!! snipedbywifi\n(p.s. first HN post lol)\n(p.s. p.s. there's a lot of hidden lore in the game, so.. lore-divers? you might like it?)",
@@ -281,19 +364,19 @@
       "created_at": "2026-11-14T14:05:54+00:00",
       "comments_data": [
         {
+          "id": "50503039",
+          "author": "brian-armstrong",
+          "body": "I'm still surprised people are not writing their own READMEs. It's the first impression anyone gets on your project, and having it be full of Claudeisms shows you just don't really care. It's also a pretty good indicator that the entire thing is slopware, so I guess it's a useful signal there.",
+          "score": 0,
+          "time": 1794705908,
+          "parent": "50497132"
+        },
+        {
           "id": "50497787",
           "author": "Joker_vD",
           "body": "> It is made to sit in a split next to your AI agents. They can send you short messages that show up in the game, so you can play while they work.\n> Agent messages\n> Your AI agents can message you inside the game. A message costs the agent only the words in it, and nothing prints on success. Messages wait while the game is closed.\nIt's kinda amazing how the ancient \"local mail\" technology keeps getting reinvented, you know, and reintegrated inside the gameplay? NetHack had its its \"mail demon\" since... (googles) version 1.0.2, in April 1985 — the creature would spawn in the game, deliver you a scroll of mail, and vanish. And apparently, it's still in use nowadays? \"On public servers such as nethack.alt.org, a user may observe other users' games and communicate with them by sending mail.\"",
           "score": 0,
           "time": 1794670108,
-          "parent": "50497132"
-        },
-        {
-          "id": "50502626",
-          "author": "BiraIgnacio",
-          "body": "this is cool, thank you! A bit too busy for my old brain but I like the game. Good job!",
-          "score": 0,
-          "time": 1794702563,
           "parent": "50497132"
         },
         {
@@ -321,11 +404,11 @@
           "parent": "50497132"
         },
         {
-          "id": "50502407",
-          "author": "gigel82",
-          "body": "I'm a big idle / automation games aficionado but this just doesn't work in the terminal, sorry. It's not visually pleasing, the UI is simply too busy to work well there.",
+          "id": "50502626",
+          "author": "BiraIgnacio",
+          "body": "this is cool, thank you! A bit too busy for my old brain but I like the game. Good job!",
           "score": 0,
-          "time": 1794700970,
+          "time": 1794702563,
           "parent": "50497132"
         },
         {
@@ -345,11 +428,27 @@
           "parent": "50497132"
         },
         {
+          "id": "50503468",
+          "author": "syngrog66",
+          "body": "hard stop when I see/hear any AI use",
+          "score": 0,
+          "time": 1794710521,
+          "parent": "50497132"
+        },
+        {
           "id": "50499613",
           "author": "nickpsecurity",
           "body": "If it runs fast and low resource, it could be a nice testbed for agent architectures. I'm thinking old-school planners, genetic programming, ML techniques, etc.\nEspecially integrating planners or logic-based approaches with ML models. The old architectures for StarCraft were great at building and micro-managing units but terrible at assessing or adapting to enemy strategy. Hybrid architectures can address that.\nGames like yours, esp different styles or requirements, can be used to prove how well the techniques generalize.",
           "score": 0,
           "time": 1794681869,
+          "parent": "50497132"
+        },
+        {
+          "id": "50502407",
+          "author": "gigel82",
+          "body": "I'm a big idle / automation games aficionado but this just doesn't work in the terminal, sorry. It's not visually pleasing, the UI is simply too busy to work well there.",
+          "score": 0,
+          "time": 1794700970,
           "parent": "50497132"
         }
       ]
@@ -525,7 +624,7 @@
       "title": "Show HN: Shotoku – Local-first action governance and budget caps for AI agents",
       "subreddit": "show-hn",
       "author": "IssaPrvj",
-      "score": 8,
+      "score": 9,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50496705",
       "url": "https://www.shotoku.dev/",
@@ -569,8 +668,8 @@
       "title": "Show HN: Cyberviber – a $15 touch screen to show which Claude session needs you",
       "subreddit": "show-hn",
       "author": "d1351r43",
-      "score": 11,
-      "num_comments": 1,
+      "score": 12,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50496642",
       "url": "https://cyberviber.de/",
       "selftext": "",
@@ -579,6 +678,14 @@
       "time": 1794660847,
       "created_at": "2026-11-14T12:54:07+00:00",
       "comments_data": [
+        {
+          "id": "50503110",
+          "author": "_blk",
+          "body": "I use a streamdeck neo for that, runs as a python dbus service on systemd user session",
+          "score": 0,
+          "time": 1794706686,
+          "parent": "50496642"
+        },
         {
           "id": "50498913",
           "author": "adamgordonbell",
