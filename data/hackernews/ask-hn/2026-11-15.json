@@ -1,8 +1,158 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-15T18:30:52.682425+00:00",
+  "last_fetched": "2026-11-16T00:50:12.599389+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50510540",
+      "title": "Ask HN: What do coding interviews look like in the age of AI?",
+      "subreddit": "ask-hn",
+      "author": "frankhorrigan",
+      "score": 7,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50510540",
+      "url": "https://news.ycombinator.com/item?id=50510540",
+      "selftext": "I'm a senior Rails/React dev with 13+ years of experience. Recent AI-driven layoffs have me (soon) looking for work again. But I've barely hand-written a line of code in the past year. All that has been necessary is good prompt writing and tedious, patient code review with tweaks for style / formatting and obviously re-prompting for bad architectural decisions.\nShould I go back and hit the books / write a bunch of components by hand to get the muscle memory back? Or have programming interviews changed to catch up with the technology and do things now look broader and more architectural?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794775534,
+      "created_at": "2026-11-15T20:45:34+00:00",
+      "comments_data": [
+        {
+          "id": "50511538",
+          "author": "freelanceTA",
+          "body": "Look at sites like https://www.chillinterview.com (https://www.chillinterview.com) but only for senior level recent experiences, most of them for senior applicants seem to be AI agent friendly but the initial screens are sometimes using CodeSignal's tools https://codesignal.com/ (https://codesignal.com/) or AI assist in CoderPad before you get to the usual teams/zoom session where you can use your own setup.",
+          "score": 0,
+          "time": 1794781753,
+          "parent": "50510540"
+        },
+        {
+          "id": "50510689",
+          "author": "dude250711",
+          "body": "They look very hypocritical that is for sure.\nBefore: you invert the tree during the interview but not at work.\nNow: you use AI at work but not during the interview.",
+          "score": 0,
+          "time": 1794776323,
+          "parent": "50510540"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50510042",
+      "title": "Ask HN: Stripe closed us after one $1,500 invoice and never asked for evidence",
+      "subreddit": "ask-hn",
+      "author": "snirgbs",
+      "score": 140,
+      "num_comments": 46,
+      "permalink": "https://news.ycombinator.com/item?id=50510042",
+      "url": "https://news.ycombinator.com/item?id=50510042",
+      "selftext": "We're a small business that sells pre-booked appointments with homeowners to local contractors, billed per appointment that actually happens.\nOur first client agreed to this on a recorded call and saved his card through a $1 Stripe payment link, which we planned to use for billing later. That $1 payment went through.\nA few weeks later we invoiced him $1,500 for 3 completed appointments and charged the saved card. Stripe blocked the payment. Two days after that the account was closed with this wording: payments \"don't appear to have been authorized by the customer.\"\nWhat happened next:\n- We appealed through the Dashboard with an appeal letter, our company documents and the invoice. It was rejected the next day as an \"unacceptable level of risk.\"\n- Support told us our \"business model presents a level of risk we're unable to support\" and that the decision is final.\n- After a Stripe employee escalated it internally, we got a short email saying Stripe still won't accept payments for our business.\nIn all of this, nobody asked us for the call recording, our messages with the client, or a confirmation from the client himself. As far as we know, he never disputed anything, and he has told us he is paying by bank transfer outside Stripe.\nI'm not saying our setup is perfect. It's a new account, the first real charge was large compared to the $1 test, and billing a saved card later is probably what looked wrong. If there's something specific we should fix, I'll fix it.\nWhat I'm asking:\n1. Is there anyone at Stripe who can look at this with the evidence, including getting the client on a call?\n2. For people who've been through this: how would you structure per-appointment billing so it doesn't look unauthorized (an invoice with a link each time, an email confirmation before each charge, something else)?\nI can share the account details, the call recording and the messages with anyone from Stripe who wants to look. Thanks for reading.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794772168,
+      "created_at": "2026-11-15T19:49:28+00:00",
+      "comments_data": [
+        {
+          "id": "50511536",
+          "author": "breue",
+          "body": "I had stripe fleece me for 4.5k - tried to complain about them on HN - they nerfed the post: https://news.ycombinator.com/item?id=50398646 (https://news.ycombinator.com/item?id=50398646)\nThe sad part is I was one of their first customers - I helped onboard over a 70 clients for them over the years.\nAnd my top project generated them $1.6m in pure fees revenue. I even tried emailing Patrick and John - they don't care one bit. Its sad - they used to have a soul - became a ruthless/soulless company.\nSorry you are dealing with this...",
+          "score": 0,
+          "time": 1794781741,
+          "parent": "50510042"
+        },
+        {
+          "id": "50511298",
+          "author": "didgeoridoo",
+          "body": "Yeah unfortunately this charge pattern could not have looked MORE like merchant fraud. The right approach would have been to use https://docs.stripe.com/payments/setup-intents (https://docs.stripe.com/payments/setup-intents) and set it for off-session usage.\nYou still might have gotten a payment hold on the first transaction until someone in risk could take a peek at your site to make sure you had all the right disclosures in place, but you probably would have kept the account.",
+          "score": 0,
+          "time": 1794780034,
+          "parent": "50510042"
+        },
+        {
+          "id": "50511161",
+          "author": "codingdave",
+          "body": "I have no knowledge specific to Stripe or your case, but do I know that the pattern you just described - a small 1 dollar payment followed by a large payment - is the exact pattern that criminals use to test stolen credit cards numbers. My bank will automatically reject anything following that pattern, put a hold on my card, and call me to confirm whether or not I have my card.\nSo yeah, if your business model calls for pattern matching with how stolen cards are used, that could very well be unacceptable risk to Stripe.",
+          "score": 0,
+          "time": 1794779158,
+          "parent": "50510042"
+        },
+        {
+          "id": "50511815",
+          "author": "A_D_E_P_T",
+          "body": "> 2. For people who've been through this: how would you structure per-appointment billing so it doesn't look unauthorized (an invoice with a link each time, an email confirmation before each charge, something else)?\nHave you tried simply sending invoices via Stripe? Works for me, without a hitch. And it's pretty flexible; you can do a lot to modify terms, add notes, send email notices to multiple parties, etc.\nIf that won't work, there are payment processors who specialize in \"high risk\" accounts. Paykings come to mind. I've actually heard good things.",
+          "score": 0,
+          "time": 1794783648,
+          "parent": "50510042"
+        },
+        {
+          "id": "50511704",
+          "author": "buckleyourshoe",
+          "body": "I would be interested to hear about better alternatives that have functional support. We ran into problems with Google Cloud and were able to migrate to options with much better customer support. Are there payment providers like this available?",
+          "score": 0,
+          "time": 1794782849,
+          "parent": "50510042"
+        },
+        {
+          "id": "50511777",
+          "author": "brudgers",
+          "body": "We're a small business that sells pre-booked appointments with homeowners to local contractors, billed per appointment that actually happens.\nI imagine that's not a dissimilar transaction pattern to how escort services and similar businesses might try to use Stripe.\nObviously there's no easy way for Stripe to tell if you are actually doing what you say you are doing.\nIn addition, based on my having a more than passing familiarity with laws regulating construction contracting [1], I would not be surprised if there are jurisdictions where your service is in violation of the laws and regulations governing construction contracting.\nEven if it is legal where you are, there's no obvious way for Stripe to know that's the only place you operate. And if you only operate locally, you can use a local bank to process credit cards...assuming you meet normal criteria -- if you don't meet normal criteria, it's reasonable for Stripe to decline your credit card processing business.\nSo my advice, if you want to operate locally work with a local banker, a local lawyer, and a local insurance agent. These might not scale, but scaling is only a problem once you have a going business. Good luck.\n[1] The laws regarding construction contracting are an \"is\" I am not arguing that those laws are/aren't an \"ought.\"",
+          "score": 0,
+          "time": 1794783360,
+          "parent": "50510042"
+        },
+        {
+          "id": "50512098",
+          "author": "Aeseir",
+          "body": "I'll be first to say that Stripe is a shit company and I cannot wait to see a competitor detroy them.\nNow onto main problem.\nIssue is the $1 followed by large payment.\nA lot of banks will flag this as suspicious, in some cases block the payment, or even proceed with investigation.\nThere is nothing telling Stripe that this is a potentially legitimate payment so they blocked it.\nThe fact they are shit company and don't explain this to you is another issue.",
+          "score": 0,
+          "time": 1794785994,
+          "parent": "50510042"
+        },
+        {
+          "id": "50511300",
+          "author": "1123581321",
+          "body": "Stripe stresses written authorization when you capture intent to pay.",
+          "score": 0,
+          "time": 1794780056,
+          "parent": "50510042"
+        },
+        {
+          "id": "50512295",
+          "author": "TZubiri",
+          "body": "I'm not an expert but:\n>Client puts credit card details for 1$.\n>You charge client for 1500$\nThe billing model is a bit high risk, the cleanest way to do it is to send the invoice to your customer for the specific amount you want to charge, unless it's a variable charge that is billed at the end of month, but you'd only do this if you are super well established, and have solid internal accounting, like AWS.\n>- We appealed through the Dashboard with an appeal letter, our company documents and the invoice. It was rejected the next day as an \"unacceptable level of risk.\"\nI see this mistake often, but often from the consumer side, as a business you should know better. When you dispute some transaction with a financial provider, you only dispute the transaction itself, not the underlying contract, it's unrealistic to expect the financial provider to act as a judge.\nThis is a matter you need to take to a court, not to the financial provider.\nLessons learned, take care of your next payment processor, plenty of fish in the sea.",
+          "score": 0,
+          "time": 1794787386,
+          "parent": "50510042"
+        },
+        {
+          "id": "50511991",
+          "author": "wewewedxfgdf",
+          "body": "Sounds like Stripe is on the same road as Paypal.",
+          "score": 0,
+          "time": 1794785165,
+          "parent": "50510042"
+        },
+        {
+          "id": "50512465",
+          "author": "Hizonner",
+          "body": "Of course, you prominently disclose these kickbacks to the homeowners in advance, right?\nIs it just me, or is everybody involved in this entire story kind of a sleazebag?",
+          "score": 0,
+          "time": 1794788681,
+          "parent": "50510042"
+        },
+        {
+          "id": "50511500",
+          "author": "replwoacause",
+          "body": "I'm so tired of these big companies giving poor customer support unless they get called out on social media.",
+          "score": 0,
+          "time": 1794781523,
+          "parent": "50510042"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -27,8 +177,8 @@
       "title": "Ask HN: Which open source LLM works best locally, and on what hardware?",
       "subreddit": "ask-hn",
       "author": "donkan168",
-      "score": 3,
-      "num_comments": 13,
+      "score": 4,
+      "num_comments": 18,
       "permalink": "https://news.ycombinator.com/item?id=50508142",
       "url": "https://news.ycombinator.com/item?id=50508142",
       "selftext": "",
@@ -37,6 +187,14 @@
       "time": 1794759834,
       "created_at": "2026-11-15T16:23:54+00:00",
       "comments_data": [
+        {
+          "id": "50511905",
+          "author": "vineetsriram",
+          "body": "Depends on your gig. If you have a Mac with 48Gb or more, you can use qwen 27b model. It’s pretty good",
+          "score": 0,
+          "time": 1794784414,
+          "parent": "50508142"
+        },
         {
           "id": "50508925",
           "author": "dlcarrier",
@@ -78,7 +236,7 @@
       "title": "Ask HN: What does building hardware with AI look like?",
       "subreddit": "ask-hn",
       "author": "mjs06",
-      "score": 2,
+      "score": 5,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50508089",
       "url": "https://news.ycombinator.com/item?id=50508089",
