@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-16T00:50:12.599389+00:00",
+  "last_fetched": "2026-11-16T06:52:55.189536+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,8 +10,8 @@
       "title": "Ask HN: What do coding interviews look like in the age of AI?",
       "subreddit": "ask-hn",
       "author": "frankhorrigan",
-      "score": 7,
-      "num_comments": 3,
+      "score": 8,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50510540",
       "url": "https://news.ycombinator.com/item?id=50510540",
       "selftext": "I'm a senior Rails/React dev with 13+ years of experience. Recent AI-driven layoffs have me (soon) looking for work again. But I've barely hand-written a line of code in the past year. All that has been necessary is good prompt writing and tedious, patient code review with tweaks for style / formatting and obviously re-prompting for bad architectural decisions.\nShould I go back and hit the books / write a bunch of components by hand to get the muscle memory back? Or have programming interviews changed to catch up with the technology and do things now look broader and more architectural?",
@@ -20,6 +20,14 @@
       "time": 1794775534,
       "created_at": "2026-11-15T20:45:34+00:00",
       "comments_data": [
+        {
+          "id": "50514553",
+          "author": "nightdeployboy",
+          "body": "It is difficult to break through even as a junior, so it feels incredibly bleak that the situation doesn't improve even after becoming a senior. What direction should we take moving forward?",
+          "score": 0,
+          "time": 1794809299,
+          "parent": "50510540"
+        },
         {
           "id": "50511538",
           "author": "freelanceTA",
@@ -45,8 +53,8 @@
       "title": "Ask HN: Stripe closed us after one $1,500 invoice and never asked for evidence",
       "subreddit": "ask-hn",
       "author": "snirgbs",
-      "score": 140,
-      "num_comments": 46,
+      "score": 167,
+      "num_comments": 76,
       "permalink": "https://news.ycombinator.com/item?id=50510042",
       "url": "https://news.ycombinator.com/item?id=50510042",
       "selftext": "We're a small business that sells pre-booked appointments with homeowners to local contractors, billed per appointment that actually happens.\nOur first client agreed to this on a recorded call and saved his card through a $1 Stripe payment link, which we planned to use for billing later. That $1 payment went through.\nA few weeks later we invoiced him $1,500 for 3 completed appointments and charged the saved card. Stripe blocked the payment. Two days after that the account was closed with this wording: payments \"don't appear to have been authorized by the customer.\"\nWhat happened next:\n- We appealed through the Dashboard with an appeal letter, our company documents and the invoice. It was rejected the next day as an \"unacceptable level of risk.\"\n- Support told us our \"business model presents a level of risk we're unable to support\" and that the decision is final.\n- After a Stripe employee escalated it internally, we got a short email saying Stripe still won't accept payments for our business.\nIn all of this, nobody asked us for the call recording, our messages with the client, or a confirmation from the client himself. As far as we know, he never disputed anything, and he has told us he is paying by bank transfer outside Stripe.\nI'm not saying our setup is perfect. It's a new account, the first real charge was large compared to the $1 test, and billing a saved card later is probably what looked wrong. If there's something specific we should fix, I'll fix it.\nWhat I'm asking:\n1. Is there anyone at Stripe who can look at this with the evidence, including getting the client on a call?\n2. For people who've been through this: how would you structure per-appointment billing so it doesn't look unauthorized (an invoice with a link each time, an email confirmation before each charge, something else)?\nI can share the account details, the call recording and the messages with anyone from Stripe who wants to look. Thanks for reading.",
@@ -61,6 +69,14 @@
           "body": "I had stripe fleece me for 4.5k - tried to complain about them on HN - they nerfed the post: https://news.ycombinator.com/item?id=50398646 (https://news.ycombinator.com/item?id=50398646)\nThe sad part is I was one of their first customers - I helped onboard over a 70 clients for them over the years.\nAnd my top project generated them $1.6m in pure fees revenue. I even tried emailing Patrick and John - they don't care one bit. Its sad - they used to have a soul - became a ruthless/soulless company.\nSorry you are dealing with this...",
           "score": 0,
           "time": 1794781741,
+          "parent": "50510042"
+        },
+        {
+          "id": "50512680",
+          "author": "philsquared_",
+          "body": "This is as high risk as it comes... imagine a person bought a lemonade from you for $1 then later on you charged them $1500 because you saved their cc. That is all stripe sees.\nYou need to not charge the $1 at all first of all because technically that is a fraudulent transaction since the customer is expecting to pay $1500 not $1501. Stripes docs literally say this by the way... you can always run an auth but that isn't my recommendation...\nYou should be sending them payable invoices through stripes invoice system not manually charging a saved card. In this case you should have sent 3 $500 invoices.\nStripe is not wrong in this case. You made yourself look like a scammer.",
+          "score": 0,
+          "time": 1794790311,
           "parent": "50510042"
         },
         {
@@ -104,14 +120,6 @@
           "parent": "50510042"
         },
         {
-          "id": "50512098",
-          "author": "Aeseir",
-          "body": "I'll be first to say that Stripe is a shit company and I cannot wait to see a competitor detroy them.\nNow onto main problem.\nIssue is the $1 followed by large payment.\nA lot of banks will flag this as suspicious, in some cases block the payment, or even proceed with investigation.\nThere is nothing telling Stripe that this is a potentially legitimate payment so they blocked it.\nThe fact they are shit company and don't explain this to you is another issue.",
-          "score": 0,
-          "time": 1794785994,
-          "parent": "50510042"
-        },
-        {
           "id": "50511300",
           "author": "1123581321",
           "body": "Stripe stresses written authorization when you capture intent to pay.",
@@ -120,35 +128,35 @@
           "parent": "50510042"
         },
         {
-          "id": "50512295",
-          "author": "TZubiri",
-          "body": "I'm not an expert but:\n>Client puts credit card details for 1$.\n>You charge client for 1500$\nThe billing model is a bit high risk, the cleanest way to do it is to send the invoice to your customer for the specific amount you want to charge, unless it's a variable charge that is billed at the end of month, but you'd only do this if you are super well established, and have solid internal accounting, like AWS.\n>- We appealed through the Dashboard with an appeal letter, our company documents and the invoice. It was rejected the next day as an \"unacceptable level of risk.\"\nI see this mistake often, but often from the consumer side, as a business you should know better. When you dispute some transaction with a financial provider, you only dispute the transaction itself, not the underlying contract, it's unrealistic to expect the financial provider to act as a judge.\nThis is a matter you need to take to a court, not to the financial provider.\nLessons learned, take care of your next payment processor, plenty of fish in the sea.",
+          "id": "50513081",
+          "author": "dannyw",
+          "body": "OP, what does your company actually do? Is your business compliant with the Stripe ToS?\nWhat kind of appointments? What services?",
           "score": 0,
-          "time": 1794787386,
+          "time": 1794794007,
           "parent": "50510042"
         },
         {
-          "id": "50511991",
-          "author": "wewewedxfgdf",
-          "body": "Sounds like Stripe is on the same road as Paypal.",
+          "id": "50512098",
+          "author": "Aeseir",
+          "body": "I'll be first to say that Stripe is a shit company and I cannot wait to see a competitor detroy them.\nNow onto main problem.\nIssue is the $1 followed by large payment.\nA lot of banks will flag this as suspicious, in some cases block the payment, or even proceed with investigation.\nThere is nothing telling Stripe that this is a potentially legitimate payment so they blocked it.\nThe fact they are shit company and don't explain this to you is another issue.",
           "score": 0,
-          "time": 1794785165,
+          "time": 1794785994,
           "parent": "50510042"
         },
         {
-          "id": "50512465",
-          "author": "Hizonner",
-          "body": "Of course, you prominently disclose these kickbacks to the homeowners in advance, right?\nIs it just me, or is everybody involved in this entire story kind of a sleazebag?",
+          "id": "50513031",
+          "author": "alwa",
+          "body": "My clanker senses started tingling a couple of uniformly-textured mini-paragraphs in. On that hunch, I ran it through Pangram. Who confidently assess this post to be 100% AI-generated.\nThe pattern described here is quite literally Stolen Card Checking 101. At the sole-proprietor, “even meth enthusiasts routinely come up with this” level of sophistication. With some “AI agent”-tier twists around oddly-recorded phone calls (with a first-and-only customer over many weeks), and logic that doesn’t really square against the way humans behave with each other in actual commercial relationships.\nIn the spirit of responding to the strongest possible interpretation, I grant that maybe OP’s green account is one of somebody who’s embarrassed by Stripe’s reaction to their enterprise, or timid about their English writing skills in a forum like this one—if that’s you, OP, I really, really don’t mean to be negative toward you, and I apologize for the grumpy tone. My reaction is to the AI-ness of it all, not to newcomers making earnest mistakes. (And I’d advise not trusting your AI’s business advice…)\nThat said, Stripe’s systems would be negligent if they didn’t shut this down.\nI feel quite sure Stripe’s wizened safety folks weren’t fooled for a second. All of their communications described here seem… well, both precise and consistent with the facts the AI appellant lays out. The whole thing appears sketchy and fly-by-night from Stripe’s vantage point, and the business that operates this way is all well and good but is outside of their appetite for risk.\nI guess my broader question is—and I know it’s by no means a novel one around here: our effort engaging with such a silly set of facts—is it still worth it as an object lesson for the actual newcomers who’re first encountering these kinds of questions?\n(If you’re one of those, our very own @patio11 is a national treasure - https://www.bitsaboutmoney.com/ (https://www.bitsaboutmoney.com/) )",
           "score": 0,
-          "time": 1794788681,
+          "time": 1794793487,
           "parent": "50510042"
         },
         {
-          "id": "50511500",
-          "author": "replwoacause",
-          "body": "I'm so tired of these big companies giving poor customer support unless they get called out on social media.",
+          "id": "50512961",
+          "author": "cowlevel",
+          "body": "Have you considered ditching Stripe and setting something up with an actual bank rather than a rentseeking middleman?",
           "score": 0,
-          "time": 1794781523,
+          "time": 1794792791,
           "parent": "50510042"
         }
       ]
@@ -188,19 +196,19 @@
       "created_at": "2026-11-15T16:23:54+00:00",
       "comments_data": [
         {
-          "id": "50511905",
-          "author": "vineetsriram",
-          "body": "Depends on your gig. If you have a Mac with 48Gb or more, you can use qwen 27b model. It’s pretty good",
-          "score": 0,
-          "time": 1794784414,
-          "parent": "50508142"
-        },
-        {
           "id": "50508925",
           "author": "dlcarrier",
           "body": "Whatever model you decide on, look for an uncensored version. They are more likely to do \"unsafe\" things, like tell you what happened in Tiananmen Square in 1989, but they'll also accept what you ask or say at face value, without being argumentative or deferring to professionals. They generally run better and don't get stuck in loops as easily, too.",
           "score": 0,
           "time": 1794764618,
+          "parent": "50508142"
+        },
+        {
+          "id": "50511905",
+          "author": "vineetsriram",
+          "body": "Depends on your gig. If you have a Mac with 48Gb or more, you can use qwen 27b model. It’s pretty good",
+          "score": 0,
+          "time": 1794784414,
           "parent": "50508142"
         },
         {
@@ -236,7 +244,7 @@
       "title": "Ask HN: What does building hardware with AI look like?",
       "subreddit": "ask-hn",
       "author": "mjs06",
-      "score": 5,
+      "score": 6,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50508089",
       "url": "https://news.ycombinator.com/item?id=50508089",
@@ -253,7 +261,7 @@
       "title": "Ask HN: Dropbox privacy policy, cause for concern?",
       "subreddit": "ask-hn",
       "author": "herodoturtle",
-      "score": 10,
+      "score": 11,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50504514",
       "url": "https://news.ycombinator.com/item?id=50504514",
@@ -347,7 +355,7 @@
       "title": "Ask HN: What AI agent infrastructure are you using in 2026?",
       "subreddit": "ask-hn",
       "author": "aurumagent",
-      "score": 3,
+      "score": 4,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50503017",
       "url": "https://news.ycombinator.com/item?id=50503017",
