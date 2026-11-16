@@ -1,8 +1,35 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-16T12:41:27.242266+00:00",
+  "last_fetched": "2026-11-16T18:31:22.049592+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50510691",
+      "title": "Ask HN: Why don't operating systems provide complete SSD write accountability?",
+      "subreddit": "ask-hn",
+      "author": "amichail",
+      "score": 4,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50510691",
+      "url": "https://news.ycombinator.com/item?id=50510691",
+      "selftext": "Excessive writes can wear out an SSD. So even one bug could kill your computer. (Not all SSDs are replaceable.)\nSo why don't operating systems always tell you precisely what app/service is responsible for excessive writes so that you can turn off the app/service and contact its authors?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794776343,
+      "created_at": "2026-11-15T20:59:03+00:00",
+      "comments_data": [
+        {
+          "id": "50510878",
+          "author": "akerl_",
+          "body": "Wearing out an SSD generally affects performance well before there’s any kind of failure.\nWhat operating system are you using that doesn’t expose metrics on per-process disk IO?",
+          "score": 0,
+          "time": 1794777579,
+          "parent": "50510691"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,8 +37,8 @@
       "title": "Ask HN: What do coding interviews look like in the age of AI?",
       "subreddit": "ask-hn",
       "author": "frankhorrigan",
-      "score": 9,
-      "num_comments": 4,
+      "score": 10,
+      "num_comments": 6,
       "permalink": "https://news.ycombinator.com/item?id=50510540",
       "url": "https://news.ycombinator.com/item?id=50510540",
       "selftext": "I'm a senior Rails/React dev with 13+ years of experience. Recent AI-driven layoffs have me (soon) looking for work again. But I've barely hand-written a line of code in the past year. All that has been necessary is good prompt writing and tedious, patient code review with tweaks for style / formatting and obviously re-prompting for bad architectural decisions.\nShould I go back and hit the books / write a bunch of components by hand to get the muscle memory back? Or have programming interviews changed to catch up with the technology and do things now look broader and more architectural?",
@@ -20,6 +47,22 @@
       "time": 1794775534,
       "created_at": "2026-11-15T20:45:34+00:00",
       "comments_data": [
+        {
+          "id": "50518203",
+          "author": "pingananth",
+          "body": "Atleast one instance i have heard on Google FDE is it's just 2 rounds - the last one with RRK ( Role Related Knowledge ) round which is more into architectural and system design and coding with AI. So, I would say it depends on the role and company.",
+          "score": 0,
+          "time": 1794840710,
+          "parent": "50510540"
+        },
+        {
+          "id": "50517125",
+          "author": "neilsimp1",
+          "body": "I asked a simple coding question last week to a candidate. He struggled for a couple minutes then said normally he'd just use AI to solve the problem.\nI don't like people using AI for my own reasons. But I tolerate it.\nHowever, being so up front about off-loading your though to an AI is super lame.",
+          "score": 0,
+          "time": 1794833895,
+          "parent": "50510540"
+        },
         {
           "id": "50511538",
           "author": "freelanceTA",
@@ -53,8 +96,8 @@
       "title": "Ask HN: Stripe closed us after one $1,500 invoice and never asked for evidence",
       "subreddit": "ask-hn",
       "author": "snirgbs",
-      "score": 172,
-      "num_comments": 81,
+      "score": 175,
+      "num_comments": 88,
       "permalink": "https://news.ycombinator.com/item?id=50510042",
       "url": "https://news.ycombinator.com/item?id=50510042",
       "selftext": "We're a small business that sells pre-booked appointments with homeowners to local contractors, billed per appointment that actually happens.\nOur first client agreed to this on a recorded call and saved his card through a $1 Stripe payment link, which we planned to use for billing later. That $1 payment went through.\nA few weeks later we invoiced him $1,500 for 3 completed appointments and charged the saved card. Stripe blocked the payment. Two days after that the account was closed with this wording: payments \"don't appear to have been authorized by the customer.\"\nWhat happened next:\n- We appealed through the Dashboard with an appeal letter, our company documents and the invoice. It was rejected the next day as an \"unacceptable level of risk.\"\n- Support told us our \"business model presents a level of risk we're unable to support\" and that the decision is final.\n- After a Stripe employee escalated it internally, we got a short email saying Stripe still won't accept payments for our business.\nIn all of this, nobody asked us for the call recording, our messages with the client, or a confirmation from the client himself. As far as we know, he never disputed anything, and he has told us he is paying by bank transfer outside Stripe.\nI'm not saying our setup is perfect. It's a new account, the first real charge was large compared to the $1 test, and billing a saved card later is probably what looked wrong. If there's something specific we should fix, I'll fix it.\nWhat I'm asking:\n1. Is there anyone at Stripe who can look at this with the evidence, including getting the client on a call?\n2. For people who've been through this: how would you structure per-appointment billing so it doesn't look unauthorized (an invoice with a link each time, an email confirmation before each charge, something else)?\nI can share the account details, the call recording and the messages with anyone from Stripe who wants to look. Thanks for reading.",
@@ -104,14 +147,6 @@
           "parent": "50510042"
         },
         {
-          "id": "50514994",
-          "author": "openspend",
-          "body": "I was reluctant with Stripe and made a somewhat effort to limit Stripe using openspend.net. In the early stages, I am looking for feedback on the product direction.",
-          "score": 0,
-          "time": 1794813967,
-          "parent": "50510042"
-        },
-        {
           "id": "50511704",
           "author": "buckleyourshoe",
           "body": "I would be interested to hear about better alternatives that have functional support. We ran into problems with Google Cloud and were able to migrate to options with much better customer support. Are there payment providers like this available?",
@@ -136,6 +171,14 @@
           "parent": "50510042"
         },
         {
+          "id": "50514994",
+          "author": "openspend",
+          "body": "I was reluctant with Stripe and made a somewhat effort to limit Stripe using openspend.net. In the early stages, I am looking for feedback on the product direction.",
+          "score": 0,
+          "time": 1794813967,
+          "parent": "50510042"
+        },
+        {
           "id": "50512098",
           "author": "Aeseir",
           "body": "I'll be first to say that Stripe is a shit company and I cannot wait to see a competitor detroy them.\nNow onto main problem.\nIssue is the $1 followed by large payment.\nA lot of banks will flag this as suspicious, in some cases block the payment, or even proceed with investigation.\nThere is nothing telling Stripe that this is a potentially legitimate payment so they blocked it.\nThe fact they are shit company and don't explain this to you is another issue.",
@@ -152,11 +195,11 @@
           "parent": "50510042"
         },
         {
-          "id": "50512767",
-          "author": "lossolo",
-          "body": "Why not just choose a different payment processor? They clearly don't want your business, and it's a free market. Why not take your business elsewhere instead of wasting hours or even days trying to get in touch with Stripe after being rejected 3+ times?",
+          "id": "50517349",
+          "author": "csomar",
+          "body": "You might not be aware of it but your process/actions are exactly what a credit card scammer would do. There are usually two parties. The one stealing the cards and testing it with a $1 payment to make sure it works and then later the other party buying it and doing the draining. That's why you should be alarmed if you see a $1 test amounts on your card, it's probably because your card was stolen.\nI wouldn't do the $1 test in the next time. Send an invoice each time and let the customer pay it. Their credit card should be on file but they initiate the action to pay the 1.5k.",
           "score": 0,
-          "time": 1794791023,
+          "time": 1794835308,
           "parent": "50510042"
         }
       ]
@@ -244,8 +287,8 @@
       "title": "Ask HN: What does building hardware with AI look like?",
       "subreddit": "ask-hn",
       "author": "mjs06",
-      "score": 6,
-      "num_comments": 2,
+      "score": 8,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50508089",
       "url": "https://news.ycombinator.com/item?id=50508089",
       "selftext": "Is it 3D printing or just CAD? What will it look like in the future ? AI-native 3d printers?",
@@ -254,6 +297,14 @@
       "time": 1794759473,
       "created_at": "2026-11-15T16:17:53+00:00",
       "comments_data": [
+        {
+          "id": "50518286",
+          "author": "pingananth",
+          "body": "After the fable 5.2 launch video with the PCB demos etc, I have now recently jumped to building hardware ( I wanted for a long time though ). I think it will start with identifying the right problem / project and coming up with prototypes using ready made kits like Raspberry pi, Arduino, etc , printing home made PCBs in future and PCB design, CAD, 3D printing will exist in the workflow. I believe industrial design will have more demand. Currently until PCB design AI assists well but I don't think it's there yet in PCB fabricating and the last leg of industrial design.",
+          "score": 0,
+          "time": 1794841100,
+          "parent": "50508089"
+        },
         {
           "id": "50515252",
           "author": "faangguyindia",
@@ -280,7 +331,7 @@
       "subreddit": "ask-hn",
       "author": "herodoturtle",
       "score": 11,
-      "num_comments": 2,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50504514",
       "url": "https://news.ycombinator.com/item?id=50504514",
       "selftext": "Hi folks,\nJust received a Privacy Policy update from Dropbox.\nNoted the following line with concern:\n“We’ve further explained our collection and use of your data to better identify what data is being used for which purposes.”\nAnyone have insight into what this entails?\nThanks :)",
@@ -289,6 +340,14 @@
       "time": 1794724033,
       "created_at": "2026-11-15T06:27:13+00:00",
       "comments_data": [
+        {
+          "id": "50519443",
+          "author": "runjake",
+          "body": "Here's what I've gathered:\n- They scan your files to train AI. #2\n- They share your data with OpenAI, Google and others. #5\n- They gather all browser activity of Dash users #12\n- Humans manually review data Various spots, throughout",
+          "score": 0,
+          "time": 1794846532,
+          "parent": "50504514"
+        },
         {
           "id": "50505794",
           "author": "codingdave",
@@ -333,19 +392,19 @@
           "parent": "50504061"
         },
         {
-          "id": "50507121",
-          "author": "mirmor23",
-          "body": "> I'm in this process of running something, get logs, tune, get logs, tune... and I told the thing multiple tmes... hey create scripts if you need to run something multiple times... the thing burned like crazy in fable 5.1 effort medium... until you put in caps in expletives what's going on... then writes the script and 16 tokens to check the results...\nAnthropic already says Fable is token hungry and should be used for 'ambitious projects'; IME, i use it only if I need to do some open ended research where the answers are candidates for further research. You are using it to do the work of Opus or Sonnet, and of course it will be terrible.\nLike the other commenter says, it's like hiring Ken Thompson to write tps reports",
-          "score": 0,
-          "time": 1794752369,
-          "parent": "50504061"
-        },
-        {
           "id": "50504399",
           "author": "mso3i",
           "body": "What kind of work? That sort of makes a big diff. \nIf you hire Einstein to run Starbucks you are going to get quantum field theories on making coffee.",
           "score": 0,
           "time": 1794722576,
+          "parent": "50504061"
+        },
+        {
+          "id": "50507121",
+          "author": "mirmor23",
+          "body": "> I'm in this process of running something, get logs, tune, get logs, tune... and I told the thing multiple tmes... hey create scripts if you need to run something multiple times... the thing burned like crazy in fable 5.1 effort medium... until you put in caps in expletives what's going on... then writes the script and 16 tokens to check the results...\nAnthropic already says Fable is token hungry and should be used for 'ambitious projects'; IME, i use it only if I need to do some open ended research where the answers are candidates for further research. You are using it to do the work of Opus or Sonnet, and of course it will be terrible.\nLike the other commenter says, it's like hiring Ken Thompson to write tps reports",
+          "score": 0,
+          "time": 1794752369,
           "parent": "50504061"
         },
         {
