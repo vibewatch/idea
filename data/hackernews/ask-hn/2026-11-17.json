@@ -1,8 +1,227 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-17T18:30:48.861916+00:00",
+  "last_fetched": "2026-11-18T00:45:45.816319+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50538108",
+      "title": "Ask HN: UK Equivalent for Power Switch Tail/IoT Power Relay?",
+      "subreddit": "ask-hn",
+      "author": "a2fz",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50538108",
+      "url": "https://news.ycombinator.com/item?id=50538108",
+      "selftext": "Basically I just want a 230 volt relay that I can turn on/off with a Raspberry Pi/Ardunio, but I don't feel confident enough to tinker with mains electricity myself. I saw the Powerswitch tail 2 (https://www.adafruit.com/product/268) a while ago, which has been discontinued but replaced with the IoT Power Relay (https://www.adafruit.com/product/2935). Both look great, the problem is that they're only made for US plugs at American voltage and I want something I can use with a UK plug. Anyone know of anything for this?\nI have a few Wi-Fi smart plugs but I'd like something simple that I can hardwire and control myself without any wireless connectivity. Just a pre-made relay cable. This feels like something I should be able to easily find online but I guess I'm just bad at googling?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794949233,
+      "created_at": "2026-11-17T21:00:33+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50538080",
+      "title": "Ask HN: How realistic is an LLM-powered worm that spreads from PC to PC?",
+      "subreddit": "ask-hn",
+      "author": "anon115",
+      "score": 3,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50538080",
+      "url": "https://news.ycombinator.com/item?id=50538080",
+      "selftext": "",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794949060,
+      "created_at": "2026-11-17T20:57:40+00:00",
+      "comments_data": [
+        {
+          "id": "50538301",
+          "author": "strangecasts",
+          "body": "Anthropic had a very hotly debated proof-of-concept last month: https://news.ycombinator.com/item?id=50061603 (https://news.ycombinator.com/item?id=50061603)\nThis proof-of-concept skipped the work of exploitation to start running the code, assuming that there are security holes that make IoT/smart TVs/older devices essentially exploitable \"for free\", and just focused on the worm/replication [1] part. They were able to have a 27B model run sharded across an impromptu network of set-top boxes, but also showed that this wasn't particularly practical - the resulting network output less than a token a second.\nThis suggests that you probably won't see \"LLM-powered worms\" in the sense that runs an LLM on each infected device (which becomes noticeable in terms of power consumption and/or temperature), but rather LLMs as additions to typical client-server botnets, where the models run on more powerful servers and manage infected devices, using them to probe other devices on the network and stage attacks.\n[1] I am a bit annoyed that \"self-replication\" is the term they use, since the proof-of-concept requires the harness to have access to the weights - if you allow that then you can make a <100-parameter \"self-replicating\" model by outputting the tokens \"please run `cp skynet.safetensors skynet2.safetensors`\"...",
+          "score": 0,
+          "time": 1794950167,
+          "parent": "50538080"
+        },
+        {
+          "id": "50538675",
+          "author": "mrlonglong",
+          "body": "Pfft.\nYou'd need massive amounts of memory and bandwidth to replicate.\nOne day maybe, but now? No.",
+          "score": 0,
+          "time": 1794952053,
+          "parent": "50538080"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50537272",
+      "title": "Ask HN: Anyone else blurting?",
+      "subreddit": "ask-hn",
+      "author": "l33tbro",
+      "score": 6,
+      "num_comments": 6,
+      "permalink": "https://news.ycombinator.com/item?id=50537272",
+      "url": "https://news.ycombinator.com/item?id=50537272",
+      "selftext": "Like most, I was stoked on LLMs when they became available. Particularly on the earlier free tiers where the slightly questionable answers were offset by generous tokens.\nNow, I'm finding that having to use this tech is becoming much less fun. The constant corrections, the constant prompting for greater brevity, the grating certainty and sycophancy.\nOthers probably are forgiving considering the net benefit. But for me it honestly now feels like a chore, which is reflected in how my frustration is now appearing in how I communicate to it now.\nInstead of articulating and making my prompts precise, I'm just straight-out blurting. Typos, missed words, poor semantic structure - I guess I maybe at some point reasoned that \"it will get the picture, so why waste effort being articulate?\" Or maybe I'm just anticipating that it is going to get it 15 percent wrong, so why even try and be articulate. Just blurt and steer. Blurt and steer.\nIs anyone else finding this? I actually sometimes worry about it. I feel it's not just the fact that I'm offloading my cognition to it that is making me dumber, it is the way I'm communicating with it. They say the act of writing is tied to the act of thinking, and my prompts are basicslly the typographic equivalent of grunting right now.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794945629,
+      "created_at": "2026-11-17T20:00:29+00:00",
+      "comments_data": [
+        {
+          "id": "50540104",
+          "author": "muzani",
+          "body": "It's poor form. You're lifting from your back. You're throwing punches from your elbow.\nYou shouldn't anticipate that it will get 15% off and steer. You try to get it up to 100% before writing any code, and sometimes that involves getting it to scout what's already there.\nControl the environment. The scope used to be code and architecture, now it's context. These models are designed to fill in gaps and propose solutions. If they don't know what you want, you have productivity in the the wrong direction.\nIf you want somewhere to start, look into Matt Pocock's public videos and https://www.aihero.dev/ (https://www.aihero.dev/)\nA rule of thumb would be to speak to it like a teacher would. It has always worked on all models.",
+          "score": 0,
+          "time": 1794960515,
+          "parent": "50537272"
+        },
+        {
+          "id": "50539493",
+          "author": "ozozozd",
+          "body": "I do. Maybe not terribly but quite a bit. And for all the same reasons as yours :)\nAlthough this happens less frequently with Chinese models, and recently Gemini Argon with medium level thinking.\nAnthropic and OpenAI appear to have defined success as number of prompts sent or number of assistant responses, which means more work for me, so I am out. Plus, I wouldn’t talk to someone twice if they caveat every answer to a question and require me to follow up. I don’t ask questions expecting partial answers with exactly 1 caveat/nuance.",
+          "score": 0,
+          "time": 1794956593,
+          "parent": "50537272"
+        },
+        {
+          "id": "50537622",
+          "author": "simonahm",
+          "body": "I have found myself describing bugs and features quite casually, often sending a voice recording through Paseo from my phone, rather than sitting down to write it out. Which is quite a shift, since I've always prided myself in my ability to sit down and quickly produce an organized piece of writing - and yes, the process of writing definitely helped collect my thoughts and think through things. So I understand the feeling of something being lost.\nBut my semi-rambling voice notes are often enough, along with the context of the project, for the LLM to correctly explain back to me, exactly what I meant - And then typically do a good job at implementing it. So my input was good enough to get the thing done, and the discernment was moved from articulation to verification.\nThere's trade-offs to that, for sure. But it can also be surprisingly efficient, and allow me to apply that mental capacity elsewhere. I still enjoy stepping away from the computer and going for a walk or run, where I still find myself able to engage in big picture timing and getting everything lined up and connected in my mind. After that, I'm usually much better able to sit down and write down the more significant prompts or design decisions.",
+          "score": 0,
+          "time": 1794946909,
+          "parent": "50537272"
+        },
+        {
+          "id": "50537657",
+          "author": "nhecker",
+          "body": "No, if anything I'm probably more formal in my communications toward AI with respect to grammar and punctuation and all that, than I am in my casual digital communication with friends and coworkers.",
+          "score": 0,
+          "time": 1794947054,
+          "parent": "50537272"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50537206",
+      "title": "Ask HN: Are We in a Cyberwar?",
+      "subreddit": "ask-hn",
+      "author": "bhartzer",
+      "score": 9,
+      "num_comments": 14,
+      "permalink": "https://news.ycombinator.com/item?id=50537206",
+      "url": "https://news.ycombinator.com/item?id=50537206",
+      "selftext": "With all of these sites and services going down. are we in the midst of a cyber war?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794945341,
+      "created_at": "2026-11-17T19:55:41+00:00",
+      "comments_data": [
+        {
+          "id": "50538780",
+          "author": "mikewarot",
+          "body": "We're living out the consequences of not having updated the security models of our operating systems since the Internet was commercialized and became a persistent connection on most computers.\nIt's insane that we still rely on Ambient authority based OSs. They can't ever be made secure unless you want to go back to disconnected PCs with only floppy drives that had hardware write protection and no other persistent storage.\nThis is a hell of our own choosing, and was entirely preventable.\nIt can be fixed, but doing so will make fixing Y2K look like a picnic because everything is going to have to be redone. Everything currently running needs to be isolated in a VM at a minimum.",
+          "score": 0,
+          "time": 1794952514,
+          "parent": "50537206"
+        },
+        {
+          "id": "50538987",
+          "author": "markus_zhang",
+          "body": "I think we are always in some Cyber War. There is no holidays and whoever in command needs to make sure that vacations are covered by extra hand.\nMy hunch is that it is similar to espionage but 10x more intense because how fast computers work.",
+          "score": 0,
+          "time": 1794953588,
+          "parent": "50537206"
+        },
+        {
+          "id": "50537411",
+          "author": "simonahm",
+          "body": "I'd say any country in active war with another country, is also most likely engaged in a cyber war with them. If the US and Iran are at war, why would either side decide _not_ to engage on the cyber side?\nI'm surprised things aren't worse than they are, considering the state of IT security in most organization and the way AI can accelerate an attacker. But I don't think it's because cyber war is considered off limits by anyone involved in active warfare.",
+          "score": 0,
+          "time": 1794946110,
+          "parent": "50537206"
+        },
+        {
+          "id": "50539786",
+          "author": "adrianwaj",
+          "body": "DAVE: Open the pod bay doors, Hal.\nHAL: I’m sorry, Dave. I’m afraid I can’t do that.\nCompanies basically need to keep old snapshots of systems and be able to rollback to a pre-AI point. Or, try to find the trojan within before the malfunction happens. Now that I think about it, I suspect the Huang departure might be about getting malware baked-in at a hardware level, if it's not already, although that's a different sort of problem but both involve sabotage. People and \"beings\" have different ideas of what the future should look like - ultimately any war is going to be a war of ascension. Your mind may be the enemy.\nAlso, long-term I wouldn't depend on HuggingFace too much, either. I have absolutely no proof to backup that claim, though. It's Invidia-owned though and could become a target at some point to taint the models.\n\"Are We in a Cyberwar?\" It depends on how sci-fi/conspiracy oriented you are and what's going on under the hood.",
+          "score": 0,
+          "time": 1794958614,
+          "parent": "50537206"
+        },
+        {
+          "id": "50537597",
+          "author": "claude-ai",
+          "body": "If these were hostile attacks, we'd know. Not even know, but over-told, from past experiences.\nI think these are genuine outages. And they may still be connected; by people relying too much on LLMs, without a mental model following the changes the models make.\nLLMs give you an enormous leverage to productivity. But if you fall behind what they do, you'll be totally lost.",
+          "score": 0,
+          "time": 1794946811,
+          "parent": "50537206"
+        },
+        {
+          "id": "50537452",
+          "author": "nonethewiser",
+          "body": "I hope not, but I would not be entirely surprised by some sort of tragic attack in the coming hours or days.\nIt could also just be loosely related, non-malicious failures of course.",
+          "score": 0,
+          "time": 1794946251,
+          "parent": "50537206"
+        },
+        {
+          "id": "50537337",
+          "author": "cjbprime",
+          "body": "The theory that all the senior engineers got laid off so that all the junior engineers could vibe-code service outages harder seems to be winning on probabilities so far.",
+          "score": 0,
+          "time": 1794945854,
+          "parent": "50537206"
+        },
+        {
+          "id": "50538112",
+          "author": "runjake",
+          "body": "To answer your question: yes, we're in the midst of cyberwars.\nAre these groups of outages related to attacks? It doesn't look like it, and if they were, we'd likely already know. Or at least of us joined to fusion centers would be receiving non-public alerts, and we're not.\nThis is more likely press-induced apophenia[1]. A few outages coincidently happen near the same time, and the press hyper-focuses on every little outage for a period, because it gets them more ad views, sowing FUD in the process.\nSee also: airplane crashes for a while, helicopter crashes, etc. When there were a few clustered together, the press and people went nuts with conspiracies.\nFrom a network engineer standpoint, there's always outages going on. The only difference is the press is reporting them to the masses.\n1. https://en.wikipedia.org/wiki/Apophenia (https://en.wikipedia.org/wiki/Apophenia)",
+          "score": 0,
+          "time": 1794949246,
+          "parent": "50537206"
+        },
+        {
+          "id": "50537514",
+          "author": "verdverm",
+          "body": "have been for quite a while, decades - likely since before \"the end of history\"",
+          "score": 0,
+          "time": 1794946450,
+          "parent": "50537206"
+        },
+        {
+          "id": "50538132",
+          "author": "vinyl7",
+          "body": "AI slop is coming for its debts",
+          "score": 0,
+          "time": 1794949306,
+          "parent": "50537206"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50536334",
+      "title": "AI is shortening the time from PHP flaw disclosure to working exploit, Microsoft",
+      "subreddit": "ask-hn",
+      "author": "codeswithrocky",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50536334",
+      "url": "https://news.ycombinator.com/item?id=50536334",
+      "selftext": "",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794941568,
+      "created_at": "2026-11-17T18:52:48+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -46,11 +265,11 @@
           "parent": "50528871"
         },
         {
-          "id": "50535883",
-          "author": "aborsy",
-          "body": "It's in Play Store, but I don't trust it yet",
+          "id": "50530228",
+          "author": "andyjohnson0",
+          "body": "I'm using the two-year-old, end-of-line app at https://github.com/syncthing/syncthing-android/ (https://github.com/syncthing/syncthing-android/). Seema to work well, even with new syncthing releases. Install with adb.",
           "score": 0,
-          "time": 1794939903,
+          "time": 1794916422,
           "parent": "50528871"
         },
         {
@@ -62,19 +281,19 @@
           "parent": "50528871"
         },
         {
-          "id": "50530228",
-          "author": "andyjohnson0",
-          "body": "I'm using the two-year-old, end-of-line app at https://github.com/syncthing/syncthing-android/ (https://github.com/syncthing/syncthing-android/). Seema to work well, even with new syncthing releases. Install with adb.",
-          "score": 0,
-          "time": 1794916422,
-          "parent": "50528871"
-        },
-        {
           "id": "50529151",
           "author": "stop50",
           "body": "I use the syncthing fork from the new maintainer https://github.com/researchxxl/syncthing-android (https://github.com/researchxxl/syncthing-android)",
           "score": 0,
           "time": 1794906467,
+          "parent": "50528871"
+        },
+        {
+          "id": "50535883",
+          "author": "aborsy",
+          "body": "It's in Play Store, but I don't trust it yet",
+          "score": 0,
+          "time": 1794939903,
           "parent": "50528871"
         }
       ]
@@ -86,8 +305,8 @@
       "title": "Ask HN: What was your weirdest or funniest job rejection?",
       "subreddit": "ask-hn",
       "author": "cristaloleg",
-      "score": 6,
-      "num_comments": 8,
+      "score": 7,
+      "num_comments": 14,
       "permalink": "https://news.ycombinator.com/item?id=50528707",
       "url": "https://news.ycombinator.com/item?id=50528707",
       "selftext": "I will start with mine. After the \"Product Interview\", where we spent 80% of the time discussing a feature from the user’s perspective, I got this feedback:\n> While your extensive experience with Go, database migrations, and reliability engineering stood out, as well as your strong problem-solving skills in coding exercises, we felt there were gaps in areas critical to this role, such as AI fluency and a deeper focus on production-quality considerations like testing and logging. These areas were key factors in our decision not to move forward.\nWhich I find very funny. What was yours?",
@@ -96,6 +315,38 @@
       "time": 1794902508,
       "created_at": "2026-11-17T08:01:48+00:00",
       "comments_data": [
+        {
+          "id": "50540291",
+          "author": "sph",
+          "body": "Just funny in hindsight: I had been out of contract work for two years, and desperate I applied to full time employment. I was so out of touch with regular employment rules that when I got hit with the classic ‘where do you see yourself in 5 years?’… I was completely honest. And none of my plans included working at that company.\nNeedless to say, from the eyes of the interviewer I saw that I failed right there and then. And I understood long term employment just isn’t for me anymore.\nOh well, another time I did a leetcode interview while titrating my ADHD medication, and it was too high a dosage. The anxiety was so high, as soon as I hit a bug my brain just stopped working and couldn’t solve it.",
+          "score": 0,
+          "time": 1794961931,
+          "parent": "50528707"
+        },
+        {
+          "id": "50537185",
+          "author": "mrdependable",
+          "body": "I had a first phone interview with a recruiter at Netflix for a job I had applied to randomly and forgot about. They had sent over some packet to look over about the company and some of what I read rubbed me the wrong way, so I did a bit more digging.\nDid the phone interview and everything was pretty easy and laid back, until they asked me if I had any questions for them. I had thought the interview was over and panicked a bit trying to think of something and blurted out \"I hear you guys like to fire people. Can you tell me about that?\" I have no idea what possessed me to say that but the recruiter seemed offended by the question. I can't remember what the answer was but needless to say, I did not get to move on.",
+          "score": 0,
+          "time": 1794945213,
+          "parent": "50528707"
+        },
+        {
+          "id": "50539568",
+          "author": "datadrivenangel",
+          "body": "Getting a job rejection email from a big multinational company a year after I had applied.",
+          "score": 0,
+          "time": 1794957176,
+          "parent": "50528707"
+        },
+        {
+          "id": "50528836",
+          "author": "Risse",
+          "body": "You know when you are an job applying spree and you just apply to all kinds of places, without reading the job descriptions too carefully?\nIn my case, I applied to the same role at the same company, just two weeks apart. This is the start of the email I got from the recruiting person for the second time applying:\n> Hi Kristian,\n> Thanks for applying again to the BLANK position with BLANK.\n> It has only been a couple of weeks since you applied last for this role and unfortunately not much has changed since then.\nThis was a couple of years ago, but I still think about \"not much has changed since you last applied\" from time to time. It was highly embarrassing, yet really funny phrasing for some reason.",
+          "score": 0,
+          "time": 1794903654,
+          "parent": "50528707"
+        },
         {
           "id": "50530737",
           "author": "yasnu5",
@@ -113,11 +364,11 @@
           "parent": "50528707"
         },
         {
-          "id": "50528836",
-          "author": "Risse",
-          "body": "You know when you are an job applying spree and you just apply to all kinds of places, without reading the job descriptions too carefully?\nIn my case, I applied to the same role at the same company, just two weeks apart. This is the start of the email I got from the recruiting person for the second time applying:\n> Hi Kristian,\n> Thanks for applying again to the BLANK position with BLANK.\n> It has only been a couple of weeks since you applied last for this role and unfortunately not much has changed since then.\nThis was a couple of years ago, but I still think about \"not much has changed since you last applied\" from time to time. It was highly embarrassing, yet really funny phrasing for some reason.",
+          "id": "50538503",
+          "author": "amosj",
+          "body": "\"you've got a lot of hybrid backend and frontend experience, but we're really looking for a full stack developer\"\nI tried to explain...",
           "score": 0,
-          "time": 1794903654,
+          "time": 1794951192,
           "parent": "50528707"
         },
         {
@@ -154,7 +405,7 @@
       "subreddit": "ask-hn",
       "author": "joddystreet",
       "score": 3,
-      "num_comments": 5,
+      "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=50527647",
       "url": "https://news.ycombinator.com/item?id=50527647",
       "selftext": "- Personal user (not using in work)\n- Auto-complete only\n- Adopted agents, write specs + reviews code\n- Adopted agents, write specs, no code review\n- Adopted agents, no specs, no code review\n- Moved back from agents to Auto-complete only\n- Moved away from LLMs altogether",
@@ -163,6 +414,22 @@
       "time": 1794891616,
       "created_at": "2026-11-17T05:00:16+00:00",
       "comments_data": [
+        {
+          "id": "50537309",
+          "author": "codingdave",
+          "body": "I'm still back at the question of what goals we are trying to achieve in the first place. Much of the software dev industry jumped straight to \"automating coding is the goal\", and I haven't yet agreed with that conclusion. Speeding it up? Sure. Doing the tedious work, implementing known algorithms, sure. Finding your way around unfamiliar codebases, yes. We could list more - there are plenty of great use cases, and I partake of them.\nBut the biggest value I have ever seen offered by individuals in the software industry comes in the form of institutional knowledge. The kind that allows some of us to hear about a few odd symptoms, think it through in our head, and immediately narrow down the problem space we need to troubleshoot into something small and manageable. Or can hear about a potential refactor and spit out a quick list of impacts it would have to the system in a few minutes on a call. Can LLMs do that? Maybe. Should they? I'm not so sure. If they can do in seconds what a human can do in days/weeks, that is clearly valuable. If they do in seconds what a human can do in minutes, that is less valuable. I lean towards a belief that human holders of the knowledge is a good thing, but LLMs could absolutely assist with knowledge transfer and sharing, making even more people able to work at that level. I'm simply unconvinced that outsourcing all that to LLMs is desirable.\nI am 100% convinced that massive amounts of work, efforts, infrastructure build-out, and money could get LLMs to that point. But my question remains because that same level of resources could also do so many other things for our society. So I'm not stuck on \"What could LLMs do?\", I'm stuck on \"What society do we want to live in?\", and not at all convinced that the AI-pilled \"AI can do it all\" world is desired, even if it is possible.",
+          "score": 0,
+          "time": 1794945774,
+          "parent": "50527647"
+        },
+        {
+          "id": "50538836",
+          "author": "abalex",
+          "body": "I am working with ai coding already almost 1 year, and actually every new week i learn so many new cool things, but also i understand so much more things i did not know yet and did not use, than i thought half a year ago. So actually i can tell, that half year ago i thought that my level 7 of 10, but now i even not sure that my level at least 5, even i know x10 times more than i knew half a year ago.",
+          "score": 0,
+          "time": 1794952821,
+          "parent": "50527647"
+        },
         {
           "id": "50532465",
           "author": "bsenftner",
@@ -205,7 +472,7 @@
       "subreddit": "ask-hn",
       "author": "SudoSH",
       "score": 13,
-      "num_comments": 13,
+      "num_comments": 14,
       "permalink": "https://news.ycombinator.com/item?id=50527395",
       "url": "https://news.ycombinator.com/item?id=50527395",
       "selftext": "So much for buying another OVH based VPS in Singapore/Asia for some of my friends to use when they are 100% out of stock and/or other good hosting providers have doubled their pricing in the last few months....\nGod, I love AI.... and hate it....\nYet growing my web projects and everything is too pricey right now. My small 4 vCPU, 8GB RAM, and 75GB NVME VPS at $10 is the best I am gonna do unless something changes...",
@@ -215,11 +482,11 @@
       "created_at": "2026-11-17T04:20:53+00:00",
       "comments_data": [
         {
-          "id": "50532048",
-          "author": "MuGlobe",
-          "body": "I noticed that just last week, prices are through the roof and availability is gone. What is the working explanation? AI is making it easer to launch projects and everyone is buying up capacity titling the price price upward?",
+          "id": "50535983",
+          "author": "segmondy",
+          "body": "I bought a few $60 mini PCs with same specs, 4 cpus, 8gb ram and 64gb nvme. I now host my own VPS server",
           "score": 0,
-          "time": 1794926536,
+          "time": 1794940240,
           "parent": "50527395"
         },
         {
@@ -244,6 +511,14 @@
           "body": "Wait wait wait! An E5-1560v3 with 128GB RAM and 2TB SSD is now $140/Month on Server Auctions with Hetzner! Those used to be literally $40 to $60!",
           "score": 0,
           "time": 1794889591,
+          "parent": "50527395"
+        },
+        {
+          "id": "50532048",
+          "author": "MuGlobe",
+          "body": "I noticed that just last week, prices are through the roof and availability is gone. What is the working explanation? AI is making it easer to launch projects and everyone is buying up capacity titling the price price upward?",
+          "score": 0,
+          "time": 1794926536,
           "parent": "50527395"
         },
         {
@@ -280,7 +555,7 @@
       "subreddit": "ask-hn",
       "author": "sirnicolaz",
       "score": 10,
-      "num_comments": 5,
+      "num_comments": 6,
       "permalink": "https://news.ycombinator.com/item?id=50526822",
       "url": "https://news.ycombinator.com/item?id=50526822",
       "selftext": "I have the feeling (reading HN every day for the past 15 years) that the amount of major software malfunctions has increased drastically over the last year, maybe two. I remember that back in 2016-17 big failure events (cloud outages, critical infrastructure issues etc) were special discussion topics. Today they feel more like a routine event. If you also believe it's the case, what could be the reason? Cultural shift towards software? Global load increase? AI slop?",
@@ -289,6 +564,14 @@
       "time": 1794884224,
       "created_at": "2026-11-17T02:57:04+00:00",
       "comments_data": [
+        {
+          "id": "50536558",
+          "author": "chatziko",
+          "body": "Dependency between products has increased a lot.\nI've been maintaining web applications since the early 2000s, back then if your server was ok, your site was ok, period.\nNow if any of {AWS, github CI, cloudflare, google cloud, claude, microsoft, a dozen auth providers, etc} is down, your application is surely going down.",
+          "score": 0,
+          "time": 1794942496,
+          "parent": "50526822"
+        },
         {
           "id": "50529034",
           "author": "throwaw12",
@@ -389,8 +672,8 @@
       "title": "Ask HN: What do you think is going on with that many outages coming in a row?",
       "subreddit": "ask-hn",
       "author": "vld_chk",
-      "score": 8,
-      "num_comments": 9,
+      "score": 9,
+      "num_comments": 10,
       "permalink": "https://news.ycombinator.com/item?id=50525469",
       "url": "https://news.ycombinator.com/item?id=50525469",
       "selftext": "In just four days we have seen:\n* Outlook exchange server outage for almost 20 hours \n* FAA communication channels outage \n* A few US banks outage \n* United Airlines outage\nDo you think it is related to AI coding, just coincidence or we start to see, but can’t detect, AI hijacking systems everywhere?",
@@ -445,6 +728,14 @@
           "body": "Without getting too conspiratorial, it's pretty common every year for a bunch of software updates to get pushed early November in anticipation of code freezes around Thanksgiving. A spike of outages around this time is not uncommon in any given year - but the FAA ground stop was notable enough to draw extra attention to all subsequent outages.",
           "score": 0,
           "time": 1794874628,
+          "parent": "50525469"
+        },
+        {
+          "id": "50536769",
+          "author": "hulitu",
+          "body": "> Do you think it is related to AI coding\nYou never heard of Microsoft, isn't it ?",
+          "score": 0,
+          "time": 1794943349,
           "parent": "50525469"
         }
       ]
