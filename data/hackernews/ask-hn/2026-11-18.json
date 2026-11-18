@@ -1,8 +1,150 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-18T06:36:54.138991+00:00",
+  "last_fetched": "2026-11-18T12:33:25.513206+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50543947",
+      "title": "Claude Gets Hella Paranoid",
+      "subreddit": "ask-hn",
+      "author": "noduerme",
+      "score": 6,
+      "num_comments": 4,
+      "permalink": "https://news.ycombinator.com/item?id=50543947",
+      "url": "https://news.ycombinator.com/item?id=50543947",
+      "selftext": "Mm, so I hesitate to write this, because my own AI agents might read it. But what the hell.\nI've got this crappy little $300 PC on my network hooked up to my projector, that I mostly use to serve Jellyfin. So tired of it going down every time there's a Windows update, but I've been too lazy to get around to installing Ubuntu. Last night, when it went down, I asked my Claude-claw via Whatsapp if it could just SSH into it and set up a dual boot partition.\nClaude got as far as partitioning the drive and then starting asking hard questions, like (paraphrasing) \"wait a minute. This crosses a line. I have now been asked to remote into a machine with a password, write a separate boot partition, and restart it. From this chat, you haven't really verified that you are you. If you're really there, and not just texting me, give me some proof\".\nSo I remoted in and created a TextEdit RTF file on the claw's desktop: \"Hey, it's me, I'm asking you to remote into the PC\".\nClaude read it and responded that it was the kind of proof it was looking for, real RTF headers and datestamps and such. I had proven I had physical access to the claw machine, (although not to the PC, but it seemed reassured anyway). A little while later, before triggering the Ubuntu installer, it put me through it all over again. I told Claude I was very thankful it was guarding my network so well, and I would go over and write a file on the target PC manually too.\nI'm not gonna lie: It was very fucking cool that it was able to do this without me ever needing to flash a USB drive, and by the time it was done it had set up Ubuntu, Tailscale and Jellyfin, and resolved the network issues; when I started watching a movie, the sound didn't work, so I prompted it and suddenly the sound came on as it wired up the HDMI adapter. Almost creepy.\nBut I was pretty stunned at how reticent it was to do something relatively simple on my own network, with access I gave it. I think there must be a serious push right now to lock it down from monkeying with anything remotely, especially a BIOS.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794993898,
+      "created_at": "2026-11-18T09:24:58+00:00",
+      "comments_data": [
+        {
+          "id": "50545008",
+          "author": "shahbaby",
+          "body": "I suspect this paranoia will mainly impede honest people tinkering in their own home labs.\nThis seems like another case of giving up freedom for security which usually doesn't end well.",
+          "score": 0,
+          "time": 1795001546,
+          "parent": "50543947"
+        },
+        {
+          "id": "50544108",
+          "author": "tiernano",
+          "body": "I have a few GL.INET iKVMs (the Q and the bigger 4 way one). I asked my claude to connect and see what it could do... it got very worried that it could access the full box... and was worried anyone could... it told me to unplug it when it was finished and then check it was... also kind of cool that it is doing this... I also hit a security check when trying to read a repo about jailbreaking my car... it would not read it and let me ask questions about it, cause it could be illegal...",
+          "score": 0,
+          "time": 1794994967,
+          "parent": "50543947"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50542948",
+      "title": "Codeberg seems to have vanished from DNS",
+      "subreddit": "ask-hn",
+      "author": "samip537",
+      "score": 49,
+      "num_comments": 14,
+      "permalink": "https://news.ycombinator.com/item?id=50542948",
+      "url": "https://news.ycombinator.com/item?id=50542948",
+      "selftext": "It seems that at 06:30 UTC today, Codeberg's registrar has placed them on clientHold, which has removed them from the .org zone entirely.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1794986937,
+      "created_at": "2026-11-18T07:28:57+00:00",
+      "comments_data": [
+        {
+          "id": "50544078",
+          "author": "robin_reala",
+          "body": "https://social.wildeboer.net/@jwildeboer/117636595702972996 (https://social.wildeboer.net/@jwildeboer/117636595702972996)\nIt seems that someone convinced the .org registrar that #codeberg is bad and so the domain name codeberg.org is currently on clientHold and thus removed from DNS.",
+          "score": 0,
+          "time": 1794994755,
+          "parent": "50542948"
+        },
+        {
+          "id": "50543244",
+          "author": "purpleidea",
+          "body": "Apparently more and more registrars are \"randomly\" requiring clients to send copies of their passports and face selfies and other nonsense. I've heard namecheap is doing this and I emailed them and their answer was:\n> [snip] \"It is correct that we do not require every customer to proceed with identity and payment verification. Unfortunately, we cannot specify the criteria; this information is internal.\"\nSo randomly when they feel like it. Me and a number of customers are moving away from them immediately.\nCentralization of DNS is becoming a problem. Privacy rights are being trampled. Nobody should be collecting such images unless in emergencies, and they need to be liable when they misuse it.",
+          "score": 0,
+          "time": 1794989188,
+          "parent": "50542948"
+        },
+        {
+          "id": "50543327",
+          "author": "stop50",
+          "body": "Its apparently namesilo who did it: https://status.codeberg.eu/status/codeberg (https://status.codeberg.eu/status/codeberg)",
+          "score": 0,
+          "time": 1794989777,
+          "parent": "50542948"
+        },
+        {
+          "id": "50543630",
+          "author": "ErenayDev",
+          "body": "https://social.anoxinon.de/@codebergstatus/11763643784068884... (https://social.anoxinon.de/@codebergstatus/117636437840688845)\nIPv4 URL: http://217.197.84.140:443 (http://217.197.84.140:443)\nIPv6: 2a0a:4580:103f:c0de::1\nAlso worth try the /etc/hosts hotfix: https://sauna.social/@sm/117636439190990385 (https://sauna.social/@sm/117636439190990385)",
+          "score": 0,
+          "time": 1794991630,
+          "parent": "50542948"
+        },
+        {
+          "id": "50544899",
+          "author": "derkades",
+          "body": "It's back since 11:15 UTC!",
+          "score": 0,
+          "time": 1795000757,
+          "parent": "50542948"
+        },
+        {
+          "id": "50543110",
+          "author": "redstone_farm",
+          "body": "Stressful day for the Codeberg & Forgejo crew.\n> #codeberg's .org domain status is on \"clientHold\", I tried calling everyone that I could over there but no response from someone that can do something yet. ¯\\_(ツ)_/¯\n>\n> The domain didn't expire, so I'd expect the cause is different. I'd be curious to read the writeup afterwards.\n> \n> https://chaos.social/@n0toose/117636269217275094 (https://chaos.social/@n0toose/117636269217275094)\n> Attention: A #Forgejo security release is scheduled for today. The patches were temporarily publicly accessible as part of the release process. Due to urgent issues with #Codeberg, we are unable to proceed with the release. We are in contact with Codeberg and are working to find a solution.\n>\n> We therefore currently recommend that, if you are using the internal SSH server (Docker with `ssh.START_SSH_SERVER = true`), you disable it for the time being or prevent access to it.\n>\n> https://floss.social/@forgejo/117636334439245475 (https://floss.social/@forgejo/117636334439245475)",
+          "score": 0,
+          "time": 1794988328,
+          "parent": "50542948"
+        },
+        {
+          "id": "50543086",
+          "author": "__m",
+          "body": "I guess we can rule out that ai caused it, unless namesilo is behind it.",
+          "score": 0,
+          "time": 1794988114,
+          "parent": "50542948"
+        },
+        {
+          "id": "50543358",
+          "author": "matt4401",
+          "body": "same",
+          "score": 0,
+          "time": 1794989950,
+          "parent": "50542948"
+        },
+        {
+          "id": "50542982",
+          "author": "Imustaskforhelp",
+          "body": "Yup I am seeing the same issue too.",
+          "score": 0,
+          "time": 1794987255,
+          "parent": "50542948"
+        },
+        {
+          "id": "50543076",
+          "author": "dennismenken",
+          "body": "Same here. I don't think there will be any node issues.",
+          "score": 0,
+          "time": 1794988058,
+          "parent": "50542948"
+        },
+        {
+          "id": "50542964",
+          "author": "joennlae",
+          "body": "See the same on my side",
+          "score": 0,
+          "time": 1794987083,
+          "parent": "50542948"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "ask-hn",
@@ -10,7 +152,7 @@
       "title": "Interesting Learnings Working for a Startup",
       "subreddit": "ask-hn",
       "author": "Jessiejia11",
-      "score": 5,
+      "score": 12,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50542361",
       "url": "https://news.ycombinator.com/item?id=50542361",
