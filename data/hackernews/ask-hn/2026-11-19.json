@@ -1,0 +1,187 @@
+{
+  "source": "hackernews",
+  "stream": "ask-hn",
+  "last_fetched": "2026-11-19T06:37:35.160495+00:00",
+  "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50555002",
+      "title": "Ask HN: Tips for transitioning from web development to embedded/firmware?",
+      "subreddit": "ask-hn",
+      "author": "llmblockchain",
+      "score": 3,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50555002",
+      "url": "https://news.ycombinator.com/item?id=50555002",
+      "selftext": "I started my career 15+ years ago doing native development (c, c++, etc), but the last decade I've been doing fullstack web applications.\nI'd like to transition closer to my roots with a job doing primarily c, c++ or rust. The natural place seems to be in embedded development or firmware work. How feasible is the transition this late in the game? Any advice?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1795052265,
+      "created_at": "2026-11-19T01:37:45+00:00",
+      "comments_data": [
+        {
+          "id": "50556363",
+          "author": "bruce511",
+          "body": "I've done both over my career (as well as some other stuff.)\nWhile they are very different, if you know C, it's not hard to transition.\nGetting a job in the embedded space though is obviously a lot harder than web. There are simply fewer jobs to be had. Doing some personal projects in the space may reawaken your C skills, and help demonstrate competence.\nGood luck!",
+          "score": 0,
+          "time": 1795065718,
+          "parent": "50555002"
+        },
+        {
+          "id": "50556021",
+          "author": "faangguyindia",
+          "body": "You can embed quickjs then write js.",
+          "score": 0,
+          "time": 1795061843,
+          "parent": "50555002"
+        },
+        {
+          "id": "50555430",
+          "author": "AnimalMuppet",
+          "body": "There are two issues: 1) transitioning your skills, and 2) persuading someone to hire/pay you for your new skills.\nTransitioning your skills is possible. But embedded is a different world and a different mindset. You a lot less RAM and a smaller CPU. You may have hard deadlines - the right answer can be wrong if it's too late. You may have multiple threads that have to share data and not corrupt it, no matter what order events occur in.\nIn the worst case, you may not have logging available at all, and you may not have a debugger. (I think the worst I ever had to do was attach a logic analyzer to the address bus, triggered by a specific address, and then use it to look at past memory addresses in order to figure out what path of execution had got me to the point of the crash.)\nSo, yeah. It's a different world. Learnable, but different.\nGetting someone to believe you can do it enough that they're willing to pay you: I don't have great advice there. I spent almost my whole career in embedded. It seems to me that it's easier to get from there into, say, desktop programming, than it is to go the other way. Your best bet might be to emphasize your native development background, and count on there being a shortage of embedded people.",
+          "score": 0,
+          "time": 1795056320,
+          "parent": "50555002"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50554756",
+      "title": "Tell HN: /tmp is hogging your RAM on Ubuntu 26",
+      "subreddit": "ask-hn",
+      "author": "boldi",
+      "score": 4,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50554756",
+      "url": "https://news.ycombinator.com/item?id=50554756",
+      "selftext": "As a Ubuntu user, it was just brought to my attention that /tmp is now mounted on tmpfs (aka your RAM).\nCoding agents, like Claude Code, use /tmp as a scratchpad for files, model weights, etc.\nTherefore, if you have RAM constraints, consider setting CLAUDE_CODE_TMPDIR to e.g. ~/.claude/tmp",
+      "is_self": true,
+      "is_video": false,
+      "time": 1795050786,
+      "created_at": "2026-11-19T01:13:06+00:00",
+      "comments_data": [
+        {
+          "id": "50554792",
+          "author": "akerl_",
+          "body": "This doesn’t sound new?",
+          "score": 0,
+          "time": 1795050989,
+          "parent": "50554756"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50554686",
+      "title": "Ask HN: When does your app need its own UI vs. using it via MCP?",
+      "subreddit": "ask-hn",
+      "author": "amoorthy",
+      "score": 4,
+      "num_comments": 4,
+      "permalink": "https://news.ycombinator.com/item?id=50554686",
+      "url": "https://news.ycombinator.com/item?id=50554686",
+      "selftext": "I'd love to hear HN user's views on when they think an app their building needs a UI vs just supplies data via MCP to Claude/ChatGPT.\nIf Claude/ChatGPT is where the bulk of work is done in the future (perhaps analogous to a general purpose computer) then how should app developers build in this world?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1795050260,
+      "created_at": "2026-11-19T01:04:20+00:00",
+      "comments_data": [
+        {
+          "id": "50556126",
+          "author": "reagent",
+          "body": "I'm experimenting with this balance now -- I built and launched a small analytics service (basic web tracking) that uses the web UI for sign-up through Cloudflare Access and provides minimal instructions on connecting your agent to MCP.\nThere's minimal reporting post-login about the sites you're tracking, but site setup, configuration, and reporting is all done through MCP with your agent. It's working for my minimal needs right now (traffic over time, plotting visits on a map) and is a good way to figure out how I want to do reporting rather than building a more general purpose reporting interface.",
+          "score": 0,
+          "time": 1795062913,
+          "parent": "50554686"
+        },
+        {
+          "id": "50556024",
+          "author": "hzz4444433333",
+          "body": "First of all, it comes down to product positioning. Most of the apps I build are for my own work or collaborative reasoning tasks. Sometimes I build not just apps, but also web services and assorted small tools. My philosophy is to minimize UI as much as possible and keep interfaces lean. Anything that can run in the background stays out of the user’s view — that’s the product perspective. But when I build an app to accelerate my own research work, I tend to go for more complex UI layouts, laying out the full research workflow visibly on the interface.",
+          "score": 0,
+          "time": 1795061860,
+          "parent": "50554686"
+        },
+        {
+          "id": "50555004",
+          "author": "kbrannigan",
+          "body": "Developers should provide a documented CLI for all their programs. Anything that is clickable should be MCP-able.\nI do not think applications will be only headless. MCP will be an alternative user(agent) interface not a full replacement.\nDo you really think that we have to get a LLM subscription just to use a program, that probably has a subscription.\nMore over, 5 years ago , software developer needed : wikipedia, stackoverflow an and IDE to develope software, now suddenly they cannot live without at $200 subscription to develop a variation of ( video games, custom harness, custom RAG, custom CRUD).\nSomeone said in 2 years, most developers skill will shrivel so much that the next computer will come with only (yes / no button)",
+          "score": 0,
+          "time": 1795052281,
+          "parent": "50554686"
+        },
+        {
+          "id": "50555209",
+          "author": "uhfraid",
+          "body": "UI when there’s paying customers.",
+          "score": 0,
+          "time": 1795054302,
+          "parent": "50554686"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50554381",
+      "title": "Ask HN: Cheapest CPU Vms",
+      "subreddit": "ask-hn",
+      "author": "mrkn1",
+      "score": 9,
+      "num_comments": 6,
+      "permalink": "https://news.ycombinator.com/item?id=50554381",
+      "url": "https://news.ycombinator.com/item?id=50554381",
+      "selftext": "hetzner seems to be out of stock for cheapest plans for a few weeks/months now.. any alternatives that are as cheap or cheaper?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1795048218,
+      "created_at": "2026-11-19T00:30:18+00:00",
+      "comments_data": [
+        {
+          "id": "50554797",
+          "author": "esaym",
+          "body": "Had good luck with racknerd so far",
+          "score": 0,
+          "time": 1795051026,
+          "parent": "50554381"
+        },
+        {
+          "id": "50555277",
+          "author": "mdaniel",
+          "body": "In case you haven't seen it yet, https://lowendbox.com/ (https://lowendbox.com/) is a whole catalog of \"cheapest\" across a wide spectrum of \"... for what?\" setups, and they have a discussion forum, too, if that helps: https://lowendtalk.com/categories/offers (https://lowendtalk.com/categories/offers)\nAnd also at the furthest end of cheapest, AFAIK Oracle Cloud still offers 2(?) Linux vms (ARM and AMD https://www.oracle.com/cloud/free/ (https://www.oracle.com/cloud/free/) ), although I believe they will terminate them if they discover that they're idle, for some definition of idle",
+          "score": 0,
+          "time": 1795054970,
+          "parent": "50554381"
+        },
+        {
+          "id": "50555284",
+          "author": "johng",
+          "body": "I've been using some VPS's here and have had good luck, good pricing: https://advinservers.com/vps (https://advinservers.com/vps)",
+          "score": 0,
+          "time": 1795055007,
+          "parent": "50554381"
+        },
+        {
+          "id": "50554899",
+          "author": "pavelevst",
+          "body": "Euronodes",
+          "score": 0,
+          "time": 1795051554,
+          "parent": "50554381"
+        },
+        {
+          "id": "50554632",
+          "author": "movsx",
+          "body": "Netcup.",
+          "score": 0,
+          "time": 1795049780,
+          "parent": "50554381"
+        }
+      ]
+    }
+  ]
+}

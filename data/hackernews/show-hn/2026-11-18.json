@@ -1,8 +1,111 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-19T00:45:06.396731+00:00",
+  "last_fetched": "2026-11-19T06:37:27.852424+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50554055",
+      "title": "Show HN: Pitot – OpenTelemetry in One Binary, with Parquet, DuckDB, and MCP",
+      "subreddit": "show-hn",
+      "author": "matrika",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50554055",
+      "url": "https://github.com/labstack/pitot",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795046135,
+      "created_at": "2026-11-18T23:55:35+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50553969",
+      "title": "Show HN: Solve hard jigsaw puzzles scanning with phone",
+      "subreddit": "show-hn",
+      "author": "javierluraschi",
+      "score": 2,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50553969",
+      "url": "https://puzzle.cloudish.app/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795045516,
+      "created_at": "2026-11-18T23:45:16+00:00",
+      "comments_data": [
+        {
+          "id": "50553975",
+          "author": "javierluraschi",
+          "body": "I got a super hard jigsaw puzzle and got frustrated by it. I tried some of the apps and services out there but nothing worked, mostly cause this puzzle was close to single color so the only way to match the pieces was by shape.\nThis project started with an existing PHP solver (https://github.com/byWulf/jigsawlutioner (https://github.com/byWulf/jigsawlutioner)) but after trying it many things were broken, the phone outlines not accurate enough, I found out direct geometric side matching worked better, so I rewrote it from scratch (with AI obviously) in plain Node with no deps and used the old results just as a reference.\nScanning took the most time. Problem was that live segmentation overheated the phone, so I changed it so it only finds the card live and does the outline after the photo.\nShadows were bad as well, part—early edges included dark crescents and came out 7-9% too big. So switched to printing a PDF to scan the cards and then also change snapping the edge at full res.\nEnded up printing a few card colors because some pieces vanish against certain backgrounds, but then found out most reliable to scan the pieces from the back for consistency.\nAssembly is strongest-first with some local backtracking when groups almost close but conflict.\nThere’s a 54-piece demo that solves cleanly; it also does okay on a 1000-piece set.\nStill rough on pieces that are close in color to the card, and the gap can be sensitive to how you scan.\nThe “match these three pieces” thing was added later for when you just want the missing corner of a 2x2 ranked. Which was useful cause even this algorithm was not able to match everything.\nThe last few pieces of the puzzle I matched them by hand (so this project won’t match all the pieces) but that was the remaining 10% of the puzzle and was quite fun and enjoyable.\nRepo: https://github.com/javierluraschi/puzzle (https://github.com/javierluraschi/puzzle)",
+          "score": 0,
+          "time": 1795045541,
+          "parent": "50553969"
+        },
+        {
+          "id": "50553992",
+          "author": "javierluraschi",
+          "body": "Here is a timelapse worth sharing: https://x.com/javierluraschi/status/2113799709911634272 (https://x.com/javierluraschi/status/2113799709911634272)",
+          "score": 0,
+          "time": 1795045656,
+          "parent": "50553969"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50553966",
+      "title": "Show HN: Frontier Observatory – A visual timeline of what the AI labs ship",
+      "subreddit": "show-hn",
+      "author": "mnhcorp",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50553966",
+      "url": "https://frontier-lab-observatory.lucentcarrot1.chatgpt.site",
+      "selftext": "Frontier labs ship a lot. This gives me a handle on things. Also nice view of what the labs are prioritising (if release/research output is any indication)..\nMade with GPT-6.2 Astra High. Initial prompt was a bit rambly, some refinement over time. It suggested 'scry' which I thought was a bad name so now its called Frontier Observatory, which is a tad less terrible.\nPrompt:\nYou know what I'd like to build.. a visuliastion studio where I can monitor the pace of output across various groups/sub-groups etc from the two predominant frontier labs racing to AGI.. I think it would make for a fascinating experience. I want the aesthetics to be out-wordly artistic, we want this to be like a portal.. a crystal bowl of making sense of the past and predicting the future..\nAlso need a clever name. Single word. Minimal.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795045501,
+      "created_at": "2026-11-18T23:45:01+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50553913",
+      "title": "Show HN: Try Vibe Robotics! (IRL or MuJoCo SIM)",
+      "subreddit": "show-hn",
+      "author": "_sshahid_",
+      "score": 11,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50553913",
+      "url": "https://github.com/google-deepmind/robotics-antigravity-plugin",
+      "selftext": "Hey HN, I'm Salman, a research engineer at GDM Robotics on the team that built this robotics plugin.\nWhether you're a robotics founder, data company, making RL environments, or just getting FOMO seeing all the cool robotics demos on X, you can just plug in a robot and start prompting away. The plugin we've written up includes skills that steer the model toward following best practices.\nThe benefits of using the plugin are:\n- fewer tokens (and therefore thinking time) needed to do bring-up the robot and to reach a successful attempt on your task\n- higher fidelity real-to-sim-to-real when creating MuJoCo assets and environments\n- leveraging strong motion planning, visual servoing, and collision avoidance\nWe have tested on SO-101, YAM, and Franka Duo, but you don't even need real arms to test it out. You can just create cool environments in sim and then prompt the model to control a simulated robot in the environment! (Just make sure to tell it not to use privileged sim state if you want to actually evaluate how good the perception and model intelligence is).\nJust point your agent to the repo, good luck, and happy tinkering!\nLet me know if you have any questions! Will answer anything here or feel free to post on the GitHub repo directly.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795045120,
+      "created_at": "2026-11-18T23:38:40+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50553818",
+      "title": "Show HN: LaTeX Editor with Incremental Compilation",
+      "subreddit": "show-hn",
+      "author": "zackchen",
+      "score": 2,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50553818",
+      "url": "https://app.texter.website",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795044458,
+      "created_at": "2026-11-18T23:27:38+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -61,8 +164,8 @@
       "title": "Show HN: Robotics needs better CAD, so I wrote a B-rep kernel and 3,487 tests",
       "subreddit": "show-hn",
       "author": "atomarch",
-      "score": 16,
-      "num_comments": 2,
+      "score": 28,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50552140",
       "url": "https://springcraft-ai.github.io/springrep/",
       "selftext": "Hey HN, I’m Tony. I’m a co-founder of Springcraft, where we have been doing a lot of CAD modeling for robot parts. Our team kept running into limitations with existing kernels, and so I decided to write a new B-rep kernel and a new comprehensive, kernel-agnostic B-rep conformance test suite. Both are available today under MIT licenses.\nThe kernel, springrep, is written in safe Rust with no dependencies. It covers a broad range of our mechanical CAD needs, including advanced fillets, sweeps, lofts, shells, offsets, STEP and exact measurements and queries. Claude Code made it feasible to write this, but it took a lot of time and care to get it right.\nThe test suite, brep-conformance, has 3,487 cases covering the modeling operations common across kernels: booleans, fillets, chamfers, shells, offsets, sweeps, lofts, STEP, and queries with expected answers coming from closed forms and exact geometry. It caught hundreds of bugs, edge cases, and hot spots in springrep that our own tests had missed, and now springrep passes all of it. We’ve also run it on a few popular open-source kernels and anyone can run it on theirs. This is the first version, so there are surely mistakes in the test and adapters. Corrections, pull requests, and new kernels are welcome.\nkernel: https://github.com/springcraft-ai/springrep (https://github.com/springcraft-ai/springrep)\nconformance suite: https://springcraft-ai.github.io/brep-conformance/ (https://springcraft-ai.github.io/brep-conformance/)",
@@ -77,6 +180,14 @@
           "body": "Now this is a great application of an LLM.\nI'm sure you still have loads to solve and a lot of quite human decisions to make (because bRep is one thing; contemporary CAD 'default solutions' strike me as likely to be full of human compromises), but I can see that having an LLM on the team to help with the maths must help.\nBest of luck with it :-)",
           "score": 0,
           "time": 1795041945,
+          "parent": "50552140"
+        },
+        {
+          "id": "50556315",
+          "author": "waterTanuki",
+          "body": "Why this instead of extending/supporting solidcore? (also in Rust)\nhttps://github.com/tangency-labs/solidcore (https://github.com/tangency-labs/solidcore)\nYour performance table is treating brep-conformance like it's some kind of backend server that processes x requests per n seconds, but that's now how geometry kernels work. How does this enable faster/smoother workflow than solidcore? Can you demonstrate that with a side-by-side video? No one, not even people who work with CAD all day can understand any benefits this has from a table.",
+          "score": 0,
+          "time": 1795065257,
           "parent": "50552140"
         }
       ]
@@ -122,7 +233,7 @@
       "title": "Show HN: PocketOps for SigNoz: The Open Source Datadog Alternative",
       "subreddit": "show-hn",
       "author": "avens19",
-      "score": 6,
+      "score": 7,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50551614",
       "url": "https://github.com/avens19/pocketops",
@@ -139,8 +250,8 @@
       "title": "Show HN: Beat – a to-do list that completes its own tasks",
       "subreddit": "show-hn",
       "author": "brdo",
-      "score": 10,
-      "num_comments": 5,
+      "score": 13,
+      "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=50551356",
       "url": "https://gobeat.ai/auth/login",
       "selftext": "",
@@ -217,7 +328,7 @@
       "title": "Show HN: Poptato – App launcher, command runner, and fuzzy menu for Linux",
       "subreddit": "show-hn",
       "author": "modinfo",
-      "score": 5,
+      "score": 7,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50550737",
       "url": "https://github.com/skorotkiewicz/poptato",
@@ -225,7 +336,17 @@
       "is_self": false,
       "is_video": false,
       "time": 1795029505,
-      "created_at": "2026-11-18T19:18:25+00:00"
+      "created_at": "2026-11-18T19:18:25+00:00",
+      "comments_data": [
+        {
+          "id": "50551382",
+          "author": "pankso",
+          "body": "Look nice! Can I ask why you used Rust rather than C ?",
+          "score": 0,
+          "time": 1795032200,
+          "parent": "50550737"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -261,7 +382,7 @@
       "title": "Show HN: Sci-Fi Futures – Reverse-engineering tech from classic sci-fi novels",
       "subreddit": "show-hn",
       "author": "ninajlu",
-      "score": 3,
+      "score": 5,
       "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50550420",
       "url": "https://scififutures.vercel.app",
@@ -367,19 +488,19 @@
           "parent": "50549718"
         },
         {
-          "id": "50553650",
-          "author": "jkahrs595",
-          "body": "my one year old thought this was hilarious thanks :)",
-          "score": 0,
-          "time": 1795043191,
-          "parent": "50549718"
-        },
-        {
           "id": "50551535",
           "author": "hasbot",
           "body": "No mashed potato or funky chicken?!",
           "score": 0,
           "time": 1795032876,
+          "parent": "50549718"
+        },
+        {
+          "id": "50553650",
+          "author": "jkahrs595",
+          "body": "my one year old thought this was hilarious thanks :)",
+          "score": 0,
+          "time": 1795043191,
           "parent": "50549718"
         }
       ]
@@ -503,8 +624,8 @@
       "title": "Show HN: Mastra Factory, the open-source software factory we use to build Mastra",
       "subreddit": "show-hn",
       "author": "codekarate",
-      "score": 80,
-      "num_comments": 29,
+      "score": 90,
+      "num_comments": 31,
       "permalink": "https://news.ycombinator.com/item?id=50548660",
       "url": "https://news.ycombinator.com/item?id=50548660",
       "selftext": "Hi HN, we're Shane, Sam, and Abhi.\nAlmost two years ago, we shared Mastra, our open-source TypeScript agent framework, on Show HN: https://news.ycombinator.com/item?id=43103073 (https://news.ycombinator.com/item?id=43103073). It got a few hundred upvotes; a couple of weeks later our downloads had doubled, and we were off to the races.\nToday we're sharing Mastra Factory, the open-source software factory we built to help maintain Mastra itself.\nAt Mastra, we now average nearly 4M downloads per week, and with Factory our team now merges hundreds of PRs a week across the mastra-ai GitHub org. Last week, Factory opened and merged 238 PRs, alongside 630 merged PRs from humans.\nThere's a lot of debate about what a software factory is. For us Factory is a configurable agentic kanban board that's @-taggable in Slack.\nUnder the hood, it uses Mastra’s durable agents for long-running sessions, our conversational memory system, a markdown based wiki with source citations to incorporate company knowledge, signals that subscribe to PR comments wired up into sessions, and a customizable cloud sandbox with our coding harness (working on supporting Claude Code, Codex etc).\nWhen we started out, we modeled Factory around our existing workflow-oriented process (triage, plan, build, review, shipped). Three months later, we find ourselves mostly driving it through Slack vs a web UI.\nWe’ve seen more senior engineers kick off sessions in parallel (“triage the 20 oldest issues and let’s evaluate…”). We’re using bug and vuln scanners now, and we’ve closed our repo to outside contributors, asking folks to write detailed issue repros instead.\nYou can get started with `npm create factory`.\nIt’s fully open-source, so you can run it entirely on your infra (we also offer a hosted version). Comment here, we would love to know what you think!\nhttps://factory.mastra.ai (https://factory.mastra.ai)\nhttps://github.com/mastra-ai/template-factory (https://github.com/mastra-ai/template-factory)",
@@ -514,11 +635,11 @@
       "created_at": "2026-11-18T16:53:42+00:00",
       "comments_data": [
         {
-          "id": "50551642",
-          "author": "jaf12duke",
-          "body": "What have you learned from people who use Mastra today versus what you/they were doing in the beginning?",
+          "id": "50554486",
+          "author": "siscia",
+          "body": "I build something similar, based on similar ideas: https://factory.redbeardlab.com (https://factory.redbeardlab.com)\nThere is a [language](https://redbeardlab.github.io/dotFactory/ (https://redbeardlab.github.io/dotFactory/)) that let express complex workflows.\nThe workflow can be pretty much anything, eg:\n1. Clone repo A and B + Start OpenCode + Feed a prompt into it\n2. Pick up the commit generated by opencode for both repo, and run CI\nAnother workflow I created is: every day at 3AM, check that the documentation of the website is up to date, if yes exit, if not update the documentation. Pass the updated documentation to an adversarial LLM and if it pass, merge it - otherwise loop with the feedback from the adversarial one.\nYou have a concept of trigger, which can be either a webhook, or a github PR or a github issue, or just a cron expression. Or just someone manually clicking.\nThere is a concept of secrets and config, so the user can create their own secrets to start codex-cloud, or opencode, or making custom API call.\nThere is also the concept of manual gate, so you can wait for an human to actually click a button.\nFinally, it supports running containers. Useful if you want to call an obscure API from your workflow, you don't have to wait for the platform owner to create a step for your API, but you can just run a container into it.",
           "score": 0,
-          "time": 1795033429,
+          "time": 1795048916,
           "parent": "50548660"
         },
         {
@@ -527,6 +648,14 @@
           "body": "Links:\nhttps://factory.mastra.ai (https://factory.mastra.ai)\nhttps://github.com/mastra-ai/template-factory (https://github.com/mastra-ai/template-factory)",
           "score": 0,
           "time": 1795029889,
+          "parent": "50548660"
+        },
+        {
+          "id": "50551642",
+          "author": "jaf12duke",
+          "body": "What have you learned from people who use Mastra today versus what you/they were doing in the beginning?",
+          "score": 0,
+          "time": 1795033429,
           "parent": "50548660"
         },
         {
@@ -682,8 +811,8 @@
       "title": "Show HN: Take Voyager 1 apart, down to a single memory chip",
       "subreddit": "show-hn",
       "author": "raj-shekhar",
-      "score": 144,
-      "num_comments": 31,
+      "score": 182,
+      "num_comments": 45,
       "permalink": "https://news.ycombinator.com/item?id=50548161",
       "url": "https://rshekhar.com/voyager/",
       "selftext": "Voyager 1 reached one light-day from Earth today.\nOn the site you can:\n- see where both Voyagers are right now\n- open a nuclear battery to its 24 plutonium spheres\n- go into the data computer, down to a single memory chip\n- see how the Golden Record's cover explains how to play it\n- watch how Voyager 1 was fixed by radio\n- see which dish on Earth is listening to them, live\nI also made a 4-minute film from it: https://www.youtube.com/watch?v=kpzsRo-c1_A (https://www.youtube.com/watch?v=kpzsRo-c1_A)",
@@ -701,14 +830,6 @@
           "parent": "50548161"
         },
         {
-          "id": "50554314",
-          "author": "carter-qadenza",
-          "body": "This is neat, even if it's missing some things. I actually really like how Voyager is displayed. Thinking about putting something like together in the late 70's is pretty wild.\nSeeing the spectrometers reminded me that nearly my entire physics degree only covered what was known up until the 50's. I always underestimate how much we understood even 75 years ago!",
-          "score": 0,
-          "time": 1795047817,
-          "parent": "50548161"
-        },
-        {
           "id": "50552001",
           "author": "gourneau",
           "body": "This is awesome I love it!\nHere is my little tribute to the Golden Record on both Voyagers https://goldenrecord.voyage/ (https://goldenrecord.voyage/)\nAlso a decoder to turn their raw audio into the images https://gourneau.github.io/golden-record-images/ (https://gourneau.github.io/golden-record-images/)",
@@ -717,19 +838,19 @@
           "parent": "50548161"
         },
         {
+          "id": "50554314",
+          "author": "carter-qadenza",
+          "body": "This is neat, even if it's missing some things. I actually really like how Voyager is displayed. Thinking about putting something like together in the late 70's is pretty wild.\nSeeing the spectrometers reminded me that nearly my entire physics degree only covered what was known up until the 50's. I always underestimate how much we understood even 75 years ago!",
+          "score": 0,
+          "time": 1795047817,
+          "parent": "50548161"
+        },
+        {
           "id": "50549848",
           "author": "IAmNotACellist",
           "body": "I'd be fascinated to know the exact nature of the failure. What analog processes cause a CMOS memory IC that we like to think of as being discrete to be consistently wrong at reading its stored values? I'd like to know all the way down to the interaction between the gates and traces. Did some pathway erode due to constant interchange of charge carriers? Did thermal cycles or stress cause one of the mechanical interconnects on the package to fracture and no longer conduct? If so, which one?\nAccording to AI, one type of failure mode in those early aerospace CMOS chips was sudden parasitic current in the PNPN junction being caused by a high energy particle, shorting paths to ground melting metal. Though that sounds rare. Another option is a total ionizing dose of radiation over time, which creates electron-hole pairs in the gate oxide, leading to trapped positive charge. That makes NMOS get closer and closer to turning on when they shouldn't, and PMOS requiring more voltage to turn on. It's fascinating to me that there came a specific moment in time when the chip managed to work, and the next clock cycle it didn't. I'd love to see the I_D vs. V_GS charts showing a before and after. So I had Claude make a plausible approximation. You can too by asking your AI agent of choice by basically just pasting in my comment!",
           "score": 0,
           "time": 1795025494,
-          "parent": "50548161"
-        },
-        {
-          "id": "50553721",
-          "author": "ajju",
-          "body": "Super cool! I also like your titan visual - very calming.",
-          "score": 0,
-          "time": 1795043723,
           "parent": "50548161"
         },
         {
@@ -746,6 +867,22 @@
           "body": "Really, really cool. I have to admit that the Pale Blue dot image, as it always does, caused me to tear up a little.",
           "score": 0,
           "time": 1795037583,
+          "parent": "50548161"
+        },
+        {
+          "id": "50554934",
+          "author": "dongjoo",
+          "body": "This is cool! I like the neat design.",
+          "score": 0,
+          "time": 1795051768,
+          "parent": "50548161"
+        },
+        {
+          "id": "50553721",
+          "author": "ajju",
+          "body": "Super cool! I also like your titan visual - very calming.",
+          "score": 0,
+          "time": 1795043723,
           "parent": "50548161"
         },
         {
@@ -770,14 +907,6 @@
           "body": "maybe when you show the journey you can adapt the zoom",
           "score": 0,
           "time": 1795021223,
-          "parent": "50548161"
-        },
-        {
-          "id": "50549560",
-          "author": "ForHackernews",
-          "body": "If you haven't seen it, this is a great documentary: https://www.youtube.com/watch?v=8vJT8AW0wYw (https://www.youtube.com/watch?v=8vJT8AW0wYw)",
-          "score": 0,
-          "time": 1795024249,
           "parent": "50548161"
         },
         {
@@ -875,8 +1004,8 @@
       "title": "Show HN: ExitPath – Open-source ways out of Slack, Notion and Microsoft 365",
       "subreddit": "show-hn",
       "author": "zerocool0101",
-      "score": 152,
-      "num_comments": 45,
+      "score": 197,
+      "num_comments": 59,
       "permalink": "https://news.ycombinator.com/item?id=50547980",
       "url": "https://exitpath-ruddy.vercel.app/",
       "selftext": "",
@@ -926,19 +1055,35 @@
           "parent": "50547980"
         },
         {
+          "id": "50555570",
+          "author": "MarkMarine",
+          "body": "Feels like notion is catching a stray here. They are behind on the new documentation format (html > markdown) but I work with non-devs, and notion is a godsend.",
+          "score": 0,
+          "time": 1795057798,
+          "parent": "50547980"
+        },
+        {
+          "id": "50555486",
+          "author": "joshspankit",
+          "body": "It’s time to start sharing algos, standards, and best practices instead of specific software tools.\nLike, how quickly could an agent make a self-hosted dropbox clone using docker?",
+          "score": 0,
+          "time": 1795056945,
+          "parent": "50547980"
+        },
+        {
+          "id": "50555140",
+          "author": "tengwar2",
+          "body": "What is the issue with \"MacOS terminal and closed terminals\"?",
+          "score": 0,
+          "time": 1795053519,
+          "parent": "50547980"
+        },
+        {
           "id": "50553136",
           "author": "ianjbutler",
           "body": "The best exit path would have been open source funding before we were addicted to such things, and that seems like it’s still the best exit path now that we are.\nAI helps rather than hurts here too. Exactly why isn’t irc good enough to be your slack? If it really wasn’t before then the distance between actual and desired state is more narrow than ever before. Consequences for Hail corporate are clear, the off ramp is clear, let’s get to it.",
           "score": 0,
           "time": 1795040601,
-          "parent": "50547980"
-        },
-        {
-          "id": "50553593",
-          "author": "itake",
-          "body": "I wish Immit encrypted the photos like Google Does. If someone hacks my server, I don't want them to have access to my photos.",
-          "score": 0,
-          "time": 1795042897,
           "parent": "50547980"
         },
         {
@@ -950,35 +1095,19 @@
           "parent": "50547980"
         },
         {
+          "id": "50555019",
+          "author": "dc_rog",
+          "body": "Anyone switched from slack to campfire from 37 Signals? I do like the idea of either open source or buy once chat software.",
+          "score": 0,
+          "time": 1795052407,
+          "parent": "50547980"
+        },
+        {
           "id": "50551146",
           "author": "gitowiec",
           "body": "Don't go to Mattermost. they changed recently their license and made it impossible to login with gitlab for small companies.",
           "score": 0,
           "time": 1795031224,
-          "parent": "50547980"
-        },
-        {
-          "id": "50554163",
-          "author": "gtm1260",
-          "body": "Another massive blocker to moving off slack now is the insane network effect of slack connect.",
-          "score": 0,
-          "time": 1795046843,
-          "parent": "50547980"
-        },
-        {
-          "id": "50551954",
-          "author": "imperialdrive",
-          "body": "Great timing. I had Claude work on a replacement to the Microsoft, Asana, Zendesk, Adobe (PDF) ecosystem in a much more user friendly combined UI, and it's damned good, with just the features our users (and admins!) want in just the right places. It took less than a week and $25 in tokens. Yes, it probably won't launch anytime soon, but at this rate, no reason it couldn't in a handful of months. Wild times, and even more wild times ahead!",
-          "score": 0,
-          "time": 1795035073,
-          "parent": "50547980"
-        },
-        {
-          "id": "50552145",
-          "author": "keithnz",
-          "body": "while its an exit path of sorts, you end up with all kinds of compromises. At scale it may make a lot of sense, but not sure it's worth it at a smaller scale (other than for those want to do it based on the single desire to be on open source).",
-          "score": 0,
-          "time": 1795036148,
           "parent": "50547980"
         }
       ]
@@ -1146,8 +1275,8 @@
       "title": "Show HN: Type Fighter 2",
       "subreddit": "show-hn",
       "author": "torumitch",
-      "score": 126,
-      "num_comments": 56,
+      "score": 133,
+      "num_comments": 57,
       "permalink": "https://news.ycombinator.com/item?id=50544821",
       "url": "https://typefighter2.com/",
       "selftext": "Type Fighter II is an arcade inspired game for people learning to touch type.\nFree, no account, and progress stays local. You can try on mobile, best with a physical keyboard.",
@@ -1197,14 +1326,6 @@
           "parent": "50544821"
         },
         {
-          "id": "50550628",
-          "author": "jimmcslim",
-          "body": "With all these great games implemented in a web browser, and being keyboard-driven... I wish Vimium (Vim-style keyboard navigation extension for Chrome, see also Vimari) could somehow automatically pick up that \"Hey, this page has lots of keyboard bindings, I will disable myself for this page automatically\" and turn itself off for the page.",
-          "score": 0,
-          "time": 1795028834,
-          "parent": "50544821"
-        },
-        {
           "id": "50547003",
           "author": "arscan",
           "body": "As a decent typist, I'm really just curious about skipping to the harder levels instead of grinding through dd;jjkd;. Is there a way to go right there? Or let them place into later rounds much more quickly when they destroy earlier opponents?",
@@ -1213,11 +1334,11 @@
           "parent": "50544821"
         },
         {
-          "id": "50553634",
-          "author": "bardackx",
-          "body": "there is no penalty for just smashing keys, i did not even tried to read what i was pressing",
+          "id": "50550628",
+          "author": "jimmcslim",
+          "body": "With all these great games implemented in a web browser, and being keyboard-driven... I wish Vimium (Vim-style keyboard navigation extension for Chrome, see also Vimari) could somehow automatically pick up that \"Hey, this page has lots of keyboard bindings, I will disable myself for this page automatically\" and turn itself off for the page.",
           "score": 0,
-          "time": 1795043080,
+          "time": 1795028834,
           "parent": "50544821"
         },
         {
@@ -1237,6 +1358,14 @@
           "parent": "50544821"
         },
         {
+          "id": "50548029",
+          "author": "torumitch",
+          "body": "Thanks to everyone who’s given the game a go and wrote about it. I’m delighted that so many of you have played it.\nI’ll keep working on the game as time allows. It helps a lot to hear where things went wrong as well as the bits you enjoyed.",
+          "score": 0,
+          "time": 1795018130,
+          "parent": "50544821"
+        },
+        {
           "id": "50549953",
           "author": "schainks",
           "body": "Not too shabby! All the decades (fml) of touch typing make words super easy for me to type but those random strings of letters are now quite difficult!",
@@ -1245,11 +1374,11 @@
           "parent": "50544821"
         },
         {
-          "id": "50548029",
-          "author": "torumitch",
-          "body": "Thanks to everyone who’s given the game a go and wrote about it. I’m delighted that so many of you have played it.\nI’ll keep working on the game as time allows. It helps a lot to hear where things went wrong as well as the bits you enjoyed.",
+          "id": "50547360",
+          "author": "dvaplima",
+          "body": "Really fun! Found some trouble using a different keyboard from the American standard when reached \";\", Keep up with the good work!\nAlso, would be fun to see the actual leaderboards from everyone playing",
           "score": 0,
-          "time": 1795018130,
+          "time": 1795015151,
           "parent": "50544821"
         }
       ]
@@ -1280,19 +1409,19 @@
           "parent": "50543432"
         },
         {
-          "id": "50554138",
-          "author": "XTXinverseXTY",
-          "body": "https://math2.tamnd.com/wiki/lagrangian-duality/ (https://math2.tamnd.com/wiki/lagrangian-duality/)\nI am familiar with this concept but frankly I found the \"In plain words\" section impenetrable\n> Instead of forbidding a constraint violation, one can charge a price for it. For each choice of prices one solves an easier problem without constraints, and its value is never above the true optimum.",
-          "score": 0,
-          "time": 1795046682,
-          "parent": "50543432"
-        },
-        {
           "id": "50546711",
           "author": "orsenthil",
           "body": "A lot of information, it will difficult to assimilate. I appreciate the thought process that went into this.",
           "score": 0,
           "time": 1795011996,
+          "parent": "50543432"
+        },
+        {
+          "id": "50554138",
+          "author": "XTXinverseXTY",
+          "body": "https://math2.tamnd.com/wiki/lagrangian-duality/ (https://math2.tamnd.com/wiki/lagrangian-duality/)\nI am familiar with this concept but frankly I found the \"In plain words\" section impenetrable\n> Instead of forbidding a constraint violation, one can charge a price for it. For each choice of prices one solves an easier problem without constraints, and its value is never above the true optimum.",
+          "score": 0,
+          "time": 1795046682,
           "parent": "50543432"
         }
       ]
