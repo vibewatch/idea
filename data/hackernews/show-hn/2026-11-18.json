@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-19T12:33:36.592615+00:00",
+  "last_fetched": "2026-11-19T18:31:34.442514+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -164,7 +164,7 @@
       "title": "Show HN: Robotics needs better CAD, so I wrote a B-rep kernel and 3,487 tests",
       "subreddit": "show-hn",
       "author": "atomarch",
-      "score": 31,
+      "score": 32,
       "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=50552140",
       "url": "https://springcraft-ai.github.io/springrep/",
@@ -183,19 +183,19 @@
           "parent": "50552140"
         },
         {
-          "id": "50557891",
-          "author": "ffdsc",
-          "body": "> so I wrote\nNo you didn't, you asked an LLM to write it.",
-          "score": 0,
-          "time": 1795080586,
-          "parent": "50552140"
-        },
-        {
           "id": "50553433",
           "author": "dofm",
           "body": "Now this is a great application of an LLM.\nI'm sure you still have loads to solve and a lot of quite human decisions to make (because bRep is one thing; contemporary CAD 'default solutions' strike me as likely to be full of human compromises), but I can see that having an LLM on the team to help with the maths must help.\nBest of luck with it :-)",
           "score": 0,
           "time": 1795041945,
+          "parent": "50552140"
+        },
+        {
+          "id": "50557891",
+          "author": "ffdsc",
+          "body": "> so I wrote\nNo you didn't, you asked an LLM to write it.",
+          "score": 0,
+          "time": 1795080586,
           "parent": "50552140"
         },
         {
@@ -249,7 +249,7 @@
       "title": "Show HN: PocketOps for SigNoz: The Open Source Datadog Alternative",
       "subreddit": "show-hn",
       "author": "avens19",
-      "score": 9,
+      "score": 10,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50551614",
       "url": "https://github.com/avens19/pocketops",
@@ -344,7 +344,7 @@
       "title": "Show HN: Poptato – App launcher, command runner, and fuzzy menu for Linux",
       "subreddit": "show-hn",
       "author": "modinfo",
-      "score": 7,
+      "score": 8,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50550737",
       "url": "https://github.com/skorotkiewicz/poptato",
@@ -398,7 +398,7 @@
       "title": "Show HN: Sci-Fi Futures – Reverse-engineering tech from classic sci-fi novels",
       "subreddit": "show-hn",
       "author": "ninajlu",
-      "score": 5,
+      "score": 6,
       "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50550420",
       "url": "https://scififutures.vercel.app",
@@ -485,7 +485,7 @@
       "title": "Show HN: BPM – Baby Plus Music Visualizer",
       "subreddit": "show-hn",
       "author": "hberg",
-      "score": 10,
+      "score": 12,
       "num_comments": 6,
       "permalink": "https://news.ycombinator.com/item?id=50549718",
       "url": "https://hberg.com/bpm/",
@@ -640,8 +640,8 @@
       "title": "Show HN: Mastra Factory, the open-source software factory we use to build Mastra",
       "subreddit": "show-hn",
       "author": "codekarate",
-      "score": 107,
-      "num_comments": 36,
+      "score": 129,
+      "num_comments": 39,
       "permalink": "https://news.ycombinator.com/item?id=50548660",
       "url": "https://news.ycombinator.com/item?id=50548660",
       "selftext": "Hi HN, we're Shane, Sam, and Abhi.\nAlmost two years ago, we shared Mastra, our open-source TypeScript agent framework, on Show HN: https://news.ycombinator.com/item?id=43103073 (https://news.ycombinator.com/item?id=43103073). It got a few hundred upvotes; a couple of weeks later our downloads had doubled, and we were off to the races.\nToday we're sharing Mastra Factory, the open-source software factory we built to help maintain Mastra itself.\nAt Mastra, we now average nearly 4M downloads per week, and with Factory our team now merges hundreds of PRs a week across the mastra-ai GitHub org. Last week, Factory opened and merged 238 PRs, alongside 630 merged PRs from humans.\nThere's a lot of debate about what a software factory is. For us Factory is a configurable agentic kanban board that's @-taggable in Slack.\nUnder the hood, it uses Mastra’s durable agents for long-running sessions, our conversational memory system, a markdown based wiki with source citations to incorporate company knowledge, signals that subscribe to PR comments wired up into sessions, and a customizable cloud sandbox with our coding harness (working on supporting Claude Code, Codex etc).\nWhen we started out, we modeled Factory around our existing workflow-oriented process (triage, plan, build, review, shipped). Three months later, we find ourselves mostly driving it through Slack vs a web UI.\nWe’ve seen more senior engineers kick off sessions in parallel (“triage the 20 oldest issues and let’s evaluate…”). We’re using bug and vuln scanners now, and we’ve closed our repo to outside contributors, asking folks to write detailed issue repros instead.\nYou can get started with `npm create factory`.\nIt’s fully open-source, so you can run it entirely on your infra (we also offer a hosted version). Comment here, we would love to know what you think!\nhttps://factory.mastra.ai (https://factory.mastra.ai)\nhttps://github.com/mastra-ai/template-factory (https://github.com/mastra-ai/template-factory)",
@@ -656,14 +656,6 @@
           "body": "Used to play quite a bit with Mastra (not Factory) and it was a very pleasant experience. Cool launch, congrats!\nCouple of questions:\n1. Did you experiment with not having a separate design/plan phase? From my experience agents usually don’t really know what the plan is until they start editing files and executing tests (in other words, implementing), so the initial plan is usually not great and changing it mid-flight is overhead. I also find reviewing tested code to be much easier than reviewing plans/designs, which are often full of ungrounded assumptions.\n2. Is this using your own custom coding agent harness over the raw LLM endpoints users provide? If so, did you consider having it integrate with existing harnesses (e.g. Claude Code, Antigravity, etc.)?",
           "score": 0,
           "time": 1795088017,
-          "parent": "50548660"
-        },
-        {
-          "id": "50554486",
-          "author": "siscia",
-          "body": "I build something similar, based on similar ideas: https://factory.redbeardlab.com (https://factory.redbeardlab.com)\nThere is a [language](https://redbeardlab.github.io/dotFactory/ (https://redbeardlab.github.io/dotFactory/)) that let express complex workflows.\nThe workflow can be pretty much anything, eg:\n1. Clone repo A and B + Start OpenCode + Feed a prompt into it\n2. Pick up the commit generated by opencode for both repo, and run CI\nAnother workflow I created is: every day at 3AM, check that the documentation of the website is up to date, if yes exit, if not update the documentation. Pass the updated documentation to an adversarial LLM and if it pass, merge it - otherwise loop with the feedback from the adversarial one.\nYou have a concept of trigger, which can be either a webhook, or a github PR or a github issue, or just a cron expression. Or just someone manually clicking.\nThere is a concept of secrets and config, so the user can create their own secrets to start codex-cloud, or opencode, or making custom API call.\nThere is also the concept of manual gate, so you can wait for an human to actually click a button.\nFinally, it supports running containers. Useful if you want to call an obscure API from your workflow, you don't have to wait for the platform owner to create a step for your API, but you can just run a container into it.",
-          "score": 0,
-          "time": 1795048916,
           "parent": "50548660"
         },
         {
@@ -691,6 +683,22 @@
           "parent": "50548660"
         },
         {
+          "id": "50561278",
+          "author": "namanyayg",
+          "body": "Legendary and congratulations on the launch!",
+          "score": 0,
+          "time": 1795101747,
+          "parent": "50548660"
+        },
+        {
+          "id": "50554486",
+          "author": "siscia",
+          "body": "I build something similar, based on similar ideas: https://factory.redbeardlab.com (https://factory.redbeardlab.com)\nThere is a [language](https://redbeardlab.github.io/dotFactory/ (https://redbeardlab.github.io/dotFactory/)) that let express complex workflows.\nThe workflow can be pretty much anything, eg:\n1. Clone repo A and B + Start OpenCode + Feed a prompt into it\n2. Pick up the commit generated by opencode for both repo, and run CI\nAnother workflow I created is: every day at 3AM, check that the documentation of the website is up to date, if yes exit, if not update the documentation. Pass the updated documentation to an adversarial LLM and if it pass, merge it - otherwise loop with the feedback from the adversarial one.\nYou have a concept of trigger, which can be either a webhook, or a github PR or a github issue, or just a cron expression. Or just someone manually clicking.\nThere is a concept of secrets and config, so the user can create their own secrets to start codex-cloud, or opencode, or making custom API call.\nThere is also the concept of manual gate, so you can wait for an human to actually click a button.\nFinally, it supports running containers. Useful if you want to call an obscure API from your workflow, you don't have to wait for the platform owner to create a step for your API, but you can just run a container into it.",
+          "score": 0,
+          "time": 1795048916,
+          "parent": "50548660"
+        },
+        {
           "id": "50552519",
           "author": "SillyUsername",
           "body": "This needs more visuals - the kinds of people using this may not be software developers, and it seems just like a command line too at first glance unless you watch the video.",
@@ -707,19 +715,19 @@
           "parent": "50548660"
         },
         {
-          "id": "50551465",
-          "author": "jobryan",
-          "body": "Excited to try. Do you have a video demoing how you use it (or just best practices for getting up and running well on my team)?",
-          "score": 0,
-          "time": 1795032555,
-          "parent": "50548660"
-        },
-        {
           "id": "50558838",
           "author": "_pdp_",
           "body": "> For us Factory is a configurable agentic kanban board that's @-taggable in Slack.\nSoftware factories are not a real architecture. They are just AI agents working on the same project. GitHub and similar platforms are already ideal for this. Requirements go in as issues, agents open PRs, someone reviews and merges them.\nWe used to call this software development.\nThe only \"new\" part is that now nobody complains at standups!",
           "score": 0,
           "time": 1795088216,
+          "parent": "50548660"
+        },
+        {
+          "id": "50551465",
+          "author": "jobryan",
+          "body": "Excited to try. Do you have a video demoing how you use it (or just best practices for getting up and running well on my team)?",
+          "score": 0,
+          "time": 1795032555,
           "parent": "50548660"
         },
         {
@@ -736,14 +744,6 @@
           "body": "this is cool!",
           "score": 0,
           "time": 1795030290,
-          "parent": "50548660"
-        },
-        {
-          "id": "50553181",
-          "author": "slopinthebag",
-          "body": "i'm always curious how the workflow with these factories work. like are you basically just giving it tickets and letting the ai use it's \"judgement\" on how to implement them? do you essentially say something like \"we need X\" and the agents do the rest? or is it somehow more interactive? and what about verification, particularly on the UX side of the end result?",
-          "score": 0,
-          "time": 1795040767,
           "parent": "50548660"
         }
       ]
@@ -843,8 +843,8 @@
       "title": "Show HN: Take Voyager 1 apart, down to a single memory chip",
       "subreddit": "show-hn",
       "author": "raj-shekhar",
-      "score": 217,
-      "num_comments": 50,
+      "score": 229,
+      "num_comments": 57,
       "permalink": "https://news.ycombinator.com/item?id=50548161",
       "url": "https://rshekhar.com/voyager/",
       "selftext": "Voyager 1 reached one light-day from Earth today.\nOn the site you can:\n- see where both Voyagers are right now\n- open a nuclear battery to its 24 plutonium spheres\n- go into the data computer, down to a single memory chip\n- see how the Golden Record's cover explains how to play it\n- watch how Voyager 1 was fixed by radio\n- see which dish on Earth is listening to them, live\nI also made a 4-minute film from it: https://www.youtube.com/watch?v=kpzsRo-c1_A (https://www.youtube.com/watch?v=kpzsRo-c1_A)",
@@ -854,14 +854,6 @@
       "created_at": "2026-11-18T16:18:51+00:00",
       "comments_data": [
         {
-          "id": "50558566",
-          "author": "somenameforme",
-          "body": "It's so incredible what LLMs are enabling. Great work! It's wild thinking that the children of today are going to be growing up in a time where being able to make things like this at the snap of their fingers is something to take for granted. Not to diminish what you did - because I'm sure you had to grab the docs, sources, and other information to throw at the beast - but that would just be the precode research phase a few years ago, whereas now it's near to the finish line!\nOne recommendation I would make is to grab an ambient space themed track to play in the back, with a mute button of course. There's all sorts of great high quality stuff for free in this exact domain. Watching this while listening to some X3 audio is quite pleasant. Lol since everything's so easy now you could even do some sort of fancy waveform analysis of the song and have events trigger on climatic/catch points in the song itself. Like imagine something like this [1] hitting an event at 1:23, 1:32, etc.\n[1] - https://youtu.be/XESJ_Hgt3KA?list=PL2DE76FAF3D895DD0&t=79 (https://youtu.be/XESJ_Hgt3KA?list=PL2DE76FAF3D895DD0&t=79)",
-          "score": 0,
-          "time": 1795086263,
-          "parent": "50548161"
-        },
-        {
           "id": "50549182",
           "author": "raj-shekhar",
           "body": "A few things are hard to find, so here are direct links:\nInside a nuclear battery: https://rshekhar.com/voyager/v1/rtg-1 (https://rshekhar.com/voyager/v1/rtg-1)\nThe data computer's memory chips: https://rshekhar.com/voyager/v1/bay-4/memories (https://rshekhar.com/voyager/v1/bay-4/memories)\nOne bit of the command computer's memory: https://rshekhar.com/voyager/v1/bay-3/memory-1/plane-1/bit (https://rshekhar.com/voyager/v1/bay-3/memory-1/plane-1/bit)\nThe Golden Record's cover: https://rshekhar.com/voyager/v1/apart/golden-record (https://rshekhar.com/voyager/v1/apart/golden-record)\nHow Voyager 1 was fixed by radio: https://rshekhar.com/voyager/story/the-fix (https://rshekhar.com/voyager/story/the-fix)\nThe journey past the planets: https://rshekhar.com/voyager/story/the-voyagers (https://rshekhar.com/voyager/story/the-voyagers)",
@@ -870,11 +862,27 @@
           "parent": "50548161"
         },
         {
+          "id": "50558566",
+          "author": "somenameforme",
+          "body": "It's so incredible what LLMs are enabling. Great work! It's wild thinking that the children of today are going to be growing up in a time where being able to make things like this at the snap of their fingers is something to take for granted. Not to diminish what you did - because I'm sure you had to grab the docs, sources, and other information to throw at the beast - but that would just be the precode research phase a few years ago, whereas now it's near to the finish line!\nOne recommendation I would make is to grab an ambient space themed track to play in the back, with a mute button of course. There's all sorts of great high quality stuff for free in this exact domain. Watching this while listening to some X3 audio is quite pleasant. Lol since everything's so easy now you could even do some sort of fancy waveform analysis of the song and have events trigger on climatic/catch points in the song itself. Like imagine something like this [1] hitting an event at 1:23, 1:32, etc.\n[1] - https://youtu.be/XESJ_Hgt3KA?list=PL2DE76FAF3D895DD0&t=79 (https://youtu.be/XESJ_Hgt3KA?list=PL2DE76FAF3D895DD0&t=79)",
+          "score": 0,
+          "time": 1795086263,
+          "parent": "50548161"
+        },
+        {
           "id": "50552001",
           "author": "gourneau",
           "body": "This is awesome I love it!\nHere is my little tribute to the Golden Record on both Voyagers https://goldenrecord.voyage/ (https://goldenrecord.voyage/)\nAlso a decoder to turn their raw audio into the images https://gourneau.github.io/golden-record-images/ (https://gourneau.github.io/golden-record-images/)",
           "score": 0,
           "time": 1795035253,
+          "parent": "50548161"
+        },
+        {
+          "id": "50562776",
+          "author": "GTSx",
+          "body": "This is really cool! I liked all the visualizations.",
+          "score": 0,
+          "time": 1795107840,
           "parent": "50548161"
         },
         {
@@ -891,6 +899,14 @@
           "body": "I'd be fascinated to know the exact nature of the failure. What analog processes cause a CMOS memory IC that we like to think of as being discrete to be consistently wrong at reading its stored values? I'd like to know all the way down to the interaction between the gates and traces. Did some pathway erode due to constant interchange of charge carriers? Did thermal cycles or stress cause one of the mechanical interconnects on the package to fracture and no longer conduct? If so, which one?\nAccording to AI, one type of failure mode in those early aerospace CMOS chips was sudden parasitic current in the PNPN junction being caused by a high energy particle, shorting paths to ground melting metal. Though that sounds rare. Another option is a total ionizing dose of radiation over time, which creates electron-hole pairs in the gate oxide, leading to trapped positive charge. That makes NMOS get closer and closer to turning on when they shouldn't, and PMOS requiring more voltage to turn on. It's fascinating to me that there came a specific moment in time when the chip managed to work, and the next clock cycle it didn't. I'd love to see the I_D vs. V_GS charts showing a before and after. So I had Claude make a plausible approximation. You can too by asking your AI agent of choice by basically just pasting in my comment!",
           "score": 0,
           "time": 1795025494,
+          "parent": "50548161"
+        },
+        {
+          "id": "50559480",
+          "author": "vandenthieren",
+          "body": "The dimensions of even just the solar system baffle me each time I see them.",
+          "score": 0,
+          "time": 1795092813,
           "parent": "50548161"
         },
         {
@@ -931,22 +947,6 @@
           "body": "This is cool! I like the neat design.",
           "score": 0,
           "time": 1795051768,
-          "parent": "50548161"
-        },
-        {
-          "id": "50548765",
-          "author": "thelbartworks",
-          "body": "maybe when you show the journey you can adapt the zoom",
-          "score": 0,
-          "time": 1795021223,
-          "parent": "50548161"
-        },
-        {
-          "id": "50553616",
-          "author": "nephihaha",
-          "body": "Other missions have probably returned much more data but I will always have a soft spot for Voyager 1 & 2. Their pictures from the gas giants and their moons were so fresh and inspiring back in the day.\nTogether with the longer lasting Mars rovers I think they have offered some of the best returns on space \"investments\" we've ever seen.",
-          "score": 0,
-          "time": 1795042995,
           "parent": "50548161"
         }
       ]
@@ -1036,8 +1036,8 @@
       "title": "Show HN: ExitPath – Open-source ways out of Slack, Notion and Microsoft 365",
       "subreddit": "show-hn",
       "author": "zerocool0101",
-      "score": 232,
-      "num_comments": 76,
+      "score": 243,
+      "num_comments": 90,
       "permalink": "https://news.ycombinator.com/item?id=50547980",
       "url": "https://exitpath-ruddy.vercel.app/",
       "selftext": "",
@@ -1047,14 +1047,6 @@
       "created_at": "2026-11-18T16:04:43+00:00",
       "comments_data": [
         {
-          "id": "50552690",
-          "author": "bigwheels",
-          "body": "If you actually try out a lot of these solutions there are almost always 2 major issues:\n1. Challenging to get running properly.\n2. User experience often leaves much to be desired.\nIt quickly became clear I was better off spending time and energy on problems directly tied to revenue, not managing operational infrastructure from the ground up.",
-          "score": 0,
-          "time": 1795038698,
-          "parent": "50547980"
-        },
-        {
           "id": "50550336",
           "author": "EvanAnderson",
           "body": "The biggest blocker for using free/libre/open-source email for my Customers has been calendaring. People who have used Outlook / Exchange for calendaring really get hooked and getting them to use something else is difficult. The \"Free/Busy\" functionality for others' calendars, rooms, and resources shown during invitations is very handy. I can understand why people wouldn't want to lose that.",
@@ -1063,11 +1055,11 @@
           "parent": "50547980"
         },
         {
-          "id": "50557753",
-          "author": "bryanhogan",
-          "body": "I thought this was just vibe-coded and am surprised to see it stay so long on the HN front page, e.g., \"A sensible default, not the only answer.\"\nI tried looking for a Notion alternative. The first recommendation is Outline, which is not open-source, lacks the main feature that makes Notion different from typical note-taking applications, its Databases, and it's missing other things.\nA more relevant option is AppFlowy, which is mentioned second, but it calls it a look-alike, which is also incorrect. Who made this list?",
+          "id": "50552690",
+          "author": "bigwheels",
+          "body": "If you actually try out a lot of these solutions there are almost always 2 major issues:\n1. Challenging to get running properly.\n2. User experience often leaves much to be desired.\nIt quickly became clear I was better off spending time and energy on problems directly tied to revenue, not managing operational infrastructure from the ground up.",
           "score": 0,
-          "time": 1795079523,
+          "time": 1795038698,
           "parent": "50547980"
         },
         {
@@ -1076,6 +1068,14 @@
           "body": "The one big important thing is identity / SSO for companies. Don't see it on the list.\nEven if you somehow manage to train your employees to use strong passwords and password managers, if someone stops working at a company it is a lot to manage deleting user accounts in all the systems one is using.\nMicrosoft Entra is basically the reasons people still use other Microsoft products. (Same story for Google just much smaller market share.)",
           "score": 0,
           "time": 1795036924,
+          "parent": "50547980"
+        },
+        {
+          "id": "50557753",
+          "author": "bryanhogan",
+          "body": "I thought this was just vibe-coded and am surprised to see it stay so long on the HN front page, e.g., \"A sensible default, not the only answer.\"\nI tried looking for a Notion alternative. The first recommendation is Outline, which is not open-source, lacks the main feature that makes Notion different from typical note-taking applications, its Databases, and it's missing other things.\nA more relevant option is AppFlowy, which is mentioned second, but it calls it a look-alike, which is also incorrect. Who made this list?",
+          "score": 0,
+          "time": 1795079523,
           "parent": "50547980"
         },
         {
@@ -1103,6 +1103,14 @@
           "parent": "50547980"
         },
         {
+          "id": "50559388",
+          "author": "HowardLien",
+          "body": "this is epic, took me 1 min to realize this is not a new app, it's really useful to tell people how they get a replacement tool compared to current one. Just curious how did you calculate the score of each tool?",
+          "score": 0,
+          "time": 1795092330,
+          "parent": "50547980"
+        },
+        {
           "id": "50553136",
           "author": "ianjbutler",
           "body": "The best exit path would have been open source funding before we were addicted to such things, and that seems like it’s still the best exit path now that we are.\nAI helps rather than hurts here too. Exactly why isn’t irc good enough to be your slack? If it really wasn’t before then the distance between actual and desired state is more narrow than ever before. Consequences for Hail corporate are clear, the off ramp is clear, let’s get to it.",
@@ -1119,11 +1127,11 @@
           "parent": "50547980"
         },
         {
-          "id": "50555570",
-          "author": "MarkMarine",
-          "body": "Feels like notion is catching a stray here. They are behind on the new documentation format (html > markdown) but I work with non-devs, and notion is a godsend.",
+          "id": "50551146",
+          "author": "gitowiec",
+          "body": "Don't go to Mattermost. they changed recently their license and made it impossible to login with gitlab for small companies.",
           "score": 0,
-          "time": 1795057798,
+          "time": 1795031224,
           "parent": "50547980"
         },
         {
@@ -1132,14 +1140,6 @@
           "body": "What is the issue with \"MacOS terminal and closed terminals\"?",
           "score": 0,
           "time": 1795053519,
-          "parent": "50547980"
-        },
-        {
-          "id": "50555486",
-          "author": "joshspankit",
-          "body": "It’s time to start sharing algos, standards, and best practices instead of specific software tools.\nLike, how quickly could an agent make a self-hosted dropbox clone using docker?",
-          "score": 0,
-          "time": 1795056945,
           "parent": "50547980"
         }
       ]
@@ -1307,8 +1307,8 @@
       "title": "Show HN: Type Fighter 2",
       "subreddit": "show-hn",
       "author": "torumitch",
-      "score": 135,
-      "num_comments": 60,
+      "score": 138,
+      "num_comments": 64,
       "permalink": "https://news.ycombinator.com/item?id=50544821",
       "url": "https://typefighter2.com/",
       "selftext": "Type Fighter II is an arcade inspired game for people learning to touch type.\nFree, no account, and progress stays local. You can try on mobile, best with a physical keyboard.",
@@ -1423,7 +1423,7 @@
       "subreddit": "show-hn",
       "author": "tamnd",
       "score": 23,
-      "num_comments": 4,
+      "num_comments": 6,
       "permalink": "https://news.ycombinator.com/item?id=50543432",
       "url": "https://math2.tamnd.com/areas/",
       "selftext": "",
@@ -1446,6 +1446,14 @@
           "body": "A lot of information, it will difficult to assimilate. I appreciate the thought process that went into this.",
           "score": 0,
           "time": 1795011996,
+          "parent": "50543432"
+        },
+        {
+          "id": "50559860",
+          "author": "tnspacetime",
+          "body": "It also includes physics, why is it called Math 2.0?",
+          "score": 0,
+          "time": 1795095149,
           "parent": "50543432"
         },
         {
