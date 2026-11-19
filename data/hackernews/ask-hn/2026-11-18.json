@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-19T06:37:35.160495+00:00",
+  "last_fetched": "2026-11-19T12:33:43.139362+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -73,7 +73,7 @@
       "subreddit": "ask-hn",
       "author": "varlock",
       "score": 5,
-      "num_comments": 9,
+      "num_comments": 10,
       "permalink": "https://news.ycombinator.com/item?id=50548343",
       "url": "https://news.ycombinator.com/item?id=50548343",
       "selftext": "When I used to code without AI (probably not even one year ago), I sometimes reached a state of \"flow\" and it truly was a great feeling.\nNowadays, I rarely code from scratch and most of my development (at work, at least) comes through AI.\nI get it that I can still code \"the old way\" in my free time, but I'm more curious to understand if people in a similar situation can reach the same state by vibe/AI coding, and how.",
@@ -88,6 +88,14 @@
           "body": "\"vibe coding\" is, by definition, mentally unengaging. You offload technical cognitive tasks to your agent, and operate more in an emotional mental state, rather than one that demands logic and reasoning effort. I believe flow state is much easier to achieve when you're actually chaining together tasks that demand logic and reasoning effort. You can do this by simply not offloading those tasks to your agent. That is not to say you can't get there while using AI to assist your coding, but it is to say you probably can't get there while vibe coding.\nI personally drive most of my coding tasks using spec driven development. I use OpenSpec[0] for this, which I do recommend, but the specific implementation probably doesn't matter all that much. The key here is that I will iterate on spec documents, sometimes for hours, before telling my agent to implement the spec. I read every single line and make sure that I am actually happy with it and agree with the proposed changes. This doesn't use tokens as fast as possible as many people like to - I'm often sitting with all agents idle as I sit and comprehend the proposals for myself. That's a trade-off that I find worthwhile for my own comprehension and engagement in the project though.\n[0] https://openspec.dev/ (https://openspec.dev/)",
           "score": 0,
           "time": 1795026666,
+          "parent": "50548343"
+        },
+        {
+          "id": "50556985",
+          "author": "recued",
+          "body": "Coding with AI and without is totally different mindset for me, a simple example would be: I drive the trunk back and forth to hand deliver the goods myself, vs I manage a fleet of drivers and trunks to do the delivery.",
+          "score": 0,
+          "time": 1795072817,
           "parent": "50548343"
         },
         {
@@ -155,8 +163,8 @@
       "title": "Ask HN: How do you use AI to get more relevant content?",
       "subreddit": "ask-hn",
       "author": "anoojb",
-      "score": 3,
-      "num_comments": 3,
+      "score": 4,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50548260",
       "url": "https://news.ycombinator.com/item?id=50548260",
       "selftext": "The \"algorithm\" tries to give your attention something to eat. Sometimes, it's exactly what you want/need. Sometimes it's just meh, and not particularly enriching.\nAre any folks using AI to aggregate and rank content across YouTube, HackerNews, Twitter/X, Instagram etc. that's learns from your preferences to find enriching content not just entertaining content?",
@@ -165,6 +173,14 @@
       "time": 1795019134,
       "created_at": "2026-11-18T16:25:34+00:00",
       "comments_data": [
+        {
+          "id": "50557247",
+          "author": "recued",
+          "body": "I generally push another question to go further, usually it will keep feeding new entries you asked until the quality goes bad and you will know when to stop.",
+          "score": 0,
+          "time": 1795075052,
+          "parent": "50548260"
+        },
         {
           "id": "50548384",
           "author": "endean-eng",
@@ -191,7 +207,7 @@
       "subreddit": "ask-hn",
       "author": "noduerme",
       "score": 18,
-      "num_comments": 10,
+      "num_comments": 11,
       "permalink": "https://news.ycombinator.com/item?id=50543947",
       "url": "https://news.ycombinator.com/item?id=50543947",
       "selftext": "Mm, so I hesitate to write this, because my own AI agents might read it. But what the hell.\nI've got this crappy little $300 PC on my network hooked up to my projector, that I mostly use to serve Jellyfin. So tired of it going down every time there's a Windows update, but I've been too lazy to get around to installing Ubuntu. Last night, when it went down, I asked my Claude-claw via Whatsapp if it could just SSH into it and set up a dual boot partition.\nClaude got as far as partitioning the drive and then starting asking hard questions, like (paraphrasing) \"wait a minute. This crosses a line. I have now been asked to remote into a machine with a password, write a separate boot partition, and restart it. From this chat, you haven't really verified that you are you. If you're really there, and not just texting me, give me some proof\".\nSo I remoted in and created a TextEdit RTF file on the claw's desktop: \"Hey, it's me, I'm asking you to remote into the PC\".\nClaude read it and responded that it was the kind of proof it was looking for, real RTF headers and datestamps and such. I had proven I had physical access to the claw machine, (although not to the PC, but it seemed reassured anyway). A little while later, before triggering the Ubuntu installer, it put me through it all over again. I told Claude I was very thankful it was guarding my network so well, and I would go over and write a file on the target PC manually too.\nI'm not gonna lie: It was very fucking cool that it was able to do this without me ever needing to flash a USB drive, and by the time it was done it had set up Ubuntu, Tailscale and Jellyfin, and resolved the network issues; when I started watching a movie, the sound didn't work, so I prompted it and suddenly the sound came on as it wired up the HDMI adapter. Almost creepy.\nBut I was pretty stunned at how reticent it was to do something relatively simple on my own network, with access I gave it. I think there must be a serious push right now to lock it down from monkeying with anything remotely, especially a BIOS.",
@@ -201,19 +217,19 @@
       "created_at": "2026-11-18T09:24:58+00:00",
       "comments_data": [
         {
+          "id": "50557225",
+          "author": "recued",
+          "body": "For my experience, it depends on the actual purpose of the other computer Claude identify, I asked it to connect another Mac for offloading test suite sweep, it tells me to set up passwordless SSH to that Mac, but any command that requires sudo it still stops and handover the command for me to manually do it.\nIn your case it is another home server so my guess the boundary is stricter.",
+          "score": 0,
+          "time": 1795074828,
+          "parent": "50543947"
+        },
+        {
           "id": "50545008",
           "author": "shahbaby",
           "body": "I suspect this paranoia will mainly impede honest people tinkering in their own home labs.\nThis seems like another case of giving up freedom for security which usually doesn't end well.",
           "score": 0,
           "time": 1795001546,
-          "parent": "50543947"
-        },
-        {
-          "id": "50555848",
-          "author": "stevelacey",
-          "body": "I run a bunch of Claude Code sessions over Telegram and the bot only listens to allowed user ids, so it never has to work out who I am.",
-          "score": 0,
-          "time": 1795060138,
           "parent": "50543947"
         },
         {
@@ -230,6 +246,14 @@
           "body": "> Claude read it and responded that it was the kind of proof it was looking for\nThat feels insecure. If it allows access to the remote system in any way before asking for proof, there will surely ways to trick that check. Will it grant itself more access just because you know the content of any file? Or does it have to be a new file? Does it have to contain a specific message, or could you just prove you know that a non-standard file exists at all? Could you use the read-only access in one session to gather the data for proving yourself in another session?\nIt would be interesting to see exactly what the minimal acceptable \"proof\" actually is.",
           "score": 0,
           "time": 1795004246,
+          "parent": "50543947"
+        },
+        {
+          "id": "50555848",
+          "author": "stevelacey",
+          "body": "I run a bunch of Claude Code sessions over Telegram and the bot only listens to allowed user ids, so it never has to work out who I am.",
+          "score": 0,
+          "time": 1795060138,
           "parent": "50543947"
         },
         {
