@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-20T00:43:55.626511+00:00",
+  "last_fetched": "2026-11-20T06:36:40.494214+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -10,8 +10,8 @@
       "title": "Show HN: erXos – a microkernel OS in Erlang based on Genera/Plan 9/QNX ideas",
       "subreddit": "show-hn",
       "author": "stass",
-      "score": 2,
-      "num_comments": 2,
+      "score": 5,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50568169",
       "url": "https://stass.github.io/erXos/",
       "selftext": "What if every Erlang process were an operating-system process? With as much system code and drivers written in Erlang itself. This is something I was pondering for a while, and finally was able to prototype thanks to AI coding agents.\nerXos is a capability-based microkernel OS in Erlang: drivers, filesystems, and the network stack are all supervised Erlang processes, same as any app.\nThe kernel itself is Fiasco, in C++, slightly modified for erXos needs. This is an OS I wanted for a long time: an Erlang machine where every BEAM process is a process visible to the OS and scheduler, not something bolted on top.\nYou can try it right now with nothing to install: there is an emulator on the website that boots the whole OS in the browser ARM64 emulator. At the rc prompt, try `ps`, `top`, `ping` or `erl` and write any kind of erlang code. There's a Pi 4 SD image and a QEMU image too. The goal is to build an ultra-reliable microkernel OS with hot code loading and both system and BEAM-based isolation. The latter is one thing that would allow you to run millions of processes on the system, something that would be prohibitive on a microkernel alone due to the context switch overhead. Capabilities keep every component least-privileged, supervision keeps the machine running when drivers or subsystems crash, and hot code loading would let you fix a broken driver without reboot.\nThe secondary goal is to keep as much of a UNIX face as possible. Too many novel OSes change things for no particular reason that makes them hard to use. erXos tries to preserve as many existing UNIX/FreeBSD concepts as much as possible to remove the learning curve.\nWhat works today:\n- Boots in the browser/v64, in QEMU, and on a Raspberry Pi 4 from an SD card\n- A real shell (plan9 rc) with job control, pipes, `ps`, `grep`. It feels like UNIX on the surface\n- Erlang versions of basic UNIX apps.\n- Drivers written in Erlang: UART, virtio, SD card, Ethernet (GENET), display\n- A pure Erlang EROFS filesystem for root images\n- A TCP/IP stack in Erlang based on FreeBSD network stack and verified for correctness against it\n- Domains: every app runs as its own address space or Erlang node, isolated from others\n- Plan 9 namespaces and 9P everywhere; windows are files like RIO and 9P is a file protocol between OS servers\n- Supervision end to end: if a driver fails, its supervisor resets the device and restarts it\nI also have 2 demo apps built on app sdk: a full-screen kiosk app with live crypto quotes and clock and, of course Doom, which ships on the Pi 4 card image (type `doom`).\nWhat's coming:\n- Raspberry Pi 5 support\n- Full display on the Pi\n- WIFI\n- Bluetooth\n- POSIX-lite for C programs, so existing code can run as a domain\n- Performance, debugging and tracing features.\nThe code is all available under the BSD license.\nWould love to hear all and any feedback!",
@@ -27,6 +27,14 @@
           "score": 0,
           "time": 1795134340,
           "parent": "50568169"
+        },
+        {
+          "id": "50568834",
+          "author": "ryandeverton",
+          "body": "amazeballs",
+          "score": 0,
+          "time": 1795136549,
+          "parent": "50568169"
         }
       ]
     },
@@ -37,15 +45,25 @@
       "title": "Show HN: Tools4U – 54 file tools that run in the browser",
       "subreddit": "show-hn",
       "author": "emberloop",
-      "score": 2,
-      "num_comments": 0,
+      "score": 3,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50567819",
       "url": "https://tools4u.org",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1795129462,
-      "created_at": "2026-11-19T23:04:22+00:00"
+      "created_at": "2026-11-19T23:04:22+00:00",
+      "comments_data": [
+        {
+          "id": "50570717",
+          "author": "bradknowles",
+          "body": "Not a bad idea. A couple of decades ago.\nGive me these tools 100% local to my machine and capable of being executed without ever being connected to the internet, and I might think about it.",
+          "score": 0,
+          "time": 1795154378,
+          "parent": "50567819"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -54,8 +72,8 @@
       "title": "Show HN: 15MB transcription model that runs in the browser/device",
       "subreddit": "show-hn",
       "author": "quickthoughts",
-      "score": 3,
-      "num_comments": 1,
+      "score": 4,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50567436",
       "url": "https://starbright.quickthoughts.ca/",
       "selftext": "I've been obsessed with getting useful transcription models that can be used by websites directly. Starbright is <15MB in size and works even on modest phones, chromebooks, etc. At the moment, I've only got an English model but hopefully more languages can come soon.",
@@ -64,6 +82,22 @@
       "time": 1795127543,
       "created_at": "2026-11-19T22:32:23+00:00",
       "comments_data": [
+        {
+          "id": "50570436",
+          "author": "Leftium",
+          "body": "Very impressive~ support for real-time live transcription is great!\nI think there is a bug: the settled text seems to fail to get the bold styling.\n---\nI wanted to try adding to https://rift-transcription.vercel.app (https://rift-transcription.vercel.app), but the project/license terms make it a little cumbersome:\n- need to request the model on hugging face (can't just download)\n- not allowed to distribute model without commercial license (so users have to request model themselves? or at least projects that fork or use my open source transcription component?)\n- no API/documentation\n---\nThanks for pointing me to Whistle, which is nearly as small and has simpler project/license terms: https://cactuscompute.com/blog/whistle (https://cactuscompute.com/blog/whistle)\nBTW I always test with the phrase \"Leftium, the element of creativity.\" Most models fail on \"Leftium,\" but Whistle works if added as a keyword.\n---\nHere's a test result for you:\nLoad 0.8 s Clip 3.5 s of speech Transcribe 70 ms (median of 3, beam search width 4, as in the app) Speed 20 ms per second of audio, 50× faster than real time Relaxed SIMD yes\nw/ M4 Mac Mini, Chrome",
+          "score": 0,
+          "time": 1795151557,
+          "parent": "50567436"
+        },
+        {
+          "id": "50569873",
+          "author": "binsquare",
+          "body": "How do you do it? It seems too good to be true based on the comparisons.\nAlso it's not clear what this means? \"25×\nfaster than real-time audio\"",
+          "score": 0,
+          "time": 1795146208,
+          "parent": "50567436"
+        },
         {
           "id": "50567575",
           "author": "quickthoughts",
@@ -108,7 +142,7 @@
       "title": "Show HN: IT Thinks – Build a GPU from a Single NAND Gate",
       "subreddit": "show-hn",
       "author": "benbenhere",
-      "score": 10,
+      "score": 12,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50565099",
       "url": "https://store.steampowered.com/app/5196330/IT_THINKS_Build_Your_Own_GPU/",
@@ -142,8 +176,8 @@
       "title": "Show HN: Cornhole News – A Hacker News inspired site for news across the Midwest",
       "subreddit": "show-hn",
       "author": "cornholemedia",
-      "score": 183,
-      "num_comments": 89,
+      "score": 210,
+      "num_comments": 97,
       "permalink": "https://news.ycombinator.com/item?id=50561515",
       "url": "https://cornholenews.news",
       "selftext": "",
@@ -169,19 +203,19 @@
           "parent": "50561515"
         },
         {
+          "id": "50570813",
+          "author": "wavemode",
+          "body": "as someone who plays competitive cornhole, at first glance I was hoping this was an actual cornhole news site. bummer.",
+          "score": 0,
+          "time": 1795155324,
+          "parent": "50561515"
+        },
+        {
           "id": "50563080",
           "author": "timdiggerm",
           "body": "I feel certain that your politics filter is leaving items that people will consider political",
           "score": 0,
           "time": 1795109171,
-          "parent": "50561515"
-        },
-        {
-          "id": "50562123",
-          "author": "toisanji",
-          "body": "too bad there isn't a hackernews for everything. that was reddit for in the beginning, but reddit jumped that ship a long time ago.",
-          "score": 0,
-          "time": 1795105325,
           "parent": "50561515"
         },
         {
@@ -193,19 +227,11 @@
           "parent": "50561515"
         },
         {
-          "id": "50568280",
-          "author": "Beijinger",
-          "body": "Hey, I vibe coded a Hackernews clone in one day: https://news.expatcircle.com/en/ (https://news.expatcircle.com/en/)",
+          "id": "50562123",
+          "author": "toisanji",
+          "body": "too bad there isn't a hackernews for everything. that was reddit for in the beginning, but reddit jumped that ship a long time ago.",
           "score": 0,
-          "time": 1795132305,
-          "parent": "50561515"
-        },
-        {
-          "id": "50564780",
-          "author": "aaronbrethorst",
-          "body": "Neat, I'd love to be able to filter by state. I care deeply about MN news and politics (and WI to a lesser extent), but have zero interest in the rest of the region.",
-          "score": 0,
-          "time": 1795115634,
+          "time": 1795105325,
           "parent": "50561515"
         },
         {
@@ -217,11 +243,19 @@
           "parent": "50561515"
         },
         {
-          "id": "50565170",
-          "author": "xhevahir",
-          "body": "\"Midwest\" has long been a pet peeve of mine; I don't understand what states like Michigan and South Dakota are supposed to have in common. It's like a more neutral way of saying \"flyover country.\" That's a nice-looking website, but i would divide this news at least into a Great Plains category and a Great Lakes.",
+          "id": "50566039",
+          "author": "DiBop",
+          "body": "This is awesome! How can I steal this idea (and code) for my part of the country? Is this Open Source on a github somewhere?\nI could probably get Claude to whip something up but I am really lazy",
           "score": 0,
-          "time": 1795117198,
+          "time": 1795120827,
+          "parent": "50561515"
+        },
+        {
+          "id": "50564780",
+          "author": "aaronbrethorst",
+          "body": "Neat, I'd love to be able to filter by state. I care deeply about MN news and politics (and WI to a lesser extent), but have zero interest in the rest of the region.",
+          "score": 0,
+          "time": 1795115634,
           "parent": "50561515"
         },
         {
@@ -241,11 +275,11 @@
           "parent": "50561515"
         },
         {
-          "id": "50566039",
-          "author": "DiBop",
-          "body": "This is awesome! How can I steal this idea (and code) for my part of the country? Is this Open Source on a github somewhere?\nI could probably get Claude to whip something up but I am really lazy",
+          "id": "50565170",
+          "author": "xhevahir",
+          "body": "\"Midwest\" has long been a pet peeve of mine; I don't understand what states like Michigan and South Dakota are supposed to have in common. It's like a more neutral way of saying \"flyover country.\" That's a nice-looking website, but i would divide this news at least into a Great Plains category and a Great Lakes.",
           "score": 0,
-          "time": 1795120827,
+          "time": 1795117198,
           "parent": "50561515"
         }
       ]
@@ -257,8 +291,8 @@
       "title": "Show HN: Watch weight-space programming in action with WebGPU",
       "subreddit": "show-hn",
       "author": "wsxiaoys",
-      "score": 32,
-      "num_comments": 3,
+      "score": 33,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50561436",
       "url": "https://tabbyml.github.io/weight-space-playground/",
       "selftext": "I wanted to build a full weight-space programming loop entirely in the browser with WebGPU: let an LLM inspect Qwen3.5-0.8B, edit its weights, evaluate, and repeat.\nthe full loop needed too much VRAM. so I turned it into an interactive walkthrough of a concrete example: editing 0.016% of a model's weights to reduce reasoning loops, no gradient descent.\nBased on exp8 of “Sparks of Weight-Space Programming.”: https://news.ycombinator.com/item?id=50341174 (https://news.ycombinator.com/item?id=50341174)",
@@ -373,8 +407,8 @@
       "title": "Show HN: Foolscap – a writing app that reads your book and never writes for you",
       "subreddit": "show-hn",
       "author": "atugard",
-      "score": 102,
-      "num_comments": 84,
+      "score": 105,
+      "num_comments": 85,
       "permalink": "https://news.ycombinator.com/item?id=50559749",
       "url": "https://foolscap.works/",
       "selftext": "People are scared of their ability to write and think atrophying, so I wondered: what if I built something that enhanced human creativity instead of destroying it by doing the thinking and writing for people? Foolscap is the result, or at least the first version of that idea that's fleshed out enough to share here.\nIt reads as you write and picks out the structure: characters, ideas, threads, what's left hanging. You can respond to what it picks out, so there's a dialectic between the system and you as the writer. There's also an agent on the side, plugged into the same system, so you can ask about your book and fire off actions through conversation. It never writes into your work.\nThe system can also follow theorems and proofs and string together their dependencies, but I haven't made that a focus yet. There's no Lean support, for example. If anyone's interested in that, I'd love to hear it.\nI want to build this by iterating with the people who use it: a tool that uses AI not to bypass the creative process, but to bring new tools to it. There's a free tier, and if you email hello@foolscap.works I'll send you a code for 50% off. This is my first product, so feedback of any kind is welcome.\nThanks,\nDavid",
@@ -397,14 +431,6 @@
           "body": "Authors probably would make the most dodgy ai queries of just about anybody. We're often writing about deviant or criminal personalities, extreme moods or actions.\nWont the safety systems of your providers automatically save all this history indefinitely and then it will be out there forever to be used against us in some way? Eg, suppose a custody hearing or professional conduct review or a trial or even a job interview or insurance claim?\nEspecially if its reading and researching in the background as you go",
           "score": 0,
           "time": 1795103569,
-          "parent": "50559749"
-        },
-        {
-          "id": "50567547",
-          "author": "mizzao",
-          "body": "It sounds amazing to have a product that continually gives you feedback and analyzes what you write, but never writes on your behalf. Since writing is primarily thinking, it seems like this kind of feedback loop could help you think even better.\nLooking forward to giving this a try!",
-          "score": 0,
-          "time": 1795128112,
           "parent": "50559749"
         },
         {
@@ -432,11 +458,11 @@
           "parent": "50559749"
         },
         {
-          "id": "50565003",
-          "author": "liamnorm",
-          "body": "Much have I traveled in the realms of gold\n\n And many goodly states and kingdoms seen;\n\n Round many western islands have I been\n\n Which bards in fealty to Apollo hold.\n\n Oft of one wide expanse had I been told\n\n That deep-browed Homer ruled as his demesne;\n\n Yet never did I breathe its pure serene\n\n Till I heard Chapman speak out loud and bold:\n\n Then felt I like some watcher of the skies\n\n When a new planet swims into his ken;\n\n Or like stout Cortez when with eagle eyes\n\n He stared at the Pacific—and all his men\n\n Looked at each other with a wild surmise—\n\n Silent, upon a peak in Darien.",
+          "id": "50567547",
+          "author": "mizzao",
+          "body": "It sounds amazing to have a product that continually gives you feedback and analyzes what you write, but never writes on your behalf. Since writing is primarily thinking, it seems like this kind of feedback loop could help you think even better.\nLooking forward to giving this a try!",
           "score": 0,
-          "time": 1795116553,
+          "time": 1795128112,
           "parent": "50559749"
         },
         {
@@ -445,6 +471,14 @@
           "body": "I made something similar at https://authrot.app/ (https://authrot.app/)\nI went to great lengths to improve the precision of scans across an entire book. You can read about it in my blog here:\nhttps://authrot.app/blog/how-authrot-reads-a-novel (https://authrot.app/blog/how-authrot-reads-a-novel)",
           "score": 0,
           "time": 1795104315,
+          "parent": "50559749"
+        },
+        {
+          "id": "50565003",
+          "author": "liamnorm",
+          "body": "Much have I traveled in the realms of gold\n\n And many goodly states and kingdoms seen;\n\n Round many western islands have I been\n\n Which bards in fealty to Apollo hold.\n\n Oft of one wide expanse had I been told\n\n That deep-browed Homer ruled as his demesne;\n\n Yet never did I breathe its pure serene\n\n Till I heard Chapman speak out loud and bold:\n\n Then felt I like some watcher of the skies\n\n When a new planet swims into his ken;\n\n Or like stout Cortez when with eagle eyes\n\n He stared at the Pacific—and all his men\n\n Looked at each other with a wild surmise—\n\n Silent, upon a peak in Darien.",
+          "score": 0,
+          "time": 1795116553,
           "parent": "50559749"
         },
         {
@@ -472,11 +506,11 @@
           "parent": "50559749"
         },
         {
-          "id": "50565749",
-          "author": "happythenewsad",
-          "body": "Nice work!\nI'm trying to solve the same problem from a different angle - increase the output and quality of human writing (specifically, fiction).\nIt's soft-launched and early days; would love some suggestions on what features to add:\npenmightier.com",
+          "id": "50561361",
+          "author": "iamben",
+          "body": "Does this work for blog posts and the like?! I could see it being very useful for keeping you on track in realtime as opposed to pinging LLMs afterwards?",
           "score": 0,
-          "time": 1795119516,
+          "time": 1795102072,
           "parent": "50559749"
         }
       ]
@@ -584,7 +618,7 @@
       "subreddit": "show-hn",
       "author": "jonnyasmar",
       "score": 25,
-      "num_comments": 5,
+      "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=50554973",
       "url": "https://adeindex.com",
       "selftext": "",
@@ -593,6 +627,14 @@
       "time": 1795052032,
       "created_at": "2026-11-19T01:33:52+00:00",
       "comments_data": [
+        {
+          "id": "50570840",
+          "author": "danpalmer",
+          "body": "Checks Antigravity\n> Not ranked yet: no Hacker News mentions in the last 90 days\n> Capabilities 2/8 – Read by ADE Index in the tool’s own docs. A capability not shown is not established yet; it may still be there.\n> Antigravity IDE's screenshot is actually of the Antigravity App.\nThis site is slop. Very bad data quality, and the data is literally the whole point.",
+          "score": 0,
+          "time": 1795155553,
+          "parent": "50554973"
+        },
         {
           "id": "50555978",
           "author": "rabidheuristics",

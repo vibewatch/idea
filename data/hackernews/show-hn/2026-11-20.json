@@ -1,0 +1,58 @@
+{
+  "source": "hackernews",
+  "stream": "show-hn",
+  "last_fetched": "2026-11-20T06:36:40.494214+00:00",
+  "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50569732",
+      "title": "Show HN: Fire Circle – 15-minute 1-on-1 virtual breaks based on shared interests",
+      "subreddit": "show-hn",
+      "author": "ahmay02",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50569732",
+      "url": "https://play.google.com/store/apps/details?id=com.app.firecircle&hl=en_US",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795144602,
+      "created_at": "2026-11-20T03:16:42+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50569221",
+      "title": "Show HN: SlotVFX – 2D game effects and sequences for Pixi, Phaser and Cocos",
+      "subreddit": "show-hn",
+      "author": "slotvfx",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50569221",
+      "url": "https://slotvfx.com/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795139995,
+      "created_at": "2026-11-20T01:59:55+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50568763",
+      "title": "Show HN: Zeus – Claude Code for AI voice agents",
+      "subreddit": "show-hn",
+      "author": "kolchinski",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50568763",
+      "url": "https://thunderphone.com/blog/introducing-zeus",
+      "selftext": "Hi everyone, Alex here - I’m one of the founders of ThunderPhone. We’re excited to announce the launch of Zeus, a platform that makes AI phone calls actually work without extensive hand-tuning!\nYou can see a head-to-head I made of the last version of ThunderPhone vs this one here: https://www.youtube.com/watch?v=YlkIc3L29lo (https://www.youtube.com/watch?v=YlkIc3L29lo)\nA (somewhat long) summary:\nWhen we started building business phone agents in 2024, we kept running into technical problems that ruined calls, caused by the limits of existing architectures. The two biggest issues were that phone agents misheard callers, and disobeyed scripts or responded in weird ways.\nBoth stemmed from the prevailing voice agent architecture - a “three-step” or “cascaded” pipeline: one transcription model turning caller audio into text, one LLM generating a response (and sometimes tool calls) from that text, and a TTS model turning response text into audio.\nTranscription models aren’t perfect, especially in noisy environments, with unclear callers, in languages other than English, and on short utterances like “yeah”. With the pipeline approach, when caller audio is boiled down to a single “best guess” text transcript, mistakes are often unrecoverable: there’s typically no “top n” best guesses or other audio signal for the LLM to use if the transcript was wrong. That leads the LLM to respond to what the transcription model thought it heard instead of what the caller actually said.\nThe pipeline approach also caused weird responses and poor instruction-following due to the tradeoff between LLM speed and intelligence. Phone calls demand fast responses to feel natural, which is in tension with an LLM’s need to “think” and run inference - often for several seconds - to answer many prompts correctly. With a single LLM in the pipeline, the obvious choice is picking one fast enough to feel responsive, but that comes with an unavoidably high error rate on real calls, frustrating callers and sending calls off the rails.\nMore recently, end-to-end “speech-to-speech” models have won usage alongside three-step pipelines. They’re better at hearing callers correctly (though still not perfect), but they’re even worse at following instructions reliably, which is typically disastrous for business phone calls.\nOnce we understood these problems, we built our own stack to address them. Over the past year and a half, the ThunderPhone stack has largely solved mishearing and misbehaving by combining numerous models on each call.\nFor audio misunderstandings, we run multiple, even numerous, transcription models on most calls, giving more “shots on goal” from the original audio. Even if none gets it exactly right, multiple almost-correct answers let us triangulate on a correct transcript, using one or more LLMs to decide what the caller actually said. In challenging situations, we even pipe caller audio directly to one or more audio-input LLMs to further improve comprehension.\nFor instruction following, we run a mix of fast and slow LLMs on conversation turns to combine snappy responses with deeper thinking behind the scenes. In practice, this is a multi-staged classification problem: after 50ms, 500ms, 1s, etc., we simultaneously generate responses with increasing inference while classifying whether we need to “think harder” to generate a definitive correct answer.\nTogether with other smaller optimizations, these two approaches have been very effective. Qualitatively, customer calls go much more smoothly and reach successful outcomes far more frequently than on three-step or speech-to-speech pipelines. Quantitatively, we’ve set a record of 99.4% on the Big Bench Audio benchmark, smarter than any other model fast enough for real calls. (We’re also benchmarking ThunderPhone on more public benchmarks - stay tuned.)\nThe downside is configuration complexity. Every agent benefits from a different setup on the ThunderPhone stack, and even individual call turns on the same call often benefit from different stacks. Configuring this manually worked for enterprise customers, but made it prohibitive to give smaller self-serve customers the full benefits without giving their agents our full attention.\nThat’s how Zeus came about. Our enterprise configurations were repetitive enough that an AI could do them once we taught it how and gave it the right tools. We’re big fans of Claude Code and Codex for software development, but they fall short at configuring voice agents for a few reasons.\nFirst, unlike software development, where you can compile code and run tests to verify things work, you can’t run live calls inside a computer right after configuring a voice agent - and coding agents don’t know how to run simulated calls out of the box, or “listen” to a call to spot real problems. We built both capabilities into Zeus, giving it a “closed loop” experience building, testing, and improving voice agents just like coding agents have with regular software.\nSecond, coding agents are pretty gullible about marketing claims. Companies building AI and voice infrastructure commonly post the most favorable possible interpretation of their capabilities online. Claude and Codex read those claims, believe them uncritically, and pick tools based on marketing rather than real performance. At best, that leads to suboptimal architectural choices; at worst, to voice agents that don’t really work at all.\nWe’ve sidestepped this with continuous evals feeding an internal knowledge base. For everything that matters for voice agents - accurate audio understanding, instruction following, noise cancelling, turn-taking, and more - we maintain internal benchmarks built on real call data. Every time a new AI model comes out, we (now mostly automatically) feed it through our evals for performance, speed, cost, and reliability/consistency. That feeds our internal knowledge base, which Zeus uses to pick the right stack for every agent, call, and conversation turn.\nThis all happens behind the scenes to keep the ThunderPhone experience seamless. A user just describes their use case and goals, and Zeus helps fill in ambiguities, connect VoIP and software integrations, and optimize the voice agent(s) on simulated and live calls until they hit the highest performance on business goals (conversions, unit economics, etc.) possible with today’s models.\nZeus is also differentiated on cost. Zeus itself is free to use for now, though we expect to move to subscription or token-based pricing later. For calls, we’ve become the first voice AI vendor to our knowledge to charge on a cost-plus basis: ThunderPhone customers pay exactly what we pay our vendors, plus a 17% margin on calls costing 2c/min or less, scaling linearly up to 25% for calls costing us 15c/min or more, and 25% from there on up.\nHowever, we find that simple phone agents do well on a stack that costs about 2c/min, and more complex cases typically land around 5-10c/min - significantly cheaper than most alternatives.\nZeus is brand-new, so we’re eager to get feedback on how it works for customers, and any areas we could improve it. Give it a try and see what you think - let me know if you have any feedback or questions.\nAlex",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795135912,
+      "created_at": "2026-11-20T00:51:52+00:00"
+    }
+  ]
+}
