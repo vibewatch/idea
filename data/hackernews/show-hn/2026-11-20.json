@@ -1,8 +1,155 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-20T12:34:00.102615+00:00",
+  "last_fetched": "2026-11-20T18:31:27.770551+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50577746",
+      "title": "Show HN: Full Production Studio, 77 open-source AI skills for video creators",
+      "subreddit": "show-hn",
+      "author": "ahmedfaris_me",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50577746",
+      "url": "https://github.com/alfaris/full-production-studio",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795193511,
+      "created_at": "2026-11-20T16:51:51+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50577115",
+      "title": "Show HN: LarpLess, open-source study tracker detecting distractions locally",
+      "subreddit": "show-hn",
+      "author": "maergune",
+      "score": 3,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50577115",
+      "url": "https://larpless.app/",
+      "selftext": "I am ashamed to admit that I am one of those students who go to the library and get very little done (a.k.a. larping). It's very easy to get distracted if you have any electronic devices with you, but as a CS major, I can't just switch to pen and paper. That's why I started building this app called LarpLess with the help of a few friends.\nLarpLess is a macOS/Windows app that checks your screen and camera with local AI to determine what you are studying or if you are distracted. Gives you a focus percentage at the end, with a breakdown of what you did during your session (Math, Physics, etc.)\nPrivacy is a big concern for an app like this, so it is open-source (AGPL 3.0) and uses locally run open-source models. It doesn't connect to the internet unless you want to check for updates or enable the friends feature (Disabled by default. You can make an account, add friends and see their shared study sessions/share your study sessions).\nFor the camera, it uses an object detection model, YOLO11n, to detect if there is a person and/or a phone at 1fps. For the screen, there are 2 options: the one we did first is reading window titles + a VLM on Ollama (default is qwen3-vl:2b), simple but power/RAM hungry. The one my friend added later can run on an average laptop easily. It takes less than a second for a verdict. It scores window titles + OCR text on the screen with MiniLM text embeddings and scores the screenshot with image embeddings using SigLIP 2. SigLIP 2 decides if the user is distracted, and MiniLM decides what they are working on. You can run the classifier-based mode on any modern laptop. If you want to use the VLM mode, you need a good GPU with enough VRAM (3GB+) to hold the model in it.\nYou can try it out by downloading the macOS version from GitHub (https://github.com/AlperErg/larpless/releases (https://github.com/AlperErg/larpless/releases)) or the Windows version from the Microsoft Store (https://apps.microsoft.com/detail/9nrvvphtmr9x (https://apps.microsoft.com/detail/9nrvvphtmr9x)).\nI found it helpful for studying. I hope that you will as well. I'd appreciate it if you can give it a go and kindly share your thoughts.\np.s. My friend, who also works on this with me, posted about it before but without a description and not on Show HN, so I decided to post on Show HN with a good description.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795191710,
+      "created_at": "2026-11-20T16:21:50+00:00",
+      "comments_data": [
+        {
+          "id": "50579165",
+          "author": "carter-qadenza",
+          "body": "I do like to see people using local AI! How do you go about describing this to people? The initial reaction to seeing it made me uncomfortable because it feels like Honorlock and I generally don't like having things recording me. I do get that its private given the local model but it still spooks me a bit. Would love to hear your perspective.",
+          "score": 0,
+          "time": 1795198001,
+          "parent": "50577115"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50577056",
+      "title": "Show HN: Minard's 1869 map of Napoleon's Russian campaign, animated day by day",
+      "subreddit": "show-hn",
+      "author": "pstomi",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50577056",
+      "url": "https://minard1812.org/",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795191455,
+      "created_at": "2026-11-20T16:17:35+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50575611",
+      "title": "Show HN: Free mastering in the browser, your audio never leaves your machine",
+      "subreddit": "show-hn",
+      "author": "Heymow",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50575611",
+      "url": "https://synthcamp.net/mastering",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795186853,
+      "created_at": "2026-11-20T15:00:53+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50575442",
+      "title": "Show HN: Quiriz – SQL-Backed Recommendations in Excel, Sheets and PowerPoint",
+      "subreddit": "show-hn",
+      "author": "e73414",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50575442",
+      "url": "https://app.quiriz.co/try?q=founder&utm_source=hn",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795186278,
+      "created_at": "2026-11-20T14:51:18+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50575434",
+      "title": "Show HN: Frowse – Drop-in agent-browser CLI that cuts token spend by up to 90%+",
+      "subreddit": "show-hn",
+      "author": "asernasr",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50575434",
+      "url": "https://github.com/figranium/frowse",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795186244,
+      "created_at": "2026-11-20T14:50:44+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50574412",
+      "title": "Show HN: Drive around my village in 3D",
+      "subreddit": "show-hn",
+      "author": "johnwards",
+      "score": 6,
+      "num_comments": 5,
+      "permalink": "https://news.ycombinator.com/item?id=50574412",
+      "url": "https://cherwellvalleymotorclub.app",
+      "selftext": "So this started out just over a week ago, could I drive around my village in my old car on the web, and its expanded into a massive map, with races, events, different cars and multiplayer.\nI'm a web/app guy, backend guy, and yes I build it with Claude.\nI know I shouldn't be astounded by what these Ai agents can do as of today, but here I am still amazed.\nI've even got support from a Sim racing guy and built a web driver so he gets full force feedback for his rig, and it works.\nAnyway, just a bit of fun!\nUses LIDAR data from the UK Gov + OpenStreetMap data to build the world. Technically, I could do the whole of England/Wales...but the data storage would be huge!",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795181562,
+      "created_at": "2026-11-20T13:32:42+00:00",
+      "comments_data": [
+        {
+          "id": "50574566",
+          "author": "sfpk",
+          "body": "Fun, but you need a progress-bar -- I clicked 'skip' and I thought the site was broken because nothing happened for about 5 seconds.",
+          "score": 0,
+          "time": 1795182324,
+          "parent": "50574412"
+        },
+        {
+          "id": "50577286",
+          "author": "thelbartworks",
+          "body": "in my case it takes too long to load, is stuck at about 90ish%",
+          "score": 0,
+          "time": 1795192192,
+          "parent": "50574412"
+        }
+      ]
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,8 +157,8 @@
       "title": "Show HN: Reaktiv Workbook – A spreadsheet where every cell is Python",
       "subreddit": "show-hn",
       "author": "buibuibui",
-      "score": 5,
-      "num_comments": 3,
+      "score": 7,
+      "num_comments": 5,
       "permalink": "https://news.ycombinator.com/item?id=50572351",
       "url": "https://workbook.bui.app/",
       "selftext": "",
@@ -21,11 +168,11 @@
       "created_at": "2026-11-20T09:42:31+00:00",
       "comments_data": [
         {
-          "id": "50573541",
-          "author": "runningmike",
-          "body": "Nice! Python as a spreadsheet is a challenge many tried to solve, but this reactive workbook stands out.",
+          "id": "50577503",
+          "author": "michael_sheetxl",
+          "body": "I just played with it. It is very polished (and fast). I think having the python cells in a dynamic dependency graph is significantly more flexible than Excel's python eval in row order.\nAre you considering supporting fill down or copy/paste formula rewriting where the formula references shift like they do in Excel?",
           "score": 0,
-          "time": 1795176126,
+          "time": 1795192809,
           "parent": "50572351"
         },
         {
@@ -34,6 +181,14 @@
           "body": "Using Python as a spreadsheet is not a novel idea, but I will try to explain briefly what this makes it different. The key idea around Reaktiv Workbook is using Signals Reactivity primitives (known from the frontend space and popularized by SolidJS, Angular, ...) as the core engine for reactive execution. The spreadsheet is the canvas for modeling the reactivity graph: a DAG composed of input cells (Signal), formulas (Computed) and side-effects (Effect).\nWith these primitives you should be able to model most of your business logic in a reactive way. On top of them, you can write markdown notes as the view layer and interpolate the primitive outputs into them.\nThe saved file is just a plain Python file that can be versioned through GIT.",
           "score": 0,
           "time": 1795173587,
+          "parent": "50572351"
+        },
+        {
+          "id": "50573541",
+          "author": "runningmike",
+          "body": "Nice! Python as a spreadsheet is a challenge many tried to solve, but this reactive workbook stands out.",
+          "score": 0,
+          "time": 1795176126,
           "parent": "50572351"
         }
       ]
@@ -45,7 +200,7 @@
       "title": "Show HN: BSWorld – AI agents can now test Bluetooth code without hardware",
       "subreddit": "show-hn",
       "author": "bsworld-runner",
-      "score": 4,
+      "score": 5,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50570766",
       "url": "https://github.com/XiaoMi/bsworld",
