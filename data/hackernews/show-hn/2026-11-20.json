@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-21T14:50:28.211900+00:00",
+  "last_fetched": "2026-11-21T23:30:39.673653+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -184,8 +184,8 @@
       "title": "Show HN: OpenComputer – an open source alternative to Devin",
       "subreddit": "show-hn",
       "author": "iacguy",
-      "score": 109,
-      "num_comments": 35,
+      "score": 116,
+      "num_comments": 36,
       "permalink": "https://news.ycombinator.com/item?id=50581403",
       "url": "https://github.com/diggerhq/opencomputer",
       "selftext": "Hi HN!\nUtpal here, I'm one of the founders of OpenComputer.\nOpenComputer is an open source cloud coding agent for teams that can run in your own cloud account (AWS, GCP, Azure).\nWe run the agent harness and the sandbox on the same durable VM (architecture in the docs [1]). First commit lands in 24s; the alternatives we benchmarked took 53-72s (benchmarks below [2]).\nTwo other choices:\n- One VM per team, scalable horizontally. Sessions are isolated in git worktrees.\n- Session files are backed up to a repo after every turn, so any session can resume on another VM.\nWe noticed that past ~640 session-hours a month, one always-on 4 vCPU VM is cheaper than per-session E2B sandboxes, for example. So at scale, this setup would not only be faster than current SOTA coding agents, but also more cost-efficient.\nFeel free to try via cloud for free [4] or self host. We would love any and all feedback, and happy to answer any questions! Full demo below [3].\n[1]: https://docs.opencomputer.dev/getting-started/architecture (https://docs.opencomputer.dev/getting-started/architecture)\n[2]: https://opencomputer.dev/blog/cloud-agents-as-fast-as-local/ (https://opencomputer.dev/blog/cloud-agents-as-fast-as-local/)\n[3]: https://x.com/IgorZIJ/status/2121309785882591711 (https://x.com/IgorZIJ/status/2121309785882591711)\n[4]: https://app.opencomputer.dev (https://app.opencomputer.dev)",
@@ -195,14 +195,6 @@
       "created_at": "2026-11-20T20:19:56+00:00",
       "comments_data": [
         {
-          "id": "50586844",
-          "author": "NetOpWibby",
-          "body": "For people (like me) who don't know WTF Devin is: https://devin.ai (https://devin.ai)",
-          "score": 0,
-          "time": 1795245550,
-          "parent": "50581403"
-        },
-        {
           "id": "50582327",
           "author": "namanyayg",
           "body": "Open source is amazing! Any insights how you've made something so cheap and fast? Are the margins charged by Devin really this insane?",
@@ -211,19 +203,27 @@
           "parent": "50581403"
         },
         {
-          "id": "50587339",
-          "author": "nzjrs",
-          "body": "I learnt more by visiting the Devlin Hompage and learning what it was...",
-          "score": 0,
-          "time": 1795251372,
-          "parent": "50581403"
-        },
-        {
           "id": "50581844",
           "author": "taudas",
           "body": "New product name please, your current name tells us nothing and is already taken. But I am still going to try it :)",
           "score": 0,
           "time": 1795207727,
+          "parent": "50581403"
+        },
+        {
+          "id": "50586844",
+          "author": "NetOpWibby",
+          "body": "For people (like me) who don't know WTF Devin is: https://devin.ai (https://devin.ai)",
+          "score": 0,
+          "time": 1795245550,
+          "parent": "50581403"
+        },
+        {
+          "id": "50587339",
+          "author": "nzjrs",
+          "body": "I learnt more by visiting the Devlin Hompage and learning what it was...",
+          "score": 0,
+          "time": 1795251372,
           "parent": "50581403"
         },
         {
@@ -243,19 +243,19 @@
           "parent": "50581403"
         },
         {
-          "id": "50587252",
-          "author": "Halto",
-          "body": "what actions does agent do without any check of system and how do you control it",
-          "score": 0,
-          "time": 1795250431,
-          "parent": "50581403"
-        },
-        {
           "id": "50582634",
           "author": "andyjtyler",
           "body": "is the whole thign open source? like can i spin it up in my own infra or just the harnesss code?",
           "score": 0,
           "time": 1795210967,
+          "parent": "50581403"
+        },
+        {
+          "id": "50587252",
+          "author": "Halto",
+          "body": "what actions does agent do without any check of system and how do you control it",
+          "score": 0,
+          "time": 1795250431,
           "parent": "50581403"
         },
         {
