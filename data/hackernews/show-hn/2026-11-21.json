@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-22T07:12:24.989443+00:00",
+  "last_fetched": "2026-11-22T19:54:18.694519+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -54,7 +54,7 @@
       "title": "Show HN: It's now easy to install Linux on an Android Phone – Android2linux",
       "subreddit": "show-hn",
       "author": "brazukadev",
-      "score": 5,
+      "score": 6,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50593862",
       "url": "https://github.com/android2linux/android2linux",
@@ -159,8 +159,8 @@
       "title": "Show HN: Zero C# – C# without a runtime or GC",
       "subreddit": "show-hn",
       "author": "reverseblade2",
-      "score": 151,
-      "num_comments": 104,
+      "score": 171,
+      "num_comments": 120,
       "permalink": "https://news.ycombinator.com/item?id=50590279",
       "url": "https://onurgumus.github.io/zero-csharp/index.html",
       "selftext": "",
@@ -194,19 +194,11 @@
           "parent": "50590279"
         },
         {
-          "id": "50595956",
-          "author": "pmkary",
-          "body": "I looked for DLL support and found nothing. The standard library is also different from C#, and you have to manage memory on your own. Sadly I don't get the point. People code in C# for the .NET and its huge library, unless this is not a drop in replacement, you have to port your whole codebase; well then people will write Rust already...",
+          "id": "50593298",
+          "author": "buybackoff",
+          "body": "For C# as is, what I really would appreciate is a frozen GC mode. Not zero GC, similar to Epsilon GC in Java. After initial state loading and forced GC, I would like to be able to apply a SustainedNoGC mode, that just does not even try to collect, no scanning, no pauses at all, it can only allocate. And notifications (an event) after some X bytes allocated, or just a reliable way to monitor the allocated size. The existing modes such as SustainedLowLatency or NoGCRegion are good but not enough. For some low latency workloads it's OK to allocate many GBs and then pause explicitly.\nRandom forced pauses are the only problem that comes from GC, otherwise it's great for throughput and just a nice feature, as a sibling comment says. No GC languages do not make code magically faster, they still have malloc/free. However, GC is surrendering control over when a program may be paused.",
           "score": 0,
-          "time": 1795318320,
-          "parent": "50590279"
-        },
-        {
-          "id": "50594029",
-          "author": "andix",
-          "body": "Assuming this is very similar to bflat: it's a cool idea and fun to play with, but not very useful. C# is not designed to run without a GC, existing code usually won't run, because the standard library is missing.\nJust using C, Rust, Zig, or whatever is probably nearly always the better option. Those languages are designed to work without GC and provide various well established ways to manage memory.",
-          "score": 0,
-          "time": 1795298111,
+          "time": 1795292804,
           "parent": "50590279"
         },
         {
@@ -218,11 +210,11 @@
           "parent": "50590279"
         },
         {
-          "id": "50593298",
-          "author": "buybackoff",
-          "body": "For C# as is, what I really would appreciate is a frozen GC mode. Not zero GC, similar to Epsilon GC in Java. After initial state loading and forced GC, I would like to be able to apply a SustainedNoGC mode, that just does not even try to collect, no scanning, no pauses at all, it can only allocate. And notifications (an event) after some X bytes allocated, or just a reliable way to monitor the allocated size. The existing modes such as SustainedLowLatency or NoGCRegion are good but not enough. For some low latency workloads it's OK to allocate many GBs and then pause explicitly.\nRandom forced pauses are the only problem that comes from GC, otherwise it's great for throughput and just a nice feature, as a sibling comment says. No GC languages do not make code magically faster, they still have malloc/free. However, GC is surrendering control over when a program may be paused.",
+          "id": "50594029",
+          "author": "andix",
+          "body": "Assuming this is very similar to bflat: it's a cool idea and fun to play with, but not very useful. C# is not designed to run without a GC, existing code usually won't run, because the standard library is missing.\nJust using C, Rust, Zig, or whatever is probably nearly always the better option. Those languages are designed to work without GC and provide various well established ways to manage memory.",
           "score": 0,
-          "time": 1795292804,
+          "time": 1795298111,
           "parent": "50590279"
         },
         {
@@ -234,11 +226,27 @@
           "parent": "50590279"
         },
         {
+          "id": "50595956",
+          "author": "pmkary",
+          "body": "I looked for DLL support and found nothing. The standard library is also different from C#, and you have to manage memory on your own. Sadly I don't get the point. People code in C# for the .NET and its huge library, unless this is not a drop in replacement, you have to port your whole codebase; well then people will write Rust already...",
+          "score": 0,
+          "time": 1795318320,
+          "parent": "50590279"
+        },
+        {
           "id": "50594139",
           "author": "real_faxenoff",
           "body": "I'm developing a small .NET utility called montab (https://github.com/faxenoff/montab (https://github.com/faxenoff/montab) - taskbar with permanent previews for Windows) and have been trying to minimize its size and CPU/GPU usage as much as possible. The result is a 0.88 Mb binary with near-zero system load.\nIt would seem that Zero C# is the ideal solution for me. But here’s what I’ve actually found out: I’d have to rewrite absolutely everything, and the lack of a garbage collector when constantly working with a bunch of WinAPI calls is a problem with no solution.\nI’ve come to realize that this might only be suitable for new applications that don’t use external components.",
           "score": 0,
           "time": 1795299054,
+          "parent": "50590279"
+        },
+        {
+          "id": "50600825",
+          "author": "farhan291",
+          "body": "i really don't understand why there is need of no gc in c#? \nit already provides so many tools to make optimized binary even have aot compiler support.",
+          "score": 0,
+          "time": 1795363150,
           "parent": "50590279"
         },
         {
@@ -255,14 +263,6 @@
           "body": "Why did they eliminate reflection? That doesn't need huge runtime support or garbage collection.",
           "score": 0,
           "time": 1795279241,
-          "parent": "50590279"
-        },
-        {
-          "id": "50593209",
-          "author": "SuperV1234",
-          "body": "Cool project, I don't understand all the hate. This is great for gamedev and similar domains where latency matters",
-          "score": 0,
-          "time": 1795292155,
           "parent": "50590279"
         }
       ]
@@ -292,14 +292,32 @@
       "subreddit": "show-hn",
       "author": "natsu529",
       "score": 15,
-      "num_comments": 0,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50589235",
       "url": "https://github.com/natsu0529/agent-mcts",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1795269188,
-      "created_at": "2026-11-21T13:53:08+00:00"
+      "created_at": "2026-11-21T13:53:08+00:00",
+      "comments_data": [
+        {
+          "id": "50600264",
+          "author": "joe-esquibel",
+          "body": "What type of problems is this well suited for? Ive found that I can just linearly improve on one idea and get further to my goal. Like in 10 directed back and forths. I feel like this would create x options for every step that need to be independently evaluated with some Oracle and then again for the next steps, I feel like tokens are too expensive to random walk an llm through a solution space.\nId like to see a validation of taking a small AI and then have to chug through a tough problem like a chess engine to a specific standard and compare that to just one shot it with fable.\nMaybe we could use cheap poor thinking llm models with this harness to solve problems we don't think they can currently solve.",
+          "score": 0,
+          "time": 1795359270,
+          "parent": "50589235"
+        },
+        {
+          "id": "50599810",
+          "author": "Bataino",
+          "body": "Interesting...",
+          "score": 0,
+          "time": 1795356117,
+          "parent": "50589235"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -308,8 +326,8 @@
       "title": "Show HN: I made a PS1 style racing game",
       "subreddit": "show-hn",
       "author": "shash7",
-      "score": 28,
-      "num_comments": 25,
+      "score": 43,
+      "num_comments": 32,
       "permalink": "https://news.ycombinator.com/item?id=50589184",
       "url": "https://outpostracer.com",
       "selftext": "Hey folks, was bored with work this week so with the help of chatgpt I built a ps1 style retro racing game.\nLet me know what you think!",
@@ -319,11 +337,35 @@
       "created_at": "2026-11-21T13:47:45+00:00",
       "comments_data": [
         {
-          "id": "50595265",
-          "author": "jrrc_dev",
-          "body": "I always hated getting stuck on railings or trees in racing games, so being able to bulldoze through objects is a nice touch",
+          "id": "50603121",
+          "author": "anon115",
+          "body": "add multiplayer 13/13 players per instance and a rainbow road track",
           "score": 0,
-          "time": 1795310042,
+          "time": 1795376380,
+          "parent": "50589184"
+        },
+        {
+          "id": "50602729",
+          "author": "bazijjoba",
+          "body": "I liked it; the checkpoint are a bit too big; so sometimes I cannot see which direction I should go after the checkpoint (first map)",
+          "score": 0,
+          "time": 1795373790,
+          "parent": "50589184"
+        },
+        {
+          "id": "50600020",
+          "author": "page0",
+          "body": "That's a cool game, the map terrain and physics reminds me of a top town racing game called ignition from the 90's",
+          "score": 0,
+          "time": 1795357621,
+          "parent": "50589184"
+        },
+        {
+          "id": "50601975",
+          "author": "goosethe",
+          "body": "this is awesome and is begging for a drifting mode/race",
+          "score": 0,
+          "time": 1795369578,
           "parent": "50589184"
         },
         {
@@ -335,11 +377,27 @@
           "parent": "50589184"
         },
         {
+          "id": "50600058",
+          "author": "calebrider",
+          "body": "I love the PS1 style!\nWhat language/technologies/tools did you use to build this?",
+          "score": 0,
+          "time": 1795357877,
+          "parent": "50589184"
+        },
+        {
           "id": "50591242",
           "author": "koshergweilo",
           "body": "I somehow managed to get my car completely stuck. Please add the ability to \"Restart\" my car to the last checkpoint.\nOtherwise good job on the visuals but the UI is rendered at a very high resolution which is a bit discordant with the rest of the crunchy pixel art style",
           "score": 0,
           "time": 1795280781,
+          "parent": "50589184"
+        },
+        {
+          "id": "50595265",
+          "author": "jrrc_dev",
+          "body": "I always hated getting stuck on railings or trees in racing games, so being able to bulldoze through objects is a nice touch",
+          "score": 0,
+          "time": 1795310042,
           "parent": "50589184"
         },
         {
@@ -351,14 +409,6 @@
           "parent": "50589184"
         },
         {
-          "id": "50595670",
-          "author": "km3k",
-          "body": "To really get the PS1 feel, it needs an option for shorter draw distances.",
-          "score": 0,
-          "time": 1795314981,
-          "parent": "50589184"
-        },
-        {
           "id": "50593811",
           "author": "opan",
           "body": "Very slow to load in on mobile, but then runs okay once it loads in. Surprisingly decent touchscreen controls also. Is this vibecoded? Is it free (as in freedom) software? How long have you been working on it?",
@@ -367,35 +417,19 @@
           "parent": "50589184"
         },
         {
+          "id": "50595670",
+          "author": "km3k",
+          "body": "To really get the PS1 feel, it needs an option for shorter draw distances.",
+          "score": 0,
+          "time": 1795314981,
+          "parent": "50589184"
+        },
+        {
           "id": "50595550",
           "author": "dongjoo",
           "body": "This is really cool! How long did you take to build this great game?",
           "score": 0,
           "time": 1795313617,
-          "parent": "50589184"
-        },
-        {
-          "id": "50595244",
-          "author": "deterministic",
-          "body": "Love it! Built with AI I assume? How was your approach? Plan first then implement or step by step prompting? How did you generate the models?",
-          "score": 0,
-          "time": 1795309832,
-          "parent": "50589184"
-        },
-        {
-          "id": "50594618",
-          "author": "sunbash",
-          "body": "i freaking love it. Please working on it and let us know how to know when to check back in. I play mostly on mobile myself.",
-          "score": 0,
-          "time": 1795303150,
-          "parent": "50589184"
-        },
-        {
-          "id": "50591965",
-          "author": "arshxyz",
-          "body": "Add a CRT effect!",
-          "score": 0,
-          "time": 1795284907,
           "parent": "50589184"
         }
       ]
