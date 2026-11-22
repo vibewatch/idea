@@ -1,8 +1,25 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-21T23:30:39.673653+00:00",
+  "last_fetched": "2026-11-22T07:12:24.989443+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50594649",
+      "title": "Show HN: Security Watch – alerts when a new vulnerability affects your stack",
+      "subreddit": "show-hn",
+      "author": "VDudaG-A",
+      "score": 3,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50594649",
+      "url": "https://github.com/ShieldaAI/security-watch",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795303454,
+      "created_at": "2026-11-21T23:24:14+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,7 +27,7 @@
       "title": "Show HN: Hearthen, an app for building and keeping strong relationships",
       "subreddit": "show-hn",
       "author": "mamorales",
-      "score": 2,
+      "score": 3,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50594546",
       "url": "https://hearthenapp.com",
@@ -37,7 +54,7 @@
       "title": "Show HN: It's now easy to install Linux on an Android Phone – Android2linux",
       "subreddit": "show-hn",
       "author": "brazukadev",
-      "score": 4,
+      "score": 5,
       "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50593862",
       "url": "https://github.com/android2linux/android2linux",
@@ -64,7 +81,7 @@
       "title": "Show HN: Open-Source Vulnerability Scanner",
       "subreddit": "show-hn",
       "author": "ekryski",
-      "score": 5,
+      "score": 6,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50593848",
       "url": "https://waffuru.ai/products/pantry",
@@ -115,7 +132,7 @@
       "title": "Show HN: Direct weight edits turn a 0.5B model into an expert species classifier",
       "subreddit": "show-hn",
       "author": "andrewxhill",
-      "score": 4,
+      "score": 6,
       "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50590838",
       "url": "https://andrewxhill.com/frontier-model-weight-edits/",
@@ -142,8 +159,8 @@
       "title": "Show HN: Zero C# – C# without a runtime or GC",
       "subreddit": "show-hn",
       "author": "reverseblade2",
-      "score": 116,
-      "num_comments": 92,
+      "score": 151,
+      "num_comments": 104,
       "permalink": "https://news.ycombinator.com/item?id=50590279",
       "url": "https://onurgumus.github.io/zero-csharp/index.html",
       "selftext": "",
@@ -169,14 +186,6 @@
           "parent": "50590279"
         },
         {
-          "id": "50594029",
-          "author": "andix",
-          "body": "Assuming this is very similar to bflat: it's a cool idea and fun to play with, but not very useful. C# is not designed to run without a GC, existing code usually won't run, because the standard library is missing.\nJust using C, Rust, Zig, or whatever is probably nearly always the better option. Those languages are designed to work without GC and provide various well established ways to manage memory.",
-          "score": 0,
-          "time": 1795298111,
-          "parent": "50590279"
-        },
-        {
           "id": "50591360",
           "author": "YuechenLi",
           "body": "So... What does this have over using NativeAOT which already exists?\nKeep in mind a large portion of time NativeAOT is actually SLOWER than going through RyuJIT with the only definitive benefit being smaller binaries, and it's not like you can't do Span<T> and ref structs in modern C# for manual low level memory control already.\nSo my question is just... why?",
@@ -185,19 +194,19 @@
           "parent": "50590279"
         },
         {
-          "id": "50594139",
-          "author": "real_faxenoff",
-          "body": "I'm developing a small .NET utility called montab (https://github.com/faxenoff/montab (https://github.com/faxenoff/montab) - taskbar with permanent previews for Windows) and have been trying to minimize its size and CPU/GPU usage as much as possible. The result is a 0.88 Mb binary with near-zero system load.\nIt would seem that Zero C# is the ideal solution for me. But here’s what I’ve actually found out: I’d have to rewrite absolutely everything, and the lack of a garbage collector when constantly working with a bunch of WinAPI calls is a problem with no solution.\nI’ve come to realize that this might only be suitable for new applications that don’t use external components.",
+          "id": "50595956",
+          "author": "pmkary",
+          "body": "I looked for DLL support and found nothing. The standard library is also different from C#, and you have to manage memory on your own. Sadly I don't get the point. People code in C# for the .NET and its huge library, unless this is not a drop in replacement, you have to port your whole codebase; well then people will write Rust already...",
           "score": 0,
-          "time": 1795299054,
+          "time": 1795318320,
           "parent": "50590279"
         },
         {
-          "id": "50593298",
-          "author": "buybackoff",
-          "body": "For C# as is, what I really would appreciate is a frozen GC mode. Not zero GC, similar to Epsilon GC in Java. After initial state loading and forced GC, I would like to be able to apply a SustainedNoGC mode, that just does not even try to collect, no scanning, no pauses at all, it can only allocate. And notifications (an event) after some X bytes allocated, or just a reliable way to monitor the allocated size. The existing modes such as SustainedLowLatency or NoGCRegion are good but not enough. For some low latency workloads it's OK to allocate many GBs and then pause explicitly.\nRandom forced pauses are the only problem that comes from GC, otherwise it's great for throughput and just a nice feature, as a sibling comment says. No GC languages do not make code magically faster, they still have malloc/free. However, GC is surrendering control over when a program may be paused.",
+          "id": "50594029",
+          "author": "andix",
+          "body": "Assuming this is very similar to bflat: it's a cool idea and fun to play with, but not very useful. C# is not designed to run without a GC, existing code usually won't run, because the standard library is missing.\nJust using C, Rust, Zig, or whatever is probably nearly always the better option. Those languages are designed to work without GC and provide various well established ways to manage memory.",
           "score": 0,
-          "time": 1795292804,
+          "time": 1795298111,
           "parent": "50590279"
         },
         {
@@ -209,6 +218,14 @@
           "parent": "50590279"
         },
         {
+          "id": "50593298",
+          "author": "buybackoff",
+          "body": "For C# as is, what I really would appreciate is a frozen GC mode. Not zero GC, similar to Epsilon GC in Java. After initial state loading and forced GC, I would like to be able to apply a SustainedNoGC mode, that just does not even try to collect, no scanning, no pauses at all, it can only allocate. And notifications (an event) after some X bytes allocated, or just a reliable way to monitor the allocated size. The existing modes such as SustainedLowLatency or NoGCRegion are good but not enough. For some low latency workloads it's OK to allocate many GBs and then pause explicitly.\nRandom forced pauses are the only problem that comes from GC, otherwise it's great for throughput and just a nice feature, as a sibling comment says. No GC languages do not make code magically faster, they still have malloc/free. However, GC is surrendering control over when a program may be paused.",
+          "score": 0,
+          "time": 1795292804,
+          "parent": "50590279"
+        },
+        {
           "id": "50591690",
           "author": "Dwedit",
           "body": "You really don't want to use C# with the \"Bflat/Zero\" runtime library. Even something very basic like strings is unsupported. It becomes C code with funny syntax that doesn't align well with the language.\nI have not yet tested out Beef, but it seems to be more in line with what you'd want from a native C#-like language.",
@@ -217,11 +234,11 @@
           "parent": "50590279"
         },
         {
-          "id": "50593209",
-          "author": "SuperV1234",
-          "body": "Cool project, I don't understand all the hate. This is great for gamedev and similar domains where latency matters",
+          "id": "50594139",
+          "author": "real_faxenoff",
+          "body": "I'm developing a small .NET utility called montab (https://github.com/faxenoff/montab (https://github.com/faxenoff/montab) - taskbar with permanent previews for Windows) and have been trying to minimize its size and CPU/GPU usage as much as possible. The result is a 0.88 Mb binary with near-zero system load.\nIt would seem that Zero C# is the ideal solution for me. But here’s what I’ve actually found out: I’d have to rewrite absolutely everything, and the lack of a garbage collector when constantly working with a bunch of WinAPI calls is a problem with no solution.\nI’ve come to realize that this might only be suitable for new applications that don’t use external components.",
           "score": 0,
-          "time": 1795292155,
+          "time": 1795299054,
           "parent": "50590279"
         },
         {
@@ -241,11 +258,11 @@
           "parent": "50590279"
         },
         {
-          "id": "50591519",
-          "author": "Pannoniae",
-          "body": "This thread feels like a bit of the old Dropbox thread ;)\n\"what is this useful for\" - You want to write native code without a runtime or GC but you also don't want to deal with C++ with its arcane rules, edge cases, an awful dependency management story and complexity in general.\nRust is a good candidate for this as well, although it has quite a learning curve.\n\"you can already do this in standard C#\" - Yes but the ecosystem assumes GC so you need to write everything yourself. There are some low allocation APIs but definitely not for everything. The concept of \"C# but even lower level\" is something which has a place, IMO. Just like how you can technically add assembly to C#, either by linking it with nativeAOT or emitting at runtime but it's not built-in support for inline assembly, you know.",
+          "id": "50593209",
+          "author": "SuperV1234",
+          "body": "Cool project, I don't understand all the hate. This is great for gamedev and similar domains where latency matters",
           "score": 0,
-          "time": 1795282305,
+          "time": 1795292155,
           "parent": "50590279"
         }
       ]
@@ -274,7 +291,7 @@
       "title": "Show HN: agent-mcts – Monte Carlo tree search on top of Claude Code",
       "subreddit": "show-hn",
       "author": "natsu529",
-      "score": 10,
+      "score": 15,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50589235",
       "url": "https://github.com/natsu0529/agent-mcts",
@@ -291,8 +308,8 @@
       "title": "Show HN: I made a PS1 style racing game",
       "subreddit": "show-hn",
       "author": "shash7",
-      "score": 21,
-      "num_comments": 8,
+      "score": 28,
+      "num_comments": 25,
       "permalink": "https://news.ycombinator.com/item?id=50589184",
       "url": "https://outpostracer.com",
       "selftext": "Hey folks, was bored with work this week so with the help of chatgpt I built a ps1 style retro racing game.\nLet me know what you think!",
@@ -302,19 +319,19 @@
       "created_at": "2026-11-21T13:47:45+00:00",
       "comments_data": [
         {
-          "id": "50594618",
-          "author": "sunbash",
-          "body": "i freaking love it. Please working on it and let us know how to know when to check back in. I play mostly on mobile myself.",
+          "id": "50595265",
+          "author": "jrrc_dev",
+          "body": "I always hated getting stuck on railings or trees in racing games, so being able to bulldoze through objects is a nice touch",
           "score": 0,
-          "time": 1795303150,
+          "time": 1795310042,
           "parent": "50589184"
         },
         {
-          "id": "50593811",
-          "author": "opan",
-          "body": "Very slow to load in on mobile, but then runs okay once it loads in. Surprisingly decent touchscreen controls also. Is this vibecoded? Is it free (as in freedom) software? How long have you been working on it?",
+          "id": "50590773",
+          "author": "tsak",
+          "body": "I like the look! The leaves on the road and the trees that fall when you hit it with your car are a nice touch.",
           "score": 0,
-          "time": 1795296462,
+          "time": 1795278288,
           "parent": "50589184"
         },
         {
@@ -326,11 +343,51 @@
           "parent": "50589184"
         },
         {
-          "id": "50590773",
-          "author": "tsak",
-          "body": "I like the look! The leaves on the road and the trees that fall when you hit it with your car are a nice touch.",
+          "id": "50595146",
+          "author": "theturtletalks",
+          "body": "Great game! Few things. Brake should be named reverse. On mobile, tapping the button multiple times rapidly makes the whole game zoom in due to iOS behavior. Double clicking doesn’t zoom back out.",
           "score": 0,
-          "time": 1795278288,
+          "time": 1795308814,
+          "parent": "50589184"
+        },
+        {
+          "id": "50595670",
+          "author": "km3k",
+          "body": "To really get the PS1 feel, it needs an option for shorter draw distances.",
+          "score": 0,
+          "time": 1795314981,
+          "parent": "50589184"
+        },
+        {
+          "id": "50593811",
+          "author": "opan",
+          "body": "Very slow to load in on mobile, but then runs okay once it loads in. Surprisingly decent touchscreen controls also. Is this vibecoded? Is it free (as in freedom) software? How long have you been working on it?",
+          "score": 0,
+          "time": 1795296462,
+          "parent": "50589184"
+        },
+        {
+          "id": "50595550",
+          "author": "dongjoo",
+          "body": "This is really cool! How long did you take to build this great game?",
+          "score": 0,
+          "time": 1795313617,
+          "parent": "50589184"
+        },
+        {
+          "id": "50595244",
+          "author": "deterministic",
+          "body": "Love it! Built with AI I assume? How was your approach? Plan first then implement or step by step prompting? How did you generate the models?",
+          "score": 0,
+          "time": 1795309832,
+          "parent": "50589184"
+        },
+        {
+          "id": "50594618",
+          "author": "sunbash",
+          "body": "i freaking love it. Please working on it and let us know how to know when to check back in. I play mostly on mobile myself.",
+          "score": 0,
+          "time": 1795303150,
           "parent": "50589184"
         },
         {

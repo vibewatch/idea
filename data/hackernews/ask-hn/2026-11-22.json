@@ -1,0 +1,58 @@
+{
+  "source": "hackernews",
+  "stream": "ask-hn",
+  "last_fetched": "2026-11-22T07:12:27.139389+00:00",
+  "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50595097",
+      "title": "Open-Source FPGA The \"startup idea\" to \"go big fast\"",
+      "subreddit": "ask-hn",
+      "author": "daly",
+      "score": 2,
+      "num_comments": 10,
+      "permalink": "https://news.ycombinator.com/item?id=50595097",
+      "url": "https://news.ycombinator.com/item?id=50595097",
+      "selftext": "FPGAs are general purpose and can be made to do anything.\nThey are basically a function of the number of repeated elements.\nThey are \"commodity items\" except for one fact.\nThe current FPGA manufacturers won't disclose the details of\nthe design internals to \"protect their intellectual property\".\nOnly small FPGAs have been reverse engineered and there\nare some high-quality tools that have been developed. Their\nlimitation is information.\nBecause of high costs set by the big players the ability to build\ntruly complex FPGA designs (e.g. an NVIDIA competitor or an\nARM competitor or a high-function inference chip) is \"closed\nsource information\" limited.\nBut by design FPGAs are basicaly simple repeated elements\nthat can be scaled to any size. That means that a new open\nsourced chip could be a range from really tiny to enormous\nwith cost purely a function of chip die area. This makes it a\npure commodity play.\nSome \"bright spot\" student wanting to start a company could\nget funded to create a new FPGA design (e.g. since wires take\nup most of the area figure out how to put the wires \"under the\nlogic\" in a multi-layer design). Extend existing open-source\nsoftware tools chains for the new chip design. Open-source the\ndesign and license it which is what made ARM so big.\nWithin hours I'm certain the FPGA tools would be updated to\nfull support of the new chip, opening the market to real,\nhigh powered chips. Or create your own open-source tools.\nBuild the company around selling expertise like consulting on\ncustom board-level designs using the new chips.\nTurning highly capable FPGAs into volume chips is a market\nnobody has addressed. What it needs is someone who wants\nto be a startup CEO and someone who has capital to create\nthe first design (probably a few million dollars).\nOf course if you have access to REAL capital then buy Xilinx\nor Altera and open source their design and tool chain. The\ncompany that doesn't get bought would disappear overnight.\n(Somebody call Musk with the idea :-) )\nIf you know someone who wants to \"go big fast\" either path\nis a major opportunity.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1795308119,
+      "created_at": "2026-11-22T00:41:59+00:00",
+      "comments_data": [
+        {
+          "id": "50595846",
+          "author": "dlcarrier",
+          "body": "Semiconductors themselves are really difficult to scale down to smaller feature sizes, but fabs do often provide standard cells that simplify the process, at a cost of worse flexibility and performance. Even with standard cells, scaling up the number of LUTs linearly increases the routing possibilities quadratically, so scaling is not simple. On top of that, routing gets more difficult, as speed-of-light latency adds up.\nAlso, wires do already run separate from logic, with most process nodes having at least half dozen wire layers, if not double that, all to support a single layer of transistors.\nThere are open-source FPGA designs, but they are all for very simple FPGAs, due to the difficulty of scaling.",
+          "score": 0,
+          "time": 1795317146,
+          "parent": "50595097"
+        },
+        {
+          "id": "50596048",
+          "author": "daly",
+          "body": "Correction. I used the wrong units. I stated about 7 wafers. But I fat-fingered\nthe calculation. I'm now showing about 1224 (1cm) chips giving 816 wafers. I\nstill claim that Terafab can handle that volume. TSMC numbers show that this\nwould be less than 2% of a single day run. Larger chip area would change the\nnumbers but I'm pretty sure that TSMC can currently handle the demand. Terafab\nwill likely be even better.",
+          "score": 0,
+          "time": 1795319443,
+          "parent": "50595097"
+        },
+        {
+          "id": "50596132",
+          "author": "bjourne",
+          "body": "People have been hoping for \"Open Source\" hardware for as long as they've been hoping for Open Source gaming. 30 years plus, at this point. Sorry to disappoint, but, save for a few niche areas, it won't happen.",
+          "score": 0,
+          "time": 1795320280,
+          "parent": "50595097"
+        },
+        {
+          "id": "50595149",
+          "author": "bigyabai",
+          "body": "It's a real peachy sentiment, but if FPGAs were better than CPUs/GPGPUs then we'd already be using them. In practice, creating large FPGAs is a wasteful and expensive process that cannot be scaled to a non-research volume market and compete against ASICs or even general accelerators.",
+          "score": 0,
+          "time": 1795308846,
+          "parent": "50595097"
+        }
+      ]
+    }
+  ]
+}
