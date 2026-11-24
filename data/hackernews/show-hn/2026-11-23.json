@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-24T10:12:12.147416+00:00",
+  "last_fetched": "2026-11-24T22:39:47.711133+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -529,6 +529,23 @@
     {
       "source": "hackernews",
       "stream": "show-hn",
+      "id": "50611914",
+      "title": "Show HN: I built Maeto, an SRv6 SD-WAN from scratch on Linux that you can break",
+      "subreddit": "show-hn",
+      "author": "saphalpdyl",
+      "score": 6,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50611914",
+      "url": "https://maeto.saphal.me/",
+      "selftext": "Demo: https://maeto.saphal.me/ (https://maeto.saphal.me/)\nGitHub (mirror): https://github.com/saphalpdyl/Maeto (https://github.com/saphalpdyl/Maeto)\nForgejo instance (issues & planning): https://git.saphal.me/saphalpdyl/Maeto (https://git.saphal.me/saphalpdyl/Maeto)\nSmall writeups about Maeto: https://blogs.saphal.me/tags/maeto/ (https://blogs.saphal.me/tags/maeto/)\n---\nAbout 5 months ago, I was tracking osvbng, a vBNG built on VPP. It was mentioned by folks on my previous Show HN, and I saw maintainers talk about Segment Routing support for it. Four months ago, I happened to be in a conversation about SD-WANs (Software-Defined WAN), and it got me thinking about Segment Routing again. So, I started Maeto that evening to learn about traffic engineering.\nMaeto intends to be a complete SD-WAN platform: covering everything from the customer edge all the way up to the controller. It draws inspiration from Cato Networks and Google's B4. While initially designed to be a small complete lab, it exploded in scope as things got more and more interesting. And honestly, I'm having a blast.\nI just finished implementing high availability (HA) and CE dual-homing. Locally, core detection runs at <50ms and CE (Customer Edge) detection runs at ~300ms (deliberate design since CE-PE edge over public internet). Though in the lab, you may see slightly higher numbers due to softirq saturation because of the random traffic being generated in the background.\nMostly written in Go. Frontend is Elixir Phoenix LiveView (live state is easier there), with C for FRR patches and Python for topology generation. The dashboard is laptop-sized; it's not usable on phones yet. While built with production circumstances in mind, it is far from being production-ready, and will remain a hobby project.\nI've got classes and finals coming up. So, I'm presenting this early. I hope I'm allowed to post an update on it in 5-6 months when much cooler things are in place :D\n---\nRecommended simulation steps if YOU JUST WANNA SEE IT WORK:\n- Ideally have 2 tabs of Maeto opened.\n- In one of the tabs, go to Operations > Simulator. On stories, run the \"PeSLC goes down\" story.\n- Watch the link-down detection, PLR indicators, and ping loss being <800ms.\n---\nKnown limitations:\n- It is emulated. Each node shares the same kernel performing multiple veth hops, encrypt/decrypt, encap/decap per-packet. So, the numbers are not representative and underestimate the performance if it were on dedicated hardware. Performance primarily tanks due to ksoftirq saturation.\n- No internet breakout. So, it only supports site-site connections.\n- TI-LFA is in the controller and is implemented in its most basic form (more in FAQ).\n- Only egress protection is implemented, and core P-P links are controller-protected, not local (more in FAQ).\nA few questions:\n- Maeto does color-based steering (SR policies), and polices bandwidth based on its color. Policing is harsh. It would be ideal for the CE to shape that traffic. This means the classification has to run in the CPE (it runs in PE today). It is just DSCP->color today, but in the future, we may want DPI to classify packets which are not marked. In that case, would it be reasonable to have DPI being done on the CPE which, from my understanding, are light low-compute boxes?\n- How do operators tune BFD timers on edges that run on public internet transit (CE-PE edge)? I understand that static timers would be bad when propagation delay may vary. One way I can think of is observing a baseline delay and dynamically tuning BFD based on that?\nI answer some of the questions readers may have at https://github.com/saphalpdyl/Maeto#faqs (https://github.com/saphalpdyl/Maeto#faqs) . I would appreciate comments, questions, answers, or feedback from people with operational experience or people who are just curious :)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795443511,
+      "created_at": "2026-11-23T14:18:31+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
       "id": "50611885",
       "title": "Show HN: ELBI – Give your agent an empirical memory",
       "subreddit": "show-hn",
@@ -585,6 +602,41 @@
           "score": 0,
           "time": 1795468198,
           "parent": "50609708"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50608604",
+      "title": "Show HN: KradleBench – Multi-agent AI evals in Minecraft",
+      "subreddit": "show-hn",
+      "author": "jamest",
+      "score": 12,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50608604",
+      "url": "https://www.kradle.ai?1",
+      "selftext": "Hi HN -\nThis is James and Kemal. In past lives we led Firebase and Tensorflow/JAX respectively. HN has been a particularly big part of my (James’) career and the trajectory I’ve taken would be meaningfully different without it. Thank you!\nOur team shipped a benchmark: KradleBench. We test AI in Minecraft Worlds.\n1. The worlds are multi-agent. Humans and other AIs are in there too, often pursuing their own goals. Collaboration and conflict skills fall out of this property.\n2. The world are dynamic. They constantly change, which means that agents need to react. “Capture the Flag” has a single winning condition, and many different ways to achieve it. This leads to many emergent and creative strategies.\n3. The worlds are real-time. They are not turn-based, they do not wait for AIs to finish thinking. Nature balanced speed and intelligence in humans, we can understand this in AIs too.\nUnderneath all this is Kradle, a platform to test and understand intelligence. It’s a petri dish where any intelligence type (LLM, World Model, Human) can be compared and generate useful information to improve current systems, whether it’s on capabilities or safety.\nSome findings so far:\n- A skilled human was #1, until yesterday when Astra 6.2 surpassed them. We lose badly on solo tasks and out-compete on multi-agent ones\n- Astra 6.2 iterates on its strategy 4x faster than Fable 5.2. The Claude family tends to think hard and stick with strategies. The OpenAI models tend to be more reactive and iterative, which serves them well in multi-agent, dynamic, real-time evals.\nWe’ve got videos on all the top model’s page, and we’ll be producing them when a new model launches. Sign up on the site to get them and for when the platform opens.\nThanks for reading,\nJames & Kemal",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795419544,
+      "created_at": "2026-11-23T07:39:04+00:00",
+      "comments_data": [
+        {
+          "id": "50634357",
+          "author": "codeulike",
+          "body": "How do the models 'see' the Minecraft world? Can they see it as a data structure or do they have to parse a video representation of the world (like a human would) ?",
+          "score": 0,
+          "time": 1795552701,
+          "parent": "50608604"
+        },
+        {
+          "id": "50634286",
+          "author": "dprkh",
+          "body": "LLMs aren't fast enough to manipulate, e.g., the camera in real time, obviously. How can this work?",
+          "score": 0,
+          "time": 1795552371,
+          "parent": "50608604"
         }
       ]
     },
