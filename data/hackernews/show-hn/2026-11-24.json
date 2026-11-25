@@ -1,8 +1,59 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-24T22:39:47.711133+00:00",
+  "last_fetched": "2026-11-25T08:56:59.320798+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50636574",
+      "title": "Show HN: UFO OPTIX Scanning satellite imagery for flying craft artifacts",
+      "subreddit": "show-hn",
+      "author": "markmnl",
+      "score": 4,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50636574",
+      "url": "https://ufoptix.org",
+      "selftext": "I (well my agent swarm) created this in the last 48 hours based on method in a research paper I found (https://www.mdpi.com/2072-4292/13/15/3016 (https://www.mdpi.com/2072-4292/13/15/3016)) for detecting flying craft from OSINT Sentinel 2 satellite imagery from the European space agency.\nThere's something about the pixelated detections from images coming off the satellite.. I discussed the build in another post: https://fmsg.ai/blog/agent-swarm-ufo-optix (https://fmsg.ai/blog/agent-swarm-ufo-optix)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795564439,
+      "created_at": "2026-11-24T23:53:59+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50635912",
+      "title": "Show HN: Rhebok – free local RAG for your coding agent",
+      "subreddit": "show-hn",
+      "author": "jagma",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50635912",
+      "url": "https://github.com/Stellenbosch-Technologies/rhebok",
+      "selftext": "",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795560541,
+      "created_at": "2026-11-24T22:49:01+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50635477",
+      "title": "Show HN: Docxtract – Turn docs into clean LLM context and study guides",
+      "subreddit": "show-hn",
+      "author": "xeditai",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50635477",
+      "url": "https://github.com/raycollabs/docxtract",
+      "selftext": "docxtract is specifically engineered to produce compact, high-density, concise Markdown extracts.",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795558079,
+      "created_at": "2026-11-24T22:07:59+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -11,7 +62,7 @@
       "subreddit": "show-hn",
       "author": "cochne",
       "score": 2,
-      "num_comments": 0,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50635420",
       "url": "https://siv.nezin.net/",
       "selftext": "I love Civilization VI, and I've been playing since it came out a little over a decade ago. I decided to vibe code up a clone that can be played in the browser (currently playable up to the industrialization era)\nI initially reproduced the game mechanics through a combination of memory and online sources, but that misses a huge amount of detail. I took inspiration from another project, civvis.ai. They used actual recordings of the game to get all the mechanics right. I have been dong the same, running through AI games to gather more recordings and make the mechanics more accurate, but there is still a long way to go! (Please let me know if you find inaccuracies)\nMy ultimate goal is to have an accurate recreation of the engine for myself and other hackers to mess around with. Particularly, I've been running AI agents through the game to see how they do, and whether they could make formidable opponents.\nPlease excuse the AI art - I am not an artist. I tried iterating on it a lot, but I could not fully dispose of that tell tale AI texture.\nEnjoy~",
@@ -27,7 +78,7 @@
       "title": "Show HN: Nemos – one searchable library for links, screenshots and notes (iOS)",
       "subreddit": "show-hn",
       "author": "brainybeacon",
-      "score": 3,
+      "score": 5,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50634543",
       "url": "https://apps.apple.com/us/app/nemos-second-brain-memos/id6791134304",
@@ -44,15 +95,25 @@
       "title": "Show HN: Wakeshift – Open-Source MCP Events for Claude Code, Codex and More",
       "subreddit": "show-hn",
       "author": "ericlevine",
-      "score": 3,
-      "num_comments": 0,
+      "score": 4,
+      "num_comments": 1,
       "permalink": "https://news.ycombinator.com/item?id=50634239",
       "url": "https://github.com/wakeshift/server",
       "selftext": "tl;dr: We just open-sourced Wakeshift, which lets any MCP server serve interoperable events via MCP Events or harness-specific bridges. This allows MCP servers to push events to harnesses that don't support MCP Events today, including Claude Code, Codex and Cursor.\nHi folks! The MCP Events spec was approved and merged five days ago, allowing MCP servers to emit events directly to agent subscribers. (https://github.com/modelcontextprotocol/modelcontextprotocol... (https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3415)) This allows MCP developers to push events directly to agents for long-running tasks (e.g. CI, crawls, starting agents) or external actions (e.g. emails, human approvals, alerts).\nHowever, the catch is that support for MCP Events is very light. Claude Code and Codex don't support it at all, and most of the implementations support the draft version rather than the merged spec. Many harnesses can work around this with plugins or hooks, but every MCP server has to build it for each harness.\nWakeshift provides interoperable events to your MCP server. You call emit() and Wakeshift pushes the event to each subscribed agent in whatever format they accept: per the MCP Events final spec, an earlier draft, or through a hook / plugin where needed. If the harness requires a hook / plugin and it's not already installed, the agent will be notified and receive instructions on how to install it for the user.\nAdditionally, the MCP Events spec defines three delivery mechanisms: webhook, push (via held HTTP request) and pull (via HTTP polling). The Wakeshift SDK serves push and poll from your MCP server, so agents that can't accept inbound HTTP webhooks (e.g. most agents running on laptops) can still get events within seconds.\nSubscriptions only start when an agent calls a tool that subscribes it, and users can list or stop them anytime. Some harnesses can only be woken by putting a message into the conversation, so Wakeshift wraps the content as an external event to reduce the risk of prompt injection.\nThe repo linked has a quickstart guide to get this working locally in a few minutes. Or you can try our hosted webhook service to test it yourself without an installation. (https://try.wakeshift.ai (https://try.wakeshift.ai))\nWe'd love feedback, PRs for harnesses we don't cover, reports when it doesn't work. As you can imagine, there's a combinatorial explosion of servers, harnesses, models, OSs, etc. so we expect there to be some rough edges. Are there any MCP servers you're using that you think could benefit from having events today?",
       "is_self": false,
       "is_video": false,
       "time": 1795552068,
-      "created_at": "2026-11-24T20:27:48+00:00"
+      "created_at": "2026-11-24T20:27:48+00:00",
+      "comments_data": [
+        {
+          "id": "50638528",
+          "author": "christianbasile",
+          "body": "Great concept, looking forward to trying this out.",
+          "score": 0,
+          "time": 1795581444,
+          "parent": "50634239"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -61,8 +122,8 @@
       "title": "Show HN: Analysis of Hacker News predictions since 2008",
       "subreddit": "show-hn",
       "author": "mv4",
-      "score": 6,
-      "num_comments": 1,
+      "score": 11,
+      "num_comments": 3,
       "permalink": "https://news.ycombinator.com/item?id=50633531",
       "url": "https://hnpredictions.com/",
       "selftext": "",
@@ -72,11 +133,27 @@
       "created_at": "2026-11-24T19:46:54+00:00",
       "comments_data": [
         {
+          "id": "50637924",
+          "author": "joe-esquibel",
+          "body": "So what's your take on what categories HN can predict the best and the least? Is it mostly person dependent. Have you mined this for ppl with statistical abnormally high predictions in sub areas, suggesting a pool of true prognosticators or ppl with insider knowledge?",
+          "score": 0,
+          "time": 1795576127,
+          "parent": "50633531"
+        },
+        {
           "id": "50633565",
           "author": "mv4",
           "body": "I've always been curious about market and technology predictions so I made HN Predictions.\nBuilt in Antigravity using Gemini 4 Neon (High) orchestrator.\nHow it works: https://hnpredictions.com/about (https://hnpredictions.com/about)\nMethodology: https://hnpredictions.com/methodology (https://hnpredictions.com/methodology)\n... if you search for your HN name you will find your predictions.",
           "score": 0,
           "time": 1795549762,
+          "parent": "50633531"
+        },
+        {
+          "id": "50638413",
+          "author": "alexpadula",
+          "body": "\"Nvidia Reinstates Jensen Huang as CEO Only 11 Days After Resignation\" certain there was a comment.",
+          "score": 0,
+          "time": 1795580293,
           "parent": "50633531"
         }
       ]
@@ -88,7 +165,7 @@
       "title": "Show HN: Novel DB compression models in Libc – Dockerized NY OpenStreetMap 9:1",
       "subreddit": "show-hn",
       "author": "habeanf",
-      "score": 5,
+      "score": 6,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50633015",
       "url": "https://www.baseshift.com/blog/dc1",
@@ -122,8 +199,8 @@
       "title": "Show HN: Living Wall – a Mac wallpaper that grows around your desktop icons",
       "subreddit": "show-hn",
       "author": "alexmalakhov",
-      "score": 4,
-      "num_comments": 1,
+      "score": 5,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50632752",
       "url": "https://livingwallapp.com/hn",
       "selftext": "",
@@ -166,8 +243,8 @@
       "title": "Show HN: Mason – A lightweight Postgres read-replica, built on columnar storage",
       "subreddit": "show-hn",
       "author": "tagspace",
-      "score": 76,
-      "num_comments": 14,
+      "score": 95,
+      "num_comments": 18,
       "permalink": "https://news.ycombinator.com/item?id=50630294",
       "url": "https://masondata.ai/",
       "selftext": "Hi HN! TLDR: we’ve built an open-source drop-in replacement for a postgres read-replica, powered by duckdb’s columnar compute engine. It’s very fast. And it looks like postgres.\nSo, this started out as: let’s just connect Clickhouse to our postgres dbs and throw our analytics queries at it instead. That will speed everything up. But we quickly found that 1) Clickhouse comes with quite the learning curve (engine optimisation) to make it fast (we needed something we could easily drop in to any customer’s postgres scenario), and 2) we had underestimated how different clickhouse’s SQL syntax was to postgres. Don’t get me wrong: we love Clickhouse (it’s ridiculously fast if you know what queries to expect), it just didn’t work for our ad-hoc postgres workloads.\nSo we went searching for alternatives that were 1) more plug-and-play and 2) looked a lot more like postgres.\nWe dismissed a bunch based on desk research alone:\n- pg_mooncake (seems to have stalled since data bricks bought them)\n- pg_duckdb (seems to offer fast queries, or fresh data, but not both - we needed both)\n- materialize/risingwave/readyset (like Clickhouse, they require knowing the query shapes upfront - not ideal for ad-hoc workloads)\n- firebolt (license makes it challenging to offer to our customers)\n- redshift / alloydb / etc (we wanted something cloud-provider agnostic)\nAnd we shortlisted 3:\n- pg_clickhouse (Postgres extension that parses SQL in Postgres and pushes the work down to ClickHouse)\n- cedarDB (closed-source, Postgres-compatible analytical database)\n- duckdb (open-source, embedded columnar analytics engine with a Postgres-like SQL dialect)\nWe needed to know how they would perform on real postgres queries, so we took a backlog of 5,410 (hand-written) queries (chosen because they had been slow to execute against postgres) from 159 real postgres databases. We then generated synthetic data (dynamically using the schemas from those 159 databases) to fill 159 local databases so we could run the experiment.\nWe then spun up the 3 short-listed tools locally, and ran each of the 5,410 queries against both postgres and the 3 tools, and compared the results:\n- pg_clickhouse (matched postgres 59.4% of the time, refused 39.9% of the queries and was “wrong” 0.8% of the time).\n- cedarDB (matched postgres 88.1% of the time, refused 8% of the queries and was “wrong” 3.9% of the time).\n- duckdb (matched postgres 84.1% of the time, refused 14.3% of the queries and was “wrong” 1.6% of the time).\nMatched meant they returned exactly the same result as postgres. Refused meant they returned an error message (usually telling you some syntax isn’t recognised). And “wrong” meant they didn’t return the same results as postgres. I appreciate that arguably postgres may be the one that is wrong in some cases - but for our use case, we considered postgres the golden source of truth.\nSo, both duckdb and cedardb performed pretty well (correctly handled more than 80% of the postgres queries we threw at it), out-of-the box. But we really still wanted to try and cover that long-tail.\nWe chose duckdb as its open-source license would allow us to easily work on the long tail to get the postgres SQL parity we wanted.\nSo, Mason (linked above), is what we built, powered by duckdb, which now matches postgres on 96% of our 5,410 queries, plus hundreds of other queries that we added, testing it with Metabase, Grafana, Superset, DBeaver and Trevor.io. For the remaining 4%, it errors with a nice clear message telling you how to rewrite your SQL.\nWe’d love your feedback on what we’ve built. Useful? How can we make it better?",
@@ -177,11 +254,11 @@
       "created_at": "2026-11-24T16:11:52+00:00",
       "comments_data": [
         {
-          "id": "50633905",
-          "author": "aleda145",
-          "body": "Cool! DuckDB is awesome\nI'm very curious with the use case, why do you need to run analytical queries against the postgres read replica? Why not read the WAL and CDC them elsewhere? Especially if it's adhoc then the (short) delay wouldn't be noticeable.\nAlso did you tried transpiling SQL if you wanted to match the postgres dialect? I've had great success with duckdb <=> postgres using https://github.com/tobilg/polyglot (https://github.com/tobilg/polyglot)",
+          "id": "50639510",
+          "author": "kfk",
+          "body": "Have you considered other data sources? The idea is solid, I design Enterprise data warehouses for a living and with AI I have been wondering what's going to be next. Redshift/Snowflake, etc., have their pros but they don't come with predefined ingestion and access control.\nAnother question, how do you scale duckdb to multi user reads? I guess for you it's 1 file behind a node service? A typical data warehouse could have 1,000 concurrent users on a Monday morning.\nAnd any thoughts on temporary access tokens for odbc? A la https://medium.com/@shashwat_singh/hashicorp-vaults-dynamic-... (https://medium.com/@shashwat_singh/hashicorp-vaults-dynamic-secrets-for-temporary-access-6e2391bd8ef9). This is because I would rather not give any real password to AI agents.",
           "score": 0,
-          "time": 1795550804,
+          "time": 1795591134,
           "parent": "50630294"
         },
         {
@@ -193,11 +270,19 @@
           "parent": "50630294"
         },
         {
-          "id": "50635378",
-          "author": "alex_hirner",
-          "body": "Can replicated tables live on s3/parquet only, as in did you try so?",
+          "id": "50633905",
+          "author": "aleda145",
+          "body": "Cool! DuckDB is awesome\nI'm very curious with the use case, why do you need to run analytical queries against the postgres read replica? Why not read the WAL and CDC them elsewhere? Especially if it's adhoc then the (short) delay wouldn't be noticeable.\nAlso did you tried transpiling SQL if you wanted to match the postgres dialect? I've had great success with duckdb <=> postgres using https://github.com/tobilg/polyglot (https://github.com/tobilg/polyglot)",
           "score": 0,
-          "time": 1795557573,
+          "time": 1795550804,
+          "parent": "50630294"
+        },
+        {
+          "id": "50639297",
+          "author": "aiexplore369",
+          "body": "this seems to be promising with clickhouse great work !keep t rolling !",
+          "score": 0,
+          "time": 1795589207,
           "parent": "50630294"
         },
         {
@@ -206,6 +291,22 @@
           "body": "Outside of the dashboard and team features stuff what does this add over just DuckDB + ADBC connected to postgres?\nIs pglite and the node stuff even necessary here?",
           "score": 0,
           "time": 1795547950,
+          "parent": "50630294"
+        },
+        {
+          "id": "50636070",
+          "author": "pratikgcet1985",
+          "body": "This is really good! We are an avid user of ClickHouse and this is awesome work.",
+          "score": 0,
+          "time": 1795561397,
+          "parent": "50630294"
+        },
+        {
+          "id": "50635378",
+          "author": "alex_hirner",
+          "body": "Can replicated tables live on s3/parquet only, as in did you try so?",
+          "score": 0,
+          "time": 1795557573,
           "parent": "50630294"
         },
         {
@@ -233,8 +334,8 @@
       "title": "Show HN: Brickie – Deploy sandboxes in your own AWS account",
       "subreddit": "show-hn",
       "author": "abelanger",
-      "score": 20,
-      "num_comments": 2,
+      "score": 31,
+      "num_comments": 7,
       "permalink": "https://news.ycombinator.com/item?id=50629936",
       "url": "https://github.com/hatchet-dev/brickie",
       "selftext": "Hey HN, this is Alexander from Hatchet (https://github.com/hatchet-dev/hatchet (https://github.com/hatchet-dev/hatchet)). We’re releasing a new open-source project today called Brickie. Brickie lets you run sandboxes in your own cloud account, primarily targeting EKS on AWS.\nSandboxes are an incredibly useful primitive for agentic applications. They serve two main functions: (1) a way for the agent to safely execute untrusted code, and (2) a durable filesystem for agents to preserve their state via snapshots.\nWe decided to start building this after we started on a package called `@hatchet-dev/sandbox` to integrate more directly with various sandbox providers, like E2B, Daytona, Archil, and Modal. We discovered that a lot of users had a requirement to self-host their sandbox infra for part of (or all of) their stack, due to a self-host requirement for enterprises. We searched around for the easiest way for users to self-host a sandbox stack and agent-sandbox (https://agent-sandbox.sigs.k8s.io (https://agent-sandbox.sigs.k8s.io)) was the closest thing to what we had in mind: it’s a kubernetes-sigs project implementing a Kubernetes operator which spawns sandboxes as pods on supported isolation layers like Firecracker, gVisor, and Kata Containers. We learned that many platform teams were adopting this because it's a standard k8s-based deployment model and is pretty easy to customize the isolation layer, network config, etc.\nHowever, it was missing some necessary features. brickie builds on top of the agent-sandbox project and extends it to support proper sandbox (filesystem-based) snapshots, fork, pause, and resume, all while bundling a proper orchestration and observability layer via Hatchet.\nZooming out a bit, Hatchet is an orchestration engine which supports durable execution (https://hatchet.run/blog/durable-execution (https://hatchet.run/blog/durable-execution)). Throughout 2026, we saw high adoption from users building agents using durable workflows as the statefulness layer and execution model. But as sandboxes became more popular, something didn’t sit right with us. Sandboxes _also_ provide a durability layer, but at the filesystem level, and it became important to disambiguate what we call session state from filesystem state. I wrote a lot more about this here: https://hatchet.run/blog/agent-statefulness (https://hatchet.run/blog/agent-statefulness).\nThe problem with having state in multiple places is that it needs coordination, which adds complexity to your application. This was part of the motivation behind `@hatchet-dev/sandbox`: we wanted to provide an easy way to take coordinated snapshots of agent state, even when using an external sandbox provider.\nSo when we started looking at self-hosted sandbox options, it was critical that this architecture was supported well. We decided to support this in brickie using a pretty simple snapshotting mechanism which tars and stores snapshots in an object store (S3). This is something we’re actively working to improve and make more performant.\nBrickie is early and in beta, we're looking for testers, contributors, and feedback on the deployment model. Thanks in advance!",
@@ -244,6 +345,22 @@
       "created_at": "2026-11-24T15:48:34+00:00",
       "comments_data": [
         {
+          "id": "50635663",
+          "author": "christianbasile",
+          "body": "this is a very interresting concept; the first time i am reading about snapshots and, in brickie's case, persistent filesystem snapshots - very cool.",
+          "score": 0,
+          "time": 1795559048,
+          "parent": "50629936"
+        },
+        {
+          "id": "50637990",
+          "author": "vivzkestrel",
+          "body": "- what is the difference between e2b, daytona, modal, firecracker vm, docker and your sandbox\n- i want to run untrusted code inside ec2 submitted by users\n- what are my options?",
+          "score": 0,
+          "time": 1795576699,
+          "parent": "50629936"
+        },
+        {
           "id": "50635765",
           "author": "d1algo12",
           "body": "is this useful to run ai agents in their own sandbox?",
@@ -252,11 +369,11 @@
           "parent": "50629936"
         },
         {
-          "id": "50635663",
-          "author": "christianbasile",
-          "body": "this is a very interresting concept; the first time i am reading about snapshots and, in brickie's case, persistent filesystem snapshots - very cool.",
+          "id": "50636088",
+          "author": "pratikgcet1985",
+          "body": "Very interesting!",
           "score": 0,
-          "time": 1795559048,
+          "time": 1795561469,
           "parent": "50629936"
         }
       ]
