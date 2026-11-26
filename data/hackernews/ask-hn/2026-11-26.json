@@ -1,0 +1,217 @@
+{
+  "source": "hackernews",
+  "stream": "ask-hn",
+  "last_fetched": "2026-11-26T08:43:08.951437+00:00",
+  "posts": [
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50650947",
+      "title": "Ask HN: Security for the Small Developer",
+      "subreddit": "ask-hn",
+      "author": "dvduval",
+      "score": 5,
+      "num_comments": 2,
+      "permalink": "https://news.ycombinator.com/item?id=50650947",
+      "url": "https://news.ycombinator.com/item?id=50650947",
+      "selftext": "I’m overloaded with the amount of information about what I could be doing to secure myself and with how terrible things are about to become, or so they say. Do I need to spend hours and hours securing myself or are there some basic things I could do that would be good enough?\nAnd I’m talking about things like securing my laptop and my Web server and my Gmail and my passwords. Do I need a physical key? What if I’m a kind of person who loses things like that? Do I need tailscale?\nIs there a simple pattern I can follow here?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1795662590,
+      "created_at": "2026-11-26T03:09:50+00:00",
+      "comments_data": [
+        {
+          "id": "50651872",
+          "author": "rramadass",
+          "body": "NIST has something just for you - https://news.ycombinator.com/item?id=50349123 (https://news.ycombinator.com/item?id=50349123)\nStart with the above and branch out.\n> Do I need a physical key? What if I’m a kind of person who loses things like that?\nFor this, use the most simple commonsense thing possible. Have a small diary/notebook (label it \"Top Secret\" :-) and write down every account id/email id/bank account/etc. and their corresponding passwords, pins, phone unlock security patterns etc. Keep this safe only at home and never take it anywhere else. When you update something in the real world, update the status in the notebook immediately by striking out the old line and adding a new line with updated date. It should always reflect the current status with its history.",
+          "score": 0,
+          "time": 1795671516,
+          "parent": "50650947"
+        },
+        {
+          "id": "50651100",
+          "author": "potatso",
+          "body": "1. always uses two-step factory Verification for Gmail and Google.\n2. uses rather linux on luks or bitlocker on windows than clear",
+          "score": 0,
+          "time": 1795663992,
+          "parent": "50650947"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50650310",
+      "title": "Shirudo doesn't work, this does",
+      "subreddit": "ask-hn",
+      "author": "ok_major_9889",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50650310",
+      "url": "https://news.ycombinator.com/item?id=50650310",
+      "selftext": "Great launch....bad product? Why did they announce this CVE patch system without it being ready, at all. Borkmann made a lot of really unique(?) choices in his architecture of this programmable ebpf firewall. It feels relatively unusable today, which I guess they said as much in the docs.\nHere is a proper version of what they are trying to do. It works right now. Sits on the nic, xdp speed, and you can make the patches yourself if you want. It resets requests carrying the one base64 shape that reaches the bug.\neBPF is the right way to do this, probably the only way realistically. Unsure what Cisco and OpenAI are doing exactly, but the direction is good. Tell me I'm wrong.\nhttps://github.com/yeet-src/pfw",
+      "is_self": true,
+      "is_video": false,
+      "time": 1795657251,
+      "created_at": "2026-11-26T01:40:51+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50649864",
+      "title": "Tell HN: Lots of Ask HNs again",
+      "subreddit": "ask-hn",
+      "author": "dang",
+      "score": 249,
+      "num_comments": 91,
+      "permalink": "https://news.ycombinator.com/item?id=50649864",
+      "url": "https://news.ycombinator.com/item?id=50649864",
+      "selftext": "There have been questions about why the /ask page (https://news.ycombinator.com/ask (https://news.ycombinator.com/ask)) was running dry of Ask HNs - e.g.:\nAsk HN: Why is Ask HN only showing me 14 posts? - https://news.ycombinator.com/item?id=49984484 (https://news.ycombinator.com/item?id=49984484) - Oct 2026 (47 comments)\nAsk HN: Why is pagination gone on \"Ask HN\", and showing only 19 items? - https://news.ycombinator.com/item?id=50280719 (https://news.ycombinator.com/item?id=50280719) - Oct 2026 (3 comments)\nI believe I found the problem. The pool of stories for https://news.ycombinator.com/ask (https://news.ycombinator.com/ask) has traditionally been drawn from the ranked stories list from which we generate the frontpage. That list is restricted to the top 1500 ranked submissions, and it seems the % of submissions which are text posts (i.e. no linked URL) had declined enough to starve the Ask HN feed. The solution is to compute a separate list of ranked Ask HNs.\np.s. \"Ask HN\" is the conventional name but it means text posts. The title can also start with \"Tell HN\" or nothing in particular. They're just posts which were submitted without a URL.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1795653814,
+      "created_at": "2026-11-26T00:43:34+00:00",
+      "comments_data": [
+        {
+          "id": "50652178",
+          "author": "bloopernova",
+          "body": "I'd like a regular Show HN thread, maybe every Friday afternoon.\nSomewhere people can show all the stuff they're creating, there's loads of good stuff being enabled by LLMs. It would be cool to get feedback on them from some smart folks.\nI think perhaps it should be split in to 2 threads. One for commercial stuff, one for open source.",
+          "score": 0,
+          "time": 1795674756,
+          "parent": "50649864"
+        },
+        {
+          "id": "50649957",
+          "author": "koolba",
+          "body": "That’s pretty funny! I’ve seen optimizations like this for reporting systems where rather than taking the top N item matching filter X, they cheat by taking the top M (where M > N) items and then filter it client side to N items matching filter X.\nAs long as the results are enough to populate the page you don’t notice the difference and it’s usually faster as you reuse the prior ranking.\nBut if not, you get this exact situation.",
+          "score": 0,
+          "time": 1795654505,
+          "parent": "50649864"
+        },
+        {
+          "id": "50650142",
+          "author": "LukeShu",
+          "body": "On the topic of HN bugs:\nWhen you click \"hide\" on a post on the homepage, it loads a new 30th entry for the page. This works great on page 1, but on other pages it always loads entry \"30\" instead of \"60\" for page 2 or \"90\" for page 3. So if I'm on page 2 and hide 3 posts, then the bottom of the page is 58/59/60 and all 3 are duplicates of what should be 30 on page 1.",
+          "score": 0,
+          "time": 1795655853,
+          "parent": "50649864"
+        },
+        {
+          "id": "50650386",
+          "author": "zahlman",
+          "body": "Thanks for the insight into how the system works. This level of communication is one of the best things about HN.",
+          "score": 0,
+          "time": 1795657826,
+          "parent": "50649864"
+        },
+        {
+          "id": "50649964",
+          "author": "minimaxir",
+          "body": "While we're on the subject of feed curation...\nThere appears to be a new behavior for Show HNs where they are often both [flagged] [dead] immediately after posting (e.g. it shows 0 minutes posted; too fast for humans to naturally flag it)\nIs this behavior expected?",
+          "score": 0,
+          "time": 1795654547,
+          "parent": "50649864"
+        },
+        {
+          "id": "50650003",
+          "author": "eterm",
+          "body": "While we're on the topic of the \"meta\" pages, could we please get /active or similar, which would be /newest but filtered for submissions that have had at least one upvote or comment?\nThe downside I suppose is that it might diminish further the chance of anyone reading /newest, but during most times /newest is already just too much, and I've considered writing my own client to filter for \"active\" stories, but I'd rather not have to.",
+          "score": 0,
+          "time": 1795654874,
+          "parent": "50649864"
+        },
+        {
+          "id": "50650406",
+          "author": "seizethecheese",
+          "body": "Interesting. The root cause here is what you’d expect if LLMs are a boost to linked submissions more than text based ones.\nThis doesn’t have to be nefarious, I myself am writing a lot more human written blogs than I would otherwise due to the speed I can do interesting analysis. Many other interesting posts here are thoughtfully created projects using coding agents.",
+          "score": 0,
+          "time": 1795657954,
+          "parent": "50649864"
+        },
+        {
+          "id": "50652505",
+          "author": "Vivek-KY",
+          "body": "few navigation enhancement can be done.",
+          "score": 0,
+          "time": 1795678129,
+          "parent": "50649864"
+        },
+        {
+          "id": "50650075",
+          "author": "vemv",
+          "body": "Very tangential, but kindly allow me to highlight a frustrating issue: collapsed comments only remain collapsed for a about two weeks.\nIf instead they remained collapsed for one month, then I could reliably use them for the monthly whoishiring thread without my precious collapsing work going to waste.\n(I had emailed about this issue, with no luck)",
+          "score": 0,
+          "time": 1795655459,
+          "parent": "50649864"
+        },
+        {
+          "id": "50652800",
+          "author": "jgord",
+          "body": "Ask HN : can we please have simple tag search for cofounder matching ?",
+          "score": 0,
+          "time": 1795680500,
+          "parent": "50649864"
+        },
+        {
+          "id": "50650001",
+          "author": "toomuchtodo",
+          "body": "Thank you!",
+          "score": 0,
+          "time": 1795654872,
+          "parent": "50649864"
+        },
+        {
+          "id": "50650918",
+          "author": "vivzkestrel",
+          "body": "why doesnt HN implement a tagging system? like add tags like opinion, ai, gpt, llm, php, java, node, ruby, programming. some tags are more generic and some are more specific and every post has a combination of generic and specific tags",
+          "score": 0,
+          "time": 1795662370,
+          "parent": "50649864"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50649707",
+      "title": "Ask HN: Did Aaron Swartz make modern AI possible?",
+      "subreddit": "ask-hn",
+      "author": "amichail",
+      "score": 2,
+      "num_comments": 3,
+      "permalink": "https://news.ycombinator.com/item?id=50649707",
+      "url": "https://news.ycombinator.com/item?id=50649707",
+      "selftext": "Did the backlash against Aaron Swartz's prosecution following his death reduce the appetite for criminal prosecution in cases involving unauthorized copying of digital information?\nIf so, did this make AI companies more willing to take the legal risk of acquiring copyrighted material without permission for training purposes?",
+      "is_self": true,
+      "is_video": false,
+      "time": 1795652850,
+      "created_at": "2026-11-26T00:27:30+00:00",
+      "comments_data": [
+        {
+          "id": "50649866",
+          "author": "bigyabai",
+          "body": "No. The DOJ maintained the stance that they acted correctly and (AFAIK) there is no legislature that he influenced that significantly steered IP law.",
+          "score": 0,
+          "time": 1795653825,
+          "parent": "50649707"
+        },
+        {
+          "id": "50649937",
+          "author": "pcdoodle1",
+          "body": "I believe Arron's beef was with industry keeping taxpayer funded research and legal case law behind paywalls. Not an expert in the subject but \"The internets own boy\" on youtube has some good info in it.",
+          "score": 0,
+          "time": 1795654332,
+          "parent": "50649707"
+        },
+        {
+          "id": "50650467",
+          "author": "moishe_syzslak",
+          "body": "Sheesh, the leaps people will make to burnish the legacy of this guy.",
+          "score": 0,
+          "time": 1795658446,
+          "parent": "50649707"
+        }
+      ]
+    }
+  ]
+}
