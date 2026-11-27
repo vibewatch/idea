@@ -1,7 +1,7 @@
 {
   "source": "hackernews",
   "stream": "ask-hn",
-  "last_fetched": "2026-11-27T08:54:13.883959+00:00",
+  "last_fetched": "2026-11-27T21:30:33.067361+00:00",
   "posts": [
     {
       "source": "hackernews",
@@ -11,7 +11,7 @@
       "subreddit": "ask-hn",
       "author": "sandeepkd",
       "score": 2,
-      "num_comments": 1,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50663566",
       "url": "https://news.ycombinator.com/item?id=50663566",
       "selftext": "Infrastructure has been hacked way too many times and some how the Uno Reverse solution was to put onus on users to choose a more complex password that the user would not have used anywhere else in the past (hence password managers came to existence). Then some services added/mandated the support for requiring one additional authentication method, hence the term 2FA.\nAs a user do you feel comfortable with that level of security or would you rather want to choose the number of authentication methods for your account based on the sensitivity of the service? In other words is 2FA good enough or would you prefer to have more.",
@@ -20,6 +20,14 @@
       "time": 1795761571,
       "created_at": "2026-11-27T06:39:31+00:00",
       "comments_data": [
+        {
+          "id": "50665567",
+          "author": "cucho",
+          "body": "The weak link is how the service handles account recovery (when you don't have your password, 2FA device, or recovery codes). It's usually a very manual process where a human checks photos of your ID or passport, which are trivially forgeable.\nFor some services, I'd like the option to say \"never recover this account.\"",
+          "score": 0,
+          "time": 1795778440,
+          "parent": "50663566"
+        },
         {
           "id": "50663898",
           "author": "wiml",
@@ -54,6 +62,81 @@
           "score": 0,
           "time": 1795760212,
           "parent": "50663306"
+        }
+      ]
+    },
+    {
+      "source": "hackernews",
+      "stream": "ask-hn",
+      "id": "50662399",
+      "title": "Ask HN: Why can AI prove Riemann but not solve cust svc problems?",
+      "subreddit": "ask-hn",
+      "author": "louiereederson",
+      "score": 2,
+      "num_comments": 7,
+      "permalink": "https://news.ycombinator.com/item?id=50662399",
+      "url": "https://news.ycombinator.com/item?id=50662399",
+      "selftext": "I’m genuinely curious on perspectives here. My hunch is some of the answers might imply the existential risk to humanity is not quite what it seems.\nMy hypothesis is that you need both verifiability and a domain-native semantic model/self-contained symbolic universe. Those conditions don’t hold for a lot of human activity. I think the corollary to this hypothesis is whether semantic model construction itself is verifiable, in which many more domains will start to look like coding and math.",
+      "is_self": true,
+      "is_video": false,
+      "time": 1795749846,
+      "created_at": "2026-11-27T03:24:06+00:00",
+      "comments_data": [
+        {
+          "id": "50662480",
+          "author": "muqsitnawaz",
+          "body": "Problem space being well defined and verifiable vs unstructured. Math satisfied both. You can test hypothesis. You can address things easily. And cost of failure when solving math problems is almost zero.\nNone of that is true in customer service. They are unstructured and almost unique for each company. Worse, the processes and responses are never well documented. And if you give a wrong answer, you can lose a customer or worse get sued, so stakes are different too\nWith that said, agents will become more useful at customer service as companies organize their knowledge bases, keep them live, and give agents the right tools to resolve the customer issues",
+          "score": 0,
+          "time": 1795750589,
+          "parent": "50662399"
+        },
+        {
+          "id": "50668354",
+          "author": "uticus",
+          "body": ">My hypothesis is that you need both verifiability and a domain-native semantic model/self-contained symbolic universe.\nI agree.\nTry to create a rubric capable of describing the entire domain of customer service problems.\nMath as a rubric is very good at describing a domain of problems that includes Riemann. It is not great at the domain of problems that includes such things as \"I just provided the call center with incorrect information, but even I don't yet realize it is incorrect.\"\nSo, to answer your question, AI actually has a simpler rubric to work with in the math realm. No double AI is getting better at incorporating a huge amount of variability. But when you ask which is more difficult, Riemann or customer service... I would simply ask you to note that customer service problems have been around much longer than Riemann!",
+          "score": 0,
+          "time": 1795795170,
+          "parent": "50662399"
+        },
+        {
+          "id": "50670051",
+          "author": "gus_massa",
+          "body": "Note that many of the recent big proof are very expensive. They burned like $15 millions for Navier-Stokes, and an undisclosed amount for Riemann (I suspect less, but who knows.).\nCustomer service is usually outsourced to the lowest possible cost.",
+          "score": 0,
+          "time": 1795803904,
+          "parent": "50662399"
+        },
+        {
+          "id": "50662451",
+          "author": "nevir",
+          "body": "I think it's about autonomy (of the agents to keep working at the problem without needing external inputs) and level of investment (is it worth burning a crazy amount of $$ on dead end / incremental attempts before landing on success?)",
+          "score": 0,
+          "time": 1795750283,
+          "parent": "50662399"
+        },
+        {
+          "id": "50662597",
+          "author": "dabinat",
+          "body": "AI will never be good at customer service because it requires reading a person and knowing when to bend the rules to smooth things over. AI is too rigid at rule-following.\nBut companies like it because it’s cheap and they can create a labyrinth for customers to navigate when they need support in the hope that they just give up in frustration and don’t ask for a refund.",
+          "score": 0,
+          "time": 1795751670,
+          "parent": "50662399"
+        },
+        {
+          "id": "50662456",
+          "author": "tobinfekkes",
+          "body": "Some solutions are deterministic, some are not. Deterministic solutions are brute forceable, if you throw enough compute at them. Human problems are often nuanced in non-deterministic ways, and involve our require a lot of out-of-band context.",
+          "score": 0,
+          "time": 1795750339,
+          "parent": "50662399"
+        },
+        {
+          "id": "50662666",
+          "author": "apothegm",
+          "body": "1. LLMs are really bad at handling edge cases and even worse at corner cases. The more not-the-most-common-case variables at play, the worse an agent is at being able to even consider, let alone solve the problem.\n2. This problem is worse for less powerful models. Nobody is throwing Fable at customer service - it’s not cost effective. Customer service bots use the least powerful models available.\n3. Giving an agent access to solve a problem more complex than “you didn’t read the knowledge base” means giving it access to do things you don’t want an agent to do, amounting to giving away money, free product, information they shouldn’t release, and such. And it will do them, whether accidentally or because someone prompt hacked it. Because LLMs aren’t reliable.\nThus customer service bots are rightly restricted to being essentially natural language search interfaces to knowledge bases, and an infuriatingly useless layer to have to force one’s way past for [rant redacted]…",
+          "score": 0,
+          "time": 1795752289,
+          "parent": "50662399"
         }
       ]
     }
