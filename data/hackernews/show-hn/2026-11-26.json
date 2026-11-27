@@ -1,8 +1,25 @@
 {
   "source": "hackernews",
   "stream": "show-hn",
-  "last_fetched": "2026-11-26T21:47:40.097120+00:00",
+  "last_fetched": "2026-11-27T08:54:07.677756+00:00",
   "posts": [
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50659956",
+      "title": "Show HN: Dart-TS Bridge",
+      "subreddit": "show-hn",
+      "author": "rearview",
+      "score": 2,
+      "num_comments": 0,
+      "permalink": "https://news.ycombinator.com/item?id=50659956",
+      "url": "https://github.com/AdityaJandu/rpc-dart",
+      "selftext": "Working with Dart for years now and same goes for Node.JS.\nWhile we can use tRPC or oRPC to manage type-safe communication between front-end and backend in web but if you go to mobile with Flutter all that goes to waste, those carefully built routers, procedures and middleware everything.\nHere's a thing that could help tho :)",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795728103,
+      "created_at": "2026-11-26T21:21:43+00:00"
+    },
     {
       "source": "hackernews",
       "stream": "show-hn",
@@ -10,15 +27,25 @@
       "title": "Show HN: Single Calendar – Sync multiple Google calendars",
       "subreddit": "show-hn",
       "author": "tsergiu",
-      "score": 4,
-      "num_comments": 0,
+      "score": 5,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50659618",
       "url": "https://singlecalendar.com",
       "selftext": "",
       "is_self": false,
       "is_video": false,
       "time": 1795726053,
-      "created_at": "2026-11-26T20:47:33+00:00"
+      "created_at": "2026-11-26T20:47:33+00:00",
+      "comments_data": [
+        {
+          "id": "50660966",
+          "author": "mightyham",
+          "body": "I can already share my calendar or add other people's calendars to my account. What is the advantage of this service?",
+          "score": 0,
+          "time": 1795735286,
+          "parent": "50659618"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -28,7 +55,7 @@
       "subreddit": "show-hn",
       "author": "omsta",
       "score": 4,
-      "num_comments": 1,
+      "num_comments": 4,
       "permalink": "https://news.ycombinator.com/item?id=50659437",
       "url": "https://stgm.github.io/decor/",
       "selftext": "Somewhere in September I thought I'd see if I could put some funky widgets on my screen like Dashboard used to do. And here we are. I really do hope to pass the fun programming vibe on to people (like, for example, my students) who would like to create something weird and wonderful and just share it. There's some developer tooling included, too.",
@@ -44,6 +71,14 @@
           "score": 0,
           "time": 1795728864,
           "parent": "50659437"
+        },
+        {
+          "id": "50662163",
+          "author": "lola_wilkinson",
+          "body": "One stranger's first second, read on purpose (it is what I do for a living): in a laptop window the whole first screen is the stage art, the word Decor, and 'Your own creative space, hidden in plain sight.' No Mac, no widget, no download. So the first second decides art project, and the thing I would want to see, a screen full of widgets, is a full scroll away.\nYour post says the fun is making your own weird widgets with your students. The stage art promises a museum, not Dashboard. I would put the plain sentence where the tagline is and keep the art under it: 'A whole screen of widgets for your Mac. Press F12.'",
+          "score": 0,
+          "time": 1795747574,
+          "parent": "50659437"
         }
       ]
     },
@@ -54,7 +89,7 @@
       "title": "Show HN: Explore the 17M-line Lean proof of the Riemann Hypothesis",
       "subreddit": "show-hn",
       "author": "Maicon",
-      "score": 4,
+      "score": 5,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50659404",
       "url": "https://maic.me/alpoge/",
@@ -63,6 +98,33 @@
       "is_video": false,
       "time": 1795724910,
       "created_at": "2026-11-26T20:28:30+00:00"
+    },
+    {
+      "source": "hackernews",
+      "stream": "show-hn",
+      "id": "50659354",
+      "title": "Show HN: Play with VST/CLAP instruments and effects in the browser",
+      "subreddit": "show-hn",
+      "author": "mrmufungo",
+      "score": 3,
+      "num_comments": 1,
+      "permalink": "https://news.ycombinator.com/item?id=50659354",
+      "url": "https://vst.run/",
+      "selftext": "For awhile now, I thought it'd be cool to be able to try out various instrument / effect plugins in the browser without having to download them and open up a DAW. I saw this as a challenge, so I spent the last few weeks working on a demo app.\nOne thing I wanted to avoid was making this obscenely costly. Plugins can be CPU and memory intensive, so larger EC2 instances would be needed. However, running even one of these continuously is very expensive, let alone a fleet of them. I initially tried working with a single instance and attempting a sort of preemptive scheduling / context switching, but this quickly fell apart: the signal chain between sessions would become polluted, and it was extremely brittle.\nIt's around this time that I found that EC2 spot instances can be considerably cheaper. With aggressive session cleanup and instance lifetime limits, I could probably keep this doable.\nLimitations:\n* Max session time is an hour.\n* Only a single signal chain is supported, with an instrument being the root node and one or more effects after it. Parallel chains are technically supported by the engine, but I decided against implementing it in the browser for simplicity.\n* Plugins marked with \"demo\" are paid products with a publicly available demo\nversion. These demos will emit crackles or dropouts, so if you like the plugin, consider purchasing it from the developer.\n* Snapshots allow you to freeze your graph (plugin order, parameter values) at a specific time, and also share your snapshot with others. Currently, snapshots are stored in memory only, as I didn't want to over engineer a durable store for a demo app. Also, once your session is over, snapshots are deleted along with it.\n* Some plugins may work better than others.\nImplementation details:\n* Sessions provision EC2 spot instances, or grab hibernating instances from a pool if one is available.\n* Each EC2 instance runs a worker binary that maintains a graph of nodes, with each node being a Podman container that communicates with the worker via Unix sockets.\n* Podman images include WINE and yabridge for VST3 only plugins; container initialization time is kept low thanks to fuse-overlayfs preventing redundant copying of the WINE prefix.\n* Each container has a small VST/CLAP host that reads input via the control socket; output can be GUI frames or audio blocks.\n* Output is streamed over a WebSocket, with WebAudio for scheduling playback",
+      "is_self": false,
+      "is_video": false,
+      "time": 1795724713,
+      "created_at": "2026-11-26T20:25:13+00:00",
+      "comments_data": [
+        {
+          "id": "50659999",
+          "author": "vunderba",
+          "body": "Tried it out. Pretty neat. It took a few minutes for the EC2 spot instance to start up. I think this is going to cause a lot of people to just bounce immediately. I would have a video or some kind of demo at the beginning to show what this is about and give people something to do in the meantime.\nAlso definitely consider wiring up Web MIDI API so we can try the VSTs with midi keyboards.\nThe only other thing I’d be concerned about is licensing. I actually own copies of u-he Repro-1/5, and there may be an issue with serving it over the internet without requiring users to accept the EULA. Even for a demo, this might be against the terms. It may be worth reaching out to the company - in my experience they're pretty responsive.",
+          "score": 0,
+          "time": 1795728365,
+          "parent": "50659354"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -88,7 +150,7 @@
       "title": "Show HN: Pocket Garden – 150 plus web games in a virtual console",
       "subreddit": "show-hn",
       "author": "triptych",
-      "score": 4,
+      "score": 5,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50658574",
       "url": "https://triptych.github.io/web-games-andrew/console/",
@@ -105,8 +167,8 @@
       "title": "Show HN: Fuck_data_brokers.py",
       "subreddit": "show-hn",
       "author": "gary23w",
-      "score": 142,
-      "num_comments": 23,
+      "score": 233,
+      "num_comments": 49,
       "permalink": "https://news.ycombinator.com/item?id=50658191",
       "url": "https://github.com/gary23w/f-ck_data_brokers",
       "selftext": "",
@@ -116,14 +178,6 @@
       "created_at": "2026-11-26T18:37:21+00:00",
       "comments_data": [
         {
-          "id": "50660048",
-          "author": "mzajc",
-          "body": "The incredibly sloppy prose and code, the call for stars, and the advertisement for a paid service in the README sour what is otherwise a nice idea IMHO.",
-          "score": 0,
-          "time": 1795728790,
-          "parent": "50658191"
-        },
-        {
           "id": "50659725",
           "author": "arijun",
           "body": "> If a form demands a photo of your ID, close the tab. They sell personal data. They are not getting more of it from you.\nWhat happens then? Can’t they claim they don’t have to remove your data since you didn’t submit a form?",
@@ -132,51 +186,11 @@
           "parent": "50658191"
         },
         {
-          "id": "50659768",
-          "author": "johanneshoh",
-          "body": "That looks quite useful - Do you already have it planned to make it even more useful also for people in the EU? I got the impression its US focused.\nAlso: Do you think you can somehow add some checks if its worth sending a request to specific brokers - reason why I'm asking is that the business of these guys is in having a certain touch and I'm not totally faithful that they don't use the chance to use the information I send them to put on another list - I mean they might not know me and my data until I write them...\nAnyway - cool project and worth a star",
+          "id": "50660048",
+          "author": "mzajc",
+          "body": "The incredibly sloppy prose and code, the call for stars, and the advertisement for a paid service in the README sour what is otherwise a nice idea IMHO.",
           "score": 0,
-          "time": 1795726889,
-          "parent": "50658191"
-        },
-        {
-          "id": "50659967",
-          "author": "thanato0s",
-          "body": "That's what a call useful automation. I didn't look at it yet but i like the idea.",
-          "score": 0,
-          "time": 1795728183,
-          "parent": "50658191"
-        },
-        {
-          "id": "50660024",
-          "author": "trilogic",
-          "body": "Indeed great job, you got a star from me for the initiative. But it needs your data to ask removing data and is in python and they may ask more detailed data to delete your data that they may not have at all. It is tricky and needs a better approach but very useful for sure.\nThe brokers.json is all I need, Thanks :)",
-          "score": 0,
-          "time": 1795728643,
-          "parent": "50658191"
-        },
-        {
-          "id": "50659665",
-          "author": "joshmoody24",
-          "body": "Definitely going to use this. This is the kind of software I hope to see more of in this crazy new world we're heading into",
-          "score": 0,
-          "time": 1795726336,
-          "parent": "50658191"
-        },
-        {
-          "id": "50659693",
-          "author": "hootz",
-          "body": "Brazil has the LGPD. Maybe it could be added to the places list?\nGood job!",
-          "score": 0,
-          "time": 1795726529,
-          "parent": "50658191"
-        },
-        {
-          "id": "50659930",
-          "author": "theoutcast74",
-          "body": "You all have to stop trying to deal with daya broker removal companies that are owned by data broker companies like incogni and optery. I use www.privitly.com and they do way more than just data removal for cheaper than you think.",
-          "score": 0,
-          "time": 1795727895,
+          "time": 1795728790,
           "parent": "50658191"
         },
         {
@@ -188,19 +202,19 @@
           "parent": "50658191"
         },
         {
-          "id": "50659869",
-          "author": "hmokiguess",
-          "body": "Could someone volunteer to get one of the many breaches/leaks of emails out there, which likely includes all of us, and just spam this script on everyone's behalf?",
+          "id": "50659967",
+          "author": "thanato0s",
+          "body": "That's what a call useful automation. I didn't look at it yet but i like the idea.",
           "score": 0,
-          "time": 1795727416,
+          "time": 1795728183,
           "parent": "50658191"
         },
         {
-          "id": "50659807",
-          "author": "cocodill",
-          "body": "> Tell it who you are. Name, email, city, and where you live.\nand the broker is like \"oh, thanks for data, man!\"",
+          "id": "50659665",
+          "author": "joshmoody24",
+          "body": "Definitely going to use this. This is the kind of software I hope to see more of in this crazy new world we're heading into",
           "score": 0,
-          "time": 1795727115,
+          "time": 1795726336,
           "parent": "50658191"
         },
         {
@@ -209,6 +223,54 @@
           "body": "Thank you. Was paying mozilla for this service for several identities until google decided biting the hand in that way was not acceptable. Spent some time digging into the space (how hard can it be lol)- this is really nice work! Will see if I can contribute.",
           "score": 0,
           "time": 1795720795,
+          "parent": "50658191"
+        },
+        {
+          "id": "50660024",
+          "author": "trilogic",
+          "body": "Indeed great job, you got a star from me for the initiative. But it needs your data to ask removing data and is in python and they may ask more detailed data to delete your data that they may not have at all. It is tricky and needs a better approach but very useful for sure.\nThe brokers.json is all I need, Thanks :)",
+          "score": 0,
+          "time": 1795728643,
+          "parent": "50658191"
+        },
+        {
+          "id": "50661083",
+          "author": "fittingopposite",
+          "body": "Nice work, but...\nI need to provide my email address? Which one of the many I used across the web? I don't feel like providing them more fodder to crosslink my identity?! \n(Or am I misunderstanding something here?)",
+          "score": 0,
+          "time": 1795736389,
+          "parent": "50658191"
+        },
+        {
+          "id": "50659768",
+          "author": "johanneshoh",
+          "body": "That looks quite useful - Do you already have it planned to make it even more useful also for people in the EU? I got the impression its US focused.\nAlso: Do you think you can somehow add some checks if its worth sending a request to specific brokers - reason why I'm asking is that the business of these guys is in having a certain touch and I'm not totally faithful that they don't use the chance to use the information I send them to put on another list - I mean they might not know me and my data until I write them...\nAnyway - cool project and worth a star",
+          "score": 0,
+          "time": 1795726889,
+          "parent": "50658191"
+        },
+        {
+          "id": "50659693",
+          "author": "hootz",
+          "body": "Brazil has the LGPD. Maybe it could be added to the places list?\nGood job!",
+          "score": 0,
+          "time": 1795726529,
+          "parent": "50658191"
+        },
+        {
+          "id": "50661264",
+          "author": "cantalopes",
+          "body": "How are these companies legal btw?",
+          "score": 0,
+          "time": 1795738283,
+          "parent": "50658191"
+        },
+        {
+          "id": "50659930",
+          "author": "theoutcast74",
+          "body": "You all have to stop trying to deal with daya broker removal companies that are owned by data broker companies like incogni and optery. I use www.privitly.com and they do way more than just data removal for cheaper than you think.",
+          "score": 0,
+          "time": 1795727895,
           "parent": "50658191"
         }
       ]
@@ -228,7 +290,17 @@
       "is_self": false,
       "is_video": false,
       "time": 1795717241,
-      "created_at": "2026-11-26T18:20:41+00:00"
+      "created_at": "2026-11-26T18:20:41+00:00",
+      "comments_data": [
+        {
+          "id": "50659336",
+          "author": "dtdeb2",
+          "body": "I'm interested in this type of project.\nfrom the readme, I like the angle, the \"taste\" if you will. Also good that the readme is human written and the AI disclosure is clear. \n(I'm not sure that is enough for me to install this on my machine... but I find this interesting... and may try it in a vm later.)\nWe are going to see more and more of these types of projects - where someone is using AI, but they are putting some effort into it and spending a lot of tokens over a few months.\nIt feels like we need new ways to understand whether a project is worth trying out... or worth contributing to.\nMostly the questions are around future effort ; whether the creator can put in the future maintenance and development effort... or whether it is likely that a community can form around one project.\nOr perhaps projects like these should only serve the purpose of satisfying the creator, and perhaps showing others what they have done... as a form of inspiration or influence. I don't know.\nI have a few questions if you don't mind.\n1. Are you using this software yourself, daily?\n2. How do you think about maintenance and further development for this project? (seems like, with this type of project, you either have a limited scope for what functionality you want for your own use case... or ... you are opening a black hole of future development, with compatibility issues and features and niggles)",
+          "score": 0,
+          "time": 1795724629,
+          "parent": "50658013"
+        }
+      ]
     },
     {
       "source": "hackernews",
@@ -237,8 +309,8 @@
       "title": "Show HN: SimDrop – Running iOS simulators in the macOS Finder sidebar",
       "subreddit": "show-hn",
       "author": "rxliuli",
-      "score": 24,
-      "num_comments": 6,
+      "score": 45,
+      "num_comments": 10,
       "permalink": "https://news.ycombinator.com/item?id=50657070",
       "url": "https://github.com/rxliuli/sim-drop",
       "selftext": "Hi HN, I made a small macOS utility for my own iOS simulator workflow.\nI kept running into two annoyances: getting config files in and out of a simulator is clunky (digging into CoreSimulator UUID folders or running simctl), and on the iPhone Duo simulator I couldn't even drag and drop images onto the window at all.\nSimDrop puts every running iOS simulator in Finder's sidebar (under Locations) with two folders:\n- Downloads/ (Files app > On My iPhone > Downloads)\n- Photos and Videos/ (the simulator's Photos library)\nSimulators appear when they boot and disappear when they shut down. Everything is also reachable from the terminal under ~/Library/CloudStorage/SimDrop-SimDrop/.\nA couple of caveats up front:\n- Dragging moves files by default (same as iCloud Drive, because it uses File Provider on the startup volume)—hold Option to copy.\n- macOS 15+ and iOS simulators only (not physical devices).\nIt's free, open source (GPL-3.0), signed and notarized, and installable via Homebrew:\n brew install --cask rxliuli/tap/sim-drop\n\nJust sharing in case others run into the same friction—feedback or PRs welcome!",
@@ -248,11 +320,11 @@
       "created_at": "2026-11-26T16:51:38+00:00",
       "comments_data": [
         {
-          "id": "50660106",
-          "author": "saagarjha",
-          "body": "Interesting choice to use a Finder extension. Why that instead of FSKit?",
+          "id": "50658690",
+          "author": "asimovDev",
+          "body": "I recently learned that you can now use .json project files in Xcode starting with 27. Why xcodegen? Backwards compatibility with older Xcode versions?\nhttps://developer.apple.com/documentation/xcode/updating-you... (https://developer.apple.com/documentation/xcode/updating-your-xcode-project-configuration-file-format)",
           "score": 0,
-          "time": 1795729181,
+          "time": 1795721000,
           "parent": "50657070"
         },
         {
@@ -264,11 +336,27 @@
           "parent": "50657070"
         },
         {
-          "id": "50658690",
-          "author": "asimovDev",
-          "body": "I recently learned that you can now use .json project files in Xcode starting with 27. Why xcodegen? Backwards compatibility with older Xcode versions?\nhttps://developer.apple.com/documentation/xcode/updating-you... (https://developer.apple.com/documentation/xcode/updating-your-xcode-project-configuration-file-format)",
+          "id": "50662064",
+          "author": "ChrisMarshallNY",
+          "body": "That's pretty cool!\nWith simulators, I guess it really just drops them in the Xcode dev directory that holds the simulator runtime, so I guess this is really a file copy/move?\nI would like it as an easy way to browse the simulator files, sort of like iMazing.",
           "score": 0,
-          "time": 1795721000,
+          "time": 1795746379,
+          "parent": "50657070"
+        },
+        {
+          "id": "50662532",
+          "author": "tacie",
+          "body": "Does dragging a photo out of the sim also delete it there? For test fixtures I'd want copy both ways, so a toggle would be nice.",
+          "score": 0,
+          "time": 1795751054,
+          "parent": "50657070"
+        },
+        {
+          "id": "50660106",
+          "author": "saagarjha",
+          "body": "Interesting choice to use a Finder extension. Why that instead of FSKit?",
+          "score": 0,
+          "time": 1795729181,
           "parent": "50657070"
         }
       ]
@@ -280,7 +368,7 @@
       "title": "Show HN: Dev-Mem – Local-first SQLite knowledge graph for AI coding agents",
       "subreddit": "show-hn",
       "author": "HarsH_1877",
-      "score": 6,
+      "score": 8,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50657069",
       "url": "https://github.com/HarsH-1877/Dev-Mem",
@@ -297,7 +385,7 @@
       "title": "Show HN: Lazyfwd, a TUI for managing SSH port forwards",
       "subreddit": "show-hn",
       "author": "mwil1000",
-      "score": 5,
+      "score": 6,
       "num_comments": 0,
       "permalink": "https://news.ycombinator.com/item?id=50656067",
       "url": "https://github.com/glattziehen/lazyfwd",
@@ -314,8 +402,8 @@
       "title": "Show HN: Three Linux VMs in a browser tab, each running a different browser",
       "subreddit": "show-hn",
       "author": "michidk",
-      "score": 96,
-      "num_comments": 24,
+      "score": 137,
+      "num_comments": 31,
       "permalink": "https://news.ycombinator.com/item?id=50656036",
       "url": "https://michidk.github.io/sidebyside/",
       "selftext": "",
@@ -324,6 +412,14 @@
       "time": 1795705206,
       "created_at": "2026-11-26T15:00:06+00:00",
       "comments_data": [
+        {
+          "id": "50664439",
+          "author": "elpy1",
+          "body": "Nice. This is a cool project. I can see the browser signals match some of thumbprint's catalog data: https://michidk.github.io/sidebyside/?url=https%3A%2F%2Fthum... (https://michidk.github.io/sidebyside/?url=https%3A%2F%2Fthumbprint.me%2F)",
+          "score": 0,
+          "time": 1795768906,
+          "parent": "50656036"
+        },
         {
           "id": "50656719",
           "author": "hobofan",
@@ -346,6 +442,14 @@
           "body": "Why is it downloading an onnx runtime package?",
           "score": 0,
           "time": 1795711663,
+          "parent": "50656036"
+        },
+        {
+          "id": "50660241",
+          "author": "frizlab",
+          "body": "I wonder why Epiphany is so slow compared to the others",
+          "score": 0,
+          "time": 1795730097,
           "parent": "50656036"
         },
         {
@@ -373,11 +477,11 @@
           "parent": "50656036"
         },
         {
-          "id": "50658974",
-          "author": "joamag",
-          "body": "unkernel is just awesome - great demo of it!",
+          "id": "50657306",
+          "author": "hard_times",
+          "body": "How is networking happening?",
           "score": 0,
-          "time": 1795722691,
+          "time": 1795713378,
           "parent": "50656036"
         },
         {
@@ -397,27 +501,11 @@
           "parent": "50656036"
         },
         {
-          "id": "50657306",
-          "author": "hard_times",
-          "body": "How is networking happening?",
+          "id": "50658974",
+          "author": "joamag",
+          "body": "unkernel is just awesome - great demo of it!",
           "score": 0,
-          "time": 1795713378,
-          "parent": "50656036"
-        },
-        {
-          "id": "50656534",
-          "author": "m00dy",
-          "body": "You can easily flag these vms. Just open https://m.evenstamp.com (https://m.evenstamp.com)",
-          "score": 0,
-          "time": 1795708411,
-          "parent": "50656036"
-        },
-        {
-          "id": "50658662",
-          "author": "Jtariiiii",
-          "body": "AI generated ass title lmfao",
-          "score": 0,
-          "time": 1795720840,
+          "time": 1795722691,
           "parent": "50656036"
         }
       ]
@@ -429,8 +517,8 @@
       "title": "Show HN: I wrote an entire Vim manual over 4 years",
       "subreddit": "show-hn",
       "author": "thanato0s",
-      "score": 21,
-      "num_comments": 8,
+      "score": 159,
+      "num_comments": 48,
       "permalink": "https://news.ycombinator.com/item?id=50655868",
       "url": "http://themouseless.dev/vim/",
       "selftext": "I'm glad to announce that I'm releasing my new book, Learning to Play Vim.\nWhen I started using Vim more than a decade ago, I wished there was a manual out there teaching how to use this fantastic editor step by step, beginning with the foundations up to more advanced features. Of course at the time I did the vimtutor, but it was too dense for me to remember much from it. I also read the entire Vim manual (`:help manual`), but I didn't like it: it was too detailed in places (for example `02.8 Finding help` completely lost me for a while), and other features didn't get the treatment they deserved.\nSo I decided to write my own Vim manual. It took me more than 4 years and 2987 focused pomodoros (1244 hours) of work to finally get it done!\nThe result:\n- 21 chapters showing the most important Vim features step by step.\n- 170 exercises with solutions.\n- Many real-life examples to show how Vim can be used and configured for your own needs.\n- The related Vim's help pages to dig further into each feature.\nMost configs are both written in Vimscript and Lua for Neovim users. This book explores the common features between Vim and Neovim, so don't expect anything about Neovim-specific features (like treesitter or LSP for example).\n- The landing page: https://themouseless.dev/vim/ (https://themouseless.dev/vim/)\n- A sample of the book with the entire table of contents and the first three chapters covering most of the basics: https://themouseless.dev/content/learning_to_play_vim_sample... (https://themouseless.dev/content/learning_to_play_vim_sample.pdf).\nI wrote this with my bare hands, no LLM involved to spoil the fun.",
@@ -448,19 +536,83 @@
           "parent": "50655868"
         },
         {
-          "id": "50659635",
-          "author": "kinfish",
-          "body": "nice work on this. what was a motivation behind this ? just learning or what",
+          "id": "50663937",
+          "author": "giladd",
+          "body": "This is very cool and approachable, thank you. For anyone who suspects use of LLMs - just read some of the book. The language captured my attention in a manner no model is capable of.",
           "score": 0,
-          "time": 1795726159,
+          "time": 1795764923,
           "parent": "50655868"
         },
         {
-          "id": "50659197",
-          "author": "smashandgrab",
-          "body": "I have this beautiful dream where I never touch my mouse again.\nUnfortunately the tools used by incident responders are mostly built in GUIs and tabbing through everything is less productive than just reaching for the mouse.\nI don’t hate you, mouse. I just have a dream.",
+          "id": "50664458",
+          "author": "1-2-3-5-8",
+          "body": "Thank you.",
           "score": 0,
-          "time": 1795723935,
+          "time": 1795769131,
+          "parent": "50655868"
+        },
+        {
+          "id": "50660378",
+          "author": "leowoo91",
+          "body": "We are in such era it is hard to believe if author/site/book and comments in this post is legit at all. Maybe it ruined me at least.",
+          "score": 0,
+          "time": 1795731055,
+          "parent": "50655868"
+        },
+        {
+          "id": "50663721",
+          "author": "sph",
+          "body": "I do not use Vim anymore, but I still appreciate feats of human effort. Well done! I’ll point any newbies that come my way to your book.",
+          "score": 0,
+          "time": 1795762977,
+          "parent": "50655868"
+        },
+        {
+          "id": "50662998",
+          "author": "sschmitt",
+          "body": "Can I read the book from within Vim?",
+          "score": 0,
+          "time": 1795756049,
+          "parent": "50655868"
+        },
+        {
+          "id": "50661678",
+          "author": "nickandbro",
+          "body": "The hexagon layout for the front page reminds me of my own vim tutor app:\nhttps://vimgolf.ai (https://vimgolf.ai)",
+          "score": 0,
+          "time": 1795742311,
+          "parent": "50655868"
+        },
+        {
+          "id": "50662782",
+          "author": "emerald_24",
+          "body": "Four years is long enough for a manual to grow a second one inside it. What did you cut late, after you thought the chapter was settled?",
+          "score": 0,
+          "time": 1795753445,
+          "parent": "50655868"
+        },
+        {
+          "id": "50663102",
+          "author": "Insanity",
+          "body": "Kudos on finishing the book, that’s a huge achievement!\nI’ve been daily driving vim for about 15 years now so don’t think it’s something for me, but it’s good to see new content being created for the next generation software engineers (although they might only see prompt interfaces 99% of the time).",
+          "score": 0,
+          "time": 1795757026,
+          "parent": "50655868"
+        },
+        {
+          "id": "50661419",
+          "author": "robenheimer",
+          "body": "i don't understand the hate i've seen about vim in recent years. it's pretty quick to pick up the basics, and everything else you learn when you need to learn it. at least it's not emacs xD",
+          "score": 0,
+          "time": 1795739788,
+          "parent": "50655868"
+        },
+        {
+          "id": "50663968",
+          "author": "neuroelectron",
+          "body": "It took me five years to realize Vim was not for me. Maybe this would've made a difference, but it's 21 chapters long. Perhaps something is wrong wrong with the architecture of Vim itself when it takes 21 chapters to explain how to use a text editor.",
+          "score": 0,
+          "time": 1795765251,
           "parent": "50655868"
         },
         {
@@ -497,8 +649,8 @@
       "title": "Show HN: Silent dictation for Claude Code via on-device lip reading",
       "subreddit": "show-hn",
       "author": "dima7711",
-      "score": 11,
-      "num_comments": 1,
+      "score": 16,
+      "num_comments": 2,
       "permalink": "https://news.ycombinator.com/item?id=50655639",
       "url": "https://github.com/batanus/lip-dictation",
       "selftext": "",
@@ -507,6 +659,14 @@
       "time": 1795703108,
       "created_at": "2026-11-26T14:25:08+00:00",
       "comments_data": [
+        {
+          "id": "50661291",
+          "author": "cluckindan",
+          "body": "You could train a MIMO wifi access point to read micromovements of your trachea and train a classifier to turn the data into your inner monologue as text. Just think your prompt, no mouthing needed.",
+          "score": 0,
+          "time": 1795738530,
+          "parent": "50655639"
+        },
         {
           "id": "50655953",
           "author": "expectfun",
@@ -541,8 +701,8 @@
       "title": "Show HN: Olumino, a Markdown notes and spaced repetition app",
       "subreddit": "show-hn",
       "author": "Wiyseful",
-      "score": 32,
-      "num_comments": 23,
+      "score": 104,
+      "num_comments": 45,
       "permalink": "https://news.ycombinator.com/item?id=50651099",
       "url": "https://olumino.app",
       "selftext": "I was inspired by Mochi and Anki, but wanted to make something that’s a mix of the two. Anki is very confusing and has an outdated interface while Mochi is very simple and has a more minimalist interface. Olumino is the combination of both.\nI also added Japanese flashcard support, including kana readings, for anyone learning the language.\nI’m a CS student building this in my free time, so I’d love to hear what people think!",
@@ -552,27 +712,19 @@
       "created_at": "2026-11-26T03:33:06+00:00",
       "comments_data": [
         {
-          "id": "50660171",
-          "author": "Tianyi_Liu",
-          "body": "I don't understand why you don't just use the Obsidian + plugins + Anki solution.",
+          "id": "50661150",
+          "author": "andai",
+          "body": "Cool. I like the swiping. Very satisfying.\nI made my own flashcard thing a few months ago, when I realized my goal was the opposite of Anki's goal.\nAnki — and all flashcard software these days — makes learning as efficient as possible, which they define as minimizing learning time. It does this by showing you things as rarely as possible.\nUnfortunately that also maximizes pain, effort and forgetting, and minimizes fluency. I wanted the opposite of that, because I am lazy and don't like effort, pain and failure. (I also like fluency!)\nThe goal of minimizing time makes sense for a law student or someone in med school, but for me that's not a problem I actually have, and it creates all these other problems.\n(Flashcard software is also known to have pretty bad user retention, which if I had to guess is due to the fact that it is effectively designed to be painful.)\nSo I just made a thing oriented around the exact opposite goal: showing me cards as often as possible! (And turns out I was half a century late with this idea :) https://en.wikipedia.org/wiki/Precision_teaching (https://en.wikipedia.org/wiki/Precision_teaching)\nThen I realized I could just modify Anki instead of maintaining an entire software, so I did that instead.\nThen I realized I am just too lazy to do flashcards, and creating new software did not solve that problem. To make the reps easy and to maximize fluency. (The quest continues... maybe I should try again when I get some Ritalin!)\np.s. I did a deep dive on this stuff and discovered that what we call \"overlearning\" is actually just what used to be called learning not so long ago, and that what we call \"mastery learning\" is actually temporary basic competence.",
           "score": 0,
-          "time": 1795729602,
+          "time": 1795737159,
           "parent": "50651099"
         },
         {
-          "id": "50660104",
-          "author": "RockstarSprain",
-          "body": "I have been using Remnote in a similar way — I wonder how this tool compares to it?",
+          "id": "50663943",
+          "author": "FailMore",
+          "body": "Think the interface is very beautiful. The onboarding is great too. Awesome work! You are a talented application builder!\nTwo things on my mind:\n1. Does it have an agent interface, where I can get my agent to log in on my behalf and create/upload a deck?\n2. [Niche request] I'm learning Chinese - audio only - it would be great if it could use the system's \"voice\" to play sounds as part of the cards\nFYI I might write to your contact email address to connect because your application building skills inspire me! Thanks for sharing",
           "score": 0,
-          "time": 1795729154,
-          "parent": "50651099"
-        },
-        {
-          "id": "50660145",
-          "author": "abcd_f",
-          "body": "What scheduler does it use?",
-          "score": 0,
-          "time": 1795729410,
+          "time": 1795765052,
           "parent": "50651099"
         },
         {
@@ -584,6 +736,38 @@
           "parent": "50651099"
         },
         {
+          "id": "50662640",
+          "author": "_ache_",
+          "body": "Interesting, I did myself a flash card system.\nLearning every country's flags feel like a super power now.\nBut the UI et UX isn't that good. I may inspire myself of this.\nWhat I did instead is i18n support, notification system and UX of the revision part.\nI have the concept of Desks of cards and it's based of FSRS-6 instead of 7 as the crate wasn't yet ready for production. Is it now?\nIn mine, a card can actually be into multiple desks.\nSFRS normaly have 4 feedback => Forgot / Hard / Easy / Instant.\nWhy do you only have 3?\n\"Down slide\" feels like a \"Hard\" to me, so it's not about 3 motions is enough.\nAny way, I will definitively look into this project.",
+          "score": 0,
+          "time": 1795752079,
+          "parent": "50651099"
+        },
+        {
+          "id": "50661983",
+          "author": "kenrick95",
+          "body": "Very cool site, and the UI is clean! I agree that swipes is something that makes the experience feel great. AnkiDroid (Android app) has it but it wasn't enabled by default and even when enabled we need extra steps to configure.\nI also feel the default Anki/AnkiDroid gives us 4 options (Again/Hard/Good/Easy) which could cause a decision fatigue. I feel the default should be just \"Again\" and \"Good\", like shown in this app\nI also like that the site doesnt ask me to sign in before I can feel the experience. Good job on that :)\nAnother feedback is that on the answer options, it shows the time taken for card to reappear (like \"0m\", \"1d\", \"3d\"), I feel these information could unintentionally make me \"lie\" to myself since sometimes I don't want a card to reappear too often; so I wish that could be hidden from me",
+          "score": 0,
+          "time": 1795745425,
+          "parent": "50651099"
+        },
+        {
+          "id": "50660145",
+          "author": "abcd_f",
+          "body": "What scheduler does it use?\nEdit, nevermind it's FSRS.\nI too wrote my own spaced rep app to help with language studying, and it also started with 3 answer options - forgot, ok, instant. But later I added \"imperfect\" before the \"ok\", for the cases when I'd forget an accent or get the gender wrong. I find this captures the progress more accurately and allows for more precise scheduling.",
+          "score": 0,
+          "time": 1795729410,
+          "parent": "50651099"
+        },
+        {
+          "id": "50661137",
+          "author": "gb2d_hn",
+          "body": "I've been considering a spaced repetition mode for EtherPK https://app.etherpk.com (https://app.etherpk.com) (markdown notes, task management with agent integration) - it's something I really Enjoyed with Logseq for studying particularly tricky topics. This is looks like a nice implementation, very smooth UI.",
+          "score": 0,
+          "time": 1795737035,
+          "parent": "50651099"
+        },
+        {
           "id": "50659887",
           "author": "terminal-bloom",
           "body": "This looks uncomfortably similar to mochi.cards, another markdown spaced repetition app that’s been around for years, with an extremely similar design",
@@ -592,19 +776,11 @@
           "parent": "50651099"
         },
         {
-          "id": "50659982",
-          "author": "franklin_p_dyer",
-          "body": "How long has this existed? The blog posts don’t go back very far and there are often several per day. Did you write these posts, or are they just AI generated and posted there as SEO?\nCool to see other people interested in spaced repetition, but it’s odd to see something that is one CS student’s passion project looking so “corporate”. No offense, but I don’t think I would ever try something like this when it’s not open-source and there are already so many other more mature alternatives out there (open-source, free and paid).",
+          "id": "50662134",
+          "author": "dsiegel2275",
+          "body": "If you want to target teachers and their students - you should add LTI 1.3 support so that they do not need to explicitly create accounts.",
           "score": 0,
-          "time": 1795728262,
-          "parent": "50651099"
-        },
-        {
-          "id": "50659921",
-          "author": "neuwirth",
-          "body": "Glad to see FSRS as the default!",
-          "score": 0,
-          "time": 1795727836,
+          "time": 1795747211,
           "parent": "50651099"
         },
         {
@@ -616,14 +792,6 @@
           "parent": "50651099"
         },
         {
-          "id": "50659707",
-          "author": "selahsoftware",
-          "body": "Wish I had this when I was in college studying for my CS classes back in the dark ages of 2014 haha",
-          "score": 0,
-          "time": 1795726597,
-          "parent": "50651099"
-        },
-        {
           "id": "50651390",
           "author": "gazook89",
           "body": "I think I’m having a hard time editing a card because the mobile keyboard (iOS) is pushing the screen up, but I can’t scroll up to the text I need to edit. Kind of hard to tell though.",
@@ -632,11 +800,11 @@
           "parent": "50651099"
         },
         {
-          "id": "50651295",
-          "author": "makizuto",
-          "body": "i like it, i feel like flashcards would do better on a mobile app",
+          "id": "50660104",
+          "author": "RockstarSprain",
+          "body": "I have been using Remnote in a similar way — I wonder how this tool compares to it?",
           "score": 0,
-          "time": 1795666132,
+          "time": 1795729154,
           "parent": "50651099"
         }
       ]
